@@ -104,14 +104,10 @@ export namespace gamesConfiguration_v1configuration {
    * The Google Play Game Services Publishing API allows developers to configure their games in Game Services.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const gamesConfiguration = google.gamesConfiguration('v1configuration');
-   *
-   * @namespace gamesConfiguration
-   * @type {Function}
-   * @version v1configuration
-   * @variation v1configuration
-   * @param {object=} options Options for Gamesconfiguration
+   * ```
    */
   export class Gamesconfiguration {
     context: APIRequestContext;
@@ -223,11 +219,11 @@ export namespace gamesConfiguration_v1configuration {
    */
   export interface Schema$GamesNumberAffixConfiguration {
     /**
-     * When the language requires special treatment of &quot;small&quot; numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).
+     * When the language requires special treatment of "small" numbers (as with 2, 3, and 4 in Czech; or numbers ending 2, 3, or 4 but not 12, 13, or 14 in Polish).
      */
     few?: Schema$LocalizedStringBundle;
     /**
-     * When the language requires special treatment of &quot;large&quot; numbers (as with numbers ending 11-99 in Maltese).
+     * When the language requires special treatment of "large" numbers (as with numbers ending 11-99 in Maltese).
      */
     many?: Schema$LocalizedStringBundle;
     /**
@@ -403,9 +399,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.achievementConfigurations.delete
-     * @desc Delete the achievement configuration with the given ID.
+     * Delete the achievement configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -440,14 +436,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.achievementConfigurations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Achievementconfigurations$Delete,
@@ -527,9 +521,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.achievementConfigurations.get
-     * @desc Retrieves the metadata of the achievement configuration with the given ID.
+     * Retrieves the metadata of the achievement configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -576,14 +570,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.achievementConfigurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Achievementconfigurations$Get,
@@ -670,9 +662,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.achievementConfigurations.insert
-     * @desc Insert a new achievement configuration in this application.
+     * Insert a new achievement configuration in this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -734,15 +726,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.achievementConfigurations.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {().AchievementConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Achievementconfigurations$Insert,
@@ -832,9 +821,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.achievementConfigurations.list
-     * @desc Returns a list of the achievement configurations in this application.
+     * Returns a list of the achievement configurations in this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -880,16 +869,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.achievementConfigurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Achievementconfigurations$List,
@@ -987,9 +972,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.achievementConfigurations.update
-     * @desc Update the metadata of the achievement configuration with the given ID.
+     * Update the metadata of the achievement configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1051,15 +1036,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.achievementConfigurations.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {().AchievementConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Achievementconfigurations$Update,
@@ -1209,9 +1191,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.imageConfigurations.upload
-     * @desc Uploads an image for a resource with the given ID and image type.
+     * Uploads an image for a resource with the given ID and image type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1264,18 +1246,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.imageConfigurations.upload
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.imageType Selects which image in a resource for this method.
-     * @param {string} params.resourceId The ID of the resource used by this method.
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     upload(
       params: Params$Resource$Imageconfigurations$Upload,
@@ -1404,9 +1380,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.leaderboardConfigurations.delete
-     * @desc Delete the leaderboard configuration with the given ID.
+     * Delete the leaderboard configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1441,14 +1417,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.leaderboardConfigurations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Leaderboardconfigurations$Delete,
@@ -1528,9 +1502,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.leaderboardConfigurations.get
-     * @desc Retrieves the metadata of the leaderboard configuration with the given ID.
+     * Retrieves the metadata of the leaderboard configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1577,14 +1551,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.leaderboardConfigurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Leaderboardconfigurations$Get,
@@ -1671,9 +1643,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.leaderboardConfigurations.insert
-     * @desc Insert a new leaderboard configuration in this application.
+     * Insert a new leaderboard configuration in this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1735,15 +1707,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.leaderboardConfigurations.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {().LeaderboardConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Leaderboardconfigurations$Insert,
@@ -1833,9 +1802,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.leaderboardConfigurations.list
-     * @desc Returns a list of the leaderboard configurations in this application.
+     * Returns a list of the leaderboard configurations in this application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -1881,16 +1850,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.leaderboardConfigurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of resource configurations to return in the response, used for paging. For any response, the actual number of resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Leaderboardconfigurations$List,
@@ -1988,9 +1953,9 @@ export namespace gamesConfiguration_v1configuration {
     }
 
     /**
-     * gamesConfiguration.leaderboardConfigurations.update
-     * @desc Update the metadata of the leaderboard configuration with the given ID.
+     * Update the metadata of the leaderboard configuration with the given ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesConfiguration.googleapis.com
@@ -2052,15 +2017,12 @@ export namespace gamesConfiguration_v1configuration {
      *   throw e;
      * });
      *
-     * @alias gamesConfiguration.leaderboardConfigurations.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {().LeaderboardConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Leaderboardconfigurations$Update,

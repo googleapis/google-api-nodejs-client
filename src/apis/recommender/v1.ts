@@ -104,14 +104,10 @@ export namespace recommender_v1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const recommender = google.recommender('v1');
-   *
-   * @namespace recommender
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Recommender
+   * ```
    */
   export class Recommender {
     context: APIRequestContext;
@@ -166,7 +162,7 @@ export namespace recommender_v1 {
      */
     category?: string | null;
     /**
-     * A struct of custom fields to explain the insight. Example: &quot;grantedPermissionsCount&quot;: &quot;1000&quot;
+     * A struct of custom fields to explain the insight. Example: "grantedPermissionsCount": "1000"
      */
     content?: {[key: string]: any} | null;
     /**
@@ -272,7 +268,7 @@ export namespace recommender_v1 {
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62\}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255\}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -285,7 +281,7 @@ export namespace recommender_v1 {
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62\}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255\}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -298,7 +294,7 @@ export namespace recommender_v1 {
      */
     etag?: string | null;
     /**
-     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255}$/.
+     * State properties to include with this state. Overwrites any existing `state_metadata`. Keys must match the regex /^a-z0-9{0,62\}$/. Values must match the regex /^[a-zA-Z0-9_./-]{0,255\}$/.
      */
     stateMetadata?: {[key: string]: string} | null;
   }
@@ -307,15 +303,15 @@ export namespace recommender_v1 {
    */
   export interface Schema$GoogleCloudRecommenderV1Operation {
     /**
-     * Type of this operation. Contains one of &#39;and&#39;, &#39;remove&#39;, &#39;replace&#39;, &#39;move&#39;, &#39;copy&#39;, &#39;test&#39; and custom operations. This field is case-insensitive and always populated.
+     * Type of this operation. Contains one of 'and', 'remove', 'replace', 'move', 'copy', 'test' and custom operations. This field is case-insensitive and always populated.
      */
     action?: string | null;
     /**
-     * Path to the target field being operated on. If the operation is at the resource level, then path should be &quot;/&quot;. This field is always populated.
+     * Path to the target field being operated on. If the operation is at the resource level, then path should be "/". This field is always populated.
      */
     path?: string | null;
     /**
-     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: { &quot;/versions/x/name&quot; : &quot;it-123&quot; &quot;/versions/x/targetSize/percent&quot;: 20 } * Example: { &quot;/bindings/x/role&quot;: &quot;roles/admin&quot; &quot;/bindings/x/condition&quot; : null } * Example: { &quot;/bindings/x/role&quot;: &quot;roles/admin&quot; &quot;/bindings/x/members/*&quot; : [&quot;x@google.com&quot;, &quot;y@google.com&quot;] } When both path_filters and path_value_matchers are set, an implicit AND must be performed.
+     * Set of filters to apply if `path` refers to array elements or nested array elements in order to narrow down to a single unique element that is being tested/modified. This is intended to be an exact match per filter. To perform advanced matching, use path_value_matchers. * Example: { "/versions/x/name" : "it-123" "/versions/x/targetSize/percent": 20 \} * Example: { "/bindings/x/role": "roles/admin" "/bindings/x/condition" : null \} * Example: { "/bindings/x/role": "roles/admin" "/bindings/x/members/x" : ["x@google.com", "y@google.com"] \} When both path_filters and path_value_matchers are set, an implicit AND must be performed.
      */
     pathFilters?: {[key: string]: any} | null;
     /**
@@ -333,19 +329,19 @@ export namespace recommender_v1 {
      */
     resourceType?: string | null;
     /**
-     * Can be set with action &#39;copy&#39; or &#39;move&#39; to indicate the source field within resource or source_resource, ignored if provided for other operation types.
+     * Can be set with action 'copy' or 'move' to indicate the source field within resource or source_resource, ignored if provided for other operation types.
      */
     sourcePath?: string | null;
     /**
-     * Can be set with action &#39;copy&#39; to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = &#39;copy&#39;, path = &quot;/&quot;, from = &quot;/&quot;, source_resource = and resource_name = . This field is empty for all other values of `action`.
+     * Can be set with action 'copy' to copy resource configuration across different resources of the same type. Example: A resource clone can be done via action = 'copy', path = "/", from = "/", source_resource = and resource_name = . This field is empty for all other values of `action`.
      */
     sourceResource?: string | null;
     /**
-     * Value for the `path` field. Will be set for actions:&#39;add&#39;/&#39;replace&#39;. Maybe set for action: &#39;test&#39;. Either this or `value_matcher` will be set for &#39;test&#39; operation. An exact match must be performed.
+     * Value for the `path` field. Will be set for actions:'add'/'replace'. Maybe set for action: 'test'. Either this or `value_matcher` will be set for 'test' operation. An exact match must be performed.
      */
     value?: any | null;
     /**
-     * Can be set for action &#39;test&#39; for advanced matching for the value of &#39;path&#39; field. Either this or `value` will be set for &#39;test&#39; operation.
+     * Can be set for action 'test' for advanced matching for the value of 'path' field. Either this or `value` will be set for 'test' operation.
      */
     valueMatcher?: Schema$GoogleCloudRecommenderV1ValueMatcher;
   }
@@ -395,7 +391,7 @@ export namespace recommender_v1 {
      */
     primaryImpact?: Schema$GoogleCloudRecommenderV1Impact;
     /**
-     * Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = &quot;google.iam.policy.Recommender&quot;, recommender_subtype can be one of &quot;REMOVE_ROLE&quot;/&quot;REPLACE_ROLE&quot;
+     * Contains an identifier for a subtype of recommendations produced for the same recommender. Subtype is a function of content and impact, meaning a new subtype might be added when significant changes to `content` or `primary_impact.category` are introduced. See the Recommenders section to see a list of subtypes for a given Recommender. Examples: For recommender = "google.iam.policy.Recommender", recommender_subtype can be one of "REMOVE_ROLE"/"REPLACE_ROLE"
      */
     recommenderSubtype?: string | null;
     /**
@@ -456,7 +452,7 @@ export namespace recommender_v1 {
      */
     nanos?: number | null;
     /**
-     * The whole units of the amount. For example if `currencyCode` is `&quot;USD&quot;`, then 1 unit is one US dollar.
+     * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
   }
@@ -503,9 +499,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.insightTypes.insights.get
-     * @desc Gets the requested insight. Requires the recommender.*.get IAM permission for the specified insight type.
+     * Gets the requested insight. Requires the recommender.*.get IAM permission for the specified insight type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -556,14 +552,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.insightTypes.insights.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the insight.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Get,
@@ -651,9 +645,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.insightTypes.insights.list
-     * @desc Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
+     * Lists insights for a Cloud project. Requires the recommender.*.list IAM permission for the specified insight type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -701,17 +695,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.insightTypes.insights.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter expression to restrict the insights returned. Supported filter fields: state Eg: `state:"DISMISSED" or state:"ACTIVE"
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
-     * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/insightTypes/[INSIGHT_TYPE_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ INSIGHT_TYPE_ID refers to supported insight types: https://cloud.google.com/recommender/docs/insights/insight-types.)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$List,
@@ -816,9 +805,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.insightTypes.insights.markAccepted
-     * @desc Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
+     * Marks the Insight State as Accepted. Users can use this method to indicate to the Recommender API that they have applied some action based on the insight. This stops the insight content from being updated. MarkInsightAccepted can be applied to insights in ACTIVE state. Requires the recommender.*.update IAM permission for the specified insight.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -880,15 +869,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.insightTypes.insights.markAccepted
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the insight.
-     * @param {().GoogleCloudRecommenderV1MarkInsightAcceptedRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     markAccepted(
       params: Params$Resource$Projects$Locations$Insighttypes$Insights$Markaccepted,
@@ -1036,9 +1022,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.recommenders.recommendations.get
-     * @desc Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender.
+     * Gets the requested recommendation. Requires the recommender.*.get IAM permission for the specified recommender.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -1090,14 +1076,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.recommenders.recommendations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the recommendation.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Get,
@@ -1191,9 +1175,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.recommenders.recommendations.list
-     * @desc Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
+     * Lists recommendations for a Cloud project. Requires the recommender.*.list IAM permission for the specified recommender.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -1243,17 +1227,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.recommenders.recommendations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter expression to restrict the recommendations returned. Supported filter fields: state_info.state Eg: `state_info.state:"DISMISSED" or state_info.state:"FAILED"
-     * @param {integer=} params.pageSize Optional. The maximum number of results to return from this request. Non-positive values are ignored. If not specified, the server will determine the number of results to return.
-     * @param {string=} params.pageToken Optional. If present, retrieves the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters must be identical to those in the previous call.
-     * @param {string} params.parent Required. The container resource on which to execute the request. Acceptable formats: 1. "projects/[PROJECT_NUMBER]/locations/[LOCATION]/recommenders/[RECOMMENDER_ID]", LOCATION here refers to GCP Locations: https://cloud.google.com/about/locations/ RECOMMENDER_ID refers to supported recommenders: https://cloud.google.com/recommender/docs/recommenders.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$List,
@@ -1361,9 +1340,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.recommenders.recommendations.markClaimed
-     * @desc Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED, SUCCEEDED, FAILED, or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * Marks the Recommendation State as Claimed. Users can use this method to indicate to the Recommender API that they are starting to apply the recommendation themselves. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationClaimed can be applied to recommendations in CLAIMED, SUCCEEDED, FAILED, or ACTIVE state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -1424,15 +1403,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.recommenders.recommendations.markClaimed
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1MarkRecommendationClaimedRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     markClaimed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markclaimed,
@@ -1529,9 +1505,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.recommenders.recommendations.markFailed
-     * @desc Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * Marks the Recommendation State as Failed. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation failed. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationFailed can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -1592,15 +1568,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.recommenders.recommendations.markFailed
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1MarkRecommendationFailedRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     markFailed(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Markfailed,
@@ -1697,9 +1670,9 @@ export namespace recommender_v1 {
     }
 
     /**
-     * recommender.projects.locations.recommenders.recommendations.markSucceeded
-     * @desc Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
+     * Marks the Recommendation State as Succeeded. Users can use this method to indicate to the Recommender API that they have applied the recommendation themselves, and the operation was successful. This stops the recommendation content from being updated. Associated insights are frozen and placed in the ACCEPTED state. MarkRecommendationSucceeded can be applied to recommendations in ACTIVE, CLAIMED, SUCCEEDED, or FAILED state. Requires the recommender.*.update IAM permission for the specified recommender.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/recommender.googleapis.com
@@ -1760,15 +1733,12 @@ export namespace recommender_v1 {
      *   throw e;
      * });
      *
-     * @alias recommender.projects.locations.recommenders.recommendations.markSucceeded
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the recommendation.
-     * @param {().GoogleCloudRecommenderV1MarkRecommendationSucceededRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     markSucceeded(
       params: Params$Resource$Projects$Locations$Recommenders$Recommendations$Marksucceeded,

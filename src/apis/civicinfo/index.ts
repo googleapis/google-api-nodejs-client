@@ -33,3 +33,14 @@ export function civicinfo<T = civicinfo_v2.Civicinfo>(
 
 const auth = new AuthPlus();
 export {auth};
+export {civicinfo_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

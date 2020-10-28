@@ -35,3 +35,15 @@ export function drive<T = drive_v2.Drive | drive_v3.Drive>(
 
 const auth = new AuthPlus();
 export {auth};
+export {drive_v2};
+export {drive_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

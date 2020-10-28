@@ -45,3 +45,15 @@ export function firebaseml<
 
 const auth = new AuthPlus();
 export {auth};
+export {firebaseml_v1};
+export {firebaseml_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

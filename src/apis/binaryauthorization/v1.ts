@@ -104,14 +104,10 @@ export namespace binaryauthorization_v1 {
    * The management interface for Binary Authorization, a system providing policy control for images deployed to Kubernetes Engine clusters.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const binaryauthorization = google.binaryauthorization('v1');
-   *
-   * @namespace binaryauthorization
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Binaryauthorization
+   * ```
    */
   export class Binaryauthorization {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace binaryauthorization_v1 {
      */
     evaluationMode?: string | null;
     /**
-     * Optional. The resource names of the attestors that must attest to a container image, in the format `projects/x/attestors/x. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.
+     * Optional. The resource names of the attestors that must attest to a container image, in the format `projects/x/attestors/x`. Each attestor must exist before a policy can reference it. To add an attestor to a policy the principal issuing the policy change request must be able to read the attestor resource. Note: this field must be non-empty when the evaluation_mode field specifies REQUIRE_ATTESTATION, otherwise it must be empty.
      */
     requireAttestationsBy?: string[] | null;
   }
@@ -154,7 +150,7 @@ export namespace binaryauthorization_v1 {
     namePattern?: string | null;
   }
   /**
-   * Occurrence that represents a single &quot;attestation&quot;. The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for lookup (how to find this attestation if you already know the authority and artifact to be verified) and intent (for which authority this attestation was intended to sign.
+   * Occurrence that represents a single "attestation". The authenticity of an attestation can be verified using the attached signature. If the verifier trusts the public key of the signer, then verifying the signature is sufficient to establish trust. In this circumstance, the authority to which this attestation is attached is primarily useful for lookup (how to find this attestation if you already know the authority and artifact to be verified) and intent (for which authority this attestation was intended to sign.
    */
   export interface Schema$AttestationOccurrence {
     /**
@@ -179,7 +175,7 @@ export namespace binaryauthorization_v1 {
      */
     description?: string | null;
     /**
-     * Required. The resource name, in the format: `projects/x/attestors/x. This field may not be updated.
+     * Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
      */
     name?: string | null;
     /**
@@ -225,7 +221,7 @@ export namespace binaryauthorization_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -234,11 +230,11 @@ export namespace binaryauthorization_v1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -259,7 +255,7 @@ export namespace binaryauthorization_v1 {
     title?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$IamPolicy {
     /**
@@ -350,11 +346,11 @@ export namespace binaryauthorization_v1 {
     policy?: Schema$IamPolicy;
   }
   /**
-   * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be &quot;attached&quot; (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any &quot;attached&quot; payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
+   * Verifiers (e.g. Kritis implementations) MUST verify signatures with respect to the trust anchors defined in policy (e.g. a Kritis policy). Typically this means that the verifier has been configured with a map from `public_key_id` to public key material (and any required parameters, e.g. signing algorithm). In particular, verification implementations MUST NOT treat the signature `public_key_id` as anything more than a key lookup hint. The `public_key_id` DOES NOT validate or authenticate a public key; it only provides a mechanism for quickly selecting a public key ALREADY CONFIGURED on the verifier through a trusted channel. Verification implementations MUST reject signatures in any of the following circumstances: * The `public_key_id` is not recognized by the verifier. * The public key that `public_key_id` refers to does not verify the signature with respect to the payload. The `signature` contents SHOULD NOT be "attached" (where the payload is included with the serialized `signature` bytes). Verifiers MUST ignore any "attached" payload and only verify signatures with respect to explicitly provided payload (e.g. a `payload` field on the proto message that holds this Signature, or the canonical serialization of the proto message that holds this signature).
    */
   export interface Schema$Signature {
     /**
-     * The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * &quot;openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA&quot; See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * &quot;ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU&quot; * &quot;nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5&quot;
+     * The identifier for the public key that verifies this signature. * The `public_key_id` is required. * The `public_key_id` SHOULD be an RFC3986 conformant URI. * When possible, the `public_key_id` SHOULD be an immutable reference, such as a cryptographic digest. Examples of valid `public_key_id`s: OpenPGP V4 public key fingerprint: * "openpgp4fpr:74FAF3B861BDA0870C7B6DEF607E48D2A663AEEA" See https://www.iana.org/assignments/uri-schemes/prov/openpgp4fpr for more details on this scheme. RFC6920 digest-named SubjectPublicKeyInfo (digest of the DER serialization): * "ni:///sha-256;cD9o9Cq6LG3jD0iKXqEi_vdjJGecm_iXkbqVoScViaU" * "nih:///sha-256;703f68f42aba2c6de30f488a5ea122fef76324679c9bf89791ba95a1271589a5"
      */
     publicKeyId?: string | null;
     /**
@@ -367,7 +363,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -389,7 +385,7 @@ export namespace binaryauthorization_v1 {
      */
     delegationServiceAccountEmail?: string | null;
     /**
-     * Required. The Grafeas resource name of a Attestation.Authority Note, created by the user, in the format: `projects/x/notes/x. This field may not be updated. An attestation by this attestor is stored as a Grafeas Attestation.Authority Occurrence that names a container image and that links to this Note. Grafeas is an external dependency.
+     * Required. The Grafeas resource name of a Attestation.Authority Note, created by the user, in the format: `projects/x/notes/x`. This field may not be updated. An attestation by this attestor is stored as a Grafeas Attestation.Authority Occurrence that names a container image and that links to this Note. Grafeas is an external dependency.
      */
     noteReference?: string | null;
     /**
@@ -419,7 +415,7 @@ export namespace binaryauthorization_v1 {
    */
   export interface Schema$ValidateAttestationOccurrenceResponse {
     /**
-     * The reason for denial if the Attestation couldn&#39;t be validated.
+     * The reason for denial if the Attestation couldn't be validated.
      */
     denialReason?: string | null;
     /**
@@ -439,9 +435,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.getPolicy
-     * @desc A policy specifies the attestors that must attest to a container image, before the project is allowed to deploy that image. There is at most one policy per project. All image admission requests are permitted if a project has no policy. Gets the policy for this project. Returns a default policy if the project does not have one.
+     * A policy specifies the attestors that must attest to a container image, before the project is allowed to deploy that image. There is at most one policy per project. All image admission requests are permitted if a project has no policy. Gets the policy for this project. Returns a default policy if the project does not have one.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -487,14 +483,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.getPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the policy to retrieve, in the format `projects/x/policy`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getPolicy(
       params: Params$Resource$Projects$Getpolicy,
@@ -574,9 +568,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.updatePolicy
-     * @desc Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed.
+     * Creates or updates a project's policy, and returns a copy of the new policy. A policy is always updated as a whole, to avoid race conditions with concurrent policy enforcement (or management!) requests. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -636,15 +630,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.updatePolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name, in the format `projects/x/policy`. There is at most one policy per project.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatePolicy(
       params: Params$Resource$Projects$Updatepolicy,
@@ -751,9 +742,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.create
-     * @desc Creates an attestor, and returns a copy of the new attestor. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the attestor already exists.
+     * Creates an attestor, and returns a copy of the new attestor. Returns NOT_FOUND if the project does not exist, INVALID_ARGUMENT if the request is malformed, ALREADY_EXISTS if the attestor already exists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -809,16 +800,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.attestorId Required. The attestors ID.
-     * @param {string} params.parent Required. The parent of this attestor.
-     * @param {().Attestor} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Attestors$Create,
@@ -901,9 +888,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.delete
-     * @desc Deletes an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Deletes an attestor. Returns NOT_FOUND if the attestor does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -941,14 +928,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the attestors to delete, in the format `projects/x/attestors/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Attestors$Delete,
@@ -1028,9 +1013,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.get
-     * @desc Gets an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Gets an attestor. Returns NOT_FOUND if the attestor does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1073,14 +1058,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the attestor to retrieve, in the format `projects/x/attestors/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Attestors$Get,
@@ -1160,9 +1143,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1206,15 +1189,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Attestors$Getiampolicy,
@@ -1297,9 +1277,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.list
-     * @desc Lists attestors. Returns INVALID_ARGUMENT if the project does not exist.
+     * Lists attestors. Returns INVALID_ARGUMENT if the project does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1344,16 +1324,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. The server may return fewer results than requested. If unspecified, the server will pick an appropriate default.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListAttestorsResponse.next_page_token returned from the previous call to the `ListAttestors` method.
-     * @param {string} params.parent Required. The resource name of the project associated with the attestors, in the format `projects/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Attestors$List,
@@ -1441,9 +1417,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1493,15 +1469,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Attestors$Setiampolicy,
@@ -1584,9 +1557,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1634,15 +1607,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Attestors$Testiampermissions,
@@ -1732,9 +1702,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.update
-     * @desc Updates an attestor. Returns NOT_FOUND if the attestor does not exist.
+     * Updates an attestor. Returns NOT_FOUND if the attestor does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1788,15 +1758,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name, in the format: `projects/x/attestors/x`. This field may not be updated.
-     * @param {().Attestor} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Attestors$Update,
@@ -1876,9 +1843,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.attestors.validateAttestationOccurrence
-     * @desc Returns whether the given Attestation for the given image URI was signed by the given Attestor
+     * Returns whether the given Attestation for the given image URI was signed by the given Attestor
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -1931,15 +1898,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.attestors.validateAttestationOccurrence
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.attestor Required. The resource name of the Attestor of the occurrence, in the format `projects/x/attestors/x`.
-     * @param {().ValidateAttestationOccurrenceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     validateAttestationOccurrence(
       params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
@@ -2148,9 +2112,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.policy.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -2194,15 +2158,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.policy.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Policy$Getiampolicy,
@@ -2285,9 +2246,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.policy.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -2337,15 +2298,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.policy.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Policy$Setiampolicy,
@@ -2428,9 +2386,9 @@ export namespace binaryauthorization_v1 {
     }
 
     /**
-     * binaryauthorization.projects.policy.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/binaryauthorization.googleapis.com
@@ -2478,15 +2436,12 @@ export namespace binaryauthorization_v1 {
      *   throw e;
      * });
      *
-     * @alias binaryauthorization.projects.policy.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Policy$Testiampermissions,

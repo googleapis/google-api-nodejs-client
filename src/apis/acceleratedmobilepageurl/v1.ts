@@ -104,14 +104,10 @@ export namespace acceleratedmobilepageurl_v1 {
    * Retrieves the list of AMP URLs (and equivalent AMP Cache URLs) for a given list of public URL(s).
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const acceleratedmobilepageurl = google.acceleratedmobilepageurl('v1');
-   *
-   * @namespace acceleratedmobilepageurl
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Acceleratedmobilepageurl
+   * ```
    */
   export class Acceleratedmobilepageurl {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace acceleratedmobilepageurl_v1 {
    */
   export interface Schema$AmpUrl {
     /**
-     * The AMP URL pointing to the publisher&#39;s web server.
+     * The AMP URL pointing to the publisher's web server.
      */
     ampUrl?: string | null;
     /**
@@ -145,7 +141,7 @@ export namespace acceleratedmobilepageurl_v1 {
     originalUrl?: string | null;
   }
   /**
-   * AMP URL Error resource for a requested URL that couldn&#39;t be found.
+   * AMP URL Error resource for a requested URL that couldn't be found.
    */
   export interface Schema$AmpUrlError {
     /**
@@ -195,9 +191,9 @@ export namespace acceleratedmobilepageurl_v1 {
     }
 
     /**
-     * acceleratedmobilepageurl.ampUrls.batchGet
-     * @desc Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format).
+     * Returns AMP URL(s) and equivalent [AMP Cache URL(s)](/amp/cache/overview#amp-cache-url-format).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/acceleratedmobilepageurl.googleapis.com
@@ -244,14 +240,12 @@ export namespace acceleratedmobilepageurl_v1 {
      *   throw e;
      * });
      *
-     * @alias acceleratedmobilepageurl.ampUrls.batchGet
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchGetAmpUrlsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchGet(
       params: Params$Resource$Ampurls$Batchget,

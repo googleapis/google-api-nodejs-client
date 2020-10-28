@@ -35,3 +35,14 @@ export function artifactregistry<T = artifactregistry_v1beta1.Artifactregistry>(
 
 const auth = new AuthPlus();
 export {auth};
+export {artifactregistry_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

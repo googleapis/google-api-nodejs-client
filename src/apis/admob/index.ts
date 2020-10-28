@@ -31,3 +31,14 @@ export function admob<T = admob_v1.Admob>(
 
 const auth = new AuthPlus();
 export {auth};
+export {admob_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

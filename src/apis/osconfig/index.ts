@@ -41,3 +41,15 @@ export function osconfig<T = osconfig_v1.Osconfig | osconfig_v1beta.Osconfig>(
 
 const auth = new AuthPlus();
 export {auth};
+export {osconfig_v1};
+export {osconfig_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

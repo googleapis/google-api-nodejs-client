@@ -41,3 +41,15 @@ export function composer<T = composer_v1.Composer | composer_v1beta1.Composer>(
 
 const auth = new AuthPlus();
 export {auth};
+export {composer_v1};
+export {composer_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

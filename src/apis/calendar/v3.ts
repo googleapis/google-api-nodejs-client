@@ -88,14 +88,10 @@ export namespace calendar_v3 {
    * Manipulates events and other calendar data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const calendar = google.calendar('v3');
-   *
-   * @namespace calendar
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Calendar
+   * ```
    */
   export class Calendar {
     context: APIRequestContext;
@@ -135,7 +131,7 @@ export namespace calendar_v3 {
      */
     items?: Schema$AclRule[];
     /**
-     * Type of the collection (&quot;calendar#acl&quot;).
+     * Type of the collection ("calendar#acl").
      */
     kind?: string | null;
     /**
@@ -157,11 +153,16 @@ export namespace calendar_v3 {
      */
     id?: string | null;
     /**
-     * Type of the resource (&quot;calendar#aclRule&quot;).
+     * Type of the resource ("calendar#aclRule").
      */
     kind?: string | null;
     /**
-     * The role assigned to the scope. Possible values are:   - &quot;none&quot; - Provides no access.  - &quot;freeBusyReader&quot; - Provides read access to free/busy information.  - &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * The role assigned to the scope. Possible values are:
+     * - "none" - Provides no access.
+     * - "freeBusyReader" - Provides read access to free/busy information.
+     * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
+     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
     role?: string | null;
     /**
@@ -187,7 +188,7 @@ export namespace calendar_v3 {
      */
     id?: string | null;
     /**
-     * Type of the resource (&quot;calendar#calendar&quot;).
+     * Type of the resource ("calendar#calendar").
      */
     kind?: string | null;
     /**
@@ -199,7 +200,7 @@ export namespace calendar_v3 {
      */
     summary?: string | null;
     /**
-     * The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) Optional.
+     * The time zone of the calendar. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) Optional.
      */
     timeZone?: string | null;
   }
@@ -209,11 +210,11 @@ export namespace calendar_v3 {
      */
     etag?: string | null;
     /**
-     * Calendars that are present on the user&#39;s calendar list.
+     * Calendars that are present on the user's calendar list.
      */
     items?: Schema$CalendarListEntry[];
     /**
-     * Type of the collection (&quot;calendar#calendarList&quot;).
+     * Type of the collection ("calendar#calendarList").
      */
     kind?: string | null;
     /**
@@ -227,11 +228,15 @@ export namespace calendar_v3 {
   }
   export interface Schema$CalendarListEntry {
     /**
-     * The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:   - &quot;freeBusyReader&quot; - Provides read access to free/busy information.  - &quot;reader&quot; - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * The effective access role that the authenticated user has on the calendar. Read-only. Possible values are:
+     * - "freeBusyReader" - Provides read access to free/busy information.
+     * - "reader" - Provides read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writer" - Provides read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
+     * - "owner" - Provides ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
     accessRole?: string | null;
     /**
-     * The main color of the calendar in the hexadecimal format &quot;#0088aa&quot;. This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
+     * The main color of the calendar in the hexadecimal format "#0088aa". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
      */
     backgroundColor?: string | null;
     /**
@@ -259,7 +264,7 @@ export namespace calendar_v3 {
      */
     etag?: string | null;
     /**
-     * The foreground color of the calendar in the hexadecimal format &quot;#ffffff&quot;. This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
+     * The foreground color of the calendar in the hexadecimal format "#ffffff". This property supersedes the index-based colorId property. To set or change this property, you need to specify colorRgbFormat=true in the parameters of the insert, update and patch methods. Optional.
      */
     foregroundColor?: string | null;
     /**
@@ -271,7 +276,7 @@ export namespace calendar_v3 {
      */
     id?: string | null;
     /**
-     * Type of the resource (&quot;calendar#calendarListEntry&quot;).
+     * Type of the resource ("calendar#calendarListEntry").
      */
     kind?: string | null;
     /**
@@ -307,11 +312,19 @@ export namespace calendar_v3 {
   }
   export interface Schema$CalendarNotification {
     /**
-     * The method used to deliver the notification. The possible value is:   - &quot;email&quot; - Notifications are sent via email.   Required when adding a notification.
+     * The method used to deliver the notification. The possible value is:
+     * - "email" - Notifications are sent via email.
+     * Required when adding a notification.
      */
     method?: string | null;
     /**
-     * The type of notification. Possible values are:   - &quot;eventCreation&quot; - Notification sent when a new event is put on the calendar.  - &quot;eventChange&quot; - Notification sent when an event is changed.  - &quot;eventCancellation&quot; - Notification sent when an event is cancelled.  - &quot;eventResponse&quot; - Notification sent when an attendee responds to the event invitation.  - &quot;agenda&quot; - An agenda with the events of the day (sent out in the morning).   Required when adding a notification.
+     * The type of notification. Possible values are:
+     * - "eventCreation" - Notification sent when a new event is put on the calendar.
+     * - "eventChange" - Notification sent when an event is changed.
+     * - "eventCancellation" - Notification sent when an event is cancelled.
+     * - "eventResponse" - Notification sent when an attendee responds to the event invitation.
+     * - "agenda" - An agenda with the events of the day (sent out in the morning).
+     * Required when adding a notification.
      */
     type?: string | null;
   }
@@ -329,7 +342,7 @@ export namespace calendar_v3 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
      */
     kind?: string | null;
     /**
@@ -363,7 +376,7 @@ export namespace calendar_v3 {
      */
     background?: string | null;
     /**
-     * The foreground color that can be used to write on top of a background with &#39;background&#39; color.
+     * The foreground color that can be used to write on top of a background with 'background' color.
      */
     foreground?: string | null;
   }
@@ -377,7 +390,7 @@ export namespace calendar_v3 {
      */
     event?: {[key: string]: Schema$ColorDefinition} | null;
     /**
-     * Type of the resource (&quot;calendar#colors&quot;).
+     * Type of the resource ("calendar#colors").
      */
     kind?: string | null;
     /**
@@ -387,19 +400,30 @@ export namespace calendar_v3 {
   }
   export interface Schema$ConferenceData {
     /**
-     * The ID of the conference. Can be used by developers to keep track of conferences, should not be displayed to users. Values for solution types:   - &quot;eventHangout&quot;: unset. - &quot;eventNamedHangout&quot;: the name of the Hangout. - &quot;hangoutsMeet&quot;: the 10-letter meeting code, for example &quot;aaa-bbbb-ccc&quot;. - &quot;addOn&quot;: defined by 3P conference provider.  Optional.
+     * The ID of the conference.
+     * Can be used by developers to keep track of conferences, should not be displayed to users.
+     * Values for solution types:
+     * - "eventHangout": unset.
+     * - "eventNamedHangout": the name of the Hangout.
+     * - "hangoutsMeet": the 10-letter meeting code, for example "aaa-bbbb-ccc".
+     * - "addOn": defined by 3P conference provider.  Optional.
      */
     conferenceId?: string | null;
     /**
-     * The conference solution, such as Hangouts or Google Meet. Unset for a conference with a failed create request. Either conferenceSolution and at least one entryPoint, or createRequest is required.
+     * The conference solution, such as Hangouts or Google Meet.
+     * Unset for a conference with a failed create request.
+     * Either conferenceSolution and at least one entryPoint, or createRequest is required.
      */
     conferenceSolution?: Schema$ConferenceSolution;
     /**
-     * A request to generate a new conference and attach it to the event. The data is generated asynchronously. To see whether the data is present check the status field. Either conferenceSolution and at least one entryPoint, or createRequest is required.
+     * A request to generate a new conference and attach it to the event. The data is generated asynchronously. To see whether the data is present check the status field.
+     * Either conferenceSolution and at least one entryPoint, or createRequest is required.
      */
     createRequest?: Schema$CreateConferenceRequest;
     /**
-     * Information about individual conference entry points, such as URLs or phone numbers. All of them must belong to the same conference. Either conferenceSolution and at least one entryPoint, or createRequest is required.
+     * Information about individual conference entry points, such as URLs or phone numbers.
+     * All of them must belong to the same conference.
+     * Either conferenceSolution and at least one entryPoint, or createRequest is required.
      */
     entryPoints?: Schema$EntryPoint[];
     /**
@@ -411,7 +435,10 @@ export namespace calendar_v3 {
      */
     parameters?: Schema$ConferenceParameters;
     /**
-     * The signature of the conference data. Generated on server side. Must be preserved while copying the conference data between events, otherwise the conference data will not be copied. Unset for a conference with a failed create request. Optional for a conference with a pending create request.
+     * The signature of the conference data.
+     * Generated on server side. Must be preserved while copying the conference data between events, otherwise the conference data will not be copied.
+     * Unset for a conference with a failed create request.
+     * Optional for a conference with a pending create request.
      */
     signature?: string | null;
   }
@@ -426,13 +453,21 @@ export namespace calendar_v3 {
   }
   export interface Schema$ConferenceProperties {
     /**
-     * The types of conference solutions that are supported for this calendar. The possible values are:   - &quot;eventHangout&quot;  - &quot;eventNamedHangout&quot;  - &quot;hangoutsMeet&quot;  Optional.
+     * The types of conference solutions that are supported for this calendar.
+     * The possible values are:
+     * - "eventHangout"
+     * - "eventNamedHangout"
+     * - "hangoutsMeet"  Optional.
      */
     allowedConferenceSolutionTypes?: string[] | null;
   }
   export interface Schema$ConferenceRequestStatus {
     /**
-     * The current status of the conference create request. Read-only. The possible values are:   - &quot;pending&quot;: the conference create request is still being processed. - &quot;success&quot;: the conference create request succeeded, the entry points are populated. - &quot;failure&quot;: the conference create request failed, there are no entry points.
+     * The current status of the conference create request. Read-only.
+     * The possible values are:
+     * - "pending": the conference create request is still being processed.
+     * - "success": the conference create request succeeded, the entry points are populated.
+     * - "failure": the conference create request failed, there are no entry points.
      */
     statusCode?: string | null;
   }
@@ -452,7 +487,13 @@ export namespace calendar_v3 {
   }
   export interface Schema$ConferenceSolutionKey {
     /**
-     * The conference solution type. If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications. The possible values are:   - &quot;eventHangout&quot; for Hangouts for consumers (http://hangouts.google.com) - &quot;eventNamedHangout&quot; for classic Hangouts for G Suite users (http://hangouts.google.com) - &quot;hangoutsMeet&quot; for Google Meet (http://meet.google.com) - &quot;addOn&quot; for 3P conference providers
+     * The conference solution type.
+     * If a client encounters an unfamiliar or empty type, it should still be able to display the entry points. However, it should disallow modifications.
+     * The possible values are:
+     * - "eventHangout" for Hangouts for consumers (http://hangouts.google.com)
+     * - "eventNamedHangout" for classic Hangouts for G Suite users (http://hangouts.google.com)
+     * - "hangoutsMeet" for Google Meet (http://meet.google.com)
+     * - "addOn" for 3P conference providers
      */
     type?: string | null;
   }
@@ -462,7 +503,8 @@ export namespace calendar_v3 {
      */
     conferenceSolutionKey?: Schema$ConferenceSolutionKey;
     /**
-     * The client-generated unique ID for this request. Clients should regenerate this ID for every new request. If an ID provided is the same as for the previous request, the request is ignored.
+     * The client-generated unique ID for this request.
+     * Clients should regenerate this ID for every new request. If an ID provided is the same as for the previous request, the request is ignored.
      */
     requestId?: string | null;
     /**
@@ -472,7 +514,9 @@ export namespace calendar_v3 {
   }
   export interface Schema$EntryPoint {
     /**
-     * The access code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
+     * The access code to access the conference. The maximum length is 128 characters.
+     * When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin\} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+     * Optional.
      */
     accessCode?: string | null;
     /**
@@ -480,35 +524,59 @@ export namespace calendar_v3 {
      */
     entryPointFeatures?: string[] | null;
     /**
-     * The type of the conference entry point. Possible values are:   - &quot;video&quot; - joining a conference over HTTP. A conference can have zero or one video entry point. - &quot;phone&quot; - joining a conference by dialing a phone number. A conference can have zero or more phone entry points. - &quot;sip&quot; - joining a conference over SIP. A conference can have zero or one sip entry point. - &quot;more&quot; - further conference joining instructions, for example additional phone numbers. A conference can have zero or one more entry point. A conference with only a more entry point is not a valid conference.
+     * The type of the conference entry point.
+     * Possible values are:
+     * - "video" - joining a conference over HTTP. A conference can have zero or one video entry point.
+     * - "phone" - joining a conference by dialing a phone number. A conference can have zero or more phone entry points.
+     * - "sip" - joining a conference over SIP. A conference can have zero or one sip entry point.
+     * - "more" - further conference joining instructions, for example additional phone numbers. A conference can have zero or one more entry point. A conference with only a more entry point is not a valid conference.
      */
     entryPointType?: string | null;
     /**
-     * The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters. Examples:   - for video: meet.google.com/aaa-bbbb-ccc - for phone: +1 123 268 2601 - for sip: 12345678@altostrat.com - for more: should not be filled   Optional.
+     * The label for the URI. Visible to end users. Not localized. The maximum length is 512 characters.
+     * Examples:
+     * - for video: meet.google.com/aaa-bbbb-ccc
+     * - for phone: +1 123 268 2601
+     * - for sip: 12345678@altostrat.com
+     * - for more: should not be filled
+     * Optional.
      */
     label?: string | null;
     /**
-     * The meeting code to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
+     * The meeting code to access the conference. The maximum length is 128 characters.
+     * When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin\} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+     * Optional.
      */
     meetingCode?: string | null;
     /**
-     * The passcode to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+     * The passcode to access the conference. The maximum length is 128 characters.
+     * When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin\} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
      */
     passcode?: string | null;
     /**
-     * The password to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
+     * The password to access the conference. The maximum length is 128 characters.
+     * When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin\} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+     * Optional.
      */
     password?: string | null;
     /**
-     * The PIN to access the conference. The maximum length is 128 characters. When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed. Optional.
+     * The PIN to access the conference. The maximum length is 128 characters.
+     * When creating new conference data, populate only the subset of {meetingCode, accessCode, passcode, password, pin\} fields that match the terminology that the conference provider uses. Only the populated fields should be displayed.
+     * Optional.
      */
     pin?: string | null;
     /**
-     * The CLDR/ISO 3166 region code for the country associated with this phone access. Example: &quot;SE&quot; for Sweden. Calendar backend will populate this field only for EntryPointType.PHONE.
+     * The CLDR/ISO 3166 region code for the country associated with this phone access. Example: "SE" for Sweden.
+     * Calendar backend will populate this field only for EntryPointType.PHONE.
      */
     regionCode?: string | null;
     /**
-     * The URI of the entry point. The maximum length is 1300 characters. Format:   - for video, http: or https: schema is required. - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234). - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com. - for more, http: or https: schema is required.
+     * The URI of the entry point. The maximum length is 1300 characters.
+     * Format:
+     * - for video, http: or https: schema is required.
+     * - for phone, tel: schema is required. The URI should include the entire dial sequence (e.g., tel:+12345678900,,,123456789;1234).
+     * - for sip, sip: schema is required, e.g., sip:12345678@myprovider.com.
+     * - for more, http: or https: schema is required.
      */
     uri?: string | null;
   }
@@ -518,7 +586,11 @@ export namespace calendar_v3 {
      */
     domain?: string | null;
     /**
-     * Specific reason for the error. Some of the possible values are:   - &quot;groupTooBig&quot; - The group of users requested is too large for a single query.  - &quot;tooManyCalendarsRequested&quot; - The number of calendars requested is too large for a single query.  - &quot;notFound&quot; - The requested resource was not found.  - &quot;internalError&quot; - The API service has encountered an internal error.  Additional error types may be added in the future, so clients should gracefully handle additional error statuses not included in this list.
+     * Specific reason for the error. Some of the possible values are:
+     * - "groupTooBig" - The group of users requested is too large for a single query.
+     * - "tooManyCalendarsRequested" - The number of calendars requested is too large for a single query.
+     * - "notFound" - The requested resource was not found.
+     * - "internalError" - The API service has encountered an internal error.  Additional error types may be added in the future, so clients should gracefully handle additional error statuses not included in this list.
      */
     reason?: string | null;
   }
@@ -528,7 +600,9 @@ export namespace calendar_v3 {
      */
     anyoneCanAddSelf?: boolean | null;
     /**
-     * File attachments for the event. Currently only Google Drive attachments are supported. In order to modify attachments the supportsAttachments request parameter should be set to true. There can be at most 25 attachments per event,
+     * File attachments for the event. Currently only Google Drive attachments are supported.
+     * In order to modify attachments the supportsAttachments request parameter should be set to true.
+     * There can be at most 25 attachments per event,
      */
     attachments?: Schema$EventAttachment[];
     /**
@@ -536,7 +610,7 @@ export namespace calendar_v3 {
      */
     attendees?: Schema$EventAttendee[];
     /**
-     * Whether attendees may have been omitted from the event&#39;s representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant&#39;s response. Optional. The default is False.
+     * Whether attendees may have been omitted from the event's representation. When retrieving an event, this may be due to a restriction specified by the maxAttendee query parameter. When updating an event, this can be used to only update the participant's response. Optional. The default is False.
      */
     attendeesOmitted?: boolean | null;
     /**
@@ -605,7 +679,7 @@ export namespace calendar_v3 {
      */
     guestsCanModify?: boolean | null;
     /**
-     * Whether attendees other than the organizer can see who the event&#39;s attendees are. Optional. The default is True.
+     * Whether attendees other than the organizer can see who the event's attendees are. Optional. The default is True.
      */
     guestsCanSeeOtherGuests?: boolean | null;
     /**
@@ -617,15 +691,21 @@ export namespace calendar_v3 {
      */
     htmlLink?: string | null;
     /**
-     * Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
+     * Event unique identifier as defined in RFC5545. It is used to uniquely identify events accross calendaring systems and must be supplied when importing events via the import method.
+     * Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
      */
     iCalUID?: string | null;
     /**
-     * Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:   - characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938  - the length of the ID must be between 5 and 1024 characters  - the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122. If you do not specify an ID, it will be automatically generated by the server. Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
+     * Opaque identifier of the event. When creating new single or recurring events, you can specify their IDs. Provided IDs must follow these rules:
+     * - characters allowed in the ID are those used in base32hex encoding, i.e. lowercase letters a-v and digits 0-9, see section 3.1.2 in RFC2938
+     * - the length of the ID must be between 5 and 1024 characters
+     * - the ID must be unique per calendar  Due to the globally distributed nature of the system, we cannot guarantee that ID collisions will be detected at event creation time. To minimize the risk of collisions we recommend using an established UUID algorithm such as one described in RFC4122.
+     * If you do not specify an ID, it will be automatically generated by the server.
+     * Note that the icalUID and the id are not identical and only one of them should be supplied at event creation time. One difference in their semantics is that in recurring events, all occurrences of one event have different ids while they all share the same icalUIDs.
      */
     id?: string | null;
     /**
-     * Type of the resource (&quot;calendar#event&quot;).
+     * Type of the resource ("calendar#event").
      */
     kind?: string | null;
     /**
@@ -633,7 +713,7 @@ export namespace calendar_v3 {
      */
     location?: string | null;
     /**
-     * Whether this is a locked event copy where no changes can be made to the main event fields &quot;summary&quot;, &quot;description&quot;, &quot;location&quot;, &quot;start&quot;, &quot;end&quot; or &quot;recurrence&quot;. The default is False. Read-Only.
+     * Whether this is a locked event copy where no changes can be made to the main event fields "summary", "description", "location", "start", "end" or "recurrence". The default is False. Read-Only.
      */
     locked?: boolean | null;
     /**
@@ -662,7 +742,7 @@ export namespace calendar_v3 {
      */
     recurringEventId?: string | null;
     /**
-     * Information about the event&#39;s reminders for the authenticated user.
+     * Information about the event's reminders for the authenticated user.
      */
     reminders?: {
       overrides?: Schema$EventReminder[];
@@ -681,7 +761,16 @@ export namespace calendar_v3 {
      */
     start?: Schema$EventDateTime;
     /**
-     * Status of the event. Optional. Possible values are:   - &quot;confirmed&quot; - The event is confirmed. This is the default status.  - &quot;tentative&quot; - The event is tentatively confirmed.  - &quot;cancelled&quot; - The event is cancelled (deleted). The list method returns cancelled events only on incremental sync (when syncToken or updatedMin are specified) or if the showDeleted flag is set to true. The get method always returns them. A cancelled status represents two different states depending on the event type:   - Cancelled exceptions of an uncancelled recurring event indicate that this instance should no longer be presented to the user. Clients should store these events for the lifetime of the parent recurring event. Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.   - All other cancelled events represent deleted events. Clients should remove their locally synced copies. Such cancelled events will eventually disappear, so do not rely on them being available indefinitely. Deleted events are only guaranteed to have the id field populated.   On the organizer&#39;s calendar, cancelled events continue to expose event details (summary, location, etc.) so that they can be restored (undeleted). Similarly, the events to which the user was invited and that they manually removed continue to provide details. However, incremental sync requests with showDeleted set to false will not return these details. If an event changes its organizer (for example via the move operation) and the original organizer is not on the attendee list, it will leave behind a cancelled event where only the id field is guaranteed to be populated.
+     * Status of the event. Optional. Possible values are:
+     * - "confirmed" - The event is confirmed. This is the default status.
+     * - "tentative" - The event is tentatively confirmed.
+     * - "cancelled" - The event is cancelled (deleted). The list method returns cancelled events only on incremental sync (when syncToken or updatedMin are specified) or if the showDeleted flag is set to true. The get method always returns them.
+     * A cancelled status represents two different states depending on the event type:
+     * - Cancelled exceptions of an uncancelled recurring event indicate that this instance should no longer be presented to the user. Clients should store these events for the lifetime of the parent recurring event.
+     * Cancelled exceptions are only guaranteed to have values for the id, recurringEventId and originalStartTime fields populated. The other fields might be empty.
+     * - All other cancelled events represent deleted events. Clients should remove their locally synced copies. Such cancelled events will eventually disappear, so do not rely on them being available indefinitely.
+     * Deleted events are only guaranteed to have the id field populated.   On the organizer's calendar, cancelled events continue to expose event details (summary, location, etc.) so that they can be restored (undeleted). Similarly, the events to which the user was invited and that they manually removed continue to provide details. However, incremental sync requests with showDeleted set to false will not return these details.
+     * If an event changes its organizer (for example via the move operation) and the original organizer is not on the attendee list, it will leave behind a cancelled event where only the id field is guaranteed to be populated.
      */
     status?: string | null;
     /**
@@ -689,7 +778,9 @@ export namespace calendar_v3 {
      */
     summary?: string | null;
     /**
-     * Whether the event blocks time on the calendar. Optional. Possible values are:   - &quot;opaque&quot; - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI.  - &quot;transparent&quot; - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
+     * Whether the event blocks time on the calendar. Optional. Possible values are:
+     * - "opaque" - Default value. The event does block time on the calendar. This is equivalent to setting Show me as to Busy in the Calendar UI.
+     * - "transparent" - The event does not block time on the calendar. This is equivalent to setting Show me as to Available in the Calendar UI.
      */
     transparency?: string | null;
     /**
@@ -697,21 +788,28 @@ export namespace calendar_v3 {
      */
     updated?: string | null;
     /**
-     * Visibility of the event. Optional. Possible values are:   - &quot;default&quot; - Uses the default visibility for events on the calendar. This is the default value.  - &quot;public&quot; - The event is public and event details are visible to all readers of the calendar.  - &quot;private&quot; - The event is private and only event attendees may view event details.  - &quot;confidential&quot; - The event is private. This value is provided for compatibility reasons.
+     * Visibility of the event. Optional. Possible values are:
+     * - "default" - Uses the default visibility for events on the calendar. This is the default value.
+     * - "public" - The event is public and event details are visible to all readers of the calendar.
+     * - "private" - The event is private and only event attendees may view event details.
+     * - "confidential" - The event is private. This value is provided for compatibility reasons.
      */
     visibility?: string | null;
   }
   export interface Schema$EventAttachment {
     /**
-     * ID of the attached file. Read-only. For Google Drive files, this is the ID of the corresponding Files resource entry in the Drive API.
+     * ID of the attached file. Read-only.
+     * For Google Drive files, this is the ID of the corresponding Files resource entry in the Drive API.
      */
     fileId?: string | null;
     /**
-     * URL link to the attachment. For adding Google Drive file attachments use the same format as in alternateLink property of the Files resource in the Drive API. Required when adding an attachment.
+     * URL link to the attachment.
+     * For adding Google Drive file attachments use the same format as in alternateLink property of the Files resource in the Drive API.
+     * Required when adding an attachment.
      */
     fileUrl?: string | null;
     /**
-     * URL link to the attachment&#39;s icon. Read-only.
+     * URL link to the attachment's icon. Read-only.
      */
     iconLink?: string | null;
     /**
@@ -729,19 +827,20 @@ export namespace calendar_v3 {
      */
     additionalGuests?: number | null;
     /**
-     * The attendee&#39;s response comment. Optional.
+     * The attendee's response comment. Optional.
      */
     comment?: string | null;
     /**
-     * The attendee&#39;s name, if available. Optional.
+     * The attendee's name, if available. Optional.
      */
     displayName?: string | null;
     /**
-     * The attendee&#39;s email address, if available. This field must be present when adding an attendee. It must be a valid email address as per RFC5322. Required when adding an attendee.
+     * The attendee's email address, if available. This field must be present when adding an attendee. It must be a valid email address as per RFC5322.
+     * Required when adding an attendee.
      */
     email?: string | null;
     /**
-     * The attendee&#39;s Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API
+     * The attendee's Profile ID, if available. It corresponds to the id field in the People collection of the Google+ API
      */
     id?: string | null;
     /**
@@ -757,7 +856,11 @@ export namespace calendar_v3 {
      */
     resource?: boolean | null;
     /**
-     * The attendee&#39;s response status. Possible values are:   - &quot;needsAction&quot; - The attendee has not responded to the invitation.  - &quot;declined&quot; - The attendee has declined the invitation.  - &quot;tentative&quot; - The attendee has tentatively accepted the invitation.  - &quot;accepted&quot; - The attendee has accepted the invitation.
+     * The attendee's response status. Possible values are:
+     * - "needsAction" - The attendee has not responded to the invitation.
+     * - "declined" - The attendee has declined the invitation.
+     * - "tentative" - The attendee has tentatively accepted the invitation.
+     * - "accepted" - The attendee has accepted the invitation.
      */
     responseStatus?: string | null;
     /**
@@ -767,7 +870,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$EventDateTime {
     /**
-     * The date, in the format &quot;yyyy-mm-dd&quot;, if this is an all-day event.
+     * The date, in the format "yyyy-mm-dd", if this is an all-day event.
      */
     date?: string | null;
     /**
@@ -775,23 +878,32 @@ export namespace calendar_v3 {
      */
     dateTime?: string | null;
     /**
-     * The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. &quot;Europe/Zurich&quot;.) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
+     * The time zone in which the time is specified. (Formatted as an IANA Time Zone Database name, e.g. "Europe/Zurich".) For recurring events this field is required and specifies the time zone in which the recurrence is expanded. For single events this field is optional and indicates a custom time zone for the event start/end.
      */
     timeZone?: string | null;
   }
   export interface Schema$EventReminder {
     /**
-     * The method used by this reminder. Possible values are:   - &quot;email&quot; - Reminders are sent via email.  - &quot;popup&quot; - Reminders are sent via a UI popup.   Required when adding a reminder.
+     * The method used by this reminder. Possible values are:
+     * - "email" - Reminders are sent via email.
+     * - "popup" - Reminders are sent via a UI popup.
+     * Required when adding a reminder.
      */
     method?: string | null;
     /**
-     * Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes). Required when adding a reminder.
+     * Number of minutes before the start of the event when the reminder should trigger. Valid values are between 0 and 40320 (4 weeks in minutes).
+     * Required when adding a reminder.
      */
     minutes?: number | null;
   }
   export interface Schema$Events {
     /**
-     * The user&#39;s access role for this calendar. Read-only. Possible values are:   - &quot;none&quot; - The user has no access.  - &quot;freeBusyReader&quot; - The user has read access to free/busy information.  - &quot;reader&quot; - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.  - &quot;writer&quot; - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.  - &quot;owner&quot; - The user has ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
+     * The user's access role for this calendar. Read-only. Possible values are:
+     * - "none" - The user has no access.
+     * - "freeBusyReader" - The user has read access to free/busy information.
+     * - "reader" - The user has read access to the calendar. Private events will appear to users with reader access, but event details will be hidden.
+     * - "writer" - The user has read and write access to the calendar. Private events will appear to users with writer access, and event details will be visible.
+     * - "owner" - The user has ownership of the calendar. This role has all of the permissions of the writer role with the additional ability to see and manipulate ACLs.
      */
     accessRole?: string | null;
     /**
@@ -811,7 +923,7 @@ export namespace calendar_v3 {
      */
     items?: Schema$Event[];
     /**
-     * Type of the collection (&quot;calendar#events&quot;).
+     * Type of the collection ("calendar#events").
      */
     kind?: string | null;
     /**
@@ -847,7 +959,7 @@ export namespace calendar_v3 {
   }
   export interface Schema$FreeBusyGroup {
     /**
-     * List of calendars&#39; identifiers within a group.
+     * List of calendars' identifiers within a group.
      */
     calendars?: string[] | null;
     /**
@@ -897,7 +1009,7 @@ export namespace calendar_v3 {
      */
     groups?: {[key: string]: Schema$FreeBusyGroup} | null;
     /**
-     * Type of the resource (&quot;calendar#freeBusy&quot;).
+     * Type of the resource ("calendar#freeBusy").
      */
     kind?: string | null;
     /**
@@ -919,7 +1031,7 @@ export namespace calendar_v3 {
      */
     id?: string | null;
     /**
-     * Type of the resource (&quot;calendar#setting&quot;).
+     * Type of the resource ("calendar#setting").
      */
     kind?: string | null;
     /**
@@ -937,7 +1049,7 @@ export namespace calendar_v3 {
      */
     items?: Schema$Setting[];
     /**
-     * Type of the collection (&quot;calendar#settings&quot;).
+     * Type of the collection ("calendar#settings").
      */
     kind?: string | null;
     /**
@@ -967,9 +1079,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.delete
-     * @desc Deletes an access control rule.
+     * Deletes an access control rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1006,15 +1118,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.ruleId ACL rule identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Acl$Delete,
@@ -1092,9 +1201,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.get
-     * @desc Returns an access control rule.
+     * Returns an access control rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1143,15 +1252,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.ruleId ACL rule identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Acl$Get,
@@ -1231,9 +1337,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.insert
-     * @desc Creates an access control rule.
+     * Creates an access control rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1291,16 +1397,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Optional. The default is True.
-     * @param {().AclRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Acl$Insert,
@@ -1381,9 +1483,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.list
-     * @desc Returns the rules in the access control list for the calendar.
+     * Returns the rules in the access control list for the calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1438,18 +1540,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Acl$List,
@@ -1530,9 +1626,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.patch
-     * @desc Updates an access control rule. This method supports patch semantics.
+     * Updates an access control rule. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1592,17 +1688,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.ruleId ACL rule identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
-     * @param {().AclRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Acl$Patch,
@@ -1682,9 +1773,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.update
-     * @desc Updates an access control rule.
+     * Updates an access control rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1744,17 +1835,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.ruleId ACL rule identifier.
-     * @param {boolean=} params.sendNotifications Whether to send notifications about the calendar sharing change. Note that there are no notifications on access removal. Optional. The default is True.
-     * @param {().AclRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Acl$Update,
@@ -1834,9 +1920,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.acl.watch
-     * @desc Watch for changes to ACL resources.
+     * Watch for changes to ACL resources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -1913,19 +1999,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.acl.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted ACLs in the result. Deleted ACLs are represented by role equal to "none". Deleted ACLs will always be included if syncToken is provided. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Acl$Watch,
@@ -2058,7 +2137,10 @@ export namespace calendar_v3 {
      */
     showDeleted?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
   }
@@ -2118,7 +2200,10 @@ export namespace calendar_v3 {
      */
     showDeleted?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All entries deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
 
@@ -2135,9 +2220,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.delete
-     * @desc Removes a calendar from the user's calendar list.
+     * Removes a calendar from the user's calendar list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -2172,14 +2257,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Calendarlist$Delete,
@@ -2258,9 +2341,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.get
-     * @desc Returns a calendar from the user's calendar list.
+     * Returns a calendar from the user's calendar list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -2321,14 +2404,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Calendarlist$Get,
@@ -2411,9 +2492,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.insert
-     * @desc Inserts an existing calendar into the user's calendar list.
+     * Inserts an existing calendar into the user's calendar list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -2497,15 +2578,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param {().CalendarListEntry} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Calendarlist$Insert,
@@ -2590,9 +2668,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.list
-     * @desc Returns the calendars on the user's calendar list.
+     * Returns the calendars on the user's calendar list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -2653,19 +2731,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Calendarlist$List,
@@ -2747,9 +2818,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.patch
-     * @desc Updates an existing calendar on the user's calendar list. This method supports patch semantics.
+     * Updates an existing calendar on the user's calendar list. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -2835,16 +2906,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param {().CalendarListEntry} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Calendarlist$Patch,
@@ -2928,9 +2995,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.update
-     * @desc Updates an existing calendar on the user's calendar list.
+     * Updates an existing calendar on the user's calendar list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3016,16 +3083,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.colorRgbFormat Whether to use the foregroundColor and backgroundColor fields to write the calendar colors (RGB). If this feature is used, the index-based colorId field will be set to the best matching option automatically. Optional. The default is False.
-     * @param {().CalendarListEntry} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Calendarlist$Update,
@@ -3109,9 +3172,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendarList.watch
-     * @desc Watch for changes to CalendarList resources.
+     * Watch for changes to CalendarList resources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3194,20 +3257,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendarList.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.minAccessRole The minimum access role for the user in the returned entries. Optional. The default is no restriction.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted calendar list entries in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Whether to show hidden entries. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Calendarlist$Watch,
@@ -3337,7 +3392,11 @@ export namespace calendar_v3 {
      */
     showHidden?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     * To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
   }
@@ -3396,7 +3455,11 @@ export namespace calendar_v3 {
      */
     showHidden?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False. To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If only read-only fields such as calendar properties or ACLs have changed, the entry won't be returned. All entries deleted and hidden since the previous list request will always be in the result set and it is not allowed to set showDeleted neither showHidden to False.
+     * To ensure client state consistency minAccessRole query parameter cannot be specified together with nextSyncToken.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
 
@@ -3413,9 +3476,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.clear
-     * @desc Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
+     * Clears a primary calendar. This operation deletes all events associated with the primary calendar of an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3450,14 +3513,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.clear
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clear(
       params: Params$Resource$Calendars$Clear,
@@ -3535,9 +3596,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.delete
-     * @desc Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
+     * Deletes a secondary calendar. Use calendars.clear for clearing all events on primary calendars.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3572,14 +3633,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Calendars$Delete,
@@ -3658,9 +3717,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.get
-     * @desc Returns metadata for a calendar.
+     * Returns metadata for a calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3710,14 +3769,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Calendars$Get,
@@ -3798,9 +3855,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.insert
-     * @desc Creates a secondary calendar.
+     * Creates a secondary calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -3859,14 +3916,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Calendar} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Calendars$Insert,
@@ -3947,9 +4002,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.patch
-     * @desc Updates metadata for a calendar. This method supports patch semantics.
+     * Updates metadata for a calendar. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4011,15 +4066,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {().Calendar} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Calendars$Patch,
@@ -4100,9 +4152,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.calendars.update
-     * @desc Updates metadata for a calendar.
+     * Updates metadata for a calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4164,15 +4216,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.calendars.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {().Calendar} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Calendars$Update,
@@ -4307,9 +4356,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.channels.stop
-     * @desc Stop watching resources through this channel
+     * Stop watching resources through this channel
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4364,14 +4413,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.channels.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Channels$Stop,
@@ -4464,9 +4511,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.colors.get
-     * @desc Returns the color definitions for calendars and events.
+     * Returns the color definitions for calendars and events.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4509,13 +4556,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.colors.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Colors$Get,
@@ -4605,9 +4651,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.delete
-     * @desc Deletes an event.
+     * Deletes an event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4653,17 +4699,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Guests who should receive notifications about the deletion of the event.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Events$Delete,
@@ -4741,9 +4782,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.get
-     * @desc Returns an event.
+     * Returns an event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -4833,18 +4874,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Events$Get,
@@ -4924,9 +4959,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.import
-     * @desc Imports an event. This operation is used to add a private copy of an existing event to a calendar.
+     * Imports an event. This operation is used to add a private copy of an existing event to a calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -5055,17 +5090,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param {().Event} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Events$Import,
@@ -5145,9 +5175,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.insert
-     * @desc Creates an event.
+     * Creates an event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -5284,20 +5314,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Whether to send notifications about the creation of the new event. Note that some emails might still be sent. The default is false.
-     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param {().Event} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Events$Insert,
@@ -5377,9 +5399,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.instances
-     * @desc Returns instances of the specified recurring event.
+     * Returns instances of the specified recurring event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -5454,24 +5476,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.instances
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string} params.eventId Recurring event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on one result page. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param {string=} params.originalStart The original start time of the instance in the result. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events will still be included if singleEvents is False. Optional. The default is False.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset.
-     * @param {string=} params.timeMin Lower bound (inclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset.
-     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     instances(
       params: Params$Resource$Events$Instances,
@@ -5552,9 +5562,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.list
-     * @desc Returns events on the specified calendar.
+     * Returns events on the specified calendar.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -5656,31 +5666,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
-     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
-     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Events$List,
@@ -5760,9 +5751,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.move
-     * @desc Moves an event to another calendar, i.e. changes an event's organizer.
+     * Moves an event to another calendar, i.e. changes an event's organizer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -5852,18 +5843,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier of the source calendar where the event currently is on.
-     * @param {string} params.destination Calendar identifier of the target calendar where the event is to be moved to.
-     * @param {string} params.eventId Event identifier.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Guests who should receive notifications about the change of the event's organizer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Events$Move,
@@ -5944,9 +5929,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.patch
-     * @desc Updates an event. This method supports patch semantics.
+     * Updates an event. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -6087,22 +6072,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-     * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
-     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param {().Event} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Events$Patch,
@@ -6182,9 +6157,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.quickAdd
-     * @desc Creates an event based on a simple text string.
+     * Creates an event based on a simple text string.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -6272,17 +6247,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.quickAdd
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Guests who should receive notifications about the creation of the new event.
-     * @param {string} params.text The text describing the event to be created.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     quickAdd(
       params: Params$Resource$Events$Quickadd,
@@ -6362,9 +6332,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.update
-     * @desc Updates an event.
+     * Updates an event.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -6505,22 +6475,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {integer=} params.conferenceDataVersion Version number of conference data supported by the API client. Version 0 assumes no conference data support and ignores conference data in the event's body. Version 1 enables support for copying of ConferenceData as well as for creating new conferences using the createRequest field of conferenceData. The default is 0.
-     * @param {string} params.eventId Event identifier.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {boolean=} params.sendNotifications Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
-     * @param {string=} params.sendUpdates Guests who should receive notifications about the event update (for example, title changes, etc.).
-     * @param {boolean=} params.supportsAttachments Whether API client performing operation supports event attachments. Optional. The default is False.
-     * @param {().Event} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Events$Update,
@@ -6600,9 +6560,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.events.watch
-     * @desc Watch for changes to Events resources.
+     * Watch for changes to Events resources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -6720,32 +6680,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.events.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.alwaysIncludeEmail Deprecated and ignored. A value will always be returned in the email field for the organizer, creator and attendees, even if no real email address is available (i.e. a generated, non-working value will be provided).
-     * @param {string} params.calendarId Calendar identifier. To retrieve calendar IDs call the calendarList.list method. If you want to access the primary calendar of the currently logged in user, use the "primary" keyword.
-     * @param {string=} params.iCalUID Specifies event ID in the iCalendar format to be included in the response. Optional.
-     * @param {integer=} params.maxAttendees The maximum number of attendees to include in the response. If there are more than the specified number of attendees, only the participant is returned. Optional.
-     * @param {integer=} params.maxResults Maximum number of events returned on one result page. The number of events in the resulting page may be less than this value, or none at all, even if there are more events matching the query. Incomplete pages can be detected by a non-empty nextPageToken field in the response. By default the value is 250 events. The page size can never be larger than 2500 events. Optional.
-     * @param {string=} params.orderBy The order of the events returned in the result. Optional. The default is an unspecified, stable order.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {string=} params.privateExtendedProperty Extended properties constraint specified as propertyName=value. Matches only private properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param {string=} params.q Free text search terms to find events that match these terms in any field, except for extended properties. Optional.
-     * @param {string=} params.sharedExtendedProperty Extended properties constraint specified as propertyName=value. Matches only shared properties. This parameter might be repeated multiple times to return events that match all given constraints.
-     * @param {boolean=} params.showDeleted Whether to include deleted events (with status equals "cancelled") in the result. Cancelled instances of recurring events (but not the underlying recurring event) will still be included if showDeleted and singleEvents are both False. If showDeleted and singleEvents are both True, only single instances of deleted events (but not the underlying recurring events) are returned. Optional. The default is False.
-     * @param {boolean=} params.showHiddenInvitations Whether to include hidden invitations in the result. Optional. The default is False.
-     * @param {boolean=} params.singleEvents Whether to expand recurring events into instances and only return single one-off events and instances of recurring events, but not the underlying recurring events themselves. Optional. The default is False.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {string=} params.timeMax Upper bound (exclusive) for an event's start time to filter by. Optional. The default is not to filter by start time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMin is set, timeMax must be greater than timeMin.
-     * @param {string=} params.timeMin Lower bound (exclusive) for an event's end time to filter by. Optional. The default is not to filter by end time. Must be an RFC3339 timestamp with mandatory time zone offset, for example, 2011-06-03T10:00:00-07:00, 2011-06-03T10:00:00Z. Milliseconds may be provided but are ignored. If timeMax is set, timeMin must be smaller than timeMax.
-     * @param {string=} params.timeZone Time zone used in the response. Optional. The default is the time zone of the calendar.
-     * @param {string=} params.updatedMin Lower bound for an event's last modification time (as a RFC3339 timestamp) to filter by. When specified, entries deleted since this time will always be included regardless of showDeleted. Optional. The default is not to filter by last modification time.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Events$Watch,
@@ -6835,7 +6775,9 @@ export namespace calendar_v3 {
      */
     eventId?: string;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the deletion of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -6898,7 +6840,9 @@ export namespace calendar_v3 {
      */
     maxAttendees?: number;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the creation of the new event. Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -7015,7 +6959,20 @@ export namespace calendar_v3 {
      */
     singleEvents?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     * There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *
+     * These are:
+     * - iCalUID
+     * - orderBy
+     * - privateExtendedProperty
+     * - q
+     * - sharedExtendedProperty
+     * - timeMin
+     * - timeMax
+     * - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
     /**
@@ -7049,7 +7006,9 @@ export namespace calendar_v3 {
      */
     eventId?: string;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the change of the event's organizer. Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -7079,7 +7038,9 @@ export namespace calendar_v3 {
      */
     maxAttendees?: number;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -7102,7 +7063,9 @@ export namespace calendar_v3 {
      */
     calendarId?: string;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the creation of the event. Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -7136,7 +7099,9 @@ export namespace calendar_v3 {
      */
     maxAttendees?: number;
     /**
-     * Deprecated. Please use sendUpdates instead.  Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
+     * Deprecated. Please use sendUpdates instead.
+     *
+     * Whether to send notifications about the event update (for example, description changes, etc.). Note that some emails might still be sent even if you set the value to false. The default is false.
      */
     sendNotifications?: boolean;
     /**
@@ -7207,7 +7172,20 @@ export namespace calendar_v3 {
      */
     singleEvents?: boolean;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False. There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.  These are:  - iCalUID  - orderBy  - privateExtendedProperty  - q  - sharedExtendedProperty  - timeMin  - timeMax  - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. All events deleted since the previous list request will always be in the result set and it is not allowed to set showDeleted to False.
+     * There are several query parameters that cannot be specified together with nextSyncToken to ensure consistency of the client state.
+     *
+     * These are:
+     * - iCalUID
+     * - orderBy
+     * - privateExtendedProperty
+     * - q
+     * - sharedExtendedProperty
+     * - timeMin
+     * - timeMax
+     * - updatedMin If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
     /**
@@ -7240,9 +7218,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.freebusy.query
-     * @desc Returns free/busy information for a set of calendars.
+     * Returns free/busy information for a set of calendars.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -7299,14 +7277,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.freebusy.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().FreeBusyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Freebusy$Query,
@@ -7401,9 +7377,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.settings.get
-     * @desc Returns a single user setting.
+     * Returns a single user setting.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -7450,14 +7426,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.settings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.setting The id of the user setting.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Settings$Get,
@@ -7538,9 +7512,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.settings.list
-     * @desc Returns all user settings for the authenticated user.
+     * Returns all user settings for the authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -7595,16 +7569,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.settings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Settings$List,
@@ -7685,9 +7655,9 @@ export namespace calendar_v3 {
     }
 
     /**
-     * calendar.settings.watch
-     * @desc Watch for changes to Settings resources.
+     * Watch for changes to Settings resources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/calendar.googleapis.com
@@ -7764,17 +7734,12 @@ export namespace calendar_v3 {
      *   throw e;
      * });
      *
-     * @alias calendar.settings.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. By default the value is 100 entries. The page size can never be larger than 250 entries. Optional.
-     * @param {string=} params.pageToken Token specifying which result page to return. Optional.
-     * @param {string=} params.syncToken Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Settings$Watch,
@@ -7871,7 +7836,10 @@ export namespace calendar_v3 {
      */
     pageToken?: string;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
   }
@@ -7885,7 +7853,10 @@ export namespace calendar_v3 {
      */
     pageToken?: string;
     /**
-     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then. If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken. Learn more about incremental synchronization. Optional. The default is to return all entries.
+     * Token obtained from the nextSyncToken field returned on the last page of results from the previous list request. It makes the result of this list request contain only entries that have changed since then.
+     * If the syncToken expires, the server will respond with a 410 GONE response code and the client should clear its storage and perform a full synchronization without any syncToken.
+     * Learn more about incremental synchronization.
+     * Optional. The default is to return all entries.
      */
     syncToken?: string;
 

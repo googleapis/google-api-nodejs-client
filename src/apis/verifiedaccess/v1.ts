@@ -104,14 +104,10 @@ export namespace verifiedaccess_v1 {
    * API for Verified Access chrome extension to provide credential verification for chrome devices connecting to an enterprise network
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const verifiedaccess = google.verifiedaccess('v1');
-   *
-   * @namespace verifiedaccess
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Verifiedaccess
+   * ```
    */
   export class Verifiedaccess {
     context: APIRequestContext;
@@ -141,7 +137,7 @@ export namespace verifiedaccess_v1 {
     challenge?: Schema$SignedData;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -166,7 +162,7 @@ export namespace verifiedaccess_v1 {
      */
     challengeResponse?: Schema$SignedData;
     /**
-     * Service can optionally provide identity information about the device or user associated with the key. For an EMK, this value is the enrolled domain. For an EUK, this value is the user&#39;s email address. If present, this value will be checked against contents of the response, and verification will fail if there is no match.
+     * Service can optionally provide identity information about the device or user associated with the key. For an EMK, this value is the enrolled domain. For an EUK, this value is the user's email address. If present, this value will be checked against contents of the response, and verification will fail if there is no match.
      */
     expectedIdentity?: string | null;
   }
@@ -199,9 +195,9 @@ export namespace verifiedaccess_v1 {
     }
 
     /**
-     * verifiedaccess.challenge.create
-     * @desc CreateChallenge API
+     * CreateChallenge API
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
@@ -245,14 +241,12 @@ export namespace verifiedaccess_v1 {
      *   throw e;
      * });
      *
-     * @alias verifiedaccess.challenge.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Empty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Challenge$Create,
@@ -331,9 +325,9 @@ export namespace verifiedaccess_v1 {
     }
 
     /**
-     * verifiedaccess.challenge.verify
-     * @desc VerifyChallengeResponse API
+     * VerifyChallengeResponse API
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/verifiedaccess.googleapis.com
@@ -382,14 +376,12 @@ export namespace verifiedaccess_v1 {
      *   throw e;
      * });
      *
-     * @alias verifiedaccess.challenge.verify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().VerifyChallengeResponseRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verify(
       params: Params$Resource$Challenge$Verify,

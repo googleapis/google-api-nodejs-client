@@ -37,3 +37,14 @@ export function firebasedynamiclinks<
 
 const auth = new AuthPlus();
 export {auth};
+export {firebasedynamiclinks_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

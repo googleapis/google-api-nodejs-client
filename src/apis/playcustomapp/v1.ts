@@ -104,14 +104,10 @@ export namespace playcustomapp_v1 {
    * API to create and publish custom Android apps
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const playcustomapp = google.playcustomapp('v1');
-   *
-   * @namespace playcustomapp
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Playcustomapp
+   * ```
    */
   export class Playcustomapp {
     context: APIRequestContext;
@@ -161,9 +157,9 @@ export namespace playcustomapp_v1 {
     }
 
     /**
-     * playcustomapp.accounts.customApps.create
-     * @desc Creates a new custom app.
+     * Creates a new custom app.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/playcustomapp.googleapis.com
@@ -219,18 +215,12 @@ export namespace playcustomapp_v1 {
      *   throw e;
      * });
      *
-     * @alias playcustomapp.accounts.customApps.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.account Developer account ID.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Customapps$Create,

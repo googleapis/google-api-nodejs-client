@@ -104,14 +104,10 @@ export namespace speech_v2beta1 {
    * Converts audio to text by applying powerful neural network models.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const speech = google.speech('v2beta1');
-   *
-   * @namespace speech
-   * @type {Function}
-   * @version v2beta1
-   * @variation v2beta1
-   * @param {object=} options Options for Speech
+   * ```
    */
   export class Speech {
     context: APIRequestContext;
@@ -187,7 +183,7 @@ export namespace speech_v2beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -299,9 +295,9 @@ export namespace speech_v2beta1 {
     }
 
     /**
-     * speech.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/speech.googleapis.com
@@ -345,14 +341,12 @@ export namespace speech_v2beta1 {
      *   throw e;
      * });
      *
-     * @alias speech.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -431,9 +425,9 @@ export namespace speech_v2beta1 {
     }
 
     /**
-     * speech.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/speech.googleapis.com
@@ -480,17 +474,12 @@ export namespace speech_v2beta1 {
      *   throw e;
      * });
      *
-     * @alias speech.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,

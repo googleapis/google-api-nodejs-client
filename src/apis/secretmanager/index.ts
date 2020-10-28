@@ -47,3 +47,15 @@ export function secretmanager<
 
 const auth = new AuthPlus();
 export {auth};
+export {secretmanager_v1};
+export {secretmanager_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

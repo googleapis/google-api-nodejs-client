@@ -104,14 +104,10 @@ export namespace cloudresourcemanager_v2 {
    * Creates, reads, and updates metadata for Google Cloud Platform resource containers.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudresourcemanager = google.cloudresourcemanager('v2');
-   *
-   * @namespace cloudresourcemanager
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Cloudresourcemanager
+   * ```
    */
   export class Cloudresourcemanager {
     context: APIRequestContext;
@@ -130,7 +126,7 @@ export namespace cloudresourcemanager_v2 {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -143,7 +139,7 @@ export namespace cloudresourcemanager_v2 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -168,7 +164,7 @@ export namespace cloudresourcemanager_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -177,7 +173,7 @@ export namespace cloudresourcemanager_v2 {
     role?: string | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -198,7 +194,7 @@ export namespace cloudresourcemanager_v2 {
     title?: string | null;
   }
   /**
-   * A Folder in an Organization&#39;s resource hierarchy, used to organize that Organization&#39;s resources.
+   * A Folder in an Organization's resource hierarchy, used to organize that Organization's resources.
    */
   export interface Schema$Folder {
     /**
@@ -206,7 +202,7 @@ export namespace cloudresourcemanager_v2 {
      */
     createTime?: string | null;
     /**
-     * The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?.
+     * The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?.
      */
     displayName?: string | null;
     /**
@@ -214,11 +210,11 @@ export namespace cloudresourcemanager_v2 {
      */
     lifecycleState?: string | null;
     /**
-     * Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: &quot;folders/1234&quot;.
+     * Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string | null;
     /**
-     * Required. The Folder’s parent&#39;s resource name. Updates to the folder&#39;s parent must be performed via MoveFolder.
+     * Required. The Folder’s parent's resource name. Updates to the folder's parent must be performed via MoveFolder.
      */
     parent?: string | null;
   }
@@ -239,7 +235,7 @@ export namespace cloudresourcemanager_v2 {
      */
     operationType?: string | null;
     /**
-     * The resource name of the folder&#39;s parent. Only applicable when the operation_type is MOVE.
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
      */
     sourceParent?: string | null;
   }
@@ -288,7 +284,7 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$MoveFolderRequest {
     /**
-     * Required. The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the Folder or Organization to reparent the folder under. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`.
      */
     destinationParent?: string | null;
   }
@@ -309,7 +305,7 @@ export namespace cloudresourcemanager_v2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -318,7 +314,7 @@ export namespace cloudresourcemanager_v2 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -368,7 +364,7 @@ export namespace cloudresourcemanager_v2 {
      */
     pageToken?: string | null;
     /**
-     * Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The displayName field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with &quot;Test&quot;. * Query `lifecycleState=ACTIVE` returns Folder resources with `lifecycleState` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND lifecycleState=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\&quot;Test String\\&quot;` returns Folder resources with display names that include both &quot;Test&quot; and &quot;String&quot;.
+     * Search criteria used to select the Folders to return. If no search criteria is specified then all accessible folders will be returned. Query expressions can be used to restrict results based upon displayName, lifecycleState and parent, where the operators `=`, `NOT`, `AND` and `OR` can be used along with the suffix wildcard symbol `*`. The displayName field in a query expression should use escaped quotes for values that include whitespace to prevent unexpected behavior. Some example queries are: * Query `displayName=Test*` returns Folder resources whose display name starts with "Test". * Query `lifecycleState=ACTIVE` returns Folder resources with `lifecycleState` set to `ACTIVE`. * Query `parent=folders/123` returns Folder resources that have `folders/123` as a parent resource. * Query `parent=folders/123 AND lifecycleState=ACTIVE` returns active Folder resources that have `folders/123` as a parent resource. * Query `displayName=\\"Test String\\"` returns Folder resources with display names that include both "Test" and "String".
      */
     query?: string | null;
   }
@@ -394,7 +390,7 @@ export namespace cloudresourcemanager_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -420,7 +416,7 @@ export namespace cloudresourcemanager_v2 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -445,9 +441,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.create
-     * @desc Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folder's that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
+     * Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folder's that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -471,7 +467,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.create({
-     *     // Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     *     // Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`.
      *     parent: 'placeholder-value',
      *
      *     // Request body metadata
@@ -503,15 +499,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
-     * @param {().Folder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Folders$Create,
@@ -590,9 +583,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.delete
-     * @desc Requests deletion of a Folder. The Folder is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on an empty Folder in the ACTIVE state, where a Folder is empty if it doesn't contain any Folders or Projects in the ACTIVE state. The caller must have `resourcemanager.folders.delete` permission on the identified folder.
+     * Requests deletion of a Folder. The Folder is moved into the DELETE_REQUESTED state immediately, and is deleted approximately 30 days later. This method may only be called on an empty Folder in the ACTIVE state, where a Folder is empty if it doesn't contain any Folders or Projects in the ACTIVE state. The caller must have `resourcemanager.folders.delete` permission on the identified folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -616,7 +609,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.delete({
-     *     // Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
+     *     // Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -636,14 +629,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Folders$Delete,
@@ -722,9 +713,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.get
-     * @desc Retrieves a Folder identified by the supplied resource name. Valid Folder resource names have the format `folders/{folder_id}` (for example, `folders/1234`). The caller must have `resourcemanager.folders.get` permission on the identified folder.
+     * Retrieves a Folder identified by the supplied resource name. Valid Folder resource names have the format `folders/{folder_id\}` (for example, `folders/1234`). The caller must have `resourcemanager.folders.get` permission on the identified folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -751,7 +742,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.get({
-     *     // Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
+     *     // Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -771,14 +762,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Folders$Get,
@@ -857,9 +846,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.getIamPolicy
-     * @desc Gets the access control policy for a Folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.
+     * Gets the access control policy for a Folder. The returned policy may be empty if no such policy or resource exists. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.getIamPolicy` permission on the identified folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -913,15 +902,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Folders$Getiampolicy,
@@ -1004,9 +990,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.list
-     * @desc Lists the Folders that are direct descendants of supplied parent resource. List provides a strongly consistent view of the Folders underneath the specified parent resource. List returns Folders sorted based upon the (ascending) lexical ordering of their display_name. The caller must have `resourcemanager.folders.list` permission on the identified parent.
+     * Lists the Folders that are direct descendants of supplied parent resource. List provides a strongly consistent view of the Folders underneath the specified parent resource. List returns Folders sorted based upon the (ascending) lexical ordering of their display_name. The caller must have `resourcemanager.folders.list` permission on the identified parent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1037,7 +1023,7 @@ export namespace cloudresourcemanager_v2 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     *     // Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      *     parent: 'placeholder-value',
      *     // Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
      *     showDeleted: 'placeholder-value',
@@ -1056,17 +1042,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of Folders to return in the response.
-     * @param {string=} params.pageToken Optional. A pagination token returned from a previous call to `ListFolders` that indicates where this listing should continue from.
-     * @param {string=} params.parent Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
-     * @param {boolean=} params.showDeleted Optional. Controls whether Folders in the DELETE_REQUESTED state should be returned. Defaults to false.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Folders$List,
@@ -1148,9 +1129,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.move
-     * @desc Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
+     * Moves a Folder under a new resource parent. Returns an Operation which can be used to track the progress of the folder move workflow. Upon success the Operation.response field will be populated with the moved Folder. Upon failure, a FolderOperationError categorizing the failure cause will be returned - if the failure occurs synchronously then the FolderOperationError will be returned via the Status.details field and if it occurs asynchronously then the FolderOperation will be returned via the Operation.error field. In addition, the Operation.metadata field will be populated with a FolderOperation message as an aid to stateless clients. Folder moves will be rejected if they violate either the naming, height or fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.move` permission on the folder's current and proposed new parent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1174,7 +1155,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.move({
-     *     // Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     *     // Required. The resource name of the Folder to move. Must be of the form folders/{folder_id\}
      *     name: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -1202,15 +1183,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
-     * @param {().MoveFolderRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Folders$Move,
@@ -1289,9 +1267,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.patch
-     * @desc Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L}\p{N}]([\p{L}\p{N}_- ]{0,28}[\p{L}\p{N}])?. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
+     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1315,7 +1293,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.patch({
-     *     // Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
+     *     // Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      *     name: 'folders/my-folder',
      *     // Required. Fields to be updated. Only the `display_name` can be updated.
      *     updateMask: 'placeholder-value',
@@ -1349,16 +1327,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
-     * @param {string=} params.updateMask Required. Fields to be updated. Only the `display_name` can be updated.
-     * @param {().Folder} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Folders$Patch,
@@ -1437,9 +1411,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.search
-     * @desc Search for folders that match specific filter criteria. Search provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.
+     * Search for folders that match specific filter criteria. Search provides an eventually consistent view of the folders a user has access to which meet the specified filter criteria. This will only return folders on which the caller has the permission `resourcemanager.folders.get`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1490,14 +1464,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SearchFoldersRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Folders$Search,
@@ -1581,9 +1553,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.setIamPolicy
-     * @desc Sets the access control policy on a Folder, replacing any existing policy. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.setIamPolicy` permission on the identified folder.
+     * Sets the access control policy on a Folder, replacing any existing policy. The `resource` field should be the Folder's resource name, e.g. "folders/1234". The caller must have `resourcemanager.folders.setIamPolicy` permission on the identified folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1635,15 +1607,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Folders$Setiampolicy,
@@ -1726,9 +1695,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Folder. The `resource` field should be the Folder's resource name, e.g. "folders/1234". There are no permissions required for making this API call.
+     * Returns permissions that a caller has on the specified Folder. The `resource` field should be the Folder's resource name, e.g. "folders/1234". There are no permissions required for making this API call.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1776,15 +1745,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Folders$Testiampermissions,
@@ -1874,9 +1840,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.folders.undelete
-     * @desc Cancels the deletion request for a Folder. This method may only be called on a Folder in the DELETE_REQUESTED state. In order to succeed, the Folder's parent must be in the ACTIVE state. In addition, reintroducing the folder into the tree must not violate folder naming, height and fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.undelete` permission on the identified folder.
+     * Cancels the deletion request for a Folder. This method may only be called on a Folder in the DELETE_REQUESTED state. In order to succeed, the Folder's parent must be in the ACTIVE state. In addition, reintroducing the folder into the tree must not violate folder naming, height and fanout constraints described in the CreateFolder documentation. The caller must have `resourcemanager.folders.undelete` permission on the identified folder.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -1900,7 +1866,7 @@ export namespace cloudresourcemanager_v2 {
      *
      *   // Do the magic
      *   const res = await cloudresourcemanager.folders.undelete({
-     *     // Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
+     *     // Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id\}`.
      *     name: 'folders/my-folder',
      *
      *     // Request body metadata
@@ -1926,15 +1892,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.folders.undelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
-     * @param {().UndeleteFolderRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
       params: Params$Resource$Folders$Undelete,
@@ -2018,7 +1981,7 @@ export namespace cloudresourcemanager_v2 {
 
   export interface Params$Resource$Folders$Create extends StandardParameters {
     /**
-     * Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`.
+     * Required. The resource name of the new Folder's parent. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`.
      */
     parent?: string;
 
@@ -2029,13 +1992,13 @@ export namespace cloudresourcemanager_v2 {
   }
   export interface Params$Resource$Folders$Delete extends StandardParameters {
     /**
-     * Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id}`.
+     * Required. the resource name of the Folder to be deleted. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Get extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id}`.
+     * Required. The resource name of the Folder to retrieve. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
   }
@@ -2061,7 +2024,7 @@ export namespace cloudresourcemanager_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id}` or `organizations/{org_id}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
+     * Required. The resource name of the Organization or Folder whose Folders are being listed. Must be of the form `folders/{folder_id\}` or `organizations/{org_id\}`. Access to this method is controlled by checking the `resourcemanager.folders.list` permission on the `parent`.
      */
     parent?: string;
     /**
@@ -2071,7 +2034,7 @@ export namespace cloudresourcemanager_v2 {
   }
   export interface Params$Resource$Folders$Move extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to move. Must be of the form folders/{folder_id}
+     * Required. The resource name of the Folder to move. Must be of the form folders/{folder_id\}
      */
     name?: string;
 
@@ -2082,7 +2045,7 @@ export namespace cloudresourcemanager_v2 {
   }
   export interface Params$Resource$Folders$Patch extends StandardParameters {
     /**
-     * Output only. The resource name of the Folder. Its format is `folders/{folder_id}`, for example: "folders/1234".
+     * Output only. The resource name of the Folder. Its format is `folders/{folder_id\}`, for example: "folders/1234".
      */
     name?: string;
     /**
@@ -2127,7 +2090,7 @@ export namespace cloudresourcemanager_v2 {
   }
   export interface Params$Resource$Folders$Undelete extends StandardParameters {
     /**
-     * Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id}`.
+     * Required. The resource name of the Folder to undelete. Must be of the form `folders/{folder_id\}`.
      */
     name?: string;
 
@@ -2144,9 +2107,9 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * cloudresourcemanager.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudresourcemanager.googleapis.com
@@ -2193,14 +2156,12 @@ export namespace cloudresourcemanager_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudresourcemanager.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,

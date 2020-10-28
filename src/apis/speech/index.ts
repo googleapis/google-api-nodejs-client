@@ -49,3 +49,16 @@ export function speech<
 
 const auth = new AuthPlus();
 export {auth};
+export {speech_v1};
+export {speech_v1p1beta1};
+export {speech_v2beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -41,3 +41,15 @@ export function monitoring<
 
 const auth = new AuthPlus();
 export {auth};
+export {monitoring_v1};
+export {monitoring_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -31,3 +31,14 @@ export function indexing<T = indexing_v3.Indexing>(
 
 const auth = new AuthPlus();
 export {auth};
+export {indexing_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

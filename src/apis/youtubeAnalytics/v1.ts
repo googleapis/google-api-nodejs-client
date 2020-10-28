@@ -104,14 +104,10 @@ export namespace youtubeAnalytics_v1 {
    * Retrieves your YouTube Analytics data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const youtubeAnalytics = google.youtubeAnalytics('v1');
-   *
-   * @namespace youtubeAnalytics
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Youtubeanalytics
+   * ```
    */
   export class Youtubeanalytics {
     context: APIRequestContext;

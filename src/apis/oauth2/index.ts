@@ -31,3 +31,14 @@ export function oauth2<T = oauth2_v2.Oauth2>(
 
 const auth = new AuthPlus();
 export {auth};
+export {oauth2_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

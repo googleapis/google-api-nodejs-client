@@ -31,3 +31,14 @@ export function sql<T = sql_v1beta4.Sql>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sql_v1beta4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

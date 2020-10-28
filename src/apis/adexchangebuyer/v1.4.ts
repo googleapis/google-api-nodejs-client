@@ -88,14 +88,10 @@ export namespace adexchangebuyer_v1_4 {
    * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const adexchangebuyer = google.adexchangebuyer('v1.4');
-   *
-   * @namespace adexchangebuyer
-   * @type {Function}
-   * @version v1.4
-   * @variation v1.4
-   * @param {object=} options Options for Adexchangebuyer
+   * ```
    */
   export class Adexchangebuyer {
     context: APIRequestContext;
@@ -286,7 +282,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     id?: string | null;
     /**
-     * The kind of the resource, i.e. &quot;adexchangebuyer#budget&quot;.
+     * The kind of the resource, i.e. "adexchangebuyer#budget".
      */
     kind?: string | null;
   }
@@ -516,7 +512,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -609,7 +605,7 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Schema$DealTermsGuaranteedFixedPriceTermsBillingInfo {
     /**
-     * The timestamp (in ms since epoch) when the original reservation price for the deal was first converted to DFP currency. This is used to convert the contracted price into buyer&#39;s currency without discrepancy.
+     * The timestamp (in ms since epoch) when the original reservation price for the deal was first converted to DFP currency. This is used to convert the contracted price into buyer's currency without discrepancy.
      */
     currencyConversionTimeMs?: string | null;
     /**
@@ -686,7 +682,7 @@ export namespace adexchangebuyer_v1_4 {
     timeUnitType?: string | null;
   }
   /**
-   * This message carries publisher provided breakdown. E.g. {dimension_type: &#39;COUNTRY&#39;, [{dimension_value: {id: 1, name: &#39;US&#39;}}, {dimension_value: {id: 2, name: &#39;UK&#39;}}]}
+   * This message carries publisher provided breakdown. E.g. {dimension_type: 'COUNTRY', [{dimension_value: {id: 1, name: 'US'\}\}, {dimension_value: {id: 2, name: 'UK'\}\}]\}
    */
   export interface Schema$Dimension {
     dimensionType?: string | null;
@@ -705,7 +701,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     name?: string | null;
     /**
-     * Percent of total impressions for a dimension type. e.g. {dimension_type: &#39;GENDER&#39;, [{dimension_value: {id: 1, name: &#39;MALE&#39;, percentage: 60}}]} Gender MALE is 60% of all impressions which have gender.
+     * Percent of total impressions for a dimension type. e.g. {dimension_type: 'GENDER', [{dimension_value: {id: 1, name: 'MALE', percentage: 60\}\}]\} Gender MALE is 60% of all impressions which have gender.
      */
     percentage?: number | null;
   }
@@ -824,7 +820,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     isSetupComplete?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#marketplaceDeal&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "adexchangebuyer#marketplaceDeal".
      */
     kind?: string | null;
     /**
@@ -854,7 +850,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     sellerContacts?: Schema$ContactInformation[];
     /**
-     * The shared targeting visible to buyers and sellers. Each shared targeting entity is AND&#39;d together. (updatable)
+     * The shared targeting visible to buyers and sellers. Each shared targeting entity is AND'd together. (updatable)
      */
     sharedTargetings?: Schema$SharedTargeting[];
     /**
@@ -908,7 +904,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     dealId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#marketplaceNote&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "adexchangebuyer#marketplaceNote".
      */
     kind?: string | null;
     /**
@@ -1092,7 +1088,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     isActive?: boolean | null;
     /**
-     * The kind of the resource, i.e. &quot;adexchangebuyer#pretargetingConfig&quot;.
+     * The kind of the resource, i.e. "adexchangebuyer#pretargetingConfig".
      */
     kind?: string | null;
     /**
@@ -1132,7 +1128,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     supportedCreativeAttributes?: string[] | null;
     /**
-     * Requests containing the specified type of user data will match. Possible values are HOSTED_MATCH_DATA, which means the request is cookie-targetable and has a match in the buyer&#39;s hosted match table, and COOKIE_OR_IDFA, which means the request has either a targetable cookie or an iOS IDFA.
+     * Requests containing the specified type of user data will match. Possible values are HOSTED_MATCH_DATA, which means the request is cookie-targetable and has a match in the buyer's hosted match table, and COOKIE_OR_IDFA, which means the request has either a targetable cookie or an iOS IDFA.
      */
     userIdentifierDataRequired?: string[] | null;
     /**
@@ -1197,7 +1193,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     billedBuyer?: Schema$Buyer;
     /**
-     * The buyer who will pay this price. If unset, all buyers can pay this price (if the advertisers match, and there&#39;s no more specific rule matching the buyer).
+     * The buyer who will pay this price. If unset, all buyers can pay this price (if the advertisers match, and there's no more specific rule matching the buyer).
      */
     buyer?: Schema$Buyer;
     /**
@@ -1210,7 +1206,9 @@ export namespace adexchangebuyer_v1_4 {
     referencePayload?: string | null;
   }
   /**
-   * A product is segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps buyer know more about the inventory. Each field in a product can have one of the following setting:  (readonly) - It is an error to try and set this field. (buyer-readonly) - Only the seller can set this field. (seller-readonly) - Only the buyer can set this field. (updatable) - The field is updatable at all times by either buyer or the seller.
+   * A product is segment of inventory that a seller wishes to sell. It is associated with certain terms and targeting information which helps buyer know more about the inventory. Each field in a product can have one of the following setting:
+   *
+   * (readonly) - It is an error to try and set this field. (buyer-readonly) - Only the seller can set this field. (seller-readonly) - Only the buyer can set this field. (updatable) - The field is updatable at all times by either buyer or the seller.
    */
   export interface Schema$Product {
     /**
@@ -1254,7 +1252,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     inventorySource?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#product&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "adexchangebuyer#product".
      */
     kind?: string | null;
     /**
@@ -1323,7 +1321,9 @@ export namespace adexchangebuyer_v1_4 {
     webPropertyCode?: string | null;
   }
   /**
-   * Represents a proposal in the marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Each field in a proposal can have one of the following setting:  (readonly) - It is an error to try and set this field. (buyer-readonly) - Only the seller can set this field. (seller-readonly) - Only the buyer can set this field. (updatable) - The field is updatable at all times by either buyer or the seller.
+   * Represents a proposal in the marketplace. A proposal is the unit of negotiation between a seller and a buyer and contains deals which are served. Each field in a proposal can have one of the following setting:
+   *
+   * (readonly) - It is an error to try and set this field. (buyer-readonly) - Only the seller can set this field. (seller-readonly) - Only the buyer can set this field. (updatable) - The field is updatable at all times by either buyer or the seller.
    */
   export interface Schema$Proposal {
     /**
@@ -1367,7 +1367,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     isSetupComplete?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#proposal&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "adexchangebuyer#proposal".
      */
     kind?: string | null;
     /**
@@ -1437,7 +1437,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     exchange?: string | null;
     /**
-     * Link to publisher&#39;s Google+ page.
+     * Link to publisher's Google+ page.
      */
     googlePlusLink?: string | null;
     /**
@@ -1449,7 +1449,7 @@ export namespace adexchangebuyer_v1_4 {
      */
     isPublished?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;adexchangebuyer#publisherProfileApiProto&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "adexchangebuyer#publisherProfileApiProto".
      */
     kind?: string | null;
     /**
@@ -1543,11 +1543,11 @@ export namespace adexchangebuyer_v1_4 {
   }
   export interface Schema$SharedTargeting {
     /**
-     * The list of values to exclude from targeting. Each value is AND&#39;d together.
+     * The list of values to exclude from targeting. Each value is AND'd together.
      */
     exclusions?: Schema$TargetingValue[];
     /**
-     * The list of value to include as part of the targeting. Each value is OR&#39;d together.
+     * The list of value to include as part of the targeting. Each value is OR'd together.
      */
     inclusions?: Schema$TargetingValue[];
     /**
@@ -1661,9 +1661,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.accounts.get
-     * @desc Gets one account by ID.
+     * Gets one account by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -1711,14 +1711,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.id The account id
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -1799,9 +1797,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.accounts.list
-     * @desc Retrieves the authenticated user's list of accounts.
+     * Retrieves the authenticated user's list of accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -1839,13 +1837,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -1926,9 +1923,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.accounts.patch
-     * @desc Updates an existing account. This method supports patch semantics.
+     * Updates an existing account. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -1994,16 +1991,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
-     * @param {integer} params.id The account id
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Patch,
@@ -2084,9 +2077,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.accounts.update
-     * @desc Updates an existing account.
+     * Updates an existing account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2152,16 +2145,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.confirmUnsafeAccountChange Confirmation for erasing bidder and cookie matching urls.
-     * @param {integer} params.id The account id
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Update,
@@ -2287,9 +2276,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.billingInfo.get
-     * @desc Returns the billing information for one account specified by account ID.
+     * Returns the billing information for one account specified by account ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2332,14 +2321,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.billingInfo.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The account id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Billinginfo$Get,
@@ -2419,9 +2406,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.billingInfo.list
-     * @desc Retrieves a list of billing information for all accounts of the authenticated user.
+     * Retrieves a list of billing information for all accounts of the authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2459,13 +2446,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.billingInfo.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Billinginfo$List,
@@ -2562,9 +2548,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.budget.get
-     * @desc Returns the budget information for the adgroup specified by the accountId and billingId.
+     * Returns the budget information for the adgroup specified by the accountId and billingId.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2611,15 +2597,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.budget.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to get the budget information for.
-     * @param {string} params.billingId The billing id to get the budget information for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Budget$Get,
@@ -2700,9 +2683,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.budget.patch
-     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
+     * Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2762,16 +2745,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.budget.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id associated with the budget being updated.
-     * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Budget$Patch,
@@ -2852,9 +2831,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.budget.update
-     * @desc Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
+     * Updates the budget amount for the budget of the adgroup specified by the accountId and billingId, with the budget amount in the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -2914,16 +2893,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.budget.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id associated with the budget being updated.
-     * @param {string} params.billingId The billing id associated with the budget being updated.
-     * @param {().Budget} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Budget$Update,
@@ -3052,9 +3027,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.addDeal
-     * @desc Add a deal id association for the creative.
+     * Add a deal id association for the creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3093,16 +3068,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.addDeal
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {string} params.dealId The id of the deal id to associate with this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addDeal(
       params: Params$Resource$Creatives$Adddeal,
@@ -3182,9 +3153,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.get
-     * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
+     * Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3256,15 +3227,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creatives$Get,
@@ -3345,9 +3313,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.insert
-     * @desc Submit a new creative.
+     * Submit a new creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3452,14 +3420,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creatives$Insert,
@@ -3540,9 +3506,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.list
-     * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
+     * Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3594,19 +3560,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.accountId When specified, only creatives for the given account ids are returned.
-     * @param {string=} params.buyerCreativeId When specified, only creatives for the given buyer creative ids are returned.
-     * @param {string=} params.dealsStatusFilter When specified, only creatives having the given deals status are returned.
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param {string=} params.openAuctionStatusFilter When specified, only creatives having the given open auction status are returned.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creatives$List,
@@ -3687,9 +3646,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.listDeals
-     * @desc Lists the external deal ids associated with the creative.
+     * Lists the external deal ids associated with the creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3732,15 +3691,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.listDeals
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listDeals(
       params: Params$Resource$Creatives$Listdeals,
@@ -3822,9 +3778,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.creatives.removeDeal
-     * @desc Remove a deal id associated with the creative.
+     * Remove a deal id associated with the creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -3863,16 +3819,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.removeDeal
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {string} params.dealId The id of the deal id to disassociate with this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removeDeal(
       params: Params$Resource$Creatives$Removedeal,
@@ -4043,9 +3995,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacedeals.delete
-     * @desc Delete the specified deals from the proposal
+     * Delete the specified deals from the proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4096,15 +4048,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacedeals.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposalId to delete deals from.
-     * @param {().DeleteOrderDealsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Marketplacedeals$Delete,
@@ -4193,9 +4142,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacedeals.insert
-     * @desc Add new deals for the specified proposal
+     * Add new deals for the specified proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4246,15 +4195,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacedeals.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId proposalId for which deals need to be added.
-     * @param {().AddOrderDealsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Marketplacedeals$Insert,
@@ -4341,9 +4287,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacedeals.list
-     * @desc List all the deals for a given proposal
+     * List all the deals for a given proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4385,15 +4331,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacedeals.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pqlQuery Query string to retrieve specific deals.
-     * @param {string} params.proposalId The proposalId to get deals for. To search across all proposals specify order_id = '-' as part of the URL.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Marketplacedeals$List,
@@ -4479,9 +4422,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacedeals.update
-     * @desc Replaces all the deals in the proposal with the passed in deals
+     * Replaces all the deals in the proposal with the passed in deals
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4533,15 +4476,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacedeals.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposalId to edit deals on.
-     * @param {().EditAllOrderDealsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Marketplacedeals$Update,
@@ -4685,9 +4625,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacenotes.insert
-     * @desc Add notes to the proposal
+     * Add notes to the proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4735,15 +4675,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacenotes.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposalId to add notes for.
-     * @param {().AddOrderNotesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Marketplacenotes$Insert,
@@ -4830,9 +4767,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplacenotes.list
-     * @desc Get all the notes associated with a proposal
+     * Get all the notes associated with a proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -4874,15 +4811,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplacenotes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.pqlQuery Query string to retrieve specific notes. To search the text contents of notes, please use syntax like "WHERE note.note = "foo" or "WHERE note.note LIKE "%bar%"
-     * @param {string} params.proposalId The proposalId to get notes for. To search across all proposals specify order_id = '-' as part of the URL.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Marketplacenotes$List,
@@ -4999,9 +4933,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.marketplaceprivateauction.updateproposal
-     * @desc Update a given private auction proposal
+     * Update a given private auction proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5047,15 +4981,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.marketplaceprivateauction.updateproposal
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.privateAuctionId The private auction id to be updated.
-     * @param {().UpdatePrivateAuctionProposalRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateproposal(
       params: Params$Resource$Marketplaceprivateauction$Updateproposal,
@@ -5155,9 +5086,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.performanceReport.list
-     * @desc Retrieves the authenticated user's list of performance metrics.
+     * Retrieves the authenticated user's list of performance metrics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5206,18 +5137,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.performanceReport.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to get the reports.
-     * @param {string} params.endDateTime The end time of the report in ISO 8601 timestamp format using UTC.
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param {string=} params.pageToken A continuation token, used to page through performance reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param {string} params.startDateTime The start time of the report in ISO 8601 timestamp format using UTC.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Performancereport$List,
@@ -5335,9 +5260,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.delete
-     * @desc Deletes an existing pretargeting config.
+     * Deletes an existing pretargeting config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5374,15 +5299,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to delete the pretargeting config for.
-     * @param {string} params.configId The specific id of the configuration to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Pretargetingconfig$Delete,
@@ -5462,9 +5384,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.get
-     * @desc Gets a specific pretargeting configuration
+     * Gets a specific pretargeting configuration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5532,15 +5454,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to get the pretargeting config for.
-     * @param {string} params.configId The specific id of the configuration to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pretargetingconfig$Get,
@@ -5625,9 +5544,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.insert
-     * @desc Inserts a new pretargeting configuration.
+     * Inserts a new pretargeting configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5727,15 +5646,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to insert the pretargeting config for.
-     * @param {().PretargetingConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Pretargetingconfig$Insert,
@@ -5819,9 +5735,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.list
-     * @desc Retrieves a list of the authenticated user's pretargeting configurations.
+     * Retrieves a list of the authenticated user's pretargeting configurations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -5862,14 +5778,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to get the pretargeting configs for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Pretargetingconfig$List,
@@ -5955,9 +5869,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.patch
-     * @desc Updates an existing pretargeting config. This method supports patch semantics.
+     * Updates an existing pretargeting config. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6059,16 +5973,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to update the pretargeting config for.
-     * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Pretargetingconfig$Patch,
@@ -6153,9 +6063,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pretargetingConfig.update
-     * @desc Updates an existing pretargeting config.
+     * Updates an existing pretargeting config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6257,16 +6167,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pretargetingConfig.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The account id to update the pretargeting config for.
-     * @param {string} params.configId The specific id of the configuration to update.
-     * @param {().PretargetingConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Pretargetingconfig$Update,
@@ -6432,9 +6338,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.products.get
-     * @desc Gets the requested product by id.
+     * Gets the requested product by id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6500,14 +6406,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.products.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.productId The id for the product to get the head revision for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Products$Get,
@@ -6587,9 +6491,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.products.search
-     * @desc Gets the requested product.
+     * Gets the requested product.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6629,14 +6533,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.products.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.pqlQuery The pql query used to query for products.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Products$Search,
@@ -6740,9 +6642,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.get
-     * @desc Get a proposal given its id
+     * Get a proposal given its id
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6804,14 +6706,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId Id of the proposal to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Proposals$Get,
@@ -6891,9 +6791,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.insert
-     * @desc Create the given list of proposals
+     * Create the given list of proposals
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -6939,14 +6839,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().CreateOrdersRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Proposals$Insert,
@@ -7032,9 +6930,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.patch
-     * @desc Update the given proposal. This method supports patch semantics.
+     * Update the given proposal. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -7130,17 +7028,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposal id to update.
-     * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
-     * @param {().Proposal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Proposals$Patch,
@@ -7221,9 +7114,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.search
-     * @desc Search for proposals using pql query
+     * Search for proposals using pql query
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -7263,14 +7156,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.pqlQuery Query string to retrieve specific proposals.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Proposals$Search,
@@ -7354,9 +7245,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.setupcomplete
-     * @desc Update the given proposal to indicate that setup has been completed.
+     * Update the given proposal to indicate that setup has been completed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -7391,14 +7282,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.setupcomplete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposal id for which the setup is complete
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setupcomplete(
       params: Params$Resource$Proposals$Setupcomplete,
@@ -7478,9 +7367,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.proposals.update
-     * @desc Update the given proposal
+     * Update the given proposal
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -7576,17 +7465,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.proposals.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.proposalId The proposal id to update.
-     * @param {string} params.revisionNumber The last known revision number to update. If the head revision in the marketplace database has since changed, an error will be thrown. The caller should then fetch the latest proposal at head revision and retry the update at that revision.
-     * @param {string} params.updateAction The proposed action to take on the proposal. This field is required and it must be set when updating a proposal.
-     * @param {().Proposal} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Proposals$Update,
@@ -7738,9 +7622,9 @@ export namespace adexchangebuyer_v1_4 {
     }
 
     /**
-     * adexchangebuyer.pubprofiles.list
-     * @desc Gets the requested publisher profile(s) by publisher accountId.
+     * Gets the requested publisher profile(s) by publisher accountId.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -7780,14 +7664,12 @@ export namespace adexchangebuyer_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.pubprofiles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The accountId of the publisher to get profiles for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Pubprofiles$List,

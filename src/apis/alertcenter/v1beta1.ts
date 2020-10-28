@@ -104,14 +104,10 @@ export namespace alertcenter_v1beta1 {
    * Manages alerts on issues affecting your domain.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const alertcenter = google.alertcenter('v1beta1');
-   *
-   * @namespace alertcenter
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Alertcenter
+   * ```
    */
   export class Alertcenter {
     context: APIRequestContext;
@@ -179,7 +175,7 @@ export namespace alertcenter_v1beta1 {
      */
     supersedingAlert?: string | null;
     /**
-     * Alert threshold is for example “COUNT &gt; 5”.
+     * Alert threshold is for example “COUNT \> 5”.
      */
     threshold?: string | null;
     /**
@@ -302,7 +298,7 @@ export namespace alertcenter_v1beta1 {
      */
     etag?: string | null;
     /**
-     * The severity value of the alert. Alert Center will set this field at alert creation time, default&#39;s to an empty string when it could not be determined. The supported values for update actions on this field are the following: * HIGH * MEDIUM * LOW
+     * The severity value of the alert. Alert Center will set this field at alert creation time, default's to an empty string when it could not be determined. The supported values for update actions on this field are the following: * HIGH * MEDIUM * LOW
      */
     severity?: string | null;
     /**
@@ -458,7 +454,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$DeviceCompromisedSecurityDetail {
     /**
-     * The device compromised state. Possible values are &quot;`Compromised`&quot; or &quot;`Not Compromised`&quot;.
+     * The device compromised state. Possible values are "`Compromised`" or "`Not Compromised`".
      */
     deviceCompromisedState?: string | null;
     /**
@@ -518,7 +514,7 @@ export namespace alertcenter_v1beta1 {
     takeoutRequestId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -526,7 +522,7 @@ export namespace alertcenter_v1beta1 {
    */
   export interface Schema$GmailMessageInfo {
     /**
-     * The `SHA256` hash of email&#39;s attachment and all MIME parts.
+     * The `SHA256` hash of email's attachment and all MIME parts.
      */
     attachmentsSha256Hash?: string[] | null;
     /**
@@ -538,7 +534,7 @@ export namespace alertcenter_v1beta1 {
      */
     md5HashMessageBody?: string | null;
     /**
-     * The MD5 Hash of email&#39;s subject (only available for reported emails).
+     * The MD5 Hash of email's subject (only available for reported emails).
      */
     md5HashSubject?: string | null;
     /**
@@ -610,7 +606,7 @@ export namespace alertcenter_v1beta1 {
      */
     ipAddress?: string | null;
     /**
-     * Optional. The successful login time that is associated with the warning event. This isn&#39;t present for blocked login attempts.
+     * Optional. The successful login time that is associated with the warning event. This isn't present for blocked login attempts.
      */
     loginTime?: string | null;
   }
@@ -764,7 +760,7 @@ export namespace alertcenter_v1beta1 {
      */
     matchInfo?: Schema$MatchInfo[];
     /**
-     * Resource recipients. For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or &#39;anyone&#39; if the file was publicly accessible. If the file was private the recipients list will be empty. For Gmail, they are emails of the users or groups that the Gmail message was sent to.
+     * Resource recipients. For Drive, they are grantees that the Drive file was shared with at the time of rule triggering. Valid values include user emails, group emails, domains, or 'anyone' if the file was publicly accessible. If the file was private the recipients list will be empty. For Gmail, they are emails of the users or groups that the Gmail message was sent to.
      */
     recipients?: string[] | null;
     /**
@@ -926,9 +922,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.batchDelete
-     * @desc Performs batch delete operation on alerts.
+     * Performs batch delete operation on alerts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -975,14 +971,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.batchDelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchDeleteAlertsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchDelete(
       params: Params$Resource$Alerts$Batchdelete,
@@ -1071,9 +1065,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.batchUndelete
-     * @desc Performs batch undelete operation on alerts.
+     * Performs batch undelete operation on alerts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1120,14 +1114,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.batchUndelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchUndeleteAlertsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUndelete(
       params: Params$Resource$Alerts$Batchundelete,
@@ -1216,9 +1208,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.delete
-     * @desc Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
+     * Marks the specified alert for deletion. An alert that has been marked for deletion is removed from Alert Center after 30 days. Marking an alert for deletion has no effect on an alert which has already been marked for deletion. Attempting to mark a nonexistent alert for deletion results in a `NOT_FOUND` error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1258,15 +1250,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert to delete.
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Alerts$Delete,
@@ -1347,9 +1336,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.get
-     * @desc Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
+     * Gets the specified alert. Attempting to get a nonexistent alert returns `NOT_FOUND` error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1403,15 +1392,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert to retrieve.
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Alerts$Get,
@@ -1492,9 +1478,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.getMetadata
-     * @desc Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
+     * Returns the metadata of an alert. Attempting to get metadata for a non-existent alert returns `NOT_FOUND` error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1542,15 +1528,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.getMetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert this metadata belongs to.
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert metadata is associated with. Inferred from the caller identity if not provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetadata(
       params: Params$Resource$Alerts$Getmetadata,
@@ -1632,9 +1615,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.list
-     * @desc Lists the alerts.
+     * Lists the alerts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1683,18 +1666,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alerts are associated with. Inferred from the caller identity if not provided.
-     * @param {string=} params.filter Optional. A query string for filtering alert results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.list).
-     * @param {string=} params.orderBy Optional. The sort order of the list results. If not specified results may be returned in arbitrary order. You can sort the results in descending order based on the creation timestamp using `order_by="create_time desc"`. Currently, supported sorting are `create_time asc`, `create_time desc`, `update_time desc`
-     * @param {integer=} params.pageSize Optional. The requested page size. Server may return fewer items than requested. If unspecified, server picks an appropriate default.
-     * @param {string=} params.pageToken Optional. A token identifying a page of results the server should return. If empty, a new iteration is started. To continue an iteration, pass in the value from the previous ListAlertsResponse's next_page_token field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Alerts$List,
@@ -1775,9 +1752,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.undelete
-     * @desc Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
+     * Restores, or "undeletes", an alert that was marked for deletion within the past 30 days. Attempting to undelete an alert which was marked for deletion over 30 days ago (which has been removed from the Alert Center database) or a nonexistent alert returns a `NOT_FOUND` error. Attempting to undelete an alert which has not been marked for deletion has no effect.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -1837,15 +1814,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.undelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert to undelete.
-     * @param {().UndeleteAlertRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
       params: Params$Resource$Alerts$Undelete,
@@ -2012,9 +1986,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.feedback.create
-     * @desc Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
+     * Creates new feedback for an alert. Attempting to create a feedback for a non-existent alert returns `NOT_FOUND` error. Attempting to create a feedback for an alert that is marked for deletion returns `FAILED_PRECONDITION' error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -2074,16 +2048,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.feedback.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The identifier of the alert this feedback belongs to.
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert is associated with. Inferred from the caller identity if not provided.
-     * @param {().AlertFeedback} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Alerts$Feedback$Create,
@@ -2165,9 +2135,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.alerts.feedback.list
-     * @desc Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
+     * Lists all the feedback for an alert. Attempting to list feedbacks for a non-existent alert returns `NOT_FOUND` error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -2211,16 +2181,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.alerts.feedback.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Required. The alert identifier. The "-" wildcard could be used to represent all alerts.
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert feedback are associated with. Inferred from the caller identity if not provided.
-     * @param {string=} params.filter Optional. A query string for filtering alert feedback results. For more details, see [Query filters](/admin-sdk/alertcenter/guides/query-filters) and [Supported query filter fields](/admin-sdk/alertcenter/reference/filter-fields#alerts.feedback.list).
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Alerts$Feedback$List,
@@ -2348,9 +2314,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.getSettings
-     * @desc Returns customer-level settings.
+     * Returns customer-level settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -2390,14 +2356,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.getSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSettings(
       params: Params$Resource$V1beta1$Getsettings,
@@ -2476,9 +2440,9 @@ export namespace alertcenter_v1beta1 {
     }
 
     /**
-     * alertcenter.updateSettings
-     * @desc Updates the customer-level settings.
+     * Updates the customer-level settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/alertcenter.googleapis.com
@@ -2526,15 +2490,12 @@ export namespace alertcenter_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias alertcenter.updateSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customerId Optional. The unique identifier of the G Suite organization account of the customer the alert settings are associated with. Inferred from the caller identity if not provided.
-     * @param {().Settings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSettings(
       params: Params$Resource$V1beta1$Updatesettings,

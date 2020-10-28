@@ -33,3 +33,14 @@ export function firebase<T = firebase_v1beta1.Firebase>(
 
 const auth = new AuthPlus();
 export {auth};
+export {firebase_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

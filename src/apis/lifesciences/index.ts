@@ -35,3 +35,14 @@ export function lifesciences<T = lifesciences_v2beta.Lifesciences>(
 
 const auth = new AuthPlus();
 export {auth};
+export {lifesciences_v2beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

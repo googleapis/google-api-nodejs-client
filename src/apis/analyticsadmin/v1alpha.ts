@@ -104,14 +104,10 @@ export namespace analyticsadmin_v1alpha {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const analyticsadmin = google.analyticsadmin('v1alpha');
-   *
-   * @namespace analyticsadmin
-   * @type {Function}
-   * @version v1alpha
-   * @variation v1alpha
-   * @param {object=} options Options for Analyticsadmin
+   * ```
    */
   export class Analyticsadmin {
     context: APIRequestContext;
@@ -152,7 +148,7 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Output only. Resource name of this account. Format: accounts/{account} Example: &quot;accounts/100&quot;
+     * Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string | null;
     /**
@@ -165,7 +161,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAccountSummary {
     /**
-     * Resource name of account referred to by this account summary Format: accounts/{account_id} Example: &quot;accounts/1000&quot;
+     * Resource name of account referred to by this account summary Format: accounts/{account_id\} Example: "accounts/1000"
      */
     account?: string | null;
     /**
@@ -173,7 +169,7 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Resource name for this account summary. Format: accountSummaries/{account_id} Example: &quot;accountSummaries/1000&quot;
+     * Resource name for this account summary. Format: accountSummaries/{account_id\} Example: "accountSummaries/1000"
      */
     name?: string | null;
     /**
@@ -198,11 +194,11 @@ export namespace analyticsadmin_v1alpha {
      */
     firebaseAppId?: string | null;
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: &quot;properties/1000/androidAppDataStreams/2000&quot;
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/1000/androidAppDataStreams/2000"
      */
     name?: string | null;
     /**
-     * Immutable. The package name for the app being measured. Example: &quot;com.example.myandroidapp&quot;
+     * Immutable. The package name for the app being measured. Example: "com.example.myandroidapp"
      */
     packageName?: string | null;
     /**
@@ -211,7 +207,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * Read-only resource used to summarize a principal&#39;s effective roles.
+   * Read-only resource used to summarize a principal's effective roles.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaAuditUserLink {
     /**
@@ -262,7 +258,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest {
     /**
-     * Optional. If notify_new_users is set, then email new users that they&#39;ve been given permissions on the resource.
+     * Optional. If notify_new_users is set, then email new users that they've been given permissions on the resource.
      */
     notifyNewUsers?: boolean | null;
     /**
@@ -316,11 +312,11 @@ export namespace analyticsadmin_v1alpha {
     userLinks?: Schema$GoogleAnalyticsAdminV1alphaUserLink[];
   }
   /**
-   * Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the &quot;primary&quot; email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the &quot;primary&quot; email address. As a result, the input and output email address for this request may differ.
+   * Request message for CreateUserLink RPC. Users can have multiple email addresses associated with their Google account, and one of these email addresses is the "primary" email address. Any of the email addresses associated with a Google account may be used for a new UserLink, but the returned UserLink will always contain the "primary" email address. As a result, the input and output email address for this request may differ.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaCreateUserLinkRequest {
     /**
-     * Optional. If notify_new_user is set, then email new user that they&#39;ve been given permissions on the resource.
+     * Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.
      */
     notifyNewUser?: boolean | null;
     /**
@@ -337,7 +333,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings {
     /**
-     * Output only. Resource name. Format: accounts/{account}/dataSharingSettings Example: &quot;accounts/1000/dataSharingSettings&quot;
+     * Output only. Resource name. Format: accounts/{account\}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
      */
     name?: string | null;
     /**
@@ -383,7 +379,7 @@ export namespace analyticsadmin_v1alpha {
      */
     contentViewsEnabled?: boolean | null;
     /**
-     * If enabled, capture a click event each time a visitor clicks a link or element that has data attributes beginning with &quot;data-ga&quot;.
+     * If enabled, capture a click event each time a visitor clicks a link or element that has data attributes beginning with "data-ga".
      */
     dataTaggedElementClicksEnabled?: boolean | null;
     /**
@@ -399,7 +395,7 @@ export namespace analyticsadmin_v1alpha {
      */
     formInteractionsEnabled?: boolean | null;
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: &quot;properties/1000/webDataStreams/2000/enhancedMeasurementSettings&quot;
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string | null;
     /**
@@ -464,7 +460,7 @@ export namespace analyticsadmin_v1alpha {
      */
     name?: string | null;
     /**
-     * Immutable. Firebase project resource name. When creating a FirebaseLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, returned FirebaseLinks will always have a project_name that contains a project number. Format: &#39;projects/{project number}&#39; Example: &#39;projects/1234&#39;
+     * Immutable. Firebase project resource name. When creating a FirebaseLink, you may provide this resource name using either a project number or project ID. Once this resource has been created, returned FirebaseLinks will always have a project_name that contains a project number. Format: 'projects/{project number\}' Example: 'projects/1234'
      */
     project?: string | null;
   }
@@ -498,15 +494,15 @@ export namespace analyticsadmin_v1alpha {
      */
     customerId?: string | null;
     /**
-     * Output only. Email address of the user that created the link. An empty string will be returned if the email address can&#39;t be retrieved.
+     * Output only. Email address of the user that created the link. An empty string will be returned if the email address can't be retrieved.
      */
     emailAddress?: string | null;
     /**
-     * Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.
+     * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
     name?: string | null;
     /**
-     * Immutable. Format: properties/{propertyId}
+     * Immutable. Format: properties/{propertyId\}
      */
     parent?: string | null;
     /**
@@ -519,7 +515,7 @@ export namespace analyticsadmin_v1alpha {
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream {
     /**
-     * Required. Immutable. The Apple App Store Bundle ID for the app Example: &quot;com.example.myiosapp&quot;
+     * Required. Immutable. The Apple App Store Bundle ID for the app Example: "com.example.myiosapp"
      */
     bundleId?: string | null;
     /**
@@ -535,7 +531,7 @@ export namespace analyticsadmin_v1alpha {
      */
     firebaseAppId?: string | null;
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: &quot;properties/1000/iosAppDataStreams/2000&quot;
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/1000/iosAppDataStreams/2000"
      */
     name?: string | null;
     /**
@@ -665,7 +661,7 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
-     * The currency type used in reports involving monetary values. Format: https://en.wikipedia.org/wiki/ISO_4217 Examples: &quot;USD&quot;, &quot;EUR&quot;, &quot;JPY&quot;
+     * The currency type used in reports involving monetary values. Format: https://en.wikipedia.org/wiki/ISO_4217 Examples: "USD", "EUR", "JPY"
      */
     currencyCode?: string | null;
     /**
@@ -681,15 +677,15 @@ export namespace analyticsadmin_v1alpha {
      */
     industryCategory?: string | null;
     /**
-     * Output only. Resource name of this property. Format: properties/{property_id} Example: &quot;properties/1000&quot;
+     * Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
      */
     name?: string | null;
     /**
-     * Immutable. Resource name of this property&#39;s logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account} Example: &quot;accounts/100&quot;
+     * Immutable. Resource name of this property's logical parent. Note: The Property-Moving UI can be used to change the parent. Format: accounts/{account\} Example: "accounts/100"
      */
     parent?: string | null;
     /**
-     * Reporting Time Zone, used as the day boundary for reports, regardless of where the data originates. If the time zone honors DST, Analytics will automatically adjust for the changes. NOTE: Changing the time zone only affects data going forward, and is not applied retroactively. Format: https://www.iana.org/time-zones Example: &quot;America/Los_Angeles&quot;
+     * Reporting Time Zone, used as the day boundary for reports, regardless of where the data originates. If the time zone honors DST, Analytics will automatically adjust for the changes. NOTE: Changing the time zone only affects data going forward, and is not applied retroactively. Format: https://www.iana.org/time-zones Example: "America/Los_Angeles"
      */
     timeZone?: string | null;
     /**
@@ -706,7 +702,7 @@ export namespace analyticsadmin_v1alpha {
      */
     displayName?: string | null;
     /**
-     * Resource name of property referred to by this property summary Format: properties/{property_id} Example: &quot;properties/1000&quot;
+     * Resource name of property referred to by this property summary Format: properties/{property_id\} Example: "properties/1000"
      */
     property?: string | null;
   }
@@ -742,7 +738,7 @@ export namespace analyticsadmin_v1alpha {
     userLink?: Schema$GoogleAnalyticsAdminV1alphaUserLink;
   }
   /**
-   * A resource message representing a user&#39;s permissions on an Account or Property resource.
+   * A resource message representing a user's permissions on an Account or Property resource.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaUserLink {
     /**
@@ -767,7 +763,7 @@ export namespace analyticsadmin_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Immutable. Domain name of the web app being measured, or empty. Example: &quot;http://www.google.com&quot;, &quot;https://www.google.com&quot;
+     * Immutable. Domain name of the web app being measured, or empty. Example: "http://www.google.com", "https://www.google.com"
      */
     defaultUri?: string | null;
     /**
@@ -779,11 +775,11 @@ export namespace analyticsadmin_v1alpha {
      */
     firebaseAppId?: string | null;
     /**
-     * Output only. Analytics &quot;Measurement ID&quot;, without the &quot;G-&quot; prefix. Example: &quot;G-1A2BCD345E&quot; would just be &quot;1A2BCD345E&quot;
+     * Output only. Analytics "Measurement ID", without the "G-" prefix. Example: "G-1A2BCD345E" would just be "1A2BCD345E"
      */
     measurementId?: string | null;
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: &quot;properties/1000/webDataStreams/2000&quot;
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/1000/webDataStreams/2000"
      */
     name?: string | null;
     /**
@@ -792,7 +788,7 @@ export namespace analyticsadmin_v1alpha {
     updateTime?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
 
@@ -805,9 +801,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.delete
-     * @desc Marks target Account as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
+     * Marks target Account as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted accounts. However, they can be restored using the Trash Can UI. If the accounts are not restored before the expiration time, the account and all child resources (eg: Properties, GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -831,7 +827,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.delete({
-     *     // Required. The name of the Account to soft-delete. Format: accounts/{account} Example: "accounts/100"
+     *     // Required. The name of the Account to soft-delete. Format: accounts/{account\} Example: "accounts/100"
      *     name: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -845,14 +841,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Account to soft-delete. Format: accounts/{account} Example: "accounts/100"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Delete,
@@ -934,9 +928,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.get
-     * @desc Lookup for a single Account. Throws "Target not found" if no such account found, or if caller does not have permissions to access it.
+     * Lookup for a single Account. Throws "Target not found" if no such account found, or if caller does not have permissions to access it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -960,7 +954,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.get({
-     *     // Required. The name of the account to lookup. Format: accounts/{account} Example: "accounts/100"
+     *     // Required. The name of the account to lookup. Format: accounts/{account\} Example: "accounts/100"
      *     name: 'accounts/my-account',
      *   });
      *   console.log(res.data);
@@ -981,14 +975,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the account to lookup. Format: accounts/{account} Example: "accounts/100"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -1076,9 +1068,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.getDataSharingSettings
-     * @desc Get data sharing settings on an account. Data sharing settings are singletons.
+     * Get data sharing settings on an account. Data sharing settings are singletons.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1102,7 +1094,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.getDataSharingSettings({
-     *     // Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
+     *     // Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
      *     name: 'accounts/my-account/dataSharingSettings',
      *   });
      *   console.log(res.data);
@@ -1123,14 +1115,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.getDataSharingSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getDataSharingSettings(
       params: Params$Resource$Accounts$Getdatasharingsettings,
@@ -1233,9 +1223,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.list
-     * @desc Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
+     * Returns all accounts accessible by the caller. Note that these accounts might not currently have GA4 properties. Soft-deleted (ie: "trashed") accounts are excluded by default. Returns an empty list if no relevant accounts are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1280,16 +1270,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
-     * @param {boolean=} params.showDeleted Whether to include soft-deleted (ie: "trashed") Accounts in the results. Accounts can be inspected to determine whether they are deleted or not.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -1390,9 +1376,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.patch
-     * @desc Updates an account.
+     * Updates an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1416,7 +1402,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.patch({
-     *     // Output only. Resource name of this account. Format: accounts/{account} Example: "accounts/100"
+     *     // Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      *     name: 'accounts/my-account',
      *     // The list of fields to be updated. Omitted fields will not be updated.
      *     updateMask: 'placeholder-value',
@@ -1452,16 +1438,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this account. Format: accounts/{account} Example: "accounts/100"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaAccount} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Patch,
@@ -1549,9 +1531,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.provisionAccountTicket
-     * @desc Requests a ticket for creating an account.
+     * Requests a ticket for creating an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1597,14 +1579,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.provisionAccountTicket
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleAnalyticsAdminV1alphaProvisionAccountTicketRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     provisionAccountTicket(
       params: Params$Resource$Accounts$Provisionaccountticket,
@@ -1715,20 +1695,20 @@ export namespace analyticsadmin_v1alpha {
 
   export interface Params$Resource$Accounts$Delete extends StandardParameters {
     /**
-     * Required. The name of the Account to soft-delete. Format: accounts/{account} Example: "accounts/100"
+     * Required. The name of the Account to soft-delete. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string;
   }
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
-     * Required. The name of the account to lookup. Format: accounts/{account} Example: "accounts/100"
+     * Required. The name of the account to lookup. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string;
   }
   export interface Params$Resource$Accounts$Getdatasharingsettings
     extends StandardParameters {
     /**
-     * Required. The name of the settings to lookup. Format: accounts/{account}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
+     * Required. The name of the settings to lookup. Format: accounts/{account\}/dataSharingSettings Example: "accounts/1000/dataSharingSettings"
      */
     name?: string;
   }
@@ -1748,7 +1728,7 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Accounts$Patch extends StandardParameters {
     /**
-     * Output only. Resource name of this account. Format: accounts/{account} Example: "accounts/100"
+     * Output only. Resource name of this account. Format: accounts/{account\} Example: "accounts/100"
      */
     name?: string;
     /**
@@ -1776,9 +1756,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.audit
-     * @desc Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
+     * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1828,15 +1808,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.audit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaAuditUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     audit(
       params: Params$Resource$Accounts$Userlinks$Audit,
@@ -1941,9 +1918,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.batchCreate
-     * @desc Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
+     * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -1992,15 +1969,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.batchCreate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchCreate(
       params: Params$Resource$Accounts$Userlinks$Batchcreate,
@@ -2109,9 +2083,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.batchDelete
-     * @desc Deletes information about multiple users' links to an account or property.
+     * Deletes information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2157,15 +2131,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.batchDelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchDelete(
       params: Params$Resource$Accounts$Userlinks$Batchdelete,
@@ -2253,9 +2224,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.batchGet
-     * @desc Gets information about multiple users' links to an account or property.
+     * Gets information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2279,7 +2250,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.accounts.userLinks.batchGet({
-     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
+     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
      *     names: 'placeholder-value',
      *     // Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
      *     parent: 'accounts/my-account',
@@ -2297,15 +2268,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.batchGet
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.names Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchGet(
       params: Params$Resource$Accounts$Userlinks$Batchget,
@@ -2414,9 +2382,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.batchUpdate
-     * @desc Updates information about multiple users' links to an account or property.
+     * Updates information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2464,15 +2432,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.batchUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUpdate(
       params: Params$Resource$Accounts$Userlinks$Batchupdate,
@@ -2581,9 +2546,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.create
-     * @desc Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
+     * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2637,16 +2602,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.notifyNewUser Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Userlinks$Create,
@@ -2738,9 +2699,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.delete
-     * @desc Deletes a user link on an account or property.
+     * Deletes a user link on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2778,14 +2739,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Example format: accounts/1234/userLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Userlinks$Delete,
@@ -2868,9 +2827,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.get
-     * @desc Gets information about a user's link to an account or property.
+     * Gets information about a user's link to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -2912,14 +2871,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Example format: accounts/1234/userLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Userlinks$Get,
@@ -3008,9 +2965,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.list
-     * @desc Lists all user links on an account or property.
+     * Lists all user links on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3055,16 +3012,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     * @param {string=} params.pageToken A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Userlinks$List,
@@ -3169,9 +3122,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accounts.userLinks.patch
-     * @desc Updates a user link on an account or property.
+     * Updates a user link on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3223,15 +3176,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accounts.userLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Example format: properties/1234/userLinks/5678
-     * @param {().GoogleAnalyticsAdminV1alphaUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Userlinks$Patch,
@@ -3359,7 +3309,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Accounts$Userlinks$Batchget
     extends StandardParameters {
     /**
-     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
+     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
      */
     names?: string[];
     /**
@@ -3444,9 +3394,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.accountSummaries.list
-     * @desc Returns summaries of all accounts accessible by the caller.
+     * Returns summaries of all accounts accessible by the caller.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3489,15 +3439,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.accountSummaries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of AccountSummary resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous `ListAccountSummaries` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountSummaries` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accountsummaries$List,
@@ -3645,9 +3592,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.create
-     * @desc Creates an "GA4" property with the specified location and attributes.
+     * Creates an "GA4" property with the specified location and attributes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3708,14 +3655,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleAnalyticsAdminV1alphaProperty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Create,
@@ -3807,9 +3752,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.delete
-     * @desc Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.
+     * Marks target Property as soft-deleted (ie: "trashed") and returns it. This API does not have a method to restore soft-deleted properties. However, they can be restored using the Trash Can UI. If the properties are not restored before the expiration time, the Property and all child resources (eg: GoogleAdsLinks, Streams, UserLinks) will be permanently purged. https://support.google.com/analytics/answer/6154772 Returns an error if the target is not found, or is not an GA4 Property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3833,7 +3778,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.delete({
-     *     // Required. The name of the Property to soft-delete. Format: properties/{property_id} Example: "properties/1000"
+     *     // Required. The name of the Property to soft-delete. Format: properties/{property_id\} Example: "properties/1000"
      *     name: 'properties/my-propertie',
      *   });
      *   console.log(res.data);
@@ -3847,14 +3792,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Property to soft-delete. Format: properties/{property_id} Example: "properties/1000"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Delete,
@@ -3937,9 +3880,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.get
-     * @desc Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
+     * Lookup for a single "GA4" Property. Throws "Target not found" if no such property found, if property is not of the type "GA4", or if caller does not have permissions to access it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -3963,7 +3906,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.get({
-     *     // Required. The name of the property to lookup. Format: properties/{property_id} Example: "properties/1000"
+     *     // Required. The name of the property to lookup. Format: properties/{property_id\} Example: "properties/1000"
      *     name: 'properties/my-propertie',
      *   });
      *   console.log(res.data);
@@ -3987,14 +3930,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the property to lookup. Format: properties/{property_id} Example: "properties/1000"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Get,
@@ -4082,9 +4023,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.list
-     * @desc Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
+     * Returns child Properties under the specified parent Account. Only "GA4" properties will be returned. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4131,17 +4072,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. An expression for filtering the results of the request. Fields eligible for filtering are: `parent:`(The resource name of the parent account) or `firebase_project:`(The id or number of the linked firebase project). Some examples of filters: | Filter | Description | |-----------------------------|-------------------------------------------| | parent:accounts/123 | The account with account id: 123. | | firebase_project:project-id | The firebase project with id: project-id. | | firebase_project:123 | The firebase project with number: 123. |
-     * @param {integer=} params.pageSize The maximum number of resources to return. The service may return fewer than this value, even if there are additional pages. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous `ListProperties` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProperties` must match the call that provided the page token.
-     * @param {boolean=} params.showDeleted Whether to include soft-deleted (ie: "trashed") Properties in the results. Properties can be inspected to determine whether they are deleted or not.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$List,
@@ -4245,9 +4181,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.patch
-     * @desc Updates a property.
+     * Updates a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4271,7 +4207,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.patch({
-     *     // Output only. Resource name of this property. Format: properties/{property_id} Example: "properties/1000"
+     *     // Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
      *     name: 'properties/my-propertie',
      *     // The list of fields to be updated. Omitted fields will not be updated.
      *     updateMask: 'placeholder-value',
@@ -4313,16 +4249,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this property. Format: properties/{property_id} Example: "properties/1000"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaProperty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Patch,
@@ -4420,13 +4352,13 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the Property to soft-delete. Format: properties/{property_id} Example: "properties/1000"
+     * Required. The name of the Property to soft-delete. Format: properties/{property_id\} Example: "properties/1000"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Get extends StandardParameters {
     /**
-     * Required. The name of the property to lookup. Format: properties/{property_id} Example: "properties/1000"
+     * Required. The name of the property to lookup. Format: properties/{property_id\} Example: "properties/1000"
      */
     name?: string;
   }
@@ -4450,7 +4382,7 @@ export namespace analyticsadmin_v1alpha {
   }
   export interface Params$Resource$Properties$Patch extends StandardParameters {
     /**
-     * Output only. Resource name of this property. Format: properties/{property_id} Example: "properties/1000"
+     * Output only. Resource name of this property. Format: properties/{property_id\} Example: "properties/1000"
      */
     name?: string;
     /**
@@ -4471,9 +4403,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.androidAppDataStreams.create
-     * @desc Creates an android app stream with the specified location and attributes.
+     * Creates an android app stream with the specified location and attributes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4531,15 +4463,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.androidAppDataStreams.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource where this android app data stream will be created. Format: properties/123
-     * @param {().GoogleAnalyticsAdminV1alphaAndroidAppDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Androidappdatastreams$Create,
@@ -4644,9 +4573,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.androidAppDataStreams.delete
-     * @desc Deletes an android app stream on a property.
+     * Deletes an android app stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4670,7 +4599,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.androidAppDataStreams.delete({
-     *     // Required. The name of the android app data stream to delete. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
+     *     // Required. The name of the android app data stream to delete. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/123/androidAppDataStreams/456"
      *     name:
      *       'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
      *   });
@@ -4685,14 +4614,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.androidAppDataStreams.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the android app data stream to delete. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Androidappdatastreams$Delete,
@@ -4775,9 +4702,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.androidAppDataStreams.get
-     * @desc Lookup for a single AndroidAppDataStream Throws "Target not found" if no such android app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single AndroidAppDataStream Throws "Target not found" if no such android app data stream found, or if the caller does not have permissions to access it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4801,7 +4728,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.androidAppDataStreams.get({
-     *     // Required. The name of the android app data stream to lookup. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
+     *     // Required. The name of the android app data stream to lookup. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/123/androidAppDataStreams/456"
      *     name:
      *       'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
      *   });
@@ -4823,14 +4750,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.androidAppDataStreams.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the android app data stream to lookup. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Androidappdatastreams$Get,
@@ -4932,9 +4857,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.androidAppDataStreams.list
-     * @desc Returns child android app streams under the specified parent property. Android app streams will be excluded if the caller does not have access. Returns an empty list if no relevant android app streams are found.
+     * Returns child android app streams under the specified parent property. Android app streams will be excluded if the caller does not have access. Returns an empty list if no relevant android app streams are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -4979,16 +4904,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.androidAppDataStreams.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAndroidAppDataStreams` must match the call that provided the page token.
-     * @param {string} params.parent Required. The name of the parent property. For example, to limit results to app streams under the property with Id 123: "properties/123"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Androidappdatastreams$List,
@@ -5097,9 +5018,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.androidAppDataStreams.patch
-     * @desc Updates an android app stream on a property.
+     * Updates an android app stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -5123,7 +5044,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.androidAppDataStreams.patch({
-     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/1000/androidAppDataStreams/2000"
+     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/1000/androidAppDataStreams/2000"
      *     name:
      *       'properties/my-propertie/androidAppDataStreams/my-androidAppDataStream',
      *     // The list of fields to be updated. Omitted fields will not be updated.
@@ -5160,16 +5081,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.androidAppDataStreams.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/1000/androidAppDataStreams/2000"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaAndroidAppDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Androidappdatastreams$Patch,
@@ -5286,14 +5203,14 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Androidappdatastreams$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the android app data stream to delete. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
+     * Required. The name of the android app data stream to delete. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/123/androidAppDataStreams/456"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Androidappdatastreams$Get
     extends StandardParameters {
     /**
-     * Required. The name of the android app data stream to lookup. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/123/androidAppDataStreams/456"
+     * Required. The name of the android app data stream to lookup. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/123/androidAppDataStreams/456"
      */
     name?: string;
   }
@@ -5315,7 +5232,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Androidappdatastreams$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/androidAppDataStreams/{stream_id} Example: "properties/1000/androidAppDataStreams/2000"
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/androidAppDataStreams/{stream_id\} Example: "properties/1000/androidAppDataStreams/2000"
      */
     name?: string;
     /**
@@ -5336,9 +5253,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.firebaseLinks.create
-     * @desc Creates a FirebaseLink. Properties can have at most one FirebaseLink.
+     * Creates a FirebaseLink. Properties can have at most one FirebaseLink.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -5362,7 +5279,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.create({
-     *     // Required. Format: properties/{property_id} Example: properties/1234
+     *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
      *
      *     // Request body metadata
@@ -5392,15 +5309,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.firebaseLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Format: properties/{property_id} Example: properties/1234
-     * @param {().GoogleAnalyticsAdminV1alphaFirebaseLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Firebaselinks$Create,
@@ -5498,9 +5412,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.firebaseLinks.delete
-     * @desc Deletes a FirebaseLink on a property
+     * Deletes a FirebaseLink on a property
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -5524,7 +5438,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.delete({
-     *     // Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678
+     *     // Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: properties/1234/firebaseLinks/5678
      *     name: 'properties/my-propertie/firebaseLinks/my-firebaseLink',
      *   });
      *   console.log(res.data);
@@ -5538,14 +5452,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.firebaseLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Firebaselinks$Delete,
@@ -5628,9 +5540,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.firebaseLinks.list
-     * @desc Lists FirebaseLinks on a property. Properties can have at most one FirebaseLink.
+     * Lists FirebaseLinks on a property. Properties can have at most one FirebaseLink.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -5654,7 +5566,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.firebaseLinks.list({
-     *     // Required. Format: properties/{property_id} Example: properties/1234
+     *     // Required. Format: properties/{property_id\} Example: properties/1234
      *     parent: 'properties/my-propertie',
      *   });
      *   console.log(res.data);
@@ -5670,14 +5582,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.firebaseLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Format: properties/{property_id} Example: properties/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Firebaselinks$List,
@@ -5786,9 +5696,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.firebaseLinks.patch
-     * @desc Updates a FirebaseLink on a property
+     * Updates a FirebaseLink on a property
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -5844,16 +5754,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.firebaseLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Example format: properties/1234/firebaseLinks/5678
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaFirebaseLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Firebaselinks$Patch,
@@ -5951,7 +5857,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Firebaselinks$Create
     extends StandardParameters {
     /**
-     * Required. Format: properties/{property_id} Example: properties/1234
+     * Required. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
 
@@ -5963,14 +5869,14 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Firebaselinks$Delete
     extends StandardParameters {
     /**
-     * Required. Format: properties/{property_id}/firebaseLinks/{firebase_link_id} Example: properties/1234/firebaseLinks/5678
+     * Required. Format: properties/{property_id\}/firebaseLinks/{firebase_link_id\} Example: properties/1234/firebaseLinks/5678
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Firebaselinks$List
     extends StandardParameters {
     /**
-     * Required. Format: properties/{property_id} Example: properties/1234
+     * Required. Format: properties/{property_id\} Example: properties/1234
      */
     parent?: string;
   }
@@ -5998,9 +5904,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.googleAdsLinks.create
-     * @desc Creates a GoogleAdsLink.
+     * Creates a GoogleAdsLink.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6062,15 +5968,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.googleAdsLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Example format: properties/1234
-     * @param {().GoogleAnalyticsAdminV1alphaGoogleAdsLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Googleadslinks$Create,
@@ -6168,9 +6071,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.googleAdsLinks.delete
-     * @desc Deletes a GoogleAdsLink on a property
+     * Deletes a GoogleAdsLink on a property
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6208,14 +6111,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.googleAdsLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Example format: properties/1234/googleAdsLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Googleadslinks$Delete,
@@ -6298,9 +6199,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.googleAdsLinks.list
-     * @desc Lists GoogleAdsLinks on a property.
+     * Lists GoogleAdsLinks on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6345,16 +6246,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.googleAdsLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200 (higher values will be coerced to the maximum).
-     * @param {string=} params.pageToken A page token, received from a previous `ListGoogleAdsLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListGoogleAdsLinks` must match the call that provided the page token.
-     * @param {string} params.parent Required. Example format: properties/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Googleadslinks$List,
@@ -6463,9 +6360,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.googleAdsLinks.patch
-     * @desc Updates a GoogleAdsLink on a property
+     * Updates a GoogleAdsLink on a property
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6489,7 +6386,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.googleAdsLinks.patch({
-     *     // Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.
+     *     // Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      *     name: 'properties/my-propertie/googleAdsLinks/my-googleAdsLink',
      *     // The list of fields to be updated. Omitted fields will not be updated.
      *     updateMask: 'placeholder-value',
@@ -6529,16 +6426,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.googleAdsLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaGoogleAdsLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Googleadslinks$Patch,
@@ -6670,7 +6563,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Googleadslinks$Patch
     extends StandardParameters {
     /**
-     * Output only. Format: properties/{propertyId}/googleAdsLinks/{googleAdsLinkId} Note: googleAdsLinkId is not the Google Ads customer ID.
+     * Output only. Format: properties/{propertyId\}/googleAdsLinks/{googleAdsLinkId\} Note: googleAdsLinkId is not the Google Ads customer ID.
      */
     name?: string;
     /**
@@ -6691,9 +6584,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.iosAppDataStreams.create
-     * @desc Creates an iOS app data stream with the specified location and attributes.
+     * Creates an iOS app data stream with the specified location and attributes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6751,15 +6644,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.iosAppDataStreams.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource where this ios app data stream will be created. Format: properties/123
-     * @param {().GoogleAnalyticsAdminV1alphaIosAppDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Iosappdatastreams$Create,
@@ -6865,9 +6755,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.iosAppDataStreams.delete
-     * @desc Deletes an iOS app stream on a property.
+     * Deletes an iOS app stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -6891,7 +6781,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.iosAppDataStreams.delete({
-     *     // Required. The name of the iOS app data stream to delete. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
+     *     // Required. The name of the iOS app data stream to delete. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/123/iosAppDataStreams/456"
      *     name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
      *   });
      *   console.log(res.data);
@@ -6905,14 +6795,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.iosAppDataStreams.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the iOS app data stream to delete. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Iosappdatastreams$Delete,
@@ -6995,9 +6883,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.iosAppDataStreams.get
-     * @desc Lookup for a single IosAppDataStream Throws "Target not found" if no such iOS app data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single IosAppDataStream Throws "Target not found" if no such iOS app data stream found, or if the caller does not have permissions to access it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7021,7 +6909,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.iosAppDataStreams.get({
-     *     // Required. The name of the iOS app data stream to lookup. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
+     *     // Required. The name of the iOS app data stream to lookup. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/123/iosAppDataStreams/456"
      *     name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
      *   });
      *   console.log(res.data);
@@ -7042,14 +6930,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.iosAppDataStreams.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the iOS app data stream to lookup. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Iosappdatastreams$Get,
@@ -7152,9 +7038,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.iosAppDataStreams.list
-     * @desc Returns child iOS app data streams under the specified parent property. iOS app data streams will be excluded if the caller does not have access. Returns an empty list if no relevant iOS app data streams are found.
+     * Returns child iOS app data streams under the specified parent property. iOS app data streams will be excluded if the caller does not have access. Returns an empty list if no relevant iOS app data streams are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7199,16 +7085,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.iosAppDataStreams.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous `ListIosAppDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIosAppDataStreams` must match the call that provided the page token.
-     * @param {string} params.parent Required. The name of the parent property. For example, to list results of app streams under the property with Id 123: "properties/123"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Iosappdatastreams$List,
@@ -7317,9 +7199,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.iosAppDataStreams.patch
-     * @desc Updates an iOS app stream on a property.
+     * Updates an iOS app stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7343,7 +7225,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.iosAppDataStreams.patch({
-     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/1000/iosAppDataStreams/2000"
+     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/1000/iosAppDataStreams/2000"
      *     name: 'properties/my-propertie/iosAppDataStreams/my-iosAppDataStream',
      *     // The list of fields to be updated. Omitted fields will not be updated.
      *     updateMask: 'placeholder-value',
@@ -7379,16 +7261,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.iosAppDataStreams.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/1000/iosAppDataStreams/2000"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaIosAppDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Iosappdatastreams$Patch,
@@ -7506,14 +7384,14 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Iosappdatastreams$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the iOS app data stream to delete. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
+     * Required. The name of the iOS app data stream to delete. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/123/iosAppDataStreams/456"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Iosappdatastreams$Get
     extends StandardParameters {
     /**
-     * Required. The name of the iOS app data stream to lookup. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/123/iosAppDataStreams/456"
+     * Required. The name of the iOS app data stream to lookup. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/123/iosAppDataStreams/456"
      */
     name?: string;
   }
@@ -7535,7 +7413,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Iosappdatastreams$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/iosAppDataStreams/{stream_id} Example: "properties/1000/iosAppDataStreams/2000"
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/iosAppDataStreams/{stream_id\} Example: "properties/1000/iosAppDataStreams/2000"
      */
     name?: string;
     /**
@@ -7556,9 +7434,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.audit
-     * @desc Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
+     * Lists all user links on an account or property, including implicit ones that come from effective permissions granted by groups or organization admin roles. If a returned user link does not have direct permissions, they cannot be removed from the account or property directly with the DeleteUserLink command. They have to be removed from the group/etc that gives them permissions, which is currently only usable/discoverable in the GA or GMP UIs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7608,15 +7486,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.audit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaAuditUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     audit(
       params: Params$Resource$Properties$Userlinks$Audit,
@@ -7721,9 +7596,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.batchCreate
-     * @desc Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
+     * Creates information about multiple users' links to an account or property. This method is transactional. If any UserLink cannot be created, none of the UserLinks will be created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7772,15 +7647,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.batchCreate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. This field is required. The parent field in the CreateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchCreate(
       params: Params$Resource$Properties$Userlinks$Batchcreate,
@@ -7889,9 +7761,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.batchDelete
-     * @desc Deletes information about multiple users' links to an account or property.
+     * Deletes information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -7937,15 +7809,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.batchDelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent of all values for user link names to delete must match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchDelete(
       params: Params$Resource$Properties$Userlinks$Batchdelete,
@@ -8033,9 +7902,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.batchGet
-     * @desc Gets information about multiple users' links to an account or property.
+     * Gets information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8059,7 +7928,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.userLinks.batchGet({
-     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
+     *     // Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
      *     names: 'placeholder-value',
      *     // Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
      *     parent: 'properties/my-propertie',
@@ -8077,15 +7946,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.batchGet
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.names Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent of all provided values for the 'names' field must match this field. Example format: accounts/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchGet(
       params: Params$Resource$Properties$Userlinks$Batchget,
@@ -8194,9 +8060,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.batchUpdate
-     * @desc Updates information about multiple users' links to an account or property.
+     * Updates information about multiple users' links to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8244,15 +8110,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.batchUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The account or property that all user links in the request are for. The parent field in the UpdateUserLinkRequest messages must either be empty or match this field. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUpdate(
       params: Params$Resource$Properties$Userlinks$Batchupdate,
@@ -8361,9 +8224,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.create
-     * @desc Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
+     * Creates a user link on an account or property. If the user with the specified email already has permissions on the account or property, then the user's existing permissions will be unioned with the permissions specified in the new UserLink.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8417,16 +8280,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.notifyNewUser Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {().GoogleAnalyticsAdminV1alphaUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Userlinks$Create,
@@ -8518,9 +8377,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.delete
-     * @desc Deletes a user link on an account or property.
+     * Deletes a user link on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8558,14 +8417,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Example format: accounts/1234/userLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Userlinks$Delete,
@@ -8648,9 +8505,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.get
-     * @desc Gets information about a user's link to an account or property.
+     * Gets information about a user's link to an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8692,14 +8549,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Example format: accounts/1234/userLinks/5678
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Userlinks$Get,
@@ -8788,9 +8643,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.list
-     * @desc Lists all user links on an account or property.
+     * Lists all user links on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -8835,16 +8690,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of user links to return. The service may return fewer than this value. If unspecified, at most 200 user links will be returned. The maximum value is 500; values above 500 will be coerced to 500.
-     * @param {string=} params.pageToken A page token, received from a previous `ListUserLinks` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLinks` must match the call that provided the page token.
-     * @param {string} params.parent Required. Example format: accounts/1234
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Userlinks$List,
@@ -8949,9 +8800,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.userLinks.patch
-     * @desc Updates a user link on an account or property.
+     * Updates a user link on an account or property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9003,15 +8854,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.userLinks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Example format: properties/1234/userLinks/5678
-     * @param {().GoogleAnalyticsAdminV1alphaUserLink} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Userlinks$Patch,
@@ -9139,7 +8987,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Userlinks$Batchget
     extends StandardParameters {
     /**
-     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId}/userLinks/{userLinkId}
+     * Required. The names of the user links to retrieve. A maximum of 1000 user links can be retrieved in a batch. Format: accounts/{accountId\}/userLinks/{userLinkId\}
      */
     names?: string[];
     /**
@@ -9224,9 +9072,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.create
-     * @desc Creates a web stream with the specified location and attributes.
+     * Creates a web stream with the specified location and attributes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9286,15 +9134,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource where this web data stream will be created. Format: properties/123
-     * @param {().GoogleAnalyticsAdminV1alphaWebDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Properties$Webdatastreams$Create,
@@ -9392,9 +9237,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.delete
-     * @desc Deletes a web stream on a property.
+     * Deletes a web stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9418,7 +9263,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.delete({
-     *     // Required. The name of the web data stream to delete. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
+     *     // Required. The name of the web data stream to delete. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/123/webDataStreams/456"
      *     name: 'properties/my-propertie/webDataStreams/my-webDataStream',
      *   });
      *   console.log(res.data);
@@ -9432,14 +9277,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the web data stream to delete. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Properties$Webdatastreams$Delete,
@@ -9522,9 +9365,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.get
-     * @desc Lookup for a single WebDataStream Throws "Target not found" if no such web data stream found, or if the caller does not have permissions to access it.
+     * Lookup for a single WebDataStream Throws "Target not found" if no such web data stream found, or if the caller does not have permissions to access it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9548,7 +9391,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.get({
-     *     // Required. The name of the web data stream to lookup. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
+     *     // Required. The name of the web data stream to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/123/webDataStreams/456"
      *     name: 'properties/my-propertie/webDataStreams/my-webDataStream',
      *   });
      *   console.log(res.data);
@@ -9570,14 +9413,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the web data stream to lookup. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Properties$Webdatastreams$Get,
@@ -9672,9 +9513,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings
-     * @desc Returns the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     * Returns the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9699,7 +9540,7 @@ export namespace analyticsadmin_v1alpha {
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings(
      *     {
-     *       // Required. The name of the settings to lookup. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+     *       // Required. The name of the settings to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      *       name:
      *         'properties/my-propertie/webDataStreams/my-webDataStream/enhancedMeasurementSettings',
      *     }
@@ -9734,14 +9575,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.getEnhancedMeasurementSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the settings to lookup. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings,
@@ -9847,9 +9686,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.getGlobalSiteTag
-     * @desc Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
+     * Returns the Site Tag for the specified web stream. Site Tags are immutable singletons.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -9873,7 +9712,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.getGlobalSiteTag({
-     *     // Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
+     *     // Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/webDataStreams/{stream_id\}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
      *     name:
      *       'properties/my-propertie/webDataStreams/my-webDataStream/globalSiteTag',
      *   });
@@ -9890,14 +9729,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.getGlobalSiteTag
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getGlobalSiteTag(
       params: Params$Resource$Properties$Webdatastreams$Getglobalsitetag,
@@ -9992,9 +9829,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.list
-     * @desc Returns child web data streams under the specified parent property. Web data streams will be excluded if the caller does not have access. Returns an empty list if no relevant web data streams are found.
+     * Returns child web data streams under the specified parent property. Web data streams will be excluded if the caller does not have access. Returns an empty list if no relevant web data streams are found.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -10039,16 +9876,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of resources to return. If unspecified, at most 50 resources will be returned. The maximum value is 200; (higher values will be coerced to the maximum)
-     * @param {string=} params.pageToken A page token, received from a previous `ListWebDataStreams` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWebDataStreams` must match the call that provided the page token.
-     * @param {string} params.parent Required. The name of the parent property. For example, to list results of web streams under the property with Id 123: "properties/123"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Properties$Webdatastreams$List,
@@ -10157,9 +9990,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.patch
-     * @desc Updates a web stream on a property.
+     * Updates a web stream on a property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -10183,7 +10016,7 @@ export namespace analyticsadmin_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.patch({
-     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/1000/webDataStreams/2000"
+     *     // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/1000/webDataStreams/2000"
      *     name: 'properties/my-propertie/webDataStreams/my-webDataStream',
      *     // The list of fields to be updated. Omitted fields will not be updated.
      *     updateMask: 'placeholder-value',
@@ -10221,16 +10054,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/1000/webDataStreams/2000"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaWebDataStream} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Properties$Webdatastreams$Patch,
@@ -10325,9 +10154,9 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings
-     * @desc Updates the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
+     * Updates the singleton enhanced measurement settings for this web stream. Note that the stream must enable enhanced measurement for these settings to take effect.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
@@ -10352,7 +10181,7 @@ export namespace analyticsadmin_v1alpha {
      *   // Do the magic
      *   const res = await analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings(
      *     {
-     *       // Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+     *       // Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      *       name:
      *         'properties/my-propertie/webDataStreams/my-webDataStream/enhancedMeasurementSettings',
      *       // The list of fields to be updated. Omitted fields will not be updated.
@@ -10414,16 +10243,12 @@ export namespace analyticsadmin_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsadmin.properties.webDataStreams.updateEnhancedMeasurementSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
-     * @param {string=} params.updateMask The list of fields to be updated. Omitted fields will not be updated.
-     * @param {().GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateEnhancedMeasurementSettings(
       params: Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings,
@@ -10544,28 +10369,28 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Webdatastreams$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the web data stream to delete. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
+     * Required. The name of the web data stream to delete. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/123/webDataStreams/456"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Webdatastreams$Get
     extends StandardParameters {
     /**
-     * Required. The name of the web data stream to lookup. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/123/webDataStreams/456"
+     * Required. The name of the web data stream to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/123/webDataStreams/456"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Webdatastreams$Getenhancedmeasurementsettings
     extends StandardParameters {
     /**
-     * Required. The name of the settings to lookup. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+     * Required. The name of the settings to lookup. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string;
   }
   export interface Params$Resource$Properties$Webdatastreams$Getglobalsitetag
     extends StandardParameters {
     /**
-     * Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id}/webDataStreams/{stream_id}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
+     * Required. The name of the site tag to lookup. Note that site tags are singletons and do not have unique IDs. Format: properties/{property_id\}/webDataStreams/{stream_id\}/globalSiteTag Example: "properties/123/webDataStreams/456/globalSiteTag"
      */
     name?: string;
   }
@@ -10587,7 +10412,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Webdatastreams$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id} Example: "properties/1000/webDataStreams/2000"
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\} Example: "properties/1000/webDataStreams/2000"
      */
     name?: string;
     /**
@@ -10603,7 +10428,7 @@ export namespace analyticsadmin_v1alpha {
   export interface Params$Resource$Properties$Webdatastreams$Updateenhancedmeasurementsettings
     extends StandardParameters {
     /**
-     * Output only. Resource name of this Data Stream. Format: properties/{property_id}/webDataStreams/{stream_id}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
+     * Output only. Resource name of this Data Stream. Format: properties/{property_id\}/webDataStreams/{stream_id\}/enhancedMeasurementSettings Example: "properties/1000/webDataStreams/2000/enhancedMeasurementSettings"
      */
     name?: string;
     /**

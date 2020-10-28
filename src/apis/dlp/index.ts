@@ -31,3 +31,14 @@ export function dlp<T = dlp_v2.Dlp>(
 
 const auth = new AuthPlus();
 export {auth};
+export {dlp_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

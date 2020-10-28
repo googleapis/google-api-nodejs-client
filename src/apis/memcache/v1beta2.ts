@@ -104,14 +104,10 @@ export namespace memcache_v1beta2 {
    * Google Cloud Memorystore for Memcached API is used for creating and managing Memcached instances in GCP.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const memcache = google.memcache('v1beta2');
-   *
-   * @namespace memcache
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Memcache
+   * ```
    */
   export class Memcache {
     context: APIRequestContext;
@@ -145,7 +141,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -220,7 +216,7 @@ export namespace memcache_v1beta2 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Unique name of the resource. It uses the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`
      */
     name?: string | null;
     /**
@@ -232,7 +228,7 @@ export namespace memcache_v1beta2 {
      */
     provisionedResources?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
     /**
-     * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.
      */
     slmInstanceTemplate?: string | null;
     /**
@@ -244,7 +240,7 @@ export namespace memcache_v1beta2 {
      */
     softwareVersions?: {[key: string]: string} | null;
     /**
-     * Output only. Current lifecycle state of the resource (e.g. if it&#39;s being created or ready to use).
+     * Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).
      */
     state?: string | null;
     /**
@@ -261,7 +257,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
     /**
-     * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
+     * Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false
      */
     canReschedule?: boolean | null;
     /**
@@ -291,7 +287,7 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata {
     /**
-     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level&#39;s reason will be reported by Eligibility Exporter.
+     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level's reason will be reported by Eligibility Exporter.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -308,11 +304,11 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
     /**
-     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider&#39;s VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with &#39;compute-&#39;, for example: &#39;compute-instance&#39;, &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.
      */
     resourceType?: string | null;
     /**
-     * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
+     * URL identifying the resource, e.g. "https://www.googleapis.com/compute/v1/projects/...)".
      */
     resourceUrl?: string | null;
   }
@@ -334,11 +330,11 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
-     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be "gaps" in the exclusion application in the exported timeseries.
      */
     duration?: string | null;
     /**
-     * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
+     * Human-readable reason for the exclusion. This should be a static string (e.g. "Disruptive update in progress") and should not contain dynamically generated data (e.g. instance name). Can be left empty.
      */
     reason?: string | null;
     /**
@@ -359,7 +355,7 @@ export namespace memcache_v1beta2 {
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -397,7 +393,7 @@ export namespace memcache_v1beta2 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be &quot;memcached-1.5.16&quot;.
+     * Output only. The full version of memcached server running on this instance. System automatically determines the full memcached version for an instance based on the input MemcacheVersion. The full version format will be "memcached-1.5.16".
      */
     memcacheFullVersion?: string | null;
     /**
@@ -409,7 +405,7 @@ export namespace memcache_v1beta2 {
      */
     memcacheVersion?: string | null;
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
      */
     name?: string | null;
     /**
@@ -456,7 +452,7 @@ export namespace memcache_v1beta2 {
      */
     nextPageToken?: string | null;
     /**
-     * A list of Memcached instances in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is &quot;-&quot;, all regions available to the project are queried, and the results aggregated.
+     * A list of Memcached instances in the project in the specified location, or across all locations. If the `location_id` in the parent field of the request is "-", all regions available to the project are queried, and the results aggregated.
      */
     resources?: Schema$Instance[];
     /**
@@ -495,15 +491,15 @@ export namespace memcache_v1beta2 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -511,7 +507,7 @@ export namespace memcache_v1beta2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -581,7 +577,7 @@ export namespace memcache_v1beta2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -643,9 +639,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -689,14 +685,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -775,9 +769,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -824,17 +818,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -955,9 +944,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.applyParameters
-     * @desc ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.
+     * ApplyParameters will restart the set of specified nodes in order to update them to the current set of parameters for the Memcached Instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1010,15 +999,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.applyParameters
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the Memcached instance for which parameter group updates should be applied.
-     * @param {().ApplyParametersRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     applyParameters(
       params: Params$Resource$Projects$Locations$Instances$Applyparameters,
@@ -1100,9 +1086,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.create
-     * @desc Creates a new Instance in a given location.
+     * Creates a new Instance in a given location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1128,7 +1114,7 @@ export namespace memcache_v1beta2 {
      *   const res = await memcache.projects.locations.instances.create({
      *     // Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
      *     instanceId: 'placeholder-value',
-     *     // Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1171,16 +1157,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Required. The logical name of the Memcached instance in the user project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the user project / location If any of the above are not met, will raise an invalid argument error.
-     * @param {string} params.parent Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
@@ -1262,9 +1244,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.delete
-     * @desc Deletes a single Instance.
+     * Deletes a single Instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1288,7 +1270,7 @@ export namespace memcache_v1beta2 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.delete({
-     *     // Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     *     // Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1308,14 +1290,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
@@ -1394,9 +1374,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.get
-     * @desc Gets details of a single Instance.
+     * Gets details of a single Instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1420,7 +1400,7 @@ export namespace memcache_v1beta2 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.get({
-     *     // Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     *     // Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -1451,14 +1431,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
@@ -1537,9 +1515,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.list
-     * @desc Lists Instances in a given location.
+     * Lists Instances in a given location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1571,7 +1549,7 @@ export namespace memcache_v1beta2 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     *     // Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1589,18 +1567,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter. For example, exclude all Memcached instances with name as my-instance by specifying "name != my-instance".
-     * @param {string=} params.orderBy Sort results. Supported values are "name", "name desc" or "" (unsorted).
-     * @param {integer=} params.pageSize The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
@@ -1687,9 +1659,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.patch
-     * @desc Updates an existing Instance in a given project and location.
+     * Updates an existing Instance in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1713,7 +1685,7 @@ export namespace memcache_v1beta2 {
      *
      *   // Do the magic
      *   const res = await memcache.projects.locations.instances.patch({
-     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     *     // Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. Mask of fields to update. * `displayName`
      *     updateMask: 'placeholder-value',
@@ -1758,16 +1730,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
-     * @param {string=} params.updateMask Required. Mask of fields to update. * `displayName`
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
@@ -1846,9 +1814,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.instances.updateParameters
-     * @desc Updates the defined Memcached Parameters for an existing Instance. This method only stages the parameters, it must be followed by ApplyParameters to apply the parameters to nodes of the Memcached Instance.
+     * Updates the defined Memcached Parameters for an existing Instance. This method only stages the parameters, it must be followed by ApplyParameters to apply the parameters to nodes of the Memcached Instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -1901,15 +1869,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.instances.updateParameters
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the Memcached instance for which the parameters should be updated.
-     * @param {().UpdateParametersRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateParameters(
       params: Params$Resource$Projects$Locations$Instances$Updateparameters,
@@ -2010,7 +1975,7 @@ export namespace memcache_v1beta2 {
      */
     instanceId?: string;
     /**
-     * Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     * Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      */
     parent?: string;
 
@@ -2022,14 +1987,14 @@ export namespace memcache_v1beta2 {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
-     * Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
-     * Required. Memcached instance resource name in the format: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region
+     * Required. Memcached instance resource name in the format: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region
      */
     name?: string;
   }
@@ -2052,14 +2017,14 @@ export namespace memcache_v1beta2 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the instance location using the form: `projects/{project_id}/locations/{location_id}` where `location_id` refers to a GCP region
+     * Required. The resource name of the instance location using the form: `projects/{project_id\}/locations/{location_id\}` where `location_id` refers to a GCP region
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
+     * Required. Unique name of the resource in this scope including project and location using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` Note: Memcached instances are managed and addressed at regional level so location_id here refers to a GCP region; however, users may choose which zones Memcached nodes within an instances should be provisioned in. Refer to [zones] field for more details.
      */
     name?: string;
     /**
@@ -2092,9 +2057,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -2138,15 +2103,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -2228,9 +2190,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -2268,14 +2230,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -2354,9 +2314,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -2400,14 +2360,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -2486,9 +2444,9 @@ export namespace memcache_v1beta2 {
     }
 
     /**
-     * memcache.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/memcache.googleapis.com
@@ -2535,17 +2493,12 @@ export namespace memcache_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias memcache.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,

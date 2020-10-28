@@ -104,14 +104,10 @@ export namespace localservices_v1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const localservices = google.localservices('v1');
-   *
-   * @namespace localservices
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Localservices
+   * ```
    */
   export class Localservices {
     context: APIRequestContext;
@@ -170,7 +166,7 @@ export namespace localservices_v1 {
      */
     currentPeriodPhoneCalls?: string | null;
     /**
-     * Total cost of the account in current specified period in the account&#39;s specified currency.
+     * Total cost of the account in current specified period in the account's specified currency.
      */
     currentPeriodTotalCost?: number | null;
     /**
@@ -190,7 +186,7 @@ export namespace localservices_v1 {
      */
     previousPeriodPhoneCalls?: string | null;
     /**
-     * Total cost of the account in previous specified period in the account&#39;s specified currency.
+     * Total cost of the account in previous specified period in the account's specified currency.
      */
     previousPeriodTotalCost?: number | null;
     /**
@@ -236,7 +232,7 @@ export namespace localservices_v1 {
      */
     disputeStatus?: string | null;
     /**
-     * Location of the associated account&#39;s home city.
+     * Location of the associated account's home city.
      */
     geo?: string | null;
     /**
@@ -341,11 +337,11 @@ export namespace localservices_v1 {
    */
   export interface Schema$GoogleTypeTimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. &quot;America/New_York&quot;.
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. &quot;2019a&quot;.
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
      */
     version?: string | null;
   }
@@ -357,9 +353,9 @@ export namespace localservices_v1 {
     }
 
     /**
-     * localservices.accountReports.search
-     * @desc Get account reports containing aggregate account data of all linked GLS accounts. Caller needs to provide their manager customer id and the associated auth credential that allows them read permissions on their linked accounts.
+     * Get account reports containing aggregate account data of all linked GLS accounts. Caller needs to provide their manager customer id and the associated auth credential that allows them read permissions on their linked accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/localservices.googleapis.com
@@ -416,22 +412,12 @@ export namespace localservices_v1 {
      *   throw e;
      * });
      *
-     * @alias localservices.accountReports.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {integer=} params.pageSize The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous request to SearchAccountReports that indicates where listing should continue. Optional.
-     * @param {string=} params.query A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Account Report for Manager with id 123. | Required.
-     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Accountreports$Search,
@@ -587,9 +573,9 @@ export namespace localservices_v1 {
     }
 
     /**
-     * localservices.detailedLeadReports.search
-     * @desc Get detailed lead reports containing leads that have been received by all linked GLS accounts. Caller needs to provide their manager customer id and the associated auth credential that allows them read permissions on their linked accounts.
+     * Get detailed lead reports containing leads that have been received by all linked GLS accounts. Caller needs to provide their manager customer id and the associated auth credential that allows them read permissions on their linked accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/localservices.googleapis.com
@@ -646,22 +632,12 @@ export namespace localservices_v1 {
      *   throw e;
      * });
      *
-     * @alias localservices.detailedLeadReports.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {integer=} params.pageSize The maximum number of accounts to return. If the page size is unset, page size will default to 1000. Maximum page_size is 10000. Optional.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous request to SearchDetailedLeadReports that indicates where listing should continue. Optional.
-     * @param {string=} params.query A query string for searching for account reports. Caller must provide a customer id of their MCC account with an associated Gaia Mint that allows read permission on their linked accounts. Search expressions are case insensitive. Example query: | Query | Description | |-------------------------|-----------------------------------------------| | manager_customer_id:123 | Get Detailed Lead Report for Manager with id | | | 123. | Required.
-     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Detailedleadreports$Search,

@@ -104,14 +104,10 @@ export namespace books_v1 {
    * The Google Books API allows clients to access the Google Books repository.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const books = google.books('v1');
-   *
-   * @namespace books
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Books
+   * ```
    */
   export class Books {
     context: APIRequestContext;
@@ -425,7 +421,7 @@ export namespace books_v1 {
      */
     annotationType?: string | null;
     /**
-     * JSON encoded data for this dictionary annotation data. Emitted with name &#39;data&#39; in JSON output. Either this or geo_data will be populated.
+     * JSON encoded data for this dictionary annotation data. Emitted with name 'data' in JSON output. Either this or geo_data will be populated.
      */
     data?: Schema$Dictlayerdata;
     /**
@@ -577,7 +573,7 @@ export namespace books_v1 {
     volumeId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   export interface Schema$FamilyInfo {
@@ -602,7 +598,7 @@ export namespace books_v1 {
      */
     annotationType?: string | null;
     /**
-     * JSON encoded data for this geo annotation data. Emitted with name &#39;data&#39; in JSON output. Either this or dict_data will be populated.
+     * JSON encoded data for this geo annotation data. Emitted with name 'data' in JSON output. Either this or dict_data will be populated.
      */
     data?: Schema$Geolayerdata;
     /**
@@ -717,7 +713,7 @@ export namespace books_v1 {
      */
     updated?: string | null;
     /**
-     * The current version of this layer&#39;s volume annotations. Note that this version applies only to the data in the books.layers.volumeAnnotations.* responses. The actual annotation data is versioned separately.
+     * The current version of this layer's volume annotations. Note that this version applies only to the data in the books.layers.volumeAnnotations.* responses. The actual annotation data is versioned separately.
      */
     volumeAnnotationsVersion?: string | null;
     /**
@@ -1183,7 +1179,7 @@ export namespace books_v1 {
      */
     totalItems?: number | null;
     /**
-     * The version string for all of the volume annotations in this layer (not just the ones in this response). Note: the version string doesn&#39;t apply to the annotation data, just the information in this response (e.g. the location of annotations in the book).
+     * The version string for all of the volume annotations in this layer (not just the ones in this response). Note: the version string doesn't apply to the annotation data, just the information in this response (e.g. the location of annotations in the book).
      */
     version?: string | null;
   }
@@ -1231,9 +1227,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.bookshelves.get
-     * @desc Retrieves metadata for a specific bookshelf for the specified user.
+     * Retrieves metadata for a specific bookshelf for the specified user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -1286,16 +1282,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.bookshelves.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.shelf ID of bookshelf to retrieve.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Bookshelves$Get,
@@ -1375,9 +1367,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.bookshelves.list
-     * @desc Retrieves a list of public bookshelves for the specified user.
+     * Retrieves a list of public bookshelves for the specified user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -1420,15 +1412,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.bookshelves.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.userId ID of user for whom to retrieve bookshelves.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Bookshelves$List,
@@ -1541,9 +1530,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.bookshelves.volumes.list
-     * @desc Retrieves volumes in a specific bookshelf for the specified user.
+     * Retrieves volumes in a specific bookshelf for the specified user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -1595,19 +1584,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.bookshelves.volumes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string} params.shelf ID of bookshelf to retrieve volumes.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
-     * @param {string} params.userId ID of user for whom to retrieve bookshelf volumes.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Bookshelves$Volumes$List,
@@ -1723,9 +1705,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.cloudloading.addBook
-     * @desc Add a user-upload volume and triggers processing.
+     * Add a user-upload volume and triggers processing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -1774,17 +1756,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.cloudloading.addBook
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.drive_document_id A drive document id. The upload_client_token must not be set.
-     * @param {string=} params.mime_type The document MIME type. It can be set only if the drive_document_id is set.
-     * @param {string=} params.name The document name. It can be set only if the drive_document_id is set.
-     * @param {string=} params.upload_client_token Scotty upload token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addBook(
       params: Params$Resource$Cloudloading$Addbook,
@@ -1873,9 +1850,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.cloudloading.deleteBook
-     * @desc Remove the book and its contents
+     * Remove the book and its contents
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -1913,14 +1890,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.cloudloading.deleteBook
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.volumeId The id of the book to be removed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteBook(
       params: Params$Resource$Cloudloading$Deletebook,
@@ -2002,9 +1977,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.cloudloading.updateBook
-     * @desc Updates a user-upload volume.
+     * Updates a user-upload volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2055,14 +2030,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.cloudloading.updateBook
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BooksCloudloadingResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateBook(
       params: Params$Resource$Cloudloading$Updatebook,
@@ -2192,9 +2165,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.dictionary.listOfflineMetadata
-     * @desc Returns a list of offline dictionary metadata available
+     * Returns a list of offline dictionary metadata available
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2235,14 +2208,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.dictionary.listOfflineMetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to request the data.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listOfflineMetadata(
       params: Params$Resource$Dictionary$Listofflinemetadata,
@@ -2339,9 +2310,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.familysharing.getFamilyInfo
-     * @desc Gets information regarding the family that the user is part of.
+     * Gets information regarding the family that the user is part of.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2382,14 +2353,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.familysharing.getFamilyInfo
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getFamilyInfo(
       params: Params$Resource$Familysharing$Getfamilyinfo,
@@ -2471,9 +2440,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.familysharing.share
-     * @desc Initiates sharing of the content with the user's family. Empty response indicates success.
+     * Initiates sharing of the content with the user's family. Empty response indicates success.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2515,16 +2484,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.familysharing.share
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.docId The docid to share.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId The volume to share.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     share(
       params: Params$Resource$Familysharing$Share,
@@ -2606,9 +2571,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.familysharing.unshare
-     * @desc Initiates revoking content that has already been shared with the user's family. Empty response indicates success.
+     * Initiates revoking content that has already been shared with the user's family. Empty response indicates success.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2650,16 +2615,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.familysharing.unshare
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.docId The docid to unshare.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeId The volume to unshare.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     unshare(
       params: Params$Resource$Familysharing$Unshare,
@@ -2792,9 +2753,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.get
-     * @desc Gets the layer summary for a volume.
+     * Gets the layer summary for a volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2852,17 +2813,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the requested volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.summaryId The ID for the layer to get the summary for.
-     * @param {string} params.volumeId The volume to retrieve layers for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Layers$Get,
@@ -2942,9 +2898,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.list
-     * @desc List the layer summaries for a volume.
+     * List the layer summaries for a volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -2994,18 +2950,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the requested volume.
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the previous page.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId The volume to retrieve layers for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Layers$List,
@@ -3133,9 +3083,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.annotationData.get
-     * @desc Gets the annotation data.
+     * Gets the annotation data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -3201,23 +3151,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.annotationData.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.allowWebDefinitions For the dictionary layer. Whether or not to allow web definitions.
-     * @param {string} params.annotationDataId The ID of the annotation data to retrieve.
-     * @param {string} params.contentVersion The content version for the volume you are trying to retrieve.
-     * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
-     * @param {string} params.layerId The ID for the layer to get the annotations.
-     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     * @param {integer=} params.scale The requested scale for the image.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Layers$Annotationdata$Get,
@@ -3309,9 +3248,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.annotationData.list
-     * @desc Gets the annotation data for a volume and layer.
+     * Gets the annotation data for a volume and layer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -3378,26 +3317,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.annotationData.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.annotationDataId The list of Annotation Data Ids to retrieve. Pagination is ignored if this is set.
-     * @param {string} params.contentVersion The content version for the requested volume.
-     * @param {integer=} params.h The requested pixel height for any images. If height is provided width must also be provided.
-     * @param {string} params.layerId The ID for the layer to get the annotation data.
-     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the previous page.
-     * @param {integer=} params.scale The requested scale for the image.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     * @param {string} params.volumeId The volume to retrieve annotation data for.
-     * @param {integer=} params.w The requested pixel width for any images. If width is provided height must also be provided.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Layers$Annotationdata$List,
@@ -3584,9 +3509,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.volumeAnnotations.get
-     * @desc Gets the volume annotation.
+     * Gets the volume annotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -3647,18 +3572,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.volumeAnnotations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID of the volume annotation to retrieve.
-     * @param {string} params.layerId The ID for the layer to get the annotations.
-     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Layers$Volumeannotations$Get,
@@ -3740,9 +3659,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.layers.volumeAnnotations.list
-     * @desc Gets the volume annotations for a volume and layer.
+     * Gets the volume annotations for a volume and layer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -3814,28 +3733,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.layers.volumeAnnotations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.contentVersion The content version for the requested volume.
-     * @param {string=} params.endOffset The end offset to end retrieving data from.
-     * @param {string=} params.endPosition The end position to end retrieving data from.
-     * @param {string} params.layerId The ID for the layer to get the annotations.
-     * @param {string=} params.locale The locale information for the data. ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'.
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the previous page.
-     * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.startOffset The start offset to start retrieving data from.
-     * @param {string=} params.startPosition The start position to start retrieving data from.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     * @param {string=} params.volumeAnnotationsVersion The version of the volume annotations that you are requesting.
-     * @param {string} params.volumeId The volume to retrieve annotations for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Layers$Volumeannotations$List,
@@ -4013,9 +3916,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.myconfig.getUserSettings
-     * @desc Gets the current settings for the user.
+     * Gets the current settings for the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4057,14 +3960,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.myconfig.getUserSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country Unused. Added only to workaround TEX mandatory request template requirement
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getUserSettings(
       params: Params$Resource$Myconfig$Getusersettings,
@@ -4146,9 +4047,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.myconfig.releaseDownloadAccess
-     * @desc Release downloaded content access restriction.
+     * Release downloaded content access restriction.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4195,17 +4096,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.myconfig.releaseDownloadAccess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to release the restriction.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeIds The volume(s) to release restrictions for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     releaseDownloadAccess(
       params: Params$Resource$Myconfig$Releasedownloadaccess,
@@ -4289,9 +4185,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.myconfig.requestAccess
-     * @desc Request concurrent and download access restrictions.
+     * Request concurrent and download access restrictions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4343,19 +4239,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.myconfig.requestAccess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to request the restrictions.
-     * @param {string=} params.licenseTypes The type of access license to request. If not specified, the default is BOTH.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string} params.nonce The client nonce value.
-     * @param {string} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId The volume to request concurrent/download restrictions for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     requestAccess(
       params: Params$Resource$Myconfig$Requestaccess,
@@ -4442,9 +4331,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.myconfig.syncVolumeLicenses
-     * @desc Request downloaded content access for specified volumes on the My eBooks shelf.
+     * Request downloaded content access for specified volumes on the My eBooks shelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4500,21 +4389,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.myconfig.syncVolumeLicenses
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cpksver The device/version ID from which to release the restriction.
-     * @param {string=} params.features List of features supported by the client, i.e., 'RENTALS'
-     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
-     * @param {string=} params.locale ISO-639-1, ISO-3166-1 codes for message localization, i.e. en_US.
-     * @param {string} params.nonce The client nonce value.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-     * @param {string} params.source String to identify the originator of this request.
-     * @param {string=} params.volumeIds The volume(s) to request download restrictions for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     syncVolumeLicenses(
       params: Params$Resource$Myconfig$Syncvolumelicenses,
@@ -4596,9 +4476,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.myconfig.updateUserSettings
-     * @desc Sets the settings for the user. If a sub-object is specified, it will overwrite the existing sub-object stored in the server. Unspecified sub-objects will retain the existing value.
+     * Sets the settings for the user. If a sub-object is specified, it will overwrite the existing sub-object stored in the server. Unspecified sub-objects will retain the existing value.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4647,14 +4527,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.myconfig.updateUserSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Usersettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateUserSettings(
       params: Params$Resource$Myconfig$Updateusersettings,
@@ -4856,9 +4734,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.annotations.delete
-     * @desc Deletes an annotation.
+     * Deletes an annotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -4898,15 +4776,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.annotations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID for the annotation to delete.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Mylibrary$Annotations$Delete,
@@ -4987,9 +4862,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.annotations.insert
-     * @desc Inserts a new annotation.
+     * Inserts a new annotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5075,18 +4950,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.annotations.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.annotationId The ID for the annotation to insert.
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
-     * @param {boolean=} params.showOnlySummaryInResponse Requests that only the summary of the specified layer be provided in the response.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {().Annotation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Mylibrary$Annotations$Insert,
@@ -5168,9 +5037,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.annotations.list
-     * @desc Retrieves a list of annotations, possibly filtered.
+     * Retrieves a list of annotations, possibly filtered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5231,23 +5100,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.annotations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion The content version for the requested volume.
-     * @param {string=} params.layerId The layer ID to limit annotation by.
-     * @param {string=} params.layerIds The layer ID(s) to limit annotation by.
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken The value of the nextToken from the previous page.
-     * @param {boolean=} params.showDeleted Set to true to return deleted annotations. updatedMin must be in the request to use this. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string=} params.updatedMax RFC 3339 timestamp to restrict to items updated prior to this timestamp (exclusive).
-     * @param {string=} params.updatedMin RFC 3339 timestamp to restrict to items updated since this timestamp (inclusive).
-     * @param {string=} params.volumeId The volume to restrict annotations to.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mylibrary$Annotations$List,
@@ -5329,9 +5187,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.annotations.summary
-     * @desc Gets the summary of specified layers.
+     * Gets the summary of specified layers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5374,15 +5232,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.annotations.summary
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.layerIds Array of layer IDs to get the summary for.
-     * @param {string} params.volumeId Volume id to get the summary for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     summary(
       params: Params$Resource$Mylibrary$Annotations$Summary,
@@ -5467,9 +5322,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.annotations.update
-     * @desc Updates an existing annotation.
+     * Updates an existing annotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5551,16 +5406,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.annotations.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.annotationId The ID for the annotation to update.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {().Annotation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Mylibrary$Annotations$Update,
@@ -5756,9 +5607,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.addVolume
-     * @desc Adds a volume to a bookshelf.
+     * Adds a volume to a bookshelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5802,17 +5653,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.addVolume
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.reason The reason for which the book is added to the library.
-     * @param {string} params.shelf ID of bookshelf to which to add a volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of volume to add.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Addvolume,
@@ -5893,9 +5739,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.clearVolumes
-     * @desc Clears all volumes from a bookshelf.
+     * Clears all volumes from a bookshelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -5935,15 +5781,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.clearVolumes
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.shelf ID of bookshelf from which to remove a volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clearVolumes(
       params: Params$Resource$Mylibrary$Bookshelves$Clearvolumes,
@@ -6024,9 +5867,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.get
-     * @desc Retrieves metadata for a specific bookshelf belonging to the authenticated user.
+     * Retrieves metadata for a specific bookshelf belonging to the authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6077,15 +5920,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.shelf ID of bookshelf to retrieve.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Mylibrary$Bookshelves$Get,
@@ -6167,9 +6007,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.list
-     * @desc Retrieves a list of bookshelves belonging to the authenticated user.
+     * Retrieves a list of bookshelves belonging to the authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6210,14 +6050,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mylibrary$Bookshelves$List,
@@ -6299,9 +6137,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.moveVolume
-     * @desc Moves a volume within a bookshelf.
+     * Moves a volume within a bookshelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6345,17 +6183,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.moveVolume
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.shelf ID of bookshelf with the volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of volume to move.
-     * @param {integer} params.volumePosition Position on shelf to move the item (0 puts the item before the current first item, 1 puts it between the first and the second and so on.)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     moveVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Movevolume,
@@ -6436,9 +6269,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.removeVolume
-     * @desc Removes a volume from a bookshelf.
+     * Removes a volume from a bookshelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6482,17 +6315,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.removeVolume
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.reason The reason for which the book is removed from the library.
-     * @param {string} params.shelf ID of bookshelf from which to remove a volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of volume to remove.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removeVolume(
       params: Params$Resource$Mylibrary$Bookshelves$Removevolume,
@@ -6667,9 +6495,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.bookshelves.volumes.list
-     * @desc Gets volume information for volumes on a bookshelf.
+     * Gets volume information for volumes on a bookshelf.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6725,21 +6553,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.bookshelves.volumes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.q Full-text search query string in this bookshelf.
-     * @param {string} params.shelf The bookshelf ID or name retrieve volumes for.
-     * @param {boolean=} params.showPreorders Set to true to show pre-ordered books. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {integer=} params.startIndex Index of the first element to return (starts at 0)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mylibrary$Bookshelves$Volumes$List,
@@ -6863,9 +6682,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.readingpositions.get
-     * @desc Retrieves my reading position information for a volume.
+     * Retrieves my reading position information for a volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -6915,16 +6734,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.readingpositions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.contentVersion Volume content version for which this reading position is requested.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of volume for which to retrieve a reading position.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Mylibrary$Readingpositions$Get,
@@ -7005,9 +6820,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.mylibrary.readingpositions.setPosition
-     * @desc Sets my reading position information for a volume.
+     * Sets my reading position information for a volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7057,20 +6872,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.mylibrary.readingpositions.setPosition
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.action Action that caused this reading position to be set.
-     * @param {string=} params.contentVersion Volume content version for which this reading position applies.
-     * @param {string=} params.deviceCookie Random persistent device cookie optional on set position.
-     * @param {string} params.position Position string for the new volume reading position.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.timestamp RFC 3339 UTC format timestamp associated with this reading position.
-     * @param {string} params.volumeId ID of volume for which to update the reading position.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setPosition(
       params: Params$Resource$Mylibrary$Readingpositions$Setposition,
@@ -7206,9 +7013,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.notification.get
-     * @desc Returns notification details for a given notification id.
+     * Returns notification details for a given notification id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7267,16 +7074,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.notification.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating notification title and body.
-     * @param {string} params.notification_id String to identify the notification.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Notification$Get,
@@ -7379,9 +7182,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.onboarding.listCategories
-     * @desc List categories for onboarding experience.
+     * List categories for onboarding experience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7422,14 +7225,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.onboarding.listCategories
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listCategories(
       params: Params$Resource$Onboarding$Listcategories,
@@ -7511,9 +7312,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.onboarding.listCategoryVolumes
-     * @desc List available volumes under categories for onboarding experience.
+     * List available volumes under categories for onboarding experience.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7563,18 +7364,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.onboarding.listCategoryVolumes
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.categoryId List of category ids requested.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Default is en-US if unset.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned volumes. Books with a higher maturity rating are filtered out.
-     * @param {integer=} params.pageSize Number of maximum results per page to be included in the response.
-     * @param {string=} params.pageToken The value of the nextToken from the previous page.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listCategoryVolumes(
       params: Params$Resource$Onboarding$Listcategoryvolumes,
@@ -7694,9 +7489,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.personalizedstream.get
-     * @desc Returns a stream of personalized book clusters
+     * Returns a stream of personalized book clusters
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7742,16 +7537,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.personalizedstream.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Personalizedstream$Get,
@@ -7859,9 +7650,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.promooffer.accept
-     * @desc Accepts the promo offer.
+     * Accepts the promo offer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -7913,21 +7704,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.promooffer.accept
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.androidId device android_id
-     * @param {string=} params.device device device
-     * @param {string=} params.manufacturer device manufacturer
-     * @param {string=} params.model device model
-     * @param {string=} params.offerId
-     * @param {string=} params.product device product
-     * @param {string=} params.serial device serial
-     * @param {string=} params.volumeId Volume id to exercise the offer
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     accept(
       params: Params$Resource$Promooffer$Accept,
@@ -8009,9 +7791,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.promooffer.dismiss
-     * @desc Marks the promo offer as dismissed.
+     * Marks the promo offer as dismissed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8061,20 +7843,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.promooffer.dismiss
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.androidId device android_id
-     * @param {string=} params.device device device
-     * @param {string=} params.manufacturer device manufacturer
-     * @param {string=} params.model device model
-     * @param {string=} params.offerId Offer to dimiss
-     * @param {string=} params.product device product
-     * @param {string=} params.serial device serial
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     dismiss(
       params: Params$Resource$Promooffer$Dismiss,
@@ -8156,9 +7930,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.promooffer.get
-     * @desc Returns a list of promo offers available to the user
+     * Returns a list of promo offers available to the user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8209,19 +7983,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.promooffer.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.androidId device android_id
-     * @param {string=} params.device device device
-     * @param {string=} params.manufacturer device manufacturer
-     * @param {string=} params.model device model
-     * @param {string=} params.product device product
-     * @param {string=} params.serial device serial
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Promooffer$Get,
@@ -8404,9 +8171,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.series.get
-     * @desc Returns Series metadata for the given series ids.
+     * Returns Series metadata for the given series ids.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8447,14 +8214,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.series.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.series_id String that identifies the series
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Series$Get,
@@ -8549,9 +8314,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.series.membership.get
-     * @desc Returns Series membership data given the series id.
+     * Returns Series membership data given the series id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8597,16 +8362,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.series.membership.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.page_size Number of maximum results per page to be included in the response.
-     * @param {string=} params.page_token The value of the nextToken from the previous page.
-     * @param {string} params.series_id String that identifies the series
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Series$Membership$Get,
@@ -8719,9 +8480,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.get
-     * @desc Gets volume information for a single volume.
+     * Gets volume information for a single volume.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8783,20 +8544,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
-     * @param {boolean=} params.includeNonComicsSeries Set to true to include non-comics series. Defaults to false.
-     * @param {string=} params.partner Brand results for partner ID.
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.source string to identify the originator of this request.
-     * @param {boolean=} params.user_library_consistent_read
-     * @param {string} params.volumeId ID of volume to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Volumes$Get,
@@ -8877,9 +8630,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.list
-     * @desc Performs a book search.
+     * Performs a book search.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -8947,27 +8700,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.download Restrict to volumes by download availability.
-     * @param {string=} params.filter Filter search results.
-     * @param {string=} params.langRestrict Restrict results to books with this language code.
-     * @param {string=} params.libraryRestrict Restrict search to this user's library.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Sort search results.
-     * @param {string=} params.partner Restrict and brand results for partner ID.
-     * @param {string=} params.printType Restrict to books or magazines.
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string} params.q Full-text search query string.
-     * @param {boolean=} params.showPreorders Set to true to show books available for preorder. Defaults to false.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Volumes$List,
@@ -9141,9 +8879,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.associated.list
-     * @desc Return a list of associated books.
+     * Return a list of associated books.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -9193,18 +8931,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.associated.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.association Association type.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of the source volume.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Volumes$Associated$List,
@@ -9317,9 +9049,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.mybooks.list
-     * @desc Return a list of books in My Library.
+     * Return a list of books in My Library.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -9373,20 +9105,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.mybooks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.acquireMethod How the book was acquired
-     * @param {string=} params.country ISO-3166-1 code to override the IP-based location.
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex:'en_US'. Used for generating recommendations.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned. Applicable only if the UPLOADED is specified in the acquireMethod.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Volumes$Mybooks$List,
@@ -9507,9 +9231,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.recommended.list
-     * @desc Return a list of recommended books for the current user.
+     * Return a list of recommended books for the current user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -9555,16 +9279,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.recommended.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string=} params.maxAllowedMaturityRating The maximum allowed maturity rating of returned recommendations. Books with a higher maturity rating are filtered out.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Volumes$Recommended$List,
@@ -9646,9 +9366,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.recommended.rate
-     * @desc Rate a recommended book for the current user.
+     * Rate a recommended book for the current user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -9694,17 +9414,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.recommended.rate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {string} params.rating Rating to be given to the volume.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {string} params.volumeId ID of the source volume.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rate(
       params: Params$Resource$Volumes$Recommended$Rate,
@@ -9837,9 +9552,9 @@ export namespace books_v1 {
     }
 
     /**
-     * books.volumes.useruploaded.list
-     * @desc Return a list of books uploaded by the current user.
+     * Return a list of books uploaded by the current user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/books.googleapis.com
@@ -9891,19 +9606,12 @@ export namespace books_v1 {
      *   throw e;
      * });
      *
-     * @alias books.volumes.useruploaded.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale ISO-639-1 language and ISO-3166-1 country code. Ex: 'en_US'. Used for generating recommendations.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.processingState The processing state of the user uploaded volumes to be returned.
-     * @param {string=} params.source String to identify the originator of this request.
-     * @param {integer=} params.startIndex Index of the first result to return (starts at 0)
-     * @param {string=} params.volumeId The ids of the volumes to be returned. If not specified all that match the processingState are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Volumes$Useruploaded$List,

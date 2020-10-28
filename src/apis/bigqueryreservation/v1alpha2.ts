@@ -104,14 +104,10 @@ export namespace bigqueryreservation_v1alpha2 {
    * A service to modify your BigQuery flat-rate reservations.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const bigqueryreservation = google.bigqueryreservation('v1alpha2');
-   *
-   * @namespace bigqueryreservation
-   * @type {Function}
-   * @version v1alpha2
-   * @variation v1alpha2
-   * @param {object=} options Options for Bigqueryreservation
+   * ```
    */
   export class Bigqueryreservation {
     context: APIRequestContext;
@@ -137,7 +133,7 @@ export namespace bigqueryreservation_v1alpha2 {
     slotPool?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -196,7 +192,7 @@ export namespace bigqueryreservation_v1alpha2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -209,11 +205,11 @@ export namespace bigqueryreservation_v1alpha2 {
    */
   export interface Schema$Reservation {
     /**
-     * The resource name of the reservation, e.g., &quot;projects/x/locations/x/reservations/dev/team/product&quot;. Reservation names (e.g., &quot;dev/team/product&quot;) exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
+     * The resource name of the reservation, e.g., "projects/x/locations/x/reservations/dev/team/product". Reservation names (e.g., "dev/team/product") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
      */
     name?: string | null;
     /**
-     * Maximum slots available to this reservation and its children. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. In a scan of a multi-partitioned table, a single slot operates on a single partition of the table. If the new reservation&#39;s slot capacity exceed the parent&#39;s slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent&#39;s slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
+     * Maximum slots available to this reservation and its children. A slot is a unit of computational power in BigQuery, and serves as the unit of parallelism. In a scan of a multi-partitioned table, a single slot operates on a single partition of the table. If the new reservation's slot capacity exceed the parent's slot capacity or if total slot capacity of the new reservation and its siblings exceeds the parent's slot capacity, the request will fail with `google.rpc.Code.RESOURCE_EXHAUSTED`.
      */
     slotCapacity?: string | null;
     /**
@@ -334,9 +330,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.searchReservationGrants
-     * @desc Look up grants for a specified resource for a particular region. If the request is about a project: 1) Grants created on the project will be returned if they exist. 2) Otherwise grants created on the closest ancestor will be returned. 3) Grants for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then grants created on the organization will be returned (organization doesn't have ancestors). Comparing to ListReservationGrants, there are two behavior differences: 1) permission on the grantee will be verified in this API. 2) Hierarchy lookup (project->folder->organization) happens in this API.
+     * Look up grants for a specified resource for a particular region. If the request is about a project: 1) Grants created on the project will be returned if they exist. 2) Otherwise grants created on the closest ancestor will be returned. 3) Grants for different JobTypes will all be returned. Same logic applies if the request is about a folder. If the request is about an organization, then grants created on the organization will be returned (organization doesn't have ancestors). Comparing to ListReservationGrants, there are two behavior differences: 1) permission on the grantee will be verified in this API. 2) Hierarchy lookup (project-\>folder-\>organization) happens in this API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -388,17 +384,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.searchReservationGrants
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name (containing project and location), which owns the grants. e.g.: "projects/myproject/locations/us-central1".
-     * @param {string=} params.query Please specify resource name as grantee in the query. e.g., "grantee=projects/myproject" "grantee=folders/123" "grantee=organizations/456"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     searchReservationGrants(
       params: Params$Resource$Projects$Locations$Searchreservationgrants,
@@ -516,9 +507,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -559,14 +550,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -649,9 +638,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -698,14 +687,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -807,9 +794,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservationGrants.create
-     * @desc Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant does not match location of the reservation.
+     * Returns `google.rpc.Code.PERMISSION_DENIED` if user does not have 'bigquery.admin' permissions on the project using the reservation and the project that owns this reservation. Returns `google.rpc.Code.INVALID_ARGUMENT` when location of the grant does not match location of the reservation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -870,15 +857,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservationGrants.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent resource name of the reservation grant E.g.: projects/myproject/location/eu.
-     * @param {().ReservationGrant} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Reservationgrants$Create,
@@ -961,9 +945,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservationGrants.delete
-     * @desc Deletes a reservation grant. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then deletion of won't affect . After deletion of , queries from project1 will still use res1, while queries from project2 will use on-demand mode.
+     * Deletes a reservation grant. No expansion will happen. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then deletion of won't affect . After deletion of , queries from project1 will still use res1, while queries from project2 will use on-demand mode.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1007,14 +991,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservationGrants.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the resource, e.g.: projects/myproject/locations/eu/reservationGrants/123
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Reservationgrants$Delete,
@@ -1094,9 +1076,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservationGrants.list
-     * @desc Lists reservation grants. Only explicitly created grants will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then this API will just return the above two grants for reservation res1, and no expansion/merge will happen.
+     * Lists reservation grants. Only explicitly created grants will be returned. E.g: organizationA contains project1 and project2. Reservation res1 exists. CreateReservationGrant was invoked previously and following grants were created explicitly: Then this API will just return the above two grants for reservation res1, and no expansion/merge will happen.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1146,16 +1128,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservationGrants.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name e.g.: projects/myproject/location/eu.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Reservationgrants$List,
@@ -1293,9 +1271,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.create
-     * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1352,16 +1330,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Project, location, and (optionally) reservation name. E.g., projects/myproject/locations/us-central1/reservations/parent
-     * @param {string=} params.reservationId The reservation ID relative to the parent, e.g., "dev". This field must only contain alphanumeric characters.
-     * @param {().Reservation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Reservations$Create,
@@ -1444,9 +1418,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.createReservation
-     * @desc Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
+     * Creates a new reservation resource. Multiple reservations are created if the ancestor reservations do not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1505,16 +1479,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.createReservation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Project, location, and (optionally) reservation name. E.g., projects/myproject/locations/us-central1/reservations/parent
-     * @param {string=} params.reservationId The reservation ID relative to the parent, e.g., "dev". This field must only contain alphanumeric characters.
-     * @param {().Reservation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createReservation(
       params: Params$Resource$Projects$Locations$Reservations$Createreservation,
@@ -1597,9 +1567,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.delete
-     * @desc Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` in the following cases: 1. When reservation has child reservations. This check can be bypassed by setting DeleteReservationRequest.force flag to true. 2. When top-level reservation with slot pools is being deleted.
+     * Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` in the following cases: 1. When reservation has child reservations. This check can be bypassed by setting DeleteReservationRequest.force flag to true. 2. When top-level reservation with slot pools is being deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1642,15 +1612,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force If true, deletes all the child reservations of the given reservation. Otherwise, attempting to delete a reservation that has child reservations will fail with error code `google.rpc.Code.FAILED_PRECONDITION`.
-     * @param {string} params.name Resource name of the reservation to retrieve. E.g., projects/myproject/locations/us-central1/reservations/my_reservation
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Delete,
@@ -1730,9 +1697,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.get
-     * @desc Returns information about the reservation.
+     * Returns information about the reservation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1777,14 +1744,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the reservation to retrieve. E.g., projects/myproject/locations/us-central1/reservations/path/to/reserv
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Reservations$Get,
@@ -1864,9 +1829,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.list
-     * @desc Lists all the reservations for the project in the specified location.
+     * Lists all the reservations for the project in the specified location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -1893,7 +1858,7 @@ export namespace bigqueryreservation_v1alpha2 {
      *
      *   // Do the magic
      *   const res = await bigqueryreservation.projects.locations.reservations.list({
-     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     *     // Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity \> 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      *     filter: 'placeholder-value',
      *     // The maximum number of items to return.
      *     pageSize: 'placeholder-value',
@@ -1916,17 +1881,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name containing project and location, e.g.: "projects/myproject/locations/us-central1"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Reservations$List,
@@ -2014,9 +1974,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.patch
-     * @desc Updates an existing reservation resource. Applicable only for child reservations.
+     * Updates an existing reservation resource. Applicable only for child reservations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -2074,16 +2034,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the reservation, e.g., "projects/x/locations/x/reservations/dev/team/product". Reservation names (e.g., "dev/team/product") exceeding a depth of six will fail with `google.rpc.Code.INVALID_ARGUMENT`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Reservation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Reservations$Patch,
@@ -2216,7 +2172,7 @@ export namespace bigqueryreservation_v1alpha2 {
   export interface Params$Resource$Projects$Locations$Reservations$List
     extends StandardParameters {
     /**
-     * Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity > 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
+     * Can be used to filter out reservations based on names, capacity, etc, e.g.: filter="reservation.slot_capacity \> 200" filter="reservation.name = \"*dev/x\"" Advanced filtering syntax can be [here](https://cloud.google.com/logging/docs/view/advanced-filters).
      */
     filter?: string;
     /**
@@ -2256,9 +2212,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.slotPools.delete
-     * @desc Deletes a slot pool. Attempting to delete slot pool before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
+     * Deletes a slot pool. Attempting to delete slot pool before its commitment_end_time will fail with the error code `google.rpc.Code.FAILED_PRECONDITION`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -2302,14 +2258,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.slotPools.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the slot pool to delete. E.g., projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Delete,
@@ -2389,9 +2343,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.slotPools.get
-     * @desc Returns information about the slot pool.
+     * Returns information about the slot pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -2442,14 +2396,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.slotPools.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the slot pool to retrieve. E.g., projects/myproject/locations/us-central1/reservations/my_reservation/slotPools/123
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$Get,
@@ -2529,9 +2481,9 @@ export namespace bigqueryreservation_v1alpha2 {
     }
 
     /**
-     * bigqueryreservation.projects.locations.reservations.slotPools.list
-     * @desc Lists all the slot pools for the reservation.
+     * Lists all the slot pools for the reservation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigqueryreservation.googleapis.com
@@ -2582,16 +2534,12 @@ export namespace bigqueryreservation_v1alpha2 {
      *   throw e;
      * });
      *
-     * @alias bigqueryreservation.projects.locations.reservations.slotPools.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Resource name of the parent reservation. Only top-level reservations can have slot pools. E.g., projects/myproject/locations/us-central1/reservations/my_reservation
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Reservations$Slotpools$List,

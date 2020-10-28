@@ -51,3 +51,16 @@ export function vision<
 
 const auth = new AuthPlus();
 export {auth};
+export {vision_v1};
+export {vision_v1p1beta1};
+export {vision_v1p2beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

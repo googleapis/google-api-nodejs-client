@@ -104,14 +104,10 @@ export namespace toolresults_v1beta3 {
    * API to publish and access results from developer tools.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const toolresults = google.toolresults('v1beta3');
-   *
-   * @namespace toolresults
-   * @type {Function}
-   * @version v1beta3
-   * @variation v1beta3
-   * @param {object=} options Options for Toolresults
+   * ```
    */
   export class Toolresults {
     context: APIRequestContext;
@@ -161,7 +157,7 @@ export namespace toolresults_v1beta3 {
      */
     testRunnerClass?: string | null;
     /**
-     * Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot; If empty, all targets in the module will be run.
+     * Each target must be fully qualified with the package name or class name, in one of these formats: - "package package_name" - "class package_name.class_name" - "class package_name.class_name#method_name" If empty, all targets in the module will be run.
      */
     testTargets?: string[] | null;
     /**
@@ -233,11 +229,11 @@ export namespace toolresults_v1beta3 {
     stackTrace?: Schema$StackTrace;
   }
   /**
-   *  `Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message. Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type. Example 1: Pack and unpack a message in C++. Foo foo = ...; Any any; any.PackFrom(foo); ... if (any.UnpackTo(&amp;foo)) { ... } Example 2: Pack and unpack a message in Java. Foo foo = ...; Any any = Any.pack(foo); ... if (any.is(Foo.class)) { foo = any.unpack(Foo.class); } Example 3: Pack and unpack a message in Python. foo = Foo(...) any = Any() any.Pack(foo) ... if any.Is(Foo.DESCRIPTOR): any.Unpack(foo) ... Example 4: Pack and unpack a message in Go foo := &amp;pb.Foo{...} any, err := ptypes.MarshalAny(foo) ... foo := &amp;pb.Foo{} if err := ptypes.UnmarshalAny(any, foo); err != nil { ... } The pack methods provided by protobuf library will by default use &#39;type.googleapis.com/full.type.name&#39; as the type URL and the unpack methods only use the fully qualified type name after the last &#39;/&#39; in the type URL, for example &quot;foo.bar.com/x/y.z&quot; will yield type name &quot;y.z&quot;. # JSON The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example: package google.profile; message Person { string first_name = 1; string last_name = 2; } { &quot;@type&quot;: &quot;type.googleapis.com/google.profile.Person&quot;, &quot;firstName&quot;: , &quot;lastName&quot;: } If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message google.protobuf.Duration): { &quot;@type&quot;: &quot;type.googleapis.com/google.protobuf.Duration&quot;, &quot;value&quot;: &quot;1.212s&quot; }
+   *  `Any` contains an arbitrary serialized protocol buffer message along with a URL that describes the type of the serialized message. Protobuf library provides support to pack/unpack Any values in the form of utility functions or additional generated methods of the Any type. Example 1: Pack and unpack a message in C++. Foo foo = ...; Any any; any.PackFrom(foo); ... if (any.UnpackTo(&foo)) { ... \} Example 2: Pack and unpack a message in Java. Foo foo = ...; Any any = Any.pack(foo); ... if (any.is(Foo.class)) { foo = any.unpack(Foo.class); \} Example 3: Pack and unpack a message in Python. foo = Foo(...) any = Any() any.Pack(foo) ... if any.Is(Foo.DESCRIPTOR): any.Unpack(foo) ... Example 4: Pack and unpack a message in Go foo := &pb.Foo{...\} any, err := ptypes.MarshalAny(foo) ... foo := &pb.Foo{\} if err := ptypes.UnmarshalAny(any, foo); err != nil { ... \} The pack methods provided by protobuf library will by default use 'type.googleapis.com/full.type.name' as the type URL and the unpack methods only use the fully qualified type name after the last '/' in the type URL, for example "foo.bar.com/x/y.z" will yield type name "y.z". # JSON The JSON representation of an `Any` value uses the regular representation of the deserialized, embedded message, with an additional field `@type` which contains the type URL. Example: package google.profile; message Person { string first_name = 1; string last_name = 2; \} { "@type": "type.googleapis.com/google.profile.Person", "firstName": , "lastName": \} If the embedded message type is well-known and has a custom JSON representation, that representation will be embedded adding a field `value` which holds the custom JSON in addition to the `@type` field. Example (for message google.protobuf.Duration): { "@type": "type.googleapis.com/google.protobuf.Duration", "value": "1.212s" \}
    */
   export interface Schema$Any {
     /**
-     * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one &quot;/&quot; character. The last segment of the URL&#39;s path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading &quot;.&quot; is not accepted). In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows: * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a google.protobuf.Type value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the URL, or have them precompiled into a binary to avoid any lookup. Therefore, binary compatibility needs to be preserved on changes to types. (Use versioned type names to manage breaking changes.) Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com. Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
+     * A URL/resource name that uniquely identifies the type of the serialized protocol buffer message. This string must contain at least one "/" character. The last segment of the URL's path must represent the fully qualified name of the type (as in `path/google.protobuf.Duration`). The name should be in a canonical form (e.g., leading "." is not accepted). In practice, teams usually precompile into the binary all types that they expect it to use in the context of Any. However, for URLs which use the scheme `http`, `https`, or no scheme, one can optionally set up a type server that maps type URLs to message definitions as follows: * If no scheme is provided, `https` is assumed. * An HTTP GET on the URL must yield a google.protobuf.Type value in binary format, or produce an error. * Applications are allowed to cache lookup results based on the URL, or have them precompiled into a binary to avoid any lookup. Therefore, binary compatibility needs to be preserved on changes to types. (Use versioned type names to manage breaking changes.) Note: this functionality is not currently available in the official protobuf release, and it is not used for type URLs beginning with type.googleapis.com. Schemes other than `http`, `https` (or the empty scheme) might be used with implementation specific semantics.
      */
     typeUrl?: string | null;
     /**
@@ -247,7 +243,7 @@ export namespace toolresults_v1beta3 {
   }
   export interface Schema$AppStartTime {
     /**
-     * Optional. The time from app start to reaching the developer-reported &quot;fully drawn&quot; time. This is only stored if the app includes a call to Activity.reportFullyDrawn(). See https://developer.android.com/topic/performance/launch-time.html#time-full
+     * Optional. The time from app start to reaching the developer-reported "fully drawn" time. This is only stored if the app includes a call to Activity.reportFullyDrawn(). See https://developer.android.com/topic/performance/launch-time.html#time-full
      */
     fullyDrawnTime?: Schema$Duration;
     /**
@@ -290,7 +286,7 @@ export namespace toolresults_v1beta3 {
   }
   export interface Schema$CPUInfo {
     /**
-     * description of the device processor ie &#39;1.8 GHz hexa core 64-bit ARMv8-A&#39;
+     * description of the device processor ie '1.8 GHz hexa core 64-bit ARMv8-A'
      */
     cpuProcessor?: string | null;
     /**
@@ -312,7 +308,7 @@ export namespace toolresults_v1beta3 {
     crashPackage?: string | null;
   }
   /**
-   *  A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like &quot;day&quot; or &quot;month&quot;. It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.
+   *  A Duration represents a signed, fixed-length span of time represented as a count of seconds and fractions of seconds at nanosecond resolution. It is independent of any calendar and concepts like "day" or "month". It is related to Timestamp in that the difference between two Timestamp values is a Duration and it can be added or subtracted from a Timestamp. Range is approximately +-10,000 years.
    */
   export interface Schema$Duration {
     /**
@@ -363,7 +359,7 @@ export namespace toolresults_v1beta3 {
      */
     creationTime?: Schema$Timestamp;
     /**
-     * Dimension values describing the environment. Dimension values always consist of &quot;Model&quot;, &quot;Version&quot;, &quot;Locale&quot;, and &quot;Orientation&quot;. - In response: always set - In create request: always set - In update request: never set
+     * Dimension values describing the environment. Dimension values always consist of "Model", "Version", "Locale", and "Orientation". - In response: always set - In create request: always set - In update request: never set
      */
     dimensionValue?: Schema$EnvironmentDimensionValueEntry[];
     /**
@@ -496,7 +492,7 @@ export namespace toolresults_v1beta3 {
     fileUri?: string | null;
   }
   /**
-   * Graphics statistics for the App. The information is collected from &#39;adb shell dumpsys graphicsstats&#39;. For more info see: https://developer.android.com/training/testing/performance.html Statistics will only be present for API 23+.
+   * Graphics statistics for the App. The information is collected from 'adb shell dumpsys graphicsstats'. For more info see: https://developer.android.com/training/testing/performance.html Statistics will only be present for API 23+.
    */
   export interface Schema$GraphicsStats {
     /**
@@ -504,15 +500,15 @@ export namespace toolresults_v1beta3 {
      */
     buckets?: Schema$GraphicsStatsBucket[];
     /**
-     * Total &quot;high input latency&quot; events.
+     * Total "high input latency" events.
      */
     highInputLatencyCount?: string | null;
     /**
-     * Total frames with slow render time. Should be &lt;= total_frames.
+     * Total frames with slow render time. Should be <= total_frames.
      */
     jankyFrames?: string | null;
     /**
-     * Total &quot;missed vsync&quot; events.
+     * Total "missed vsync" events.
      */
     missedVsyncCount?: string | null;
     /**
@@ -532,15 +528,15 @@ export namespace toolresults_v1beta3 {
      */
     p99Millis?: string | null;
     /**
-     * Total &quot;slow bitmap upload&quot; events.
+     * Total "slow bitmap upload" events.
      */
     slowBitmapUploadCount?: string | null;
     /**
-     * Total &quot;slow draw&quot; events.
+     * Total "slow draw" events.
      */
     slowDrawCount?: string | null;
     /**
-     * Total &quot;slow UI thread&quot; events.
+     * Total "slow UI thread" events.
      */
     slowUiThreadCount?: string | null;
     /**
@@ -946,11 +942,11 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$NonSdkApiUsageViolation {
     /**
-     * Signatures of a subset of those hidden API&#39;s.
+     * Signatures of a subset of those hidden API's.
      */
     apiSignatures?: string[] | null;
     /**
-     * Total number of unique hidden API&#39;s accessed.
+     * Total number of unique hidden API's accessed.
      */
     uniqueApis?: number | null;
   }
@@ -971,7 +967,7 @@ export namespace toolresults_v1beta3 {
      */
     targetSdkVersion?: number | null;
     /**
-     * Total number of unique Non-SDK API&#39;s accessed.
+     * Total number of unique Non-SDK API's accessed.
      */
     uniqueApis?: number | null;
   }
@@ -1146,7 +1142,7 @@ export namespace toolresults_v1beta3 {
      */
     defaultBucket?: string | null;
     /**
-     * The name of the project&#39;s settings. Always of the form: projects/{project-id}/settings In update request: never set In response: always set
+     * The name of the project's settings. Always of the form: projects/{project-id\}/settings In update request: never set In response: always set
      */
     name?: string | null;
   }
@@ -1207,7 +1203,7 @@ export namespace toolresults_v1beta3 {
     totalActions?: number | null;
   }
   /**
-   * IMPORTANT: It is unsafe to accept this message from an untrusted source, since it&#39;s trivial for an attacker to forge serialized messages that don&#39;t fulfill the type&#39;s safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it&#39;s generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.
+   * IMPORTANT: It is unsafe to accept this message from an untrusted source, since it's trivial for an attacker to forge serialized messages that don't fulfill the type's safety contract -- for example, it could contain attacker controlled script. A system which receives a SafeHtmlProto implicitly trusts the producer of the SafeHtmlProto. So, it's generally safe to return this message in RPC responses, but generally unsafe to accept it in RPC requests.
    */
   export interface Schema$SafeHtmlProto {
     /**
@@ -1243,7 +1239,7 @@ export namespace toolresults_v1beta3 {
      */
     clusterId?: string | null;
     /**
-     * A singular screen that represents the cluster as a whole. This screen will act as the &quot;cover&quot; of the entire cluster. When users look at the clusters, only the key screen from each cluster will be shown. Which screen is the key screen is determined by the ClusteringAlgorithm
+     * A singular screen that represents the cluster as a whole. This screen will act as the "cover" of the entire cluster. When users look at the clusters, only the key screen from each cluster will be shown. Which screen is the key screen is determined by the ClusteringAlgorithm
      */
     keyScreen?: Schema$Screen;
     /**
@@ -1269,15 +1265,15 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$SkippedDetail {
     /**
-     * If the App doesn&#39;t support the specific API level.
+     * If the App doesn't support the specific API level.
      */
     incompatibleAppVersion?: boolean | null;
     /**
-     * If the App doesn&#39;t run on the specific architecture, for example, x86.
+     * If the App doesn't run on the specific architecture, for example, x86.
      */
     incompatibleArchitecture?: boolean | null;
     /**
-     * If the requested OS version doesn&#39;t run on the specific device model.
+     * If the requested OS version doesn't run on the specific device model.
      */
     incompatibleDevice?: boolean | null;
   }
@@ -1328,7 +1324,7 @@ export namespace toolresults_v1beta3 {
     message?: string | null;
   }
   /**
-   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler). Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel). Here is an example, let&#39;s consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE A Step can be updated until its state is set to COMPLETE at which points it becomes immutable. Next tag: 27
+   * A Step represents a single operation performed as part of Execution. A step can be used to represent the execution of a tool ( for example a test runner execution or an execution of a compiler). Steps can overlap (for instance two steps might have the same start time if some operations are done in parallel). Here is an example, let's consider that we have a continuous build is executing a test runner for each iteration. The workflow would look like: - user creates a Execution with id 1 - user creates an TestExecutionStep with id 100 for Execution 1 - user update TestExecutionStep with id 100 to add a raw xml log + the service parses the xml logs and returns a TestExecutionStep with updated TestResult(s). - user update the status of TestExecutionStep with id 100 to COMPLETE A Step can be updated until its state is set to COMPLETE at which points it becomes immutable. Next tag: 27
    */
   export interface Schema$Step {
     /**
@@ -1344,11 +1340,11 @@ export namespace toolresults_v1beta3 {
      */
     description?: string | null;
     /**
-     * How much the device resource is used to perform the test. This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won&#39;t be charged for device usage. PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set. - In response: present if previously set. - In create request: optional - In update request: optional
+     * How much the device resource is used to perform the test. This is the device usage used for billing purpose, which is different from the run_duration, for example, infrastructure failure won't be charged for device usage. PRECONDITION_FAILED will be returned if one attempts to set a device_usage on a step which already has this field set. - In response: present if previously set. - In create request: optional - In update request: optional
      */
     deviceUsageDuration?: Schema$Duration;
     /**
-     * If the execution containing this step has any dimension_definition set, then this field allows the child to specify the values of the dimensions. The keys must exactly match the dimension_definition of the execution. For example, if the execution has `dimension_definition = [&#39;attempt&#39;, &#39;device&#39;]` then a step must define values for those dimensions, eg. `dimension_value = [&#39;attempt&#39;: &#39;1&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]` If a step does not participate in one dimension of the matrix, the value for that dimension should be empty string. For example, if one of the tests is executed by a runner which does not support retries, the step could have `dimension_value = [&#39;attempt&#39;: &#39;&#39;, &#39;device&#39;: &#39;Nexus 6&#39;]` If the step does not participate in any dimensions of the matrix, it may leave dimension_value unset. A PRECONDITION_FAILED will be returned if any of the keys do not exist in the dimension_definition of the execution. A PRECONDITION_FAILED will be returned if another step in this execution already has the same name and dimension_value, but differs on other data fields, for example, step field is different. A PRECONDITION_FAILED will be returned if dimension_value is set, and there is a dimension_definition in the execution which is not specified as one of the keys. - In response: present if set by create - In create request: optional - In update request: never set
+     * If the execution containing this step has any dimension_definition set, then this field allows the child to specify the values of the dimensions. The keys must exactly match the dimension_definition of the execution. For example, if the execution has `dimension_definition = ['attempt', 'device']` then a step must define values for those dimensions, eg. `dimension_value = ['attempt': '1', 'device': 'Nexus 6']` If a step does not participate in one dimension of the matrix, the value for that dimension should be empty string. For example, if one of the tests is executed by a runner which does not support retries, the step could have `dimension_value = ['attempt': '', 'device': 'Nexus 6']` If the step does not participate in any dimensions of the matrix, it may leave dimension_value unset. A PRECONDITION_FAILED will be returned if any of the keys do not exist in the dimension_definition of the execution. A PRECONDITION_FAILED will be returned if another step in this execution already has the same name and dimension_value, but differs on other data fields, for example, step field is different. A PRECONDITION_FAILED will be returned if dimension_value is set, and there is a dimension_definition in the execution which is not specified as one of the keys. - In response: present if set by create - In create request: optional - In update request: never set
      */
     dimensionValue?: Schema$StepDimensionValueEntry[];
     /**
@@ -1356,11 +1352,11 @@ export namespace toolresults_v1beta3 {
      */
     hasImages?: boolean | null;
     /**
-     * Arbitrary user-supplied key/value pairs that are associated with the step. Users are responsible for managing the key namespace such that keys don&#39;t accidentally collide. An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters. - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the map, and any new value for an existing key will update that key&#39;s value
+     * Arbitrary user-supplied key/value pairs that are associated with the step. Users are responsible for managing the key namespace such that keys don't accidentally collide. An INVALID_ARGUMENT will be returned if the number of labels exceeds 100 or if the length of any of the keys or values exceeds 100 characters. - In response: always set - In create request: optional - In update request: optional; any new key/value pair will be added to the map, and any new value for an existing key will update that key's value
      */
     labels?: Schema$StepLabelsEntry[];
     /**
-     * Details when multiple steps are run with the same configuration as a group. These details can be used identify which group this step is part of. It also identifies the groups &#39;primary step&#39; which indexes all the group members. - In response: present if previously set. - In create request: optional, set iff this step was performed more than once. - In update request: optional
+     * Details when multiple steps are run with the same configuration as a group. These details can be used identify which group this step is part of. It also identifies the groups 'primary step' which indexes all the group members. - In response: present if previously set. - In create request: optional, set iff this step was performed more than once. - In update request: optional
      */
     multiStep?: Schema$MultiStep;
     /**
@@ -1376,7 +1372,7 @@ export namespace toolresults_v1beta3 {
      */
     runDuration?: Schema$Duration;
     /**
-     * The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -&gt; COMPLETE A PRECONDITION_FAILED will be returned if an invalid transition is requested. It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times. - In response: always set - In create/update request: optional
+     * The initial state is IN_PROGRESS. The only legal state transitions are * IN_PROGRESS -\> COMPLETE A PRECONDITION_FAILED will be returned if an invalid transition is requested. It is valid to create Step with a state set to COMPLETE. The state can only be set to COMPLETE once. A PRECONDITION_FAILED will be returned if the state is set to COMPLETE multiple times. - In response: always set - In create/update request: optional
      */
     state?: string | null;
     /**
@@ -1388,7 +1384,7 @@ export namespace toolresults_v1beta3 {
      */
     testExecutionStep?: Schema$TestExecutionStep;
     /**
-     * An execution of a tool (used for steps we don&#39;t explicitly support).
+     * An execution of a tool (used for steps we don't explicitly support).
      */
     toolExecutionStep?: Schema$ToolExecutionStep;
   }
@@ -1414,7 +1410,7 @@ export namespace toolresults_v1beta3 {
     otherNativeCrash?: boolean | null;
   }
   /**
-   * A set of similar suggestions that we suspect are closely related. This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR&#39;s dependencies with FTL&#39;s.
+   * A set of similar suggestions that we suspect are closely related. This proto and most of the nested protos are branched from foxandcrown.prelaunchreport.service.SuggestionClusterProto, replacing PLR's dependencies with FTL's.
    */
   export interface Schema$SuggestionClusterProto {
     /**
@@ -1432,7 +1428,7 @@ export namespace toolresults_v1beta3 {
      */
     helpUrl?: string | null;
     /**
-     * Message, in the user&#39;s language, explaining the suggestion, which may contain markup. Always set.
+     * Message, in the user's language, explaining the suggestion, which may contain markup. Always set.
      */
     longMessage?: Schema$SafeHtmlProto;
     /**
@@ -1452,7 +1448,7 @@ export namespace toolresults_v1beta3 {
      */
     resourceName?: string | null;
     /**
-     * ID of the screen for the suggestion. It is used for getting the corresponding screenshot path. For example, screen_id &quot;1&quot; corresponds to &quot;1.png&quot; file in GCS. Always set.
+     * ID of the screen for the suggestion. It is used for getting the corresponding screenshot path. For example, screen_id "1" corresponds to "1.png" file in GCS. Always set.
      */
     screenId?: string | null;
     /**
@@ -1460,11 +1456,11 @@ export namespace toolresults_v1beta3 {
      */
     secondaryPriority?: number | null;
     /**
-     * Concise message, in the user&#39;s language, representing the suggestion, which may contain markup. Always set.
+     * Concise message, in the user's language, representing the suggestion, which may contain markup. Always set.
      */
     shortMessage?: Schema$SafeHtmlProto;
     /**
-     * General title for the suggestion, in the user&#39;s language, without markup. Always set.
+     * General title for the suggestion, in the user's language, without markup. Always set.
      */
     title?: string | null;
   }
@@ -1524,7 +1520,7 @@ export namespace toolresults_v1beta3 {
     testSuiteName?: string | null;
   }
   /**
-   * A step that represents running tests. It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can&#39;t be deleted. Users can also add test results manually by using the test_result field.
+   * A step that represents running tests. It accepts ant-junit xml files which will be parsed into structured test results by the service. Xml file paths are updated in order to append more files, however they can't be deleted. Users can also add test results manually by using the test_result field.
    */
   export interface Schema$TestExecutionStep {
     /**
@@ -1624,7 +1620,7 @@ export namespace toolresults_v1beta3 {
    */
   export interface Schema$Thumbnail {
     /**
-     * The thumbnail&#39;s content type, i.e. &quot;image/png&quot;. Always set.
+     * The thumbnail's content type, i.e. "image/png". Always set.
      */
     contentType?: string | null;
     /**
@@ -1641,7 +1637,7 @@ export namespace toolresults_v1beta3 {
     widthPx?: number | null;
   }
   /**
-   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are &quot;smeared&quot; so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
+   * A Timestamp represents a point in time independent of any time zone or local calendar, encoded as a count of seconds and fractions of seconds at nanosecond resolution. The count is relative to an epoch at UTC midnight on January 1, 1970, in the proleptic Gregorian calendar which extends the Gregorian calendar backwards to year one. All minutes are 60 seconds long. Leap seconds are "smeared" so that no leap second table is needed for interpretation, using a [24-hour linear smear](https://developers.google.com/time/smear). The range is from 0001-01-01T00:00:00Z to 9999-12-31T23:59:59.999999999Z. By restricting to that range, we ensure that we can convert to and from [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt) date strings.
    */
   export interface Schema$Timestamp {
     /**
@@ -1780,9 +1776,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.getSettings
-     * @desc Gets the Tool Results settings for a project. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from project
+     * Gets the Tool Results settings for a project. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from project
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -1823,14 +1819,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.getSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSettings(
       params: Params$Resource$Projects$Getsettings,
@@ -1911,9 +1905,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.initializeSettings
-     * @desc Creates resources for settings which have not yet been set. Currently, this creates a single resource: a Google Cloud Storage bucket, to be used as the default bucket for this project. The bucket is created in an FTL-own storage project. Except for in rare cases, calling this method in parallel from multiple clients will only create a single bucket. In order to avoid unnecessary storage charges, the bucket is configured to automatically delete objects older than 90 days. The bucket is created with the following permissions: - Owner access for owners of central storage project (FTL-owned) - Writer access for owners/editors of customer project - Reader access for viewers of customer project The default ACL on objects created in the bucket is: - Owner access for owners of central storage project - Reader access for owners/editors/viewers of customer project See Google Cloud Storage documentation for more details. If there is already a default bucket set and the project can access the bucket, this call does nothing. However, if the project doesn't have the permission to access the bucket or the bucket is deleted, a new bucket will be created. May return any canonical error codes, including the following: - PERMISSION_DENIED - if the user is not authorized to write to project - Any error code raised by Google Cloud Storage
+     * Creates resources for settings which have not yet been set. Currently, this creates a single resource: a Google Cloud Storage bucket, to be used as the default bucket for this project. The bucket is created in an FTL-own storage project. Except for in rare cases, calling this method in parallel from multiple clients will only create a single bucket. In order to avoid unnecessary storage charges, the bucket is configured to automatically delete objects older than 90 days. The bucket is created with the following permissions: - Owner access for owners of central storage project (FTL-owned) - Writer access for owners/editors of customer project - Reader access for viewers of customer project The default ACL on objects created in the bucket is: - Owner access for owners of central storage project - Reader access for owners/editors/viewers of customer project See Google Cloud Storage documentation for more details. If there is already a default bucket set and the project can access the bucket, this call does nothing. However, if the project doesn't have the permission to access the bucket or the bucket is deleted, a new bucket will be created. May return any canonical error codes, including the following: - PERMISSION_DENIED - if the user is not authorized to write to project - Any error code raised by Google Cloud Storage
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -1954,14 +1948,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.initializeSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     initializeSettings(
       params: Params$Resource$Projects$Initializesettings,
@@ -2071,9 +2063,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.create
-     * @desc Creates a History. The returned History will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
+     * Creates a History. The returned History will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing project does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2129,16 +2121,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
-     * @param {().History} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Histories$Create,
@@ -2219,9 +2207,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.get
-     * @desc Gets a History. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
+     * Gets a History. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2266,15 +2254,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Get,
@@ -2356,9 +2341,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.list
-     * @desc Lists Histories for a given Project. The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
+     * Lists Histories for a given Project. The histories are sorted by modification time in descending order. The history_id key will be used to order the history with the same modification time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the History does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2405,17 +2390,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filterByName If set, only return histories with the given name. Optional.
-     * @param {integer=} params.pageSize The maximum number of Histories to fetch. Default value: 20. The server will use this default if the field is not set or has a value of 0. Any value greater than 100 will be treated as 100. Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$List,
@@ -2567,9 +2547,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.create
-     * @desc Creates an Execution. The returned Execution will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * Creates an Execution. The returned Execution will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2635,17 +2615,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
-     * @param {().Execution} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Histories$Executions$Create,
@@ -2727,9 +2702,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.get
-     * @desc Gets an Execution. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
+     * Gets an Execution. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2780,16 +2755,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Get,
@@ -2871,9 +2842,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.list
-     * @desc Lists Executions for a given History. The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
+     * Lists Executions for a given History. The executions are sorted by creation_time in descending order. The execution_id key will be used to order the executions with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing History does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -2920,17 +2891,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.historyId A History id. Required.
-     * @param {integer=} params.pageSize The maximum number of Executions to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$List,
@@ -3017,9 +2983,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.patch
-     * @desc Updates an existing Execution with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
+     * Updates an existing Execution with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal - NOT_FOUND - if the containing History does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -3087,18 +3053,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId Required.
-     * @param {string} params.historyId Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
-     * @param {().Execution} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Histories$Executions$Patch,
@@ -3266,9 +3226,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.clusters.get
-     * @desc Retrieves a single screenshot cluster by its ID
+     * Retrieves a single screenshot cluster by its ID
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -3317,17 +3277,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.clusters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId A Cluster id Required.
-     * @param {string} params.executionId An Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Clusters$Get,
@@ -3412,9 +3367,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.clusters.list
-     * @desc Lists Screenshot Clusters Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
+     * Lists Screenshot Clusters Returns the list of screenshot clusters corresponding to an execution. Screenshot clusters are created after the execution is finished. Clusters are created from a set of screenshots. Between any two screenshots, a matching score is calculated based off their metadata that determines how similar they are. Screenshots are placed in the cluster that has screens which have the highest matching scores.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -3458,16 +3413,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.clusters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Clusters$List,
@@ -3600,9 +3551,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.environments.get
-     * @desc Gets an Environment. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
+     * Gets an Environment. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Environment does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -3658,17 +3609,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.environments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.environmentId Required. An Environment id.
-     * @param {string} params.executionId Required. An Execution id.
-     * @param {string} params.historyId Required. A History id.
-     * @param {string} params.projectId Required. A Project id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Environments$Get,
@@ -3755,9 +3701,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.environments.list
-     * @desc Lists Environments for a given Execution. The Environments are sorted by display name. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
+     * Lists Environments for a given Execution. The Environments are sorted by display name. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -3811,18 +3757,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.environments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId Required. An Execution id.
-     * @param {string} params.historyId Required. A History id.
-     * @param {integer=} params.pageSize The maximum number of Environments to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item.
-     * @param {string} params.projectId Required. A Project id.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Environments$List,
@@ -3975,9 +3915,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.accessibilityClusters
-     * @desc Lists accessibility clusters for a given Step May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
+     * Lists accessibility clusters for a given Step May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if the locale format is incorrect - NOT_FOUND - if the containing Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4023,15 +3963,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.accessibilityClusters
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale The accepted format is the canonical Unicode format with hyphen as a delimiter. Language must be lowercase, Language Script - Capitalized, Region - UPPERCASE. See http://www.unicode.org/reports/tr35/#Unicode_locale_identifier for details. Required.
-     * @param {string} params.name A full resource name of the step. For example, projects/my-project/histories/bh.1234567890abcdef/executions/ 1234567890123456789/steps/bs.1234567890abcdef Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     accessibilityClusters(
       params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
@@ -4127,9 +4064,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.create
-     * @desc Creates a Step. The returned Step will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
+     * Creates a Step. The returned Step will have the id set. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4211,18 +4148,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId Required. An Execution id.
-     * @param {string} params.historyId Required. A History id.
-     * @param {string} params.projectId Required. A Project id.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
-     * @param {().Step} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Histories$Executions$Steps$Create,
@@ -4304,9 +4235,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.get
-     * @desc Gets a Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist
+     * Gets a Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4366,17 +4297,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string} params.stepId A Step id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Steps$Get,
@@ -4458,9 +4384,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.getPerfMetricsSummary
-     * @desc Retrieves a PerfMetricsSummary. May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist
+     * Retrieves a PerfMetricsSummary. May return any of the following error code(s): - NOT_FOUND - The specified PerfMetricsSummary does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4515,17 +4441,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.getPerfMetricsSummary
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getPerfMetricsSummary(
       params: Params$Resource$Projects$Histories$Executions$Steps$Getperfmetricssummary,
@@ -4612,9 +4533,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.list
-     * @desc Lists Steps for a given Execution. The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if an attempt is made to list the children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist
+     * Lists Steps for a given Execution. The steps are sorted by creation_time in descending order. The step_id key will be used to order the steps with the same creation_time. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if an argument in the request happens to be invalid; e.g. if an attempt is made to list the children of a nonexistent Step - NOT_FOUND - if the containing Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4663,18 +4584,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {integer=} params.pageSize The maximum number of Steps to fetch. Default value: 25. The server will use this default if the field is not set or has a value of 0. Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$List,
@@ -4759,9 +4674,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.patch
-     * @desc Updates an existing Step with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal (e.g try to upload a duplicate xml file), if the updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
+     * Updates an existing Step with the supplied partial entity. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal (e.g try to upload a duplicate xml file), if the updated step is too large (more than 10Mib) - NOT_FOUND - if the containing Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -4845,19 +4760,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string=} params.requestId A unique request ID for server to detect duplicated requests. For example, a UUID. Optional, but strongly recommended.
-     * @param {string} params.stepId A Step id. Required.
-     * @param {().Step} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Histories$Executions$Steps$Patch,
@@ -4939,9 +4847,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.publishXunitXmlFiles
-     * @desc Publish xml files to an existing Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist
+     * Publish xml files to an existing Step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write project - INVALID_ARGUMENT - if the request is malformed - FAILED_PRECONDITION - if the requested state transition is illegal, e.g try to upload a duplicate xml file or a file too large. - NOT_FOUND - if the containing Execution does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -5011,18 +4919,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.publishXunitXmlFiles
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
-     * @param {().PublishXunitXmlFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publishXunitXmlFiles(
       params: Params$Resource$Projects$Histories$Executions$Steps$Publishxunitxmlfiles,
@@ -5260,9 +5162,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfMetricsSummary.create
-     * @desc Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created. May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
+     * Creates a PerfMetricsSummary resource. Returns the existing one if it has already been created. May return any of the following error code(s): - NOT_FOUND - The containing Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -5332,18 +5234,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfMetricsSummary.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfMetricsSummary} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfmetricssummary$Create,
@@ -5464,9 +5360,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfSampleSeries.create
-     * @desc Creates a PerfSampleSeries. May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
+     * Creates a PerfSampleSeries. May return any of the following error code(s): - ALREADY_EXISTS - PerfMetricSummary already exists for the given Step - NOT_FOUND - The containing Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -5532,18 +5428,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().PerfSampleSeries} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Create,
@@ -5625,9 +5515,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfSampleSeries.get
-     * @desc Gets a PerfSampleSeries. May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
+     * Gets a PerfSampleSeries. May return any of the following error code(s): - NOT_FOUND - The specified PerfSampleSeries does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -5682,18 +5572,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Get,
@@ -5787,9 +5671,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfSampleSeries.list
-     * @desc Lists PerfSampleSeries for a given Step. The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids. May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
+     * Lists PerfSampleSeries for a given Step. The request provides an optional filter which specifies one or more PerfMetricsType to include in the result; if none returns all. The resulting PerfSampleSeries are sorted by ids. May return any of the following canonical error codes: - NOT_FOUND - The containing Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -5839,18 +5723,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string=} params.filter Specify one or more PerfMetricType values such as CPU to filter the result
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$List,
@@ -6019,9 +5897,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
-     * @desc Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database). May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * Creates a batch of PerfSamples - a client can submit multiple batches of Perf Samples through repeated calls to this method in order to split up a large request payload - duplicates and existing timestamp entries will be ignored. - the batch operation may partially succeed - the set of elements successfully inserted is returned in the response (omits items which already existed in the database). May return any of the following canonical error codes: - NOT_FOUND - The containing PerfSampleSeries does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -6079,19 +5957,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.samples.batchCreate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
-     * @param {().BatchCreatePerfSamplesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchCreate(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$Batchcreate,
@@ -6194,9 +6065,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
-     * @desc Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
+     * Lists the Performance Samples of a given Sample Series - The list results are sorted by timestamps ascending - The default page size is 500 samples; and maximum size allowed 5000 - The response token indicates the last returned PerfSample timestamp - When the results size exceeds the page size, submit a subsequent request including the page token to return the rest of the samples up to the page limit May return any of the following canonical error codes: - OUT_OF_RANGE - The specified request page_token is out of valid range - NOT_FOUND - The containing PerfSampleSeries does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -6251,20 +6122,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.perfSampleSeries.samples.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A tool results execution ID.
-     * @param {string} params.historyId A tool results history ID.
-     * @param {integer=} params.pageSize The default page size is 500 samples, and the maximum size is 5000. If the page_size is greater than 5000, the effective page size will be 5000
-     * @param {string=} params.pageToken Optional, the next_page_token returned in the previous response
-     * @param {string} params.projectId The cloud project
-     * @param {string} params.sampleSeriesId A sample series id
-     * @param {string} params.stepId A tool results step ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Perfsampleseries$Samples$List,
@@ -6430,9 +6293,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.testCases.get
-     * @desc Gets details of a Test Case for a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist
+     * Gets details of a Test Case for a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Test Case does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -6490,18 +6353,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.testCases.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
-     * @param {string} params.testCaseId A Test Case id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$Get,
@@ -6595,9 +6452,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.testCases.list
-     * @desc Lists Test Cases attached to a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist
+     * Lists Test Cases attached to a Step. Experimental test cases API. Still in active development. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the containing Step does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -6650,19 +6507,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.testCases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId A Execution id Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {integer=} params.pageSize The maximum number of TestCases to fetch. Default value: 100. The server will use this default if the field is not set or has a value of 0. Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string} params.stepId A Step id. Note: This step must include a TestExecutionStep. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Testcases$List,
@@ -6807,9 +6657,9 @@ export namespace toolresults_v1beta3 {
     }
 
     /**
-     * toolresults.projects.histories.executions.steps.thumbnails.list
-     * @desc Lists thumbnails of images attached to a step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images do not exist
+     * Lists thumbnails of images attached to a step. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read from the project, or from any of the images - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the step does not exist, or if any of the images do not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/toolresults.googleapis.com
@@ -6862,19 +6712,12 @@ export namespace toolresults_v1beta3 {
      *   throw e;
      * });
      *
-     * @alias toolresults.projects.histories.executions.steps.thumbnails.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.executionId An Execution id. Required.
-     * @param {string} params.historyId A History id. Required.
-     * @param {integer=} params.pageSize The maximum number of thumbnails to fetch. Default value: 50. The server will use this default if the field is not set or has a value of 0. Optional.
-     * @param {string=} params.pageToken A continuation token to resume the query at the next item. Optional.
-     * @param {string} params.projectId A Project id. Required.
-     * @param {string} params.stepId A Step id. Required.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Histories$Executions$Steps$Thumbnails$List,

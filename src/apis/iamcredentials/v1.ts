@@ -104,14 +104,10 @@ export namespace iamcredentials_v1 {
    *  Creates short-lived credentials for impersonating IAM service accounts. *Note:* This API is tied to the IAM API (iam.googleapis.com). Enabling or disabling this API will also enable or disable the IAM API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const iamcredentials = google.iamcredentials('v1');
-   *
-   * @namespace iamcredentials
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Iamcredentials
+   * ```
    */
   export class Iamcredentials {
     context: APIRequestContext;
@@ -129,11 +125,11 @@ export namespace iamcredentials_v1 {
 
   export interface Schema$GenerateAccessTokenRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[] | null;
     /**
-     * The desired lifetime duration of the access token in seconds. By default, the maximum allowed value is 1 hour. To set a lifetime of up to 12 hours, you can add the service account as an allowed value in an Organization Policy that enforces the `constraints/iam.allowServiceAccountCredentialLifetimeExtension` constraint. See detailed instructions at https://cloud.google.com/iam/help/credentials/lifetime If a value is not specified, the token&#39;s lifetime will be set to a default value of 1 hour.
+     * The desired lifetime duration of the access token in seconds. By default, the maximum allowed value is 1 hour. To set a lifetime of up to 12 hours, you can add the service account as an allowed value in an Organization Policy that enforces the `constraints/iam.allowServiceAccountCredentialLifetimeExtension` constraint. See detailed instructions at https://cloud.google.com/iam/help/credentials/lifetime If a value is not specified, the token's lifetime will be set to a default value of 1 hour.
      */
     lifetime?: string | null;
     /**
@@ -157,7 +153,7 @@ export namespace iamcredentials_v1 {
      */
     audience?: string | null;
     /**
-     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[] | null;
     /**
@@ -173,7 +169,7 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignBlobRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[] | null;
     /**
@@ -183,7 +179,7 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignBlobResponse {
     /**
-     * The ID of the key used to sign the blob. The key used for signing will remain valid for at least 12 hours after the blob is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
+     * The ID of the key used to sign the blob. The key used for signing will remain valid for at least 12 hours after the blob is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL\}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL\}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL\}`
      */
     keyId?: string | null;
     /**
@@ -193,17 +189,17 @@ export namespace iamcredentials_v1 {
   }
   export interface Schema$SignJwtRequest {
     /**
-     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * The sequence of service accounts in a delegation chain. Each service account must be granted the `roles/iam.serviceAccountTokenCreator` role on its next service account in the chain. The last service account in the chain must be granted the `roles/iam.serviceAccountTokenCreator` role on the service account that is specified in the `name` field of the request. The delegates must have the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     delegates?: string[] | null;
     /**
-     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{&quot;sub&quot;: &quot;user@example.com&quot;, &quot;iat&quot;: 313435}` If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 12 hours in the future.
+     * Required. The JWT payload to sign. Must be a serialized JSON object that contains a JWT Claims Set. For example: `{"sub": "user@example.com", "iat": 313435\}` If the JWT Claims Set contains an expiration time (`exp`) claim, it must be an integer timestamp that is not in the past and no more than 12 hours in the future.
      */
     payload?: string | null;
   }
   export interface Schema$SignJwtResponse {
     /**
-     * The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL}`
+     * The ID of the key used to sign the JWT. The key used for signing will remain valid for at least 12 hours after the JWT is signed. To verify the signature, you can retrieve the public key in several formats from the following endpoints: - RSA public key wrapped in an X.509 v3 certificate: `https://www.googleapis.com/service_accounts/v1/metadata/x509/{ACCOUNT_EMAIL\}` - Raw key in JSON format: `https://www.googleapis.com/service_accounts/v1/metadata/raw/{ACCOUNT_EMAIL\}` - JSON Web Key (JWK): `https://www.googleapis.com/service_accounts/v1/metadata/jwk/{ACCOUNT_EMAIL\}`
      */
     keyId?: string | null;
     /**
@@ -230,9 +226,9 @@ export namespace iamcredentials_v1 {
     }
 
     /**
-     * iamcredentials.projects.serviceAccounts.generateAccessToken
-     * @desc Generates an OAuth 2.0 access token for a service account.
+     * Generates an OAuth 2.0 access token for a service account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
@@ -257,7 +253,7 @@ export namespace iamcredentials_v1 {
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateAccessToken(
      *     {
-     *       // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *       // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      *       name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *       // Request body metadata
@@ -285,15 +281,12 @@ export namespace iamcredentials_v1 {
      *   throw e;
      * });
      *
-     * @alias iamcredentials.projects.serviceAccounts.generateAccessToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().GenerateAccessTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generateAccessToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateaccesstoken,
@@ -383,9 +376,9 @@ export namespace iamcredentials_v1 {
     }
 
     /**
-     * iamcredentials.projects.serviceAccounts.generateIdToken
-     * @desc Generates an OpenID Connect ID token for a service account.
+     * Generates an OpenID Connect ID token for a service account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
@@ -409,7 +402,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.generateIdToken({
-     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *     // Request body metadata
@@ -435,15 +428,12 @@ export namespace iamcredentials_v1 {
      *   throw e;
      * });
      *
-     * @alias iamcredentials.projects.serviceAccounts.generateIdToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().GenerateIdTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generateIdToken(
       params: Params$Resource$Projects$Serviceaccounts$Generateidtoken,
@@ -533,9 +523,9 @@ export namespace iamcredentials_v1 {
     }
 
     /**
-     * iamcredentials.projects.serviceAccounts.signBlob
-     * @desc Signs a blob using a service account's system-managed private key.
+     * Signs a blob using a service account's system-managed private key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
@@ -559,7 +549,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signBlob({
-     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *     // Request body metadata
@@ -585,15 +575,12 @@ export namespace iamcredentials_v1 {
      *   throw e;
      * });
      *
-     * @alias iamcredentials.projects.serviceAccounts.signBlob
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().SignBlobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signBlob(
       params: Params$Resource$Projects$Serviceaccounts$Signblob,
@@ -676,9 +663,9 @@ export namespace iamcredentials_v1 {
     }
 
     /**
-     * iamcredentials.projects.serviceAccounts.signJwt
-     * @desc Signs a JWT using a service account's system-managed private key.
+     * Signs a JWT using a service account's system-managed private key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iamcredentials.googleapis.com
@@ -702,7 +689,7 @@ export namespace iamcredentials_v1 {
      *
      *   // Do the magic
      *   const res = await iamcredentials.projects.serviceAccounts.signJwt({
-     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     *     // Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      *     name: 'projects/my-project/serviceAccounts/my-serviceAccount',
      *
      *     // Request body metadata
@@ -728,15 +715,12 @@ export namespace iamcredentials_v1 {
      *   throw e;
      * });
      *
-     * @alias iamcredentials.projects.serviceAccounts.signJwt
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
-     * @param {().SignJwtRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signJwt(
       params: Params$Resource$Projects$Serviceaccounts$Signjwt,
@@ -822,7 +806,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Generateaccesstoken
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -834,7 +818,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Generateidtoken
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -846,7 +830,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signblob
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 
@@ -858,7 +842,7 @@ export namespace iamcredentials_v1 {
   export interface Params$Resource$Projects$Serviceaccounts$Signjwt
     extends StandardParameters {
     /**
-     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
+     * Required. The resource name of the service account for which the credentials are requested, in the following format: `projects/-/serviceAccounts/{ACCOUNT_EMAIL_OR_UNIQUEID\}`. The `-` wildcard character is required; replacing it with a project ID is invalid.
      */
     name?: string;
 

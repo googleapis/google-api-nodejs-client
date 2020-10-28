@@ -104,14 +104,10 @@ export namespace domainsrdap_v1 {
    * Read-only public API that lets users search for information about domain names.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const domainsrdap = google.domainsrdap('v1');
-   *
-   * @namespace domainsrdap
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Domainsrdap
+   * ```
    */
   export class Domainsrdap {
     context: APIRequestContext;
@@ -138,7 +134,7 @@ export namespace domainsrdap_v1 {
   }
 
   /**
-   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can&#39;t be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
+   * Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; \} service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); \} Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); \} Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.
    */
   export interface Schema$HttpBody {
     /**
@@ -159,31 +155,31 @@ export namespace domainsrdap_v1 {
    */
   export interface Schema$Link {
     /**
-     * Target URL of a link. Example: &quot;http://example.com/previous&quot;.
+     * Target URL of a link. Example: "http://example.com/previous".
      */
     href?: string | null;
     /**
-     * Language code of a link. Example: &quot;en&quot;.
+     * Language code of a link. Example: "en".
      */
     hreflang?: string | null;
     /**
-     * Media type of the link destination. Example: &quot;screen&quot;.
+     * Media type of the link destination. Example: "screen".
      */
     media?: string | null;
     /**
-     * Relation type of a link. Example: &quot;previous&quot;.
+     * Relation type of a link. Example: "previous".
      */
     rel?: string | null;
     /**
-     * Title of this link. Example: &quot;title&quot;.
+     * Title of this link. Example: "title".
      */
     title?: string | null;
     /**
-     * Content type of the link. Example: &quot;application/json&quot;.
+     * Content type of the link. Example: "application/json".
      */
     type?: string | null;
     /**
-     * URL giving context for the link. Example: &quot;http://example.com/current&quot;.
+     * URL giving context for the link. Example: "http://example.com/current".
      */
     value?: string | null;
   }
@@ -200,11 +196,11 @@ export namespace domainsrdap_v1 {
      */
     links?: Schema$Link[];
     /**
-     * Title of a notice. Example: &quot;Terms of Service&quot;.
+     * Title of a notice. Example: "Terms of Service".
      */
     title?: string | null;
     /**
-     * Type values defined in [section 10.2.1 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-10.2.1) specific to a whole response: &quot;result set truncated due to authorization&quot;, &quot;result set truncated due to excessive load&quot;, &quot;result set truncated due to unexplainable reasons&quot;.
+     * Type values defined in [section 10.2.1 of RFC 7483](https://tools.ietf.org/html/rfc7483#section-10.2.1) specific to a whole response: "result set truncated due to authorization", "result set truncated due to excessive load", "result set truncated due to unexplainable reasons".
      */
     type?: string | null;
   }
@@ -217,11 +213,11 @@ export namespace domainsrdap_v1 {
      */
     description?: string[] | null;
     /**
-     * Error HTTP code. Example: &quot;501&quot;.
+     * Error HTTP code. Example: "501".
      */
     errorCode?: number | null;
     /**
-     * HTTP response with content type set to &quot;application/json+rdap&quot;.
+     * HTTP response with content type set to "application/json+rdap".
      */
     jsonResponse?: Schema$HttpBody;
     /**
@@ -249,9 +245,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.autnum.get
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -296,14 +292,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.autnum.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.autnumId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Autnum$Get,
@@ -398,9 +392,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.domain.get
-     * @desc Look up RDAP information for a domain by name.
+     * Look up RDAP information for a domain by name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -442,14 +436,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.domain.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.domainName Full domain name to look up. Example: "example.com"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Domain$Get,
@@ -544,9 +536,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.entity.get
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -591,14 +583,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.entity.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.entityId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Entity$Get,
@@ -693,9 +683,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.ip.get
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -742,15 +732,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.ip.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.ipId
-     * @param {string} params.ipId1
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Ip$Get,
@@ -849,9 +836,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.nameserver.get
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -896,14 +883,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.nameserver.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.nameserverId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Nameserver$Get,
@@ -998,9 +983,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.getDomains
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -1043,13 +1028,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.getDomains
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getDomains(
       params: Params$Resource$V1$Getdomains,
@@ -1127,9 +1111,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.getEntities
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -1172,13 +1156,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.getEntities
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getEntities(
       params: Params$Resource$V1$Getentities,
@@ -1256,9 +1239,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.getHelp
-     * @desc Get help information for the RDAP API, including links to documentation.
+     * Get help information for the RDAP API, including links to documentation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -1297,13 +1280,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.getHelp
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getHelp(
       params: Params$Resource$V1$Gethelp,
@@ -1381,9 +1363,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.getIp
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -1422,13 +1404,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.getIp
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIp(
       params: Params$Resource$V1$Getip,
@@ -1506,9 +1487,9 @@ export namespace domainsrdap_v1 {
     }
 
     /**
-     * domainsrdap.getNameservers
-     * @desc The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
+     * The RDAP API recognizes this command from the RDAP specification but does not support it. The response is a formatted 501 error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/domainsrdap.googleapis.com
@@ -1551,13 +1532,12 @@ export namespace domainsrdap_v1 {
      *   throw e;
      * });
      *
-     * @alias domainsrdap.getNameservers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getNameservers(
       params: Params$Resource$V1$Getnameservers,

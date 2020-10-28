@@ -31,3 +31,14 @@ export function reseller<T = reseller_v1.Reseller>(
 
 const auth = new AuthPlus();
 export {auth};
+export {reseller_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -88,14 +88,10 @@ export namespace storage_v1 {
    * Stores and retrieves potentially large, immutable data objects.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const storage = google.storage('v1');
-   *
-   * @namespace storage
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Storage
+   * ```
    */
   export class Storage {
     context: APIRequestContext;
@@ -140,11 +136,11 @@ export namespace storage_v1 {
      */
     acl?: Schema$BucketAccessControl[];
     /**
-     * The bucket&#39;s billing configuration.
+     * The bucket's billing configuration.
      */
     billing?: {requesterPays?: boolean} | null;
     /**
-     * The bucket&#39;s Cross-Origin Resource Sharing (CORS) configuration.
+     * The bucket's Cross-Origin Resource Sharing (CORS) configuration.
      */
     cors?: Array<{
       maxAgeSeconds?: number;
@@ -153,7 +149,7 @@ export namespace storage_v1 {
       responseHeader?: string[];
     }> | null;
     /**
-     * The default value for event-based hold on newly created objects in this bucket. Event-based hold is a way to retain objects indefinitely until an event occurs, signified by the hold&#39;s release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived until the hold is removed.
+     * The default value for event-based hold on newly created objects in this bucket. Event-based hold is a way to retain objects indefinitely until an event occurs, signified by the hold's release. After being released, such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false. Objects under event-based hold cannot be deleted, overwritten or archived until the hold is removed.
      */
     defaultEventBasedHold?: boolean | null;
     /**
@@ -169,7 +165,7 @@ export namespace storage_v1 {
      */
     etag?: string | null;
     /**
-     * The bucket&#39;s IAM configuration.
+     * The bucket's IAM configuration.
      */
     iamConfiguration?: {
       bucketPolicyOnly?: {enabled?: boolean; lockedTime?: string};
@@ -188,7 +184,7 @@ export namespace storage_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The bucket&#39;s lifecycle configuration. See lifecycle management for more information.
+     * The bucket's lifecycle configuration. See lifecycle management for more information.
      */
     lifecycle?: {
       rule?: Array<{
@@ -208,7 +204,7 @@ export namespace storage_v1 {
       }>;
     } | null;
     /**
-     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer&#39;s guide for the authoritative list.
+     * The location of the bucket. Object data for objects in the bucket resides in physical storage within this region. Defaults to US. See the developer's guide for the authoritative list.
      */
     location?: string | null;
     /**
@@ -216,7 +212,7 @@ export namespace storage_v1 {
      */
     locationType?: string | null;
     /**
-     * The bucket&#39;s logging configuration, which defines the destination bucket and optional name prefix for the current bucket&#39;s logs.
+     * The bucket's logging configuration, which defines the destination bucket and optional name prefix for the current bucket's logs.
      */
     logging?: {logBucket?: string; logObjectPrefix?: string} | null;
     /**
@@ -228,7 +224,7 @@ export namespace storage_v1 {
      */
     name?: string | null;
     /**
-     * The owner of the bucket. This is always the project team&#39;s owner group.
+     * The owner of the bucket. This is always the project team's owner group.
      */
     owner?: {entity?: string; entityId?: string} | null;
     /**
@@ -236,7 +232,7 @@ export namespace storage_v1 {
      */
     projectNumber?: string | null;
     /**
-     * The bucket&#39;s retention policy. The retention policy enforces a minimum retention time for all objects contained in the bucket, based on their creation time. Any attempt to overwrite or delete objects younger than the retention period will result in a PERMISSION_DENIED error. An unlocked retention policy can be modified or removed from the bucket via a storage.buckets.update operation. A locked retention policy cannot be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period of a locked retention policy will result in a PERMISSION_DENIED error.
+     * The bucket's retention policy. The retention policy enforces a minimum retention time for all objects contained in the bucket, based on their creation time. Any attempt to overwrite or delete objects younger than the retention period will result in a PERMISSION_DENIED error. An unlocked retention policy can be modified or removed from the bucket via a storage.buckets.update operation. A locked retention policy cannot be removed or shortened in duration for the lifetime of the bucket. Attempting to remove or decrease period of a locked retention policy will result in a PERMISSION_DENIED error.
      */
     retentionPolicy?: {
       effectiveTime?: string;
@@ -248,7 +244,7 @@ export namespace storage_v1 {
      */
     selfLink?: string | null;
     /**
-     * The bucket&#39;s default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
+     * The bucket's default storage class, used whenever no storageClass is specified for a newly-created object. This defines how objects in the bucket are stored and determines the SLA and the cost of storage. Values include MULTI_REGIONAL, REGIONAL, STANDARD, NEARLINE, COLDLINE, ARCHIVE, and DURABLE_REDUCED_AVAILABILITY. If this value is not specified when the bucket is created, it will default to STANDARD. For more information, see storage classes.
      */
     storageClass?: string | null;
     /**
@@ -260,15 +256,15 @@ export namespace storage_v1 {
      */
     updated?: string | null;
     /**
-     * The bucket&#39;s versioning configuration.
+     * The bucket's versioning configuration.
      */
     versioning?: {enabled?: boolean} | null;
     /**
-     * The bucket&#39;s website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
+     * The bucket's website configuration, controlling how the service behaves when accessing bucket contents as a web site. See the Static Website Examples for more information.
      */
     website?: {mainPageSuffix?: string; notFoundPage?: string} | null;
     /**
-     * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won&#39;t be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
+     * The zone or zones from which the bucket is intended to use zonal quota. Requests for data from outside the specified affinities are still allowed but won't be able to use zonal quota. The zone or zones need to be within the bucket location otherwise the requests will fail with a 400 Bad Request response.
      */
     zoneAffinity?: string[] | null;
   }
@@ -289,7 +285,18 @@ export namespace storage_v1 {
      */
     email?: string | null;
     /**
-     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:
+     * - user-userId
+     * - user-email
+     * - group-groupId
+     * - group-email
+     * - domain-domain
+     * - project-team-projectId
+     * - allUsers
+     * - allAuthenticatedUsers Examples:
+     * - The user liz@example.com would be user-liz@example.com.
+     * - The group example@googlegroups.com would be group-example@googlegroups.com.
+     * - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string | null;
     /**
@@ -368,7 +375,7 @@ export namespace storage_v1 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
      */
     kind?: string | null;
     /**
@@ -418,7 +425,7 @@ export namespace storage_v1 {
     }> | null;
   }
   /**
-   * Represents an expression text. Example: title: &quot;User account presence&quot; description: &quot;Determines whether the request has a user account&quot; expression: &quot;size(request.user) &gt; 0&quot;
+   * Represents an expression text. Example: title: "User account presence" description: "Determines whether the request has a user account" expression: "size(request.user) \> 0"
    */
   export interface Schema$Expr {
     /**
@@ -484,7 +491,7 @@ export namespace storage_v1 {
      */
     selfLink?: string | null;
     /**
-     * The email address of the key&#39;s associated service account.
+     * The email address of the key's associated service account.
      */
     serviceAccountEmail?: string | null;
     /**
@@ -554,7 +561,7 @@ export namespace storage_v1 {
      */
     selfLink?: string | null;
     /**
-     * The Cloud PubSub topic to which this subscription publishes. Formatted as: &#39;//pubsub.googleapis.com/projects/{project-identifier}/topics/{my-topic}&#39;
+     * The Cloud PubSub topic to which this subscription publishes. Formatted as: '//pubsub.googleapis.com/projects/{project-identifier\}/topics/{my-topic\}'
      */
     topic?: string | null;
   }
@@ -627,7 +634,7 @@ export namespace storage_v1 {
      */
     etag?: string | null;
     /**
-     * Whether an object is under event-based hold. Event-based hold is a way to retain objects until an event occurs, which is signified by the hold&#39;s release (i.e. this value is set to false). After being released (set to false), such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is the loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false.
+     * Whether an object is under event-based hold. Event-based hold is a way to retain objects until an event occurs, which is signified by the hold's release (i.e. this value is set to false). After being released (set to false), such objects will be subject to bucket-level retention (if any). One sample use case of this flag is for banks to hold loan documents for at least 3 years after loan is paid in full. Here, bucket-level retention is 3 years and the event is the loan being paid in full. In this example, these objects will be held intact for any number of years until the event has occurred (event-based hold on the object is released) and then 3 more years after that. That means retention duration of the objects begins from the moment event-based hold transitioned from true to false.
      */
     eventBasedHold?: boolean | null;
     /**
@@ -671,7 +678,7 @@ export namespace storage_v1 {
      */
     owner?: {entity?: string; entityId?: string} | null;
     /**
-     * A server-determined value that specifies the earliest time that the object&#39;s retention period expires. This value is in RFC 3339 format. Note 1: This field is not provided for objects with an active event-based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when temporary hold is set (so that the user can reason about policy without having to first unset the temporary hold).
+     * A server-determined value that specifies the earliest time that the object's retention period expires. This value is in RFC 3339 format. Note 1: This field is not provided for objects with an active event-based hold, since retention expiration is unknown until the hold is removed. Note 2: This value can be provided even when temporary hold is set (so that the user can reason about policy without having to first unset the temporary hold).
      */
     retentionExpirationTime?: string | null;
     /**
@@ -699,7 +706,7 @@ export namespace storage_v1 {
      */
     timeDeleted?: string | null;
     /**
-     * The time at which the object&#39;s storage class was last changed. When the object is initially created, it will be set to timeCreated.
+     * The time at which the object's storage class was last changed. When the object is initially created, it will be set to timeCreated.
      */
     timeStorageClassUpdated?: string | null;
     /**
@@ -724,7 +731,18 @@ export namespace storage_v1 {
      */
     email?: string | null;
     /**
-     * The entity holding the permission, in one of the following forms:  - user-userId  - user-email  - group-groupId  - group-email  - domain-domain  - project-team-projectId  - allUsers  - allAuthenticatedUsers Examples:  - The user liz@example.com would be user-liz@example.com.  - The group example@googlegroups.com would be group-example@googlegroups.com.  - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
+     * The entity holding the permission, in one of the following forms:
+     * - user-userId
+     * - user-email
+     * - group-groupId
+     * - group-email
+     * - domain-domain
+     * - project-team-projectId
+     * - allUsers
+     * - allAuthenticatedUsers Examples:
+     * - The user liz@example.com would be user-liz@example.com.
+     * - The group example@googlegroups.com would be group-example@googlegroups.com.
+     * - To refer to all members of the Google Apps for Business domain example.com, the entity would be domain-example.com.
      */
     entity?: string | null;
     /**
@@ -878,7 +896,21 @@ export namespace storage_v1 {
      */
     kind?: string | null;
     /**
-     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:   - storage.buckets.delete — Delete bucket.   - storage.buckets.get — Read bucket metadata.   - storage.buckets.getIamPolicy — Read bucket IAM policy.   - storage.buckets.create — Create bucket.   - storage.buckets.list — List buckets.   - storage.buckets.setIamPolicy — Update bucket IAM policy.   - storage.buckets.update — Update bucket metadata.   - storage.objects.delete — Delete object.   - storage.objects.get — Read object data and metadata.   - storage.objects.getIamPolicy — Read object IAM policy.   - storage.objects.create — Create object.   - storage.objects.list — List objects.   - storage.objects.setIamPolicy — Update object IAM policy.   - storage.objects.update — Update object metadata.
+     * The permissions held by the caller. Permissions are always of the format storage.resource.capability, where resource is one of buckets or objects. The supported permissions are as follows:
+     * - storage.buckets.delete — Delete bucket.
+     * - storage.buckets.get — Read bucket metadata.
+     * - storage.buckets.getIamPolicy — Read bucket IAM policy.
+     * - storage.buckets.create — Create bucket.
+     * - storage.buckets.list — List buckets.
+     * - storage.buckets.setIamPolicy — Update bucket IAM policy.
+     * - storage.buckets.update — Update bucket metadata.
+     * - storage.objects.delete — Delete object.
+     * - storage.objects.get — Read object data and metadata.
+     * - storage.objects.getIamPolicy — Read object IAM policy.
+     * - storage.objects.create — Create object.
+     * - storage.objects.list — List objects.
+     * - storage.objects.setIamPolicy — Update object IAM policy.
+     * - storage.objects.update — Update object metadata.
      */
     permissions?: string[] | null;
   }
@@ -890,9 +922,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the specified bucket.
+     * Permanently deletes the ACL entry for the specified entity on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -936,17 +968,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Bucketaccesscontrols$Delete,
@@ -1026,9 +1053,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified bucket.
+     * Returns the ACL entry for the specified entity on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -1087,17 +1114,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Bucketaccesscontrols$Get,
@@ -1182,9 +1204,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.insert
-     * @desc Creates a new ACL entry on the specified bucket.
+     * Creates a new ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -1259,17 +1281,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().BucketAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Bucketaccesscontrols$Insert,
@@ -1354,9 +1371,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.list
-     * @desc Retrieves ACL entries on the specified bucket.
+     * Retrieves ACL entries on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -1404,16 +1421,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Bucketaccesscontrols$List,
@@ -1500,9 +1513,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.patch
-     * @desc Patches an ACL entry on the specified bucket.
+     * Patches an ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -1579,18 +1592,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().BucketAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Bucketaccesscontrols$Patch,
@@ -1675,9 +1682,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.bucketAccessControls.update
-     * @desc Updates an ACL entry on the specified bucket.
+     * Updates an ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -1754,18 +1761,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.bucketAccessControls.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().BucketAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Bucketaccesscontrols$Update,
@@ -1979,9 +1980,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.delete
-     * @desc Permanently deletes an empty bucket.
+     * Permanently deletes an empty bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2028,18 +2029,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch If set, only deletes the bucket if its metageneration matches this value.
-     * @param {string=} params.ifMetagenerationNotMatch If set, only deletes the bucket if its metageneration does not match this value.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Buckets$Delete,
@@ -2118,9 +2113,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.get
-     * @desc Returns metadata for the specified bucket.
+     * Returns metadata for the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2202,19 +2197,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Buckets$Get,
@@ -2295,9 +2283,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.getIamPolicy
-     * @desc Returns an IAM policy for the specified bucket.
+     * Returns an IAM policy for the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2350,17 +2338,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {integer=} params.optionsRequestedPolicyVersion The IAM policy format version to be returned. If the optionsRequestedPolicyVersion is for an older version that doesn't support part of the requested IAM policy, the request fails.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Buckets$Getiampolicy,
@@ -2442,9 +2425,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.insert
-     * @desc Creates a new bucket.
+     * Creates a new bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2558,20 +2541,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
-     * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the bucket resource specifies acl or defaultObjectAcl properties, when it defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {().Bucket} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Buckets$Insert,
@@ -2649,9 +2624,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.list
-     * @desc Retrieves a list of buckets for a given project.
+     * Retrieves a list of buckets for a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2711,20 +2686,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of buckets to return in a single response. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to buckets whose names begin with this prefix.
-     * @param {string} params.project A valid API project identifier.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Buckets$List,
@@ -2802,9 +2769,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.lockRetentionPolicy
-     * @desc Locks retention policy on a bucket.
+     * Locks retention policy on a bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -2880,17 +2847,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.lockRetentionPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.ifMetagenerationMatch Makes the operation conditional on whether bucket's current metageneration matches the given value.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lockRetentionPolicy(
       params: Params$Resource$Buckets$Lockretentionpolicy,
@@ -2971,9 +2933,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.patch
-     * @desc Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
+     * Patches a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -3090,22 +3052,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Bucket} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Buckets$Patch,
@@ -3186,9 +3138,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.setIamPolicy
-     * @desc Updates an IAM policy for the specified bucket.
+     * Updates an IAM policy for the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -3251,17 +3203,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Buckets$Setiampolicy,
@@ -3343,9 +3290,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.testIamPermissions
-     * @desc Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
+     * Tests a set of permissions on the given bucket to see which, if any, are held by the caller.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -3398,17 +3345,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Buckets$Testiampermissions,
@@ -3496,9 +3438,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.buckets.update
-     * @desc Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
+     * Updates a bucket. Changes to the bucket will be readable immediately after writing, but configuration changes may take time to propagate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -3615,22 +3557,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.buckets.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the return of the bucket metadata conditional on whether the bucket's current metageneration does not match the given value.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this bucket.
-     * @param {string=} params.predefinedDefaultObjectAcl Apply a predefined set of default object access controls to this bucket.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Bucket} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Buckets$Update,
@@ -3983,9 +3915,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.channels.stop
-     * @desc Stop watching resources through this channel
+     * Stop watching resources through this channel
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4040,14 +3972,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.channels.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Channels$Stop,
@@ -4140,9 +4070,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.delete
-     * @desc Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
+     * Permanently deletes the default object ACL entry for the specified entity on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4186,17 +4116,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Defaultobjectaccesscontrols$Delete,
@@ -4275,9 +4200,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.get
-     * @desc Returns the default object ACL entry for the specified entity on the specified bucket.
+     * Returns the default object ACL entry for the specified entity on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4338,17 +4263,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Defaultobjectaccesscontrols$Get,
@@ -4432,9 +4352,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.insert
-     * @desc Creates a new default object ACL entry on the specified bucket.
+     * Creates a new default object ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4513,17 +4433,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Defaultobjectaccesscontrols$Insert,
@@ -4608,9 +4523,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.list
-     * @desc Retrieves default object ACL entries on the specified bucket.
+     * Retrieves default object ACL entries on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4662,18 +4577,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.ifMetagenerationMatch If present, only return default ACL listing if the bucket's current metageneration matches this value.
-     * @param {string=} params.ifMetagenerationNotMatch If present, only return default ACL listing if the bucket's current metageneration does not match the given value.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Defaultobjectaccesscontrols$List,
@@ -4760,9 +4669,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.patch
-     * @desc Patches a default object ACL entry on the specified bucket.
+     * Patches a default object ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -4843,18 +4752,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Defaultobjectaccesscontrols$Patch,
@@ -4938,9 +4841,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.defaultObjectAccessControls.update
-     * @desc Updates a default object ACL entry on the specified bucket.
+     * Updates a default object ACL entry on the specified bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5021,18 +4924,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.defaultObjectAccessControls.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Defaultobjectaccesscontrols$Update,
@@ -5253,9 +5150,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.notifications.delete
-     * @desc Permanently deletes a notification subscription.
+     * Permanently deletes a notification subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5300,17 +5197,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.notifications.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket The parent bucket of the notification.
-     * @param {string} params.notification ID of the notification to delete.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Notifications$Delete,
@@ -5390,9 +5282,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.notifications.get
-     * @desc View a notification configuration.
+     * View a notification configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5452,17 +5344,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.notifications.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket The parent bucket of the notification.
-     * @param {string} params.notification Notification ID
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Notifications$Get,
@@ -5544,9 +5431,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.notifications.insert
-     * @desc Creates a notification subscription for a given bucket.
+     * Creates a notification subscription for a given bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5618,17 +5505,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.notifications.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket The parent bucket of the notification.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Notification} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Notifications$Insert,
@@ -5709,9 +5591,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.notifications.list
-     * @desc Retrieves a list of notification subscriptions for a given bucket.
+     * Retrieves a list of notification subscriptions for a given bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5762,16 +5644,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.notifications.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a Google Cloud Storage bucket.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Notifications$List,
@@ -5933,9 +5811,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.delete
-     * @desc Permanently deletes the ACL entry for the specified entity on the specified object.
+     * Permanently deletes the ACL entry for the specified entity on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -5983,19 +5861,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Objectaccesscontrols$Delete,
@@ -6074,9 +5945,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.get
-     * @desc Returns the ACL entry for the specified entity on the specified object.
+     * Returns the ACL entry for the specified entity on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -6141,19 +6012,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Objectaccesscontrols$Get,
@@ -6237,9 +6101,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.insert
-     * @desc Creates a new ACL entry on the specified object.
+     * Creates a new ACL entry on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -6322,19 +6186,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Objectaccesscontrols$Insert,
@@ -6419,9 +6276,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.list
-     * @desc Retrieves ACL entries on the specified object.
+     * Retrieves ACL entries on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -6473,18 +6330,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Objectaccesscontrols$List,
@@ -6571,9 +6422,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.patch
-     * @desc Patches an ACL entry on the specified object.
+     * Patches an ACL entry on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -6658,20 +6509,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Objectaccesscontrols$Patch,
@@ -6755,9 +6598,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objectAccessControls.update
-     * @desc Updates an ACL entry on the specified object.
+     * Updates an ACL entry on the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -6842,20 +6685,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objectAccessControls.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of a bucket.
-     * @param {string} params.entity The entity holding the permission. Can be user-userId, user-emailAddress, group-groupId, group-emailAddress, allUsers, or allAuthenticatedUsers.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ObjectAccessControl} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Objectaccesscontrols$Update,
@@ -7116,9 +6951,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.compose
-     * @desc Concatenates a list of existing objects into a new object in the same bucket.
+     * Concatenates a list of existing objects into a new object in the same bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -7217,22 +7052,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.compose
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket containing the source objects. The destination object is stored in this bucket.
-     * @param {string} params.destinationObject Name of the new object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().ComposeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     compose(
       params: Params$Resource$Objects$Compose,
@@ -7313,9 +7138,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.copy
-     * @desc Copies a source object to a destination object. Optionally overrides metadata.
+     * Copies a source object to a destination object. Optionally overrides metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -7463,32 +7288,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.copy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the destination object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the destination object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
-     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
-     * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Object} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     copy(
       params: Params$Resource$Objects$Copy,
@@ -7579,9 +7384,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.delete
-     * @desc Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
+     * Deletes an object and its metadata. Deletions are permanent if versioning is not enabled for the bucket, or if the generation parameter is used.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -7636,22 +7441,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, permanently deletes a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Objects$Delete,
@@ -7730,9 +7525,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.get
-     * @desc Retrieves an object or its metadata.
+     * Retrieves an object or its metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -7827,23 +7622,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Objects$Get,
@@ -7924,9 +7708,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.getIamPolicy
-     * @desc Returns an IAM policy for the specified object.
+     * Returns an IAM policy for the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -7984,18 +7768,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Objects$Getiampolicy,
@@ -8077,9 +7855,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.insert
-     * @desc Stores a new object and metadata.
+     * Stores a new object and metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -8219,29 +7997,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string=} params.contentEncoding If set, sets the contentEncoding property of the final object to this value. Setting this parameter is equivalent to setting the contentEncoding metadata property. This can be useful when uploading an object with uploadType=media to indicate the encoding of the content being uploaded.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string=} params.kmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string=} params.name Name of the object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Objects$Insert,
@@ -8326,9 +8087,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.list
-     * @desc Retrieves a list of objects matching the criteria.
+     * Retrieves a list of objects matching the criteria.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -8399,25 +8160,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {string=} params.endOffset Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.startOffset Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Objects$List,
@@ -8498,9 +8246,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.patch
-     * @desc Patches an object's metadata.
+     * Patches an object's metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -8633,25 +8381,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request, for Requester Pays buckets.
-     * @param {().Object} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Objects$Patch,
@@ -8732,9 +8467,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.rewrite
-     * @desc Rewrites a source object to a destination object. Optionally overrides metadata.
+     * Rewrites a source object to a destination object. Optionally overrides metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -8860,34 +8595,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.rewrite
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.destinationBucket Name of the bucket in which to store the new object. Overrides the provided object metadata's bucket value, if any.
-     * @param {string=} params.destinationKmsKeyName Resource name of the Cloud KMS key, of the form projects/my-project/locations/global/keyRings/my-kr/cryptoKeys/my-key, that will be used to encrypt the object. Overrides the object metadata's kms_key_name value, if any.
-     * @param {string} params.destinationObject Name of the new object. Required when the object metadata is not otherwise provided. Overrides the object metadata's name value, if any. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.destinationPredefinedAcl Apply a predefined set of access controls to the destination object.
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the destination object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the destination object's current metageneration does not match the given value.
-     * @param {string=} params.ifSourceGenerationMatch Makes the operation conditional on whether the source object's current generation matches the given value.
-     * @param {string=} params.ifSourceGenerationNotMatch Makes the operation conditional on whether the source object's current generation does not match the given value.
-     * @param {string=} params.ifSourceMetagenerationMatch Makes the operation conditional on whether the source object's current metageneration matches the given value.
-     * @param {string=} params.ifSourceMetagenerationNotMatch Makes the operation conditional on whether the source object's current metageneration does not match the given value.
-     * @param {string=} params.maxBytesRewrittenPerCall The maximum number of bytes that will be rewritten per rewrite request. Most callers shouldn't need to specify this parameter - it is primarily in place to support testing. If specified the value must be an integral multiple of 1 MiB (1048576). Also, this only applies to requests where the source and destination span locations and/or storage classes. Finally, this value must not change across rewrite calls else you'll get an error that the rewriteToken is invalid.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl, unless the object resource specifies the acl property, when it defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.rewriteToken Include this field (from the previous rewrite response) on each rewrite request after the first one, until the rewrite response 'done' flag is true. Calls that provide a rewriteToken can omit all other request fields, but if included those fields must match the values provided in the first rewrite request.
-     * @param {string} params.sourceBucket Name of the bucket in which to find the source object.
-     * @param {string=} params.sourceGeneration If present, selects a specific revision of the source object (as opposed to the latest version, the default).
-     * @param {string} params.sourceObject Name of the source object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Object} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rewrite(
       params: Params$Resource$Objects$Rewrite,
@@ -8978,9 +8691,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.setIamPolicy
-     * @desc Updates an IAM policy for the specified object.
+     * Updates an IAM policy for the specified object.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -9048,19 +8761,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Objects$Setiampolicy,
@@ -9142,9 +8848,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.testIamPermissions
-     * @desc Tests a set of permissions on the given object to see which, if any, are held by the caller.
+     * Tests a set of permissions on the given object to see which, if any, are held by the caller.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -9201,19 +8907,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string} params.permissions Permissions to test.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Objects$Testiampermissions,
@@ -9301,9 +9000,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.update
-     * @desc Updates an object's metadata.
+     * Updates an object's metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -9436,25 +9135,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which the object resides.
-     * @param {string=} params.generation If present, selects a specific revision of this object (as opposed to the latest version, the default).
-     * @param {string=} params.ifGenerationMatch Makes the operation conditional on whether the object's current generation matches the given value. Setting to 0 makes the operation succeed only if there are no live versions of the object.
-     * @param {string=} params.ifGenerationNotMatch Makes the operation conditional on whether the object's current generation does not match the given value. If no live object exists, the precondition fails. Setting to 0 makes the operation succeed only if there is a live version of the object.
-     * @param {string=} params.ifMetagenerationMatch Makes the operation conditional on whether the object's current metageneration matches the given value.
-     * @param {string=} params.ifMetagenerationNotMatch Makes the operation conditional on whether the object's current metageneration does not match the given value.
-     * @param {string} params.object Name of the object. For information about how to URL encode object names to be path safe, see Encoding URI Path Parts.
-     * @param {string=} params.predefinedAcl Apply a predefined set of access controls to this object.
-     * @param {string=} params.projection Set of properties to return. Defaults to full.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {().Object} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Objects$Update,
@@ -9535,9 +9221,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.objects.watchAll
-     * @desc Watch for changes on all objects in a bucket.
+     * Watch for changes on all objects in a bucket.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -9631,26 +9317,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.objects.watchAll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.bucket Name of the bucket in which to look for objects.
-     * @param {string=} params.delimiter Returns results in a directory-like mode. items will contain only objects whose names, aside from the prefix, do not contain delimiter. Objects whose names, aside from the prefix, contain delimiter will have their name, truncated after the delimiter, returned in prefixes. Duplicate prefixes are omitted.
-     * @param {string=} params.endOffset Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     * @param {boolean=} params.includeTrailingDelimiter If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
-     * @param {integer=} params.maxResults Maximum number of items plus prefixes to return in a single page of responses. As duplicate prefixes are omitted, fewer total results may be returned than requested. The service will use this parameter or 1,000 items, whichever is smaller.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string=} params.prefix Filter results to objects whose names begin with this prefix.
-     * @param {string=} params.projection Set of properties to return. Defaults to noAcl.
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.startOffset Filter results to objects whose names are lexicographically equal to or after startOffset. If endOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
-     * @param {string=} params.userProject The project to be billed for this request. Required for Requester Pays buckets.
-     * @param {boolean=} params.versions If true, lists all versions of an object as distinct results. The default is false. For more information, see Object Versioning.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watchAll(
       params: Params$Resource$Objects$Watchall,
@@ -10390,9 +10062,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.hmacKeys.create
-     * @desc Creates a new HMAC key for the specified service account.
+     * Creates a new HMAC key for the specified service account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -10441,16 +10113,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.hmacKeys.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID owning the service account.
-     * @param {string} params.serviceAccountEmail Email address of the service account.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Hmackeys$Create,
@@ -10531,9 +10199,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.hmacKeys.delete
-     * @desc Deletes an HMAC key.
+     * Deletes an HMAC key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -10576,16 +10244,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.hmacKeys.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accessId Name of the HMAC key to be deleted.
-     * @param {string} params.projectId Project ID owning the requested key
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Hmackeys$Delete,
@@ -10664,9 +10328,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.hmacKeys.get
-     * @desc Retrieves an HMAC key's metadata
+     * Retrieves an HMAC key's metadata
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -10724,16 +10388,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.hmacKeys.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accessId Name of the HMAC key.
-     * @param {string} params.projectId Project ID owning the service account of the requested key.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Hmackeys$Get,
@@ -10814,9 +10474,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.hmacKeys.list
-     * @desc Retrieves a list of HMAC keys matching the criteria.
+     * Retrieves a list of HMAC keys matching the criteria.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -10873,19 +10533,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.hmacKeys.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of items to return in a single page of responses. The service uses this parameter or 250 items, whichever is smaller. The max number of items per page will also be limited by the number of distinct service accounts in the response. If the number of service accounts in a single response is too high, the page will truncated and a next page token will be returned.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string} params.projectId Name of the project in which to look for HMAC keys.
-     * @param {string=} params.serviceAccountEmail If present, only keys for the given service account are returned.
-     * @param {boolean=} params.showDeletedKeys Whether or not to show keys in the DELETED state.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Hmackeys$List,
@@ -10966,9 +10619,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.hmacKeys.update
-     * @desc Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
+     * Updates the state of an HMAC key. See the HMAC Key resource descriptor for valid states.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -11041,17 +10694,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.hmacKeys.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accessId Name of the HMAC key being updated.
-     * @param {string} params.projectId Project ID owning the service account of the updated key.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {().HmacKeyMetadata} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Hmackeys$Update,
@@ -11232,9 +10880,9 @@ export namespace storage_v1 {
     }
 
     /**
-     * storage.projects.serviceAccount.get
-     * @desc Get the email address of this project's Google Cloud Storage service account.
+     * Get the email address of this project's Google Cloud Storage service account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storage.googleapis.com
@@ -11285,16 +10933,12 @@ export namespace storage_v1 {
      *   throw e;
      * });
      *
-     * @alias storage.projects.serviceAccount.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID
-     * @param {string=} params.provisionalUserProject The project to be billed for this request if the target bucket is requester-pays bucket.
-     * @param {string=} params.userProject The project to be billed for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Serviceaccount$Get,

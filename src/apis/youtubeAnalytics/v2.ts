@@ -104,14 +104,10 @@ export namespace youtubeAnalytics_v2 {
    * Retrieves your YouTube Analytics data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const youtubeAnalytics = google.youtubeAnalytics('v2');
-   *
-   * @namespace youtubeAnalytics
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Youtubeanalytics
+   * ```
    */
   export class Youtubeanalytics {
     context: APIRequestContext;
@@ -165,7 +161,7 @@ export namespace youtubeAnalytics_v2 {
      */
     externalErrorMessage?: string | null;
     /**
-     * Location of the error, as specified by the location type. If location_type is PATH, this should be a path to a field that&#39;s relative to the request, using FieldPath notation (net/proto2/util/public/field_path.h). Examples: authenticated_user.gaia_id resource.address[2].country
+     * Location of the error, as specified by the location type. If location_type is PATH, this should be a path to a field that's relative to the request, using FieldPath notation (net/proto2/util/public/field_path.h). Examples: authenticated_user.gaia_id resource.address[2].country
      */
     location?: string | null;
     locationType?: string | null;
@@ -208,7 +204,7 @@ export namespace youtubeAnalytics_v2 {
      */
     id?: string | null;
     /**
-     * Identifies the API resource&#39;s type. The value will be `youtube#group`.
+     * Identifies the API resource's type. The value will be `youtube#group`.
      */
     kind?: string | null;
     /**
@@ -217,7 +213,7 @@ export namespace youtubeAnalytics_v2 {
     snippet?: Schema$GroupSnippet;
   }
   /**
-   * A group&#39;s content details.
+   * A group's content details.
    */
   export interface Schema$GroupContentDetails {
     /**
@@ -246,11 +242,11 @@ export namespace youtubeAnalytics_v2 {
      */
     groupId?: string | null;
     /**
-     * The ID that YouTube uses to uniquely identify the `channel`, `video`, `playlist`, or `asset` resource that is included in the group. Note that this ID refers specifically to the inclusion of that resource in a particular group and is different than the channel ID, video ID, playlist ID, or asset ID that uniquely identifies the resource itself. The `resource.id` property&#39;s value specifies the unique channel, video, playlist, or asset ID.
+     * The ID that YouTube uses to uniquely identify the `channel`, `video`, `playlist`, or `asset` resource that is included in the group. Note that this ID refers specifically to the inclusion of that resource in a particular group and is different than the channel ID, video ID, playlist ID, or asset ID that uniquely identifies the resource itself. The `resource.id` property's value specifies the unique channel, video, playlist, or asset ID.
      */
     id?: string | null;
     /**
-     * Identifies the API resource&#39;s type. The value will be `youtube#groupItem`.
+     * Identifies the API resource's type. The value will be `youtube#groupItem`.
      */
     kind?: string | null;
     /**
@@ -298,7 +294,7 @@ export namespace youtubeAnalytics_v2 {
      */
     items?: Schema$GroupItem[];
     /**
-     * Identifies the API resource&#39;s type. The value will be `youtube#groupItemListResponse`.
+     * Identifies the API resource's type. The value will be `youtube#groupItemListResponse`.
      */
     kind?: string | null;
   }
@@ -319,7 +315,7 @@ export namespace youtubeAnalytics_v2 {
      */
     items?: Schema$Group[];
     /**
-     * Identifies the API resource&#39;s type. The value will be `youtube#groupListResponse`.
+     * Identifies the API resource's type. The value will be `youtube#groupListResponse`.
      */
     kind?: string | null;
     /**
@@ -332,7 +328,7 @@ export namespace youtubeAnalytics_v2 {
    */
   export interface Schema$QueryResponse {
     /**
-     * This value specifies information about the data returned in the `rows` fields. Each item in the `columnHeaders` list identifies a field returned in the `rows` value, which contains a list of comma-delimited data. The `columnHeaders` list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters `dimensions=ageGroup,gender&amp;metrics=viewerPercentage`, the API response will return columns in this order: `ageGroup`, `gender`, `viewerPercentage`.
+     * This value specifies information about the data returned in the `rows` fields. Each item in the `columnHeaders` list identifies a field returned in the `rows` value, which contains a list of comma-delimited data. The `columnHeaders` list will begin with the dimensions specified in the API request, which will be followed by the metrics specified in the API request. The order of both dimensions and metrics will match the ordering in the API request. For example, if the API request contains the parameters `dimensions=ageGroup,gender&metrics=viewerPercentage`, the API response will return columns in this order: `ageGroup`, `gender`, `viewerPercentage`.
      */
     columnHeaders?: Schema$ResultTableColumnHeader[];
     /**
@@ -373,9 +369,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groupItems.delete
-     * @desc Removes an item from a group.
+     * Removes an item from a group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -423,15 +419,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groupItems.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.id The `id` parameter specifies the YouTube group item ID of the group item that is being deleted.
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groupitems$Delete,
@@ -511,9 +504,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groupItems.insert
-     * @desc Creates a group item.
+     * Creates a group item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -577,15 +570,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groupItems.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {().GroupItem} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Groupitems$Insert,
@@ -665,9 +655,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groupItems.list
-     * @desc Returns a collection of group items that match the API request parameters.
+     * Returns a collection of group items that match the API request parameters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -718,15 +708,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groupItems.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.groupId The `groupId` parameter specifies the unique ID of the group for which you want to retrieve group items.
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groupitems$List,
@@ -851,9 +838,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groups.delete
-     * @desc Deletes a group.
+     * Deletes a group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -901,15 +888,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.id The `id` parameter specifies the YouTube group ID of the group that is being deleted.
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groups$Delete,
@@ -988,9 +972,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groups.insert
-     * @desc Creates a group.
+     * Creates a group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -1054,15 +1038,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Groups$Insert,
@@ -1141,9 +1122,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groups.list
-     * @desc Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.
+     * Returns a collection of groups that match the API request parameters. For example, you can retrieve all groups that the authenticated user owns, or you can retrieve one or more groups by their unique IDs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -1199,17 +1180,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.id The `id` parameter specifies a comma-separated list of the YouTube group ID(s) for the resource(s) that are being retrieved. Each group must be owned by the authenticated user. In a `group` resource, the `id` property specifies the group's YouTube group ID. Note that if you do not specify a value for the `id` parameter, then you must set the `mine` parameter to `true`.
-     * @param {boolean=} params.mine This parameter can only be used in a properly authorized request. Set this parameter's value to true to retrieve all groups owned by the authenticated user.
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {string=} params.pageToken The `pageToken` parameter identifies a specific page in the result set that should be returned. In an API response, the `nextPageToken` property identifies the next page that can be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groups$List,
@@ -1291,9 +1267,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.groups.update
-     * @desc Modifies a group. For example, you could change a group's title.
+     * Modifies a group. For example, you could change a group's title.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -1357,15 +1333,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.groups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.onBehalfOfContentOwner This parameter can only be used in a properly authorized request. **Note:** This parameter is intended exclusively for YouTube content partners that own and manage many different YouTube channels. The `onBehalfOfContentOwner` parameter indicates that the request's authorization credentials identify a YouTube user who is acting on behalf of the content owner specified in the parameter value. It allows content owners to authenticate once and get access to all their video and channel data, without having to provide authentication credentials for each individual channel. The account that the user authenticates with must be linked to the specified YouTube content owner.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Groups$Update,
@@ -1502,9 +1475,9 @@ export namespace youtubeAnalytics_v2 {
     }
 
     /**
-     * youtubeAnalytics.reports.query
-     * @desc Retrieve your YouTube Analytics reports.
+     * Retrieve your YouTube Analytics reports.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/youtubeAnalytics.googleapis.com
@@ -1534,11 +1507,11 @@ export namespace youtubeAnalytics_v2 {
      *
      *   // Do the magic
      *   const res = await youtubeAnalytics.reports.query({
-     *     // The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.", pattern: [A-Z]{3}
+     *     // The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.", pattern: [A-Z]{3\}
      *     currency: 'placeholder-value',
      *     // A comma-separated list of YouTube Analytics dimensions, such as `views` or `ageGroup,gender`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document for definitions of those dimensions." pattern: [0-9a-zA-Z,]+
      *     dimensions: 'placeholder-value',
-     *     // The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4}-[0-9]{2}-[0-9]{2}
+     *     // The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4\}-[0-9]{2\}-[0-9]{2\}
      *     endDate: 'placeholder-value',
      *     // A list of filters that should be applied when retrieving YouTube Analytics data. The [Available Reports](/youtube/analytics/v2/available_reports) document identifies the dimensions that can be used to filter each report, and the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (`;`), and the returned result table will satisfy both filters. For example, a filters parameter value of `video==dMH0bHeiRNg;country==IT` restricts the result set to include data for the given video in Italy.",
      *     filters: 'placeholder-value',
@@ -1552,7 +1525,7 @@ export namespace youtubeAnalytics_v2 {
      *     metrics: 'placeholder-value',
      *     // A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '`-`' prefix causes descending sort order.", pattern: [-0-9a-zA-Z,]+
      *     sort: 'placeholder-value',
-     *     // The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}
+     *     // The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: "[0-9]{4\}-[0-9]{2\}-[0-9]{2\}
      *     startDate: 'placeholder-value',
      *     // An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).", minValue: 1
      *     startIndex: 'placeholder-value',
@@ -1573,24 +1546,12 @@ export namespace youtubeAnalytics_v2 {
      *   throw e;
      * });
      *
-     * @alias youtubeAnalytics.reports.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.currency The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.", pattern: [A-Z]{3}
-     * @param {string=} params.dimensions A comma-separated list of YouTube Analytics dimensions, such as `views` or `ageGroup,gender`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the dimensions used for those reports. Also see the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document for definitions of those dimensions." pattern: [0-9a-zA-Z,]+
-     * @param {string=} params.endDate The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4}-[0-9]{2}-[0-9]{2}
-     * @param {string=} params.filters A list of filters that should be applied when retrieving YouTube Analytics data. The [Available Reports](/youtube/analytics/v2/available_reports) document identifies the dimensions that can be used to filter each report, and the [Dimensions](/youtube/analytics/v2/dimsmets/dims) document defines those dimensions. If a request uses multiple filters, join them together with a semicolon (`;`), and the returned result table will satisfy both filters. For example, a filters parameter value of `video==dMH0bHeiRNg;country==IT` restricts the result set to include data for the given video in Italy.",
-     * @param {string=} params.ids Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data. - To request data for a YouTube user, set the `ids` parameter value to `channel==CHANNEL_ID`, where `CHANNEL_ID` specifies the unique YouTube channel ID. - To request data for a YouTube CMS content owner, set the `ids` parameter value to `contentOwner==OWNER_NAME`, where `OWNER_NAME` is the CMS name of the content owner. required: true, pattern: [a-zA-Z]+==[a-zA-Z0-9_+-]+
-     * @param {boolean=} params.includeHistoricalChannelData If set to true historical data (i.e. channel data from before the linking of the channel to the content owner) will be retrieved.",
-     * @param {integer=} params.maxResults The maximum number of rows to include in the response.", minValue: 1
-     * @param {string=} params.metrics A comma-separated list of YouTube Analytics metrics, such as `views` or `likes,dislikes`. See the [Available Reports](/youtube/analytics/v2/available_reports) document for a list of the reports that you can retrieve and the metrics available in each report, and see the [Metrics](/youtube/analytics/v2/dimsmets/mets) document for definitions of those metrics. required: true, pattern: [0-9a-zA-Z,]+
-     * @param {string=} params.sort A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data. By default the sort order is ascending. The '`-`' prefix causes descending sort order.", pattern: [-0-9a-zA-Z,]+
-     * @param {string=} params.startDate The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}
-     * @param {integer=} params.startIndex An index of the first entity to retrieve. Use this parameter as a pagination mechanism along with the max-results parameter (one-based, inclusive).", minValue: 1
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Reports$Query,
@@ -1671,7 +1632,7 @@ export namespace youtubeAnalytics_v2 {
 
   export interface Params$Resource$Reports$Query extends StandardParameters {
     /**
-     * The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.", pattern: [A-Z]{3}
+     * The currency to which financial metrics should be converted. The default is US Dollar (USD). If the result contains no financial metrics, this flag will be ignored. Responds with an error if the specified currency is not recognized.", pattern: [A-Z]{3\}
      */
     currency?: string;
     /**
@@ -1679,7 +1640,7 @@ export namespace youtubeAnalytics_v2 {
      */
     dimensions?: string;
     /**
-     * The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4}-[0-9]{2}-[0-9]{2}
+     * The end date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: [0-9]{4\}-[0-9]{2\}-[0-9]{2\}
      */
     endDate?: string;
     /**
@@ -1707,7 +1668,7 @@ export namespace youtubeAnalytics_v2 {
      */
     sort?: string;
     /**
-     * The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}
+     * The start date for fetching YouTube Analytics data. The value should be in `YYYY-MM-DD` format. required: true, pattern: "[0-9]{4\}-[0-9]{2\}-[0-9]{2\}
      */
     startDate?: string;
     /**

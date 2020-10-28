@@ -104,14 +104,10 @@ export namespace firebaseml_v1beta2 {
    * Access custom machine learning models hosted via Firebase ML.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const firebaseml = google.firebaseml('v1beta2');
-   *
-   * @namespace firebaseml
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Firebaseml
+   * ```
    */
   export class Firebaseml {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace firebaseml_v1beta2 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -169,7 +165,7 @@ export namespace firebaseml_v1beta2 {
      */
     modelHash?: string | null;
     /**
-     * The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
+     * The resource name of the Model. Model names have the form `projects/{project_id\}/models/{model_id\}` The name is ignored when creating a model.
      */
     name?: string | null;
     /**
@@ -195,7 +191,7 @@ export namespace firebaseml_v1beta2 {
   export interface Schema$ModelOperationMetadata {
     basicOperationStatus?: string | null;
     /**
-     * The name of the model we are creating/updating The name must have the form `projects/{project_id}/models/{model_id}`
+     * The name of the model we are creating/updating The name must have the form `projects/{project_id\}/models/{model_id\}`
      */
     name?: string | null;
   }
@@ -229,7 +225,7 @@ export namespace firebaseml_v1beta2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -259,7 +255,7 @@ export namespace firebaseml_v1beta2 {
    */
   export interface Schema$TfLiteModel {
     /**
-     * The AutoML model id referencing a model you created with the AutoML API. The name should have format &#39;projects//locations//models/&#39; (This is the model resource name returned from the AutoML API)
+     * The AutoML model id referencing a model you created with the AutoML API. The name should have format 'projects//locations//models/' (This is the model resource name returned from the AutoML API)
      */
     automlModel?: string | null;
     /**
@@ -290,9 +286,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.models.create
-     * @desc Creates a model in Firebase ML. The longrunning operation will eventually return a Model
+     * Creates a model in Firebase ML. The longrunning operation will eventually return a Model
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -316,7 +312,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.create({
-     *     // Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`
+     *     // Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id\}`
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -353,15 +349,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.models.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`
-     * @param {().Model} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Models$Create,
@@ -443,9 +436,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.models.delete
-     * @desc Deletes a model
+     * Deletes a model
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -469,7 +462,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.delete({
-     *     // Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`
+     *     // Required. The name of the model to delete. The name must have the form `projects/{project_id\}/models/{model_id\}`
      *     name: 'projects/my-project/models/my-model',
      *   });
      *   console.log(res.data);
@@ -483,14 +476,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.models.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Models$Delete,
@@ -569,9 +560,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.models.get
-     * @desc Gets a model resource.
+     * Gets a model resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -595,7 +586,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.get({
-     *     // Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`
+     *     // Required. The name of the model to get. The name must have the form `projects/{project_id\}/models/{model_id\}`
      *     name: 'projects/my-project/models/my-model',
      *   });
      *   console.log(res.data);
@@ -620,14 +611,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.models.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Models$Get,
@@ -706,9 +695,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.models.list
-     * @desc Lists the models
+     * Lists the models
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -738,7 +727,7 @@ export namespace firebaseml_v1beta2 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent to list models for. The parent must have the form `projects/{project_id}'
+     *     // Required. The name of the parent to list models for. The parent must have the form `projects/{project_id\}'
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -755,17 +744,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.models.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter for the list e.g. 'tags: abc' to list models which are tagged with "abc"
-     * @param {integer=} params.pageSize The maximum number of items to return
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The name of the parent to list models for. The parent must have the form `projects/{project_id}'
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Models$List,
@@ -850,9 +834,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.models.patch
-     * @desc Updates a model. The longrunning operation will eventually return a Model.
+     * Updates a model. The longrunning operation will eventually return a Model.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -876,7 +860,7 @@ export namespace firebaseml_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firebaseml.projects.models.patch({
-     *     // The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
+     *     // The resource name of the Model. Model names have the form `projects/{project_id\}/models/{model_id\}` The name is ignored when creating a model.
      *     name: 'projects/my-project/models/my-model',
      *     // The update mask
      *     updateMask: 'placeholder-value',
@@ -915,16 +899,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.models.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
-     * @param {string=} params.updateMask The update mask
-     * @param {().Model} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Models$Patch,
@@ -1006,7 +986,7 @@ export namespace firebaseml_v1beta2 {
   export interface Params$Resource$Projects$Models$Create
     extends StandardParameters {
     /**
-     * Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id}`
+     * Required. The parent project resource where the model is to be created. The parent must have the form `projects/{project_id\}`
      */
     parent?: string;
 
@@ -1018,14 +998,14 @@ export namespace firebaseml_v1beta2 {
   export interface Params$Resource$Projects$Models$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the model to delete. The name must have the form `projects/{project_id}/models/{model_id}`
+     * Required. The name of the model to delete. The name must have the form `projects/{project_id\}/models/{model_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Models$Get
     extends StandardParameters {
     /**
-     * Required. The name of the model to get. The name must have the form `projects/{project_id}/models/{model_id}`
+     * Required. The name of the model to get. The name must have the form `projects/{project_id\}/models/{model_id\}`
      */
     name?: string;
   }
@@ -1044,14 +1024,14 @@ export namespace firebaseml_v1beta2 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent to list models for. The parent must have the form `projects/{project_id}'
+     * Required. The name of the parent to list models for. The parent must have the form `projects/{project_id\}'
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Models$Patch
     extends StandardParameters {
     /**
-     * The resource name of the Model. Model names have the form `projects/{project_id}/models/{model_id}` The name is ignored when creating a model.
+     * The resource name of the Model. Model names have the form `projects/{project_id\}/models/{model_id\}` The name is ignored when creating a model.
      */
     name?: string;
     /**
@@ -1072,9 +1052,9 @@ export namespace firebaseml_v1beta2 {
     }
 
     /**
-     * firebaseml.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
@@ -1118,14 +1098,12 @@ export namespace firebaseml_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firebaseml.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,

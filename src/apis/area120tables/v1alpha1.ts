@@ -104,14 +104,10 @@ export namespace area120tables_v1alpha1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const area120tables = google.area120tables('v1alpha1');
-   *
-   * @namespace area120tables
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Area120tables
+   * ```
    */
   export class Area120tables {
     context: APIRequestContext;
@@ -197,7 +193,7 @@ export namespace area120tables_v1alpha1 {
    */
   export interface Schema$CreateRowRequest {
     /**
-     * Required. The parent table where this row will be created. Format: tables/{table}
+     * Required. The parent table where this row will be created. Format: tables/{table\}
      */
     parent?: string | null;
     /**
@@ -210,7 +206,7 @@ export namespace area120tables_v1alpha1 {
     view?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -279,7 +275,7 @@ export namespace area120tables_v1alpha1 {
    */
   export interface Schema$Row {
     /**
-     * The resource name of the row. Row names have the form `tables/{table}/rows/{row}`. The name is ignored when creating a row.
+     * The resource name of the row. Row names have the form `tables/{table\}/rows/{row\}`. The name is ignored when creating a row.
      */
     name?: string | null;
     /**
@@ -300,7 +296,7 @@ export namespace area120tables_v1alpha1 {
      */
     displayName?: string | null;
     /**
-     * The resource name of the table. Table names have the form `tables/{table}`.
+     * The resource name of the table. Table names have the form `tables/{table\}`.
      */
     name?: string | null;
   }
@@ -331,9 +327,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.get
-     * @desc Gets a table. Returns NOT_FOUND if the table does not exist.
+     * Gets a table. Returns NOT_FOUND if the table does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -363,7 +359,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.get({
-     *     // Required. The name of the table to retrieve. Format: tables/{table}
+     *     // Required. The name of the table to retrieve. Format: tables/{table\}
      *     name: 'tables/my-table',
      *   });
      *   console.log(res.data);
@@ -381,14 +377,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the table to retrieve. Format: tables/{table}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tables$Get,
@@ -467,9 +461,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.list
-     * @desc Lists tables for the user.
+     * Lists tables for the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -516,15 +510,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of tables to return. The service may return fewer than this value. If unspecified, at most 20 tables are returned. The maximum value is 100; values above 100 are coerced to 100.
-     * @param {string=} params.pageToken A page token, received from a previous `ListTables` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTables` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tables$List,
@@ -608,7 +599,7 @@ export namespace area120tables_v1alpha1 {
 
   export interface Params$Resource$Tables$Get extends StandardParameters {
     /**
-     * Required. The name of the table to retrieve. Format: tables/{table}
+     * Required. The name of the table to retrieve. Format: tables/{table\}
      */
     name?: string;
   }
@@ -630,9 +621,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.batchCreate
-     * @desc Creates multiple rows.
+     * Creates multiple rows.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -660,7 +651,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.batchCreate({
-     *     // Required. The parent table where the rows will be created. Format: tables/{table}
+     *     // Required. The parent table where the rows will be created. Format: tables/{table\}
      *     parent: 'tables/my-table',
      *
      *     // Request body metadata
@@ -684,15 +675,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.batchCreate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent table where the rows will be created. Format: tables/{table}
-     * @param {().BatchCreateRowsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchCreate(
       params: Params$Resource$Tables$Rows$Batchcreate,
@@ -782,9 +770,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.batchUpdate
-     * @desc Updates multiple rows.
+     * Updates multiple rows.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -812,7 +800,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.batchUpdate({
-     *     // Required. The parent table shared by all rows being updated. Format: tables/{table}
+     *     // Required. The parent table shared by all rows being updated. Format: tables/{table\}
      *     parent: 'tables/my-table',
      *
      *     // Request body metadata
@@ -836,15 +824,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.batchUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent table shared by all rows being updated. Format: tables/{table}
-     * @param {().BatchUpdateRowsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUpdate(
       params: Params$Resource$Tables$Rows$Batchupdate,
@@ -934,9 +919,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.create
-     * @desc Creates a row.
+     * Creates a row.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -964,7 +949,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.create({
-     *     // Required. The parent table where this row will be created. Format: tables/{table}
+     *     // Required. The parent table where this row will be created. Format: tables/{table\}
      *     parent: 'tables/my-table',
      *     // Optional. Column key to use for values in the row. Defaults to user entered name.
      *     view: 'placeholder-value',
@@ -992,16 +977,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent table where this row will be created. Format: tables/{table}
-     * @param {string=} params.view Optional. Column key to use for values in the row. Defaults to user entered name.
-     * @param {().Row} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Tables$Rows$Create,
@@ -1084,9 +1065,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.delete
-     * @desc Deletes a row.
+     * Deletes a row.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -1114,7 +1095,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.delete({
-     *     // Required. The name of the row to delete. Format: tables/{table}/rows/{row}
+     *     // Required. The name of the row to delete. Format: tables/{table\}/rows/{row\}
      *     name: 'tables/my-table/rows/my-row',
      *   });
      *   console.log(res.data);
@@ -1128,14 +1109,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the row to delete. Format: tables/{table}/rows/{row}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Tables$Rows$Delete,
@@ -1215,9 +1194,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.get
-     * @desc Gets a row. Returns NOT_FOUND if the row does not exist in the table.
+     * Gets a row. Returns NOT_FOUND if the row does not exist in the table.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -1247,7 +1226,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.get({
-     *     // Required. The name of the row to retrieve. Format: tables/{table}/rows/{row}
+     *     // Required. The name of the row to retrieve. Format: tables/{table\}/rows/{row\}
      *     name: 'tables/my-table/rows/my-row',
      *     // Optional. Column key to use for values in the row. Defaults to user entered name.
      *     view: 'placeholder-value',
@@ -1266,15 +1245,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the row to retrieve. Format: tables/{table}/rows/{row}
-     * @param {string=} params.view Optional. Column key to use for values in the row. Defaults to user entered name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tables$Rows$Get,
@@ -1353,9 +1329,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.list
-     * @desc Lists rows in a table. Returns NOT_FOUND if the table does not exist.
+     * Lists rows in a table. Returns NOT_FOUND if the table does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -1389,7 +1365,7 @@ export namespace area120tables_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListRows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRows` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent table. Format: tables/{table}
+     *     // Required. The parent table. Format: tables/{table\}
      *     parent: 'tables/my-table',
      *     // Optional. Column key to use for values in the row. Defaults to user entered name.
      *     view: 'placeholder-value',
@@ -1408,17 +1384,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of rows to return. The service may return fewer than this value. If unspecified, at most 50 rows are returned. The maximum value is 1,000; values above 1,000 are coerced to 1,000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListRows` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRows` must match the call that provided the page token.
-     * @param {string} params.parent Required. The parent table. Format: tables/{table}
-     * @param {string=} params.view Optional. Column key to use for values in the row. Defaults to user entered name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tables$Rows$List,
@@ -1500,9 +1471,9 @@ export namespace area120tables_v1alpha1 {
     }
 
     /**
-     * area120tables.tables.rows.patch
-     * @desc Updates a row.
+     * Updates a row.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
@@ -1530,7 +1501,7 @@ export namespace area120tables_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await area120tables.tables.rows.patch({
-     *     // The resource name of the row. Row names have the form `tables/{table}/rows/{row}`. The name is ignored when creating a row.
+     *     // The resource name of the row. Row names have the form `tables/{table\}/rows/{row\}`. The name is ignored when creating a row.
      *     name: 'tables/my-table/rows/my-row',
      *     // The list of fields to update.
      *     updateMask: 'placeholder-value',
@@ -1560,17 +1531,12 @@ export namespace area120tables_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias area120tables.tables.rows.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the row. Row names have the form `tables/{table}/rows/{row}`. The name is ignored when creating a row.
-     * @param {string=} params.updateMask The list of fields to update.
-     * @param {string=} params.view Optional. Column key to use for values in the row. Defaults to user entered name.
-     * @param {().Row} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Tables$Rows$Patch,
@@ -1653,7 +1619,7 @@ export namespace area120tables_v1alpha1 {
   export interface Params$Resource$Tables$Rows$Batchcreate
     extends StandardParameters {
     /**
-     * Required. The parent table where the rows will be created. Format: tables/{table}
+     * Required. The parent table where the rows will be created. Format: tables/{table\}
      */
     parent?: string;
 
@@ -1665,7 +1631,7 @@ export namespace area120tables_v1alpha1 {
   export interface Params$Resource$Tables$Rows$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The parent table shared by all rows being updated. Format: tables/{table}
+     * Required. The parent table shared by all rows being updated. Format: tables/{table\}
      */
     parent?: string;
 
@@ -1677,7 +1643,7 @@ export namespace area120tables_v1alpha1 {
   export interface Params$Resource$Tables$Rows$Create
     extends StandardParameters {
     /**
-     * Required. The parent table where this row will be created. Format: tables/{table}
+     * Required. The parent table where this row will be created. Format: tables/{table\}
      */
     parent?: string;
     /**
@@ -1693,13 +1659,13 @@ export namespace area120tables_v1alpha1 {
   export interface Params$Resource$Tables$Rows$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the row to delete. Format: tables/{table}/rows/{row}
+     * Required. The name of the row to delete. Format: tables/{table\}/rows/{row\}
      */
     name?: string;
   }
   export interface Params$Resource$Tables$Rows$Get extends StandardParameters {
     /**
-     * Required. The name of the row to retrieve. Format: tables/{table}/rows/{row}
+     * Required. The name of the row to retrieve. Format: tables/{table\}/rows/{row\}
      */
     name?: string;
     /**
@@ -1717,7 +1683,7 @@ export namespace area120tables_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent table. Format: tables/{table}
+     * Required. The parent table. Format: tables/{table\}
      */
     parent?: string;
     /**
@@ -1728,7 +1694,7 @@ export namespace area120tables_v1alpha1 {
   export interface Params$Resource$Tables$Rows$Patch
     extends StandardParameters {
     /**
-     * The resource name of the row. Row names have the form `tables/{table}/rows/{row}`. The name is ignored when creating a row.
+     * The resource name of the row. Row names have the form `tables/{table\}/rows/{row\}`. The name is ignored when creating a row.
      */
     name?: string;
     /**

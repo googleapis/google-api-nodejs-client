@@ -104,14 +104,10 @@ export namespace container_v1beta1 {
    * Builds and manages container-based applications, powered by the open source Kubernetes technology.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const container = google.container('v1beta1');
-   *
-   * @namespace container
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Container
+   * ```
    */
   export class Container {
     context: APIRequestContext;
@@ -211,7 +207,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or &#39;pd-ssd&#39;) If unspecified, the default disk type is &#39;pd-standard&#39;
+     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -219,15 +215,15 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass &quot;automatic&quot; as field value.
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform) To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
-     * The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
+     * The set of Google API scopes to be made available on all of the node VMs under the "default" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
     oauthScopes?: string[] | null;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
     serviceAccount?: string | null;
     /**
@@ -288,7 +284,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {
     /**
-     * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x.
+     * The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
      */
     name?: string | null;
     /**
@@ -388,7 +384,7 @@ export namespace container_v1beta1 {
      */
     currentNodeCount?: number | null;
     /**
-     * [Output only] Deprecated, use [NodePool.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they&#39;re in the process of being upgraded, this reflects the minimum version of all nodes.
+     * [Output only] Deprecated, use [NodePool.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they're in the process of being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string | null;
     /**
@@ -412,7 +408,7 @@ export namespace container_v1beta1 {
      */
     enableTpu?: boolean | null;
     /**
-     * [Output only] The IP address of this cluster&#39;s master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`. See the `masterAuth` property of this resource for username and password information.
+     * [Output only] The IP address of this cluster's master endpoint. The endpoint can be accessed from the internet at `https://username:password@endpoint/`. See the `masterAuth` property of this resource for username and password information.
      */
     endpoint?: string | null;
     /**
@@ -420,11 +416,11 @@ export namespace container_v1beta1 {
      */
     expireTime?: string | null;
     /**
-     * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;&quot;,&quot;-&quot;: picks the default Kubernetes version
+     * The initial Kubernetes version for this cluster. Valid versions are those found in validMasterVersions returned by getServerConfig. The version can be upgraded over time; such upgrades are reflected in currentMasterVersion and currentNodeVersion. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "","-": picks the default Kubernetes version
      */
     initialClusterVersion?: string | null;
     /**
-     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;node_config&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time. This field is deprecated, use node_pool.initial_node_count instead.
+     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a "node_pool" object, since this configuration (along with the "node_config") will be used to create a "NodePool" object with an auto-generated name. Do not use this and a node_pool at the same time. This field is deprecated, use node_pool.initial_node_count instead.
      */
     initialNodeCount?: number | null;
     /**
@@ -448,7 +444,7 @@ export namespace container_v1beta1 {
      */
     location?: string | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. This field provides a default value if [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
+     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This field provides a default value if [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
@@ -464,7 +460,7 @@ export namespace container_v1beta1 {
      */
     master?: Schema$Master;
     /**
-     * The authentication information for accessing the master endpoint. If unspecified, the defaults are used: For clusters before v1.12, if master_auth is unspecified, `username` will be set to &quot;admin&quot;, a random password will be generated, and a client certificate will be issued.
+     * The authentication information for accessing the master endpoint. If unspecified, the defaults are used: For clusters before v1.12, if master_auth is unspecified, `username` will be set to "admin", a random password will be generated, and a client certificate will be issued.
      */
     masterAuth?: Schema$MasterAuth;
     /**
@@ -476,7 +472,7 @@ export namespace container_v1beta1 {
      */
     masterIpv4CidrBlock?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
@@ -496,7 +492,7 @@ export namespace container_v1beta1 {
      */
     networkPolicy?: Schema$NetworkPolicy;
     /**
-     * Parameters used in creating the cluster&#39;s nodes. For requests, this field should only be used in lieu of a &quot;node_pool&quot; object, since this configuration (along with the &quot;initial_node_count&quot;) will be used to create a &quot;NodePool&quot; object with an auto-generated name. Do not use this and a node_pool at the same time. For responses, this field will be populated with the node configuration of the first node pool. (For configuration of each node pool, see `node_pool.config`) If unspecified, the defaults are used. This field is deprecated, use node_pool.config instead.
+     * Parameters used in creating the cluster's nodes. For requests, this field should only be used in lieu of a "node_pool" object, since this configuration (along with the "initial_node_count") will be used to create a "NodePool" object with an auto-generated name. Do not use this and a node_pool at the same time. For responses, this field will be populated with the node configuration of the first node pool. (For configuration of each node pool, see `node_pool.config`) If unspecified, the defaults are used. This field is deprecated, use node_pool.config instead.
      */
     nodeConfig?: Schema$NodeConfig;
     /**
@@ -504,7 +500,7 @@ export namespace container_v1beta1 {
      */
     nodeIpv4CidrSize?: number | null;
     /**
-     * The node pools associated with this cluster. This field should not be set if &quot;node_config&quot; or &quot;initial_node_count&quot; are specified.
+     * The node pools associated with this cluster. This field should not be set if "node_config" or "initial_node_count" are specified.
      */
     nodePools?: Schema$NodePool[];
     /**
@@ -585,7 +581,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$ClusterAutoscaling {
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#39;s nodes can be created by NAP.
+     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.
      */
     autoprovisioningLocations?: string[] | null;
     /**
@@ -647,7 +643,7 @@ export namespace container_v1beta1 {
      */
     desiredDefaultSnatStatus?: Schema$DefaultSnatStatus;
     /**
-     * The desired image type for the node pool. NOTE: Set the &quot;desired_node_pool&quot; field as well.
+     * The desired image type for the node pool. NOTE: Set the "desired_node_pool" field as well.
      */
     desiredImageType?: string | null;
     /**
@@ -655,7 +651,7 @@ export namespace container_v1beta1 {
      */
     desiredIntraNodeVisibilityConfig?: Schema$IntraNodeVisibilityConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. This list must always include the cluster&#39;s primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
+     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
      */
     desiredLocations?: string[] | null;
     /**
@@ -671,11 +667,11 @@ export namespace container_v1beta1 {
      */
     desiredMasterAuthorizedNetworksConfig?: Schema$MasterAuthorizedNetworksConfig;
     /**
-     * The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
+     * The Kubernetes version to change the master to. The only valid value is the latest supported version. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the default Kubernetes version
      */
     desiredMasterVersion?: string | null;
     /**
-     * The monitoring service the cluster should use to write metrics. Currently available options: * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     desiredMonitoringService?: string | null;
     /**
@@ -683,11 +679,11 @@ export namespace container_v1beta1 {
      */
     desiredNodePoolAutoscaling?: Schema$NodePoolAutoscaling;
     /**
-     * The node pool to be upgraded. This field is mandatory if &quot;desired_node_version&quot;, &quot;desired_image_family&quot;, &quot;desired_node_pool_autoscaling&quot;, or &quot;desired_workload_metadata_config&quot; is specified and there is more than one node pool on the cluster.
+     * The node pool to be upgraded. This field is mandatory if "desired_node_version", "desired_image_family", "desired_node_pool_autoscaling", or "desired_workload_metadata_config" is specified and there is more than one node pool on the cluster.
      */
     desiredNodePoolId?: string | null;
     /**
-     * The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
+     * The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the Kubernetes master version
      */
     desiredNodeVersion?: string | null;
     /**
@@ -736,7 +732,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -784,7 +780,7 @@ export namespace container_v1beta1 {
      */
     cluster?: Schema$Cluster;
     /**
-     * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x.
+     * The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
      */
     parent?: string | null;
     /**
@@ -809,7 +805,7 @@ export namespace container_v1beta1 {
      */
     nodePool?: Schema$NodePool;
     /**
-     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x.
+     * The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     parent?: string | null;
     /**
@@ -830,7 +826,7 @@ export namespace container_v1beta1 {
      */
     duration?: string | null;
     /**
-     * Time within the maintenance window to start the maintenance operations. It must be in format &quot;HH:MM&quot;, where HH : [00-23] and MM : [00-59] GMT.
+     * Time within the maintenance window to start the maintenance operations. It must be in format "HH:MM", where HH : [00-23] and MM : [00-59] GMT.
      */
     startTime?: string | null;
   }
@@ -866,7 +862,7 @@ export namespace container_v1beta1 {
     enabled?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -1189,7 +1185,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * Contains the name of the resource requested. Specified in the format `projects/x/locations/x.
+     * Contains the name of the resource requested. Specified in the format `projects/x/locations/x`.
      */
     name?: string | null;
     /**
@@ -1206,7 +1202,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$MaintenancePolicy {
     /**
-     * A hash identifying the version of this policy, so that updates to fields of the policy won&#39;t accidentally undo intermediate changes (and so that users of the API unaware of some fields won&#39;t accidentally remove other fields). Make a `get()` request to the cluster to get the current resource version and include it with requests to set the policy.
+     * A hash identifying the version of this policy, so that updates to fields of the policy won't accidentally undo intermediate changes (and so that users of the API unaware of some fields won't accidentally remove other fields). Make a `get()` request to the cluster to get the current resource version and include it with requests to set the policy.
      */
     resourceVersion?: string | null;
     /**
@@ -1296,7 +1292,7 @@ export namespace container_v1beta1 {
      */
     intValue?: string | null;
     /**
-     * Required. Metric name, e.g., &quot;nodes total&quot;, &quot;percent done&quot;.
+     * Required. Metric name, e.g., "nodes total", "percent done".
      */
     name?: string | null;
     /**
@@ -1305,7 +1301,7 @@ export namespace container_v1beta1 {
     stringValue?: string | null;
   }
   /**
-   * NetworkConfig reports the relative names of network &amp; subnetwork.
+   * NetworkConfig reports the relative names of network & subnetwork.
    */
   export interface Schema$NetworkConfig {
     /**
@@ -1368,7 +1364,7 @@ export namespace container_v1beta1 {
      */
     diskSizeGb?: number | null;
     /**
-     * Type of the disk attached to each node (e.g. &#39;pd-standard&#39; or &#39;pd-ssd&#39;) If unspecified, the default disk type is &#39;pd-standard&#39;
+     * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
     /**
@@ -1380,7 +1376,7 @@ export namespace container_v1beta1 {
      */
     kubeletConfig?: Schema$NodeKubeletConfig;
     /**
-     * The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it&#39;s best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+     * The map of Kubernetes labels (key/value pairs) to be applied to each node. These will added in addition to any default label(s) that Kubernetes may apply to the node. In case of conflict in label keys, the applied set may differ depending on the Kubernetes version -- it's best to assume the behavior is undefined and conflicts should be avoided. For more information, including usage and the valid values, see: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1396,11 +1392,11 @@ export namespace container_v1beta1 {
      */
     machineType?: string | null;
     /**
-     * The metadata key/value pairs assigned to instances in the cluster. Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys: - &quot;cluster-location&quot; - &quot;cluster-name&quot; - &quot;cluster-uid&quot; - &quot;configure-sh&quot; - &quot;containerd-configure-sh&quot; - &quot;enable-oslogin&quot; - &quot;gci-ensure-gke-docker&quot; - &quot;gci-metrics-enabled&quot; - &quot;gci-update-strategy&quot; - &quot;instance-template&quot; - &quot;kube-env&quot; - &quot;startup-script&quot; - &quot;user-data&quot; - &quot;disable-address-manager&quot; - &quot;windows-startup-script-ps1&quot; - &quot;common-psm1&quot; - &quot;k8s-node-setup-psm1&quot; - &quot;install-ssh-psm1&quot; - &quot;user-profile-psm1&quot; The following keys are reserved for Windows nodes: - &quot;serial-port-logging-enable&quot; Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value&#39;s size must be less than or equal to 32 KB. The total size of all keys and values must be less than 512 KB.
+     * The metadata key/value pairs assigned to instances in the cluster. Keys must conform to the regexp `[a-zA-Z0-9-_]+` and be less than 128 bytes in length. These are reflected as part of a URL in the metadata server. Additionally, to avoid ambiguity, keys must not conflict with any other metadata keys for the project or be one of the reserved keys: - "cluster-location" - "cluster-name" - "cluster-uid" - "configure-sh" - "containerd-configure-sh" - "enable-oslogin" - "gci-ensure-gke-docker" - "gci-metrics-enabled" - "gci-update-strategy" - "instance-template" - "kube-env" - "startup-script" - "user-data" - "disable-address-manager" - "windows-startup-script-ps1" - "common-psm1" - "k8s-node-setup-psm1" - "install-ssh-psm1" - "user-profile-psm1" The following keys are reserved for Windows nodes: - "serial-port-logging-enable" Values are free-form strings, and only have meaning as interpreted by the image running in the instance. The only restriction placed on them is that each value's size must be less than or equal to 32 KB. The total size of all keys and values must be less than 512 KB.
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: &quot;Intel Haswell&quot;` or `minCpuPlatform: &quot;Intel Sandy Bridge&quot;`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
      */
     minCpuPlatform?: string | null;
     /**
@@ -1408,7 +1404,7 @@ export namespace container_v1beta1 {
      */
     nodeGroup?: string | null;
     /**
-     * The set of Google API scopes to be made available on all of the node VMs under the &quot;default&quot; service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
+     * The set of Google API scopes to be made available on all of the node VMs under the "default" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
     oauthScopes?: string[] | null;
     /**
@@ -1424,7 +1420,7 @@ export namespace container_v1beta1 {
      */
     sandboxConfig?: Schema$SandboxConfig;
     /**
-     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the &quot;default&quot; service account is used.
+     * The Google Cloud Platform Service Account to be used by the node VMs. Specify the email address of the Service Account; otherwise, if no Service Account is specified, the "default" service account is used.
      */
     serviceAccount?: string | null;
     /**
@@ -1449,15 +1445,15 @@ export namespace container_v1beta1 {
    */
   export interface Schema$NodeKubeletConfig {
     /**
-     * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is &#39;true&#39; if unspecified.
+     * Enable CPU CFS quota enforcement for containers that specify CPU limits. This option is enabled by default which makes kubelet use CFS quota (https://www.kernel.org/doc/Documentation/scheduler/sched-bwc.txt) to enforce container CPU limits. Otherwise, CPU limits will not be enforced at all. Disable this option to mitigate CPU throttling problems while still having your pods to be in Guaranteed QoS class by specifying the CPU limits. The default value is 'true' if unspecified.
      */
     cpuCfsQuota?: boolean | null;
     /**
-     * Set the CPU CFS quota period value &#39;cpu.cfs_period_us&#39;. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as &quot;300ms&quot;. Valid time units are &quot;ns&quot;, &quot;us&quot; (or &quot;µs&quot;), &quot;ms&quot;, &quot;s&quot;, &quot;m&quot;, &quot;h&quot;. The value must be a positive duration.
+     * Set the CPU CFS quota period value 'cpu.cfs_period_us'. The string must be a sequence of decimal numbers, each with optional fraction and a unit suffix, such as "300ms". Valid time units are "ns", "us" (or "µs"), "ms", "s", "m", "h". The value must be a positive duration.
      */
     cpuCfsQuotaPeriod?: string | null;
     /**
-     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - &quot;none&quot;: the default, which represents the existing scheduling behavior. - &quot;static&quot;: allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is &#39;none&#39; if unspecified.
+     * Control the CPU management policy on the node. See https://kubernetes.io/docs/tasks/administer-cluster/cpu-management-policies/ The following values are allowed. - "none": the default, which represents the existing scheduling behavior. - "static": allows pods with certain resource characteristics to be granted increased CPU affinity and exclusivity on the node. The default value is 'none' if unspecified.
      */
     cpuManagerPolicy?: string | null;
   }
@@ -1479,7 +1475,7 @@ export namespace container_v1beta1 {
     upgradeOptions?: Schema$AutoUpgradeOptions;
   }
   /**
-   * NodePool contains the name and configuration for a cluster&#39;s node pool. Node pools are a set of nodes (i.e. VM&#39;s), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
+   * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
    */
   export interface Schema$NodePool {
     /**
@@ -1503,7 +1499,7 @@ export namespace container_v1beta1 {
      */
     instanceGroupUrls?: string[] | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool&#39;s nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
+     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
@@ -1556,11 +1552,11 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * Maximum number of nodes in the NodePool. Must be &gt;= min_node_count. There has to enough quota to scale up the cluster.
+     * Maximum number of nodes in the NodePool. Must be \>= min_node_count. There has to enough quota to scale up the cluster.
      */
     maxNodeCount?: number | null;
     /**
-     * Minimum number of nodes in the NodePool. Must be &gt;= 1 and &lt;= max_node_count.
+     * Minimum number of nodes in the NodePool. Must be \>= 1 and <= max_node_count.
      */
     minNodeCount?: number | null;
   }
@@ -1660,7 +1656,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$OperationProgress {
     /**
-     * Progress metric bundle, for example: metrics: [{name: &quot;nodes done&quot;, int_value: 15}, {name: &quot;nodes total&quot;, int_value: 32}] or metrics: [{name: &quot;progress&quot;, double_value: 0.56}, {name: &quot;progress scale&quot;, double_value: 1.0}]
+     * Progress metric bundle, for example: metrics: [{name: "nodes done", int_value: 15\}, {name: "nodes total", int_value: 32\}] or metrics: [{name: "progress", double_value: 0.56\}, {name: "progress scale", double_value: 1.0\}]
      */
     metrics?: Schema$Metric[];
     /**
@@ -1690,7 +1686,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$PrivateClusterConfig {
     /**
-     * Whether the master&#39;s internal IP address is used as the cluster endpoint.
+     * Whether the master's internal IP address is used as the cluster endpoint.
      */
     enablePrivateEndpoint?: boolean | null;
     /**
@@ -1702,7 +1698,7 @@ export namespace container_v1beta1 {
      */
     masterGlobalAccessConfig?: Schema$PrivateClusterMasterGlobalAccessConfig;
     /**
-     * The IP range in CIDR notation to use for the hosted master network. This range will be used for assigning internal IP addresses to the master or set of masters, as well as the ILB VIP. This range must not overlap with any other ranges in use within the cluster&#39;s network.
+     * The IP range in CIDR notation to use for the hosted master network. This range will be used for assigning internal IP addresses to the master or set of masters, as well as the ILB VIP. This range must not overlap with any other ranges in use within the cluster's network.
      */
     masterIpv4CidrBlock?: string | null;
     /**
@@ -1710,11 +1706,11 @@ export namespace container_v1beta1 {
      */
     peeringName?: string | null;
     /**
-     * Output only. The internal IP address of this cluster&#39;s master endpoint.
+     * Output only. The internal IP address of this cluster's master endpoint.
      */
     privateEndpoint?: string | null;
     /**
-     * Output only. The external IP address of this cluster&#39;s master endpoint.
+     * Output only. The external IP address of this cluster's master endpoint.
      */
     publicEndpoint?: string | null;
   }
@@ -1736,7 +1732,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project}/topics/{topic}`.
+     * The desired Pub/Sub topic to which notifications will be sent by GKE. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string | null;
   }
@@ -1745,7 +1741,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$RecurringTimeWindow {
     /**
-     * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. For example, to have something repeat every weekday, you&#39;d use: `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR` To repeat some window daily (equivalent to the DailyMaintenanceWindow): `FREQ=DAILY` For the first weekend of every month: `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU` This specifies how frequently the window starts. Eg, if you wanted to have a 9-5 UTC-4 window every weekday, you&#39;d use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ``` Windows can span multiple days. Eg, to make the window encompass every weekend from midnight Saturday till the last minute of Sunday UTC: ``` start time = 2019-01-05T00:00:00Z end time = 2019-01-07T23:59:00Z recurrence = FREQ=WEEKLY;BYDAY=SA ``` Note the start and end time&#39;s specific dates are largely arbitrary except to specify duration of the window and when it first starts. The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
+     * An RRULE (https://tools.ietf.org/html/rfc5545#section-3.8.5.3) for how this window reccurs. They go on for the span of time between the start and end time. For example, to have something repeat every weekday, you'd use: `FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR` To repeat some window daily (equivalent to the DailyMaintenanceWindow): `FREQ=DAILY` For the first weekend of every month: `FREQ=MONTHLY;BYSETPOS=1;BYDAY=SA,SU` This specifies how frequently the window starts. Eg, if you wanted to have a 9-5 UTC-4 window every weekday, you'd use something like: ``` start time = 2019-01-01T09:00:00-0400 end time = 2019-01-01T17:00:00-0400 recurrence = FREQ=WEEKLY;BYDAY=MO,TU,WE,TH,FR ``` Windows can span multiple days. Eg, to make the window encompass every weekend from midnight Saturday till the last minute of Sunday UTC: ``` start time = 2019-01-05T00:00:00Z end time = 2019-01-07T23:59:00Z recurrence = FREQ=WEEKLY;BYDAY=SA ``` Note the start and end time's specific dates are largely arbitrary except to specify duration of the window and when it first starts. The FREQ values of HOURLY, MINUTELY, and SECONDLY are not supported.
      */
     recurrence?: string | null;
     /**
@@ -1792,7 +1788,7 @@ export namespace container_v1beta1 {
      */
     consumeReservationType?: string | null;
     /**
-     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify &quot;googleapis.com/reservation-name&quot; as the key and specify the name of your reservation as its value.
+     * Corresponds to the label key of a reservation resource. To target a SPECIFIC_RESERVATION by name, specify "googleapis.com/reservation-name" as the key and specify the name of your reservation as its value.
      */
     key?: string | null;
     /**
@@ -1813,7 +1809,7 @@ export namespace container_v1beta1 {
      */
     minimum?: string | null;
     /**
-     * Resource name &quot;cpu&quot;, &quot;memory&quot; or gpu-specific string.
+     * Resource name "cpu", "memory" or gpu-specific string.
      */
     resourceType?: string | null;
   }
@@ -1843,7 +1839,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
+     * The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
     /**
@@ -1864,7 +1860,7 @@ export namespace container_v1beta1 {
    */
   export interface Schema$SandboxConfig {
     /**
-     * Type of the sandbox to use for the node (e.g. &#39;gvisor&#39;)
+     * Type of the sandbox to use for the node (e.g. 'gvisor')
      */
     sandboxType?: string | null;
     /**
@@ -1914,7 +1910,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -1939,7 +1935,7 @@ export namespace container_v1beta1 {
      */
     labelFingerprint?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -1968,7 +1964,7 @@ export namespace container_v1beta1 {
      */
     enabled?: boolean | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -1989,11 +1985,11 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster&#39;s nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed. This list must always include the cluster&#39;s primary zone.
+     * Required. The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed. This list must always include the cluster's primary zone.
      */
     locations?: string[] | null;
     /**
-     * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2018,7 +2014,7 @@ export namespace container_v1beta1 {
      */
     loggingService?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2043,7 +2039,7 @@ export namespace container_v1beta1 {
      */
     maintenancePolicy?: Schema$MaintenancePolicy;
     /**
-     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2068,7 +2064,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2093,11 +2089,11 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * &quot;monitoring.googleapis.com/kubernetes&quot; - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
+     * Required. The monitoring service the cluster should use to write metrics. Currently available options: * "monitoring.googleapis.com/kubernetes" - The Cloud Monitoring service with a Kubernetes-native resource model * `monitoring.googleapis.com` - The legacy Cloud Monitoring service (no longer available as of GKE 1.15). * `none` - No metrics will be exported from the cluster. If left as an empty string,`monitoring.googleapis.com/kubernetes` will be used for GKE 1.14+ or `monitoring.googleapis.com` for earlier versions.
      */
     monitoringService?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2118,7 +2114,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2147,7 +2143,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
+     * The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
     /**
@@ -2176,7 +2172,7 @@ export namespace container_v1beta1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
+     * The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
     /**
@@ -2201,7 +2197,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
+     * The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
     /**
@@ -2252,7 +2248,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2341,7 +2337,7 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2366,11 +2362,11 @@ export namespace container_v1beta1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The Kubernetes version to change the master to. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the default Kubernetes version
+     * Required. The Kubernetes version to change the master to. Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the default Kubernetes version
      */
     masterVersion?: string | null;
     /**
-     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x.
+     * The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
      */
     name?: string | null;
     /**
@@ -2403,11 +2399,11 @@ export namespace container_v1beta1 {
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool&#39;s nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
     locations?: string[] | null;
     /**
-     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x.
+     * The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
      */
     name?: string | null;
     /**
@@ -2415,7 +2411,7 @@ export namespace container_v1beta1 {
      */
     nodePoolId?: string | null;
     /**
-     * Required. The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - &quot;latest&quot;: picks the highest valid Kubernetes version - &quot;1.X&quot;: picks the highest valid patch+gke.N patch in the 1.X version - &quot;1.X.Y&quot;: picks the highest valid gke.N patch in the 1.X.Y version - &quot;1.X.Y-gke.N&quot;: picks an explicit Kubernetes version - &quot;-&quot;: picks the Kubernetes master version
+     * Required. The Kubernetes version to change the nodes to (typically an upgrade). Users may specify either explicit versions offered by Kubernetes Engine or version aliases, which have the following behavior: - "latest": picks the highest valid Kubernetes version - "1.X": picks the highest valid patch+gke.N patch in the 1.X version - "1.X.Y": picks the highest valid gke.N patch in the 1.X.Y version - "1.X.Y-gke.N": picks an explicit Kubernetes version - "-": picks the Kubernetes master version
      */
     nodeVersion?: string | null;
     /**
@@ -2590,9 +2586,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.aggregated.usableSubnetworks.list
-     * @desc Lists subnetworks that can be used for creating clusters in a project.
+     * Lists subnetworks that can be used for creating clusters in a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -2639,17 +2635,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.aggregated.usableSubnetworks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
-     * @param {integer=} params.pageSize The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
-     * @param {string=} params.pageToken Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
-     * @param {string} params.parent Required. The parent project where subnetworks are usable. Specified in the format `projects/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Aggregated$Usablesubnetworks$List,
@@ -2772,9 +2763,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.getServerConfig
-     * @desc Returns configuration info about the Google Kubernetes Engine service.
+     * Returns configuration info about the Google Kubernetes Engine service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -2823,16 +2814,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.getServerConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getServerConfig(
       params: Params$Resource$Projects$Locations$Getserverconfig,
@@ -2914,9 +2901,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.list
-     * @desc Fetches locations that offer Google Kubernetes Engine.
+     * Fetches locations that offer Google Kubernetes Engine.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -2957,14 +2944,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Contains the name of the resource requested. Specified in the format `projects/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -3089,9 +3074,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.completeIpRotation
-     * @desc Completes master IP rotation.
+     * Completes master IP rotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3156,15 +3141,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.completeIpRotation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().CompleteIPRotationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     completeIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Completeiprotation,
@@ -3246,9 +3228,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.create
-     * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3313,15 +3295,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
-     * @param {().CreateClusterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Clusters$Create,
@@ -3403,9 +3382,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.delete
-     * @desc Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
+     * Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3465,17 +3444,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Delete,
@@ -3554,9 +3528,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.get
-     * @desc Gets the details for a specific cluster.
+     * Gets the details for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3660,17 +3634,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Clusters$Get,
@@ -3749,9 +3718,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.getJwks
-     * @desc Gets the public component of the cluster signing keys in JSON Web Key format. This API is not yet intended for general use, and is not available for all clusters.
+     * Gets the public component of the cluster signing keys in JSON Web Key format. This API is not yet intended for general use, and is not available for all clusters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3792,14 +3761,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.getJwks
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The cluster (project, location, cluster id) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getJwks(
       params: Params$Resource$Projects$Locations$Clusters$Getjwks,
@@ -3888,9 +3855,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.list
-     * @desc Lists all clusters owned by a project in either the specified zone or all zones.
+     * Lists all clusters owned by a project in either the specified zone or all zones.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -3935,16 +3902,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Clusters$List,
@@ -4031,9 +3994,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setAddons
-     * @desc Sets the addons for a specific cluster.
+     * Sets the addons for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4099,15 +4062,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setAddons
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetAddonsConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setAddons(
       params: Params$Resource$Projects$Locations$Clusters$Setaddons,
@@ -4189,9 +4149,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setLegacyAbac
-     * @desc Enables or disables the ABAC authorization mechanism on a cluster.
+     * Enables or disables the ABAC authorization mechanism on a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4257,15 +4217,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setLegacyAbac
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetLegacyAbacRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setLegacyAbac(
       params: Params$Resource$Projects$Locations$Clusters$Setlegacyabac,
@@ -4347,9 +4304,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setLocations
-     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
+     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4415,15 +4372,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setLocations
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetLocationsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setLocations(
       params: Params$Resource$Projects$Locations$Clusters$Setlocations,
@@ -4505,9 +4459,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setLogging
-     * @desc Sets the logging service for a specific cluster.
+     * Sets the logging service for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4573,15 +4527,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setLogging
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetLoggingServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setLogging(
       params: Params$Resource$Projects$Locations$Clusters$Setlogging,
@@ -4663,9 +4614,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setMaintenancePolicy
-     * @desc Sets the maintenance policy for a cluster.
+     * Sets the maintenance policy for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4731,15 +4682,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setMaintenancePolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetMaintenancePolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setMaintenancePolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setmaintenancepolicy,
@@ -4823,9 +4771,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setMasterAuth
-     * @desc Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
+     * Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -4892,15 +4840,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setMasterAuth
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetMasterAuthRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setMasterAuth(
       params: Params$Resource$Projects$Locations$Clusters$Setmasterauth,
@@ -4982,9 +4927,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setMonitoring
-     * @desc Sets the monitoring service for a specific cluster.
+     * Sets the monitoring service for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5050,15 +4995,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setMonitoring
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetMonitoringServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setMonitoring(
       params: Params$Resource$Projects$Locations$Clusters$Setmonitoring,
@@ -5140,9 +5082,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setNetworkPolicy
-     * @desc Enables or disables Network Policy for a cluster.
+     * Enables or disables Network Policy for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5208,15 +5150,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setNetworkPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetNetworkPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setNetworkPolicy(
       params: Params$Resource$Projects$Locations$Clusters$Setnetworkpolicy,
@@ -5298,9 +5237,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.setResourceLabels
-     * @desc Sets labels on a cluster.
+     * Sets labels on a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5367,15 +5306,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.setResourceLabels
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().SetLabelsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setResourceLabels(
       params: Params$Resource$Projects$Locations$Clusters$Setresourcelabels,
@@ -5457,9 +5393,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.startIpRotation
-     * @desc Starts master IP rotation.
+     * Starts master IP rotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5525,15 +5461,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.startIpRotation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster id) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().StartIPRotationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startIpRotation(
       params: Params$Resource$Projects$Locations$Clusters$Startiprotation,
@@ -5615,9 +5548,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.update
-     * @desc Updates the settings for a specific cluster.
+     * Updates the settings for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5683,15 +5616,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().UpdateClusterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Locations$Clusters$Update,
@@ -5770,9 +5700,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.updateMaster
-     * @desc Updates the master for a specific cluster.
+     * Updates the master for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -5838,15 +5768,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.updateMaster
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().UpdateMasterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateMaster(
       params: Params$Resource$Projects$Locations$Clusters$Updatemaster,
@@ -6164,9 +6091,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.create
-     * @desc Creates a node pool for a cluster.
+     * Creates a node pool for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -6232,15 +6159,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {().CreateNodePoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Create,
@@ -6322,9 +6246,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.delete
-     * @desc Deletes a node pool from a cluster.
+     * Deletes a node pool from a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -6387,18 +6311,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Delete,
@@ -6477,9 +6395,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.get
-     * @desc Retrieves the requested node pool.
+     * Retrieves the requested node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -6542,18 +6460,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {string=} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Get,
@@ -6632,9 +6544,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.list
-     * @desc Lists the node pools for a cluster.
+     * Lists the node pools for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -6680,17 +6592,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$List,
@@ -6777,9 +6684,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.rollback
-     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
+     * Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -6846,15 +6753,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.rollback
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {().RollbackNodePoolUpgradeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rollback(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Rollback,
@@ -6936,9 +6840,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.setAutoscaling
-     * @desc Sets the autoscaling settings of a specific node pool.
+     * Sets the autoscaling settings of a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7008,15 +6912,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.setAutoscaling
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {().SetNodePoolAutoscalingRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setAutoscaling(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setautoscaling,
@@ -7098,9 +6999,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.setManagement
-     * @desc Sets the NodeManagement options for a node pool.
+     * Sets the NodeManagement options for a node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7170,15 +7071,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.setManagement
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {().SetNodePoolManagementRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setManagement(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setmanagement,
@@ -7260,9 +7158,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.setSize
-     * @desc Sets the size for a specific node pool.
+     * Sets the size for a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7330,15 +7228,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.setSize
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {().SetNodePoolSizeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setSize(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Setsize,
@@ -7420,9 +7315,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.nodePools.update
-     * @desc Updates the version and/or image type of a specific node pool.
+     * Updates the version and/or image type of a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7496,15 +7391,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.nodePools.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {().UpdateNodePoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Locations$Clusters$Nodepools$Update,
@@ -7728,9 +7620,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.clusters.well-known.getOpenid-configuration
-     * @desc Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details. This API is not yet intended for general use, and is not available for all clusters.
+     * Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details. This API is not yet intended for general use, and is not available for all clusters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7780,14 +7672,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.clusters.well-known.getOpenid-configuration
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The cluster (project, location, cluster id) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getOpenidConfiguration(
       params: Params$Resource$Projects$Locations$Clusters$WellKnown$Getopenidconfiguration,
@@ -7890,9 +7780,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.operations.cancel
-     * @desc Cancels the specified operation.
+     * Cancels the specified operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -7941,15 +7831,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -8031,9 +7918,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.operations.get
-     * @desc Gets the specified operation.
+     * Gets the specified operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8093,17 +7980,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
-     * @param {string=} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -8182,9 +8064,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.locations.operations.list
-     * @desc Lists all operations in a project in the specified zone or all zones.
+     * Lists all operations in a project in the specified zone or all zones.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8229,16 +8111,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
-     * @param {string=} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -8383,9 +8261,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.getServerconfig
-     * @desc Returns configuration info about the Google Kubernetes Engine service.
+     * Returns configuration info about the Google Kubernetes Engine service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8434,16 +8312,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.getServerconfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getServerconfig(
       params: Params$Resource$Projects$Zones$Getserverconfig,
@@ -8552,9 +8426,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.addons
-     * @desc Sets the addons for a specific cluster.
+     * Sets the addons for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8624,17 +8498,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.addons
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetAddonsConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addons(
       params: Params$Resource$Projects$Zones$Clusters$Addons,
@@ -8716,9 +8585,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.completeIpRotation
-     * @desc Completes master IP rotation.
+     * Completes master IP rotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8787,17 +8656,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.completeIpRotation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().CompleteIPRotationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     completeIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Completeiprotation,
@@ -8879,9 +8743,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.create
-     * @desc Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -8948,16 +8812,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-     * @param {().CreateClusterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Zones$Clusters$Create,
@@ -9038,9 +8898,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.delete
-     * @desc Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
+     * Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9100,17 +8960,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Delete,
@@ -9192,9 +9047,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.get
-     * @desc Gets the details for a specific cluster.
+     * Gets the details for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9298,17 +9153,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Zones$Clusters$Get,
@@ -9390,9 +9240,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.legacyAbac
-     * @desc Enables or disables the ABAC authorization mechanism on a cluster.
+     * Enables or disables the ABAC authorization mechanism on a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9462,17 +9312,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.legacyAbac
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetLegacyAbacRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     legacyAbac(
       params: Params$Resource$Projects$Zones$Clusters$Legacyabac,
@@ -9554,9 +9399,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.list
-     * @desc Lists all clusters owned by a project in either the specified zone or all zones.
+     * Lists all clusters owned by a project in either the specified zone or all zones.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9601,16 +9446,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Zones$Clusters$List,
@@ -9696,9 +9537,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.locations
-     * @desc Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
+     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1beta1/projects.locations.clusters/update) instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9768,17 +9609,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.locations
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetLocationsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     locations(
       params: Params$Resource$Projects$Zones$Clusters$Locations,
@@ -9860,9 +9696,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.logging
-     * @desc Sets the logging service for a specific cluster.
+     * Sets the logging service for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -9932,17 +9768,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.logging
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetLoggingServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     logging(
       params: Params$Resource$Projects$Zones$Clusters$Logging,
@@ -10024,9 +9855,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.master
-     * @desc Updates the master for a specific cluster.
+     * Updates the master for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10096,17 +9927,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.master
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().UpdateMasterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     master(
       params: Params$Resource$Projects$Zones$Clusters$Master,
@@ -10188,9 +10014,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.monitoring
-     * @desc Sets the monitoring service for a specific cluster.
+     * Sets the monitoring service for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10260,17 +10086,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.monitoring
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetMonitoringServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     monitoring(
       params: Params$Resource$Projects$Zones$Clusters$Monitoring,
@@ -10352,9 +10173,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.resourceLabels
-     * @desc Sets labels on a cluster.
+     * Sets labels on a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10425,17 +10246,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.resourceLabels
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetLabelsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resourceLabels(
       params: Params$Resource$Projects$Zones$Clusters$Resourcelabels,
@@ -10517,9 +10333,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.setMaintenancePolicy
-     * @desc Sets the maintenance policy for a cluster.
+     * Sets the maintenance policy for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10589,17 +10405,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.setMaintenancePolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. The name of the cluster to update.
-     * @param {string} params.projectId Required. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840).
-     * @param {string} params.zone Required. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides.
-     * @param {().SetMaintenancePolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setMaintenancePolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setmaintenancepolicy,
@@ -10683,9 +10494,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.setMasterAuth
-     * @desc Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
+     * Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10756,17 +10567,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.setMasterAuth
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetMasterAuthRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setMasterAuth(
       params: Params$Resource$Projects$Zones$Clusters$Setmasterauth,
@@ -10848,9 +10654,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.setNetworkPolicy
-     * @desc Enables or disables Network Policy for a cluster.
+     * Enables or disables Network Policy for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -10920,17 +10726,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.setNetworkPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetNetworkPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setNetworkPolicy(
       params: Params$Resource$Projects$Zones$Clusters$Setnetworkpolicy,
@@ -11012,9 +10813,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.startIpRotation
-     * @desc Starts master IP rotation.
+     * Starts master IP rotation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -11084,17 +10885,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.startIpRotation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().StartIPRotationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startIpRotation(
       params: Params$Resource$Projects$Zones$Clusters$Startiprotation,
@@ -11176,9 +10972,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.update
-     * @desc Updates the settings for a specific cluster.
+     * Updates the settings for a specific cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -11248,17 +11044,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().UpdateClusterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Zones$Clusters$Update,
@@ -11677,9 +11468,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.autoscaling
-     * @desc Sets the autoscaling settings of a specific node pool.
+     * Sets the autoscaling settings of a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -11752,18 +11543,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.autoscaling
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetNodePoolAutoscalingRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     autoscaling(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Autoscaling,
@@ -11845,9 +11630,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.create
-     * @desc Creates a node pool for a cluster.
+     * Creates a node pool for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -11917,17 +11702,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-     * @param {().CreateNodePoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Create,
@@ -12009,9 +11789,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.delete
-     * @desc Deletes a node pool from a cluster.
+     * Deletes a node pool from a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12073,18 +11853,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Delete,
@@ -12166,9 +11940,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.get
-     * @desc Retrieves the requested node pool.
+     * Retrieves the requested node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12230,18 +12004,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
-     * @param {string=} params.name The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Get,
@@ -12323,9 +12091,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.list
-     * @desc Lists the node pools for a cluster.
+     * Lists the node pools for a cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12371,17 +12139,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
-     * @param {string=} params.parent The parent (project, location, cluster id) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://developers.google.com/console/help/new/#projectnumber). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$List,
@@ -12468,9 +12231,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.rollback
-     * @desc Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
+     * Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12542,18 +12305,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.rollback
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().RollbackNodePoolUpgradeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rollback(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Rollback,
@@ -12635,9 +12392,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.setManagement
-     * @desc Sets the NodeManagement options for a node pool.
+     * Sets the NodeManagement options for a node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12710,18 +12467,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.setManagement
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetNodePoolManagementRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setManagement(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setmanagement,
@@ -12803,9 +12554,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.setSize
-     * @desc Sets the size for a specific node pool.
+     * Sets the size for a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -12878,18 +12629,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.setSize
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().SetNodePoolSizeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setSize(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Setsize,
@@ -12971,9 +12716,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.clusters.nodePools.update
-     * @desc Updates the version and/or image type of a specific node pool.
+     * Updates the version and/or image type of a specific node pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -13052,18 +12797,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.clusters.nodePools.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clusterId Required. Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.nodePoolId Required. Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {().UpdateNodePoolRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Zones$Clusters$Nodepools$Update,
@@ -13358,9 +13097,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.operations.cancel
-     * @desc Cancels the specified operation.
+     * Cancels the specified operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -13413,17 +13152,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Zones$Operations$Cancel,
@@ -13505,9 +13239,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.operations.get
-     * @desc Gets the specified operation.
+     * Gets the specified operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -13567,17 +13301,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.name The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
-     * @param {string} params.operationId Required. Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the name field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Zones$Operations$Get,
@@ -13659,9 +13388,9 @@ export namespace container_v1beta1 {
     }
 
     /**
-     * container.projects.zones.operations.list
-     * @desc Lists all operations in a project in the specified zone or all zones.
+     * Lists all operations in a project in the specified zone or all zones.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/container.googleapis.com
@@ -13706,16 +13435,12 @@ export namespace container_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias container.projects.zones.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
-     * @param {string} params.projectId Required. Deprecated. The Google Developers Console [project ID or project number](https://support.google.com/cloud/answer/6158840). This field has been deprecated and replaced by the parent field.
-     * @param {string} params.zone Required. Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Zones$Operations$List,

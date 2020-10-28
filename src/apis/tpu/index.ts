@@ -35,3 +35,15 @@ export function tpu<T = tpu_v1.Tpu | tpu_v1alpha1.Tpu>(
 
 const auth = new AuthPlus();
 export {auth};
+export {tpu_v1};
+export {tpu_v1alpha1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

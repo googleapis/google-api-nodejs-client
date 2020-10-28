@@ -104,14 +104,10 @@ export namespace smartdevicemanagement_v1 {
    * Allow select enterprise partners to access, control, and manage Google and Nest devices programmatically.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const smartdevicemanagement = google.smartdevicemanagement('v1');
-   *
-   * @namespace smartdevicemanagement
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Smartdevicemanagement
+   * ```
    */
   export class Smartdevicemanagement {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Device {
     /**
-     * Required. The resource name of the device. For example: &quot;enterprises/XYZ/devices/123&quot;.
+     * Required. The resource name of the device. For example: "enterprises/XYZ/devices/123".
      */
     name?: string | null;
     /**
@@ -144,7 +140,7 @@ export namespace smartdevicemanagement_v1 {
      */
     traits?: {[key: string]: any} | null;
     /**
-     * Output only. Type of the device for general display purposes. For example: &quot;THERMOSTAT&quot;. The device type should not be used to deduce or infer functionality of the actual device it is assigned to. Instead, use the returned traits for the device.
+     * Output only. Type of the device for general display purposes. For example: "THERMOSTAT". The device type should not be used to deduce or infer functionality of the actual device it is assigned to. Instead, use the returned traits for the device.
      */
     type?: string | null;
   }
@@ -218,7 +214,7 @@ export namespace smartdevicemanagement_v1 {
      */
     displayName?: string | null;
     /**
-     * Output only. The name of the relation -- e.g., structure/room where the device is assigned to. For example: &quot;enterprises/XYZ/structures/ABC&quot; or &quot;enterprises/XYZ/structures/ABC/rooms/123&quot;
+     * Output only. The name of the relation -- e.g., structure/room where the device is assigned to. For example: "enterprises/XYZ/structures/ABC" or "enterprises/XYZ/structures/ABC/rooms/123"
      */
     parent?: string | null;
   }
@@ -227,7 +223,7 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Room {
     /**
-     * Output only. The resource name of the room. For example: &quot;enterprises/XYZ/structures/ABC/rooms/123&quot;.
+     * Output only. The resource name of the room. For example: "enterprises/XYZ/structures/ABC/rooms/123".
      */
     name?: string | null;
     /**
@@ -240,7 +236,7 @@ export namespace smartdevicemanagement_v1 {
    */
   export interface Schema$GoogleHomeEnterpriseSdmV1Structure {
     /**
-     * Output only. The resource name of the structure. For example: &quot;enterprises/XYZ/structures/ABC&quot;.
+     * Output only. The resource name of the structure. For example: "enterprises/XYZ/structures/ABC".
      */
     name?: string | null;
     /**
@@ -267,9 +263,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.devices.executeCommand
-     * @desc Executes a command to device managed by the enterprise.
+     * Executes a command to device managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -318,15 +314,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.devices.executeCommand
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device requested. For example: "enterprises/XYZ/devices/123"
-     * @param {().GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     executeCommand(
       params: Params$Resource$Enterprises$Devices$Executecommand,
@@ -435,9 +428,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.devices.get
-     * @desc Gets a device managed by the enterprise.
+     * Gets a device managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -480,14 +473,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.devices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the device requested. For example: "enterprises/XYZ/devices/123"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Enterprises$Devices$Get,
@@ -576,9 +567,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.devices.list
-     * @desc Lists devices managed by the enterprise.
+     * Lists devices managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -625,17 +616,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
-     * @param {integer=} params.pageSize Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken Optional token of the page to retrieve.
-     * @param {string} params.parent The parent enterprise to list devices under. E.g. "enterprises/XYZ".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Enterprises$Devices$List,
@@ -789,9 +775,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.structures.get
-     * @desc Gets a structure managed by the enterprise.
+     * Gets a structure managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -832,14 +818,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.structures.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the structure requested. For example: "enterprises/XYZ/structures/ABC".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Enterprises$Structures$Get,
@@ -928,9 +912,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.structures.list
-     * @desc Lists structures managed by the enterprise.
+     * Lists structures managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -977,17 +961,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.structures.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to list structures.
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer structures than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.parent The parent enterprise to list structures under. E.g. "enterprises/XYZ".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Enterprises$Structures$List,
@@ -1126,9 +1105,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.structures.rooms.get
-     * @desc Gets a room managed by the enterprise.
+     * Gets a room managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -1169,14 +1148,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.structures.rooms.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the room requested. For example: "enterprises/XYZ/structures/ABC/rooms/123".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Enterprises$Structures$Rooms$Get,
@@ -1265,9 +1242,9 @@ export namespace smartdevicemanagement_v1 {
     }
 
     /**
-     * smartdevicemanagement.enterprises.structures.rooms.list
-     * @desc Lists rooms managed by the enterprise.
+     * Lists rooms managed by the enterprise.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/smartdevicemanagement.googleapis.com
@@ -1312,16 +1289,12 @@ export namespace smartdevicemanagement_v1 {
      *   throw e;
      * });
      *
-     * @alias smartdevicemanagement.enterprises.structures.rooms.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer rooms than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken The token of the page to retrieve.
-     * @param {string} params.parent The parent resource name of the rooms requested. For example: "enterprises/XYZ/structures/ABC".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Enterprises$Structures$Rooms$List,

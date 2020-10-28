@@ -88,14 +88,10 @@ export namespace identitytoolkit_v3 {
    * Help the third party sites to implement federated login.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const identitytoolkit = google.identitytoolkit('v3');
-   *
-   * @namespace identitytoolkit
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Identitytoolkit
+   * ```
    */
   export class Identitytoolkit {
     context: APIRequestContext;
@@ -128,11 +124,11 @@ export namespace identitytoolkit_v3 {
      */
     captchaRequired?: boolean | null;
     /**
-     * True if the authUri is for user&#39;s existing provider.
+     * True if the authUri is for user's existing provider.
      */
     forExistingProvider?: boolean | null;
     /**
-     * The fixed string identitytoolkit#CreateAuthUriResponse&quot;.
+     * The fixed string identitytoolkit#CreateAuthUriResponse".
      */
     kind?: string | null;
     /**
@@ -157,7 +153,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$DeleteAccountResponse {
     /**
-     * The fixed string &quot;identitytoolkit#DeleteAccountResponse&quot;.
+     * The fixed string "identitytoolkit#DeleteAccountResponse".
      */
     kind?: string | null;
   }
@@ -166,7 +162,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$DownloadAccountResponse {
     /**
-     * The fixed string &quot;identitytoolkit#DownloadAccountResponse&quot;.
+     * The fixed string "identitytoolkit#DownloadAccountResponse".
      */
     kind?: string | null;
     /**
@@ -183,7 +179,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$EmailLinkSigninResponse {
     /**
-     * The user&#39;s email.
+     * The user's email.
      */
     email?: string | null;
     /**
@@ -199,7 +195,7 @@ export namespace identitytoolkit_v3 {
      */
     isNewUser?: boolean | null;
     /**
-     * The fixed string &quot;identitytoolkit#EmailLinkSigninResponse&quot;.
+     * The fixed string "identitytoolkit#EmailLinkSigninResponse".
      */
     kind?: string | null;
     /**
@@ -245,7 +241,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$GetAccountInfoResponse {
     /**
-     * The fixed string &quot;identitytoolkit#GetAccountInfoResponse&quot;.
+     * The fixed string "identitytoolkit#GetAccountInfoResponse".
      */
     kind?: string | null;
     /**
@@ -262,7 +258,7 @@ export namespace identitytoolkit_v3 {
      */
     email?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#GetOobConfirmationCodeResponse&quot;.
+     * The fixed string "identitytoolkit#GetOobConfirmationCodeResponse".
      */
     kind?: string | null;
     /**
@@ -275,7 +271,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$GetRecaptchaParamResponse {
     /**
-     * The fixed string &quot;identitytoolkit#GetRecaptchaParamResponse&quot;.
+     * The fixed string "identitytoolkit#GetRecaptchaParamResponse".
      */
     kind?: string | null;
     /**
@@ -296,7 +292,7 @@ export namespace identitytoolkit_v3 {
      */
     appId?: string | null;
     /**
-     * Explicitly specify the auth flow type. Currently only support &quot;CODE_FLOW&quot; type. The field is only used for Google provider.
+     * Explicitly specify the auth flow type. Currently only support "CODE_FLOW" type. The field is only used for Google provider.
      */
     authFlowType?: string | null;
     /**
@@ -324,7 +320,7 @@ export namespace identitytoolkit_v3 {
      */
     identifier?: string | null;
     /**
-     * The developer&#39;s consumer key for OpenId OAuth Extension
+     * The developer's consumer key for OpenId OAuth Extension
      */
     oauthConsumerKey?: string | null;
     /**
@@ -332,7 +328,7 @@ export namespace identitytoolkit_v3 {
      */
     oauthScope?: string | null;
     /**
-     * Optional realm for OpenID protocol. The sub string &quot;scheme://domain:port&quot; of the param &quot;continueUri&quot; is used if this is not set.
+     * Optional realm for OpenID protocol. The sub string "scheme://domain:port" of the param "continueUri" is used if this is not set.
      */
     openidRealm?: string | null;
     /**
@@ -340,7 +336,7 @@ export namespace identitytoolkit_v3 {
      */
     otaApp?: string | null;
     /**
-     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it&#39;s the OP identifier.
+     * The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. For other OpenID IdPs it's the OP identifier.
      */
     providerId?: string | null;
     /**
@@ -428,7 +424,7 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * The list of local ID&#39;s of the users to inquiry.
+     * The list of local ID's of the users to inquiry.
      */
     localId?: string[] | null;
     /**
@@ -558,7 +554,7 @@ export namespace identitytoolkit_v3 {
      */
     createdAt?: string | null;
     /**
-     * The custom attributes to be set in the user&#39;s id token.
+     * The custom attributes to be set in the user's id token.
      */
     customAttributes?: string | null;
     /**
@@ -836,7 +832,7 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$IdentitytoolkitRelyingpartyVerifyAssertionRequest {
     /**
-     * When it&#39;s true, automatically creates a new account if the user doesn&#39;t exist. When it&#39;s false, allows existing user to sign in normally and throws exception if the user doesn&#39;t exist.
+     * When it's true, automatically creates a new account if the user doesn't exist. When it's false, allows existing user to sign in normally and throws exception if the user doesn't exist.
      */
     autoCreate?: boolean | null;
     /**
@@ -1054,11 +1050,11 @@ export namespace identitytoolkit_v3 {
      */
     email?: string | null;
     /**
-     * The user&#39;s Gitkit login token for email change.
+     * The user's Gitkit login token for email change.
      */
     idToken?: string | null;
     /**
-     * iOS app store id to download the app if it&#39;s not already installed
+     * iOS app store id to download the app if it's not already installed
      */
     iOSAppStoreId?: string | null;
     /**
@@ -1066,7 +1062,7 @@ export namespace identitytoolkit_v3 {
      */
     iOSBundleId?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#relyingparty&quot;.
+     * The fixed string "identitytoolkit#relyingparty".
      */
     kind?: string | null;
     /**
@@ -1087,15 +1083,15 @@ export namespace identitytoolkit_v3 {
    */
   export interface Schema$ResetPasswordResponse {
     /**
-     * The user&#39;s email. If the out-of-band code is for email recovery, the user&#39;s original email.
+     * The user's email. If the out-of-band code is for email recovery, the user's original email.
      */
     email?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#ResetPasswordResponse&quot;.
+     * The fixed string "identitytoolkit#ResetPasswordResponse".
      */
     kind?: string | null;
     /**
-     * If the out-of-band code is for email recovery, the user&#39;s new email.
+     * If the out-of-band code is for email recovery, the user's new email.
      */
     newEmail?: string | null;
     /**
@@ -1128,7 +1124,7 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#SetAccountInfoResponse&quot;.
+     * The fixed string "identitytoolkit#SetAccountInfoResponse".
      */
     kind?: string | null;
     /**
@@ -1140,7 +1136,7 @@ export namespace identitytoolkit_v3 {
      */
     newEmail?: string | null;
     /**
-     * The user&#39;s hashed password.
+     * The user's hashed password.
      */
     passwordHash?: string | null;
     /**
@@ -1148,7 +1144,7 @@ export namespace identitytoolkit_v3 {
      */
     photoUrl?: string | null;
     /**
-     * The user&#39;s profiles at the associated IdPs.
+     * The user's profiles at the associated IdPs.
      */
     providerUserInfo?: Array<{
       displayName?: string;
@@ -1182,7 +1178,7 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#SignupNewUserResponse&quot;.
+     * The fixed string "identitytoolkit#SignupNewUserResponse".
      */
     kind?: string | null;
     /**
@@ -1203,7 +1199,7 @@ export namespace identitytoolkit_v3 {
      */
     error?: Array<{index?: number; message?: string}> | null;
     /**
-     * The fixed string &quot;identitytoolkit#UploadAccountResponse&quot;.
+     * The fixed string "identitytoolkit#UploadAccountResponse".
      */
     kind?: string | null;
   }
@@ -1216,7 +1212,7 @@ export namespace identitytoolkit_v3 {
      */
     createdAt?: string | null;
     /**
-     * The custom attributes to be set in the user&#39;s id token.
+     * The custom attributes to be set in the user's id token.
      */
     customAttributes?: string | null;
     /**
@@ -1248,7 +1244,7 @@ export namespace identitytoolkit_v3 {
      */
     localId?: string | null;
     /**
-     * The user&#39;s hashed password.
+     * The user's hashed password.
      */
     passwordHash?: string | null;
     /**
@@ -1256,7 +1252,7 @@ export namespace identitytoolkit_v3 {
      */
     passwordUpdatedAt?: number | null;
     /**
-     * User&#39;s phone number.
+     * User's phone number.
      */
     phoneNumber?: string | null;
     /**
@@ -1277,15 +1273,15 @@ export namespace identitytoolkit_v3 {
       screenName?: string;
     }> | null;
     /**
-     * The user&#39;s plain text password.
+     * The user's plain text password.
      */
     rawPassword?: string | null;
     /**
-     * The user&#39;s password salt.
+     * The user's password salt.
      */
     salt?: string | null;
     /**
-     * User&#39;s screen name at Twitter or login name at Github.
+     * User's screen name at Twitter or login name at Github.
      */
     screenName?: string | null;
     /**
@@ -1293,7 +1289,7 @@ export namespace identitytoolkit_v3 {
      */
     validSince?: string | null;
     /**
-     * Version of the user&#39;s password.
+     * Version of the user's password.
      */
     version?: number | null;
   }
@@ -1330,7 +1326,7 @@ export namespace identitytoolkit_v3 {
      */
     email?: string | null;
     /**
-     * It&#39;s true if the email is recycled.
+     * It's true if the email is recycled.
      */
     emailRecycled?: boolean | null;
     /**
@@ -1362,15 +1358,15 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * It&#39;s the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email.
+     * It's the identifier param in the createAuthUri request if the identifier is an email. It can be used to check whether the user input email is different from the asserted email.
      */
     inputEmail?: string | null;
     /**
-     * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
+     * True if it's a new user sign-in, false if it's a returning user.
      */
     isNewUser?: boolean | null;
     /**
-     * The fixed string &quot;identitytoolkit#VerifyAssertionResponse&quot;.
+     * The fixed string "identitytoolkit#VerifyAssertionResponse".
      */
     kind?: string | null;
     /**
@@ -1382,7 +1378,7 @@ export namespace identitytoolkit_v3 {
      */
     lastName?: string | null;
     /**
-     * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
+     * The RP local ID if it's already been mapped to the IdP account identified by the federated ID.
      */
     localId?: string | null;
     /**
@@ -1426,7 +1422,7 @@ export namespace identitytoolkit_v3 {
      */
     oauthTokenSecret?: string | null;
     /**
-     * The original email stored in the mapping storage. It&#39;s returned when the federated ID is associated to a different email.
+     * The original email stored in the mapping storage. It's returned when the federated ID is associated to a different email.
      */
     originalEmail?: string | null;
     /**
@@ -1434,7 +1430,7 @@ export namespace identitytoolkit_v3 {
      */
     photoUrl?: string | null;
     /**
-     * The IdP ID. For white listed IdPs it&#39;s a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the &quot;providerId&quot; param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the &quot;identifier&quot; param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
+     * The IdP ID. For white listed IdPs it's a short domain name e.g. google.com, aol.com, live.net and yahoo.com. If the "providerId" param is set to OpenID OP identifer other than the whilte listed IdPs the OP identifier is returned. If the "identifier" param is federated ID in the createAuthUri request. The domain part of the federated ID is returned.
      */
     providerId?: string | null;
     /**
@@ -1454,7 +1450,7 @@ export namespace identitytoolkit_v3 {
      */
     timeZone?: string | null;
     /**
-     * When action is &#39;map&#39;, contains the idps which can be used for confirmation.
+     * When action is 'map', contains the idps which can be used for confirmation.
      */
     verifiedProvider?: string[] | null;
   }
@@ -1471,11 +1467,11 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * True if it&#39;s a new user sign-in, false if it&#39;s a returning user.
+     * True if it's a new user sign-in, false if it's a returning user.
      */
     isNewUser?: boolean | null;
     /**
-     * The fixed string &quot;identitytoolkit#VerifyCustomTokenResponse&quot;.
+     * The fixed string "identitytoolkit#VerifyCustomTokenResponse".
      */
     kind?: string | null;
     /**
@@ -1504,11 +1500,11 @@ export namespace identitytoolkit_v3 {
      */
     idToken?: string | null;
     /**
-     * The fixed string &quot;identitytoolkit#VerifyPasswordResponse&quot;.
+     * The fixed string "identitytoolkit#VerifyPasswordResponse".
      */
     kind?: string | null;
     /**
-     * The RP local ID if it&#39;s already been mapped to the IdP account identified by the federated ID.
+     * The RP local ID if it's already been mapped to the IdP account identified by the federated ID.
      */
     localId?: string | null;
     /**
@@ -1524,7 +1520,7 @@ export namespace identitytoolkit_v3 {
      */
     oauthExpireIn?: number | null;
     /**
-     * The URI of the user&#39;s photo at IdP
+     * The URI of the user's photo at IdP
      */
     photoUrl?: string | null;
     /**
@@ -1544,9 +1540,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.createAuthUri
-     * @desc Creates the URI used by the IdP to authenticate the user.
+     * Creates the URI used by the IdP to authenticate the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -1614,14 +1610,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.createAuthUri
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyCreateAuthUriRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createAuthUri(
       params: Params$Resource$Relyingparty$Createauthuri,
@@ -1709,9 +1703,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.deleteAccount
-     * @desc Delete user account.
+     * Delete user account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -1758,14 +1752,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.deleteAccount
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDeleteAccountRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteAccount(
       params: Params$Resource$Relyingparty$Deleteaccount,
@@ -1853,9 +1845,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.downloadAccount
-     * @desc Batch download user accounts.
+     * Batch download user accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -1908,14 +1900,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.downloadAccount
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyDownloadAccountRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     downloadAccount(
       params: Params$Resource$Relyingparty$Downloadaccount,
@@ -2003,9 +1993,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.emailLinkSignin
-     * @desc Reset password for a user.
+     * Reset password for a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2058,14 +2048,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.emailLinkSignin
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyEmailLinkSigninRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     emailLinkSignin(
       params: Params$Resource$Relyingparty$Emaillinksignin,
@@ -2153,9 +2141,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.getAccountInfo
-     * @desc Returns the account info.
+     * Returns the account info.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2205,14 +2193,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.getAccountInfo
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyGetAccountInfoRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAccountInfo(
       params: Params$Resource$Relyingparty$Getaccountinfo,
@@ -2300,9 +2286,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.getOobConfirmationCode
-     * @desc Get a code for user action confirmation.
+     * Get a code for user action confirmation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2363,14 +2349,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.getOobConfirmationCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Relyingparty} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getOobConfirmationCode(
       params: Params$Resource$Relyingparty$Getoobconfirmationcode,
@@ -2461,9 +2445,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.getProjectConfig
-     * @desc Get project configuration.
+     * Get project configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2516,15 +2500,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.getProjectConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.delegatedProjectNumber Delegated GCP project number of the request.
-     * @param {string=} params.projectNumber GCP project number of the request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
@@ -2631,9 +2612,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.getPublicKeys
-     * @desc Get token signing public key.
+     * Get token signing public key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2668,13 +2649,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.getPublicKeys
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getPublicKeys(
       params: Params$Resource$Relyingparty$Getpublickeys,
@@ -2777,9 +2757,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.getRecaptchaParam
-     * @desc Get recaptcha secure param.
+     * Get recaptcha secure param.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2818,13 +2798,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.getRecaptchaParam
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getRecaptchaParam(
       params: Params$Resource$Relyingparty$Getrecaptchaparam,
@@ -2912,9 +2891,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.resetPassword
-     * @desc Reset password for a user.
+     * Reset password for a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -2965,14 +2944,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.resetPassword
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyResetPasswordRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetPassword(
       params: Params$Resource$Relyingparty$Resetpassword,
@@ -3060,9 +3037,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.sendVerificationCode
-     * @desc Send SMS verification code.
+     * Send SMS verification code.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3110,14 +3087,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.sendVerificationCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySendVerificationCodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
@@ -3224,9 +3199,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.setAccountInfo
-     * @desc Set account info for a user.
+     * Set account info for a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3304,14 +3279,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.setAccountInfo
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetAccountInfoRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setAccountInfo(
       params: Params$Resource$Relyingparty$Setaccountinfo,
@@ -3399,9 +3372,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.setProjectConfig
-     * @desc Set project configuration.
+     * Set project configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3456,14 +3429,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.setProjectConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySetProjectConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
@@ -3570,9 +3541,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.signOutUser
-     * @desc Sign out user.
+     * Sign out user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3618,14 +3589,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.signOutUser
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignOutUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signOutUser(
       params: Params$Resource$Relyingparty$Signoutuser,
@@ -3729,9 +3698,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.signupNewUser
-     * @desc Signup new user.
+     * Signup new user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3795,14 +3764,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.signupNewUser
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartySignupNewUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signupNewUser(
       params: Params$Resource$Relyingparty$Signupnewuser,
@@ -3890,9 +3857,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.uploadAccount
-     * @desc Batch upload existing user accounts.
+     * Batch upload existing user accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -3954,14 +3921,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.uploadAccount
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyUploadAccountRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     uploadAccount(
       params: Params$Resource$Relyingparty$Uploadaccount,
@@ -4049,9 +4014,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.verifyAssertion
-     * @desc Verifies the assertion returned by the IdP.
+     * Verifies the assertion returned by the IdP.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -4146,14 +4111,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.verifyAssertion
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyAssertionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verifyAssertion(
       params: Params$Resource$Relyingparty$Verifyassertion,
@@ -4241,9 +4204,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.verifyCustomToken
-     * @desc Verifies the developer asserted ID token.
+     * Verifies the developer asserted ID token.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -4295,14 +4258,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.verifyCustomToken
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyCustomTokenRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verifyCustomToken(
       params: Params$Resource$Relyingparty$Verifycustomtoken,
@@ -4390,9 +4351,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.verifyPassword
-     * @desc Verifies the user entered password.
+     * Verifies the user entered password.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -4458,14 +4419,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.verifyPassword
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPasswordRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verifyPassword(
       params: Params$Resource$Relyingparty$Verifypassword,
@@ -4553,9 +4512,9 @@ export namespace identitytoolkit_v3 {
     }
 
     /**
-     * identitytoolkit.relyingparty.verifyPhoneNumber
-     * @desc Verifies ownership of a phone number and creates/updates the user account accordingly.
+     * Verifies ownership of a phone number and creates/updates the user account accordingly.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/identitytoolkit.googleapis.com
@@ -4615,14 +4574,12 @@ export namespace identitytoolkit_v3 {
      *   throw e;
      * });
      *
-     * @alias identitytoolkit.relyingparty.verifyPhoneNumber
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().IdentitytoolkitRelyingpartyVerifyPhoneNumberRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,

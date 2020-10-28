@@ -104,14 +104,10 @@ export namespace apigateway_v1beta {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const apigateway = google.apigateway('v1beta');
-   *
-   * @namespace apigateway
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Apigateway
+   * ```
    */
   export class Apigateway {
     context: APIRequestContext;
@@ -148,7 +144,7 @@ export namespace apigateway_v1beta {
      */
     managedService?: string | null;
     /**
-     * Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}
+     * Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      */
     name?: string | null;
     /**
@@ -185,11 +181,11 @@ export namespace apigateway_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https: //cloud.google.com/endpoints/docs/grpc/g // rpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using &quot;last one wins&quot; semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields.
+     * Optional. Service Configuration files. At least one must be included when using gRPC service definitions. See https: //cloud.google.com/endpoints/docs/grpc/g // rpc-service-config#service_configuration_overview for the expected file contents. If multiple files are specified, the files are merged with the following rules: * All singular scalar fields are merged using "last one wins" semantics in the order of the files uploaded. * Repeated fields are concatenated. * Singular embedded messages are merged using these rules for nested fields.
      */
     managedServiceConfigs?: Schema$ApigatewayApiConfigFile[];
     /**
-     * Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}
+     * Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      */
     name?: string | null;
     /**
@@ -231,7 +227,7 @@ export namespace apigateway_v1beta {
      */
     fileDescriptorSet?: Schema$ApigatewayApiConfigFile;
     /**
-     * Optional. Uncompiled proto files associated with the descriptor set, used for display purposes (server-side compilation is not supported). These should match the inputs to &#39;protoc&#39; command used to generate file_descriptor_set.
+     * Optional. Uncompiled proto files associated with the descriptor set, used for display purposes (server-side compilation is not supported). These should match the inputs to 'protoc' command used to generate file_descriptor_set.
      */
     source?: Schema$ApigatewayApiConfigFile[];
   }
@@ -245,7 +241,7 @@ export namespace apigateway_v1beta {
     document?: Schema$ApigatewayApiConfigFile;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$ApigatewayAuditConfig {
     /**
@@ -258,7 +254,7 @@ export namespace apigateway_v1beta {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$ApigatewayAuditLogConfig {
     /**
@@ -275,7 +271,7 @@ export namespace apigateway_v1beta {
    */
   export interface Schema$ApigatewayBackendConfig {
     /**
-     * Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https: //cloud.google.com/service-infrastructur // e/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account&#39;s email (i.e. &quot;{ACCOUNT_ID}@{PROJECT}.iam.gserviceaccount.com&quot;) or its full resource name (i.e. &quot;projects/{PROJECT}/accounts/{UNIQUE_ID}&quot;). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https: //github.com/googleapis/googleapis/blob/ // master/google/api/backend.proto#L125).
+     * Google Cloud IAM service account used to sign OIDC tokens for backends that have authentication configured (https: //cloud.google.com/service-infrastructur // e/docs/service-management/reference/rest/v1/services.configs#backend). This may either be the Service Account's email (i.e. "{ACCOUNT_ID\}@{PROJECT\}.iam.gserviceaccount.com") or its full resource name (i.e. "projects/{PROJECT\}/accounts/{UNIQUE_ID\}"). This is most often used when the backend is a GCP resource such as a Cloud Run Service or an IAP-secured service. Note that this token is always sent as an authorization header bearer token. The audience of the OIDC token is configured in the associated Service Config in the BackendRule option (https: //github.com/googleapis/googleapis/blob/ // master/google/api/backend.proto#L125).
      */
     googleServiceAccount?: string | null;
   }
@@ -288,7 +284,7 @@ export namespace apigateway_v1beta {
      */
     condition?: Schema$ApigatewayExpr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -301,7 +297,7 @@ export namespace apigateway_v1beta {
    */
   export interface Schema$ApigatewayCancelOperationRequest {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$ApigatewayExpr {
     /**
@@ -326,7 +322,7 @@ export namespace apigateway_v1beta {
    */
   export interface Schema$ApigatewayGateway {
     /**
-     * Required. Resource name of the API Config for this Gateway. Format: projects/{project}/locations/global/apis/{api}/configs/{apiConfig}
+     * Required. Resource name of the API Config for this Gateway. Format: projects/{project\}/locations/global/apis/{api\}/configs/{apiConfig\}
      */
     apiConfig?: string | null;
     /**
@@ -334,7 +330,7 @@ export namespace apigateway_v1beta {
      */
     createTime?: string | null;
     /**
-     * Output only. The default API Gateway host name of the form `{gateway_id}-{hash}.{region_code}.gateway.dev`.
+     * Output only. The default API Gateway host name of the form `{gateway_id\}-{hash\}.{region_code\}.gateway.dev`.
      */
     defaultHostname?: string | null;
     /**
@@ -346,7 +342,7 @@ export namespace apigateway_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}
+     * Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      */
     name?: string | null;
     /**
@@ -449,15 +445,15 @@ export namespace apigateway_v1beta {
    */
   export interface Schema$ApigatewayLocation {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -465,7 +461,7 @@ export namespace apigateway_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -486,7 +482,7 @@ export namespace apigateway_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -545,7 +541,7 @@ export namespace apigateway_v1beta {
     message?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$ApigatewayPolicy {
     /**
@@ -574,7 +570,7 @@ export namespace apigateway_v1beta {
      */
     policy?: Schema$ApigatewayPolicy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -600,7 +596,7 @@ export namespace apigateway_v1beta {
    */
   export interface Schema$ApigatewayTestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -614,7 +610,7 @@ export namespace apigateway_v1beta {
     permissions?: string[] | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
 
@@ -642,9 +638,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -688,14 +684,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -777,9 +771,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -826,17 +820,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -963,9 +952,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.create
-     * @desc Creates a new Api in a given project and location.
+     * Creates a new Api in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1025,16 +1014,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiId Required. Identifier to assign to the API. Must be unique within scope of the parent resource.
-     * @param {string} params.parent Required. Parent resource of the API, of the form: `projects/x/locations/global`
-     * @param {().ApigatewayApi} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Apis$Create,
@@ -1119,9 +1104,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.delete
-     * @desc Deletes a single Api.
+     * Deletes a single Api.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1165,14 +1150,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/global/apis/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Apis$Delete,
@@ -1254,9 +1237,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.get
-     * @desc Gets details of a single Api.
+     * Gets details of a single Api.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1302,14 +1285,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/global/apis/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Apis$Get,
@@ -1388,9 +1369,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1435,15 +1416,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Getiampolicy,
@@ -1525,9 +1503,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.list
-     * @desc Lists Apis in a given project and location.
+     * Lists Apis in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1577,18 +1555,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter.
-     * @param {string=} params.orderBy Order by parameters.
-     * @param {integer=} params.pageSize Page size.
-     * @param {string=} params.pageToken Page token.
-     * @param {string} params.parent Required. Parent resource of the API, of the form: `projects/x/locations/global`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Apis$List,
@@ -1677,9 +1649,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.patch
-     * @desc Updates the parameters of a single Api.
+     * Updates the parameters of a single Api.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1703,7 +1675,7 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.patch({
-     *     // Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}
+     *     // Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      *     name: 'projects/my-project/locations/my-location/apis/my-api',
      *     // Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -1739,16 +1711,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}
-     * @param {string=} params.updateMask Field mask is used to specify the fields to be overwritten in the Api resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     * @param {().ApigatewayApi} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Apis$Patch,
@@ -1830,9 +1798,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -1884,15 +1852,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewaySetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Setiampolicy,
@@ -1974,9 +1939,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2024,15 +1989,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewayTestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Testiampermissions,
@@ -2196,7 +2158,7 @@ export namespace apigateway_v1beta {
   export interface Params$Resource$Projects$Locations$Apis$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the API. Format: projects/{project}/locations/global/apis/{api}
+     * Output only. Resource name of the API. Format: projects/{project\}/locations/global/apis/{api\}
      */
     name?: string;
     /**
@@ -2241,9 +2203,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.create
-     * @desc Creates a new ApiConfig in a given project and location.
+     * Creates a new ApiConfig in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2307,16 +2269,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiConfigId Required. Identifier to assign to the API Config. Must be unique within scope of the parent resource.
-     * @param {string} params.parent Required. Parent resource of the API Config, of the form: `projects/x/locations/global/apis/x`
-     * @param {().ApigatewayApiConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Apis$Configs$Create,
@@ -2401,9 +2359,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.delete
-     * @desc Deletes a single ApiConfig.
+     * Deletes a single ApiConfig.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2448,14 +2406,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Apis$Configs$Delete,
@@ -2537,9 +2493,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.get
-     * @desc Gets details of a single ApiConfig.
+     * Gets details of a single ApiConfig.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2592,15 +2548,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/global/apis/x/configs/x`
-     * @param {string=} params.view Specifies which fields of the API Config are returned in the response. Defaults to `BASIC` view.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Apis$Configs$Get,
@@ -2682,9 +2635,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2730,15 +2683,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Getiampolicy,
@@ -2820,9 +2770,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.list
-     * @desc Lists ApiConfigs in a given project and location.
+     * Lists ApiConfigs in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -2872,18 +2822,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter.
-     * @param {string=} params.orderBy Order by parameters.
-     * @param {integer=} params.pageSize Page size.
-     * @param {string=} params.pageToken Page token.
-     * @param {string} params.parent Required. Parent resource of the API Config, of the form: `projects/x/locations/global/apis/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Apis$Configs$List,
@@ -2974,9 +2918,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.patch
-     * @desc Updates the parameters of a single ApiConfig.
+     * Updates the parameters of a single ApiConfig.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3000,7 +2944,7 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.apis.configs.patch({
-     *     // Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}
+     *     // Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      *     name:
      *       'projects/my-project/locations/my-location/apis/my-api/configs/my-config',
      *     // Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
@@ -3041,16 +2985,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}
-     * @param {string=} params.updateMask Field mask is used to specify the fields to be overwritten in the ApiConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     * @param {().ApigatewayApiConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Apis$Configs$Patch,
@@ -3132,9 +3072,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3187,15 +3127,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewaySetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Apis$Configs$Setiampolicy,
@@ -3277,9 +3214,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.apis.configs.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3330,15 +3267,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.apis.configs.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewayTestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Apis$Configs$Testiampermissions,
@@ -3506,7 +3440,7 @@ export namespace apigateway_v1beta {
   export interface Params$Resource$Projects$Locations$Apis$Configs$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the API Config. Format: projects/{project}/locations/global/apis/{api}/configs/{api_config}
+     * Output only. Resource name of the API Config. Format: projects/{project\}/locations/global/apis/{api\}/configs/{api_config\}
      */
     name?: string;
     /**
@@ -3551,9 +3485,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.create
-     * @desc Creates a new Gateway in a given project and location.
+     * Creates a new Gateway in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3614,16 +3548,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.gatewayId Required. Identifier to assign to the Gateway. Must be unique within scope of the parent resource.
-     * @param {string} params.parent Required. Parent resource of the Gateway, of the form: `projects/x/locations/x`
-     * @param {().ApigatewayGateway} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Gateways$Create,
@@ -3708,9 +3638,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.delete
-     * @desc Deletes a single Gateway.
+     * Deletes a single Gateway.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3754,14 +3684,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/x/gateways/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Gateways$Delete,
@@ -3843,9 +3771,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.get
-     * @desc Gets details of a single Gateway.
+     * Gets details of a single Gateway.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -3892,14 +3820,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the form: `projects/x/locations/x/gateways/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Gateways$Get,
@@ -3981,9 +3907,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4028,15 +3954,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Getiampolicy,
@@ -4118,9 +4041,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.list
-     * @desc Lists Gateways in a given project and location.
+     * Lists Gateways in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4170,18 +4093,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Filter.
-     * @param {string=} params.orderBy Order by parameters.
-     * @param {integer=} params.pageSize Page size.
-     * @param {string=} params.pageToken Page token.
-     * @param {string} params.parent Required. Parent resource of the Gateway, of the form: `projects/x/locations/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Gateways$List,
@@ -4272,9 +4189,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.patch
-     * @desc Updates the parameters of a single Gateway.
+     * Updates the parameters of a single Gateway.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4298,7 +4215,7 @@ export namespace apigateway_v1beta {
      *
      *   // Do the magic
      *   const res = await apigateway.projects.locations.gateways.patch({
-     *     // Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}
+     *     // Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      *     name: 'projects/my-project/locations/my-location/gateways/my-gateway',
      *     // Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -4335,16 +4252,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}
-     * @param {string=} params.updateMask Field mask is used to specify the fields to be overwritten in the Gateway resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
-     * @param {().ApigatewayGateway} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Gateways$Patch,
@@ -4426,9 +4339,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4480,15 +4393,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewaySetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Gateways$Setiampolicy,
@@ -4570,9 +4480,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.gateways.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4620,15 +4530,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.gateways.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().ApigatewayTestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gateways$Testiampermissions,
@@ -4792,7 +4699,7 @@ export namespace apigateway_v1beta {
   export interface Params$Resource$Projects$Locations$Gateways$Patch
     extends StandardParameters {
     /**
-     * Output only. Resource name of the Gateway. Format: projects/{project}/locations/{location}/gateways/{gateway}
+     * Output only. Resource name of the Gateway. Format: projects/{project\}/locations/{location\}/gateways/{gateway\}
      */
     name?: string;
     /**
@@ -4837,9 +4744,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -4883,15 +4790,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().ApigatewayCancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -4973,9 +4877,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -5013,14 +4917,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -5099,9 +5001,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -5145,14 +5047,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -5234,9 +5134,9 @@ export namespace apigateway_v1beta {
     }
 
     /**
-     * apigateway.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/apigateway.googleapis.com
@@ -5283,17 +5183,12 @@ export namespace apigateway_v1beta {
      *   throw e;
      * });
      *
-     * @alias apigateway.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,

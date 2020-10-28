@@ -33,3 +33,14 @@ export function domainsrdap<T = domainsrdap_v1.Domainsrdap>(
 
 const auth = new AuthPlus();
 export {auth};
+export {domainsrdap_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

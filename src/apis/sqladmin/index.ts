@@ -33,3 +33,14 @@ export function sqladmin<T = sqladmin_v1beta4.Sqladmin>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sqladmin_v1beta4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

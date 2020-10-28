@@ -35,3 +35,14 @@ export function area120tables<T = area120tables_v1alpha1.Area120tables>(
 
 const auth = new AuthPlus();
 export {auth};
+export {area120tables_v1alpha1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

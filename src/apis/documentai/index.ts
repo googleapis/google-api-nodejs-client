@@ -45,3 +45,15 @@ export function documentai<
 
 const auth = new AuthPlus();
 export {auth};
+export {documentai_v1beta2};
+export {documentai_v1beta3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

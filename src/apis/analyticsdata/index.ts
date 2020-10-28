@@ -35,3 +35,14 @@ export function analyticsdata<T = analyticsdata_v1alpha.Analyticsdata>(
 
 const auth = new AuthPlus();
 export {auth};
+export {analyticsdata_v1alpha};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

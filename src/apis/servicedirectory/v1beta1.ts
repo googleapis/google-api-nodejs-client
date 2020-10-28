@@ -104,14 +104,10 @@ export namespace servicedirectory_v1beta1 {
    * Service Directory is a platform for discovering, publishing, and connecting services.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const servicedirectory = google.servicedirectory('v1beta1');
-   *
-   * @namespace servicedirectory
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Servicedirectory
+   * ```
    */
   export class Servicedirectory {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace servicedirectory_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -149,7 +145,7 @@ export namespace servicedirectory_v1beta1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -157,7 +153,7 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Endpoint {
     /**
-     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad addresses like: &quot;8.8.8&quot; &quot;8.8.8.8:53&quot; &quot;test:bad:address&quot; &quot;[::1]&quot; &quot;[::1]:8080&quot; Limited to 45 characters.
+     * Optional. An IPv4 or IPv6 address. Service Directory will reject bad addresses like: "8.8.8" "8.8.8.8:53" "test:bad:address" "[::1]" "[::1]:8080" Limited to 45 characters.
      */
     address?: string | null;
     /**
@@ -165,7 +161,7 @@ export namespace servicedirectory_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the endpoint in the format &#39;projects/x/locations/x/namespaces/x/services/x/endpoints/*&#39;.
+     * Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
      */
     name?: string | null;
     /**
@@ -174,7 +170,7 @@ export namespace servicedirectory_v1beta1 {
     port?: number | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -269,15 +265,15 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -285,7 +281,7 @@ export namespace servicedirectory_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -298,12 +294,12 @@ export namespace servicedirectory_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the namespace in the format &#39;projects/x/locations/x/namespaces/*&#39;.
+     * Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
      */
     name?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -324,7 +320,7 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$ResolveServiceRequest {
     /**
-     * Optional. The filter applied to the endpoints of the resolved service. General filter string syntax: () can be &quot;name&quot; or &quot;metadata.&quot; for map field. can be &quot;&lt;, &gt;, &lt;=, &gt;=, !=, =, :&quot;. Of which &quot;:&quot; means HAS and is roughly the same as &quot;=&quot;. must be the same data type as the field. can be &quot;AND, OR, NOT&quot;. Examples of valid filters: * &quot;metadata.owner&quot; returns Endpoints that have a label with the key &quot;owner&quot;, this is the same as &quot;metadata:owner&quot; * &quot;metadata.protocol=gRPC&quot; returns Endpoints that have key/value &quot;protocol=gRPC&quot; * &quot;metadata.owner!=sd AND metadata.foo=bar&quot; returns Endpoints that have &quot;owner&quot; field in metadata with a value that is not &quot;sd&quot; AND have the key/value foo=bar.
+     * Optional. The filter applied to the endpoints of the resolved service. General filter string syntax: () can be "name" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS and is roughly the same as "=". must be the same data type as the field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner", this is the same as "metadata:owner" * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC" * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" field in metadata with a value that is not "sd" AND have the key/value foo=bar.
      */
     endpointFilter?: string | null;
     /**
@@ -351,7 +347,7 @@ export namespace servicedirectory_v1beta1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Immutable. The resource name for the service in the format &#39;projects/x/locations/x/namespaces/x/services/*&#39;.
+     * Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
      */
     name?: string | null;
   }
@@ -369,7 +365,7 @@ export namespace servicedirectory_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -403,9 +399,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -449,14 +445,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -536,9 +530,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -585,17 +579,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -721,9 +710,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.create
-     * @desc Creates a namespace, and returns the new Namespace.
+     * Creates a namespace, and returns the new Namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -747,7 +736,7 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.create({
-     *     // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *     // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *     namespaceId: 'placeholder-value',
      *     // Required. The resource name of the project and location the namespace will be created in.
      *     parent: 'projects/my-project/locations/my-location',
@@ -775,16 +764,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.namespaceId Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     * @param {string} params.parent Required. The resource name of the project and location the namespace will be created in.
-     * @param {().Namespace} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Create,
@@ -867,9 +852,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.delete
-     * @desc Deletes a namespace. This also deletes all services and endpoints in the namespace.
+     * Deletes a namespace. This also deletes all services and endpoints in the namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -907,14 +892,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the namespace to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Delete,
@@ -994,9 +977,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.get
-     * @desc Gets a namespace.
+     * Gets a namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1037,14 +1020,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the namespace to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Get,
@@ -1124,9 +1105,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.getIamPolicy
-     * @desc Gets the IAM Policy for a resource (namespace or service only).
+     * Gets the IAM Policy for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1179,15 +1160,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Getiampolicy,
@@ -1270,9 +1248,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.list
-     * @desc Lists all namespaces.
+     * Lists all namespaces.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1296,9 +1274,9 @@ export namespace servicedirectory_v1beta1 {
      *
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.list({
-     *     // Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
+     *     // Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
      *     filter: 'placeholder-value',
-     *     // Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
+     *     // Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"\} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
      *     orderBy: 'placeholder-value',
      *     // Optional. The maximum number of items to return.
      *     pageSize: 'placeholder-value',
@@ -1321,18 +1299,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
-     * @param {string=} params.orderBy Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the project and location whose namespaces we'd like to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Namespaces$List,
@@ -1420,9 +1392,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.patch
-     * @desc Updates a namespace.
+     * Updates a namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1474,16 +1446,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Immutable. The resource name for the namespace in the format 'projects/x/locations/x/namespaces/x'.
-     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
-     * @param {().Namespace} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Patch,
@@ -1563,9 +1531,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.setIamPolicy
-     * @desc Sets the IAM Policy for a resource (namespace or service only).
+     * Sets the IAM Policy for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1618,15 +1586,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Setiampolicy,
@@ -1709,9 +1674,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.testIamPermissions
-     * @desc Tests IAM permissions for a resource (namespace or service only).
+     * Tests IAM permissions for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -1762,15 +1727,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Testiampermissions,
@@ -1863,7 +1825,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Create
     extends StandardParameters {
     /**
-     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     namespaceId?: string;
     /**
@@ -1905,11 +1867,11 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "labels." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "labels.owner" returns Namespaces that have a label with the key "owner" this is the same as "labels:owner". * "labels.protocol=gRPC" returns Namespaces that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/namespace-c" returns Namespaces that have name that is alphabetically later than the string, so "namespace-e" will be returned but "namespace-a" will not be. * "labels.owner!=sd AND labels.foo=bar" returns Namespaces that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Namespace doesn't have a field called "doesnotexist". Since the filter does not match any Namespaces, it returns no results.
      */
     filter?: string;
     /**
-     * Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
+     * Optional. The order to list result by. General order by string syntax: () (,) allows values {"name"\} ascending or descending order by . If this is left blank, "asc" is used. Note that an empty order_by string result in default order, which is order by name in ascending order.
      */
     orderBy?: string;
     /**
@@ -1977,9 +1939,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.create
-     * @desc Creates a service, and returns the new Service.
+     * Creates a service, and returns the new Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2007,7 +1969,7 @@ export namespace servicedirectory_v1beta1 {
      *       // Required. The resource name of the namespace this service will belong to.
      *       parent:
      *         'projects/my-project/locations/my-location/namespaces/my-namespace',
-     *       // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *       // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *       serviceId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -2036,16 +1998,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The resource name of the namespace this service will belong to.
-     * @param {string=} params.serviceId Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Create,
@@ -2128,9 +2086,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.delete
-     * @desc Deletes a service. This also deletes all endpoints associated with the service.
+     * Deletes a service. This also deletes all endpoints associated with the service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2171,14 +2129,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the service to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Delete,
@@ -2258,9 +2214,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.get
-     * @desc Gets a service.
+     * Gets a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2305,14 +2261,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the service to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Get,
@@ -2392,9 +2346,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.getIamPolicy
-     * @desc Gets the IAM Policy for a resource (namespace or service only).
+     * Gets the IAM Policy for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2447,15 +2401,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Getiampolicy,
@@ -2538,9 +2489,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.list
-     * @desc Lists all services belonging to a namespace.
+     * Lists all services belonging to a namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2565,7 +2516,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.list(
      *     {
-     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
+     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
      *       filter: 'placeholder-value',
      *       // Optional. The order to list result by.
      *       orderBy: 'placeholder-value',
@@ -2592,18 +2543,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
-     * @param {string=} params.orderBy Optional. The order to list result by.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the namespace whose services we'd like to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$List,
@@ -2691,9 +2636,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.patch
-     * @desc Updates a service.
+     * Updates a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2750,16 +2695,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Immutable. The resource name for the service in the format 'projects/x/locations/x/namespaces/x/services/x'.
-     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Patch,
@@ -2839,9 +2780,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.resolve
-     * @desc Returns a service and its associated endpoints. Resolving a service is not considered an active developer method.
+     * Returns a service and its associated endpoints. Resolving a service is not considered an active developer method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -2893,15 +2834,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.resolve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the service to resolve.
-     * @param {().ResolveServiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resolve(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Resolve,
@@ -2991,9 +2929,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.setIamPolicy
-     * @desc Sets the IAM Policy for a resource (namespace or service only).
+     * Sets the IAM Policy for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3046,15 +2984,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Setiampolicy,
@@ -3137,9 +3072,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.testIamPermissions
-     * @desc Tests IAM permissions for a resource (namespace or service only).
+     * Tests IAM permissions for a resource (namespace or service only).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3190,15 +3125,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Testiampermissions,
@@ -3295,7 +3227,7 @@ export namespace servicedirectory_v1beta1 {
      */
     parent?: string;
     /**
-     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     serviceId?: string;
 
@@ -3333,7 +3265,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Services that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Services that have key/value "protocol=gRPC". * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/service-c" returns Services that have name that is alphabetically later than the string, so "service-e" will be returned but "service-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Services that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Service doesn't have a field called "doesnotexist". Since the filter does not match any Services, it returns no results.
      */
     filter?: string;
     /**
@@ -3413,9 +3345,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.endpoints.create
-     * @desc Creates a endpoint, and returns the new Endpoint.
+     * Creates a endpoint, and returns the new Endpoint.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3440,7 +3372,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.create(
      *     {
-     *       // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     *       // Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      *       endpointId: 'placeholder-value',
      *       // Required. The resource name of the service that this endpoint provides.
      *       parent:
@@ -3474,16 +3406,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.endpoints.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.endpointId Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
-     * @param {string} params.parent Required. The resource name of the service that this endpoint provides.
-     * @param {().Endpoint} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create,
@@ -3566,9 +3494,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.endpoints.delete
-     * @desc Deletes a endpoint.
+     * Deletes a endpoint.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3609,14 +3537,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.endpoints.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the endpoint to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Delete,
@@ -3696,9 +3622,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.endpoints.get
-     * @desc Gets a endpoint.
+     * Gets a endpoint.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3744,14 +3670,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.endpoints.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the endpoint to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Get,
@@ -3831,9 +3755,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.endpoints.list
-     * @desc Lists all endpoints.
+     * Lists all endpoints.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -3858,7 +3782,7 @@ export namespace servicedirectory_v1beta1 {
      *   // Do the magic
      *   const res = await servicedirectory.projects.locations.namespaces.services.endpoints.list(
      *     {
-     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port>8080" returns Endpoints that have port number larger than 8080. * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
+     *       // Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port\>8080" returns Endpoints that have port number larger than 8080. * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
      *       filter: 'placeholder-value',
      *       // Optional. The order to list result by.
      *       orderBy: 'placeholder-value',
@@ -3885,18 +3809,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.endpoints.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port>8080" returns Endpoints that have port number larger than 8080. * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
-     * @param {string=} params.orderBy Optional. The order to list result by.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the service whose endpoints we'd like to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List,
@@ -3984,9 +3902,9 @@ export namespace servicedirectory_v1beta1 {
     }
 
     /**
-     * servicedirectory.projects.locations.namespaces.services.endpoints.patch
-     * @desc Updates a endpoint.
+     * Updates a endpoint.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/servicedirectory.googleapis.com
@@ -4045,16 +3963,12 @@ export namespace servicedirectory_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias servicedirectory.projects.locations.namespaces.services.endpoints.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Immutable. The resource name for the endpoint in the format 'projects/x/locations/x/namespaces/x/services/x/endpoints/x'.
-     * @param {string=} params.updateMask Required. List of fields to be updated in this request.
-     * @param {().Endpoint} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Patch,
@@ -4137,7 +4051,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$Create
     extends StandardParameters {
     /**
-     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
+     * Required. The Resource ID must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z](?:[-a-z0-9]{0,61\}[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.
      */
     endpointId?: string;
     /**
@@ -4167,7 +4081,7 @@ export namespace servicedirectory_v1beta1 {
   export interface Params$Resource$Projects$Locations$Namespaces$Services$Endpoints$List
     extends StandardParameters {
     /**
-     * Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, >, <=, >=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port>8080" returns Endpoints that have port number larger than 8080. * "name>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
+     * Optional. The filter to list result by. General filter string syntax: () can be "name", "address", "port" or "metadata." for map field. can be "<, \>, <=, \>=, !=, =, :". Of which ":" means HAS, and is roughly the same as "=". must be the same data type as field. can be "AND, OR, NOT". Examples of valid filters: * "metadata.owner" returns Endpoints that have a label with the key "owner" this is the same as "metadata:owner". * "metadata.protocol=gRPC" returns Endpoints that have key/value "protocol=gRPC". * "address=192.108.1.105" returns Endpoints that have this address. * "port\>8080" returns Endpoints that have port number larger than 8080. * "name\>projects/my-project/locations/us-east/namespaces/my-namespace/services/my-service/endpoints/endpoint-c" returns Endpoints that have name that is alphabetically later than the string, so "endpoint-e" will be returned but "endpoint-a" will not be. * "metadata.owner!=sd AND metadata.foo=bar" returns Endpoints that have "owner" in label key but value is not "sd" AND have key/value foo=bar. * "doesnotexist.foo=bar" returns an empty list. Note that Endpoint doesn't have a field called "doesnotexist". Since the filter does not match any Endpoints, it returns no results.
      */
     filter?: string;
     /**

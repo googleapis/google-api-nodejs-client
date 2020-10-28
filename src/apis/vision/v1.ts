@@ -104,14 +104,10 @@ export namespace vision_v1 {
    * Integrates Google Vision features, including image labeling, face, logo, and landmark detection, optical character recognition (OCR), and detection of explicit content, into applications.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const vision = google.vision('v1');
-   *
-   * @namespace vision
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Vision
+   * ```
    */
   export class Vision {
     context: APIRequestContext;
@@ -299,7 +295,7 @@ export namespace vision_v1 {
    */
   export interface Schema$AsyncBatchAnnotateFilesRequest {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string | null;
     /**
@@ -325,7 +321,7 @@ export namespace vision_v1 {
      */
     outputConfig?: Schema$OutputConfig;
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string | null;
     /**
@@ -347,7 +343,7 @@ export namespace vision_v1 {
    */
   export interface Schema$BatchAnnotateFilesRequest {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string | null;
     /**
@@ -369,7 +365,7 @@ export namespace vision_v1 {
    */
   export interface Schema$BatchAnnotateImagesRequest {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string | null;
     /**
@@ -412,7 +408,7 @@ export namespace vision_v1 {
      */
     blockType?: string | null;
     /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -446,7 +442,7 @@ export namespace vision_v1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of &quot;java.awt.Color&quot; in Java; it can also be trivially provided to UIColor&#39;s &quot;+colorWithRed:green:blue:alpha&quot; method in iOS; and, with just a little work, it can be easily formatted into a CSS &quot;rgba()&quot; string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); } public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); } return resultBuilder.build(); } // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; } return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; } static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&amp;red green:&amp;green blue:&amp;blue alpha:&amp;alpha]) { return nil; } Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha &lt;= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; } [result autorelease]; return result; } // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!(&#39;alpha&#39; in rgb_color)) { return rgbToCssColor_(red, green, blue); } var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(&#39;,&#39;); return [&#39;rgba(&#39;, rgbParams, &#39;,&#39;, alphaFrac, &#39;)&#39;].join(&#39;&#39;); }; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red &lt;&lt; 16) | (green &lt;&lt; 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = [&#39;#&#39;]; for (var i = 0; i &lt; missingZeros; i++) { resultBuilder.push(&#39;0&#39;); } resultBuilder.push(hexString); return resultBuilder.join(&#39;&#39;); }; // ...
+   * Represents a color in the RGBA color space. This representation is designed for simplicity of conversion to/from color representations in various languages over compactness; for example, the fields of this representation can be trivially provided to the constructor of "java.awt.Color" in Java; it can also be trivially provided to UIColor's "+colorWithRed:green:blue:alpha" method in iOS; and, with just a little work, it can be easily formatted into a CSS "rgba()" string in JavaScript, as well. Note: this proto does not carry information about the absolute color space that should be used to interpret the RGB value (e.g. sRGB, Adobe RGB, DCI-P3, BT.2020, etc.). By default, applications SHOULD assume the sRGB color space. Note: when color equality needs to be decided, implementations, unless documented otherwise, will treat two colors to be equal if all their red, green, blue and alpha values each differ by at most 1e-5. Example (Java): import com.google.type.Color; // ... public static java.awt.Color fromProto(Color protocolor) { float alpha = protocolor.hasAlpha() ? protocolor.getAlpha().getValue() : 1.0; return new java.awt.Color( protocolor.getRed(), protocolor.getGreen(), protocolor.getBlue(), alpha); \} public static Color toProto(java.awt.Color color) { float red = (float) color.getRed(); float green = (float) color.getGreen(); float blue = (float) color.getBlue(); float denominator = 255.0; Color.Builder resultBuilder = Color .newBuilder() .setRed(red / denominator) .setGreen(green / denominator) .setBlue(blue / denominator); int alpha = color.getAlpha(); if (alpha != 255) { result.setAlpha( FloatValue .newBuilder() .setValue(((float) alpha) / denominator) .build()); \} return resultBuilder.build(); \} // ... Example (iOS / Obj-C): // ... static UIColor* fromProto(Color* protocolor) { float red = [protocolor red]; float green = [protocolor green]; float blue = [protocolor blue]; FloatValue* alpha_wrapper = [protocolor alpha]; float alpha = 1.0; if (alpha_wrapper != nil) { alpha = [alpha_wrapper value]; \} return [UIColor colorWithRed:red green:green blue:blue alpha:alpha]; \} static Color* toProto(UIColor* color) { CGFloat red, green, blue, alpha; if (![color getRed:&red green:&green blue:&blue alpha:&alpha]) { return nil; \} Color* result = [[Color alloc] init]; [result setRed:red]; [result setGreen:green]; [result setBlue:blue]; if (alpha <= 0.9999) { [result setAlpha:floatWrapperWithValue(alpha)]; \} [result autorelease]; return result; \} // ... Example (JavaScript): // ... var protoToCssColor = function(rgb_color) { var redFrac = rgb_color.red || 0.0; var greenFrac = rgb_color.green || 0.0; var blueFrac = rgb_color.blue || 0.0; var red = Math.floor(redFrac * 255); var green = Math.floor(greenFrac * 255); var blue = Math.floor(blueFrac * 255); if (!('alpha' in rgb_color)) { return rgbToCssColor_(red, green, blue); \} var alphaFrac = rgb_color.alpha.value || 0.0; var rgbParams = [red, green, blue].join(','); return ['rgba(', rgbParams, ',', alphaFrac, ')'].join(''); \}; var rgbToCssColor_ = function(red, green, blue) { var rgbNumber = new Number((red << 16) | (green << 8) | blue); var hexString = rgbNumber.toString(16); var missingZeros = 6 - hexString.length; var resultBuilder = ['#']; for (var i = 0; i < missingZeros; i++) { resultBuilder.push('0'); \} resultBuilder.push(hexString); return resultBuilder.join(''); \}; // ...
    */
   export interface Schema$Color {
     /**
@@ -488,7 +484,7 @@ export namespace vision_v1 {
    */
   export interface Schema$CropHint {
     /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale.
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
@@ -540,7 +536,7 @@ export namespace vision_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -554,7 +550,7 @@ export namespace vision_v1 {
     colors?: Schema$ColorInfo[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -566,7 +562,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
     confidence?: number | null;
     /**
@@ -594,7 +590,7 @@ export namespace vision_v1 {
      */
     score?: number | null;
     /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
     topicality?: number | null;
   }
@@ -611,7 +607,7 @@ export namespace vision_v1 {
      */
     blurredLikelihood?: string | null;
     /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
@@ -619,7 +615,7 @@ export namespace vision_v1 {
      */
     detectionConfidence?: number | null;
     /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
      */
     fdBoundingPoly?: Schema$BoundingPoly;
     /**
@@ -655,7 +651,7 @@ export namespace vision_v1 {
      */
     surpriseLikelihood?: string | null;
     /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180].
      */
     tiltAngle?: number | null;
     /**
@@ -672,7 +668,7 @@ export namespace vision_v1 {
      */
     maxResults?: number | null;
     /**
-     * Model to use for the feature. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for the feature. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
     /**
@@ -685,7 +681,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GcsDestination {
     /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;. * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with "filenameprefix". * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
     uri?: string | null;
   }
@@ -807,7 +803,7 @@ export namespace vision_v1 {
      */
     blockType?: string | null;
     /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -858,7 +854,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1CropHint {
     /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -897,7 +893,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
     confidence?: number | null;
     /**
@@ -925,7 +921,7 @@ export namespace vision_v1 {
      */
     score?: number | null;
     /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
     topicality?: number | null;
   }
@@ -942,7 +938,7 @@ export namespace vision_v1 {
      */
     blurredLikelihood?: string | null;
     /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -950,7 +946,7 @@ export namespace vision_v1 {
      */
     detectionConfidence?: number | null;
     /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
      */
     fdBoundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -986,7 +982,7 @@ export namespace vision_v1 {
      */
     surpriseLikelihood?: string | null;
     /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180].
      */
     tiltAngle?: number | null;
     /**
@@ -1012,7 +1008,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1GcsDestination {
     /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;. * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with "filenameprefix". * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
     uri?: string | null;
   }
@@ -1060,7 +1056,7 @@ export namespace vision_v1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p1beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.
      */
     mimeType?: string | null;
   }
@@ -1073,7 +1069,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -1171,7 +1167,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Paragraph {
     /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1221,11 +1217,11 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The category for the product identified by the reference image. This should be one of &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot; or &quot;general-v1&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
+     * Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
     productLabels?: Schema$GoogleCloudVisionV1p1beta1ProductKeyValue[];
   }
@@ -1281,7 +1277,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1ProductSearchResultsObjectAnnotation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -1348,7 +1344,7 @@ export namespace vision_v1 {
      */
     racy?: string | null;
     /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     * Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
@@ -1361,7 +1357,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Symbol {
     /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1378,7 +1374,7 @@ export namespace vision_v1 {
     text?: string | null;
   }
   /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -\> Page -\> Block -\> Paragraph -\> Word -\> Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
    */
   export interface Schema$GoogleCloudVisionV1p1beta1TextAnnotation {
     /**
@@ -1412,7 +1408,7 @@ export namespace vision_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1447,7 +1443,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1WebDetection {
     /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     * The service's best guess as to the topic of the request image. Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p1beta1WebDetectionWebLabel[];
     /**
@@ -1510,7 +1506,7 @@ export namespace vision_v1 {
      */
     label?: string | null;
     /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -1544,7 +1540,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p1beta1Word {
     /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p1beta1BoundingPoly;
     /**
@@ -1669,7 +1665,7 @@ export namespace vision_v1 {
      */
     blockType?: string | null;
     /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -1720,7 +1716,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1CropHint {
     /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -1759,7 +1755,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
     confidence?: number | null;
     /**
@@ -1787,7 +1783,7 @@ export namespace vision_v1 {
      */
     score?: number | null;
     /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
     topicality?: number | null;
   }
@@ -1804,7 +1800,7 @@ export namespace vision_v1 {
      */
     blurredLikelihood?: string | null;
     /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -1812,7 +1808,7 @@ export namespace vision_v1 {
      */
     detectionConfidence?: number | null;
     /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
      */
     fdBoundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -1848,7 +1844,7 @@ export namespace vision_v1 {
      */
     surpriseLikelihood?: string | null;
     /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180].
      */
     tiltAngle?: number | null;
     /**
@@ -1874,7 +1870,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1GcsDestination {
     /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;. * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with "filenameprefix". * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
     uri?: string | null;
   }
@@ -1922,7 +1918,7 @@ export namespace vision_v1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p2beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.
      */
     mimeType?: string | null;
   }
@@ -1935,7 +1931,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -2033,7 +2029,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1Paragraph {
     /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2083,11 +2079,11 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The category for the product identified by the reference image. This should be one of &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot; or &quot;general-v1&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
+     * Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
     productLabels?: Schema$GoogleCloudVisionV1p2beta1ProductKeyValue[];
   }
@@ -2143,7 +2139,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1ProductSearchResultsObjectAnnotation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -2210,7 +2206,7 @@ export namespace vision_v1 {
      */
     racy?: string | null;
     /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     * Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
@@ -2223,7 +2219,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1Symbol {
     /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2240,7 +2236,7 @@ export namespace vision_v1 {
     text?: string | null;
   }
   /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -\> Page -\> Block -\> Paragraph -\> Word -\> Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
    */
   export interface Schema$GoogleCloudVisionV1p2beta1TextAnnotation {
     /**
@@ -2274,7 +2270,7 @@ export namespace vision_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -2309,7 +2305,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1WebDetection {
     /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     * The service's best guess as to the topic of the request image. Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p2beta1WebDetectionWebLabel[];
     /**
@@ -2372,7 +2368,7 @@ export namespace vision_v1 {
      */
     label?: string | null;
     /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -2406,7 +2402,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p2beta1Word {
     /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p2beta1BoundingPoly;
     /**
@@ -2548,7 +2544,7 @@ export namespace vision_v1 {
      */
     blockType?: string | null;
     /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -2599,7 +2595,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1CropHint {
     /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -2638,7 +2634,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
     confidence?: number | null;
     /**
@@ -2666,7 +2662,7 @@ export namespace vision_v1 {
      */
     score?: number | null;
     /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
     topicality?: number | null;
   }
@@ -2683,7 +2679,7 @@ export namespace vision_v1 {
      */
     blurredLikelihood?: string | null;
     /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -2691,7 +2687,7 @@ export namespace vision_v1 {
      */
     detectionConfidence?: number | null;
     /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
      */
     fdBoundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -2727,7 +2723,7 @@ export namespace vision_v1 {
      */
     surpriseLikelihood?: string | null;
     /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180].
      */
     tiltAngle?: number | null;
     /**
@@ -2753,7 +2749,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1GcsDestination {
     /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;. * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with "filenameprefix". * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
     uri?: string | null;
   }
@@ -2814,7 +2810,7 @@ export namespace vision_v1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p3beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.
      */
     mimeType?: string | null;
   }
@@ -2827,7 +2823,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -2925,7 +2921,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1Paragraph {
     /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -2975,11 +2971,11 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The category for the product identified by the reference image. This should be one of &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot; or &quot;general-v1&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
+     * Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
     productLabels?: Schema$GoogleCloudVisionV1p3beta1ProductKeyValue[];
   }
@@ -3035,7 +3031,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1ProductSearchResultsObjectAnnotation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -3119,7 +3115,7 @@ export namespace vision_v1 {
      */
     racy?: string | null;
     /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     * Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
@@ -3132,7 +3128,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1Symbol {
     /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -3149,7 +3145,7 @@ export namespace vision_v1 {
     text?: string | null;
   }
   /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -\> Page -\> Block -\> Paragraph -\> Word -\> Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
    */
   export interface Schema$GoogleCloudVisionV1p3beta1TextAnnotation {
     /**
@@ -3183,7 +3179,7 @@ export namespace vision_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -3218,7 +3214,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1WebDetection {
     /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     * The service's best guess as to the topic of the request image. Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p3beta1WebDetectionWebLabel[];
     /**
@@ -3281,7 +3277,7 @@ export namespace vision_v1 {
      */
     label?: string | null;
     /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -3315,7 +3311,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p3beta1Word {
     /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p3beta1BoundingPoly;
     /**
@@ -3475,7 +3471,7 @@ export namespace vision_v1 {
      */
     blockType?: string | null;
     /**
-     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the block. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -3509,15 +3505,15 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1Celebrity {
     /**
-     * The Celebrity&#39;s description.
+     * The Celebrity's description.
      */
     description?: string | null;
     /**
-     * The Celebrity&#39;s display name.
+     * The Celebrity's display name.
      */
     displayName?: string | null;
     /**
-     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid}`.
+     * The resource name of the preloaded Celebrity. Has the format `builtin/{mid\}`.
      */
     name?: string | null;
   }
@@ -3543,7 +3539,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1CropHint {
     /**
-     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image&#39;s scale.
+     * The bounding polygon for the crop region. The coordinates of the bounding box are in the original image's scale.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -3582,7 +3578,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
-     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the &quot;Eiffel Tower&quot; entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
+     * **Deprecated. Use `score` instead.** The accuracy of the entity detection in an image. For example, for an image in which the "Eiffel Tower" entity is detected, this field represents the confidence that there is a tower in the query image. Range [0, 1].
      */
     confidence?: number | null;
     /**
@@ -3610,7 +3606,7 @@ export namespace vision_v1 {
      */
     score?: number | null;
     /**
-     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of &quot;tower&quot; is likely higher to an image containing the detected &quot;Eiffel Tower&quot; than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
+     * The relevancy of the ICA (Image Content Annotation) label to the image. For example, the relevancy of "tower" is likely higher to an image containing the detected "Eiffel Tower" than to an image containing a detected distant towering building, even though the confidence that there is a tower in each image may be the same. Range [0, 1].
      */
     topicality?: number | null;
   }
@@ -3627,7 +3623,7 @@ export namespace vision_v1 {
      */
     blurredLikelihood?: string | null;
     /**
-     * The bounding polygon around the face. The coordinates of the bounding box are in the original image&#39;s scale. The bounding box is computed to &quot;frame&quot; the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
+     * The bounding polygon around the face. The coordinates of the bounding box are in the original image's scale. The bounding box is computed to "frame" the face in accordance with human expectations. It is based on the landmarker results. Note that one or more x and/or y coordinates may not be generated in the `BoundingPoly` (the polygon will be unbounded) if only a partial face appears in the image to be annotated.
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -3635,7 +3631,7 @@ export namespace vision_v1 {
      */
     detectionConfidence?: number | null;
     /**
-     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the &quot;amount of skin&quot; visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
+     * The `fd_bounding_poly` bounding polygon is tighter than the `boundingPoly`, and encloses only the skin part of the face. Typically, it is used to eliminate the face from any image analysis that detects the "amount of skin" visible in an image. It is not based on the landmarker results, only on the initial face detection, hence the fd (face detection) prefix.
      */
     fdBoundingPoly?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -3675,7 +3671,7 @@ export namespace vision_v1 {
      */
     surpriseLikelihood?: string | null;
     /**
-     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image&#39;s horizontal plane. Range [-180,180].
+     * Pitch angle, which indicates the upwards/downwards angle that the face is pointing relative to the image's horizontal plane. Range [-180,180].
      */
     tiltAngle?: number | null;
     /**
@@ -3697,7 +3693,7 @@ export namespace vision_v1 {
     type?: string | null;
   }
   /**
-   * Information about a face&#39;s identity.
+   * Information about a face's identity.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1FaceRecognitionResult {
     /**
@@ -3714,7 +3710,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1GcsDestination {
     /**
-     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with &quot;filenameprefix&quot;. * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
+     * Google Cloud Storage URI prefix where the results will be stored. Results will be in JSON format and preceded by its corresponding input URI prefix. This field can either represent a gcs file prefix or gcs directory. In either case, the uri should be unique because in order to get all of the output files, you will need to do a wildcard gcs search on the uri prefix you provide. Examples: * File Prefix: gs://bucket-name/here/filenameprefix The output files will be created in gs://bucket-name/here/ and the names of the output files will begin with "filenameprefix". * Directory Prefix: gs://bucket-name/some/location/ The output files will be created in gs://bucket-name/some/location/ and the names of the output files could be anything because there was no filename prefix specified. If multiple outputs, each response is still AnnotateFileResponse, each of which contains some subset of the full list of AnnotateImageResponse. Multiple outputs can happen if, for example, the output JSON is too large and overflows into multiple sharded files.
      */
     uri?: string | null;
   }
@@ -3775,7 +3771,7 @@ export namespace vision_v1 {
      */
     gcsSource?: Schema$GoogleCloudVisionV1p4beta1GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.
      */
     mimeType?: string | null;
   }
@@ -3788,7 +3784,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -3886,7 +3882,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1Paragraph {
     /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -3936,11 +3932,11 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The category for the product identified by the reference image. This should be one of &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot; or &quot;general-v1&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
+     * Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
     productLabels?: Schema$GoogleCloudVisionV1p4beta1ProductKeyValue[];
   }
@@ -3996,7 +3992,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1ProductSearchResultsObjectAnnotation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -4080,7 +4076,7 @@ export namespace vision_v1 {
      */
     racy?: string | null;
     /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     * Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
@@ -4093,7 +4089,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1Symbol {
     /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -4110,7 +4106,7 @@ export namespace vision_v1 {
     text?: string | null;
   }
   /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -\> Page -\> Block -\> Paragraph -\> Word -\> Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
    */
   export interface Schema$GoogleCloudVisionV1p4beta1TextAnnotation {
     /**
@@ -4144,7 +4140,7 @@ export namespace vision_v1 {
      */
     confidence?: number | null;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -4179,7 +4175,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1WebDetection {
     /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     * The service's best guess as to the topic of the request image. Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$GoogleCloudVisionV1p4beta1WebDetectionWebLabel[];
     /**
@@ -4242,7 +4238,7 @@ export namespace vision_v1 {
      */
     label?: string | null;
     /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -4276,7 +4272,7 @@ export namespace vision_v1 {
    */
   export interface Schema$GoogleCloudVisionV1p4beta1Word {
     /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$GoogleCloudVisionV1p4beta1BoundingPoly;
     /**
@@ -4387,7 +4383,7 @@ export namespace vision_v1 {
    */
   export interface Schema$ImportProductSetsGcsSource {
     /**
-     * The Google Cloud Storage URI of the input csv file. The URI must start with `gs://`. The format of the input csv file should be one image per line. In each line, there are 8 columns. 1. image-uri 2. image-id 3. product-set-id 4. product-id 5. product-category 6. product-display-name 7. labels 8. bounding-poly The `image-uri`, `product-set-id`, `product-id`, and `product-category` columns are required. All other columns are optional. If the `ProductSet` or `Product` specified by the `product-set-id` and `product-id` values does not exist, then the system will create a new `ProductSet` or `Product` for the image. In this case, the `product-display-name` column refers to display_name, the `product-category` column refers to product_category, and the `labels` column refers to product_labels. The `image-id` column is optional but must be unique if provided. If it is empty, the system will automatically assign a unique id to the image. The `product-display-name` column is optional. If it is empty, the system sets the display_name field for the product to a space (&quot; &quot;). You can update the `display_name` later by using the API. If a `Product` with the specified `product-id` already exists, then the system ignores the `product-display-name`, `product-category`, and `labels` columns. The `labels` column (optional) is a line containing a list of comma-separated key-value pairs, in the following format: &quot;key_1=value_1,key_2=value_2,...,key_n=value_n&quot; The `bounding-poly` column (optional) identifies one region of interest from the image in the same manner as `CreateReferenceImage`. If you do not specify the `bounding-poly` column, then the system will try to detect regions of interest automatically. At most one `bounding-poly` column is allowed per line. If the image contains multiple regions of interest, add a line to the CSV file that includes the same product information, and the `bounding-poly` values for each region of interest. The `bounding-poly` column must contain an even number of comma-separated numbers, in the format &quot;p1_x,p1_y,p2_x,p2_y,...,pn_x,pn_y&quot;. Use non-negative integers for absolute bounding polygons, and float values in [0, 1] for normalized bounding polygons. The system will resize the image if the image resolution is too large to process (larger than 20MP).
+     * The Google Cloud Storage URI of the input csv file. The URI must start with `gs://`. The format of the input csv file should be one image per line. In each line, there are 8 columns. 1. image-uri 2. image-id 3. product-set-id 4. product-id 5. product-category 6. product-display-name 7. labels 8. bounding-poly The `image-uri`, `product-set-id`, `product-id`, and `product-category` columns are required. All other columns are optional. If the `ProductSet` or `Product` specified by the `product-set-id` and `product-id` values does not exist, then the system will create a new `ProductSet` or `Product` for the image. In this case, the `product-display-name` column refers to display_name, the `product-category` column refers to product_category, and the `labels` column refers to product_labels. The `image-id` column is optional but must be unique if provided. If it is empty, the system will automatically assign a unique id to the image. The `product-display-name` column is optional. If it is empty, the system sets the display_name field for the product to a space (" "). You can update the `display_name` later by using the API. If a `Product` with the specified `product-id` already exists, then the system ignores the `product-display-name`, `product-category`, and `labels` columns. The `labels` column (optional) is a line containing a list of comma-separated key-value pairs, in the following format: "key_1=value_1,key_2=value_2,...,key_n=value_n" The `bounding-poly` column (optional) identifies one region of interest from the image in the same manner as `CreateReferenceImage`. If you do not specify the `bounding-poly` column, then the system will try to detect regions of interest automatically. At most one `bounding-poly` column is allowed per line. If the image contains multiple regions of interest, add a line to the CSV file that includes the same product information, and the `bounding-poly` values for each region of interest. The `bounding-poly` column must contain an even number of comma-separated numbers, in the format "p1_x,p1_y,p2_x,p2_y,...,pn_x,pn_y". Use non-negative integers for absolute bounding polygons, and float values in [0, 1] for normalized bounding polygons. The system will resize the image if the image resolution is too large to process (larger than 20MP).
      */
     csvFileUri?: string | null;
   }
@@ -4435,7 +4431,7 @@ export namespace vision_v1 {
      */
     gcsSource?: Schema$GcsSource;
     /**
-     * The type of the file. Currently only &quot;application/pdf&quot;, &quot;image/tiff&quot; and &quot;image/gif&quot; are supported. Wildcards are not supported.
+     * The type of the file. Currently only "application/pdf", "image/tiff" and "image/gif" are supported. Wildcards are not supported.
      */
     mimeType?: string | null;
   }
@@ -4569,7 +4565,7 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -4612,7 +4608,7 @@ export namespace vision_v1 {
    */
   export interface Schema$ObjectAnnotation {
     /**
-     * The BCP-47 language code, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -4645,7 +4641,7 @@ export namespace vision_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -4713,7 +4709,7 @@ export namespace vision_v1 {
    */
   export interface Schema$Paragraph {
     /**
-     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the paragraph. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -4763,11 +4759,11 @@ export namespace vision_v1 {
      */
     name?: string | null;
     /**
-     * Immutable. The category for the product identified by the reference image. This should be one of &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot; or &quot;general-v1&quot;. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported, but these should not be used for new products.
+     * Immutable. The category for the product identified by the reference image. This should be one of "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1" or "general-v1". The legacy categories "homegoods", "apparel", and "toys" are still supported, but these should not be used for new products.
      */
     productCategory?: string | null;
     /**
-     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. &quot;1199&quot;. Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
+     * Key-value pairs that can be attached to a product. At query time, constraints can be specified based on the product_labels. Note that integer values can be provided as strings, e.g. "1199". Only strings with integer values can match a range-based restriction which is to be supported soon. Multiple values can be assigned to the same key. One product may have up to 500 product_labels. Notice that the total number of distinct product_labels over all products in one ProductSet cannot exceed 1M, otherwise the product search pipeline will refuse to work for that ProductSet.
      */
     productLabels?: Schema$KeyValue[];
   }
@@ -4780,11 +4776,11 @@ export namespace vision_v1 {
      */
     boundingPoly?: Schema$BoundingPoly;
     /**
-     * The filtering expression. This can be used to restrict search results based on Product labels. We currently support an AND of OR of key-value expressions, where each expression within an OR must have the same key. An &#39;=&#39; should be used to connect the key and value. For example, &quot;(color = red OR color = blue) AND brand = Google&quot; is acceptable, but &quot;(color = red OR brand = Google)&quot; is not acceptable. &quot;color: red&quot; is not acceptable because it uses a &#39;:&#39; instead of an &#39;=&#39;.
+     * The filtering expression. This can be used to restrict search results based on Product labels. We currently support an AND of OR of key-value expressions, where each expression within an OR must have the same key. An '=' should be used to connect the key and value. For example, "(color = red OR color = blue) AND brand = Google" is acceptable, but "(color = red OR brand = Google)" is not acceptable. "color: red" is not acceptable because it uses a ':' instead of an '='.
      */
     filter?: string | null;
     /**
-     * The list of product categories to search in. Currently, we only consider the first category, and either &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, &quot;toys-v2&quot;, &quot;packagedgoods-v1&quot;, or &quot;general-v1&quot; should be specified. The legacy categories &quot;homegoods&quot;, &quot;apparel&quot;, and &quot;toys&quot; are still supported but will be deprecated. For new products, please use &quot;homegoods-v2&quot;, &quot;apparel-v2&quot;, or &quot;toys-v2&quot; for better product search accuracy. It is recommended to migrate existing products to these categories as well.
+     * The list of product categories to search in. Currently, we only consider the first category, and either "homegoods-v2", "apparel-v2", "toys-v2", "packagedgoods-v1", or "general-v1" should be specified. The legacy categories "homegoods", "apparel", and "toys" are still supported but will be deprecated. For new products, please use "homegoods-v2", "apparel-v2", or "toys-v2" for better product search accuracy. It is recommended to migrate existing products to these categories as well.
      */
     productCategories?: string[] | null;
     /**
@@ -4822,7 +4818,7 @@ export namespace vision_v1 {
      */
     indexError?: Schema$Status;
     /**
-     * Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value &quot;1970-01-01T00:00:00Z&quot;. This field is ignored when creating a ProductSet.
+     * Output only. The time at which this ProductSet was last indexed. Query results will reflect all updates before this time. If this ProductSet has never been indexed, this timestamp is the default value "1970-01-01T00:00:00Z". This field is ignored when creating a ProductSet.
      */
     indexTime?: string | null;
     /**
@@ -4933,7 +4929,7 @@ export namespace vision_v1 {
      */
     racy?: string | null;
     /**
-     * Spoof likelihood. The likelihood that an modification was made to the image&#39;s canonical version to make it appear funny or offensive.
+     * Spoof likelihood. The likelihood that an modification was made to the image's canonical version to make it appear funny or offensive.
      */
     spoof?: string | null;
     /**
@@ -4963,7 +4959,7 @@ export namespace vision_v1 {
    */
   export interface Schema$Symbol {
     /**
-     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the symbol. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -4980,7 +4976,7 @@ export namespace vision_v1 {
     text?: string | null;
   }
   /**
-   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -&gt; Page -&gt; Block -&gt; Paragraph -&gt; Word -&gt; Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
+   * TextAnnotation contains a structured representation of OCR extracted text. The hierarchy of an OCR extracted text structure is like this: TextAnnotation -\> Page -\> Block -\> Paragraph -\> Word -\> Symbol Each structural component, starting from Page, may further have their own properties. Properties describe detected languages, breaks etc.. Please refer to the TextAnnotation.TextProperty message definition below for more detail.
    */
   export interface Schema$TextAnnotation {
     /**
@@ -5023,7 +5019,7 @@ export namespace vision_v1 {
    */
   export interface Schema$WebDetection {
     /**
-     * The service&#39;s best guess as to the topic of the request image. Inferred from similar images on the open web.
+     * The service's best guess as to the topic of the request image. Inferred from similar images on the open web.
      */
     bestGuessLabels?: Schema$WebLabel[];
     /**
@@ -5095,7 +5091,7 @@ export namespace vision_v1 {
      */
     label?: string | null;
     /**
-     * The BCP-47 language code for `label`, such as &quot;en-US&quot; or &quot;sr-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * The BCP-47 language code for `label`, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
   }
@@ -5129,7 +5125,7 @@ export namespace vision_v1 {
    */
   export interface Schema$Word {
     /**
-     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the &#39;natural&#39; orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it&#39;s rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
+     * The bounding box for the word. The vertices are in the order of top-left, top-right, bottom-right, bottom-left. When a rotation of the bounding box is detected the rotation is represented as around the top-left corner as defined when the text is read in the 'natural' orientation. For example: * when the text is horizontal it might look like: 0----1 | | 3----2 * when it's rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3).
      */
     boundingBox?: Schema$BoundingPoly;
     /**
@@ -5153,9 +5149,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.files.annotate
-     * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5204,14 +5200,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.files.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Files$Annotate,
@@ -5296,9 +5290,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.files.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5351,14 +5345,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.files.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Files$Asyncbatchannotate,
@@ -5461,9 +5453,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.images.annotate
-     * @desc Run image detection and annotation for a batch of images.
+     * Run image detection and annotation for a batch of images.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5512,14 +5504,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.images.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Images$Annotate,
@@ -5607,9 +5597,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.images.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5663,14 +5653,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.images.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Images$Asyncbatchannotate,
@@ -5782,9 +5770,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5831,14 +5819,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Locations$Operations$Get,
@@ -5932,9 +5918,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -5981,15 +5967,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Operations$Cancel,
@@ -6068,9 +6051,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6111,14 +6094,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Operations$Delete,
@@ -6197,9 +6178,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6246,14 +6227,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -6331,9 +6310,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6383,17 +6362,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$List,
@@ -6542,9 +6516,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.files.annotate
-     * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6571,7 +6545,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.files.annotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -6596,15 +6570,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.files.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
@@ -6693,9 +6664,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.files.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6722,7 +6693,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.files.asyncBatchAnnotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -6751,15 +6722,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.files.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Files$Asyncbatchannotate,
@@ -6844,7 +6812,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Files$Annotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -6856,7 +6824,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Files$Asyncbatchannotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -6873,9 +6841,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.images.annotate
-     * @desc Run image detection and annotation for a batch of images.
+     * Run image detection and annotation for a batch of images.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -6902,7 +6870,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.images.annotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -6927,15 +6895,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.images.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
@@ -7024,9 +6989,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.images.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7053,7 +7018,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.images.asyncBatchAnnotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -7083,15 +7048,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.images.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Images$Asyncbatchannotate,
@@ -7176,7 +7138,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Images$Annotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7188,7 +7150,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Images$Asyncbatchannotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7226,9 +7188,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.files.annotate
-     * @desc Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
+     * Service that performs image detection and annotation for a batch of files. Now only "application/pdf", "image/tiff" and "image/gif" are supported. This service will extract at most 5 (customers can specify which 5 in AnnotateFileRequest.pages) frames (gif) or pages (pdf or tiff) from each file provided and perform detection and annotation for each image extracted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7255,7 +7217,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.annotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7280,15 +7242,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.files.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
@@ -7377,9 +7336,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.files.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
+     * Run asynchronous image detection and annotation for a list of generic files, such as PDF files, which may contain multiple pages and multiple images per page. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateFilesResponse` (results).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7406,7 +7365,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.files.asyncBatchAnnotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7435,15 +7394,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.files.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Files$Asyncbatchannotate,
@@ -7528,7 +7484,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Files$Annotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7540,7 +7496,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Files$Asyncbatchannotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7557,9 +7513,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.images.annotate
-     * @desc Run image detection and annotation for a batch of images.
+     * Run image detection and annotation for a batch of images.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7586,7 +7542,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.annotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7611,15 +7567,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.images.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().BatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
@@ -7708,9 +7661,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.images.asyncBatchAnnotate
-     * @desc Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
+     * Run asynchronous image detection and annotation for a list of images. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `OperationMetadata` (metadata). `Operation.response` contains `AsyncBatchAnnotateImagesResponse` (results). This service will write image annotation outputs to json files in customer GCS bucket, each json file containing BatchAnnotateImagesResponse proto.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7737,7 +7690,7 @@ export namespace vision_v1 {
      *
      *   // Do the magic
      *   const res = await vision.projects.locations.images.asyncBatchAnnotate({
-     *     // Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     *     // Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -7767,15 +7720,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.images.asyncBatchAnnotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
-     * @param {().AsyncBatchAnnotateImagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     asyncBatchAnnotate(
       params: Params$Resource$Projects$Locations$Images$Asyncbatchannotate,
@@ -7860,7 +7810,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Images$Annotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7872,7 +7822,7 @@ export namespace vision_v1 {
   export interface Params$Resource$Projects$Locations$Images$Asyncbatchannotate
     extends StandardParameters {
     /**
-     * Optional. Target project and location to make a call. Format: `projects/{project-id}/locations/{location-id}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
+     * Optional. Target project and location to make a call. Format: `projects/{project-id\}/locations/{location-id\}`. If no parent is specified, a region will be chosen automatically. Supported location-ids: `us`: USA country only, `asia`: East asia areas, like Japan, Taiwan, `eu`: The European Union. Example: `projects/project-A/locations/eu`.
      */
     parent?: string;
 
@@ -7889,9 +7839,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -7938,14 +7888,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -8043,9 +7991,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.create
-     * @desc Creates and returns a new product resource. Possible errors: * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is missing or invalid.
+     * Creates and returns a new product resource. Possible errors: * Returns INVALID_ARGUMENT if display_name is missing or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is missing or invalid.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8106,16 +8054,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which the Product should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {string=} params.productId A user-supplied resource id for this Product. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().Product} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Products$Create,
@@ -8197,9 +8141,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.delete
-     * @desc Permanently deletes a product and its reference images. Metadata of the product and all its images will be deleted right away, but search queries against ProductSets containing the product may still work until all related caches are refreshed.
+     * Permanently deletes a product and its reference images. Metadata of the product and all its images will be deleted right away, but search queries against ProductSets containing the product may still work until all related caches are refreshed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8240,14 +8184,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of product to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Products$Delete,
@@ -8326,9 +8268,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.get
-     * @desc Gets information associated with a Product. Possible errors: * Returns NOT_FOUND if the Product does not exist.
+     * Gets information associated with a Product. Possible errors: * Returns NOT_FOUND if the Product does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8375,14 +8317,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the Product to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Products$Get,
@@ -8461,9 +8401,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.list
-     * @desc Lists products in an unspecified order. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+     * Lists products in an unspecified order. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8511,16 +8451,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
-     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
-     * @param {string} params.parent Required. The project OR ProductSet from which Products should be listed. Format: `projects/PROJECT_ID/locations/LOC_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Products$List,
@@ -8607,9 +8543,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.patch
-     * @desc Makes changes to a Product resource. Only the `display_name`, `description`, and `labels` fields can be updated right now. If labels are updated, the change will not be reflected in queries until the next index time. Possible errors: * Returns NOT_FOUND if the Product does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but is missing from the request or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is present in update_mask but is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is present in update_mask.
+     * Makes changes to a Product resource. Only the `display_name`, `description`, and `labels` fields can be updated right now. If labels are updated, the change will not be reflected in queries until the next index time. Possible errors: * Returns NOT_FOUND if the Product does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but is missing from the request or longer than 4096 characters. * Returns INVALID_ARGUMENT if description is present in update_mask but is longer than 4096 characters. * Returns INVALID_ARGUMENT if product_category is present in update_mask.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8670,16 +8606,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the product. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`. This field is ignored when creating a product.
-     * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask paths include `product_labels`, `display_name`, and `description`.
-     * @param {().Product} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Products$Patch,
@@ -8758,9 +8690,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.purge
-     * @desc Asynchronous API to delete all Products in a ProductSet or all Products that are in no ProductSet. If a Product is a member of the specified ProductSet in addition to other ProductSets, the Product will still be deleted. It is recommended to not delete the specified ProductSet until after this operation has completed. It is also recommended to not add any of the Products involved in the batch delete to a new ProductSet while this operation is running because those Products may still end up deleted. It's not possible to undo the PurgeProducts operation. Therefore, it is recommended to keep the csv files used in ImportProductSets (if that was how you originally built the Product Set) before starting PurgeProducts, in case you need to re-import the data after deletion. If the plan is to purge all of the Products from a ProductSet and then re-use the empty ProductSet to re-import new Products into the empty ProductSet, you must wait until the PurgeProducts operation has finished for that ProductSet. The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress)
+     * Asynchronous API to delete all Products in a ProductSet or all Products that are in no ProductSet. If a Product is a member of the specified ProductSet in addition to other ProductSets, the Product will still be deleted. It is recommended to not delete the specified ProductSet until after this operation has completed. It is also recommended to not add any of the Products involved in the batch delete to a new ProductSet while this operation is running because those Products may still end up deleted. It's not possible to undo the PurgeProducts operation. Therefore, it is recommended to keep the csv files used in ImportProductSets (if that was how you originally built the Product Set) before starting PurgeProducts, in case you need to re-import the data after deletion. If the plan is to purge all of the Products from a ProductSet and then re-use the empty ProductSet to re-import new Products into the empty ProductSet, you must wait until the PurgeProducts operation has finished for that ProductSet. The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -8817,15 +8749,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.purge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project and location in which the Products should be deleted. Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().PurgeProductsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     purge(
       params: Params$Resource$Projects$Locations$Products$Purge,
@@ -8988,9 +8917,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.referenceImages.create
-     * @desc Creates and returns a new ReferenceImage resource. The `bounding_poly` field is optional. If `bounding_poly` is not specified, the system will try to detect regions of interest in the image that are compatible with the product_category on the parent product. If it is specified, detection is ALWAYS skipped. The system converts polygons into non-rotated rectangles. Note that the pipeline will resize the image if the image resolution is too large to process (above 50MP). Possible errors: * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096 characters. * Returns INVALID_ARGUMENT if the product does not exist. * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing compatible with the parent product's product_category is detected. * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
+     * Creates and returns a new ReferenceImage resource. The `bounding_poly` field is optional. If `bounding_poly` is not specified, the system will try to detect regions of interest in the image that are compatible with the product_category on the parent product. If it is specified, detection is ALWAYS skipped. The system converts polygons into non-rotated rectangles. Note that the pipeline will resize the image if the image resolution is too large to process (above 50MP). Possible errors: * Returns INVALID_ARGUMENT if the image_uri is missing or longer than 4096 characters. * Returns INVALID_ARGUMENT if the product does not exist. * Returns INVALID_ARGUMENT if bounding_poly is not provided, and nothing compatible with the parent product's product_category is detected. * Returns INVALID_ARGUMENT if bounding_poly contains more than 10 polygons.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9047,16 +8976,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.referenceImages.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the product in which to create the reference image. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param {string=} params.referenceImageId A user-supplied resource id for the ReferenceImage to be added. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ReferenceImage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Create,
@@ -9138,9 +9063,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.referenceImages.delete
-     * @desc Permanently deletes a reference image. The image metadata will be deleted right away, but search queries against ProductSets containing the image may still work until all related caches are refreshed. The actual image files are not deleted from Google Cloud Storage.
+     * Permanently deletes a reference image. The image metadata will be deleted right away, but search queries against ProductSets containing the image may still work until all related caches are refreshed. The actual image files are not deleted from Google Cloud Storage.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9182,14 +9107,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.referenceImages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the reference image to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Delete,
@@ -9268,9 +9191,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.referenceImages.get
-     * @desc Gets information associated with a ReferenceImage. Possible errors: * Returns NOT_FOUND if the specified image does not exist.
+     * Gets information associated with a ReferenceImage. Possible errors: * Returns NOT_FOUND if the specified image does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9316,14 +9239,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.referenceImages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the ReferenceImage to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID/referenceImages/IMAGE_ID`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$Get,
@@ -9402,9 +9323,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.products.referenceImages.list
-     * @desc Lists reference images. Possible errors: * Returns NOT_FOUND if the parent product does not exist. * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less than 1.
+     * Lists reference images. Possible errors: * Returns NOT_FOUND if the parent product does not exist. * Returns INVALID_ARGUMENT if the page_size is greater than 100, or less than 1.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9453,16 +9374,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.products.referenceImages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
-     * @param {string=} params.pageToken A token identifying a page of results to be returned. This is the value of `nextPageToken` returned in a previous reference image list request. Defaults to the first page if not specified.
-     * @param {string} params.parent Required. Resource name of the product containing the reference images. Format is `projects/PROJECT_ID/locations/LOC_ID/products/PRODUCT_ID`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Products$Referenceimages$List,
@@ -9608,9 +9525,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.addProduct
-     * @desc Adds a Product to the specified ProductSet. If the Product is already present, no change is made. One Product can be added to at most 100 ProductSets. Possible errors: * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
+     * Adds a Product to the specified ProductSet. If the Product is already present, no change is made. One Product can be added to at most 100 ProductSets. Possible errors: * Returns NOT_FOUND if the Product or the ProductSet doesn't exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9659,15 +9576,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.addProduct
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name for the ProductSet to modify. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().AddProductToProductSetRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addProduct(
       params: Params$Resource$Projects$Locations$Productsets$Addproduct,
@@ -9749,9 +9663,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.create
-     * @desc Creates and returns a new ProductSet resource. Possible errors: * Returns INVALID_ARGUMENT if display_name is missing, or is longer than 4096 characters.
+     * Creates and returns a new ProductSet resource. Possible errors: * Returns INVALID_ARGUMENT if display_name is missing, or is longer than 4096 characters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9810,16 +9724,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which the ProductSet should be created. Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {string=} params.productSetId A user-supplied resource id for this ProductSet. If set, the server will attempt to use this value as the resource id. If it is already in use, an error is returned with code ALREADY_EXISTS. Must be at most 128 characters long. It cannot contain the character `/`.
-     * @param {().ProductSet} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Productsets$Create,
@@ -9901,9 +9811,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.delete
-     * @desc Permanently deletes a ProductSet. Products and ReferenceImages in the ProductSet are not deleted. The actual image files are not deleted from Google Cloud Storage.
+     * Permanently deletes a ProductSet. Products and ReferenceImages in the ProductSet are not deleted. The actual image files are not deleted from Google Cloud Storage.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -9944,14 +9854,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the ProductSet to delete. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Productsets$Delete,
@@ -10030,9 +9938,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.get
-     * @desc Gets information associated with a ProductSet. Possible errors: * Returns NOT_FOUND if the ProductSet does not exist.
+     * Gets information associated with a ProductSet. Possible errors: * Returns NOT_FOUND if the ProductSet does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10078,14 +9986,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the ProductSet to get. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Productsets$Get,
@@ -10164,9 +10070,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.import
-     * @desc Asynchronous API that imports a list of reference images to specified product sets based on a list of image information. The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress) `Operation.response` contains `ImportProductSetsResponse`. (results) The input source of this method is a csv file on Google Cloud Storage. For the format of the csv file please see ImportProductSetsGcsSource.csv_file_uri.
+     * Asynchronous API that imports a list of reference images to specified product sets based on a list of image information. The google.longrunning.Operation API can be used to keep track of the progress and results of the request. `Operation.metadata` contains `BatchOperationMetadata`. (progress) `Operation.response` contains `ImportProductSetsResponse`. (results) The input source of this method is a csv file on Google Cloud Storage. For the format of the csv file please see ImportProductSetsGcsSource.csv_file_uri.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10221,15 +10127,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which the ProductSets should be imported. Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {().ImportProductSetsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Projects$Locations$Productsets$Import,
@@ -10311,9 +10214,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.list
-     * @desc Lists ProductSets in an unspecified order. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100, or less than 1.
+     * Lists ProductSets in an unspecified order. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100, or less than 1.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10361,16 +10264,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
-     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
-     * @param {string} params.parent Required. The project from which ProductSets should be listed. Format is `projects/PROJECT_ID/locations/LOC_ID`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Productsets$List,
@@ -10457,9 +10356,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.patch
-     * @desc Makes changes to a ProductSet resource. Only display_name can be updated currently. Possible errors: * Returns NOT_FOUND if the ProductSet does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but missing from the request or longer than 4096 characters.
+     * Makes changes to a ProductSet resource. Only display_name can be updated currently. Possible errors: * Returns NOT_FOUND if the ProductSet does not exist. * Returns INVALID_ARGUMENT if display_name is present in update_mask but missing from the request or longer than 4096 characters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10518,16 +10417,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ProductSet. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`. This field is ignored when creating a ProductSet.
-     * @param {string=} params.updateMask The FieldMask that specifies which fields to update. If update_mask isn't specified, all mutable fields are to be updated. Valid mask path is `display_name`.
-     * @param {().ProductSet} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Productsets$Patch,
@@ -10606,9 +10501,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.removeProduct
-     * @desc Removes a Product from the specified ProductSet.
+     * Removes a Product from the specified ProductSet.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10657,15 +10552,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.removeProduct
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name for the ProductSet to modify. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {().RemoveProductFromProductSetRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removeProduct(
       params: Params$Resource$Projects$Locations$Productsets$Removeproduct,
@@ -10852,9 +10744,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.locations.productSets.products.list
-     * @desc Lists the Products in a ProductSet, in an unspecified order. If the ProductSet does not exist, the products field of the response will be empty. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
+     * Lists the Products in a ProductSet, in an unspecified order. If the ProductSet does not exist, the products field of the response will be empty. Possible errors: * Returns INVALID_ARGUMENT if page_size is greater than 100 or less than 1.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -10902,16 +10794,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.locations.productSets.products.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The ProductSet resource for which to retrieve Products. Format is: `projects/PROJECT_ID/locations/LOC_ID/productSets/PRODUCT_SET_ID`
-     * @param {integer=} params.pageSize The maximum number of items to return. Default 10, maximum 100.
-     * @param {string=} params.pageToken The next_page_token returned from a previous List request, if any.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Productsets$Products$List,
@@ -11025,9 +10913,9 @@ export namespace vision_v1 {
     }
 
     /**
-     * vision.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vision.googleapis.com
@@ -11074,14 +10962,12 @@ export namespace vision_v1 {
      *   throw e;
      * });
      *
-     * @alias vision.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,

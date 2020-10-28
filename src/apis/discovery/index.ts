@@ -33,3 +33,14 @@ export function discovery<T = discovery_v1.Discovery>(
 
 const auth = new AuthPlus();
 export {auth};
+export {discovery_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

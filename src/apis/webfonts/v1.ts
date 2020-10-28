@@ -104,14 +104,10 @@ export namespace webfonts_v1 {
    * The Google Web Fonts Developer API lets you retrieve information about web fonts served by Google.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const webfonts = google.webfonts('v1');
-   *
-   * @namespace webfonts
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Webfonts
+   * ```
    */
   export class Webfonts {
     context: APIRequestContext;
@@ -148,7 +144,7 @@ export namespace webfonts_v1 {
      */
     kind?: string | null;
     /**
-     * The date (format &quot;yyyy-MM-dd&quot;) the font was modified for the last time.
+     * The date (format "yyyy-MM-dd") the font was modified for the last time.
      */
     lastModified?: string | null;
     /**
@@ -185,9 +181,9 @@ export namespace webfonts_v1 {
     }
 
     /**
-     * webfonts.webfonts.list
-     * @desc Retrieves the list of fonts currently served by the Google Fonts Developer API.
+     * Retrieves the list of fonts currently served by the Google Fonts Developer API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webfonts.googleapis.com
@@ -228,14 +224,12 @@ export namespace webfonts_v1 {
      *   throw e;
      * });
      *
-     * @alias webfonts.webfonts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.sort Enables sorting of the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Webfonts$List,

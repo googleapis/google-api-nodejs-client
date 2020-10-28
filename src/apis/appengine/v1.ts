@@ -104,14 +104,10 @@ export namespace appengine_v1 {
    * Provisions and manages developers&#39; App Engine applications.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const appengine = google.appengine('v1');
-   *
-   * @namespace appengine
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Appengine
+   * ```
    */
   export class Appengine {
     context: APIRequestContext;
@@ -207,7 +203,7 @@ export namespace appengine_v1 {
      */
     id?: string | null;
     /**
-     * Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application&#39;s end user content is stored.Defaults to us-central.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
+     * Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application's end user content is stored.Defaults to us-central.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
      */
     locationId?: string | null;
     /**
@@ -392,7 +388,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$ContainerInfo {
     /**
-     * URI to the hosted container image in Google Container Registry. The URI must be fully qualified and include a tag or digest. Examples: &quot;gcr.io/my-project/image:tag&quot; or &quot;gcr.io/my-project/image@digest&quot;
+     * URI to the hosted container image in Google Container Registry. The URI must be fully qualified and include a tag or digest. Examples: "gcr.io/my-project/image:tag" or "gcr.io/my-project/image@digest"
      */
     image?: string | null;
   }
@@ -441,7 +437,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$DebugInstanceRequest {
     /**
-     * Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh {&quot;userName&quot;:&quot;[USERNAME]&quot;,&quot;expireOn&quot;:&quot;[EXPIRE_TIME]&quot;}For more information, see Adding and Removing SSH Keys (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
+     * Public SSH key to add to the instance. Examples: [USERNAME]:ssh-rsa [KEY_VALUE] [USERNAME] [USERNAME]:ssh-rsa [KEY_VALUE] google-ssh {"userName":"[USERNAME]","expireOn":"[EXPIRE_TIME]"\}For more information, see Adding and Removing SSH Keys (https://cloud.google.com/compute/docs/instances/adding-removing-ssh-keys).
      */
     sshKey?: string | null;
   }
@@ -500,7 +496,7 @@ export namespace appengine_v1 {
      */
     name?: string | null;
     /**
-     * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.@OutputOnly
+     * The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.@OutputOnly
      */
     resourceRecords?: Schema$ResourceRecord[];
     /**
@@ -509,15 +505,15 @@ export namespace appengine_v1 {
     sslSettings?: Schema$SslSettings;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
   /**
-   * Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a &quot;service&quot; resource in the Service Management API (https://cloud.google.com/service-management/overview).
+   * Cloud Endpoints (https://cloud.google.com/endpoints) configuration. The Endpoints API Service provides tooling for serving Open API and gRPC endpoints via an NGINX proxy. Only valid for App Engine Flexible environment deployments.The fields here refer to the name and configuration ID of a "service" resource in the Service Management API (https://cloud.google.com/service-management/overview).
    */
   export interface Schema$EndpointsApiService {
     /**
-     * Endpoints service configuration ID as specified by the Service Management API. For example &quot;2016-09-19r1&quot;.By default, the rollout strategy for Endpoints is RolloutStrategy.FIXED. This means that Endpoints starts up with a particular configuration ID. When a new configuration is rolled out, Endpoints must be given the new configuration ID. The config_id field is used to give the configuration ID and is required in this case.Endpoints also has a rollout strategy called RolloutStrategy.MANAGED. When using this, Endpoints fetches the latest configuration and does not need the configuration ID. In this case, config_id must be omitted.
+     * Endpoints service configuration ID as specified by the Service Management API. For example "2016-09-19r1".By default, the rollout strategy for Endpoints is RolloutStrategy.FIXED. This means that Endpoints starts up with a particular configuration ID. When a new configuration is rolled out, Endpoints must be given the new configuration ID. The config_id field is used to give the configuration ID and is required in this case.Endpoints also has a rollout strategy called RolloutStrategy.MANAGED. When using this, Endpoints fetches the latest configuration and does not need the configuration ID. In this case, config_id must be omitted.
      */
     configId?: string | null;
     /**
@@ -525,7 +521,7 @@ export namespace appengine_v1 {
      */
     disableTraceSampling?: boolean | null;
     /**
-     * Endpoints service name which is the name of the &quot;service&quot; resource in the Service Management API. For example &quot;myapi.endpoints.myproject.cloud.goog&quot;
+     * Endpoints service name which is the name of the "service" resource in the Service Management API. For example "myapi.endpoints.myproject.cloud.goog"
      */
     name?: string | null;
     /**
@@ -564,7 +560,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$FeatureSettings {
     /**
-     * Boolean value indicating if split health checks should be used instead of the legacy health checks. At an app.yaml level, this means defaulting to &#39;readiness_check&#39; and &#39;liveness_check&#39; values instead of &#39;health_check&#39; ones. Once the legacy &#39;health_check&#39; behavior is deprecated, and this value is always true, this setting can be removed.
+     * Boolean value indicating if split health checks should be used instead of the legacy health checks. At an app.yaml level, this means defaulting to 'readiness_check' and 'liveness_check' values instead of 'health_check' ones. Once the legacy 'health_check' behavior is deprecated, and this value is always true, this setting can be removed.
      */
     splitHealthChecks?: boolean | null;
     /**
@@ -585,7 +581,7 @@ export namespace appengine_v1 {
      */
     sha1Sum?: string | null;
     /**
-     * URL source to use to fetch this file. Must be a URL to a resource in Google Cloud Storage in the form &#39;http(s)://storage.googleapis.com//&#39;.
+     * URL source to use to fetch this file. Must be a URL to a resource in Google Cloud Storage in the form 'http(s)://storage.googleapis.com//'.
      */
     sourceUrl?: string | null;
   }
@@ -606,7 +602,7 @@ export namespace appengine_v1 {
      */
     priority?: number | null;
     /**
-     * IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character &quot;*&quot; to match all IPs equivalent to &quot;0/0&quot; and &quot;::/0&quot; together. Examples: 192.168.1.1 or 192.168.0.0/16 or 2001:db8::/32 or 2001:0db8:0000:0042:0000:8a2e:0370:7334. Truncation will be silently performed on addresses which are not properly truncated. For example, 1.2.3.4/24 is accepted as the same address as 1.2.3.0/24. Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as 2001:db8::/32.
+     * IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character "*" to match all IPs equivalent to "0/0" and "::/0" together. Examples: 192.168.1.1 or 192.168.0.0/16 or 2001:db8::/32 or 2001:0db8:0000:0042:0000:8a2e:0370:7334. Truncation will be silently performed on addresses which are not properly truncated. For example, 1.2.3.4/24 is accepted as the same address as 1.2.3.0/24. Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as 2001:db8::/32.
      */
     sourceRange?: string | null;
   }
@@ -627,7 +623,7 @@ export namespace appengine_v1 {
      */
     healthyThreshold?: number | null;
     /**
-     * Host header to send when performing an HTTP health check. Example: &quot;myapp.appspot.com&quot;
+     * Host header to send when performing an HTTP health check. Example: "myapp.appspot.com"
      */
     host?: string | null;
     /**
@@ -738,11 +734,11 @@ export namespace appengine_v1 {
    */
   export interface Schema$Library {
     /**
-     * Name of the library. Example: &quot;django&quot;.
+     * Name of the library. Example: "django".
      */
     name?: string | null;
     /**
-     * Version of the library to select, or &quot;latest&quot;.
+     * Version of the library to select, or "latest".
      */
     version?: string | null;
   }
@@ -876,7 +872,7 @@ export namespace appengine_v1 {
      */
     failureThreshold?: number | null;
     /**
-     * Host header to send when performing a HTTP Liveness check. Example: &quot;myapp.appspot.com&quot;
+     * Host header to send when performing a HTTP Liveness check. Example: "myapp.appspot.com"
      */
     host?: string | null;
     /**
@@ -901,15 +897,15 @@ export namespace appengine_v1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: &quot;us-east1&quot;.
+     * The canonical id for this location. For example: "us-east1".
      */
     locationId?: string | null;
     /**
@@ -917,7 +913,7 @@ export namespace appengine_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: &quot;projects/example-project/locations/us-east1&quot;
+     * Resource name for the location, which may vary between implementations. For example: "projects/example-project/locations/us-east1"
      */
     name?: string | null;
   }
@@ -1028,7 +1024,7 @@ export namespace appengine_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id}.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the name should be a resource name ending with operations/{unique_id\}.
      */
     name?: string | null;
     /**
@@ -1155,7 +1151,7 @@ export namespace appengine_v1 {
      */
     failureThreshold?: number | null;
     /**
-     * Host header to send when performing a HTTP Readiness check. Example: &quot;myapp.appspot.com&quot;
+     * Host header to send when performing a HTTP Readiness check. Example: "myapp.appspot.com"
      */
     host?: string | null;
     /**
@@ -1172,7 +1168,7 @@ export namespace appengine_v1 {
     timeout?: string | null;
   }
   /**
-   * Request message for &#39;Applications.RepairApplication&#39;.
+   * Request message for 'Applications.RepairApplication'.
    */
   export interface Schema$RepairApplicationRequest {}
   /**
@@ -1193,7 +1189,7 @@ export namespace appengine_v1 {
    */
   export interface Schema$ResourceRecord {
     /**
-     * Relative name of the object affected by this record. Only applicable for CNAME records. Example: &#39;www&#39;.
+     * Relative name of the object affected by this record. Only applicable for CNAME records. Example: 'www'.
      */
     name?: string | null;
     /**
@@ -1315,7 +1311,7 @@ export namespace appengine_v1 {
      */
     httpHeaders?: {[key: string]: string} | null;
     /**
-     * MIME type used to serve all files served by this handler.Defaults to file-specific MIME types, which are derived from each file&#39;s filename extension.
+     * MIME type used to serve all files served by this handler.Defaults to file-specific MIME types, which are derived from each file's filename extension.
      */
     mimeType?: string | null;
     /**
@@ -1366,11 +1362,11 @@ export namespace appengine_v1 {
    */
   export interface Schema$UrlDispatchRule {
     /**
-     * Domain name to match against. The wildcard &quot;*&quot; is supported if specified before a period: &quot;*.&quot;.Defaults to matching all domains: &quot;*&quot;.
+     * Domain name to match against. The wildcard "*" is supported if specified before a period: "*.".Defaults to matching all domains: "*".
      */
     domain?: string | null;
     /**
-     * Pathname within the host. Must start with a &quot;/&quot;. A single &quot;*&quot; can be included at the end of the path.The sum of the lengths of the domain and path may not exceed 100 characters.
+     * Pathname within the host. Must start with a "/". A single "*" can be included at the end of the path.The sum of the lengths of the domain and path may not exceed 100 characters.
      */
     path?: string | null;
     /**
@@ -1399,7 +1395,7 @@ export namespace appengine_v1 {
      */
     redirectHttpResponseCode?: string | null;
     /**
-     * Executes a script to handle the requests that match this URL pattern. Only the auto value is supported for Node.js in the App Engine standard environment, for example &quot;script&quot;: &quot;auto&quot;.
+     * Executes a script to handle the requests that match this URL pattern. Only the auto value is supported for Node.js in the App Engine standard environment, for example "script": "auto".
      */
     script?: Schema$ScriptHandler;
     /**
@@ -1488,7 +1484,7 @@ export namespace appengine_v1 {
      */
     healthCheck?: Schema$HealthCheck;
     /**
-     * Relative name of the version within the service. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: &quot;default&quot;, &quot;latest&quot;, and any name with the prefix &quot;ah-&quot;.
+     * Relative name of the version within the service. Example: v1. Version names can contain only lowercase letters, numbers, or hyphens. Reserved names: "default", "latest", and any name with the prefix "ah-".
      */
     id?: string | null;
     /**
@@ -1508,7 +1504,7 @@ export namespace appengine_v1 {
      */
     livenessCheck?: Schema$LivenessCheck;
     /**
-     * A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time. Manually scaled versions are sometimes referred to as &quot;backends&quot;.
+     * A service with manual scaling runs continuously, allowing you to perform complex initialization and rely on the state of its memory over time. Manually scaled versions are sometimes referred to as "backends".
      */
     manualScaling?: Schema$ManualScaling;
     /**
@@ -1544,7 +1540,7 @@ export namespace appengine_v1 {
      */
     runtimeChannel?: string | null;
     /**
-     * The path or name of the app&#39;s main executable.
+     * The path or name of the app's main executable.
      */
     runtimeMainExecutablePath?: string | null;
     /**
@@ -1556,7 +1552,7 @@ export namespace appengine_v1 {
      */
     threadsafe?: boolean | null;
     /**
-     * Serving URL for this version. Example: &quot;https://myversion-dot-myservice-dot-myapp.appspot.com&quot;@OutputOnly
+     * Serving URL for this version. Example: "https://myversion-dot-myservice-dot-myapp.appspot.com"@OutputOnly
      */
     versionUrl?: string | null;
     /**
@@ -1585,7 +1581,7 @@ export namespace appengine_v1 {
      */
     sizeGb?: number | null;
     /**
-     * Underlying volume type, e.g. &#39;tmpfs&#39;.
+     * Underlying volume type, e.g. 'tmpfs'.
      */
     volumeType?: string | null;
   }
@@ -1607,7 +1603,7 @@ export namespace appengine_v1 {
      */
     filesCount?: number | null;
     /**
-     * URL of the zip file to deploy from. Must be a URL to a resource in Google Cloud Storage in the form &#39;http(s)://storage.googleapis.com//&#39;.
+     * URL of the zip file to deploy from. Must be a URL to a resource in Google Cloud Storage in the form 'http(s)://storage.googleapis.com//'.
      */
     sourceUrl?: string | null;
   }
@@ -1637,9 +1633,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.create
-     * @desc Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
+     * Creates an App Engine application for a Google Cloud Platform project. Required fields: id - The ID of the target Cloud Platform project. location - The region (https://cloud.google.com/appengine/docs/locations) where you want the App Engine application located.For more information about App Engine applications, see Managing Projects, Applications, and Billing (https://cloud.google.com/appengine/docs/standard/python/console/).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1701,14 +1697,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Application} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Create,
@@ -1786,9 +1780,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.get
-     * @desc Gets information about an application.
+     * Gets information about an application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1845,14 +1839,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Application resource to get. Example: apps/myapp.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Get,
@@ -1930,9 +1922,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.patch
-     * @desc Updates the specified Application resource. You can update the following fields: auth_domain - Google authentication domain for controlling user access to the application. default_cookie_expiration - Cookie expiration policy for the application.
+     * Updates the specified Application resource. You can update the following fields: auth_domain - Google authentication domain for controlling user access to the application. default_cookie_expiration - Cookie expiration policy for the application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -1999,16 +1991,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Application resource to update. Example: apps/myapp.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Application} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Patch,
@@ -2086,9 +2074,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.repair
-     * @desc Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.
+     * Recreates the required App Engine features for the specified App Engine application, for example a Cloud Storage bucket or App Engine service account. Use this method if you receive an error message about a missing feature, for example, Error retrieving the App Engine service account. If you have deleted your App Engine service account, this will not be able to recreate it. Instead, you should attempt to use the IAM undelete API if possible at https://cloud.google.com/iam/reference/rest/v1/projects.serviceAccounts/undelete?apix_params=%7B"name"%3A"projects%2F-%2FserviceAccounts%2Funique_id"%2C"resource"%3A%7B%7D%7D . If the deletion was recent, the numeric ID can be found in the Cloud Console Activity Log.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2138,15 +2126,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.repair
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the application to repair. Example: apps/myapp
-     * @param {().RepairApplicationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     repair(
       params: Params$Resource$Apps$Repair,
@@ -2273,9 +2258,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.create
-     * @desc Uploads the specified SSL certificate.
+     * Uploads the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2339,15 +2324,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {().AuthorizedCertificate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Authorizedcertificates$Create,
@@ -2434,9 +2416,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.delete
-     * @desc Deletes the specified SSL certificate.
+     * Deletes the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2476,15 +2458,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Authorizedcertificates$Delete,
@@ -2566,9 +2545,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.get
-     * @desc Gets the specified SSL certificate.
+     * Gets the specified SSL certificate.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2624,16 +2603,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the GET response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Authorizedcertificates$Get,
@@ -2720,9 +2695,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.list
-     * @desc Lists all SSL certificates the user is authorized to administer.
+     * Lists all SSL certificates the user is authorized to administer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2773,17 +2748,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string=} params.view Controls the set of fields returned in the LIST response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Authorizedcertificates$List,
@@ -2874,9 +2844,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedCertificates.patch
-     * @desc Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
+     * Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -2944,17 +2914,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedCertificates.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
-     * @param {string} params.authorizedCertificatesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
-     * @param {().AuthorizedCertificate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Authorizedcertificates$Patch,
@@ -3126,9 +3091,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.authorizedDomains.list
-     * @desc Lists all domains the user is authorized to administer.
+     * Lists all domains the user is authorized to administer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3177,16 +3142,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.authorizedDomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Authorizeddomains$List,
@@ -3300,9 +3261,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.domainMappings.create
-     * @desc Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
+     * Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3359,16 +3320,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {string=} params.overrideStrategy Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Domainmappings$Create,
@@ -3450,9 +3407,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.domainMappings.delete
-     * @desc Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
+     * Deletes the specified domain mapping. A user must be authorized to administer the associated domain in order to delete a DomainMapping resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3498,15 +3455,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Domainmappings$Delete,
@@ -3587,9 +3541,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.domainMappings.get
-     * @desc Gets the specified domain mapping.
+     * Gets the specified domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3638,15 +3592,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Domainmappings$Get,
@@ -3727,9 +3678,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.domainMappings.list
-     * @desc Lists the domain mappings on an application.
+     * Lists the domain mappings on an application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3778,16 +3729,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Domainmappings$List,
@@ -3876,9 +3823,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.domainMappings.patch
-     * @desc Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
+     * Updates the specified domain mapping. To map an SSL certificate to a domain mapping, update certificate_id to point to an AuthorizedCertificate resource. A user must be authorized to administer the associated domain in order to update a DomainMapping resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -3937,17 +3884,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.domainMappings.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
-     * @param {string} params.domainMappingsId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Domainmappings$Patch,
@@ -4118,9 +4060,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.batchUpdate
-     * @desc Replaces the entire firewall ruleset in one bulk operation. This overrides and replaces the rules of an existing firewall with the new rules.If the final rule does not match traffic with the '*' wildcard IP range, then an "allow all" rule is explicitly added to the end of the list.
+     * Replaces the entire firewall ruleset in one bulk operation. This overrides and replaces the rules of an existing firewall with the new rules.If the final rule does not match traffic with the '*' wildcard IP range, then an "allow all" rule is explicitly added to the end of the list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4168,15 +4110,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.batchUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall collection to set. Example: apps/myapp/firewall/ingressRules.
-     * @param {().BatchUpdateIngressRulesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUpdate(
       params: Params$Resource$Apps$Firewall$Ingressrules$Batchupdate,
@@ -4266,9 +4205,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.create
-     * @desc Creates a firewall rule for the application.
+     * Creates a firewall rule for the application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4322,15 +4261,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
-     * @param {().FirewallRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Firewall$Ingressrules$Create,
@@ -4412,9 +4348,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.delete
-     * @desc Deletes the specified firewall rule.
+     * Deletes the specified firewall rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4454,15 +4390,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to delete. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Firewall$Ingressrules$Delete,
@@ -4544,9 +4477,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.get
-     * @desc Gets the specified firewall rule.
+     * Gets the specified firewall rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4595,15 +4528,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to retrieve. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Firewall$Ingressrules$Get,
@@ -4685,9 +4615,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.list
-     * @desc Lists the firewall rules of an application.
+     * Lists the firewall rules of an application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4738,17 +4668,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the Firewall collection to retrieve. Example: apps/myapp/firewall/ingressRules.
-     * @param {string=} params.matchingAddress A valid IP Address. If set, only rules matching this address will be returned. The first returned rule will be the rule that fires on requests from this IP.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Firewall$Ingressrules$List,
@@ -4835,9 +4760,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.firewall.ingressRules.patch
-     * @desc Updates the specified firewall rule.
+     * Updates the specified firewall rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -4895,17 +4820,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.firewall.ingressRules.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the Firewall resource to update. Example: apps/myapp/firewall/ingressRules/100.
-     * @param {string} params.ingressRulesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().FirewallRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Firewall$Ingressrules$Patch,
@@ -5080,9 +5000,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5132,15 +5052,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Resource name for the location.
-     * @param {string} params.locationsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Locations$Get,
@@ -5221,9 +5138,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5274,17 +5191,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The resource that owns the locations collection, if applicable.
-     * @param {string=} params.filter The standard list filter.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Locations$List,
@@ -5409,9 +5321,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5461,15 +5373,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation resource.
-     * @param {string} params.operationsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Operations$Get,
@@ -5550,9 +5459,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.NOTE: the name binding allows API services to override the binding to use different resource name schemes, such as users/x/operations. To override the binding, API services can add a binding such as "/v1/{name=users/x\}/operations" to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5603,17 +5512,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. The name of the operation's parent resource.
-     * @param {string=} params.filter The standard list filter.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Operations$List,
@@ -5740,9 +5644,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.delete
-     * @desc Deletes the specified service and all enclosed versions.
+     * Deletes the specified service and all enclosed versions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5788,15 +5692,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Services$Delete,
@@ -5878,9 +5779,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.get
-     * @desc Gets the current configuration of the specified service.
+     * Gets the current configuration of the specified service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -5929,15 +5830,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Services$Get,
@@ -6019,9 +5917,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.list
-     * @desc Lists all the services in the application.
+     * Lists all the services in the application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6070,16 +5968,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Services$List,
@@ -6166,9 +6060,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.patch
-     * @desc Updates the configuration of the specified service.
+     * Updates the configuration of the specified service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6229,18 +6123,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
-     * @param {boolean=} params.migrateTraffic Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Services$Patch,
@@ -6395,9 +6283,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.create
-     * @desc Deploys code and resource files to a new version.
+     * Deploys code and resource files to a new version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6488,16 +6376,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
-     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Apps$Services$Versions$Create,
@@ -6578,9 +6462,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.delete
-     * @desc Deletes an existing Version resource.
+     * Deletes an existing Version resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6628,16 +6512,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Services$Versions$Delete,
@@ -6719,9 +6599,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.get
-     * @desc Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.
+     * Gets the specified Version resource. By default, only a BASIC_VIEW will be returned. Specify the FULL_VIEW parameter to get the full resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6808,17 +6688,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the Get response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Services$Versions$Get,
@@ -6900,9 +6775,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.list
-     * @desc Lists the versions of a service.
+     * Lists the versions of a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -6955,18 +6830,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
-     * @param {string=} params.view Controls the set of fields returned in the List response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Services$Versions$List,
@@ -7052,9 +6921,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.patch
-     * @desc Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
+     * Updates the specified Version resource. You can specify the following fields depending on the App Engine environment and type of scaling that the version resource uses:Standard environment instance_class (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.instance_class)automatic scaling in the standard environment: automatic_scaling.min_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_idle_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automaticScaling.standard_scheduler_settings.max_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.min_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_cpu_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings) automaticScaling.standard_scheduler_settings.target_throughput_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#StandardSchedulerSettings)basic scaling or manual scaling in the standard environment: serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status) manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)Flexible environment serving_status (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.serving_status)automatic scaling in the flexible environment: automatic_scaling.min_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.max_total_instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cool_down_period_sec (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling) automatic_scaling.cpu_utilization.target_utilization (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#Version.FIELDS.automatic_scaling)manual scaling in the flexible environment: manual_scaling.instances (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#manualscaling)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -7149,18 +7018,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string=} params.updateMask Standard field mask for the set of fields to be updated.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Apps$Services$Versions$Patch,
@@ -7347,9 +7210,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.instances.debug
-     * @desc Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started.Only applicable for instances in App Engine flexible environment.
+     * Enables debugging on a VM instance. This allows you to use the SSH command to connect to the virtual machine where the instance lives. While in "debug mode", the instance continues to serve live traffic. You should delete the instance when you are done debugging and then allow the system to take over and determine if another instance should be started.Only applicable for instances in App Engine flexible environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -7407,18 +7270,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.instances.debug
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {().DebugInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     debug(
       params: Params$Resource$Apps$Services$Versions$Instances$Debug,
@@ -7500,9 +7357,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.instances.delete
-     * @desc Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see "How Instances are Managed" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.
+     * Stops a running instance.The instance might be automatically recreated based on the scaling settings of the version. For more information, see "How Instances are Managed" (standard environment (https://cloud.google.com/appengine/docs/standard/python/how-instances-are-managed) | flexible environment (https://cloud.google.com/appengine/docs/flexible/python/how-instances-are-managed)).To ensure that instances are not re-created and avoid getting billed, you can stop all instances within the target version by changing the serving status of the version to STOPPED with the apps.services.versions.patch (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions/patch) method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -7552,17 +7409,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Apps$Services$Versions$Instances$Delete,
@@ -7644,9 +7496,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.instances.get
-     * @desc Gets instance information.
+     * Gets instance information.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -7711,17 +7563,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
-     * @param {string} params.instancesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.servicesId Part of `name`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `name`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Apps$Services$Versions$Instances$Get,
@@ -7803,9 +7650,9 @@ export namespace appengine_v1 {
     }
 
     /**
-     * appengine.apps.services.versions.instances.list
-     * @desc Lists the instances of a version.Tip: To aggregate details about instances over time, see the Stackdriver Monitoring API (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
+     * Lists the instances of a version.Tip: To aggregate details about instances over time, see the Stackdriver Monitoring API (https://cloud.google.com/monitoring/api/ref_v3/rest/v3/projects.timeSeries/list).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/appengine.googleapis.com
@@ -7858,18 +7705,12 @@ export namespace appengine_v1 {
      *   throw e;
      * });
      *
-     * @alias appengine.apps.services.versions.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.appsId Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.servicesId Part of `parent`. See documentation of `appsId`.
-     * @param {string} params.versionsId Part of `parent`. See documentation of `appsId`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Apps$Services$Versions$Instances$List,

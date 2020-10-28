@@ -88,14 +88,10 @@ export namespace deploymentmanager_alpha {
    * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const deploymentmanager = google.deploymentmanager('alpha');
-   *
-   * @namespace deploymentmanager
-   * @type {Function}
-   * @version alpha
-   * @variation alpha
-   * @param {object=} options Options for Deploymentmanager
+   * ```
    */
   export class Deploymentmanager {
     context: APIRequestContext;
@@ -137,7 +133,15 @@ export namespace deploymentmanager_alpha {
     pollingOptions?: Schema$PollingOptions;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.  If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.  Example Policy with multiple AuditConfigs:  { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot;, } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot; &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] }  For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.
+   *
+   * If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.
+   *
+   * Example Policy with multiple AuditConfigs:
+   *
+   * { "audit_configs": [ { "service": "allServices" "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE", \}, { "log_type": "ADMIN_READ", \} ] \}, { "service": "sampleservice.googleapis.com" "audit_log_configs": [ { "log_type": "DATA_READ", \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \}
+   *
+   * For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -151,7 +155,11 @@ export namespace deploymentmanager_alpha {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:  { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, } ] }  This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example:
+   *
+   * { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE", \} ] \}
+   *
+   * This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -185,11 +193,39 @@ export namespace deploymentmanager_alpha {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.  If the condition evaluates to `true`, then this binding applies to the current request.  If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding.
+     *
+     * If the condition evaluates to `true`, then this binding applies to the current request.
+     *
+     * If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.
+     *
+     * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:  * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.  * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.  * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` .    * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.  * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`.  * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding.  * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding.  * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding.    * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
+     *
+     * * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
+     *
+     * * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
+     *
+     * * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` .
+     *
+     *
+     *
+     * * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
+     *
+     * * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`.
+     *
+     * * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding.
+     *
+     * * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding.
+     *
+     * * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
+     *
+     *
+     *
+     * * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -232,7 +268,7 @@ export namespace deploymentmanager_alpha {
      */
     labels?: Schema$CompositeTypeLabelEntry[];
     /**
-     * Name of the composite type, must follow the expression: `[a-z]([-a-z0-9_.]{0,61}[a-z0-9])?`.
+     * Name of the composite type, must follow the expression: `[a-z]([-a-z0-9_.]{0,61\}[a-z0-9])?`.
      */
     name?: string | null;
     /**
@@ -345,7 +381,9 @@ export namespace deploymentmanager_alpha {
      */
     description?: string | null;
     /**
-     * Provides a fingerprint to use in requests to modify a deployment, such as `update()`, `stop()`, and `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided with `update()`, `stop()`, and `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.  The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a `get()` request to a deployment.
+     * Provides a fingerprint to use in requests to modify a deployment, such as `update()`, `stop()`, and `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided with `update()`, `stop()`, and `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.
+     *
+     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a `get()` request to a deployment.
      */
     fingerprint?: string | null;
     id?: string | null;
@@ -409,7 +447,9 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
-     * Specifies a fingerprint for `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided in `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
+     * Specifies a fingerprint for `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided in `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).
+     *
+     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
      */
     fingerprint?: string | null;
   }
@@ -428,7 +468,9 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$DeploymentsStopRequest {
     /**
-     * Specifies a fingerprint for `stop()` requests. A fingerprint is a randomly generated value that must be provided in `stop()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).  The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
+     * Specifies a fingerprint for `stop()` requests. A fingerprint is a randomly generated value that must be provided in `stop()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).
+     *
+     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
      */
     fingerprint?: string | null;
   }
@@ -465,7 +507,25 @@ export namespace deploymentmanager_alpha {
     level?: string | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.  Example (Comparison):  title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot;  Example (Equality):  title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot;  Example (Logic):  title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot;  Example (Data Manipulation):  title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot;  The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.
+   *
+   * Example (Comparison):
+   *
+   * title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100"
+   *
+   * Example (Equality):
+   *
+   * title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email"
+   *
+   * Example (Logic):
+   *
+   * title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'"
+   *
+   * Example (Data Manipulation):
+   *
+   * title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)"
+   *
+   * The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -487,15 +547,15 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$GlobalSetPolicyRequest {
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify bindings.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify bindings.
      */
     bindings?: Schema$Binding[];
     /**
-     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use &#39;policy&#39; to specify the etag.
+     * Flatten Policy to create a backward compatible wire-format. Deprecated. Use 'policy' to specify the etag.
      */
     etag?: string | null;
     /**
-     * REQUIRED: The complete policy to be applied to the &#39;resource&#39;. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
+     * REQUIRED: The complete policy to be applied to the 'resource'. The size of the policy is limited to a few 10s of KB. An empty policy is in general a valid policy but certain services (like Projects) might reject them.
      */
     policy?: Schema$Policy;
   }
@@ -510,7 +570,7 @@ export namespace deploymentmanager_alpha {
     name?: string | null;
   }
   /**
-   * InputMapping creates a &#39;virtual&#39; property that will be injected into the properties before sending the request to the underlying API.
+   * InputMapping creates a 'virtual' property that will be injected into the properties before sending the request to the underlying API.
    */
   export interface Schema$InputMapping {
     /**
@@ -561,7 +621,15 @@ export namespace deploymentmanager_alpha {
     logName?: string | null;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names.  Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended.  Field names correspond to IAM request parameters and field values are their respective values.  Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields.  Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}
+   * Increment a streamz counter with the specified metric and field names.
+   *
+   * Metric names should start with a '/', generally be lowercase-only, and end in "_count". Field names should not contain an initial slash. The actual exported metric names will have "/iam/policy" prepended.
+   *
+   * Field names correspond to IAM request parameters and field values are their respective values.
+   *
+   * Supported field names: - "authority", which is "[token]" if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - "iam_principal", a representation of IAMContext.principal even if a token or authority selector is present; or - "" (empty string), resulting in a counter with no fields.
+   *
+   * Examples: counter { metric: "/debug_access_count" field: "iam_principal" \} ==\> increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]\}
    */
   export interface Schema$LogConfigCounterOptions {
     /**
@@ -619,7 +687,9 @@ export namespace deploymentmanager_alpha {
      */
     layout?: string | null;
     /**
-     * Output only.  The name of the manifest.
+     * Output only.
+     *
+     * The name of the manifest.
      */
     name?: string | null;
     /**
@@ -666,7 +736,20 @@ export namespace deploymentmanager_alpha {
     update?: string | null;
   }
   /**
-   * Represents an Operation resource.  Google Compute Engine has three Operation resources:  * [Global](/compute/docs/reference/rest/{$api_version}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version}/zoneOperations)  You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.  Operations can be global, regional or zonal.   - For global operations, use the `globalOperations` resource.  - For regional operations, use the `regionOperations` resource.  - For zonal operations, use the `zonalOperations` resource.    For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version}.globalOperations ==) (== resource_for {$api_version}.regionOperations ==) (== resource_for {$api_version}.zoneOperations ==)
+   * Represents an Operation resource.
+   *
+   * Google Compute Engine has three Operation resources:
+   *
+   * * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations)
+   *
+   * You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.
+   *
+   * Operations can be global, regional or zonal.
+   * - For global operations, use the `globalOperations` resource.
+   * - For regional operations, use the `regionOperations` resource.
+   * - For zonal operations, use the `zonalOperations` resource.
+   *
+   * For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version\}.globalOperations ==) (== resource_for {$api_version\}.regionOperations ==) (== resource_for {$api_version\}.zoneOperations ==)
    */
   export interface Schema$Operation {
     /**
@@ -807,7 +890,23 @@ export namespace deploymentmanager_alpha {
     validationOptions?: Schema$ValidationOptions;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.    A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.  For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).  **JSON example:**  { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 }  **YAML example:**  bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3  For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.
+   *
+   *
+   *
+   * A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.
+   *
+   * For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+   *
+   * **JSON example:**
+   *
+   * { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \}
+   *
+   * **YAML example:**
+   *
+   * bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3
+   *
+   * For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -819,7 +918,9 @@ export namespace deploymentmanager_alpha {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
+     *
+     * **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
     iamOwned?: boolean | null;
@@ -828,7 +929,19 @@ export namespace deploymentmanager_alpha {
      */
     rules?: Schema$Rule[];
     /**
-     * Specifies the format of the policy.  Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.  Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:  * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions  **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.  If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.  To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy.
+     *
+     * Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.
+     *
+     * Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:
+     *
+     * * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions
+     *
+     * **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     *
+     * If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
+     *
+     * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -1000,7 +1113,7 @@ export namespace deploymentmanager_alpha {
      */
     description?: string | null;
     /**
-     * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
     ins?: string[] | null;
     /**
@@ -1008,11 +1121,11 @@ export namespace deploymentmanager_alpha {
      */
     logConfigs?: Schema$LogConfig[];
     /**
-     * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
+     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
      */
     notIns?: string[] | null;
     /**
-     * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
      */
     permissions?: string[] | null;
   }
@@ -1062,7 +1175,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$TestPermissionsRequest {
     /**
-     * The set of permissions to check for the &#39;resource&#39;. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed.
+     * The set of permissions to check for the 'resource'. Permissions with wildcards (such as '*' or 'storage.*') are not allowed.
      */
     permissions?: string[] | null;
   }
@@ -1267,9 +1380,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.delete
-     * @desc Deletes a composite type.
+     * Deletes a composite type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -1338,15 +1451,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.compositeType The name of the type for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Compositetypes$Delete,
@@ -1428,9 +1538,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.get
-     * @desc Gets information about a specific composite type.
+     * Gets information about a specific composite type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -1486,15 +1596,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.compositeType The name of the composite type for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Compositetypes$Get,
@@ -1576,9 +1683,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.insert
-     * @desc Creates a composite type.
+     * Creates a composite type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -1661,15 +1768,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Compositetypes$Insert,
@@ -1751,9 +1855,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.list
-     * @desc Lists all composite types for Deployment Manager.
+     * Lists all composite types for Deployment Manager.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -1782,7 +1886,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -1820,19 +1924,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Compositetypes$List,
@@ -1921,9 +2018,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.patch
-     * @desc Patches a composite type.
+     * Patches a composite type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2008,16 +2105,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.compositeType The name of the composite type for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Compositetypes$Patch,
@@ -2099,9 +2192,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.compositeTypes.update
-     * @desc Updates a composite type.
+     * Updates a composite type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2186,16 +2279,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.compositeTypes.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.compositeType The name of the composite type for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {().CompositeType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Compositetypes$Update,
@@ -2314,7 +2403,13 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Compositetypes$List
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -2322,7 +2417,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -2378,9 +2477,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.cancelPreview
-     * @desc Cancels and removes the preview currently associated with the deployment.
+     * Cancels and removes the preview currently associated with the deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2457,16 +2556,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.cancelPreview
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {().DeploymentsCancelPreviewRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancelPreview(
       params: Params$Resource$Deployments$Cancelpreview,
@@ -2548,9 +2643,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.delete
-     * @desc Deletes a deployment and all of the resources in the deployment.
+     * Deletes a deployment and all of the resources in the deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2621,16 +2716,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Deployments$Delete,
@@ -2712,9 +2803,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.get
-     * @desc Gets information about a specific deployment.
+     * Gets information about a specific deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2775,15 +2866,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Deployments$Get,
@@ -2864,9 +2952,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.getIamPolicy
-     * @desc Gets the access control policy for a resource. May be empty if no such policy or resource exists.
+     * Gets the access control policy for a resource. May be empty if no such policy or resource exists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -2919,16 +3007,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.optionsRequestedPolicyVersion Requested IAM Policy version.
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Deployments$Getiampolicy,
@@ -3010,9 +3094,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.insert
-     * @desc Creates a deployment and all of the resources described by the deployment manifest.
+     * Creates a deployment and all of the resources described by the deployment manifest.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3104,17 +3188,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
-     * @param {boolean=} params.preview If set to true, creates a deployment and creates "shell" resources but does not actually instantiate these resources. This allows you to preview what your deployment looks like. After previewing a deployment, you can deploy your resources by making a request with the `update()` method or you can use the `cancelPreview()` method to cancel the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-     * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Deployments$Insert,
@@ -3196,9 +3275,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.list
-     * @desc Lists all deployments for a given project.
+     * Lists all deployments for a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3227,7 +3306,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -3265,19 +3344,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Deployments$List,
@@ -3363,9 +3435,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.patch
-     * @desc Patches a deployment and all of the resources described by the deployment manifest.
+     * Patches a deployment and all of the resources described by the deployment manifest.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3461,19 +3533,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a `target.config` with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the `update()` or you can `cancelPreview()` to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-     * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Deployments$Patch,
@@ -3555,9 +3620,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy.
+     * Sets the access control policy on the specified resource. Replaces any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3618,16 +3683,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().GlobalSetPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Deployments$Setiampolicy,
@@ -3709,9 +3770,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.stop
-     * @desc Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
+     * Stops an ongoing operation. This does not roll back any work that has already been completed, but prevents any new work from being started.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3788,16 +3849,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {().DeploymentsStopRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Deployments$Stop,
@@ -3878,9 +3935,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource.
+     * Returns permissions that a caller has on the specified resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -3934,16 +3991,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID for this request.
-     * @param {string} params.resource_ Name or id of the resource for this request.
-     * @param {().TestPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Deployments$Testiampermissions,
@@ -4032,9 +4085,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.deployments.update
-     * @desc Updates a deployment and all of the resources described by the deployment manifest.
+     * Updates a deployment and all of the resources described by the deployment manifest.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -4130,19 +4183,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.deployments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.createPolicy Sets the policy to use for creating new resources.
-     * @param {string=} params.deletePolicy Sets the policy to use for deleting resources.
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {boolean=} params.preview If set to true, updates the deployment and creates and updates the "shell" resources but does not actually alter or instantiate these resources. This allows you to preview what your deployment will look like. You can use this intent to preview how an update would affect your deployment. You must provide a `target.config` with a configuration if this is set to true. After previewing a deployment, you can deploy your resources by making a request with the `update()` or you can `cancelPreview()` to remove the preview altogether. Note that the deployment will still exist after you cancel the preview and you must separately delete this deployment if you want to remove it.
-     * @param {string} params.project The project ID for this request.
-     * @param {().Deployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Deployments$Update,
@@ -4302,7 +4348,13 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Deployments$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -4310,7 +4362,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -4437,9 +4493,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.manifests.get
-     * @desc Gets information about a specific manifest.
+     * Gets information about a specific manifest.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -4496,16 +4552,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.manifests.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.manifest The name of the manifest for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Manifests$Get,
@@ -4586,9 +4638,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.manifests.list
-     * @desc Lists all manifests for a given deployment.
+     * Lists all manifests for a given deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -4619,7 +4671,7 @@ export namespace deploymentmanager_alpha {
      *   const res = await deploymentmanager.manifests.list({
      *     // The name of the deployment for this request.
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -4657,20 +4709,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.manifests.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Manifests$List,
@@ -4776,7 +4820,13 @@ export namespace deploymentmanager_alpha {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -4784,7 +4834,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -4808,9 +4862,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.operations.get
-     * @desc Gets information about a specific operation.
+     * Gets information about a specific operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -4881,15 +4935,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.operation The name of the operation for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -4970,9 +5021,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.operations.list
-     * @desc Lists all operations for a project.
+     * Lists all operations for a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5001,7 +5052,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.operations.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -5039,19 +5090,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$List,
@@ -5149,7 +5193,13 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -5157,7 +5207,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -5181,9 +5235,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.resources.get
-     * @desc Gets information about a single resource.
+     * Gets information about a single resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5246,16 +5300,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.resources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.resource_ The name of the resource for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Resources$Get,
@@ -5336,9 +5386,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.resources.list
-     * @desc Lists all resources in a given deployment.
+     * Lists all resources in a given deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5369,7 +5419,7 @@ export namespace deploymentmanager_alpha {
      *   const res = await deploymentmanager.resources.list({
      *     // The name of the deployment for this request.
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -5407,20 +5457,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.resources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deployment The name of the deployment for this request.
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Resources$List,
@@ -5526,7 +5568,13 @@ export namespace deploymentmanager_alpha {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -5534,7 +5582,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -5558,9 +5610,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.delete
-     * @desc Deletes a type provider.
+     * Deletes a type provider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5629,15 +5681,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Typeproviders$Delete,
@@ -5719,9 +5768,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.get
-     * @desc Gets information about a specific type provider.
+     * Gets information about a specific type provider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5780,15 +5829,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Typeproviders$Get,
@@ -5870,9 +5916,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.getType
-     * @desc Gets a type info for a type provided by a TypeProvider.
+     * Gets a type info for a type provided by a TypeProvider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -5928,16 +5974,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.getType
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.type The name of the type provider type for this request.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getType(
       params: Params$Resource$Typeproviders$Gettype,
@@ -6019,9 +6061,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.insert
-     * @desc Creates a type provider.
+     * Creates a type provider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -6107,15 +6149,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {().TypeProvider} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Typeproviders$Insert,
@@ -6197,9 +6236,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.list
-     * @desc Lists all resource type providers for Deployment Manager.
+     * Lists all resource type providers for Deployment Manager.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -6228,7 +6267,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -6266,19 +6305,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Typeproviders$List,
@@ -6367,9 +6399,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.listTypes
-     * @desc Lists all the type info for a TypeProvider.
+     * Lists all the type info for a TypeProvider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -6398,7 +6430,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.listTypes({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -6438,20 +6470,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.listTypes
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listTypes(
       params: Params$Resource$Typeproviders$Listtypes,
@@ -6542,9 +6566,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.patch
-     * @desc Patches a type provider.
+     * Patches a type provider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -6632,16 +6656,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {().TypeProvider} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Typeproviders$Patch,
@@ -6723,9 +6743,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.typeProviders.update
-     * @desc Updates a type provider.
+     * Updates a type provider.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -6813,16 +6833,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.typeProviders.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.typeProvider The name of the type provider for this request.
-     * @param {().TypeProvider} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Typeproviders$Update,
@@ -6956,7 +6972,13 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Typeproviders$List
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -6964,7 +6986,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -6983,7 +7009,13 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Typeproviders$Listtypes
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -6991,7 +7023,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -7051,9 +7087,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.types.get
-     * @desc Gets information about a specific type.
+     * Gets information about a specific type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -7108,15 +7144,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.types.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project The project ID for this request.
-     * @param {string} params.type The name of the type for this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Types$Get,
@@ -7197,9 +7230,9 @@ export namespace deploymentmanager_alpha {
     }
 
     /**
-     * deploymentmanager.types.list
-     * @desc Lists all resource types for Deployment Manager.
+     * Lists all resource types for Deployment Manager.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/deploymentmanager.googleapis.com
@@ -7228,7 +7261,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.types.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
      *     //
      *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
      *     //
@@ -7266,19 +7299,12 @@ export namespace deploymentmanager_alpha {
      *   throw e;
      * });
      *
-     * @alias deploymentmanager.types.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
-     * @param {integer=} params.maxResults The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
-     * @param {string=} params.orderBy Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
-     * @param {string=} params.pageToken Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
-     * @param {string} params.project The project ID for this request.
-     * @param {boolean=} params.returnPartialSuccess Opt-in for partial success behavior which provides partial results in case of failure. The default value is false and the logic is the same as today.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Types$List,
@@ -7374,7 +7400,13 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Types$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `>`, or `<`.  For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.  You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.  To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
+     *
+     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
+     *
+     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
+     *
+     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -7382,7 +7414,11 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.  You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.  Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
+     *
+     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
+     *
+     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**

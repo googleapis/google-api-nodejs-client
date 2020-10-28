@@ -104,14 +104,10 @@ export namespace managedidentities_v1alpha1 {
    * The Managed Service for Microsoft Active Directory API is used for managing a highly available, hardened service running Microsoft Active Directory (AD).
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const managedidentities = google.managedidentities('v1alpha1');
-   *
-   * @namespace managedidentities
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Managedidentities
+   * ```
    */
   export class Managedidentities {
     context: APIRequestContext;
@@ -146,7 +142,7 @@ export namespace managedidentities_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -190,7 +186,7 @@ export namespace managedidentities_v1alpha1 {
      */
     managedIdentitiesAdminName?: string | null;
     /**
-     * Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
+     * Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
      */
     name?: string | null;
     /**
@@ -215,11 +211,11 @@ export namespace managedidentities_v1alpha1 {
     updateTime?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -356,7 +352,7 @@ export namespace managedidentities_v1alpha1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Unique name of the resource. It uses the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`
      */
     name?: string | null;
     /**
@@ -368,7 +364,7 @@ export namespace managedidentities_v1alpha1 {
      */
     provisionedResources?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
     /**
-     * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.
      */
     slmInstanceTemplate?: string | null;
     /**
@@ -380,7 +376,7 @@ export namespace managedidentities_v1alpha1 {
      */
     softwareVersions?: {[key: string]: string} | null;
     /**
-     * Output only. Current lifecycle state of the resource (e.g. if it&#39;s being created or ready to use).
+     * Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).
      */
     state?: string | null;
     /**
@@ -397,7 +393,7 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
     /**
-     * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
+     * Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false
      */
     canReschedule?: boolean | null;
     /**
@@ -427,7 +423,7 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata {
     /**
-     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level&#39;s reason will be reported by Eligibility Exporter.
+     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level's reason will be reported by Eligibility Exporter.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -444,11 +440,11 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
     /**
-     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider&#39;s VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with &#39;compute-&#39;, for example: &#39;compute-instance&#39;, &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.
      */
     resourceType?: string | null;
     /**
-     * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
+     * URL identifying the resource, e.g. "https://www.googleapis.com/compute/v1/projects/...)".
      */
     resourceUrl?: string | null;
   }
@@ -470,11 +466,11 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
-     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be "gaps" in the exclusion application in the exported timeseries.
      */
     duration?: string | null;
     /**
-     * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
+     * Human-readable reason for the exclusion. This should be a static string (e.g. "Disruptive update in progress") and should not contain dynamically generated data (e.g. instance name). Can be left empty.
      */
     reason?: string | null;
     /**
@@ -495,7 +491,7 @@ export namespace managedidentities_v1alpha1 {
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -569,15 +565,15 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -585,7 +581,7 @@ export namespace managedidentities_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -606,7 +602,7 @@ export namespace managedidentities_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -648,7 +644,7 @@ export namespace managedidentities_v1alpha1 {
     verb?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -695,7 +691,7 @@ export namespace managedidentities_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * The unique name of the sql integration in the form of `projects/{project_id}/locations/global/domains/{domain_name}/sqlIntegrations/{sql_integration}`
+     * The unique name of the sql integration in the form of `projects/{project_id\}/locations/global/domains/{domain_name\}/sqlIntegrations/{sql_integration\}`
      */
     name?: string | null;
     /**
@@ -733,7 +729,7 @@ export namespace managedidentities_v1alpha1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -820,9 +816,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -866,14 +862,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -953,9 +947,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1002,17 +996,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -1153,9 +1142,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.attachTrust
-     * @desc Adds AD trust in a given domain. Operation
+     * Adds AD trust in a given domain. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1180,7 +1169,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.attachTrust(
      *     {
-     *       // The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -1209,15 +1198,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.attachTrust
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {().AttachTrustRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     attachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Attachtrust,
@@ -1300,9 +1286,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.create
-     * @desc Creates a Microsoft AD Domain in a given project. Operation
+     * Creates a Microsoft AD Domain in a given project. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1328,7 +1314,7 @@ export namespace managedidentities_v1alpha1 {
      *   const res = await managedidentities.projects.locations.global.domains.create({
      *     // The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * Must be unique within the project. * First segement length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric.
      *     domainName: 'placeholder-value',
-     *     // Resource project name and location using the form: `projects/{project_id}/locations/global`
+     *     // Resource project name and location using the form: `projects/{project_id\}/locations/global`
      *     parent: 'projects/my-project/locations/global',
      *
      *     // Request body metadata
@@ -1367,16 +1353,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.domainName The fully qualified domain name. e.g. mydomain.myorganization.com, with the following restrictions: * Must contain only lowercase letters, numbers, periods and hyphens. * Must start with a letter. * Must contain between 2-64 characters. * Must end with a number or a letter. * Must not start with period. * Must be unique within the project. * First segement length (mydomain form example above) shouldn't exceed 15 chars. * The last segment cannot be fully numeric.
-     * @param {string} params.parent Resource project name and location using the form: `projects/{project_id}/locations/global`
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Global$Domains$Create,
@@ -1459,9 +1441,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.delete
-     * @desc Deletes identified domain. Operation
+     * Deletes identified domain. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1485,7 +1467,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.delete({
-     *     // Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     // Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *     name: 'projects/my-project/locations/global/domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -1505,14 +1487,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Global$Domains$Delete,
@@ -1592,9 +1572,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.detachTrust
-     * @desc Removes identified trust. Operation
+     * Removes identified trust. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1619,7 +1599,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.detachTrust(
      *     {
-     *       // The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -1648,15 +1628,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.detachTrust
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {().DetachTrustRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     detachTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Detachtrust,
@@ -1739,9 +1716,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.get
-     * @desc Gets details of a single Domain.
+     * Gets details of a single Domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1765,7 +1742,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.get({
-     *     // Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *     // Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *     name: 'projects/my-project/locations/global/domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -1792,14 +1769,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Get,
@@ -1879,9 +1854,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -1927,15 +1902,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Getiampolicy,
@@ -2018,9 +1990,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.list
-     * @desc Lists Domains in a given project.
+     * Lists Domains in a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2052,7 +2024,7 @@ export namespace managedidentities_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the domain location using the form: `projects/{project_id}/locations/global`
+     *     // Required. The resource name of the domain location using the form: `projects/{project_id\}/locations/global`
      *     parent: 'projects/my-project/locations/global',
      *   });
      *   console.log(res.data);
@@ -2070,18 +2042,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter specifying constraints of a list operation. For example, `Domain.fqdn="mydomain.myorginization"`.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response's next_page_token to determine if there are more instances left to be queried.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the domain location using the form: `projects/{project_id}/locations/global`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$List,
@@ -2167,9 +2133,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.patch
-     * @desc Updates the metadata and configuration of a specified domain. Operation
+     * Updates the metadata and configuration of a specified domain. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2193,7 +2159,7 @@ export namespace managedidentities_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.patch({
-     *     // Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
+     *     // Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
      *     name: 'projects/my-project/locations/global/domains/my-domain',
      *     // Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
      *     updateMask: 'placeholder-value',
@@ -2234,16 +2200,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
-     * @param {string=} params.updateMask Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields from Domain: * `labels` * `locations` * `authorized_networks` * `audit_logs_enabled`
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Global$Domains$Patch,
@@ -2323,9 +2285,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.reconfigureTrust
-     * @desc Updates the dns conditional forwarder. Operation
+     * Updates the dns conditional forwarder. Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2350,7 +2312,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.reconfigureTrust(
      *     {
-     *       // The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2379,15 +2341,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.reconfigureTrust
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {().ReconfigureTrustRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reconfigureTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust,
@@ -2470,9 +2429,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.resetAdminPassword
-     * @desc Resets managed identities admin password identified by managed_identities_admin_name
+     * Resets managed identities admin password identified by managed_identities_admin_name
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2497,7 +2456,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.resetAdminPassword(
      *     {
-     *       // The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2520,15 +2479,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.resetAdminPassword
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {().ResetAdminPasswordRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAdminPassword(
       params: Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword,
@@ -2618,9 +2574,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2672,15 +2628,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Global$Domains$Setiampolicy,
@@ -2763,9 +2716,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2815,15 +2768,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Global$Domains$Testiampermissions,
@@ -2913,9 +2863,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.validateTrust
-     * @desc Validate the trust state Operation
+     * Validate the trust state Operation
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -2940,7 +2890,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.validateTrust(
      *     {
-     *       // The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     *       // The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      *       name: 'projects/my-project/locations/global/domains/my-domain',
      *
      *       // Request body metadata
@@ -2969,15 +2919,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.validateTrust
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
-     * @param {().ValidateTrustRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     validateTrust(
       params: Params$Resource$Projects$Locations$Global$Domains$Validatetrust,
@@ -3063,7 +3010,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Attachtrust
     extends StandardParameters {
     /**
-     * The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
 
@@ -3079,7 +3026,7 @@ export namespace managedidentities_v1alpha1 {
      */
     domainName?: string;
     /**
-     * Resource project name and location using the form: `projects/{project_id}/locations/global`
+     * Resource project name and location using the form: `projects/{project_id\}/locations/global`
      */
     parent?: string;
 
@@ -3091,14 +3038,14 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Delete
     extends StandardParameters {
     /**
-     * Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Detachtrust
     extends StandardParameters {
     /**
-     * The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
 
@@ -3110,7 +3057,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Get
     extends StandardParameters {
     /**
-     * Domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * Domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
   }
@@ -3144,14 +3091,14 @@ export namespace managedidentities_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the domain location using the form: `projects/{project_id}/locations/global`
+     * Required. The resource name of the domain location using the form: `projects/{project_id\}/locations/global`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Global$Domains$Patch
     extends StandardParameters {
     /**
-     * Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`.
+     * Output only. Unique name of the domain in this scope including projects and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`.
      */
     name?: string;
     /**
@@ -3167,7 +3114,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Reconfiguretrust
     extends StandardParameters {
     /**
-     * The resource domain name, project name and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * The resource domain name, project name and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
 
@@ -3179,7 +3126,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Resetadminpassword
     extends StandardParameters {
     /**
-     * The domain resource name using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * The domain resource name using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
 
@@ -3215,7 +3162,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Validatetrust
     extends StandardParameters {
     /**
-     * The resource domain name, project name, and location using the form: `projects/{project_id}/locations/global/domains/{domain_name}`
+     * The resource domain name, project name, and location using the form: `projects/{project_id\}/locations/global/domains/{domain_name\}`
      */
     name?: string;
 
@@ -3232,9 +3179,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.sqlIntegrations.get
-     * @desc Gets details of a single sqlIntegration.
+     * Gets details of a single sqlIntegration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -3259,7 +3206,7 @@ export namespace managedidentities_v1alpha1 {
      *   // Do the magic
      *   const res = await managedidentities.projects.locations.global.domains.sqlIntegrations.get(
      *     {
-     *       // Required. MangedOU resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
+     *       // Required. MangedOU resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
      *       name:
      *         'projects/my-project/locations/global/domains/my-domain/sqlIntegrations/my-sqlIntegration',
      *     }
@@ -3281,14 +3228,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.sqlIntegrations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. MangedOU resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get,
@@ -3368,9 +3313,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.domains.sqlIntegrations.list
-     * @desc Lists SQLIntegrations in a given domain.
+     * Lists SQLIntegrations in a given domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -3403,7 +3348,7 @@ export namespace managedidentities_v1alpha1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
+     *       // Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
      *       parent: 'projects/my-project/locations/global/domains/my-domain',
      *     }
      *   );
@@ -3422,18 +3367,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.domains.sqlIntegrations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. Filter specifying constraints of a list operation. For example, `SqlIntegration.name="sql"`.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If not specified, a default value of 1000 will be used by the service. Regardless of the page_size value, the response may include a partial list and a caller should only rely on response'ANIZATIONs next_page_token to determine if there are more instances left to be queried.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The resource name of the SqlIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$List,
@@ -3526,7 +3465,7 @@ export namespace managedidentities_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Global$Domains$Sqlintegrations$Get
     extends StandardParameters {
     /**
-     * Required. MangedOU resource name using the form: `projects/{project_id}/locations/global/domains/x/sqlIntegrations/{name}`
+     * Required. MangedOU resource name using the form: `projects/{project_id\}/locations/global/domains/x/sqlIntegrations/{name\}`
      */
     name?: string;
   }
@@ -3549,7 +3488,7 @@ export namespace managedidentities_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the SqlIntegrations using the form: `projects/{project_id}/locations/global/domains/x`
+     * Required. The resource name of the SqlIntegrations using the form: `projects/{project_id\}/locations/global/domains/x`
      */
     parent?: string;
   }
@@ -3561,9 +3500,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -3609,15 +3548,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Global$Operations$Cancel,
@@ -3700,9 +3636,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -3742,14 +3678,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Global$Operations$Delete,
@@ -3829,9 +3763,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -3875,14 +3809,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Global$Operations$Get,
@@ -3962,9 +3894,9 @@ export namespace managedidentities_v1alpha1 {
     }
 
     /**
-     * managedidentities.projects.locations.global.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/managedidentities.googleapis.com
@@ -4013,17 +3945,12 @@ export namespace managedidentities_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias managedidentities.projects.locations.global.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Global$Operations$List,

@@ -88,14 +88,10 @@ export namespace adsense_v1_4 {
    * Accesses AdSense publishers&#39; inventory and generates performance reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const adsense = google.adsense('v1.4');
-   *
-   * @namespace adsense
-   * @type {Function}
-   * @version v1.4
-   * @variation v1.4
-   * @param {object=} options Options for Adsense
+   * ```
    */
   export class Adsense {
     context: APIRequestContext;
@@ -170,7 +166,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through accounts. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through accounts. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -188,7 +184,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
+     * This ad client's product code, which corresponds to the PRODUCT_CODE report dimension.
      */
     productCode?: string | null;
     /**
@@ -210,7 +206,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -342,11 +338,16 @@ export namespace adsense_v1_4 {
      */
     name?: string | null;
     /**
-     * ID of the saved ad style which holds this ad unit&#39;s style information.
+     * ID of the saved ad style which holds this ad unit's style information.
      */
     savedStyleId?: string | null;
     /**
-     * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
+     * Status of this ad unit. Possible values are:
+     * NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.
+     *
+     * ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.
+     *
+     * INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
     status?: string | null;
   }
@@ -364,7 +365,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -445,7 +446,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -480,7 +481,7 @@ export namespace adsense_v1_4 {
   }
   export interface Schema$Payments {
     /**
-     * The list of Payments for the account. One or both of a) the account&#39;s most recent payment; and b) the account&#39;s upcoming payment.
+     * The list of Payments for the account. One or both of a) the account's most recent payment; and b) the account's upcoming payment.
      */
     items?: Schema$Payment[];
     /**
@@ -550,7 +551,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -564,7 +565,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * This saved report&#39;s name.
+     * This saved report's name.
      */
     name?: string | null;
   }
@@ -582,7 +583,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through saved reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through saved reports. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -596,7 +597,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
+     * URL Pattern of this URL channel. Does not include "http://" or "https://". Example: www.example.com/home
      */
     urlPattern?: string | null;
   }
@@ -614,7 +615,7 @@ export namespace adsense_v1_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -642,9 +643,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.get
-     * @desc Get information about the selected AdSense account.
+     * Get information about the selected AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -695,15 +696,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to get information about.
-     * @param {boolean=} params.tree Whether the tree of sub accounts should be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -784,9 +782,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.list
-     * @desc List all accounts available to this AdSense account.
+     * List all accounts available to this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -834,15 +832,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of accounts to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through accounts. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -951,9 +946,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adclients.getAdCode
-     * @desc Get Auto ad code for a given ad client.
+     * Get Auto ad code for a given ad client.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1003,16 +998,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adclients.getAdCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client to get the code for.
-     * @param {string=} params.tagPartner Tag partner to include in the ad code snippet.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAdCode(
       params: Params$Resource$Accounts$Adclients$Getadcode,
@@ -1094,9 +1085,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adclients.list
-     * @desc List all ad clients in the specified account.
+     * List all ad clients in the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1146,16 +1137,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adclients.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to list ad clients.
-     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Adclients$List,
@@ -1278,9 +1265,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adunits.get
-     * @desc Gets the specified ad unit in the specified ad client for the specified account.
+     * Gets the specified ad unit in the specified ad client for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1336,16 +1323,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adunits.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to get the ad unit.
-     * @param {string} params.adUnitId Ad unit to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Adunits$Get,
@@ -1427,9 +1410,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adunits.getAdCode
-     * @desc Get ad code for the specified ad unit.
+     * Get ad code for the specified ad unit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1479,16 +1462,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adunits.getAdCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client with contains the ad unit.
-     * @param {string} params.adUnitId Ad unit to get the code for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAdCode(
       params: Params$Resource$Accounts$Adunits$Getadcode,
@@ -1570,9 +1549,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adunits.list
-     * @desc List all ad units in the specified ad client for the specified account.
+     * List all ad units in the specified ad client for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1626,18 +1605,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Adunits$List,
@@ -1780,9 +1753,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.adunits.customchannels.list
-     * @desc List all custom channels which the specified ad unit belongs to.
+     * List all custom channels which the specified ad unit belongs to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1836,18 +1809,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.adunits.customchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit for which to list custom channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Adunits$Customchannels$List,
@@ -1960,9 +1927,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.alerts.delete
-     * @desc Dismiss (delete) the specified alert from the specified publisher AdSense account.
+     * Dismiss (delete) the specified alert from the specified publisher AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -1999,15 +1966,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.alerts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad unit.
-     * @param {string} params.alertId Alert to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Alerts$Delete,
@@ -2086,9 +2050,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.alerts.list
-     * @desc List the alerts for the specified AdSense account.
+     * List the alerts for the specified AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -2134,15 +2098,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.alerts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to retrieve the alerts.
-     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Alerts$List,
@@ -2255,9 +2216,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.customchannels.get
-     * @desc Get the specified custom channel from the specified ad client for the specified account.
+     * Get the specified custom channel from the specified ad client for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -2308,16 +2269,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.customchannels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client which contains the custom channel.
-     * @param {string} params.customChannelId Custom channel to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Customchannels$Get,
@@ -2399,9 +2356,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.customchannels.list
-     * @desc List all custom channels in the specified ad client for the specified account.
+     * List all custom channels in the specified ad client for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -2453,17 +2410,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.customchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to list custom channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Customchannels$List,
@@ -2587,9 +2539,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.customchannels.adunits.list
-     * @desc List all ad units in the specified custom channel.
+     * List all ad units in the specified custom channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -2645,19 +2597,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.customchannels.adunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client which contains the custom channel.
-     * @param {string} params.customChannelId Custom channel for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Customchannels$Adunits$List,
@@ -2774,9 +2719,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.payments.list
-     * @desc List the payments for the specified AdSense account.
+     * List the payments for the specified AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -2820,14 +2765,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.payments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to retrieve the payments.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Payments$List,
@@ -2925,9 +2868,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3002,25 +2945,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.reports.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account upon which to report.
-     * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
-     * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
@@ -3169,9 +3099,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.reports.saved.generate
-     * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * Generate an AdSense report based on the saved report ID sent in the query parameters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3230,18 +3160,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.reports.saved.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the saved reports belong.
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string} params.savedReportId The saved report to retrieve.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Accounts$Reports$Saved$Generate,
@@ -3332,9 +3256,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.reports.saved.list
-     * @desc List all saved reports in the specified AdSense account.
+     * List all saved reports in the specified AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3384,16 +3308,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.reports.saved.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the saved reports belong.
-     * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Reports$Saved$List,
@@ -3520,9 +3440,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.savedadstyles.get
-     * @desc List a specific saved ad style for the specified account.
+     * List a specific saved ad style for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3570,15 +3490,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.savedadstyles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to get the saved ad style.
-     * @param {string} params.savedAdStyleId Saved ad style to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Savedadstyles$Get,
@@ -3660,9 +3577,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.savedadstyles.list
-     * @desc List all saved ad styles in the specified account.
+     * List all saved ad styles in the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3712,16 +3629,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.savedadstyles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to list saved ad styles.
-     * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Savedadstyles$List,
@@ -3836,9 +3749,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.accounts.urlchannels.list
-     * @desc List all URL channels in the specified ad client for the specified account.
+     * List all URL channels in the specified ad client for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -3890,17 +3803,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.accounts.urlchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to which the ad client belongs.
-     * @param {string} params.adClientId Ad client for which to list URL channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Urlchannels$List,
@@ -4009,9 +3917,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.adclients.list
-     * @desc List all ad clients in this AdSense account.
+     * List all ad clients in this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4059,15 +3967,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.adclients.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Adclients$List,
@@ -4168,9 +4073,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.adunits.get
-     * @desc Gets the specified ad unit in the specified ad client.
+     * Gets the specified ad unit in the specified ad client.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4224,15 +4129,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.adunits.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to get the ad unit.
-     * @param {string} params.adUnitId Ad unit to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Adunits$Get,
@@ -4313,9 +4215,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.adunits.getAdCode
-     * @desc Get ad code for the specified ad unit.
+     * Get ad code for the specified ad unit.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4363,15 +4265,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.adunits.getAdCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client with contains the ad unit.
-     * @param {string} params.adUnitId Ad unit to get the code for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAdCode(
       params: Params$Resource$Adunits$Getadcode,
@@ -4453,9 +4352,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.adunits.list
-     * @desc List all ad units in the specified ad client for this AdSense account.
+     * List all ad units in the specified ad client for this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4507,17 +4406,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.adunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Adunits$List,
@@ -4644,9 +4538,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.adunits.customchannels.list
-     * @desc List all custom channels which the specified ad unit belongs to.
+     * List all custom channels which the specified ad unit belongs to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4698,17 +4592,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.adunits.customchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit for which to list custom channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Adunits$Customchannels$List,
@@ -4817,9 +4706,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.alerts.delete
-     * @desc Dismiss (delete) the specified alert from the publisher's AdSense account.
+     * Dismiss (delete) the specified alert from the publisher's AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4854,14 +4743,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.alerts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alertId Alert to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Alerts$Delete,
@@ -4940,9 +4827,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.alerts.list
-     * @desc List the alerts for this AdSense account.
+     * List the alerts for this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -4986,14 +4873,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.alerts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {string=} params.locale The locale to use for translating alert messages. The account locale will be used if this is not supplied. The AdSense default (English) will be used if the supplied locale is invalid or unsupported.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Alerts$List,
@@ -5096,9 +4981,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.customchannels.get
-     * @desc Get the specified custom channel from the specified ad client.
+     * Get the specified custom channel from the specified ad client.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5147,15 +5032,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.customchannels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom channel.
-     * @param {string} params.customChannelId Custom channel to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customchannels$Get,
@@ -5237,9 +5119,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.customchannels.list
-     * @desc List all custom channels in the specified ad client for this AdSense account.
+     * List all custom channels in the specified ad client for this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5289,16 +5171,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.customchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list custom channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customchannels$List,
@@ -5413,9 +5291,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.customchannels.adunits.list
-     * @desc List all ad units in the specified custom channel.
+     * List all ad units in the specified custom channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5469,18 +5347,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.customchannels.adunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client which contains the custom channel.
-     * @param {string} params.customChannelId Custom channel for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customchannels$Adunits$List,
@@ -5604,9 +5476,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.metadata.dimensions.list
-     * @desc List the metadata for the dimensions available to this AdSense account.
+     * List the metadata for the dimensions available to this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5647,13 +5519,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.metadata.dimensions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Metadata$Dimensions$List,
@@ -5745,9 +5616,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.metadata.metrics.list
-     * @desc List the metadata for the metrics available to this AdSense account.
+     * List the metadata for the metrics available to this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5788,13 +5659,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.metadata.metrics.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Metadata$Metrics$List,
@@ -5886,9 +5756,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.payments.list
-     * @desc List the payments for this AdSense account.
+     * List the payments for this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -5929,13 +5799,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.payments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Payments$List,
@@ -6027,9 +5896,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6104,25 +5973,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.reports.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.accountId Accounts upon which to report.
-     * @param {string=} params.currency Optional currency to use when reporting on monetary metrics. Defaults to the account's currency if not set.
-     * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {boolean=} params.useTimezoneReporting Whether the report should be generated in the AdSense account's local timezone. If false default PST/PDT timezone will be used.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Reports$Generate,
@@ -6270,9 +6126,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.reports.saved.generate
-     * @desc Generate an AdSense report based on the saved report ID sent in the query parameters.
+     * Generate an AdSense report based on the saved report ID sent in the query parameters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6329,17 +6185,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.reports.saved.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string} params.savedReportId The saved report to retrieve.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Reports$Saved$Generate,
@@ -6430,9 +6281,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.reports.saved.list
-     * @desc List all saved reports in this AdSense account.
+     * List all saved reports in this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6480,15 +6331,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.reports.saved.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of saved reports to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through saved reports. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Reports$Saved$List,
@@ -6608,9 +6456,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.savedadstyles.get
-     * @desc Get a specific saved ad style from the user's account.
+     * Get a specific saved ad style from the user's account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6656,14 +6504,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.savedadstyles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.savedAdStyleId Saved ad style to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Savedadstyles$Get,
@@ -6744,9 +6590,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.savedadstyles.list
-     * @desc List all saved ad styles in the user's account.
+     * List all saved ad styles in the user's account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6794,15 +6640,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.savedadstyles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of saved ad styles to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through saved ad styles. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Savedadstyles$List,
@@ -6910,9 +6753,9 @@ export namespace adsense_v1_4 {
     }
 
     /**
-     * adsense.urlchannels.list
-     * @desc List all URL channels in the specified ad client for this AdSense account.
+     * List all URL channels in the specified ad client for this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsense.googleapis.com
@@ -6962,16 +6805,12 @@ export namespace adsense_v1_4 {
      *   throw e;
      * });
      *
-     * @alias adsense.urlchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list URL channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Urlchannels$List,

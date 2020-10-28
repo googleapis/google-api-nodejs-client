@@ -51,3 +51,15 @@ export function doubleclickbidmanager<
 
 const auth = new AuthPlus();
 export {auth};
+export {doubleclickbidmanager_v1_1};
+export {doubleclickbidmanager_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

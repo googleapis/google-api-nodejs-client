@@ -104,14 +104,10 @@ export namespace firebasehosting_v1beta1 {
    * The Firebase Hosting REST API enables programmatic and customizable deployments to your Firebase-hosted sites. Use this REST API to deploy new or updated hosting configurations and content files.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const firebasehosting = google.firebasehosting('v1beta1');
-   *
-   * @namespace firebasehosting
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Firebasehosting
+   * ```
    */
   export class Firebasehosting {
     context: APIRequestContext;
@@ -226,7 +222,7 @@ export namespace firebasehosting_v1beta1 {
      */
     include?: Schema$PathFilter;
     /**
-     * Required. The name of the version to be cloned, in the format: `sites/{site}/versions/{version}`
+     * Required. The name of the version to be cloned, in the format: `sites/{site\}/versions/{version\}`
      */
     sourceVersion?: string | null;
   }
@@ -323,7 +319,7 @@ export namespace firebasehosting_v1beta1 {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -425,7 +421,7 @@ export namespace firebasehosting_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -443,7 +439,7 @@ export namespace firebasehosting_v1beta1 {
     regexes?: string[] | null;
   }
   /**
-   * The request to populate a Version&#39;s Files.
+   * The request to populate a Version's Files.
    */
   export interface Schema$PopulateVersionFilesRequest {
     /**
@@ -457,7 +453,7 @@ export namespace firebasehosting_v1beta1 {
      */
     uploadRequiredHashes?: string[] | null;
     /**
-     * The URL to which the files should be uploaded, in the format: &quot;https://upload-firebasehosting.googleapis.com/upload/sites/site-name /versions/versionID/files&quot;. Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
+     * The URL to which the files should be uploaded, in the format: "https://upload-firebasehosting.googleapis.com/upload/sites/site-name /versions/versionID/files". Perform a multipart `POST` of the Gzipped file contents to the URL using a forward slash and the hash of the file appended to the end.
      */
     uploadUrl?: string | null;
   }
@@ -483,7 +479,7 @@ export namespace firebasehosting_v1beta1 {
      */
     glob?: string | null;
     /**
-     * Required. The value to put in the HTTP location header of the response. The location can contain capture group values from the pattern using a `:` prefix to identify the segment and an optional `*` to capture the rest of the URL. For example: &quot;glob&quot;: &quot;/:capture*&quot;, &quot;statusCode&quot;: 301, &quot;location&quot;: &quot;https://example.com/foo/:capture&quot;
+     * Required. The value to put in the HTTP location header of the response. The location can contain capture group values from the pattern using a `:` prefix to identify the segment and an optional `*` to capture the rest of the URL. For example: "glob": "/:capture*", "statusCode": 301, "location": "https://example.com/foo/:capture"
      */
     location?: string | null;
     /**
@@ -682,7 +678,7 @@ export namespace firebasehosting_v1beta1 {
      */
     hash?: string | null;
     /**
-     * The URI at which the file&#39;s content should display.
+     * The URI at which the file's content should display.
      */
     path?: string | null;
     /**
@@ -709,9 +705,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -760,14 +756,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,
@@ -870,9 +864,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.getConfig
-     * @desc Gets the Hosting metadata for a specific site.
+     * Gets the Hosting metadata for a specific site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -918,14 +912,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.getConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The site for which to get the SiteConfig, in the format: sites/ site-name/config
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getConfig(
       params: Params$Resource$Projects$Sites$Getconfig,
@@ -1005,9 +997,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.updateConfig
-     * @desc Sets the Hosting metadata for a specific site.
+     * Sets the Hosting metadata for a specific site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1062,16 +1054,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.updateConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The site for which to update the SiteConfig, in the format: sites/ site-name/config
-     * @param {string=} params.updateMask A set of field names from your [site configuration](../sites.SiteConfig) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
-     * @param {().SiteConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateConfig(
       params: Params$Resource$Projects$Sites$Updateconfig,
@@ -1186,9 +1174,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.create
-     * @desc Creates a new channel in the specified site.
+     * Creates a new channel in the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1257,16 +1245,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.channelId Required. Immutable. A unique id within the site to identify the channel.
-     * @param {string} params.parent Required. The site in which this channel should be created.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Sites$Channels$Create,
@@ -1349,9 +1333,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.delete
-     * @desc Deletes a channel of a site. The `live` channel cannot be deleted.
+     * Deletes a channel of a site. The `live` channel cannot be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1392,14 +1376,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The fully-qualified identifier for the site.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Sites$Channels$Delete,
@@ -1479,9 +1461,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.get
-     * @desc Retrieves information for the specified channel of a site.
+     * Retrieves information for the specified channel of a site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1534,14 +1516,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The fully-qualified identifier for the channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Sites$Channels$Get,
@@ -1621,9 +1601,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.list
-     * @desc Lists the channels for the specified site. All sites have a default "live" channel.
+     * Lists the channels for the specified site. All sites have a default "live" channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1673,16 +1653,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The site from which to list channels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Channels$List,
@@ -1770,9 +1746,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.patch
-     * @desc Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
+     * Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -1841,16 +1817,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The fully-qualified identifier of the Channel.
-     * @param {string=} params.updateMask A comma-separated list of fields to be updated in this request.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Sites$Channels$Patch,
@@ -1999,9 +1971,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.releases.create
-     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2064,16 +2036,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.releases.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The site that the release belongs to, in the format: sites/ site-name
-     * @param {string=} params.versionName The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
-     * @param {().Release} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Sites$Channels$Releases$Create,
@@ -2156,9 +2124,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.channels.releases.list
-     * @desc Lists the releases that have been created on the specified site.
+     * Lists the releases that have been created on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2208,16 +2176,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.channels.releases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Channels$Releases$List,
@@ -2344,9 +2308,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.domains.create
-     * @desc Creates a domain mapping on the specified site.
+     * Creates a domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2407,15 +2371,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.domains.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent to create the domain association for, in the format: sites/site-name
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Sites$Domains$Create,
@@ -2498,9 +2459,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.domains.delete
-     * @desc Deletes the existing domain mapping on the specified site.
+     * Deletes the existing domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2541,14 +2502,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.domains.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain association to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Sites$Domains$Delete,
@@ -2628,9 +2587,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.domains.get
-     * @desc Gets a domain mapping on the specified site.
+     * Gets a domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2680,14 +2639,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.domains.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain configuration to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Sites$Domains$Get,
@@ -2767,9 +2724,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.domains.list
-     * @desc Lists the domains for the specified site.
+     * Lists the domains for the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2819,16 +2776,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.domains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 50.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list domains, in the format: sites/ site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Domains$List,
@@ -2914,9 +2867,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.domains.update
-     * @desc Updates the specified domain mapping, creating the mapping as if it does not exist.
+     * Updates the specified domain mapping, creating the mapping as if it does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -2977,15 +2930,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.domains.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain association to update or create, if an association doesn't already exist.
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Sites$Domains$Update,
@@ -3126,9 +3076,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.releases.create
-     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3191,16 +3141,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.releases.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The site that the release belongs to, in the format: sites/ site-name
-     * @param {string=} params.versionName The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
-     * @param {().Release} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Sites$Releases$Create,
@@ -3283,9 +3229,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.releases.list
-     * @desc Lists the releases that have been created on the specified site.
+     * Lists the releases that have been created on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3335,16 +3281,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.releases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Releases$List,
@@ -3473,9 +3415,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.clone
-     * @desc Creates a new version on the target site using the content of the specified version.
+     * Creates a new version on the target site using the content of the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3502,7 +3444,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.projects.sites.versions.clone({
-     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site\}`
      *     parent: 'projects/my-project/sites/my-site',
      *
      *     // Request body metadata
@@ -3533,15 +3475,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.clone
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     * @param {().CloneVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clone(
       params: Params$Resource$Projects$Sites$Versions$Clone,
@@ -3624,9 +3563,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.create
-     * @desc Creates a new version for a site.
+     * Creates a new version for a site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3705,17 +3644,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent to create the version for, in the format: sites/ site-name
-     * @param {string=} params.sizeBytes The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
-     * @param {string=} params.versionId A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Sites$Versions$Create,
@@ -3798,9 +3732,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.delete
-     * @desc Deletes the specified version.
+     * Deletes the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3841,14 +3775,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Sites$Versions$Delete,
@@ -3928,9 +3860,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.list
-     * @desc Lists the versions that have been created on the specified site. Will include filtering in the future.
+     * Lists the versions that have been created on the specified site. Will include filtering in the future.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -3982,17 +3914,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
-     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 versions will be returned. The maximum value is 100; values above 100 will be coerced to 100
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Versions$List,
@@ -4080,9 +4007,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.patch
-     * @desc Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
+     * Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -4159,16 +4086,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
-     * @param {string=} params.updateMask A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Sites$Versions$Patch,
@@ -4248,9 +4171,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.populateFiles
-     * @desc Adds content files to a version. Each file must be under 2 GB.
+     * Adds content files to a version. Each file must be under 2 GB.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -4302,15 +4225,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.populateFiles
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The version to add files to, in the format: sites/site-name /versions/versionID
-     * @param {().PopulateVersionFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     populateFiles(
       params: Params$Resource$Projects$Sites$Versions$Populatefiles,
@@ -4405,7 +4325,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Projects$Sites$Versions$Clone
     extends StandardParameters {
     /**
-     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     * Required. The target site where the cloned version will reside, in the format: `sites/{site\}`
      */
     parent?: string;
 
@@ -4496,9 +4416,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.projects.sites.versions.files.list
-     * @desc Lists the remaining files to be uploaded for the specified version.
+     * Lists the remaining files to be uploaded for the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -4550,17 +4470,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.projects.sites.versions.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 1000.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
-     * @param {string} params.parent Required. The parent to list files for, in the format: sites/site-name /versions/versionID
-     * @param {string=} params.status The type of files in the version that should be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Sites$Versions$Files$List,
@@ -4683,9 +4598,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.getConfig
-     * @desc Gets the Hosting metadata for a specific site.
+     * Gets the Hosting metadata for a specific site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -4731,14 +4646,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.getConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The site for which to get the SiteConfig, in the format: sites/ site-name/config
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getConfig(
       params: Params$Resource$Sites$Getconfig,
@@ -4817,9 +4730,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.updateConfig
-     * @desc Sets the Hosting metadata for a specific site.
+     * Sets the Hosting metadata for a specific site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -4874,16 +4787,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.updateConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The site for which to update the SiteConfig, in the format: sites/ site-name/config
-     * @param {string=} params.updateMask A set of field names from your [site configuration](../sites.SiteConfig) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`max_versions`](../sites.SiteConfig.max_versions) will be used.
-     * @param {().SiteConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateConfig(
       params: Params$Resource$Sites$Updateconfig,
@@ -4995,9 +4904,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.create
-     * @desc Creates a new channel in the specified site.
+     * Creates a new channel in the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5066,16 +4975,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.channelId Required. Immutable. A unique id within the site to identify the channel.
-     * @param {string} params.parent Required. The site in which this channel should be created.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sites$Channels$Create,
@@ -5158,9 +5063,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.delete
-     * @desc Deletes a channel of a site. The `live` channel cannot be deleted.
+     * Deletes a channel of a site. The `live` channel cannot be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5201,14 +5106,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The fully-qualified identifier for the site.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sites$Channels$Delete,
@@ -5288,9 +5191,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.get
-     * @desc Retrieves information for the specified channel of a site.
+     * Retrieves information for the specified channel of a site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5343,14 +5246,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The fully-qualified identifier for the channel.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sites$Channels$Get,
@@ -5430,9 +5331,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.list
-     * @desc Lists the channels for the specified site. All sites have a default "live" channel.
+     * Lists the channels for the specified site. All sites have a default "live" channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5482,16 +5383,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 channels will be returned. The maximum value is 100; valuupdateses above 100 will be coerced to 100
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The site from which to list channels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Channels$List,
@@ -5579,9 +5476,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.patch
-     * @desc Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
+     * Updates information for the specified channel of a site. This method will implicitly create a channel if it doesn't exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5650,16 +5547,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The fully-qualified identifier of the Channel.
-     * @param {string=} params.updateMask A comma-separated list of fields to be updated in this request.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Sites$Channels$Patch,
@@ -5808,9 +5701,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.releases.create
-     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -5873,16 +5766,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.releases.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The site that the release belongs to, in the format: sites/ site-name
-     * @param {string=} params.versionName The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
-     * @param {().Release} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sites$Channels$Releases$Create,
@@ -5965,9 +5854,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.channels.releases.list
-     * @desc Lists the releases that have been created on the specified site.
+     * Lists the releases that have been created on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6017,16 +5906,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.channels.releases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Channels$Releases$List,
@@ -6153,9 +6038,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.domains.create
-     * @desc Creates a domain mapping on the specified site.
+     * Creates a domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6216,15 +6101,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.domains.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent to create the domain association for, in the format: sites/site-name
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sites$Domains$Create,
@@ -6307,9 +6189,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.domains.delete
-     * @desc Deletes the existing domain mapping on the specified site.
+     * Deletes the existing domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6350,14 +6232,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.domains.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain association to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sites$Domains$Delete,
@@ -6437,9 +6317,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.domains.get
-     * @desc Gets a domain mapping on the specified site.
+     * Gets a domain mapping on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6489,14 +6369,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.domains.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain configuration to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sites$Domains$Get,
@@ -6576,9 +6454,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.domains.list
-     * @desc Lists the domains for the specified site.
+     * Lists the domains for the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6628,16 +6506,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.domains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 50.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list domains, in the format: sites/ site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Domains$List,
@@ -6723,9 +6597,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.domains.update
-     * @desc Updates the specified domain mapping, creating the mapping as if it does not exist.
+     * Updates the specified domain mapping, creating the mapping as if it does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -6786,15 +6660,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.domains.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the domain association to update or create, if an association doesn't already exist.
-     * @param {().Domain} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Sites$Domains$Update,
@@ -6935,9 +6806,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.releases.create
-     * @desc Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
+     * Creates a new release which makes the content of the specified version actively display on the appropriate URL(s).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7000,16 +6871,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.releases.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The site that the release belongs to, in the format: sites/ site-name
-     * @param {string=} params.versionName The unique identifier for a version, in the format: /sites/site-name /versions/versionID The site-name in this version identifier must match the site-name in the `parent` parameter. This query parameter must be empty if the `type` field in the request body is `SITE_DISABLE`.
-     * @param {().Release} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sites$Releases$Create,
@@ -7092,9 +6959,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.releases.list
-     * @desc Lists the releases that have been created on the specified site.
+     * Lists the releases that have been created on the specified site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7144,16 +7011,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.releases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 100.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Releases$List,
@@ -7282,9 +7145,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.clone
-     * @desc Creates a new version on the target site using the content of the specified version.
+     * Creates a new version on the target site using the content of the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7311,7 +7174,7 @@ export namespace firebasehosting_v1beta1 {
      *
      *   // Do the magic
      *   const res = await firebasehosting.sites.versions.clone({
-     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     *     // Required. The target site where the cloned version will reside, in the format: `sites/{site\}`
      *     parent: 'sites/my-site',
      *
      *     // Request body metadata
@@ -7342,15 +7205,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.clone
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The target site where the cloned version will reside, in the format: `sites/{site}`
-     * @param {().CloneVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clone(
       params: Params$Resource$Sites$Versions$Clone,
@@ -7433,9 +7293,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.create
-     * @desc Creates a new version for a site.
+     * Creates a new version for a site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7514,17 +7374,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent to create the version for, in the format: sites/ site-name
-     * @param {string=} params.sizeBytes The self-reported size of the version. This value is used for a pre-emptive quota check for legacy version uploads.
-     * @param {string=} params.versionId A unique id for the new version. This is was only specified for legacy version creations, and should be blank.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Sites$Versions$Create,
@@ -7607,9 +7462,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.delete
-     * @desc Deletes the specified version.
+     * Deletes the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7650,14 +7505,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the version to be deleted, in the format: sites/ site-name/versions/versionID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sites$Versions$Delete,
@@ -7737,9 +7590,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.list
-     * @desc Lists the versions that have been created on the specified site. Will include filtering in the future.
+     * Lists the versions that have been created on the specified site. Will include filtering in the future.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7791,17 +7644,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter string used to return a subset of versions in the response. Currently supported fields for filtering are: name, status, and create_time. Filter processing will be implemented in accordance with go/filtering.
-     * @param {integer=} params.pageSize The maximum number of versions to return. The service may return fewer than this value. If unspecified, at most 25 versions will be returned. The maximum value is 100; values above 100 will be coerced to 100
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided.
-     * @param {string} params.parent Required. The parent for which to list files, in the format: sites/site-name
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Versions$List,
@@ -7889,9 +7737,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.patch
-     * @desc Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
+     * Updates the specified metadata for a version. Note that this method will fail with `FAILED_PRECONDITION` in the event of an invalid state transition. The only valid transition for a version is currently from a `CREATED` status to a `FINALIZED` status. Use [`DeleteVersion`](../sites.versions/delete) to set the status of a version to `DELETED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -7968,16 +7816,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique identifier for a version, in the format: sites/site-name /versions/versionID This name is provided in the response body when you call the [`CreateVersion`](../sites.versions/create) endpoint.
-     * @param {string=} params.updateMask A set of field names from your [version](../sites.versions) that you want to update. A field will be overwritten if, and only if, it's in the mask. If a mask is not provided then a default mask of only [`status`](../sites.versions#Version.FIELDS.status) will be used.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Sites$Versions$Patch,
@@ -8057,9 +7901,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.populateFiles
-     * @desc Adds content files to a version. Each file must be under 2 GB.
+     * Adds content files to a version. Each file must be under 2 GB.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -8111,15 +7955,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.populateFiles
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The version to add files to, in the format: sites/site-name /versions/versionID
-     * @param {().PopulateVersionFilesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     populateFiles(
       params: Params$Resource$Sites$Versions$Populatefiles,
@@ -8214,7 +8055,7 @@ export namespace firebasehosting_v1beta1 {
   export interface Params$Resource$Sites$Versions$Clone
     extends StandardParameters {
     /**
-     * Required. The target site where the cloned version will reside, in the format: `sites/{site}`
+     * Required. The target site where the cloned version will reside, in the format: `sites/{site\}`
      */
     parent?: string;
 
@@ -8305,9 +8146,9 @@ export namespace firebasehosting_v1beta1 {
     }
 
     /**
-     * firebasehosting.sites.versions.files.list
-     * @desc Lists the remaining files to be uploaded for the specified version.
+     * Lists the remaining files to be uploaded for the specified version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firebasehosting.googleapis.com
@@ -8359,17 +8200,12 @@ export namespace firebasehosting_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias firebasehosting.sites.versions.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The page size to return. Defaults to 1000.
-     * @param {string=} params.pageToken The next_page_token from a previous request, if provided. This will be the encoded version of a firebase.hosting.proto.metadata.ListFilesPageToken.
-     * @param {string} params.parent Required. The parent to list files for, in the format: sites/site-name /versions/versionID
-     * @param {string=} params.status The type of files in the version that should be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$Versions$Files$List,

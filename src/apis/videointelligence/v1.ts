@@ -104,14 +104,10 @@ export namespace videointelligence_v1 {
    * Detects objects, explicit content, and scene changes in videos. It also specifies the region for annotation and transcribes speech to text. Supports both asynchronous API and streaming API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const videointelligence = google.videointelligence('v1');
-   *
-   * @namespace videointelligence
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Videointelligence
+   * ```
    */
   export class Videointelligence {
     context: APIRequestContext;
@@ -162,7 +158,7 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     * Text value of the detection result. For example, the value for "HairColor" can be "black", "blonde", etc.
      */
     value?: string | null;
   }
@@ -364,7 +360,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly {
     /**
@@ -390,7 +386,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_ObjectTrackingAnnotation {
     /**
-     * Object category&#39;s labeling confidence of this track.
+     * Object category's labeling confidence of this track.
      */
     confidence?: number | null;
     /**
@@ -637,7 +633,7 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -649,7 +645,7 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1beta2_LabelAnnotation[];
     /**
@@ -730,7 +726,7 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     * Text value of the detection result. For example, the value for "HairColor" can be "black", "blonde", etc.
      */
     value?: string | null;
   }
@@ -932,7 +928,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly {
     /**
@@ -958,7 +954,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ObjectTrackingAnnotation {
     /**
-     * Object category&#39;s labeling confidence of this track.
+     * Object category's labeling confidence of this track.
      */
     confidence?: number | null;
     /**
@@ -1205,7 +1201,7 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -1217,7 +1213,7 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p1beta1_LabelAnnotation[];
     /**
@@ -1298,7 +1294,7 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     * Text value of the detection result. For example, the value for "HairColor" can be "black", "blonde", etc.
      */
     value?: string | null;
   }
@@ -1500,7 +1496,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly {
     /**
@@ -1526,7 +1522,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_ObjectTrackingAnnotation {
     /**
-     * Object category&#39;s labeling confidence of this track.
+     * Object category's labeling confidence of this track.
      */
     confidence?: number | null;
     /**
@@ -1773,7 +1769,7 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1785,7 +1781,7 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p2beta1_LabelAnnotation[];
     /**
@@ -1892,7 +1888,7 @@ export namespace videointelligence_v1 {
      */
     celebrities?: Schema$GoogleCloudVideointelligenceV1p3beta1_RecognizedCelebrity[];
     /**
-     * A track of a person&#39;s face.
+     * A track of a person's face.
      */
     faceTrack?: Schema$GoogleCloudVideointelligenceV1p3beta1_Track;
   }
@@ -1909,7 +1905,7 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     * Text value of the detection result. For example, the value for "HairColor" can be "black", "blonde", etc.
      */
     value?: string | null;
   }
@@ -2111,7 +2107,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly {
     /**
@@ -2137,7 +2133,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ObjectTrackingAnnotation {
     /**
-     * Object category&#39;s labeling confidence of this track.
+     * Object category's labeling confidence of this track.
      */
     confidence?: number | null;
     /**
@@ -2239,7 +2235,7 @@ export namespace videointelligence_v1 {
      */
     annotationResults?: Schema$GoogleCloudVideointelligenceV1p3beta1_StreamingVideoAnnotationResults;
     /**
-     * Google Cloud Storage URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by &#39;/cloud_project_number-session_id&#39;.
+     * Google Cloud Storage URI that stores annotation results of one streaming session in JSON format. It is the annotation_result_storage_directory from the request followed by '/cloud_project_number-session_id'.
      */
     annotationResultsUri?: string | null;
     /**
@@ -2443,7 +2439,7 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -2455,7 +2451,7 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1p3beta1_LabelAnnotation[];
     /**
@@ -2527,7 +2523,7 @@ export namespace videointelligence_v1 {
      */
     inputContent?: string | null;
     /**
-     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. URIs must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). To identify multiple videos, a video URI may include wildcards in the `object-id`. Supported wildcards: &#39;*&#39; to match 0 or more characters; &#39;?&#39; to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` must be unset.
+     * Input video location. Currently, only [Cloud Storage](https://cloud.google.com/storage/) URIs are supported. URIs must be specified in the following format: `gs://bucket-id/object-id` (other URI formats return google.rpc.Code.INVALID_ARGUMENT). For more information, see [Request URIs](https://cloud.google.com/storage/docs/request-endpoints). To identify multiple videos, a video URI may include wildcards in the `object-id`. Supported wildcards: '*' to match 0 or more characters; '?' to match 1 character. If unset, the input video should be embedded in the request as `input_content`. If set, `input_content` must be unset.
      */
     inputUri?: string | null;
     /**
@@ -2565,7 +2561,7 @@ export namespace videointelligence_v1 {
      */
     name?: string | null;
     /**
-     * Text value of the detection result. For example, the value for &quot;HairColor&quot; can be &quot;black&quot;, &quot;blonde&quot;, etc.
+     * Text value of the detection result. For example, the value for "HairColor" can be "black", "blonde", etc.
      */
     value?: string | null;
   }
@@ -2621,7 +2617,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ExplicitContentDetectionConfig {
     /**
-     * Model to use for explicit content detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for explicit content detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
   }
@@ -2669,7 +2665,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_FaceDetectionConfig {
     /**
-     * Whether to enable face attributes detection, such as glasses, dark_glasses, mouth_open etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     * Whether to enable face attributes detection, such as glasses, dark_glasses, mouth_open etc. Ignored if 'include_bounding_boxes' is set to false.
      */
     includeAttributes?: boolean | null;
     /**
@@ -2677,7 +2673,7 @@ export namespace videointelligence_v1 {
      */
     includeBoundingBoxes?: boolean | null;
     /**
-     * Model to use for face detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for face detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
   }
@@ -2741,7 +2737,7 @@ export namespace videointelligence_v1 {
      */
     labelDetectionMode?: string | null;
     /**
-     * Model to use for label detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for label detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
     /**
@@ -2749,7 +2745,7 @@ export namespace videointelligence_v1 {
      */
     stationaryCamera?: boolean | null;
     /**
-     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it&#39;s set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
+     * The confidence threshold we perform filtering on the labels from video-level and shot-level detections. If not set, it's set to 0.3 by default. The valid range for this threshold is [0.1, 0.9]. Any value set outside of this range will be clipped. Note: For best results, follow the default threshold. We will update the default threshold everytime when we release a new model.
      */
     videoConfidenceThreshold?: number | null;
   }
@@ -2818,7 +2814,7 @@ export namespace videointelligence_v1 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it&#39;s clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingPoly {
     /**
@@ -2844,7 +2840,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ObjectTrackingAnnotation {
     /**
-     * Object category&#39;s labeling confidence of this track.
+     * Object category's labeling confidence of this track.
      */
     confidence?: number | null;
     /**
@@ -2873,7 +2869,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ObjectTrackingConfig {
     /**
-     * Model to use for object tracking. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for object tracking. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
   }
@@ -2908,7 +2904,7 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_PersonDetectionConfig {
     /**
-     * Whether to enable person attributes detection, such as cloth color (black, blue, etc), type (coat, dress, etc), pattern (plain, floral, etc), hair, etc. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     * Whether to enable person attributes detection, such as cloth color (black, blue, etc), type (coat, dress, etc), pattern (plain, floral, etc), hair, etc. Ignored if 'include_bounding_boxes' is set to false.
      */
     includeAttributes?: boolean | null;
     /**
@@ -2916,7 +2912,7 @@ export namespace videointelligence_v1 {
      */
     includeBoundingBoxes?: boolean | null;
     /**
-     * Whether to enable pose landmarks detection. Ignored if &#39;include_bounding_boxes&#39; is set to false.
+     * Whether to enable pose landmarks detection. Ignored if 'include_bounding_boxes' is set to false.
      */
     includePoseLandmarks?: boolean | null;
   }
@@ -2925,16 +2921,16 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1_ShotChangeDetectionConfig {
     /**
-     * Model to use for shot change detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for shot change detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
   }
   /**
-   * Provides &quot;hints&quot; to the speech recognizer to favor specific words and phrases in the results.
+   * Provides "hints" to the speech recognizer to favor specific words and phrases in the results.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_SpeechContext {
     /**
-     * Optional. A list of strings containing words and phrases &quot;hints&quot; so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech/limits#content).
+     * Optional. A list of strings containing words and phrases "hints" so that the speech recognition is more likely to recognize them. This can be used to improve the accuracy for specific words and phrases, for example, if specific commands are typically spoken by the user. This can also be used to add additional words to the vocabulary of the recognizer. See [usage limits](https://cloud.google.com/speech/limits#content).
      */
     phrases?: string[] | null;
   }
@@ -2977,15 +2973,15 @@ export namespace videointelligence_v1 {
      */
     audioTracks?: number[] | null;
     /**
-     * Optional. If set, specifies the estimated number of speakers in the conversation. If not set, defaults to &#39;2&#39;. Ignored unless enable_speaker_diarization is set to true.
+     * Optional. If set, specifies the estimated number of speakers in the conversation. If not set, defaults to '2'. Ignored unless enable_speaker_diarization is set to true.
      */
     diarizationSpeakerCount?: number | null;
     /**
-     * Optional. If &#39;true&#39;, adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default &#39;false&#39; value does not add punctuation to result hypotheses. NOTE: &quot;This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature.&quot;
+     * Optional. If 'true', adds punctuation to recognition result hypotheses. This feature is only available in select languages. Setting this for requests in other languages has no effect at all. The default 'false' value does not add punctuation to result hypotheses. NOTE: "This is currently offered as an experimental service, complimentary to all users. In the future this may be exclusively available as a premium feature."
      */
     enableAutomaticPunctuation?: boolean | null;
     /**
-     * Optional. If &#39;true&#39;, enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive response. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
+     * Optional. If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: When this is true, we send all the words from the beginning of the audio for the top alternative in every consecutive response. This is done in order to improve our speaker tags as our models learn to identify the speakers in the conversation over time.
      */
     enableSpeakerDiarization?: boolean | null;
     /**
@@ -2993,11 +2989,11 @@ export namespace videointelligence_v1 {
      */
     enableWordConfidence?: boolean | null;
     /**
-     * Optional. If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. &quot;f***&quot;. If set to `false` or omitted, profanities won&#39;t be filtered out.
+     * Optional. If set to `true`, the server will attempt to filter out profanities, replacing all but the initial character in each filtered word with asterisks, e.g. "f***". If set to `false` or omitted, profanities won't be filtered out.
      */
     filterProfanity?: boolean | null;
     /**
-     * Required. *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;. See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
+     * Required. *Required* The language of the supplied audio as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US". See [Language Support](https://cloud.google.com/speech/docs/languages) for a list of the currently supported language codes.
      */
     languageCode?: string | null;
     /**
@@ -3035,7 +3031,7 @@ export namespace videointelligence_v1 {
      */
     languageHints?: string[] | null;
     /**
-     * Model to use for text detection. Supported values: &quot;builtin/stable&quot; (the default if unset) and &quot;builtin/latest&quot;.
+     * Model to use for text detection. Supported values: "builtin/stable" (the default if unset) and "builtin/latest".
      */
     model?: string | null;
   }
@@ -3189,7 +3185,7 @@ export namespace videointelligence_v1 {
      */
     segmentLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on video level or user-specified segment level. There is exactly one element for each unique label. Compared to the existing topical `segment_label_annotations`, this field presents more fine-grained, segment-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     segmentPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -3201,7 +3197,7 @@ export namespace videointelligence_v1 {
      */
     shotLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
-     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to &quot;builtin/latest&quot; in the request.
+     * Presence label annotations on shot level. There is exactly one element for each unique label. Compared to the existing topical `shot_label_annotations`, this field presents more fine-grained, shot-level labels detected in video content and is made available only when the client sets `LabelDetectionConfig.model` to "builtin/latest" in the request.
      */
     shotPresenceLabelAnnotations?: Schema$GoogleCloudVideointelligenceV1_LabelAnnotation[];
     /**
@@ -3326,7 +3322,7 @@ export namespace videointelligence_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -3335,7 +3331,7 @@ export namespace videointelligence_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobuf_Empty {}
   /**
@@ -3392,9 +3388,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.operations.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -3434,14 +3430,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.operations.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Operations$Projects$Locations$Operations$Cancel,
@@ -3529,9 +3523,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.operations.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -3571,14 +3565,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.operations.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Operations$Projects$Locations$Operations$Delete,
@@ -3666,9 +3658,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.operations.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -3714,14 +3706,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.operations.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Projects$Locations$Operations$Get,
@@ -3860,9 +3850,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -3906,15 +3896,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().GoogleLongrunning_CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -3999,9 +3986,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -4039,14 +4026,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -4131,9 +4116,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -4177,14 +4162,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -4271,9 +4254,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -4320,17 +4303,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -4481,9 +4459,9 @@ export namespace videointelligence_v1 {
     }
 
     /**
-     * videointelligence.videos.annotate
-     * @desc Performs asynchronous video annotation. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `AnnotateVideoProgress` (progress). `Operation.response` contains `AnnotateVideoResponse` (results).
+     * Performs asynchronous video annotation. Progress and results can be retrieved through the `google.longrunning.Operations` interface. `Operation.metadata` contains `AnnotateVideoProgress` (progress). `Operation.response` contains `AnnotateVideoResponse` (results).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/videointelligence.googleapis.com
@@ -4537,14 +4515,12 @@ export namespace videointelligence_v1 {
      *   throw e;
      * });
      *
-     * @alias videointelligence.videos.annotate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleCloudVideointelligenceV1_AnnotateVideoRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     annotate(
       params: Params$Resource$Videos$Annotate,

@@ -104,14 +104,10 @@ export namespace cloudbuild_v1alpha1 {
    * Creates and manages builds on Google Cloud Platform.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudbuild = google.cloudbuild('v1alpha1');
-   *
-   * @namespace cloudbuild
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Cloudbuild
+   * ```
    */
   export class Cloudbuild {
     context: APIRequestContext;
@@ -132,11 +128,11 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$ArtifactObjects {
     /**
-     * Cloud Storage bucket and optional object path, in the form &quot;gs://bucket/path/to/somewhere/&quot;. (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Files in the workspace matching any path pattern will be uploaded to Cloud Storage with this location as a prefix.
+     * Cloud Storage bucket and optional object path, in the form "gs://bucket/path/to/somewhere/". (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Files in the workspace matching any path pattern will be uploaded to Cloud Storage with this location as a prefix.
      */
     location?: string | null;
     /**
-     * Path globs used to match files in the build&#39;s workspace.
+     * Path globs used to match files in the build's workspace.
      */
     paths?: string[] | null;
     /**
@@ -162,11 +158,11 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$Artifacts {
     /**
-     * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account&#39;s credentials. The digests of the pushed images will be stored in the Build resource&#39;s results field. If any of the images fail to be pushed, the build is marked FAILURE.
+     * A list of images to be pushed upon the successful completion of all build steps. The images will be pushed using the builder service account's credentials. The digests of the pushed images will be stored in the Build resource's results field. If any of the images fail to be pushed, the build is marked FAILURE.
      */
     images?: string[] | null;
     /**
-     * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account&#39;s credentials. The location and generation of the uploaded objects will be stored in the Build resource&#39;s results field. If any objects fail to be pushed, the build is marked FAILURE.
+     * A list of objects to be uploaded to Cloud Storage upon successful completion of all build steps. Files in the workspace matching specified paths globs will be uploaded to the specified Cloud Storage location using the builder service account's credentials. The location and generation of the uploaded objects will be stored in the Build resource's results field. If any objects fail to be pushed, the build is marked FAILURE.
      */
     objects?: Schema$ArtifactObjects;
   }
@@ -187,7 +183,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     createTime?: string | null;
     /**
-     * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build&#39;s execution.
+     * Output only. Time at which execution of the build was finished. The difference between finish_time and start_time is the duration of the build's execution.
      */
     finishTime?: string | null;
     /**
@@ -195,11 +191,11 @@ export namespace cloudbuild_v1alpha1 {
      */
     id?: string | null;
     /**
-     * A list of images to be pushed upon the successful completion of all build steps. The images are pushed using the builder service account&#39;s credentials. The digests of the pushed images will be stored in the `Build` resource&#39;s results field. If any of the images fail to be pushed, the build status is marked `FAILURE`.
+     * A list of images to be pushed upon the successful completion of all build steps. The images are pushed using the builder service account's credentials. The digests of the pushed images will be stored in the `Build` resource's results field. If any of the images fail to be pushed, the build status is marked `FAILURE`.
      */
     images?: string[] | null;
     /**
-     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket}/log-${build_id}.txt`.
+     * Google Cloud Storage bucket where logs should be written (see [Bucket Name Requirements](https://cloud.google.com/storage/docs/bucket-naming#requirements)). Logs file names will be of the format `${logs_bucket\}/log-${build_id\}.txt`.
      */
     logsBucket?: string | null;
     /**
@@ -207,7 +203,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     logUrl?: string | null;
     /**
-     * Output only. The &#39;Build&#39; name with format: `projects/{project}/locations/{location}/builds/{build}`, where {build} is a unique identifier generated by the service.
+     * Output only. The 'Build' name with format: `projects/{project\}/locations/{location\}/builds/{build\}`, where {build\} is a unique identifier generated by the service.
      */
     name?: string | null;
     /**
@@ -231,7 +227,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     secrets?: Schema$Secret[];
     /**
-     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID}/serviceAccounts/{ACCOUNT}`. ACCOUNT can be email address or uniqueId of the service account. This field is in alpha and is not publicly available.
+     * IAM service account whose credentials will be used at build runtime. Must be of the format `projects/{PROJECT_ID\}/serviceAccounts/{ACCOUNT\}`. ACCOUNT can be email address or uniqueId of the service account. This field is in alpha and is not publicly available.
      */
     serviceAccount?: string | null;
     /**
@@ -289,7 +285,7 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$BuildOptions {
     /**
-     * Requested disk size for the VM that runs the build. Note that this is *NOT* &quot;disk free&quot;; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
+     * Requested disk size for the VM that runs the build. Note that this is *NOT* "disk free"; some of the space will be used by the operating system and build utilities. Also note that this is the minimum disk size that will be allocated for the build -- the build may run with a larger disk than requested. At present, the maximum disk size is 1000GB; builds that request more than the maximum are rejected with an error.
      */
     diskSizeGb?: string | null;
     /**
@@ -297,7 +293,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     dynamicSubstitutions?: boolean | null;
     /**
-     * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
+     * A list of global environment variable definitions that will exist for all build steps in this build. If a variable is defined in both globally and in a build step, the variable will use the build step value. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
     /**
@@ -317,7 +313,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     requestedVerifyOption?: string | null;
     /**
-     * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build&#39;s `Secret`. These variables will be available to all build steps in this build.
+     * A list of global environment variables, which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`. These variables will be available to all build steps in this build.
      */
     secretEnv?: string[] | null;
     /**
@@ -333,7 +329,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     volumes?: Schema$Volume[];
     /**
-     * Option to specify a `WorkerPool` for the build. Format: projects/{project}/locations/{location}/workerPools/{workerPool} This field is experimental.
+     * Option to specify a `WorkerPool` for the build. Format: projects/{project\}/locations/{location\}/workerPools/{workerPool\} This field is experimental.
      */
     workerPool?: string | null;
   }
@@ -342,19 +338,19 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$BuildStep {
     /**
-     * A list of arguments that will be presented to the step when it is started. If the image used to run the step&#39;s container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
+     * A list of arguments that will be presented to the step when it is started. If the image used to run the step's container has an entrypoint, the `args` are used as arguments to that entrypoint. If the image does not define an entrypoint, the first element in args is used as the entrypoint, and the remainder will be used as arguments.
      */
     args?: string[] | null;
     /**
-     * Working directory to use when running this step&#39;s container. If this value is a relative path, it is relative to the build&#39;s working directory. If this value is absolute, it may be outside the build&#39;s working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step&#39;s execution.
+     * Working directory to use when running this step's container. If this value is a relative path, it is relative to the build's working directory. If this value is absolute, it may be outside the build's working directory, in which case the contents of the path may not be persisted across build step executions, unless a `volume` for that path is specified. If the build specifies a `RepoSource` with `dir` and a step with a `dir`, which specifies an absolute path, the `RepoSource` `dir` is ignored for the step's execution.
      */
     dir?: string | null;
     /**
-     * Entrypoint to be used instead of the build step image&#39;s default entrypoint. If unset, the image&#39;s default entrypoint is used.
+     * Entrypoint to be used instead of the build step image's default entrypoint. If unset, the image's default entrypoint is used.
      */
     entrypoint?: string | null;
     /**
-     * A list of environment variable definitions to be used when running a step. The elements are of the form &quot;KEY=VALUE&quot; for the environment variable &quot;KEY&quot; being given the value &quot;VALUE&quot;.
+     * A list of environment variable definitions to be used when running a step. The elements are of the form "KEY=VALUE" for the environment variable "KEY" being given the value "VALUE".
      */
     env?: string[] | null;
     /**
@@ -362,15 +358,15 @@ export namespace cloudbuild_v1alpha1 {
      */
     id?: string | null;
     /**
-     * Required. The name of the container image that will run this particular build step. If the image is available in the host&#39;s Docker daemon&#39;s cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account&#39;s credentials if necessary. The Docker daemon&#39;s cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like &quot;ubuntu&quot;, &quot;debian&quot;, but they will be refreshed at the time you attempt to use them. If you built an image in a previous build step, it will be stored in the host&#39;s Docker daemon&#39;s cache and is available to use as the name for a later build step.
+     * Required. The name of the container image that will run this particular build step. If the image is available in the host's Docker daemon's cache, it will be run directly. If not, the host will attempt to pull the image first, using the builder service account's credentials if necessary. The Docker daemon's cache will already have the latest versions of all of the officially supported build steps ([https://github.com/GoogleCloudPlatform/cloud-builders](https://github.com/GoogleCloudPlatform/cloud-builders)). The Docker daemon will also have cached many of the layers for some popular images, like "ubuntu", "debian", but they will be refreshed at the time you attempt to use them. If you built an image in a previous build step, it will be stored in the host's Docker daemon's cache and is available to use as the name for a later build step.
      */
     name?: string | null;
     /**
-     * Output only. Stores timing information for pulling this build step&#39;s builder image only.
+     * Output only. Stores timing information for pulling this build step's builder image only.
      */
     pullTiming?: Schema$TimeSpan;
     /**
-     * A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build&#39;s `Secret`.
+     * A list of environment variables which are encrypted using a Cloud Key Management Service crypto key. These values must be specified in the build's `Secret`.
      */
     secretEnv?: string[] | null;
     /**
@@ -416,7 +412,7 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -464,7 +460,7 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$Network {
     /**
-     * Network on which the workers are created. &quot;default&quot; network is used if empty.
+     * Network on which the workers are created. "default" network is used if empty.
      */
     network?: string | null;
     /**
@@ -472,7 +468,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     projectId?: string | null;
     /**
-     * Subnetwork on which the workers are created. &quot;default&quot; subnetwork is used if empty.
+     * Subnetwork on which the workers are created. "default" subnetwork is used if empty.
      */
     subnetwork?: string | null;
   }
@@ -527,11 +523,11 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$NotifierMetadata {
     /**
-     * The human-readable and user-given name for the notifier. For example: &quot;repo-merge-email-notifier&quot;.
+     * The human-readable and user-given name for the notifier. For example: "repo-merge-email-notifier".
      */
     name?: string | null;
     /**
-     * The string representing the name and version of notifier to deploy. Expected to be of the form of &quot;/:&quot;. For example: &quot;gcr.io/my-project/notifiers/smtp:1.2.34&quot;.
+     * The string representing the name and version of notifier to deploy. Expected to be of the form of "/:". For example: "gcr.io/my-project/notifiers/smtp:1.2.34".
      */
     notifier?: string | null;
   }
@@ -540,11 +536,11 @@ export namespace cloudbuild_v1alpha1 {
    */
   export interface Schema$NotifierSecret {
     /**
-     * Name is the local name of the secret, such as the verbatim string &quot;my-smtp-password&quot;.
+     * Name is the local name of the secret, such as the verbatim string "my-smtp-password".
      */
     name?: string | null;
     /**
-     * Value is interpreted to be a resource path for fetching the actual (versioned) secret data for this secret. For example, this would be a Google Cloud Secret Manager secret version resource path like: &quot;projects/my-project/secrets/my-secret/versions/latest&quot;.
+     * Value is interpreted to be a resource path for fetching the actual (versioned) secret data for this secret. For example, this would be a Google Cloud Secret Manager secret version resource path like: "projects/my-project/secrets/my-secret/versions/latest".
      */
     value?: string | null;
   }
@@ -587,7 +583,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -608,7 +604,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     commitSha?: string | null;
     /**
-     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step&#39;s `dir` is specified and is an absolute path, this value is ignored for that step&#39;s execution.
+     * Directory, relative to the source root, in which to run the build. This must be a relative path. If a step's `dir` is specified and is an absolute path, this value is ignored for that step's execution.
      */
     dir?: string | null;
     /**
@@ -670,7 +666,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     kmsKeyName?: string | null;
     /**
-     * Map of environment variable name to its encrypted value. Secret environment variables must be unique across all of a build&#39;s secrets, and must be used by at least one build step. Values can be at most 64 KB in size. There can be at most 100 secret values across all of a build&#39;s secrets.
+     * Map of environment variable name to its encrypted value. Secret environment variables must be unique across all of a build's secrets, and must be used by at least one build step. Values can be at most 64 KB in size. There can be at most 100 secret values across all of a build's secrets.
      */
     secretEnv?: {[key: string]: string} | null;
   }
@@ -692,7 +688,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     fromAddress?: string | null;
     /**
-     * The SMTP sender&#39;s password.
+     * The SMTP sender's password.
      */
     password?: Schema$NotifierSecretRef;
     /**
@@ -734,11 +730,11 @@ export namespace cloudbuild_v1alpha1 {
      */
     fileHashes?: {[key: string]: Schema$FileHashes} | null;
     /**
-     * A copy of the build&#39;s `source.repo_source`, if exists, with any revisions resolved.
+     * A copy of the build's `source.repo_source`, if exists, with any revisions resolved.
      */
     resolvedRepoSource?: Schema$RepoSource;
     /**
-     * A copy of the build&#39;s `source.storage_source`, if exists, with any generations resolved.
+     * A copy of the build's `source.storage_source`, if exists, with any generations resolved.
      */
     resolvedStorageSource?: Schema$StorageSource;
   }
@@ -844,7 +840,7 @@ export namespace cloudbuild_v1alpha1 {
      */
     projectId?: string | null;
     /**
-     * List of regions to create the `WorkerPool`. Regions can&#39;t be empty. If Cloud Build adds a new GCP region in the future, the existing `WorkerPool` will not be enabled in the new region automatically; you must add the new region to the `regions` field to enable the `WorkerPool` in that region.
+     * List of regions to create the `WorkerPool`. Regions can't be empty. If Cloud Build adds a new GCP region in the future, the existing `WorkerPool` will not be enabled in the new region automatically; you must add the new region to the `regions` field to enable the `WorkerPool` in that region.
      */
     regions?: string[] | null;
     /**
@@ -898,9 +894,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -944,15 +940,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -1034,9 +1027,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1080,14 +1073,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -1193,9 +1184,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.workerPools.create
-     * @desc Creates a `WorkerPool` to run the builds, and returns the new worker pool.
+     * Creates a `WorkerPool` to run the builds, and returns the new worker pool.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1261,15 +1252,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.workerPools.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent ID of the parent project.
-     * @param {().WorkerPool} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Workerpools$Create,
@@ -1351,9 +1339,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.workerPools.delete
-     * @desc Deletes a `WorkerPool` by its project ID and WorkerPool name.
+     * Deletes a `WorkerPool` by its project ID and WorkerPool name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1391,14 +1379,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.workerPools.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: "projects/project-1/workerPools/workerpool-name"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Workerpools$Delete,
@@ -1477,9 +1463,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.workerPools.get
-     * @desc Returns information about a `WorkerPool`.
+     * Returns information about a `WorkerPool`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1528,14 +1514,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.workerPools.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: "projects/project-1/workerPools/workerpool-name"
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Workerpools$Get,
@@ -1614,9 +1598,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.workerPools.list
-     * @desc List project's `WorkerPool`s.
+     * List project's `WorkerPool`s.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1656,14 +1640,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.workerPools.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent ID of the parent project.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Workerpools$List,
@@ -1750,9 +1732,9 @@ export namespace cloudbuild_v1alpha1 {
     }
 
     /**
-     * cloudbuild.projects.workerPools.patch
-     * @desc Update a `WorkerPool`.
+     * Update a `WorkerPool`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudbuild.googleapis.com
@@ -1818,15 +1800,12 @@ export namespace cloudbuild_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias cloudbuild.projects.workerPools.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The field will contain name of the resource requested, for example: "projects/project-1/workerPools/workerpool-name"
-     * @param {().WorkerPool} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Workerpools$Patch,

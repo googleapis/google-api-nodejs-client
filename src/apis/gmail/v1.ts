@@ -104,14 +104,10 @@ export namespace gmail_v1 {
    * The Gmail API lets you view and manage Gmail mailbox data like threads, messages, and labels.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const gmail = google.gmail('v1');
-   *
-   * @namespace gmail
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Gmail
+   * ```
    */
   export class Gmail {
     context: APIRequestContext;
@@ -165,7 +161,7 @@ export namespace gmail_v1 {
     removeLabelIds?: string[] | null;
   }
   /**
-   * Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator&#39;s account. See &quot;Set up mail delegation&quot; for more information about delegates.
+   * Settings for a delegate. Delegates can read, send, and delete messages, as well as view and add contacts, for the delegator's account. See "Set up mail delegation" for more information about delegates.
    */
   export interface Schema$Delegate {
     /**
@@ -178,7 +174,7 @@ export namespace gmail_v1 {
     verificationStatus?: string | null;
   }
   /**
-   * A draft email in the user&#39;s mailbox.
+   * A draft email in the user's mailbox.
    */
   export interface Schema$Draft {
     /**
@@ -233,7 +229,7 @@ export namespace gmail_v1 {
      */
     excludeChats?: boolean | null;
     /**
-     * The sender&#39;s display name or email address.
+     * The sender's display name or email address.
      */
     from?: string | null;
     /**
@@ -241,11 +237,11 @@ export namespace gmail_v1 {
      */
     hasAttachment?: boolean | null;
     /**
-     * Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, `&quot;from:someuser@example.com rfc822msgid: is:unread&quot;`.
+     * Only return messages not matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
      */
     negatedQuery?: string | null;
     /**
-     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `&quot;from:someuser@example.com rfc822msgid: is:unread&quot;`.
+     * Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
      */
     query?: string | null;
     /**
@@ -257,11 +253,11 @@ export namespace gmail_v1 {
      */
     sizeComparison?: string | null;
     /**
-     * Case-insensitive phrase found in the message&#39;s subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed.
+     * Case-insensitive phrase found in the message's subject. Trailing and leading whitespace are be trimmed and adjacent spaces are collapsed.
      */
     subject?: string | null;
     /**
-     * The recipient&#39;s display name or email address. Includes recipients in the &quot;to&quot;, &quot;cc&quot;, and &quot;bcc&quot; header fields. You can use simply the local part of the email address. For example, &quot;example&quot; and &quot;example@&quot; both match &quot;example@gmail.com&quot;. This field is case-insensitive.
+     * The recipient's display name or email address. Includes recipients in the "to", "cc", and "bcc" header fields. You can use simply the local part of the email address. For example, "example" and "example@" both match "example@gmail.com". This field is case-insensitive.
      */
     to?: string | null;
   }
@@ -279,7 +275,7 @@ export namespace gmail_v1 {
     verificationStatus?: string | null;
   }
   /**
-   * A record of a change to the user&#39;s mailbox. Each history change may affect multiple messages in multiple ways.
+   * A record of a change to the user's mailbox. Each history change may affect multiple messages in multiple ways.
    */
   export interface Schema$History {
     /**
@@ -349,7 +345,7 @@ export namespace gmail_v1 {
     maxFolderSize?: number | null;
   }
   /**
-   * Labels are used to categorize messages and threads within the user&#39;s mailbox.
+   * Labels are used to categorize messages and threads within the user's mailbox.
    */
   export interface Schema$Label {
     /**
@@ -404,11 +400,11 @@ export namespace gmail_v1 {
     textColor?: string | null;
   }
   /**
-   * Language settings for an account. These settings correspond to the &quot;Language settings&quot; feature in the web interface.
+   * Language settings for an account. These settings correspond to the "Language settings" feature in the web interface.
    */
   export interface Schema$LanguageSettings {
     /**
-     * The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively). The set of languages supported by Gmail evolves over time, so please refer to the &quot;Language&quot; dropdown in the Gmail settings for all available options, as described in the language settings help article. A table of sample values is also provided in the Managing Language Settings guide Not all Gmail clients can display the same set of languages. In the case that a user&#39;s display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
+     * The language to display Gmail in, formatted as an RFC 3066 Language Tag (for example `en-GB`, `fr` or `ja` for British English, French, or Japanese respectively). The set of languages supported by Gmail evolves over time, so please refer to the "Language" dropdown in the Gmail settings for all available options, as described in the language settings help article. A table of sample values is also provided in the Managing Language Settings guide Not all Gmail clients can display the same set of languages. In the case that a user's display language is not available for use on a particular client, said client automatically chooses to display in the closest supported variant (or a reasonable default).
      */
     displayLanguage?: string | null;
   }
@@ -417,7 +413,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$ListDelegatesResponse {
     /**
-     * List of the user&#39;s delegates (with any verification status). If an account doesn&#39;t have delegates, this field doesn&#39;t appear.
+     * List of the user's delegates (with any verification status). If an account doesn't have delegates, this field doesn't appear.
      */
     delegates?: Schema$Delegate[];
   }
@@ -440,7 +436,7 @@ export namespace gmail_v1 {
    */
   export interface Schema$ListFiltersResponse {
     /**
-     * List of a user&#39;s filters.
+     * List of a user's filters.
      */
     filter?: Schema$Filter[];
   }
@@ -459,7 +455,7 @@ export namespace gmail_v1 {
      */
     history?: Schema$History[];
     /**
-     * The ID of the mailbox&#39;s current history record.
+     * The ID of the mailbox's current history record.
      */
     historyId?: string | null;
     /**
@@ -582,7 +578,7 @@ export namespace gmail_v1 {
      */
     partId?: string | null;
     /**
-     * The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/x. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521.
+     * The child MIME message parts of this part. This only applies to container MIME message parts, for example `multipart/x`. For non- container MIME message part types, such as `text/plain`, this field is empty. For more information, see RFC 1521.
      */
     parts?: Schema$MessagePart[];
   }
@@ -651,11 +647,11 @@ export namespace gmail_v1 {
    */
   export interface Schema$Profile {
     /**
-     * The user&#39;s email address.
+     * The user's email address.
      */
     emailAddress?: string | null;
     /**
-     * The ID of the mailbox&#39;s current history record.
+     * The ID of the mailbox's current history record.
      */
     historyId?: string | null;
     /**
@@ -668,15 +664,15 @@ export namespace gmail_v1 {
     threadsTotal?: number | null;
   }
   /**
-   * Settings associated with a send-as alias, which can be either the primary login address associated with the account or a custom &quot;from&quot; address. Send-as aliases correspond to the &quot;Send Mail As&quot; feature in the web interface.
+   * Settings associated with a send-as alias, which can be either the primary login address associated with the account or a custom "from" address. Send-as aliases correspond to the "Send Mail As" feature in the web interface.
    */
   export interface Schema$SendAs {
     /**
-     * A name that appears in the &quot;From:&quot; header for mail sent using this alias. For custom &quot;from&quot; addresses, when this is empty, Gmail will populate the &quot;From:&quot; header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail.
+     * A name that appears in the "From:" header for mail sent using this alias. For custom "from" addresses, when this is empty, Gmail will populate the "From:" header with the name that is used for the primary address associated with the account. If the admin has disabled the ability for users to update their name format, requests to update this field for the primary login will silently fail.
      */
     displayName?: string | null;
     /**
-     * Whether this address is selected as the default &quot;From:&quot; address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address.
+     * Whether this address is selected as the default "From:" address in situations such as composing a new message or sending a vacation auto-reply. Every Gmail account has exactly one default send-as address, so the only legal value that clients may write to this field is `true`. Changing this from `false` to `true` for an address will result in this field becoming `false` for the other previous default address.
      */
     isDefault?: boolean | null;
     /**
@@ -684,11 +680,11 @@ export namespace gmail_v1 {
      */
     isPrimary?: boolean | null;
     /**
-     * An optional email address that is included in a &quot;Reply-To:&quot; header for mail sent using this alias. If this is empty, Gmail will not generate a &quot;Reply-To:&quot; header.
+     * An optional email address that is included in a "Reply-To:" header for mail sent using this alias. If this is empty, Gmail will not generate a "Reply-To:" header.
      */
     replyToAddress?: string | null;
     /**
-     * The email address that appears in the &quot;From:&quot; header for mail sent using this alias. This is read-only for all operations except create.
+     * The email address that appears in the "From:" header for mail sent using this alias. This is read-only for all operations except create.
      */
     sendAsEmail?: string | null;
     /**
@@ -696,15 +692,15 @@ export namespace gmail_v1 {
      */
     signature?: string | null;
     /**
-     * An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail&#39;s servers to the destination SMTP service. This setting only applies to custom &quot;from&quot; aliases.
+     * An optional SMTP service that will be used as an outbound relay for mail sent using this alias. If this is empty, outbound mail will be sent directly from Gmail's servers to the destination SMTP service. This setting only applies to custom "from" aliases.
      */
     smtpMsa?: Schema$SmtpMsa;
     /**
-     * Whether Gmail should treat this address as an alias for the user&#39;s primary email address. This setting only applies to custom &quot;from&quot; aliases.
+     * Whether Gmail should treat this address as an alias for the user's primary email address. This setting only applies to custom "from" aliases.
      */
     treatAsAlias?: boolean | null;
     /**
-     * Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom &quot;from&quot; aliases.
+     * Indicates whether this address has been verified for use as a send-as alias. Read-only. This setting only applies to custom "from" aliases.
      */
     verificationStatus?: string | null;
   }
@@ -725,11 +721,11 @@ export namespace gmail_v1 {
      */
     id?: string | null;
     /**
-     * Whether this SmimeInfo is the default one for this user&#39;s send-as address.
+     * Whether this SmimeInfo is the default one for this user's send-as address.
      */
     isDefault?: boolean | null;
     /**
-     * The S/MIME certificate issuer&#39;s common name.
+     * The S/MIME certificate issuer's common name.
      */
     issuerCn?: string | null;
     /**
@@ -788,7 +784,7 @@ export namespace gmail_v1 {
     snippet?: string | null;
   }
   /**
-   * Vacation auto-reply settings for an account. These settings correspond to the &quot;Vacation responder&quot; feature in the web interface.
+   * Vacation auto-reply settings for an account. These settings correspond to the "Vacation responder" feature in the web interface.
    */
   export interface Schema$VacationSettings {
     /**
@@ -812,11 +808,11 @@ export namespace gmail_v1 {
      */
     responseSubject?: string | null;
     /**
-     * Flag that determines whether responses are sent to recipients who are not in the user&#39;s list of contacts.
+     * Flag that determines whether responses are sent to recipients who are not in the user's list of contacts.
      */
     restrictToContacts?: boolean | null;
     /**
-     * Flag that determines whether responses are sent to recipients who are outside of the user&#39;s domain. This feature is only available for G Suite users.
+     * Flag that determines whether responses are sent to recipients who are outside of the user's domain. This feature is only available for G Suite users.
      */
     restrictToDomain?: boolean | null;
     /**
@@ -825,7 +821,7 @@ export namespace gmail_v1 {
     startTime?: string | null;
   }
   /**
-   * Set up or update a new push notification watch on this user&#39;s mailbox.
+   * Set up or update a new push notification watch on this user's mailbox.
    */
   export interface Schema$WatchRequest {
     /**
@@ -837,7 +833,7 @@ export namespace gmail_v1 {
      */
     labelIds?: string[] | null;
     /**
-     * A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail &quot;publish&quot; permission on it. For example, &quot;projects/my-project-identifier/topics/my-topic-name&quot; (using the Cloud Pub/Sub &quot;v1&quot; topic naming format). Note that the &quot;my-project-identifier&quot; portion must exactly match your Google developer project id (the one executing this watch request).
+     * A fully qualified Google Cloud Pub/Sub API topic name to publish the events to. This topic name **must** already exist in Cloud Pub/Sub and you **must** have already granted gmail "publish" permission on it. For example, "projects/my-project-identifier/topics/my-topic-name" (using the Cloud Pub/Sub "v1" topic naming format). Note that the "my-project-identifier" portion must exactly match your Google developer project id (the one executing this watch request).
      */
     topicName?: string | null;
   }
@@ -850,7 +846,7 @@ export namespace gmail_v1 {
      */
     expiration?: string | null;
     /**
-     * The ID of the mailbox&#39;s current history record.
+     * The ID of the mailbox's current history record.
      */
     historyId?: string | null;
   }
@@ -874,9 +870,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.getProfile
-     * @desc Gets the current user's Gmail profile.
+     * Gets the current user's Gmail profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -925,14 +921,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.getProfile
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getProfile(
       params: Params$Resource$Users$Getprofile,
@@ -1013,9 +1007,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.stop
-     * @desc Stop receiving push notifications for the given user mailbox.
+     * Stop receiving push notifications for the given user mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1055,14 +1049,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Users$Stop,
@@ -1141,9 +1133,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.watch
-     * @desc Set up or update a push notification watch on the given user mailbox.
+     * Set up or update a push notification watch on the given user mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1199,15 +1191,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().WatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Users$Watch,
@@ -1319,9 +1308,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.create
-     * @desc Creates a new draft with the `DRAFT` label.
+     * Creates a new draft with the `DRAFT` label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1380,18 +1369,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Drafts$Create,
@@ -1477,9 +1460,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.delete
-     * @desc Immediately and permanently deletes the specified draft. Does not simply trash it.
+     * Immediately and permanently deletes the specified draft. Does not simply trash it.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1521,15 +1504,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the draft to delete.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Drafts$Delete,
@@ -1609,9 +1589,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.get
-     * @desc Gets the specified draft.
+     * Gets the specified draft.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1661,16 +1641,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.format The format to return the draft in.
-     * @param {string} params.id The ID of the draft to retrieve.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Drafts$Get,
@@ -1751,9 +1727,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.list
-     * @desc Lists the drafts in the user's mailbox.
+     * Lists the drafts in the user's mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1808,18 +1784,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include drafts from `SPAM` and `TRASH` in the results.
-     * @param {integer=} params.maxResults Maximum number of drafts to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return draft messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Drafts$List,
@@ -1904,9 +1874,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.send
-     * @desc Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers.
+     * Sends the specified, existing draft to the recipients in the `To`, `Cc`, and `Bcc` headers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -1972,18 +1942,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.send
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     send(
       params: Params$Resource$Users$Drafts$Send,
@@ -2068,9 +2032,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.drafts.update
-     * @desc Replaces a draft's content.
+     * Replaces a draft's content.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -2131,19 +2095,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.drafts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the draft to update.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Drafts$Update,
@@ -2369,9 +2326,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.history.list
-     * @desc Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`).
+     * Lists the history of all changes to the given mailbox. History results are returned in chronological order (increasing `historyId`).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -2428,19 +2385,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.history.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.historyTypes History types to be returned by the function
-     * @param {string=} params.labelId Only return messages with a label matching the ID.
-     * @param {integer=} params.maxResults The maximum number of history records to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.startHistoryId Required. Returns history records after the specified `startHistoryId`. The supplied `startHistoryId` should be obtained from the `historyId` of a message, thread, or previous `list` response. History IDs increase chronologically but are not contiguous with random gaps in between valid IDs. Supplying an invalid or out of date `startHistoryId` typically returns an `HTTP 404` error code. A `historyId` is typically valid for at least a week, but in some rare circumstances may be valid for only a few hours. If you receive an `HTTP 404` error response, your application should perform a full sync. If you receive no `nextPageToken` in the response, there are no updates to retrieve and you can store the returned `historyId` for a future request.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$History$List,
@@ -2560,9 +2510,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.create
-     * @desc Creates a new label.
+     * Creates a new label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -2632,15 +2582,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().Label} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Labels$Create,
@@ -2722,9 +2669,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.delete
-     * @desc Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to.
+     * Immediately and permanently deletes the specified label and removes it from any messages and threads that it is applied to.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -2765,15 +2712,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the label to delete.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Labels$Delete,
@@ -2853,9 +2797,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.get
-     * @desc Gets the specified label.
+     * Gets the specified label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -2912,15 +2856,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the label to retrieve.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Labels$Get,
@@ -3001,9 +2942,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.list
-     * @desc Lists all labels in the user's mailbox.
+     * Lists all labels in the user's mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3049,14 +2990,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Labels$List,
@@ -3141,9 +3080,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.patch
-     * @desc Patch the specified label.
+     * Patch the specified label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3215,16 +3154,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().Label} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Labels$Patch,
@@ -3306,9 +3241,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.labels.update
-     * @desc Updates the specified label.
+     * Updates the specified label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3380,16 +3315,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.labels.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the label to update.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().Label} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Labels$Update,
@@ -3553,9 +3484,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.batchDelete
-     * @desc Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
+     * Deletes many messages by message ID. Provides no guarantees that messages were not already deleted or even existed at all.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3598,15 +3529,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.batchDelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().BatchDeleteMessagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchDelete(
       params: Params$Resource$Users$Messages$Batchdelete,
@@ -3685,9 +3613,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.batchModify
-     * @desc Modifies the labels on the specified messages.
+     * Modifies the labels on the specified messages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3735,15 +3663,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.batchModify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().BatchModifyMessagesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchModify(
       params: Params$Resource$Users$Messages$Batchmodify,
@@ -3822,9 +3747,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.delete
-     * @desc Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer `messages.trash` instead.
+     * Immediately and permanently deletes the specified message. This operation cannot be undone. Prefer `messages.trash` instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -3861,15 +3786,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the message to delete.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Messages$Delete,
@@ -3949,9 +3871,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.get
-     * @desc Gets the specified message.
+     * Gets the specified message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4013,17 +3935,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.format The format to return the message in.
-     * @param {string} params.id The ID of the message to retrieve.
-     * @param {string=} params.metadataHeaders When given and format is `METADATA`, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Messages$Get,
@@ -4105,9 +4022,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.import
-     * @desc Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message. Note: This function doesn't trigger forwarding rules or filters set up by the user.
+     * Imports a message into only this user's mailbox, with standard email delivery scanning and classification similar to receiving via SMTP. Does not send a message. Note: This function doesn't trigger forwarding rules or filters set up by the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4187,22 +4104,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
-     * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
-     * @param {boolean=} params.neverMarkSpam Ignore the Gmail spam classifier decision and never mark this email as SPAM in the mailbox.
-     * @param {boolean=} params.processForCalendar Process calendar invites in the email and add any extracted meetings to the Google Calendar for this user.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Users$Messages$Import,
@@ -4287,9 +4194,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.insert
-     * @desc Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message.
+     * Directly inserts a message into only this user's mailbox similar to `IMAP APPEND`, bypassing most scanning and classification. Does not send a message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4365,20 +4272,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.deleted Mark the email as permanently deleted (not TRASH) and only visible in Google Vault to a Vault administrator. Only used for G Suite accounts.
-     * @param {string=} params.internalDateSource Source for Gmail's internal date of the message.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Users$Messages$Insert,
@@ -4463,9 +4362,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.list
-     * @desc Lists the messages in the user's mailbox.
+     * Lists the messages in the user's mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4522,19 +4421,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include messages from `SPAM` and `TRASH` in the results.
-     * @param {string=} params.labelIds Only return messages with labels that match all of the specified label IDs.
-     * @param {integer=} params.maxResults Maximum number of messages to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return messages matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Messages$List,
@@ -4621,9 +4513,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.modify
-     * @desc Modifies the labels on the specified message.
+     * Modifies the labels on the specified message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4685,16 +4577,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.modify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the message to modify.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().ModifyMessageRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modify(
       params: Params$Resource$Users$Messages$Modify,
@@ -4775,9 +4663,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.send
-     * @desc Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers.
+     * Sends the specified message to the recipients in the `To`, `Cc`, and `Bcc` headers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -4851,18 +4739,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.send
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     send(
       params: Params$Resource$Users$Messages$Send,
@@ -4947,9 +4829,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.trash
-     * @desc Moves the specified message to the trash.
+     * Moves the specified message to the trash.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5002,15 +4884,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.trash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the message to Trash.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     trash(
       params: Params$Resource$Users$Messages$Trash,
@@ -5091,9 +4970,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.untrash
-     * @desc Removes the specified message from the trash.
+     * Removes the specified message from the trash.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5146,15 +5025,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.untrash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the message to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     untrash(
       params: Params$Resource$Users$Messages$Untrash,
@@ -5467,9 +5343,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.messages.attachments.get
-     * @desc Gets the specified message attachment.
+     * Gets the specified message attachment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5521,16 +5397,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.messages.attachments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the attachment.
-     * @param {string} params.messageId The ID of the message containing the attachment.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Messages$Attachments$Get,
@@ -5645,9 +5517,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.getAutoForwarding
-     * @desc Gets the auto-forwarding setting for the specified account.
+     * Gets the auto-forwarding setting for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5694,14 +5566,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.getAutoForwarding
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAutoForwarding(
       params: Params$Resource$Users$Settings$Getautoforwarding,
@@ -5784,9 +5654,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.getImap
-     * @desc Gets IMAP settings.
+     * Gets IMAP settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5834,14 +5704,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.getImap
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getImap(
       params: Params$Resource$Users$Settings$Getimap,
@@ -5923,9 +5791,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.getLanguage
-     * @desc Gets language settings.
+     * Gets language settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -5970,14 +5838,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.getLanguage
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getLanguage(
       params: Params$Resource$Users$Settings$Getlanguage,
@@ -6058,9 +5924,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.getPop
-     * @desc Gets POP settings.
+     * Gets POP settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6106,14 +5972,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.getPop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getPop(
       params: Params$Resource$Users$Settings$Getpop,
@@ -6195,9 +6059,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.getVacation
-     * @desc Gets vacation responder settings.
+     * Gets vacation responder settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6249,14 +6113,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.getVacation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getVacation(
       params: Params$Resource$Users$Settings$Getvacation,
@@ -6337,9 +6199,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.updateAutoForwarding
-     * @desc Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Updates the auto-forwarding setting for the specified account. A verified forwarding address must be specified when auto-forwarding is enabled. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6391,15 +6253,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.updateAutoForwarding
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().AutoForwarding} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateAutoForwarding(
       params: Params$Resource$Users$Settings$Updateautoforwarding,
@@ -6482,9 +6341,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.updateImap
-     * @desc Updates IMAP settings.
+     * Updates IMAP settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6538,15 +6397,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.updateImap
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().ImapSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateImap(
       params: Params$Resource$Users$Settings$Updateimap,
@@ -6628,9 +6484,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.updateLanguage
-     * @desc Updates language settings. If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
+     * Updates language settings. If successful, the return object contains the `displayLanguage` that was saved for the user, which may differ from the value passed into the request. This is because the requested `displayLanguage` may not be directly supported by Gmail but have a close variant that is, and so the variant may be chosen and saved instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6678,15 +6534,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.updateLanguage
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().LanguageSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateLanguage(
       params: Params$Resource$Users$Settings$Updatelanguage,
@@ -6769,9 +6622,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.updatePop
-     * @desc Updates POP settings.
+     * Updates POP settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6821,15 +6674,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.updatePop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().PopSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatePop(
       params: Params$Resource$Users$Settings$Updatepop,
@@ -6911,9 +6761,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.updateVacation
-     * @desc Updates vacation responder settings.
+     * Updates vacation responder settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -6975,15 +6825,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.updateVacation
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().VacationSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateVacation(
       params: Params$Resource$Users$Settings$Updatevacation,
@@ -7169,9 +7016,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.delegates.create
-     * @desc Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Adds a delegate with its verification status set directly to `accepted`, without sending any verification email. The delegate user must be a member of the same G Suite organization as the delegator user. Gmail imposes limitations on the number of delegates and delegators each user in a G Suite organization can have. These limits depend on your organization, but in general each user can have up to 25 delegates and up to 10 delegators. Note that a delegate user must be referred to by their primary email address, and not an email alias. Also note that when a new delegate is created, there may be up to a one minute delay before the new delegate is available for use. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7221,15 +7068,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.delegates.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().Delegate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Settings$Delegates$Create,
@@ -7310,9 +7154,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.delegates.delete
-     * @desc Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Removes the specified delegate (which can be of any verification status), and revokes any verification that may have been required for using it. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7349,15 +7193,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.delegates.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.delegateEmail The email address of the user to be removed as a delegate.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Settings$Delegates$Delete,
@@ -7437,9 +7278,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.delegates.get
-     * @desc Gets the specified delegate. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Gets the specified delegate. Note that a delegate user must be referred to by their primary email address, and not an email alias. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7487,15 +7328,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.delegates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.delegateEmail The email address of the user whose delegate relationship is to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Settings$Delegates$Get,
@@ -7577,9 +7415,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.delegates.list
-     * @desc Lists the delegates for the specified account. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Lists the delegates for the specified account. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7624,14 +7462,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.delegates.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Settings$Delegates$List,
@@ -7766,9 +7602,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.filters.create
-     * @desc Creates a filter. Note: you can only create a maximum of 1,000 filters.
+     * Creates a filter. Note: you can only create a maximum of 1,000 filters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7820,15 +7656,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.filters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().Filter} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Settings$Filters$Create,
@@ -7909,9 +7742,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.filters.delete
-     * @desc Deletes a filter.
+     * Deletes a filter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -7948,15 +7781,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.filters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the filter to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Settings$Filters$Delete,
@@ -8035,9 +7865,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.filters.get
-     * @desc Gets a filter.
+     * Gets a filter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8086,15 +7916,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.filters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the filter to be fetched.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Settings$Filters$Get,
@@ -8175,9 +8002,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.filters.list
-     * @desc Lists the message filters of a Gmail user.
+     * Lists the message filters of a Gmail user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8222,14 +8049,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.filters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Settings$Filters$List,
@@ -8362,9 +8187,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.forwardingAddresses.create
-     * @desc Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Creates a forwarding address. If ownership verification is required, a message will be sent to the recipient and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8414,15 +8239,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.forwardingAddresses.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().ForwardingAddress} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Create,
@@ -8506,9 +8328,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.forwardingAddresses.delete
-     * @desc Deletes the specified forwarding address and revokes any verification that may have been required. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Deletes the specified forwarding address and revokes any verification that may have been required. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8545,15 +8367,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.forwardingAddresses.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.forwardingEmail The forwarding address to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Delete,
@@ -8633,9 +8452,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.forwardingAddresses.get
-     * @desc Gets the specified forwarding address.
+     * Gets the specified forwarding address.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8683,15 +8502,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.forwardingAddresses.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.forwardingEmail The forwarding address to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Settings$Forwardingaddresses$Get,
@@ -8776,9 +8592,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.forwardingAddresses.list
-     * @desc Lists the forwarding addresses for the specified account.
+     * Lists the forwarding addresses for the specified account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -8823,14 +8639,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.forwardingAddresses.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Settings$Forwardingaddresses$List,
@@ -8973,9 +8787,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.create
-     * @desc Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Creates a custom "from" send-as alias. If an SMTP MSA is specified, Gmail will attempt to connect to the SMTP service to validate the configuration before creating the alias. If ownership verification is required for the alias, a message will be sent to the email address and the resource's verification status will be set to `pending`; otherwise, the resource will be created with verification status set to `accepted`. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9039,15 +8853,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Settings$Sendas$Create,
@@ -9129,9 +8940,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.delete
-     * @desc Deletes the specified send-as alias. Revokes any verification that may have been required for using it. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Deletes the specified send-as alias. Revokes any verification that may have been required for using it. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9168,15 +8979,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The send-as alias to be deleted.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Settings$Sendas$Delete,
@@ -9255,9 +9063,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.get
-     * @desc Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
+     * Gets the specified send-as alias. Fails with an HTTP 404 error if the specified address is not a member of the collection.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9312,15 +9120,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The send-as alias to be retrieved.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Settings$Sendas$Get,
@@ -9401,9 +9206,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.list
-     * @desc Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
+     * Lists the send-as aliases for the specified account. The result includes the primary send-as address associated with the account as well as any custom "from" aliases.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9448,14 +9253,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Settings$Sendas$List,
@@ -9540,9 +9343,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.patch
-     * @desc Patch the specified send-as alias.
+     * Patch the specified send-as alias.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9611,16 +9414,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The send-as alias to be updated.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Settings$Sendas$Patch,
@@ -9701,9 +9500,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.update
-     * @desc Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
+     * Updates a send-as alias. If a signature is provided, Gmail will sanitize the HTML before saving it with the alias. Addresses other than the primary address for the account can only be updated by service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9772,16 +9571,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The send-as alias to be updated.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {().SendAs} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Settings$Sendas$Update,
@@ -9862,9 +9657,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.verify
-     * @desc Sends a verification email to the specified send-as alias address. The verification status must be `pending`. This method is only available to service account clients that have been delegated domain-wide authority.
+     * Sends a verification email to the specified send-as alias address. The verification status must be `pending`. This method is only available to service account clients that have been delegated domain-wide authority.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -9901,15 +9696,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.verify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The send-as alias to be verified.
-     * @param {string} params.userId User's email address. The special value "me" can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verify(
       params: Params$Resource$Users$Settings$Sendas$Verify,
@@ -10081,9 +9873,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.smimeInfo.delete
-     * @desc Deletes the specified S/MIME config for the specified send-as alias.
+     * Deletes the specified S/MIME config for the specified send-as alias.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10125,16 +9917,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.smimeInfo.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Delete,
@@ -10214,9 +10002,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.smimeInfo.get
-     * @desc Gets the specified S/MIME config for the specified send-as alias.
+     * Gets the specified S/MIME config for the specified send-as alias.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10272,16 +10060,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.smimeInfo.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Get,
@@ -10363,9 +10147,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.smimeInfo.insert
-     * @desc Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
+     * Insert (upload) the given S/MIME config for the specified send-as alias. Note that pkcs12 format is required for the key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10430,16 +10214,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.smimeInfo.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().SmimeInfo} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Insert,
@@ -10521,9 +10301,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.smimeInfo.list
-     * @desc Lists S/MIME configs for the specified send-as alias.
+     * Lists S/MIME configs for the specified send-as alias.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10571,15 +10351,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.smimeInfo.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$List,
@@ -10666,9 +10443,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.settings.sendAs.smimeInfo.setDefault
-     * @desc Sets the default S/MIME config for the specified send-as alias.
+     * Sets the default S/MIME config for the specified send-as alias.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10710,16 +10487,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.settings.sendAs.smimeInfo.setDefault
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The immutable ID for the SmimeInfo.
-     * @param {string} params.sendAsEmail The email address that appears in the "From:" header for mail sent using this alias.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setDefault(
       params: Params$Resource$Users$Settings$Sendas$Smimeinfo$Setdefault,
@@ -10879,9 +10652,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.delete
-     * @desc Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer `threads.trash` instead.
+     * Immediately and permanently deletes the specified thread. This operation cannot be undone. Prefer `threads.trash` instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -10918,15 +10691,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id ID of the Thread to delete.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Threads$Delete,
@@ -11006,9 +10776,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.get
-     * @desc Gets the specified thread.
+     * Gets the specified thread.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -11065,17 +10835,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.format The format to return the messages in.
-     * @param {string} params.id The ID of the thread to retrieve.
-     * @param {string=} params.metadataHeaders When given and format is METADATA, only include headers specified.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Threads$Get,
@@ -11157,9 +10922,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.list
-     * @desc Lists the threads in the user's mailbox.
+     * Lists the threads in the user's mailbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -11216,19 +10981,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.includeSpamTrash Include threads from `SPAM` and `TRASH` in the results.
-     * @param {string=} params.labelIds Only return threads with labels that match all of the specified label IDs.
-     * @param {integer=} params.maxResults Maximum number of threads to return.
-     * @param {string=} params.pageToken Page token to retrieve a specific page of results in the list.
-     * @param {string=} params.q Only return threads matching the specified query. Supports the same query format as the Gmail search box. For example, `"from:someuser@example.com rfc822msgid: is:unread"`. Parameter cannot be used when accessing the api using the gmail.metadata scope.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Threads$List,
@@ -11313,9 +11071,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.modify
-     * @desc Modifies the labels applied to the thread. This applies to all messages in the thread.
+     * Modifies the labels applied to the thread. This applies to all messages in the thread.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -11372,16 +11130,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.modify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the thread to modify.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {().ModifyThreadRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modify(
       params: Params$Resource$Users$Threads$Modify,
@@ -11462,9 +11216,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.trash
-     * @desc Moves the specified thread to the trash.
+     * Moves the specified thread to the trash.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -11512,15 +11266,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.trash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the thread to Trash.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     trash(
       params: Params$Resource$Users$Threads$Trash,
@@ -11601,9 +11352,9 @@ export namespace gmail_v1 {
     }
 
     /**
-     * gmail.users.threads.untrash
-     * @desc Removes the specified thread from the trash.
+     * Removes the specified thread from the trash.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmail.googleapis.com
@@ -11651,15 +11402,12 @@ export namespace gmail_v1 {
      *   throw e;
      * });
      *
-     * @alias gmail.users.threads.untrash
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the thread to remove from Trash.
-     * @param {string} params.userId The user's email address. The special value `me` can be used to indicate the authenticated user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     untrash(
       params: Params$Resource$Users$Threads$Untrash,
