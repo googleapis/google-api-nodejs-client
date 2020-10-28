@@ -503,9 +503,17 @@ export namespace sqladmin_v1beta4 {
      */
     rootPassword?: string | null;
     /**
+     * The status indicating if instance satisfies physical zone separation. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The start time of any upcoming scheduled maintenance for this instance.
      */
     scheduledMaintenance?: Schema$SqlScheduledMaintenance;
+    /**
+     * The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. Reserved for future use.
+     */
+    secondaryGceZone?: string | null;
     /**
      * The URI of this resource.
      */
@@ -955,6 +963,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
+     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). Reserved for future use.
+     */
+    secondaryZone?: string | null;
+    /**
      * The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.).
      */
     zone?: string | null;
@@ -1245,7 +1257,7 @@ export namespace sqladmin_v1beta4 {
      */
     activationPolicy?: string | null;
     /**
-     * Active Directory configuration, for now relevant only for SQL Server
+     * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
      */
     activeDirectoryConfig?: Schema$SqlActiveDirectoryConfig;
     /**
@@ -1334,15 +1346,15 @@ export namespace sqladmin_v1beta4 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
-   * Active Directory configuration, for now relevant only for SQL Server
+   * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
    */
   export interface Schema$SqlActiveDirectoryConfig {
     /**
-     * Domain name
+     * The name of the domain (e.g., mydomain.com).
      */
     domain?: string | null;
     /**
-     * This will be always sql#activeDirectoryConfig.
+     * This is always sql#activeDirectoryConfig.
      */
     kind?: string | null;
   }
@@ -4539,7 +4551,9 @@ export namespace sqladmin_v1beta4 {
      *   //   "replicaConfiguration": {},
      *   //   "replicaNames": [],
      *   //   "rootPassword": "my_rootPassword",
+     *   //   "satisfiesPzs": false,
      *   //   "scheduledMaintenance": {},
+     *   //   "secondaryGceZone": "my_secondaryGceZone",
      *   //   "selfLink": "my_selfLink",
      *   //   "serverCaCert": {},
      *   //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -4856,7 +4870,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -5338,7 +5354,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -6759,7 +6777,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",

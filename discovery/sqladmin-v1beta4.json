@@ -1828,7 +1828,7 @@
       }
     }
   },
-  "revision": "20200930",
+  "revision": "20201022",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2362,9 +2362,17 @@
           "description": "Initial root password. Use only on creation.",
           "type": "string"
         },
+        "satisfiesPzs": {
+          "description": "The status indicating if instance satisfies physical zone separation. Reserved for future use.",
+          "type": "boolean"
+        },
         "scheduledMaintenance": {
           "$ref": "SqlScheduledMaintenance",
           "description": "The start time of any upcoming scheduled maintenance for this instance."
+        },
+        "secondaryGceZone": {
+          "description": "The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. Reserved for future use.",
+          "type": "string"
         },
         "selfLink": {
           "description": "The URI of this resource.",
@@ -3080,6 +3088,10 @@
           "description": "This is always *sql#locationPreference*.",
           "type": "string"
         },
+        "secondaryZone": {
+          "description": "The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). Reserved for future use.",
+          "type": "string"
+        },
         "zone": {
           "description": "The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.).",
           "type": "string"
@@ -3535,7 +3547,7 @@
         },
         "activeDirectoryConfig": {
           "$ref": "SqlActiveDirectoryConfig",
-          "description": "Active Directory configuration, for now relevant only for SQL Server"
+          "description": "Active Directory configuration, relevant only for Cloud SQL for SQL Server."
         },
         "authorizedGaeApplications": {
           "description": "The App Engine app IDs that can access this instance. (Deprecated) Applied to First Generation instances only.",
@@ -3682,15 +3694,15 @@
       "type": "object"
     },
     "SqlActiveDirectoryConfig": {
-      "description": "Active Directory configuration, for now relevant only for SQL Server",
+      "description": "Active Directory configuration, relevant only for Cloud SQL for SQL Server.",
       "id": "SqlActiveDirectoryConfig",
       "properties": {
         "domain": {
-          "description": "Domain name",
+          "description": "The name of the domain (e.g., mydomain.com).",
           "type": "string"
         },
         "kind": {
-          "description": "This will be always sql#activeDirectoryConfig.",
+          "description": "This is always sql#activeDirectoryConfig.",
           "type": "string"
         }
       },
@@ -3730,7 +3742,8 @@
             "INVALID_LOGGING_SETUP",
             "INVALID_DB_PARAM",
             "UNSUPPORTED_GTID_MODE",
-            "SQLSERVER_AGENT_NOT_RUNNING"
+            "SQLSERVER_AGENT_NOT_RUNNING",
+            "UNSUPPORTED_TABLE_DEFINITION"
           ],
           "enumDescriptions": [
             "",
@@ -3752,7 +3765,8 @@
             "The primary instance logging setup doesn't allow EM sync.",
             "The primary instance database parameter setup doesn't allow EM sync.",
             "The gtid_mode is not supported, applicable for MySQL.",
-            "SQL Server Agent is not running."
+            "SQL Server Agent is not running.",
+            "The table definition is not support due to missing primary key or replica identity, applicable for postgres."
           ],
           "type": "string"
         }
