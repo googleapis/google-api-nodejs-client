@@ -687,6 +687,7 @@ export namespace bigquery_v2 {
       groupByEmail?: string;
       iamMember?: string;
       role?: string;
+      routine?: Schema$RoutineReference;
       specialGroup?: string;
       userByEmail?: string;
       view?: Schema$TableReference;
@@ -1010,6 +1011,19 @@ export namespace bigquery_v2 {
     substeps?: string[] | null;
   }
   /**
+   * Explanation for a single feature.
+   */
+  export interface Schema$Explanation {
+    /**
+     * Attribution of feature.
+     */
+    attribution?: number | null;
+    /**
+     * Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.
+     */
+    featureName?: string | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -1174,6 +1188,19 @@ export namespace bigquery_v2 {
      * The resource type of the response.
      */
     kind?: string | null;
+  }
+  /**
+   * Global explanations containing the top most important features after training.
+   */
+  export interface Schema$GlobalExplanation {
+    /**
+     * Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.
+     */
+    classLabel?: string | null;
+    /**
+     * A list of the top global explanations. Sorted by absolute value of attribution in descending order.
+     */
+    explanations?: Schema$Explanation[];
   }
   export interface Schema$GoogleSheetsOptions {
     /**
@@ -3023,6 +3050,10 @@ export namespace bigquery_v2 {
      * The evaluation metrics over training/eval data that were computed at the end of training.
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
+    /**
+     * Global explanations for important features of the model. For multi-class models, there is one entry for each label class. For other models, there is only one entry in the list.
+     */
+    globalExplanations?: Schema$GlobalExplanation[];
     /**
      * Output of each iteration run, results.size() &lt;= max_iterations.
      */
