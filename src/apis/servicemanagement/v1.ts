@@ -215,7 +215,7 @@ export namespace servicemanagement_v1 {
    */
   export interface Schema$AuthenticationRule {
     /**
-     * If true, the service accepts API keys without any other credential.
+     * If true, the service accepts API keys without any other credential. This flag only applies to HTTP and gRPC requests.
      */
     allowWithoutCredential?: boolean | null;
     /**
@@ -433,7 +433,7 @@ export namespace servicemanagement_v1 {
     id?: string | null;
   }
   /**
-   * `Context` defines which contexts an API requests. Example: context: rules: - selector: &quot;*&quot; requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to whitelist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot; allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
+   * `Context` defines which contexts an API requests. Example: context: rules: - selector: &quot;*&quot; requested: - google.rpc.context.ProjectContext - google.rpc.context.OriginContext The above specifies that all methods in the API request `google.rpc.context.ProjectContext` and `google.rpc.context.OriginContext`. Available context types are defined in package `google.rpc.context`. This also provides mechanism to allowlist any protobuf message extension that can be sent in grpc metadata using “x-goog-ext--bin” and “x-goog-ext--jspb” format. For example, list any service specific protobuf types that can appear in grpc metadata as follows in your yaml file: Example: context: rules: - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot; allowed_request_extensions: - google.foo.v1.NewExtension allowed_response_extensions: - google.foo.v1.NewExtension You can also specify extension ID instead of fully qualified extension name here.
    */
   export interface Schema$Context {
     /**
@@ -813,10 +813,6 @@ export namespace servicemanagement_v1 {
      * Additional HTTP bindings for the selector. Nested bindings must not contain an `additional_bindings` field themselves (that is, the nesting may only be one level deep).
      */
     additionalBindings?: Schema$HttpRule[];
-    /**
-     * When this flag is set to true, HTTP requests will be allowed to invoke a half-duplex streaming method.
-     */
-    allowHalfDuplex?: boolean | null;
     /**
      * The name of the request field whose value is mapped to the HTTP request body, or `*` for mapping all request fields not captured by the path pattern to the HTTP body, or omitted for not having any HTTP request body. NOTE: the referred field must be present at the top-level of the request message type.
      */
@@ -1411,7 +1407,7 @@ export namespace servicemanagement_v1 {
      */
     billing?: Schema$Billing;
     /**
-     * The semantic version of the service configuration. The config version affects the interpretation of the service configuration. For example, certain features are enabled by default for certain config versions. The latest config version is `3`.
+     * This field is obsolete. Its value must be set to `3`.
      */
     configVersion?: number | null;
     /**
@@ -1502,23 +1498,6 @@ export namespace servicemanagement_v1 {
      * Configuration controlling usage of this service.
      */
     usage?: Schema$Usage;
-  }
-  /**
-   * The per-product per-project service identity for a service. Use this field to configure per-product per-project service identity. Example of a service identity configuration. usage: service_identity: - service_account_parent: &quot;projects/123456789&quot; display_name: &quot;Cloud XXX Service Agent&quot; description: &quot;Used as the identity of Cloud XXX to access resources&quot;
-   */
-  export interface Schema$ServiceIdentity {
-    /**
-     * Optional. A user-specified opaque description of the service account. Must be less than or equal to 256 UTF-8 bytes.
-     */
-    description?: string | null;
-    /**
-     * Optional. A user-specified name for the service account. Must be less than or equal to 100 UTF-8 bytes.
-     */
-    displayName?: string | null;
-    /**
-     * A service account project that hosts the service accounts. An example name would be: `projects/123456789`
-     */
-    serviceAccountParent?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -1723,10 +1702,6 @@ export namespace servicemanagement_v1 {
      * A list of usage rules that apply to individual API methods. **NOTE:** All service configuration rules follow &quot;last one wins&quot; order.
      */
     rules?: Schema$UsageRule[];
-    /**
-     * The configuration of a per-product per-project service identity.
-     */
-    serviceIdentity?: Schema$ServiceIdentity;
   }
   /**
    * Usage configuration rules for the service. NOTE: Under development. Use this rule to configure unregistered calls for the service. Unregistered calls are calls that do not contain consumer project identity. (Example: calls that do not contain an API key). By default, API methods do not allow unregistered calls, and each method call must be identified by a consumer project identity. Use this rule to allow/disallow unregistered calls. Example of an API that wants to allow unregistered calls for entire service. usage: rules: - selector: &quot;*&quot; allow_unregistered_calls: true Example of a method that wants to allow unregistered calls. usage: rules: - selector: &quot;google.example.library.v1.LibraryService.CreateBook&quot; allow_unregistered_calls: true
