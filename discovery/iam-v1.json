@@ -11,8 +11,8 @@
   "basePath": "",
   "baseUrl": "https://iam.googleapis.com/",
   "batchPath": "batch",
-  "canonicalName": "iam",
-  "description": " Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. *Note:* This API is tied to the IAM service account credentials API ( iamcredentials.googleapis.com). Enabling or disabling this API will also enable or disable the IAM service account credentials API. ",
+  "canonicalName": "Iam",
+  "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. ",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/iam/",
   "fullyEncodeReservedExpansion": true,
@@ -1250,7 +1250,7 @@
       }
     }
   },
-  "revision": "20200910",
+  "revision": "20201022",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AdminAuditData": {
