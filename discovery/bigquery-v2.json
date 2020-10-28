@@ -1579,7 +1579,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201015",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2500,6 +2500,10 @@
                 "description": "[Required] An IAM role ID that should be granted to the user, group, or domain specified in this access entry. The following legacy mappings will be applied: OWNER  roles/bigquery.dataOwner WRITER  roles/bigquery.dataEditor READER  roles/bigquery.dataViewer This field will accept any of the above formats, but will return only the legacy format. For example, if you set this field to \"roles/bigquery.dataOwner\", it will be returned back as \"OWNER\".",
                 "type": "string"
               },
+              "routine": {
+                "$ref": "RoutineReference",
+                "description": "[Pick one] A routine from a different dataset to grant access to. Queries executed against that routine will have read access to views/tables/routines in this dataset. Only UDF is supported for now. The role field is not required when this field is set. If that routine is updated by any user, access to the routine needs to be granted again via an update operation."
+              },
               "specialGroup": {
                 "description": "[Pick one] A special group to grant access to. Possible values include: projectOwners: Owners of the enclosing project. projectReaders: Readers of the enclosing project. projectWriters: Writers of the enclosing project. allAuthenticatedUsers: All authenticated BigQuery users. Maps to similarly-named IAM members.",
                 "type": "string"
@@ -2943,6 +2947,22 @@
       },
       "type": "object"
     },
+    "Explanation": {
+      "description": "Explanation for a single feature.",
+      "id": "Explanation",
+      "properties": {
+        "attribution": {
+          "description": "Attribution of feature.",
+          "format": "double",
+          "type": "number"
+        },
+        "featureName": {
+          "description": "Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -3142,6 +3162,24 @@
           "default": "bigquery#getServiceAccountResponse",
           "description": "The resource type of the response.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GlobalExplanation": {
+      "description": "Global explanations containing the top most important features after training.",
+      "id": "GlobalExplanation",
+      "properties": {
+        "classLabel": {
+          "description": "Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.",
+          "type": "string"
+        },
+        "explanations": {
+          "description": "A list of the top global explanations. Sorted by absolute value of attribution in descending order.",
+          "items": {
+            "$ref": "Explanation"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6132,6 +6170,13 @@
         "evaluationMetrics": {
           "$ref": "EvaluationMetrics",
           "description": "The evaluation metrics over training/eval data that were computed at the end of training."
+        },
+        "globalExplanations": {
+          "description": "Global explanations for important features of the model. For multi-class models, there is one entry for each label class. For other models, there is only one entry in the list.",
+          "items": {
+            "$ref": "GlobalExplanation"
+          },
+          "type": "array"
         },
         "results": {
           "description": "Output of each iteration run, results.size() <= max_iterations.",
