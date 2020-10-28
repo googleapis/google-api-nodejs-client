@@ -3539,7 +3539,7 @@
                 "aliases": {
                   "methods": {
                     "create": {
-                      "description": "Creates an alias from a key, certificate pair. The structure of the request is controlled by the `format` query parameter: * `keycertfile` - Separate PEM-encoded key and certificate files are uploaded. The request must have `Content-Type: multipart/form-data` and include fields `keyFile` and `certFile`. If uploading to a truststore, omit `keyFile`. * `pkcs12` - A PKCS12 file is uploaded. The request must have `Content-Type: multipart/form-data` with the file provided in the only field. * `selfsignedcert` - A new private key and certificate are generated. The request must have `Content-Type: application/json` and a body of CertificateGenerationSpec.",
+                      "description": "Creates an alias from a key, certificate pair. The structure of the request is controlled by the `format` query parameter: * `keycertfile` - Separate PEM-encoded key and certificate files are uploaded. The request must have `Content-Type: multipart/form-data` and include fields `keyFile` and `certFile`. If uploading to a truststore, omit `keyFile`. A `password` field should be provided for encrypted keys. * `pkcs12` - A PKCS12 file is uploaded. The request must have `Content-Type: multipart/form-data` with the file provided in the `file` field and a `password` field if the file is encrypted. * `selfsignedcert` - A new private key and certificate are generated. The request must have `Content-Type: application/json` and a body of CertificateGenerationSpec.",
                       "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/keystores/{keystoresId}/aliases",
                       "httpMethod": "POST",
                       "id": "apigee.organizations.environments.keystores.aliases.create",
@@ -4144,7 +4144,7 @@
             "resourcefiles": {
               "methods": {
                 "create": {
-                  "description": "Creates a resource file. Specify the `Content-Type` as `application/octet-stream` or `multipart/form-data`. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Creates a resource file. Specify the `Content-Type` as `application/octet-stream` or `multipart/form-data`. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.environments.resourcefiles.create",
@@ -4182,7 +4182,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a resource file. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Deletes a resource file. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles/{type}/{name}",
                   "httpMethod": "DELETE",
                   "id": "apigee.organizations.environments.resourcefiles.delete",
@@ -4221,7 +4221,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets the contents of a resource file. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Gets the contents of a resource file. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles/{type}/{name}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.environments.resourcefiles.get",
@@ -4260,7 +4260,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists all resource files. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Lists all resource files, optionally filtering by type. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.environments.resourcefiles.list",
@@ -4290,7 +4290,7 @@
                   ]
                 },
                 "listEnvironmentResources": {
-                  "description": "Lists all resource files. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Lists all resource files, optionally filtering by type. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles/{type}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.environments.resourcefiles.listEnvironmentResources",
@@ -4322,7 +4322,7 @@
                   ]
                 },
                 "update": {
-                  "description": "Updates a resource file. Specify the `Content-Type` as `application/octet-stream` or `multipart/form-data`. For more information about resource files, see [Resource files](/api-platform/develop/resource-files).",
+                  "description": "Updates a resource file. Specify the `Content-Type` as `application/octet-stream` or `multipart/form-data`. For more information about resource files, see [Resource files](https://cloud.google.com/apigee/docs/api-platform/develop/resource-files).",
                   "flatPath": "v1/organizations/{organizationsId}/environments/{environmentsId}/resourcefiles/{type}/{name}",
                   "httpMethod": "PUT",
                   "id": "apigee.organizations.environments.resourcefiles.update",
@@ -5691,7 +5691,7 @@
       }
     }
   },
-  "revision": "20201002",
+  "revision": "20201015",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -9101,85 +9101,34 @@
           "description": "Trace configuration override for a specific API proxy in an environment."
         },
         "uid": {
-          "description": "Unique ID for the configuration override. The ID will only change if the override is deleted and recreated.",
+          "description": "Unique ID for the configuration override. The ID will only change if the override is deleted and recreated. Corresponds to name's \"override\" field.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1RuntimeTraceSamplingConfig": {
-      "description": "NEXT ID: 6 RuntimeTraceSamplingConfig represents the detail settings of distributed tracing. Only the fields that are defined in the distributed trace configuration can be overridden using the distribute trace configuration override APIs.",
+      "description": "NEXT ID: 3 RuntimeTraceSamplingConfig represents the detail settings of distributed tracing. Only the fields that are defined in the distributed trace configuration can be overridden using the distribute trace configuration override APIs.",
       "id": "GoogleCloudApigeeV1RuntimeTraceSamplingConfig",
       "properties": {
-        "errorSources": {
-          "description": "Error sources from which to capture errors. If none are specified, error codes are captured from all sources.",
-          "items": {
-            "enum": [
-              "ERROR_SOURCE_UNSPECIFIED",
-              "APIGEE",
-              "TARGET"
-            ],
-            "enumDescriptions": [
-              "Error source is unspecified.",
-              "Only capture trace errors within the Apigee system.",
-              "Only capture trace errors from target server."
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "responseCodeRanges": {
-          "description": "List of response code ranges.",
-          "items": {
-            "$ref": "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange"
-          },
-          "type": "array"
-        },
-        "responseCodes": {
-          "description": "List of single response codes.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
         "sampler": {
           "description": "Sampler of distributed tracing. OFF is the default value.",
           "enum": [
             "SAMPLER_UNSPECIFIED",
             "OFF",
-            "ON",
             "PROBABILITY"
           ],
           "enumDescriptions": [
             "Sampler unspecified.",
             "OFF means distributed trace is disabled, or the sampling probability is 0.",
-            "ON means distributed trace is enabled always for all api calls, and sampling probability is 0.5.",
             "PROBABILITY means traces are captured on a probability that defined by sampling_rate. The sampling rate is limited to 0 to 0.5 when this is set."
           ],
           "type": "string"
         },
         "samplingRate": {
-          "description": "Field sampling rate. This value is only valid when is only applicable when sampling value is probabilistic(PROBABILITY). The supported values are > 0 and <= 0.5.",
+          "description": "Field sampling rate. This value is only applicable when using the PROBABILITY sampler. The supported values are > 0 and <= 0.5.",
           "format": "float",
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange": {
-      "description": "ResponseCodeRange represents a group of response codes to capture, from the first response code to the last response code. Each range is a close interval. For example, if an interval is [400, 403], then that means 400, 401, 402, 403 will be all captured.",
-      "id": "GoogleCloudApigeeV1RuntimeTraceSamplingConfigResponseCodeRange",
-      "properties": {
-        "firstResponseCode": {
-          "description": "The first response code to capture.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "lastResponseCode": {
-          "description": "The last response code to capture.",
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"

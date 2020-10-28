@@ -35,6 +35,7 @@ import * as androidpublisher from './androidpublisher';
 import * as apigateway from './apigateway';
 import * as appengine from './appengine';
 import * as appsactivity from './appsactivity';
+import * as area120tables from './area120tables';
 import * as artifactregistry from './artifactregistry';
 import * as assuredworkloads from './assuredworkloads';
 import * as bigquery from './bigquery';
@@ -94,6 +95,7 @@ import * as doubleclickbidmanager from './doubleclickbidmanager';
 import * as doubleclicksearch from './doubleclicksearch';
 import * as drive from './drive';
 import * as driveactivity from './driveactivity';
+import * as eventarc from './eventarc';
 import * as factchecktools from './factchecktools';
 import * as fcm from './fcm';
 import * as file from './file';
@@ -231,6 +233,7 @@ export const APIS: APIList = {
   apigateway: apigateway.VERSIONS,
   appengine: appengine.VERSIONS,
   appsactivity: appsactivity.VERSIONS,
+  area120tables: area120tables.VERSIONS,
   artifactregistry: artifactregistry.VERSIONS,
   assuredworkloads: assuredworkloads.VERSIONS,
   bigquery: bigquery.VERSIONS,
@@ -290,6 +293,7 @@ export const APIS: APIList = {
   doubleclicksearch: doubleclicksearch.VERSIONS,
   drive: drive.VERSIONS,
   driveactivity: driveactivity.VERSIONS,
+  eventarc: eventarc.VERSIONS,
   factchecktools: factchecktools.VERSIONS,
   fcm: fcm.VERSIONS,
   file: file.VERSIONS,
@@ -424,6 +428,7 @@ export class GeneratedAPIs {
   apigateway = apigateway.apigateway;
   appengine = appengine.appengine;
   appsactivity = appsactivity.appsactivity;
+  area120tables = area120tables.area120tables;
   artifactregistry = artifactregistry.artifactregistry;
   assuredworkloads = assuredworkloads.assuredworkloads;
   bigquery = bigquery.bigquery;
@@ -483,6 +488,7 @@ export class GeneratedAPIs {
   doubleclicksearch = doubleclicksearch.doubleclicksearch;
   drive = drive.drive;
   driveactivity = driveactivity.driveactivity;
+  eventarc = eventarc.eventarc;
   factchecktools = factchecktools.factchecktools;
   fcm = fcm.fcm;
   file = file.file;

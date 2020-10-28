@@ -269,14 +269,13 @@
       "name": "analytics",
       "version": "v3",
       "title": "Google Analytics API",
-      "description": "Views and manages your Google Analytics data.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/analytics/v3/rest",
-      "discoveryLink": "./apis/analytics/v3/rest",
+      "description": "The Analytics API provides access to Analytics configuration and report data.",
+      "discoveryRestUrl": "https://analytics.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/analytics-16.png",
-        "x32": "https://www.google.com/images/icons/product/analytics-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/analytics/",
+      "documentationLink": "http://code.google.com/apis/analytics/docs/mgmt/home.html",
       "preferred": true
     },
     {
@@ -487,6 +486,21 @@
       },
       "documentationLink": "https://cloud.google.com/appengine/docs/admin-api/",
       "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "area120tables:v1alpha1",
+      "name": "area120tables",
+      "version": "v1alpha1",
+      "title": "Area120 Tables API",
+      "description": "",
+      "discoveryRestUrl": "https://area120tables.googleapis.com/$discovery/rest?version=v1alpha1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://tables.area120.google.com",
+      "preferred": true
     },
     {
       "kind": "discovery#directoryItem",
@@ -1457,14 +1471,13 @@
       "name": "content",
       "version": "v2",
       "title": "Content API for Shopping",
-      "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/content/v2/rest",
-      "discoveryLink": "./apis/content/v2/rest",
+      "description": "Manage your product listings and accounts for Google Shopping",
+      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/shopping-content",
+      "documentationLink": "https://developers.google.com/shopping-content/v2/",
       "preferred": false
     },
     {
@@ -1473,14 +1486,13 @@
       "name": "content",
       "version": "v2.1",
       "title": "Content API for Shopping",
-      "description": "Manages product items, inventory, and Merchant Center accounts for Google Shopping.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/content/v2.1/rest",
-      "discoveryLink": "./apis/content/v2.1/rest",
+      "description": "Manage your product listings and accounts for Google Shopping",
+      "discoveryRestUrl": "https://shoppingcontent.googleapis.com/$discovery/rest?version=v2.1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/shopping-content",
+      "documentationLink": "https://developers.google.com/shopping-content/v2/",
       "preferred": true
     },
     {
@@ -2072,6 +2084,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "eventarc:v1beta1",
+      "name": "eventarc",
+      "version": "v1beta1",
+      "title": "Eventarc API",
+      "description": "",
+      "discoveryRestUrl": "https://eventarc.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/eventarc",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "factchecktools:v1alpha1",
       "name": "factchecktools",
       "version": "v1alpha1",
@@ -2526,7 +2553,7 @@
       "name": "iam",
       "version": "v1",
       "title": "Identity and Access Management (IAM) API",
-      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls. *Note:* This API is tied to the IAM service account credentials API </iam/docs/reference/credentials/rest> (iamcredentials.googleapis.com). Enabling or disabling this API will also enable or disable the IAM service account credentials API.",
+      "description": "Manages identity and access control for Google Cloud Platform resources, including the creation of service accounts, which you can use to authenticate to Google and make API calls.",
       "discoveryRestUrl": "https://iam.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -2541,7 +2568,7 @@
       "name": "iamcredentials",
       "version": "v1",
       "title": "IAM Service Account Credentials API",
-      "description": "Creates short-lived credentials for impersonating IAM service accounts. *Note:* This API is tied to the IAM API </iam/docs/reference/rest> ( iam.googleapis.com). Enabling or disabling this API will also enable or disable the IAM API.",
+      "description": "Creates short-lived credentials for impersonating IAM service accounts. To enable this API, you must enable the IAM API (iam.googleapis.com).",
       "discoveryRestUrl": "https://iamcredentials.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
@@ -3165,6 +3192,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/poly/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "privateca:v1beta1",
+      "name": "privateca",
+      "version": "v1beta1",
+      "title": "Certificate Authority API",
+      "description": "",
+      "discoveryRestUrl": "https://privateca.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/",
       "preferred": true
     },
     {
@@ -4470,15 +4512,14 @@
       "id": "youtube:v3",
       "name": "youtube",
       "version": "v3",
-      "title": "YouTube Data API",
-      "description": "Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-      "discoveryLink": "./apis/youtube/v3/rest",
+      "title": "YouTube Data API v3",
+      "description": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
+      "discoveryRestUrl": "https://youtube.googleapis.com/$discovery/rest?version=v3",
       "icons": {
-        "x16": "https://www.google.com/images/icons/product/youtube-16.png",
-        "x32": "https://www.google.com/images/icons/product/youtube-32.png"
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://developers.google.com/youtube/v3",
+      "documentationLink": "https://developers.google.com/youtube/",
       "preferred": true
     },
     {
