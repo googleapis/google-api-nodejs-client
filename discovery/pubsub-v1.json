@@ -674,7 +674,7 @@
               ]
             },
             "seek": {
-              "description": "Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.",
+              "description": "Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.",
               "flatPath": "v1/projects/{projectsId}/subscriptions/{subscriptionsId}:seek",
               "httpMethod": "POST",
               "id": "pubsub.projects.subscriptions.seek",
@@ -765,7 +765,7 @@
         "topics": {
           "methods": {
             "create": {
-              "description": "Creates the given topic with the given name. See the [resource name rules]( https://cloud.google.com/pubsub/docs/admin#resource_names).",
+              "description": "Creates the given topic with the given name. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names).",
               "flatPath": "v1/projects/{projectsId}/topics/{topicsId}",
               "httpMethod": "PUT",
               "id": "pubsub.projects.topics.create",
@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20200921",
+  "revision": "20201012",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
