@@ -244,26 +244,9 @@ export namespace smartdevicemanagement_v1 {
      */
     name?: string | null;
     /**
-     * Assignee details of the structure.
-     */
-    parentRelations?: Schema$GoogleHomeEnterpriseSdmV1StructureParentRelation[];
-    /**
      * Structure traits.
      */
     traits?: {[key: string]: any} | null;
-  }
-  /**
-   * Represents structure assignee relationships, for instance, group to which the structure is assigned to.
-   */
-  export interface Schema$GoogleHomeEnterpriseSdmV1StructureParentRelation {
-    /**
-     * Output only. The custom name of the relation -- e.g., group, to which the structure is assigned to.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. The name of the relation -- e.g., group to which the structure is assigned to. For example: &quot;enterprises/XYZ/groups/ABC&quot;
-     */
-    parent?: string | null;
   }
 
   export class Resource$Enterprises {
@@ -619,7 +602,7 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await smartdevicemanagement.enterprises.devices.list({
-     *     // Optional filter to list devices. Filters can match the exact assignee (could be a structure or a room). E.g. 'assignee=enterprises/XYZ/structures/abc' Also could filter by parent (group): 'parent=enterprises/XYZ/groups/jkl' or filter by device custom name (substring match): 'customName=wing'
+     *     // Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      *     filter: 'placeholder-value',
      *     // Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -646,7 +629,7 @@ export namespace smartdevicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to list devices. Filters can match the exact assignee (could be a structure or a room). E.g. 'assignee=enterprises/XYZ/structures/abc' Also could filter by parent (group): 'parent=enterprises/XYZ/groups/jkl' or filter by device custom name (substring match): 'customName=wing'
+     * @param {string=} params.filter Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      * @param {integer=} params.pageSize Optional requested page size. Server may return fewer devices than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken Optional token of the page to retrieve.
      * @param {string} params.parent The parent enterprise to list devices under. E.g. "enterprises/XYZ".
@@ -780,7 +763,7 @@ export namespace smartdevicemanagement_v1 {
   export interface Params$Resource$Enterprises$Devices$List
     extends StandardParameters {
     /**
-     * Optional filter to list devices. Filters can match the exact assignee (could be a structure or a room). E.g. 'assignee=enterprises/XYZ/structures/abc' Also could filter by parent (group): 'parent=enterprises/XYZ/groups/jkl' or filter by device custom name (substring match): 'customName=wing'
+     * Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'
      */
     filter?: string;
     /**
@@ -840,7 +823,6 @@ export namespace smartdevicemanagement_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
-     *   //   "parentRelations": [],
      *   //   "traits": {}
      *   // }
      * }
@@ -972,7 +954,7 @@ export namespace smartdevicemanagement_v1 {
      *
      *   // Do the magic
      *   const res = await smartdevicemanagement.enterprises.structures.list({
-     *     // Optional filter to list structures. Filters can match the exact album assigned to the structure. E.g. 'album=enterprises/XYZ/albums/abc' It also support filtering by parent (only groups for now): E.g. 'parent=enterprises/XYZ/groups/124'
+     *     // Optional filter to list structures.
      *     filter: 'placeholder-value',
      *     // Requested page size. Server may return fewer structures than requested. If unspecified, server will pick an appropriate default.
      *     pageSize: 'placeholder-value',
@@ -999,7 +981,7 @@ export namespace smartdevicemanagement_v1 {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional filter to list structures. Filters can match the exact album assigned to the structure. E.g. 'album=enterprises/XYZ/albums/abc' It also support filtering by parent (only groups for now): E.g. 'parent=enterprises/XYZ/groups/124'
+     * @param {string=} params.filter Optional filter to list structures.
      * @param {integer=} params.pageSize Requested page size. Server may return fewer structures than requested. If unspecified, server will pick an appropriate default.
      * @param {string=} params.pageToken The token of the page to retrieve.
      * @param {string} params.parent The parent enterprise to list structures under. E.g. "enterprises/XYZ".
@@ -1120,7 +1102,7 @@ export namespace smartdevicemanagement_v1 {
   export interface Params$Resource$Enterprises$Structures$List
     extends StandardParameters {
     /**
-     * Optional filter to list structures. Filters can match the exact album assigned to the structure. E.g. 'album=enterprises/XYZ/albums/abc' It also support filtering by parent (only groups for now): E.g. 'parent=enterprises/XYZ/groups/124'
+     * Optional filter to list structures.
      */
     filter?: string;
     /**
