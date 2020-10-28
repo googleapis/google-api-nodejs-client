@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional filter to list devices. Filters can match the exact assignee (could be a structure or a room). E.g. 'assignee=enterprises/XYZ/structures/abc' Also could filter by parent (group): 'parent=enterprises/XYZ/groups/jkl' or filter by device custom name (substring match): 'customName=wing'",
+                  "description": "Optional filter to list devices. Filters can be done on: Device custom name (substring match): 'customName=wing'",
                   "location": "query",
                   "type": "string"
                 },
@@ -242,7 +242,7 @@
               ],
               "parameters": {
                 "filter": {
-                  "description": "Optional filter to list structures. Filters can match the exact album assigned to the structure. E.g. 'album=enterprises/XYZ/albums/abc' It also support filtering by parent (only groups for now): E.g. 'parent=enterprises/XYZ/groups/124'",
+                  "description": "Optional filter to list structures.",
                   "location": "query",
                   "type": "string"
                 },
@@ -345,7 +345,7 @@
       }
     }
   },
-  "revision": "20201003",
+  "revision": "20201022",
   "rootUrl": "https://smartdevicemanagement.googleapis.com/",
   "schemas": {
     "GoogleHomeEnterpriseSdmV1Device": {
@@ -514,13 +514,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "parentRelations": {
-          "description": "Assignee details of the structure.",
-          "items": {
-            "$ref": "GoogleHomeEnterpriseSdmV1StructureParentRelation"
-          },
-          "type": "array"
-        },
         "traits": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -528,23 +521,6 @@
           },
           "description": "Structure traits.",
           "type": "object"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleHomeEnterpriseSdmV1StructureParentRelation": {
-      "description": "Represents structure assignee relationships, for instance, group to which the structure is assigned to.",
-      "id": "GoogleHomeEnterpriseSdmV1StructureParentRelation",
-      "properties": {
-        "displayName": {
-          "description": "Output only. The custom name of the relation -- e.g., group, to which the structure is assigned to.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "parent": {
-          "description": "Output only. The name of the relation -- e.g., group to which the structure is assigned to. For example: \"enterprises/XYZ/groups/ABC\"",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
