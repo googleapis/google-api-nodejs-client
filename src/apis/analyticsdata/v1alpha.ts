@@ -286,7 +286,7 @@ export namespace analyticsdata_v1alpha {
     startDate?: string | null;
   }
   /**
-   * Dimensions are attributes of your data. For example, the dimension City indicates the city, for example, &quot;Paris&quot; or &quot;New York&quot;, from which an event originates. Requests are allowed up to 8 dimensions.
+   * Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be &quot;Paris&quot; or &quot;New York&quot;. Requests are allowed up to 8 dimensions.
    */
   export interface Schema$Dimension {
     /**
@@ -294,7 +294,7 @@ export namespace analyticsdata_v1alpha {
      */
     dimensionExpression?: Schema$DimensionExpression;
     /**
-     * The name of the dimension.
+     * The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions) for the list of dimension names. If `dimensionExpression` is specified, `name` can be any string that you would like. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`.
      */
     name?: string | null;
   }
@@ -372,7 +372,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$Entity {
     /**
-     * A Google Analytics GA4 property id.
+     * A Google Analytics GA4 property id. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
      */
     propertyId?: string | null;
   }
@@ -466,19 +466,19 @@ export namespace analyticsdata_v1alpha {
     name?: string | null;
   }
   /**
-   * The quantitative measurements of a report. For example, the metric eventCount is the total number of events. Requests are allowed up to 10 metrics.
+   * The quantitative measurements of a report. For example, the metric `eventCount` is the total number of events. Requests are allowed up to 10 metrics.
    */
   export interface Schema$Metric {
     /**
-     * A mathematical expression for derived metrics. For example, the metric Event count per user is eventCount/totalUsers.
+     * A mathematical expression for derived metrics. For example, the metric Event count per user is `eventCount/totalUsers`.
      */
     expression?: string | null;
     /**
-     * Indicates if a metric is invisible. If a metric is invisible, the metric is not in the response, but can be used in filters, order_bys or being referred to in a metric expression.
+     * Indicates if a metric is invisible in the report response. If a metric is invisible, the metric will not produce a column in the response, but can be used in `metricFilter`, `orderBys`, or a metric `expression`.
      */
     invisible?: boolean | null;
     /**
-     * The name of the metric.
+     * The name of the metric. See the [API Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics) for the list of metric names. If `expression` is specified, `name` can be any string that you would like. For example if `expression` is `screenPageViews/sessions`, you could call that metric&#39;s name = `viewsPerSession`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`.
      */
     name?: string | null;
   }
@@ -969,7 +969,7 @@ export namespace analyticsdata_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsdata.properties.getMetadata({
-     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
+     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      *     name: 'properties/my-propertie/metadata',
      *   });
      *   console.log(res.data);
@@ -991,7 +991,7 @@ export namespace analyticsdata_v1alpha {
      * @memberOf! ()
      *
      * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
+     * @param {string} params.name Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
      * @param {callback} callback The callback that handles the response.
      * @return {object} Request object
@@ -1077,7 +1077,7 @@ export namespace analyticsdata_v1alpha {
   export interface Params$Resource$Properties$Getmetadata
     extends StandardParameters {
     /**
-     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
+     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      */
     name?: string;
   }
