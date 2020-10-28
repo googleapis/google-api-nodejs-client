@@ -82,3 +82,18 @@ export function securitycenter<
 
 const auth = new AuthPlus();
 export {auth};
+export {securitycenter_v1};
+export {securitycenter_v1beta1};
+export {securitycenter_v1beta2};
+export {securitycenter_v1p1alpha1};
+export {securitycenter_v1p1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

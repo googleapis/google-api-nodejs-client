@@ -104,14 +104,10 @@ export namespace texttospeech_v1beta1 {
    * Synthesizes natural-sounding speech by applying powerful neural network models.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const texttospeech = google.texttospeech('v1beta1');
-   *
-   * @namespace texttospeech
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Texttospeech
+   * ```
    */
   export class Texttospeech {
     context: APIRequestContext;
@@ -138,7 +134,7 @@ export namespace texttospeech_v1beta1 {
      */
     audioEncoding?: string | null;
     /**
-     * Optional. Input only. An identifier which selects &#39;audio effects&#39; profiles that are applied on (post synthesized) text to speech. Effects are applied on top of each other in the order they are given. See [audio profiles](https://cloud.google.com/text-to-speech/docs/audio-profiles) for current supported profile ids.
+     * Optional. Input only. An identifier which selects 'audio effects' profiles that are applied on (post synthesized) text to speech. Effects are applied on top of each other in the order they are given. See [audio profiles](https://cloud.google.com/text-to-speech/docs/audio-profiles) for current supported profile ids.
      */
     effectsProfileId?: string[] | null;
     /**
@@ -146,15 +142,15 @@ export namespace texttospeech_v1beta1 {
      */
     pitch?: number | null;
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. When this is specified in SynthesizeSpeechRequest, if this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
+     * Optional. The synthesis sample rate (in hertz) for this audio. When this is specified in SynthesizeSpeechRequest, if this is different from the voice's natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality), unless the specified sample rate is not supported for the encoding chosen, in which case it will fail the request and return google.rpc.Code.INVALID_ARGUMENT.
      */
     sampleRateHertz?: number | null;
     /**
-     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values &lt; 0.25 or &gt; 4.0 will return an error.
+     * Optional. Input only. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values < 0.25 or \> 4.0 will return an error.
      */
     speakingRate?: number | null;
     /**
-     * Optional. Input only. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. Strongly recommend not to exceed +10 (dB) as there&#39;s usually no effective increase in loudness for any value greater than that.
+     * Optional. Input only. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. Strongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.
      */
     volumeGainDb?: number | null;
   }
@@ -214,7 +210,7 @@ export namespace texttospeech_v1beta1 {
      */
     audioContent?: string | null;
     /**
-     * A link between a position in the original request input and a corresponding time in the output audio. It&#39;s only supported via of SSML input.
+     * A link between a position in the original request input and a corresponding time in the output audio. It's only supported via of SSML input.
      */
     timepoints?: Schema$Timepoint[];
   }
@@ -236,7 +232,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$Voice {
     /**
-     * The languages that this voice supports, expressed as [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags (e.g. &quot;en-US&quot;, &quot;es-419&quot;, &quot;cmn-tw&quot;).
+     * The languages that this voice supports, expressed as [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tags (e.g. "en-US", "es-419", "cmn-tw").
      */
     languageCodes?: string[] | null;
     /**
@@ -257,7 +253,7 @@ export namespace texttospeech_v1beta1 {
    */
   export interface Schema$VoiceSelectionParams {
     /**
-     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. &quot;en-US&quot;. This should not include a script tag (e.g. use &quot;cmn-cn&quot; rather than &quot;cmn-Hant-cn&quot;), because the script will be inferred from the input provided in the SynthesisInput. The TTS service will use this parameter to help choose an appropriate voice. Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn&#39;t a Canadian voice available), or even a different language, e.g. using &quot;nb&quot; (Norwegian Bokmal) instead of &quot;no&quot; (Norwegian)&quot;.
+     * Required. The language (and potentially also the region) of the voice expressed as a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag, e.g. "en-US". This should not include a script tag (e.g. use "cmn-cn" rather than "cmn-Hant-cn"), because the script will be inferred from the input provided in the SynthesisInput. The TTS service will use this parameter to help choose an appropriate voice. Note that the TTS service may choose a voice with a slightly different language code than the one selected; it may substitute a different region (e.g. using en-US rather than en-CA if there isn't a Canadian voice available), or even a different language, e.g. using "nb" (Norwegian Bokmal) instead of "no" (Norwegian)".
      */
     languageCode?: string | null;
     /**
@@ -277,9 +273,9 @@ export namespace texttospeech_v1beta1 {
     }
 
     /**
-     * texttospeech.text.synthesize
-     * @desc Synthesizes speech synchronously: receive results after all text input has been processed.
+     * Synthesizes speech synchronously: receive results after all text input has been processed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
@@ -329,14 +325,12 @@ export namespace texttospeech_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias texttospeech.text.synthesize
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SynthesizeSpeechRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     synthesize(
       params: Params$Resource$Text$Synthesize,
@@ -416,7 +410,7 @@ export namespace texttospeech_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SynthesizeSpeechResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SynthesizeSpeechResponse>(parameters);
@@ -438,9 +432,9 @@ export namespace texttospeech_v1beta1 {
     }
 
     /**
-     * texttospeech.voices.list
-     * @desc Returns a list of Voice supported for synthesis.
+     * Returns a list of Voice supported for synthesis.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/texttospeech.googleapis.com
@@ -480,14 +474,12 @@ export namespace texttospeech_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias texttospeech.voices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode Optional. Recommended. [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. If specified, the ListVoices call will only return voices that can be used to synthesize this language_code. E.g. when specifying "en-NZ", you will get supported "en-\*" voices; when specifying "no", you will get supported "no-\*" (Norwegian) and "nb-\*" (Norwegian Bokmal) voices; specifying "zh" will also get supported "cmn-\*" voices; specifying "zh-hk" will also get supported "yue-\*" voices.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Voices$List,
@@ -560,7 +552,7 @@ export namespace texttospeech_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVoicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVoicesResponse>(parameters);

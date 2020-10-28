@@ -47,3 +47,15 @@ export function accessapproval<
 
 const auth = new AuthPlus();
 export {auth};
+export {accessapproval_v1};
+export {accessapproval_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

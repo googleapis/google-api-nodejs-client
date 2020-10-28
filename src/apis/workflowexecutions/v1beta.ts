@@ -104,14 +104,10 @@ export namespace workflowexecutions_v1beta {
    * Execute workflows created with Workflows API.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const workflowexecutions = google.workflowexecutions('v1beta');
-   *
-   * @namespace workflowexecutions
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Workflowexecutions
+   * ```
    */
   export class Workflowexecutions {
     context: APIRequestContext;
@@ -157,15 +153,15 @@ export namespace workflowexecutions_v1beta {
      */
     endTime?: string | null;
     /**
-     * Output only. The error which caused the execution to finish prematurely. The value is only present if the execution&#39;s state is `FAILED` or `CANCELLED`.
+     * Output only. The error which caused the execution to finish prematurely. The value is only present if the execution's state is `FAILED` or `CANCELLED`.
      */
     error?: Schema$Error;
     /**
-     * Output only. The resource name of the execution. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+     * Output only. The resource name of the execution. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     name?: string | null;
     /**
-     * Output only. Output of the execution represented as a JSON string. The value can only be present if the execution&#39;s state is `SUCCEEDED`.
+     * Output only. Output of the execution represented as a JSON string. The value can only be present if the execution's state is `SUCCEEDED`.
      */
     result?: string | null;
     /**
@@ -231,9 +227,9 @@ export namespace workflowexecutions_v1beta {
     }
 
     /**
-     * workflowexecutions.projects.locations.workflows.executions.cancel
-     * @desc Cancels an execution of the given name.
+     * Cancels an execution of the given name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
@@ -258,7 +254,7 @@ export namespace workflowexecutions_v1beta {
      *   // Do the magic
      *   const res = await workflowexecutions.projects.locations.workflows.executions.cancel(
      *     {
-     *       // Required. Name of the execution to be cancelled. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+     *       // Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      *       name:
      *         'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
      *
@@ -289,15 +285,12 @@ export namespace workflowexecutions_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflowexecutions.projects.locations.workflows.executions.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the execution to be cancelled. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
-     * @param {().CancelExecutionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Cancel,
@@ -372,7 +365,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -380,9 +373,9 @@ export namespace workflowexecutions_v1beta {
     }
 
     /**
-     * workflowexecutions.projects.locations.workflows.executions.create
-     * @desc Creates a new execution using the latest revision of the given workflow.
+     * Creates a new execution using the latest revision of the given workflow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
@@ -407,7 +400,7 @@ export namespace workflowexecutions_v1beta {
      *   // Do the magic
      *   const res = await workflowexecutions.projects.locations.workflows.executions.create(
      *     {
-     *       // Required. Name of the workflow for which an execution should be created. Format: projects/{project}/locations/{location}/workflows/{workflow} The latest revision of the workflow will be used.
+     *       // Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
      *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *
      *       // Request body metadata
@@ -446,15 +439,12 @@ export namespace workflowexecutions_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflowexecutions.projects.locations.workflows.executions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Name of the workflow for which an execution should be created. Format: projects/{project}/locations/{location}/workflows/{workflow} The latest revision of the workflow will be used.
-     * @param {().Execution} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Create,
@@ -529,7 +519,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -537,9 +527,9 @@ export namespace workflowexecutions_v1beta {
     }
 
     /**
-     * workflowexecutions.projects.locations.workflows.executions.get
-     * @desc Returns an execution of the given name.
+     * Returns an execution of the given name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
@@ -564,7 +554,7 @@ export namespace workflowexecutions_v1beta {
      *   // Do the magic
      *   const res = await workflowexecutions.projects.locations.workflows.executions.get(
      *     {
-     *       // Required. Name of the execution to be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+     *       // Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      *       name:
      *         'projects/my-project/locations/my-location/workflows/my-workflow/executions/my-execution',
      *       // Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
@@ -591,15 +581,12 @@ export namespace workflowexecutions_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflowexecutions.projects.locations.workflows.executions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the execution to be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
-     * @param {string=} params.view Optional. A view defining which fields should be filled in the returned execution. The API will default to the FULL view.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Workflows$Executions$Get,
@@ -671,7 +658,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -679,9 +666,9 @@ export namespace workflowexecutions_v1beta {
     }
 
     /**
-     * workflowexecutions.projects.locations.workflows.executions.list
-     * @desc Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
+     * Returns a list of executions which belong to the workflow with the given name. The method returns executions of all workflow revisions. Returned executions are ordered by their start time (newest first).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/workflowexecutions.googleapis.com
@@ -710,7 +697,7 @@ export namespace workflowexecutions_v1beta {
      *       pageSize: 'placeholder-value',
      *       // A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of the workflow for which the executions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     *       // Required. Name of the workflow for which the executions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      *       parent: 'projects/my-project/locations/my-location/workflows/my-workflow',
      *       // Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
      *       view: 'placeholder-value',
@@ -730,17 +717,12 @@ export namespace workflowexecutions_v1beta {
      *   throw e;
      * });
      *
-     * @alias workflowexecutions.projects.locations.workflows.executions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of executions to return per call. Max supported value depends on the selected Execution view: it's 10000 for BASIC and 100 for FULL. The default value used if the field is not specified is 100, regardless of the selected view. Values greater than the max value will be coerced down to it.
-     * @param {string=} params.pageToken A page token, received from a previous `ListExecutions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListExecutions` must match the call that provided the page token.
-     * @param {string} params.parent Required. Name of the workflow for which the executions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}
-     * @param {string=} params.view Optional. A view defining which fields should be filled in the returned executions. The API will default to the BASIC view.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Workflows$Executions$List,
@@ -820,7 +802,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExecutionsResponse>(parameters);
@@ -831,7 +813,7 @@ export namespace workflowexecutions_v1beta {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Cancel
     extends StandardParameters {
     /**
-     * Required. Name of the execution to be cancelled. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+     * Required. Name of the execution to be cancelled. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     name?: string;
 
@@ -843,7 +825,7 @@ export namespace workflowexecutions_v1beta {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Create
     extends StandardParameters {
     /**
-     * Required. Name of the workflow for which an execution should be created. Format: projects/{project}/locations/{location}/workflows/{workflow} The latest revision of the workflow will be used.
+     * Required. Name of the workflow for which an execution should be created. Format: projects/{project\}/locations/{location\}/workflows/{workflow\} The latest revision of the workflow will be used.
      */
     parent?: string;
 
@@ -855,7 +837,7 @@ export namespace workflowexecutions_v1beta {
   export interface Params$Resource$Projects$Locations$Workflows$Executions$Get
     extends StandardParameters {
     /**
-     * Required. Name of the execution to be retrieved. Format: projects/{project}/locations/{location}/workflows/{workflow}/executions/{execution}
+     * Required. Name of the execution to be retrieved. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}/executions/{execution\}
      */
     name?: string;
     /**
@@ -874,7 +856,7 @@ export namespace workflowexecutions_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. Name of the workflow for which the executions should be listed. Format: projects/{project}/locations/{location}/workflows/{workflow}
+     * Required. Name of the workflow for which the executions should be listed. Format: projects/{project\}/locations/{location\}/workflows/{workflow\}
      */
     parent?: string;
     /**

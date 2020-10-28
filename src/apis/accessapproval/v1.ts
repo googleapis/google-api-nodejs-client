@@ -104,14 +104,10 @@ export namespace accessapproval_v1 {
    * An API for controlling access to data by Google personnel.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const accessapproval = google.accessapproval('v1');
-   *
-   * @namespace accessapproval
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Accessapproval
+   * ```
    */
   export class Accessapproval {
     context: APIRequestContext;
@@ -144,7 +140,7 @@ export namespace accessapproval_v1 {
      */
     enrolledServices?: Schema$EnrolledService[];
     /**
-     * The resource name of the settings. Format is one of: * &quot;projects/{project}/accessApprovalSettings&quot; * &quot;folders/{folder}/accessApprovalSettings&quot; * &quot;organizations/{organization}/accessApprovalSettings&quot;
+     * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
     name?: string | null;
     /**
@@ -157,11 +153,11 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$AccessLocations {
     /**
-     * The &quot;home office&quot; location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
+     * The "home office" location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
      */
     principalOfficeCountry?: string | null;
     /**
-     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as &quot;US&quot;, &quot;DE&quot; or &quot;GB&quot; or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
+     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
      */
     principalPhysicalLocationCountry?: string | null;
   }
@@ -188,7 +184,7 @@ export namespace accessapproval_v1 {
      */
     dismiss?: Schema$DismissDecision;
     /**
-     * The resource name of the request. Format is &quot;{projects|folders|organizations}/{id}/approvalRequests/{approval_request}&quot;.
+     * The resource name of the request. Format is "{projects|folders|organizations\}/{id\}/approvalRequests/{approval_request\}".
      */
     name?: string | null;
     /**
@@ -204,7 +200,7 @@ export namespace accessapproval_v1 {
      */
     requestedReason?: Schema$AccessReason;
     /**
-     * The resource for which approval is being requested. The format of the resource name is defined at https://cloud.google.com/apis/design/resource_names. The resource name here may either be a &quot;full&quot; resource name (e.g. &quot;//library.googleapis.com/shelves/shelf1/books/book2&quot;) or a &quot;relative&quot; resource name (e.g. &quot;shelves/shelf1/books/book2&quot;) as described in the resource name specification.
+     * The resource for which approval is being requested. The format of the resource name is defined at https://cloud.google.com/apis/design/resource_names. The resource name here may either be a "full" resource name (e.g. "//library.googleapis.com/shelves/shelf1/books/book2") or a "relative" resource name (e.g. "shelves/shelf1/books/book2") as described in the resource name specification.
      */
     requestedResourceName?: string | null;
     /**
@@ -256,7 +252,7 @@ export namespace accessapproval_v1 {
     implicit?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -264,7 +260,7 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$EnrolledService {
     /**
-     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * App Engine * BigQuery * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Dataflow * Cloud Identity and Access Management * Cloud Pub/Sub * Cloud Storage * Persistent Disk Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * appengine.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * cloudkms.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * iam.googleapis.com * pubsub.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using &#39;all&#39; or any of the XXX.googleapis.com will be translated to the associated product name (&#39;all&#39;, &#39;App Engine&#39;, etc.). Note: &#39;all&#39; will enroll the resource in all products supported at both &#39;GA&#39; and &#39;Preview&#39; levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
+     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * App Engine * BigQuery * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Dataflow * Cloud Identity and Access Management * Cloud Pub/Sub * Cloud Storage * Persistent Disk Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * appengine.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * cloudkms.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * iam.googleapis.com * pubsub.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all' or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
      */
     cloudProduct?: string | null;
     /**
@@ -306,9 +302,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.deleteAccessApprovalSettings
-     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -346,14 +342,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.deleteAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteAccessApprovalSettings(
       params: Params$Resource$Folders$Deleteaccessapprovalsettings,
@@ -427,7 +421,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -435,9 +429,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or organization.
+     * Gets the settings associated with a project, folder, or organization.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -480,14 +474,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.getAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAccessApprovalSettings(
       params: Params$Resource$Folders$Getaccessapprovalsettings,
@@ -566,7 +558,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -574,9 +566,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -600,7 +592,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.folders.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     *     // The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      *     name: 'folders/my-folder/accessApprovalSettings',
      *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
@@ -632,16 +624,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.updateAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateAccessApprovalSettings(
       params: Params$Resource$Folders$Updateaccessapprovalsettings,
@@ -720,7 +708,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -745,7 +733,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Folders$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
     name?: string;
     /**
@@ -766,9 +754,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -824,15 +812,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.approvalRequests.approve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     approve(
       params: Params$Resource$Folders$Approvalrequests$Approve,
@@ -907,7 +892,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -915,9 +900,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -971,15 +956,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.approvalRequests.dismiss
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     dismiss(
       params: Params$Resource$Folders$Approvalrequests$Dismiss,
@@ -1054,7 +1036,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -1062,9 +1044,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1112,14 +1094,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.approvalRequests.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Folders$Approvalrequests$Get,
@@ -1191,7 +1171,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -1199,9 +1179,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.folders.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1231,7 +1211,7 @@ export namespace accessapproval_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     *     // The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      *     parent: 'folders/my-folder',
      *   });
      *   console.log(res.data);
@@ -1248,17 +1228,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.folders.approvalRequests.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.
-     * @param {integer=} params.pageSize Requested page size.
-     * @param {string=} params.pageToken A token identifying the page of results to return.
-     * @param {string} params.parent The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Folders$Approvalrequests$List,
@@ -1340,7 +1315,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -1396,7 +1371,7 @@ export namespace accessapproval_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     * The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      */
     parent?: string;
   }
@@ -1412,9 +1387,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.deleteAccessApprovalSettings
-     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1452,14 +1427,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.deleteAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteAccessApprovalSettings(
       params: Params$Resource$Organizations$Deleteaccessapprovalsettings,
@@ -1533,7 +1506,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1541,9 +1514,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or organization.
+     * Gets the settings associated with a project, folder, or organization.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1586,14 +1559,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.getAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAccessApprovalSettings(
       params: Params$Resource$Organizations$Getaccessapprovalsettings,
@@ -1672,7 +1643,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -1680,9 +1651,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1706,7 +1677,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.organizations.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     *     // The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      *     name: 'organizations/my-organization/accessApprovalSettings',
      *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
@@ -1738,16 +1709,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.updateAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateAccessApprovalSettings(
       params: Params$Resource$Organizations$Updateaccessapprovalsettings,
@@ -1826,7 +1793,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -1851,7 +1818,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Organizations$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
     name?: string;
     /**
@@ -1872,9 +1839,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -1930,15 +1897,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.approvalRequests.approve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     approve(
       params: Params$Resource$Organizations$Approvalrequests$Approve,
@@ -2013,7 +1977,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2021,9 +1985,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2077,15 +2041,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.approvalRequests.dismiss
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     dismiss(
       params: Params$Resource$Organizations$Approvalrequests$Dismiss,
@@ -2160,7 +2121,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2168,9 +2129,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2218,14 +2179,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.approvalRequests.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Organizations$Approvalrequests$Get,
@@ -2297,7 +2256,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -2305,9 +2264,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.organizations.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2337,7 +2296,7 @@ export namespace accessapproval_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     *     // The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      *     parent: 'organizations/my-organization',
      *   });
      *   console.log(res.data);
@@ -2354,17 +2313,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.organizations.approvalRequests.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.
-     * @param {integer=} params.pageSize Requested page size.
-     * @param {string=} params.pageToken A token identifying the page of results to return.
-     * @param {string} params.parent The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Organizations$Approvalrequests$List,
@@ -2446,7 +2400,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -2502,7 +2456,7 @@ export namespace accessapproval_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     * The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      */
     parent?: string;
   }
@@ -2518,9 +2472,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.deleteAccessApprovalSettings
-     * @desc Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2558,14 +2512,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.deleteAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deleteAccessApprovalSettings(
       params: Params$Resource$Projects$Deleteaccessapprovalsettings,
@@ -2639,7 +2591,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2647,9 +2599,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.getAccessApprovalSettings
-     * @desc Gets the settings associated with a project, folder, or organization.
+     * Gets the settings associated with a project, folder, or organization.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2692,14 +2644,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.getAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the AccessApprovalSettings to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAccessApprovalSettings(
       params: Params$Resource$Projects$Getaccessapprovalsettings,
@@ -2778,7 +2728,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -2786,9 +2736,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.updateAccessApprovalSettings
-     * @desc Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
+     * Updates the settings associated with a project, folder, or organization. Settings to update are determined by the value of field_mask.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -2812,7 +2762,7 @@ export namespace accessapproval_v1 {
      *
      *   // Do the magic
      *   const res = await accessapproval.projects.updateAccessApprovalSettings({
-     *     // The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     *     // The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      *     name: 'projects/my-project/accessApprovalSettings',
      *     // The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
      *     updateMask: 'placeholder-value',
@@ -2844,16 +2794,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.updateAccessApprovalSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
-     * @param {string=} params.updateMask The update mask applies to the settings. Only the top level fields of AccessApprovalSettings (notification_emails & enrolled_services) are supported. For each field, if it is included, the currently stored value will be entirely overwritten with the value of the field passed in this request. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask If this field is left unset, only the notification_emails field will be updated.
-     * @param {().AccessApprovalSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateAccessApprovalSettings(
       params: Params$Resource$Projects$Updateaccessapprovalsettings,
@@ -2932,7 +2878,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$AccessApprovalSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessApprovalSettings>(parameters);
@@ -2957,7 +2903,7 @@ export namespace accessapproval_v1 {
   export interface Params$Resource$Projects$Updateaccessapprovalsettings
     extends StandardParameters {
     /**
-     * The resource name of the settings. Format is one of: * "projects/{project}/accessApprovalSettings" * "folders/{folder}/accessApprovalSettings" * "organizations/{organization}/accessApprovalSettings"
+     * The resource name of the settings. Format is one of: * "projects/{project\}/accessApprovalSettings" * "folders/{folder\}/accessApprovalSettings" * "organizations/{organization\}/accessApprovalSettings"
      */
     name?: string;
     /**
@@ -2978,9 +2924,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.approvalRequests.approve
-     * @desc Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Approves a request and returns the updated ApprovalRequest. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -3036,15 +2982,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.approvalRequests.approve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to approve.
-     * @param {().ApproveApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     approve(
       params: Params$Resource$Projects$Approvalrequests$Approve,
@@ -3119,7 +3062,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3127,9 +3070,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.approvalRequests.dismiss
-     * @desc Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -3183,15 +3126,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.approvalRequests.dismiss
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the ApprovalRequest to dismiss.
-     * @param {().DismissApprovalRequestMessage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     dismiss(
       params: Params$Resource$Projects$Approvalrequests$Dismiss,
@@ -3266,7 +3206,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3274,9 +3214,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.approvalRequests.get
-     * @desc Gets an approval request. Returns NOT_FOUND if the request does not exist.
+     * Gets an approval request. Returns NOT_FOUND if the request does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -3324,14 +3264,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.approvalRequests.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the approval request to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Approvalrequests$Get,
@@ -3403,7 +3341,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ApprovalRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApprovalRequest>(parameters);
@@ -3411,9 +3349,9 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * accessapproval.projects.approvalRequests.list
-     * @desc Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
+     * Lists approval requests associated with a project, folder, or organization. Approval requests can be filtered by state (pending, active, dismissed). The order is reverse chronological.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/accessapproval.googleapis.com
@@ -3443,7 +3381,7 @@ export namespace accessapproval_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying the page of results to return.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     *     // The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -3460,17 +3398,12 @@ export namespace accessapproval_v1 {
      *   throw e;
      * });
      *
-     * @alias accessapproval.projects.approvalRequests.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter on the type of approval requests to retrieve. Must be one of the following values: * [not set]: Requests that are pending or have active approvals. * ALL: All requests. * PENDING: Only pending requests. * ACTIVE: Only active (i.e. currently approved) requests. * DISMISSED: Only dismissed (including expired) requests. * HISTORY: Active and dismissed (including expired) requests.
-     * @param {integer=} params.pageSize Requested page size.
-     * @param {string=} params.pageToken A token identifying the page of results to return.
-     * @param {string} params.parent The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Approvalrequests$List,
@@ -3552,7 +3485,7 @@ export namespace accessapproval_v1 {
       if (callback) {
         createAPIRequest<Schema$ListApprovalRequestsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListApprovalRequestsResponse>(
@@ -3608,7 +3541,7 @@ export namespace accessapproval_v1 {
      */
     pageToken?: string;
     /**
-     * The parent resource. This may be "projects/{project}", "folders/{folder}", or "organizations/{organization}".
+     * The parent resource. This may be "projects/{project\}", "folders/{folder\}", or "organizations/{organization\}".
      */
     parent?: string;
   }

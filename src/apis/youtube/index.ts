@@ -31,3 +31,14 @@ export function youtube<T = youtube_v3.Youtube>(
 
 const auth = new AuthPlus();
 export {auth};
+export {youtube_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

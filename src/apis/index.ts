@@ -12,195 +12,437 @@
 // limitations under the License.
 /*! THIS FILE IS AUTO-GENERATED */
 
-import * as abusiveexperiencereport from './abusiveexperiencereport';
-import * as acceleratedmobilepageurl from './acceleratedmobilepageurl';
-import * as accessapproval from './accessapproval';
-import * as accesscontextmanager from './accesscontextmanager';
-import * as adexchangebuyer from './adexchangebuyer';
-import * as adexchangebuyer2 from './adexchangebuyer2';
-import * as adexperiencereport from './adexperiencereport';
-import * as admin from './admin';
-import * as admob from './admob';
-import * as adsense from './adsense';
-import * as adsensehost from './adsensehost';
-import * as alertcenter from './alertcenter';
-import * as analytics from './analytics';
-import * as analyticsadmin from './analyticsadmin';
-import * as analyticsdata from './analyticsdata';
-import * as analyticsreporting from './analyticsreporting';
-import * as androiddeviceprovisioning from './androiddeviceprovisioning';
-import * as androidenterprise from './androidenterprise';
-import * as androidmanagement from './androidmanagement';
-import * as androidpublisher from './androidpublisher';
-import * as apigateway from './apigateway';
-import * as appengine from './appengine';
-import * as appsactivity from './appsactivity';
-import * as artifactregistry from './artifactregistry';
-import * as assuredworkloads from './assuredworkloads';
-import * as bigquery from './bigquery';
-import * as bigqueryconnection from './bigqueryconnection';
-import * as bigquerydatatransfer from './bigquerydatatransfer';
-import * as bigqueryreservation from './bigqueryreservation';
-import * as bigtableadmin from './bigtableadmin';
-import * as billingbudgets from './billingbudgets';
-import * as binaryauthorization from './binaryauthorization';
-import * as blogger from './blogger';
-import * as books from './books';
-import * as calendar from './calendar';
-import * as chat from './chat';
-import * as chromeuxreport from './chromeuxreport';
-import * as civicinfo from './civicinfo';
-import * as classroom from './classroom';
-import * as cloudasset from './cloudasset';
-import * as cloudbilling from './cloudbilling';
-import * as cloudbuild from './cloudbuild';
-import * as clouddebugger from './clouddebugger';
-import * as clouderrorreporting from './clouderrorreporting';
-import * as cloudfunctions from './cloudfunctions';
-import * as cloudidentity from './cloudidentity';
-import * as cloudiot from './cloudiot';
-import * as cloudkms from './cloudkms';
-import * as cloudprofiler from './cloudprofiler';
-import * as cloudresourcemanager from './cloudresourcemanager';
-import * as cloudscheduler from './cloudscheduler';
-import * as cloudsearch from './cloudsearch';
-import * as cloudshell from './cloudshell';
-import * as cloudtasks from './cloudtasks';
-import * as cloudtrace from './cloudtrace';
-import * as composer from './composer';
-import * as compute from './compute';
-import * as container from './container';
-import * as containeranalysis from './containeranalysis';
-import * as content from './content';
-import * as customsearch from './customsearch';
-import * as datacatalog from './datacatalog';
-import * as dataflow from './dataflow';
-import * as datafusion from './datafusion';
-import * as dataproc from './dataproc';
-import * as datastore from './datastore';
-import * as deploymentmanager from './deploymentmanager';
-import * as dfareporting from './dfareporting';
-import * as dialogflow from './dialogflow';
-import * as digitalassetlinks from './digitalassetlinks';
-import * as discovery from './discovery';
-import * as displayvideo from './displayvideo';
-import * as dlp from './dlp';
-import * as dns from './dns';
-import * as docs from './docs';
-import * as documentai from './documentai';
-import * as domains from './domains';
-import * as domainsrdap from './domainsrdap';
-import * as doubleclickbidmanager from './doubleclickbidmanager';
-import * as doubleclicksearch from './doubleclicksearch';
-import * as drive from './drive';
-import * as driveactivity from './driveactivity';
-import * as factchecktools from './factchecktools';
-import * as fcm from './fcm';
-import * as file from './file';
-import * as firebase from './firebase';
-import * as firebasedynamiclinks from './firebasedynamiclinks';
-import * as firebasehosting from './firebasehosting';
-import * as firebaseml from './firebaseml';
-import * as firebaserules from './firebaserules';
-import * as firestore from './firestore';
-import * as fitness from './fitness';
-import * as games from './games';
-import * as gamesConfiguration from './gamesConfiguration';
-import * as gamesManagement from './gamesManagement';
-import * as gameservices from './gameservices';
-import * as genomics from './genomics';
-import * as gmail from './gmail';
-import * as gmailpostmastertools from './gmailpostmastertools';
-import * as groupsmigration from './groupsmigration';
-import * as groupssettings from './groupssettings';
-import * as healthcare from './healthcare';
-import * as homegraph from './homegraph';
-import * as iam from './iam';
-import * as iamcredentials from './iamcredentials';
-import * as iap from './iap';
-import * as identitytoolkit from './identitytoolkit';
-import * as indexing from './indexing';
-import * as jobs from './jobs';
-import * as kgsearch from './kgsearch';
-import * as language from './language';
-import * as libraryagent from './libraryagent';
-import * as licensing from './licensing';
-import * as lifesciences from './lifesciences';
-import * as localservices from './localservices';
-import * as logging from './logging';
-import * as managedidentities from './managedidentities';
-import * as manufacturers from './manufacturers';
-import * as memcache from './memcache';
-import * as ml from './ml';
-import * as monitoring from './monitoring';
-import * as networkmanagement from './networkmanagement';
-import * as oauth2 from './oauth2';
-import * as osconfig from './osconfig';
-import * as oslogin from './oslogin';
-import * as pagespeedonline from './pagespeedonline';
-import * as people from './people';
-import * as playablelocations from './playablelocations';
-import * as playcustomapp from './playcustomapp';
-import * as plus from './plus';
-import * as policytroubleshooter from './policytroubleshooter';
-import * as poly from './poly';
-import * as prod_tt_sasportal from './prod_tt_sasportal';
-import * as pubsub from './pubsub';
-import * as pubsublite from './pubsublite';
-import * as realtimebidding from './realtimebidding';
-import * as recommendationengine from './recommendationengine';
-import * as recommender from './recommender';
-import * as redis from './redis';
-import * as remotebuildexecution from './remotebuildexecution';
-import * as reseller from './reseller';
-import * as run from './run';
-import * as runtimeconfig from './runtimeconfig';
-import * as safebrowsing from './safebrowsing';
-import * as sasportal from './sasportal';
-import * as script from './script';
-import * as searchconsole from './searchconsole';
-import * as secretmanager from './secretmanager';
-import * as securitycenter from './securitycenter';
-import * as serviceconsumermanagement from './serviceconsumermanagement';
-import * as servicecontrol from './servicecontrol';
-import * as servicedirectory from './servicedirectory';
-import * as servicemanagement from './servicemanagement';
-import * as servicenetworking from './servicenetworking';
-import * as serviceusage from './serviceusage';
-import * as sheets from './sheets';
-import * as siteVerification from './siteVerification';
-import * as slides from './slides';
-import * as smartdevicemanagement from './smartdevicemanagement';
-import * as sourcerepo from './sourcerepo';
-import * as spanner from './spanner';
-import * as speech from './speech';
-import * as sql from './sql';
-import * as sqladmin from './sqladmin';
-import * as storage from './storage';
-import * as storagetransfer from './storagetransfer';
-import * as streetviewpublish from './streetviewpublish';
-import * as sts from './sts';
-import * as tagmanager from './tagmanager';
-import * as tasks from './tasks';
-import * as testing from './testing';
-import * as texttospeech from './texttospeech';
-import * as toolresults from './toolresults';
-import * as tpu from './tpu';
-import * as trafficdirector from './trafficdirector';
-import * as translate from './translate';
-import * as vault from './vault';
-import * as vectortile from './vectortile';
-import * as verifiedaccess from './verifiedaccess';
-import * as videointelligence from './videointelligence';
-import * as vision from './vision';
-import * as webfonts from './webfonts';
-import * as webmasters from './webmasters';
-import * as websecurityscanner from './websecurityscanner';
-import * as workflowexecutions from './workflowexecutions';
-import * as workflows from './workflows';
-import * as youtube from './youtube';
-import * as youtubeAnalytics from './youtubeAnalytics';
-import * as youtubereporting from './youtubereporting';
+import {
+  VERSIONS as abusiveexperiencereportVersions,
+  abusiveexperiencereport,
+} from './abusiveexperiencereport';
+import {
+  VERSIONS as acceleratedmobilepageurlVersions,
+  acceleratedmobilepageurl,
+} from './acceleratedmobilepageurl';
+import {
+  VERSIONS as accessapprovalVersions,
+  accessapproval,
+} from './accessapproval';
+import {
+  VERSIONS as accesscontextmanagerVersions,
+  accesscontextmanager,
+} from './accesscontextmanager';
+import {
+  VERSIONS as adexchangebuyerVersions,
+  adexchangebuyer,
+} from './adexchangebuyer';
+import {
+  VERSIONS as adexchangebuyer2Versions,
+  adexchangebuyer2,
+} from './adexchangebuyer2';
+import {
+  VERSIONS as adexperiencereportVersions,
+  adexperiencereport,
+} from './adexperiencereport';
+import {VERSIONS as adminVersions, admin} from './admin';
+import {VERSIONS as admobVersions, admob} from './admob';
+import {VERSIONS as adsenseVersions, adsense} from './adsense';
+import {VERSIONS as adsensehostVersions, adsensehost} from './adsensehost';
+import {VERSIONS as alertcenterVersions, alertcenter} from './alertcenter';
+import {VERSIONS as analyticsVersions, analytics} from './analytics';
+import {
+  VERSIONS as analyticsadminVersions,
+  analyticsadmin,
+} from './analyticsadmin';
+import {
+  VERSIONS as analyticsdataVersions,
+  analyticsdata,
+} from './analyticsdata';
+import {
+  VERSIONS as analyticsreportingVersions,
+  analyticsreporting,
+} from './analyticsreporting';
+import {
+  VERSIONS as androiddeviceprovisioningVersions,
+  androiddeviceprovisioning,
+} from './androiddeviceprovisioning';
+import {
+  VERSIONS as androidenterpriseVersions,
+  androidenterprise,
+} from './androidenterprise';
+import {
+  VERSIONS as androidmanagementVersions,
+  androidmanagement,
+} from './androidmanagement';
+import {
+  VERSIONS as androidpublisherVersions,
+  androidpublisher,
+} from './androidpublisher';
+import {VERSIONS as apigatewayVersions, apigateway} from './apigateway';
+import {VERSIONS as appengineVersions, appengine} from './appengine';
+import {VERSIONS as appsactivityVersions, appsactivity} from './appsactivity';
+import {
+  VERSIONS as area120tablesVersions,
+  area120tables,
+} from './area120tables';
+import {
+  VERSIONS as artifactregistryVersions,
+  artifactregistry,
+} from './artifactregistry';
+import {
+  VERSIONS as assuredworkloadsVersions,
+  assuredworkloads,
+} from './assuredworkloads';
+import {VERSIONS as bigqueryVersions, bigquery} from './bigquery';
+import {
+  VERSIONS as bigqueryconnectionVersions,
+  bigqueryconnection,
+} from './bigqueryconnection';
+import {
+  VERSIONS as bigquerydatatransferVersions,
+  bigquerydatatransfer,
+} from './bigquerydatatransfer';
+import {
+  VERSIONS as bigqueryreservationVersions,
+  bigqueryreservation,
+} from './bigqueryreservation';
+import {
+  VERSIONS as bigtableadminVersions,
+  bigtableadmin,
+} from './bigtableadmin';
+import {
+  VERSIONS as billingbudgetsVersions,
+  billingbudgets,
+} from './billingbudgets';
+import {
+  VERSIONS as binaryauthorizationVersions,
+  binaryauthorization,
+} from './binaryauthorization';
+import {VERSIONS as bloggerVersions, blogger} from './blogger';
+import {VERSIONS as booksVersions, books} from './books';
+import {VERSIONS as calendarVersions, calendar} from './calendar';
+import {VERSIONS as chatVersions, chat} from './chat';
+import {
+  VERSIONS as chromeuxreportVersions,
+  chromeuxreport,
+} from './chromeuxreport';
+import {VERSIONS as civicinfoVersions, civicinfo} from './civicinfo';
+import {VERSIONS as classroomVersions, classroom} from './classroom';
+import {VERSIONS as cloudassetVersions, cloudasset} from './cloudasset';
+import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
+import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
+import {
+  VERSIONS as clouddebuggerVersions,
+  clouddebugger,
+} from './clouddebugger';
+import {
+  VERSIONS as clouderrorreportingVersions,
+  clouderrorreporting,
+} from './clouderrorreporting';
+import {
+  VERSIONS as cloudfunctionsVersions,
+  cloudfunctions,
+} from './cloudfunctions';
+import {
+  VERSIONS as cloudidentityVersions,
+  cloudidentity,
+} from './cloudidentity';
+import {VERSIONS as cloudiotVersions, cloudiot} from './cloudiot';
+import {VERSIONS as cloudkmsVersions, cloudkms} from './cloudkms';
+import {
+  VERSIONS as cloudprofilerVersions,
+  cloudprofiler,
+} from './cloudprofiler';
+import {
+  VERSIONS as cloudresourcemanagerVersions,
+  cloudresourcemanager,
+} from './cloudresourcemanager';
+import {
+  VERSIONS as cloudschedulerVersions,
+  cloudscheduler,
+} from './cloudscheduler';
+import {VERSIONS as cloudsearchVersions, cloudsearch} from './cloudsearch';
+import {VERSIONS as cloudshellVersions, cloudshell} from './cloudshell';
+import {VERSIONS as cloudtasksVersions, cloudtasks} from './cloudtasks';
+import {VERSIONS as cloudtraceVersions, cloudtrace} from './cloudtrace';
+import {VERSIONS as composerVersions, composer} from './composer';
+import {VERSIONS as computeVersions, compute} from './compute';
+import {VERSIONS as containerVersions, container} from './container';
+import {
+  VERSIONS as containeranalysisVersions,
+  containeranalysis,
+} from './containeranalysis';
+import {VERSIONS as contentVersions, content} from './content';
+import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
+import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
+import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
+import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
+import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
+import {VERSIONS as datastoreVersions, datastore} from './datastore';
+import {
+  VERSIONS as deploymentmanagerVersions,
+  deploymentmanager,
+} from './deploymentmanager';
+import {VERSIONS as dfareportingVersions, dfareporting} from './dfareporting';
+import {VERSIONS as dialogflowVersions, dialogflow} from './dialogflow';
+import {
+  VERSIONS as digitalassetlinksVersions,
+  digitalassetlinks,
+} from './digitalassetlinks';
+import {VERSIONS as discoveryVersions, discovery} from './discovery';
+import {VERSIONS as displayvideoVersions, displayvideo} from './displayvideo';
+import {VERSIONS as dlpVersions, dlp} from './dlp';
+import {VERSIONS as dnsVersions, dns} from './dns';
+import {VERSIONS as docsVersions, docs} from './docs';
+import {VERSIONS as documentaiVersions, documentai} from './documentai';
+import {VERSIONS as domainsVersions, domains} from './domains';
+import {VERSIONS as domainsrdapVersions, domainsrdap} from './domainsrdap';
+import {
+  VERSIONS as doubleclickbidmanagerVersions,
+  doubleclickbidmanager,
+} from './doubleclickbidmanager';
+import {
+  VERSIONS as doubleclicksearchVersions,
+  doubleclicksearch,
+} from './doubleclicksearch';
+import {VERSIONS as driveVersions, drive} from './drive';
+import {
+  VERSIONS as driveactivityVersions,
+  driveactivity,
+} from './driveactivity';
+import {VERSIONS as eventarcVersions, eventarc} from './eventarc';
+import {
+  VERSIONS as factchecktoolsVersions,
+  factchecktools,
+} from './factchecktools';
+import {VERSIONS as fcmVersions, fcm} from './fcm';
+import {VERSIONS as fileVersions, file} from './file';
+import {VERSIONS as firebaseVersions, firebase} from './firebase';
+import {
+  VERSIONS as firebasedynamiclinksVersions,
+  firebasedynamiclinks,
+} from './firebasedynamiclinks';
+import {
+  VERSIONS as firebasehostingVersions,
+  firebasehosting,
+} from './firebasehosting';
+import {VERSIONS as firebasemlVersions, firebaseml} from './firebaseml';
+import {
+  VERSIONS as firebaserulesVersions,
+  firebaserules,
+} from './firebaserules';
+import {VERSIONS as firestoreVersions, firestore} from './firestore';
+import {VERSIONS as fitnessVersions, fitness} from './fitness';
+import {VERSIONS as gamesVersions, games} from './games';
+import {
+  VERSIONS as gamesConfigurationVersions,
+  gamesConfiguration,
+} from './gamesConfiguration';
+import {
+  VERSIONS as gamesManagementVersions,
+  gamesManagement,
+} from './gamesManagement';
+import {VERSIONS as gameservicesVersions, gameservices} from './gameservices';
+import {VERSIONS as genomicsVersions, genomics} from './genomics';
+import {VERSIONS as gmailVersions, gmail} from './gmail';
+import {
+  VERSIONS as gmailpostmastertoolsVersions,
+  gmailpostmastertools,
+} from './gmailpostmastertools';
+import {
+  VERSIONS as groupsmigrationVersions,
+  groupsmigration,
+} from './groupsmigration';
+import {
+  VERSIONS as groupssettingsVersions,
+  groupssettings,
+} from './groupssettings';
+import {VERSIONS as healthcareVersions, healthcare} from './healthcare';
+import {VERSIONS as homegraphVersions, homegraph} from './homegraph';
+import {VERSIONS as iamVersions, iam} from './iam';
+import {
+  VERSIONS as iamcredentialsVersions,
+  iamcredentials,
+} from './iamcredentials';
+import {VERSIONS as iapVersions, iap} from './iap';
+import {
+  VERSIONS as identitytoolkitVersions,
+  identitytoolkit,
+} from './identitytoolkit';
+import {VERSIONS as indexingVersions, indexing} from './indexing';
+import {VERSIONS as jobsVersions, jobs} from './jobs';
+import {VERSIONS as kgsearchVersions, kgsearch} from './kgsearch';
+import {VERSIONS as languageVersions, language} from './language';
+import {VERSIONS as libraryagentVersions, libraryagent} from './libraryagent';
+import {VERSIONS as licensingVersions, licensing} from './licensing';
+import {VERSIONS as lifesciencesVersions, lifesciences} from './lifesciences';
+import {
+  VERSIONS as localservicesVersions,
+  localservices,
+} from './localservices';
+import {VERSIONS as loggingVersions, logging} from './logging';
+import {
+  VERSIONS as managedidentitiesVersions,
+  managedidentities,
+} from './managedidentities';
+import {
+  VERSIONS as manufacturersVersions,
+  manufacturers,
+} from './manufacturers';
+import {VERSIONS as memcacheVersions, memcache} from './memcache';
+import {VERSIONS as mlVersions, ml} from './ml';
+import {VERSIONS as monitoringVersions, monitoring} from './monitoring';
+import {
+  VERSIONS as networkmanagementVersions,
+  networkmanagement,
+} from './networkmanagement';
+import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
+import {VERSIONS as osconfigVersions, osconfig} from './osconfig';
+import {VERSIONS as osloginVersions, oslogin} from './oslogin';
+import {
+  VERSIONS as pagespeedonlineVersions,
+  pagespeedonline,
+} from './pagespeedonline';
+import {VERSIONS as peopleVersions, people} from './people';
+import {
+  VERSIONS as playablelocationsVersions,
+  playablelocations,
+} from './playablelocations';
+import {
+  VERSIONS as playcustomappVersions,
+  playcustomapp,
+} from './playcustomapp';
+import {VERSIONS as plusVersions, plus} from './plus';
+import {
+  VERSIONS as policytroubleshooterVersions,
+  policytroubleshooter,
+} from './policytroubleshooter';
+import {VERSIONS as polyVersions, poly} from './poly';
+import {
+  VERSIONS as prod_tt_sasportalVersions,
+  prod_tt_sasportal,
+} from './prod_tt_sasportal';
+import {VERSIONS as pubsubVersions, pubsub} from './pubsub';
+import {VERSIONS as pubsubliteVersions, pubsublite} from './pubsublite';
+import {
+  VERSIONS as realtimebiddingVersions,
+  realtimebidding,
+} from './realtimebidding';
+import {
+  VERSIONS as recommendationengineVersions,
+  recommendationengine,
+} from './recommendationengine';
+import {VERSIONS as recommenderVersions, recommender} from './recommender';
+import {VERSIONS as redisVersions, redis} from './redis';
+import {
+  VERSIONS as remotebuildexecutionVersions,
+  remotebuildexecution,
+} from './remotebuildexecution';
+import {VERSIONS as resellerVersions, reseller} from './reseller';
+import {VERSIONS as runVersions, run} from './run';
+import {
+  VERSIONS as runtimeconfigVersions,
+  runtimeconfig,
+} from './runtimeconfig';
+import {VERSIONS as safebrowsingVersions, safebrowsing} from './safebrowsing';
+import {VERSIONS as sasportalVersions, sasportal} from './sasportal';
+import {VERSIONS as scriptVersions, script} from './script';
+import {
+  VERSIONS as searchconsoleVersions,
+  searchconsole,
+} from './searchconsole';
+import {
+  VERSIONS as secretmanagerVersions,
+  secretmanager,
+} from './secretmanager';
+import {
+  VERSIONS as securitycenterVersions,
+  securitycenter,
+} from './securitycenter';
+import {
+  VERSIONS as serviceconsumermanagementVersions,
+  serviceconsumermanagement,
+} from './serviceconsumermanagement';
+import {
+  VERSIONS as servicecontrolVersions,
+  servicecontrol,
+} from './servicecontrol';
+import {
+  VERSIONS as servicedirectoryVersions,
+  servicedirectory,
+} from './servicedirectory';
+import {
+  VERSIONS as servicemanagementVersions,
+  servicemanagement,
+} from './servicemanagement';
+import {
+  VERSIONS as servicenetworkingVersions,
+  servicenetworking,
+} from './servicenetworking';
+import {VERSIONS as serviceusageVersions, serviceusage} from './serviceusage';
+import {VERSIONS as sheetsVersions, sheets} from './sheets';
+import {
+  VERSIONS as siteVerificationVersions,
+  siteVerification,
+} from './siteVerification';
+import {VERSIONS as slidesVersions, slides} from './slides';
+import {
+  VERSIONS as smartdevicemanagementVersions,
+  smartdevicemanagement,
+} from './smartdevicemanagement';
+import {VERSIONS as sourcerepoVersions, sourcerepo} from './sourcerepo';
+import {VERSIONS as spannerVersions, spanner} from './spanner';
+import {VERSIONS as speechVersions, speech} from './speech';
+import {VERSIONS as sqlVersions, sql} from './sql';
+import {VERSIONS as sqladminVersions, sqladmin} from './sqladmin';
+import {VERSIONS as storageVersions, storage} from './storage';
+import {
+  VERSIONS as storagetransferVersions,
+  storagetransfer,
+} from './storagetransfer';
+import {
+  VERSIONS as streetviewpublishVersions,
+  streetviewpublish,
+} from './streetviewpublish';
+import {VERSIONS as stsVersions, sts} from './sts';
+import {VERSIONS as tagmanagerVersions, tagmanager} from './tagmanager';
+import {VERSIONS as tasksVersions, tasks} from './tasks';
+import {VERSIONS as testingVersions, testing} from './testing';
+import {VERSIONS as texttospeechVersions, texttospeech} from './texttospeech';
+import {VERSIONS as toolresultsVersions, toolresults} from './toolresults';
+import {VERSIONS as tpuVersions, tpu} from './tpu';
+import {
+  VERSIONS as trafficdirectorVersions,
+  trafficdirector,
+} from './trafficdirector';
+import {VERSIONS as translateVersions, translate} from './translate';
+import {VERSIONS as vaultVersions, vault} from './vault';
+import {VERSIONS as vectortileVersions, vectortile} from './vectortile';
+import {
+  VERSIONS as verifiedaccessVersions,
+  verifiedaccess,
+} from './verifiedaccess';
+import {
+  VERSIONS as videointelligenceVersions,
+  videointelligence,
+} from './videointelligence';
+import {VERSIONS as visionVersions, vision} from './vision';
+import {VERSIONS as webfontsVersions, webfonts} from './webfonts';
+import {VERSIONS as webmastersVersions, webmasters} from './webmasters';
+import {
+  VERSIONS as websecurityscannerVersions,
+  websecurityscanner,
+} from './websecurityscanner';
+import {
+  VERSIONS as workflowexecutionsVersions,
+  workflowexecutions,
+} from './workflowexecutions';
+import {VERSIONS as workflowsVersions, workflows} from './workflows';
+import {VERSIONS as youtubeVersions, youtube} from './youtube';
+import {
+  VERSIONS as youtubeAnalyticsVersions,
+  youtubeAnalytics,
+} from './youtubeAnalytics';
+import {
+  VERSIONS as youtubereportingVersions,
+  youtubereporting,
+} from './youtubereporting';
 
 export interface APIList {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -208,387 +450,389 @@ export interface APIList {
 }
 
 export const APIS: APIList = {
-  abusiveexperiencereport: abusiveexperiencereport.VERSIONS,
-  acceleratedmobilepageurl: acceleratedmobilepageurl.VERSIONS,
-  accessapproval: accessapproval.VERSIONS,
-  accesscontextmanager: accesscontextmanager.VERSIONS,
-  adexchangebuyer: adexchangebuyer.VERSIONS,
-  adexchangebuyer2: adexchangebuyer2.VERSIONS,
-  adexperiencereport: adexperiencereport.VERSIONS,
-  admin: admin.VERSIONS,
-  admob: admob.VERSIONS,
-  adsense: adsense.VERSIONS,
-  adsensehost: adsensehost.VERSIONS,
-  alertcenter: alertcenter.VERSIONS,
-  analytics: analytics.VERSIONS,
-  analyticsadmin: analyticsadmin.VERSIONS,
-  analyticsdata: analyticsdata.VERSIONS,
-  analyticsreporting: analyticsreporting.VERSIONS,
-  androiddeviceprovisioning: androiddeviceprovisioning.VERSIONS,
-  androidenterprise: androidenterprise.VERSIONS,
-  androidmanagement: androidmanagement.VERSIONS,
-  androidpublisher: androidpublisher.VERSIONS,
-  apigateway: apigateway.VERSIONS,
-  appengine: appengine.VERSIONS,
-  appsactivity: appsactivity.VERSIONS,
-  artifactregistry: artifactregistry.VERSIONS,
-  assuredworkloads: assuredworkloads.VERSIONS,
-  bigquery: bigquery.VERSIONS,
-  bigqueryconnection: bigqueryconnection.VERSIONS,
-  bigquerydatatransfer: bigquerydatatransfer.VERSIONS,
-  bigqueryreservation: bigqueryreservation.VERSIONS,
-  bigtableadmin: bigtableadmin.VERSIONS,
-  billingbudgets: billingbudgets.VERSIONS,
-  binaryauthorization: binaryauthorization.VERSIONS,
-  blogger: blogger.VERSIONS,
-  books: books.VERSIONS,
-  calendar: calendar.VERSIONS,
-  chat: chat.VERSIONS,
-  chromeuxreport: chromeuxreport.VERSIONS,
-  civicinfo: civicinfo.VERSIONS,
-  classroom: classroom.VERSIONS,
-  cloudasset: cloudasset.VERSIONS,
-  cloudbilling: cloudbilling.VERSIONS,
-  cloudbuild: cloudbuild.VERSIONS,
-  clouddebugger: clouddebugger.VERSIONS,
-  clouderrorreporting: clouderrorreporting.VERSIONS,
-  cloudfunctions: cloudfunctions.VERSIONS,
-  cloudidentity: cloudidentity.VERSIONS,
-  cloudiot: cloudiot.VERSIONS,
-  cloudkms: cloudkms.VERSIONS,
-  cloudprofiler: cloudprofiler.VERSIONS,
-  cloudresourcemanager: cloudresourcemanager.VERSIONS,
-  cloudscheduler: cloudscheduler.VERSIONS,
-  cloudsearch: cloudsearch.VERSIONS,
-  cloudshell: cloudshell.VERSIONS,
-  cloudtasks: cloudtasks.VERSIONS,
-  cloudtrace: cloudtrace.VERSIONS,
-  composer: composer.VERSIONS,
-  compute: compute.VERSIONS,
-  container: container.VERSIONS,
-  containeranalysis: containeranalysis.VERSIONS,
-  content: content.VERSIONS,
-  customsearch: customsearch.VERSIONS,
-  datacatalog: datacatalog.VERSIONS,
-  dataflow: dataflow.VERSIONS,
-  datafusion: datafusion.VERSIONS,
-  dataproc: dataproc.VERSIONS,
-  datastore: datastore.VERSIONS,
-  deploymentmanager: deploymentmanager.VERSIONS,
-  dfareporting: dfareporting.VERSIONS,
-  dialogflow: dialogflow.VERSIONS,
-  digitalassetlinks: digitalassetlinks.VERSIONS,
-  discovery: discovery.VERSIONS,
-  displayvideo: displayvideo.VERSIONS,
-  dlp: dlp.VERSIONS,
-  dns: dns.VERSIONS,
-  docs: docs.VERSIONS,
-  documentai: documentai.VERSIONS,
-  domains: domains.VERSIONS,
-  domainsrdap: domainsrdap.VERSIONS,
-  doubleclickbidmanager: doubleclickbidmanager.VERSIONS,
-  doubleclicksearch: doubleclicksearch.VERSIONS,
-  drive: drive.VERSIONS,
-  driveactivity: driveactivity.VERSIONS,
-  factchecktools: factchecktools.VERSIONS,
-  fcm: fcm.VERSIONS,
-  file: file.VERSIONS,
-  firebase: firebase.VERSIONS,
-  firebasedynamiclinks: firebasedynamiclinks.VERSIONS,
-  firebasehosting: firebasehosting.VERSIONS,
-  firebaseml: firebaseml.VERSIONS,
-  firebaserules: firebaserules.VERSIONS,
-  firestore: firestore.VERSIONS,
-  fitness: fitness.VERSIONS,
-  games: games.VERSIONS,
-  gamesConfiguration: gamesConfiguration.VERSIONS,
-  gamesManagement: gamesManagement.VERSIONS,
-  gameservices: gameservices.VERSIONS,
-  genomics: genomics.VERSIONS,
-  gmail: gmail.VERSIONS,
-  gmailpostmastertools: gmailpostmastertools.VERSIONS,
-  groupsmigration: groupsmigration.VERSIONS,
-  groupssettings: groupssettings.VERSIONS,
-  healthcare: healthcare.VERSIONS,
-  homegraph: homegraph.VERSIONS,
-  iam: iam.VERSIONS,
-  iamcredentials: iamcredentials.VERSIONS,
-  iap: iap.VERSIONS,
-  identitytoolkit: identitytoolkit.VERSIONS,
-  indexing: indexing.VERSIONS,
-  jobs: jobs.VERSIONS,
-  kgsearch: kgsearch.VERSIONS,
-  language: language.VERSIONS,
-  libraryagent: libraryagent.VERSIONS,
-  licensing: licensing.VERSIONS,
-  lifesciences: lifesciences.VERSIONS,
-  localservices: localservices.VERSIONS,
-  logging: logging.VERSIONS,
-  managedidentities: managedidentities.VERSIONS,
-  manufacturers: manufacturers.VERSIONS,
-  memcache: memcache.VERSIONS,
-  ml: ml.VERSIONS,
-  monitoring: monitoring.VERSIONS,
-  networkmanagement: networkmanagement.VERSIONS,
-  oauth2: oauth2.VERSIONS,
-  osconfig: osconfig.VERSIONS,
-  oslogin: oslogin.VERSIONS,
-  pagespeedonline: pagespeedonline.VERSIONS,
-  people: people.VERSIONS,
-  playablelocations: playablelocations.VERSIONS,
-  playcustomapp: playcustomapp.VERSIONS,
-  plus: plus.VERSIONS,
-  policytroubleshooter: policytroubleshooter.VERSIONS,
-  poly: poly.VERSIONS,
-  prod_tt_sasportal: prod_tt_sasportal.VERSIONS,
-  pubsub: pubsub.VERSIONS,
-  pubsublite: pubsublite.VERSIONS,
-  realtimebidding: realtimebidding.VERSIONS,
-  recommendationengine: recommendationengine.VERSIONS,
-  recommender: recommender.VERSIONS,
-  redis: redis.VERSIONS,
-  remotebuildexecution: remotebuildexecution.VERSIONS,
-  reseller: reseller.VERSIONS,
-  run: run.VERSIONS,
-  runtimeconfig: runtimeconfig.VERSIONS,
-  safebrowsing: safebrowsing.VERSIONS,
-  sasportal: sasportal.VERSIONS,
-  script: script.VERSIONS,
-  searchconsole: searchconsole.VERSIONS,
-  secretmanager: secretmanager.VERSIONS,
-  securitycenter: securitycenter.VERSIONS,
-  serviceconsumermanagement: serviceconsumermanagement.VERSIONS,
-  servicecontrol: servicecontrol.VERSIONS,
-  servicedirectory: servicedirectory.VERSIONS,
-  servicemanagement: servicemanagement.VERSIONS,
-  servicenetworking: servicenetworking.VERSIONS,
-  serviceusage: serviceusage.VERSIONS,
-  sheets: sheets.VERSIONS,
-  siteVerification: siteVerification.VERSIONS,
-  slides: slides.VERSIONS,
-  smartdevicemanagement: smartdevicemanagement.VERSIONS,
-  sourcerepo: sourcerepo.VERSIONS,
-  spanner: spanner.VERSIONS,
-  speech: speech.VERSIONS,
-  sql: sql.VERSIONS,
-  sqladmin: sqladmin.VERSIONS,
-  storage: storage.VERSIONS,
-  storagetransfer: storagetransfer.VERSIONS,
-  streetviewpublish: streetviewpublish.VERSIONS,
-  sts: sts.VERSIONS,
-  tagmanager: tagmanager.VERSIONS,
-  tasks: tasks.VERSIONS,
-  testing: testing.VERSIONS,
-  texttospeech: texttospeech.VERSIONS,
-  toolresults: toolresults.VERSIONS,
-  tpu: tpu.VERSIONS,
-  trafficdirector: trafficdirector.VERSIONS,
-  translate: translate.VERSIONS,
-  vault: vault.VERSIONS,
-  vectortile: vectortile.VERSIONS,
-  verifiedaccess: verifiedaccess.VERSIONS,
-  videointelligence: videointelligence.VERSIONS,
-  vision: vision.VERSIONS,
-  webfonts: webfonts.VERSIONS,
-  webmasters: webmasters.VERSIONS,
-  websecurityscanner: websecurityscanner.VERSIONS,
-  workflowexecutions: workflowexecutions.VERSIONS,
-  workflows: workflows.VERSIONS,
-  youtube: youtube.VERSIONS,
-  youtubeAnalytics: youtubeAnalytics.VERSIONS,
-  youtubereporting: youtubereporting.VERSIONS,
+  abusiveexperiencereport: abusiveexperiencereportVersions,
+  acceleratedmobilepageurl: acceleratedmobilepageurlVersions,
+  accessapproval: accessapprovalVersions,
+  accesscontextmanager: accesscontextmanagerVersions,
+  adexchangebuyer: adexchangebuyerVersions,
+  adexchangebuyer2: adexchangebuyer2Versions,
+  adexperiencereport: adexperiencereportVersions,
+  admin: adminVersions,
+  admob: admobVersions,
+  adsense: adsenseVersions,
+  adsensehost: adsensehostVersions,
+  alertcenter: alertcenterVersions,
+  analytics: analyticsVersions,
+  analyticsadmin: analyticsadminVersions,
+  analyticsdata: analyticsdataVersions,
+  analyticsreporting: analyticsreportingVersions,
+  androiddeviceprovisioning: androiddeviceprovisioningVersions,
+  androidenterprise: androidenterpriseVersions,
+  androidmanagement: androidmanagementVersions,
+  androidpublisher: androidpublisherVersions,
+  apigateway: apigatewayVersions,
+  appengine: appengineVersions,
+  appsactivity: appsactivityVersions,
+  area120tables: area120tablesVersions,
+  artifactregistry: artifactregistryVersions,
+  assuredworkloads: assuredworkloadsVersions,
+  bigquery: bigqueryVersions,
+  bigqueryconnection: bigqueryconnectionVersions,
+  bigquerydatatransfer: bigquerydatatransferVersions,
+  bigqueryreservation: bigqueryreservationVersions,
+  bigtableadmin: bigtableadminVersions,
+  billingbudgets: billingbudgetsVersions,
+  binaryauthorization: binaryauthorizationVersions,
+  blogger: bloggerVersions,
+  books: booksVersions,
+  calendar: calendarVersions,
+  chat: chatVersions,
+  chromeuxreport: chromeuxreportVersions,
+  civicinfo: civicinfoVersions,
+  classroom: classroomVersions,
+  cloudasset: cloudassetVersions,
+  cloudbilling: cloudbillingVersions,
+  cloudbuild: cloudbuildVersions,
+  clouddebugger: clouddebuggerVersions,
+  clouderrorreporting: clouderrorreportingVersions,
+  cloudfunctions: cloudfunctionsVersions,
+  cloudidentity: cloudidentityVersions,
+  cloudiot: cloudiotVersions,
+  cloudkms: cloudkmsVersions,
+  cloudprofiler: cloudprofilerVersions,
+  cloudresourcemanager: cloudresourcemanagerVersions,
+  cloudscheduler: cloudschedulerVersions,
+  cloudsearch: cloudsearchVersions,
+  cloudshell: cloudshellVersions,
+  cloudtasks: cloudtasksVersions,
+  cloudtrace: cloudtraceVersions,
+  composer: composerVersions,
+  compute: computeVersions,
+  container: containerVersions,
+  containeranalysis: containeranalysisVersions,
+  content: contentVersions,
+  customsearch: customsearchVersions,
+  datacatalog: datacatalogVersions,
+  dataflow: dataflowVersions,
+  datafusion: datafusionVersions,
+  dataproc: dataprocVersions,
+  datastore: datastoreVersions,
+  deploymentmanager: deploymentmanagerVersions,
+  dfareporting: dfareportingVersions,
+  dialogflow: dialogflowVersions,
+  digitalassetlinks: digitalassetlinksVersions,
+  discovery: discoveryVersions,
+  displayvideo: displayvideoVersions,
+  dlp: dlpVersions,
+  dns: dnsVersions,
+  docs: docsVersions,
+  documentai: documentaiVersions,
+  domains: domainsVersions,
+  domainsrdap: domainsrdapVersions,
+  doubleclickbidmanager: doubleclickbidmanagerVersions,
+  doubleclicksearch: doubleclicksearchVersions,
+  drive: driveVersions,
+  driveactivity: driveactivityVersions,
+  eventarc: eventarcVersions,
+  factchecktools: factchecktoolsVersions,
+  fcm: fcmVersions,
+  file: fileVersions,
+  firebase: firebaseVersions,
+  firebasedynamiclinks: firebasedynamiclinksVersions,
+  firebasehosting: firebasehostingVersions,
+  firebaseml: firebasemlVersions,
+  firebaserules: firebaserulesVersions,
+  firestore: firestoreVersions,
+  fitness: fitnessVersions,
+  games: gamesVersions,
+  gamesConfiguration: gamesConfigurationVersions,
+  gamesManagement: gamesManagementVersions,
+  gameservices: gameservicesVersions,
+  genomics: genomicsVersions,
+  gmail: gmailVersions,
+  gmailpostmastertools: gmailpostmastertoolsVersions,
+  groupsmigration: groupsmigrationVersions,
+  groupssettings: groupssettingsVersions,
+  healthcare: healthcareVersions,
+  homegraph: homegraphVersions,
+  iam: iamVersions,
+  iamcredentials: iamcredentialsVersions,
+  iap: iapVersions,
+  identitytoolkit: identitytoolkitVersions,
+  indexing: indexingVersions,
+  jobs: jobsVersions,
+  kgsearch: kgsearchVersions,
+  language: languageVersions,
+  libraryagent: libraryagentVersions,
+  licensing: licensingVersions,
+  lifesciences: lifesciencesVersions,
+  localservices: localservicesVersions,
+  logging: loggingVersions,
+  managedidentities: managedidentitiesVersions,
+  manufacturers: manufacturersVersions,
+  memcache: memcacheVersions,
+  ml: mlVersions,
+  monitoring: monitoringVersions,
+  networkmanagement: networkmanagementVersions,
+  oauth2: oauth2Versions,
+  osconfig: osconfigVersions,
+  oslogin: osloginVersions,
+  pagespeedonline: pagespeedonlineVersions,
+  people: peopleVersions,
+  playablelocations: playablelocationsVersions,
+  playcustomapp: playcustomappVersions,
+  plus: plusVersions,
+  policytroubleshooter: policytroubleshooterVersions,
+  poly: polyVersions,
+  prod_tt_sasportal: prod_tt_sasportalVersions,
+  pubsub: pubsubVersions,
+  pubsublite: pubsubliteVersions,
+  realtimebidding: realtimebiddingVersions,
+  recommendationengine: recommendationengineVersions,
+  recommender: recommenderVersions,
+  redis: redisVersions,
+  remotebuildexecution: remotebuildexecutionVersions,
+  reseller: resellerVersions,
+  run: runVersions,
+  runtimeconfig: runtimeconfigVersions,
+  safebrowsing: safebrowsingVersions,
+  sasportal: sasportalVersions,
+  script: scriptVersions,
+  searchconsole: searchconsoleVersions,
+  secretmanager: secretmanagerVersions,
+  securitycenter: securitycenterVersions,
+  serviceconsumermanagement: serviceconsumermanagementVersions,
+  servicecontrol: servicecontrolVersions,
+  servicedirectory: servicedirectoryVersions,
+  servicemanagement: servicemanagementVersions,
+  servicenetworking: servicenetworkingVersions,
+  serviceusage: serviceusageVersions,
+  sheets: sheetsVersions,
+  siteVerification: siteVerificationVersions,
+  slides: slidesVersions,
+  smartdevicemanagement: smartdevicemanagementVersions,
+  sourcerepo: sourcerepoVersions,
+  spanner: spannerVersions,
+  speech: speechVersions,
+  sql: sqlVersions,
+  sqladmin: sqladminVersions,
+  storage: storageVersions,
+  storagetransfer: storagetransferVersions,
+  streetviewpublish: streetviewpublishVersions,
+  sts: stsVersions,
+  tagmanager: tagmanagerVersions,
+  tasks: tasksVersions,
+  testing: testingVersions,
+  texttospeech: texttospeechVersions,
+  toolresults: toolresultsVersions,
+  tpu: tpuVersions,
+  trafficdirector: trafficdirectorVersions,
+  translate: translateVersions,
+  vault: vaultVersions,
+  vectortile: vectortileVersions,
+  verifiedaccess: verifiedaccessVersions,
+  videointelligence: videointelligenceVersions,
+  vision: visionVersions,
+  webfonts: webfontsVersions,
+  webmasters: webmastersVersions,
+  websecurityscanner: websecurityscannerVersions,
+  workflowexecutions: workflowexecutionsVersions,
+  workflows: workflowsVersions,
+  youtube: youtubeVersions,
+  youtubeAnalytics: youtubeAnalyticsVersions,
+  youtubereporting: youtubereportingVersions,
 };
 
 export class GeneratedAPIs {
-  abusiveexperiencereport = abusiveexperiencereport.abusiveexperiencereport;
-  acceleratedmobilepageurl = acceleratedmobilepageurl.acceleratedmobilepageurl;
-  accessapproval = accessapproval.accessapproval;
-  accesscontextmanager = accesscontextmanager.accesscontextmanager;
-  adexchangebuyer = adexchangebuyer.adexchangebuyer;
-  adexchangebuyer2 = adexchangebuyer2.adexchangebuyer2;
-  adexperiencereport = adexperiencereport.adexperiencereport;
-  admin = admin.admin;
-  admob = admob.admob;
-  adsense = adsense.adsense;
-  adsensehost = adsensehost.adsensehost;
-  alertcenter = alertcenter.alertcenter;
-  analytics = analytics.analytics;
-  analyticsadmin = analyticsadmin.analyticsadmin;
-  analyticsdata = analyticsdata.analyticsdata;
-  analyticsreporting = analyticsreporting.analyticsreporting;
-  androiddeviceprovisioning =
-    androiddeviceprovisioning.androiddeviceprovisioning;
-  androidenterprise = androidenterprise.androidenterprise;
-  androidmanagement = androidmanagement.androidmanagement;
-  androidpublisher = androidpublisher.androidpublisher;
-  apigateway = apigateway.apigateway;
-  appengine = appengine.appengine;
-  appsactivity = appsactivity.appsactivity;
-  artifactregistry = artifactregistry.artifactregistry;
-  assuredworkloads = assuredworkloads.assuredworkloads;
-  bigquery = bigquery.bigquery;
-  bigqueryconnection = bigqueryconnection.bigqueryconnection;
-  bigquerydatatransfer = bigquerydatatransfer.bigquerydatatransfer;
-  bigqueryreservation = bigqueryreservation.bigqueryreservation;
-  bigtableadmin = bigtableadmin.bigtableadmin;
-  billingbudgets = billingbudgets.billingbudgets;
-  binaryauthorization = binaryauthorization.binaryauthorization;
-  blogger = blogger.blogger;
-  books = books.books;
-  calendar = calendar.calendar;
-  chat = chat.chat;
-  chromeuxreport = chromeuxreport.chromeuxreport;
-  civicinfo = civicinfo.civicinfo;
-  classroom = classroom.classroom;
-  cloudasset = cloudasset.cloudasset;
-  cloudbilling = cloudbilling.cloudbilling;
-  cloudbuild = cloudbuild.cloudbuild;
-  clouddebugger = clouddebugger.clouddebugger;
-  clouderrorreporting = clouderrorreporting.clouderrorreporting;
-  cloudfunctions = cloudfunctions.cloudfunctions;
-  cloudidentity = cloudidentity.cloudidentity;
-  cloudiot = cloudiot.cloudiot;
-  cloudkms = cloudkms.cloudkms;
-  cloudprofiler = cloudprofiler.cloudprofiler;
-  cloudresourcemanager = cloudresourcemanager.cloudresourcemanager;
-  cloudscheduler = cloudscheduler.cloudscheduler;
-  cloudsearch = cloudsearch.cloudsearch;
-  cloudshell = cloudshell.cloudshell;
-  cloudtasks = cloudtasks.cloudtasks;
-  cloudtrace = cloudtrace.cloudtrace;
-  composer = composer.composer;
-  compute = compute.compute;
-  container = container.container;
-  containeranalysis = containeranalysis.containeranalysis;
-  content = content.content;
-  customsearch = customsearch.customsearch;
-  datacatalog = datacatalog.datacatalog;
-  dataflow = dataflow.dataflow;
-  datafusion = datafusion.datafusion;
-  dataproc = dataproc.dataproc;
-  datastore = datastore.datastore;
-  deploymentmanager = deploymentmanager.deploymentmanager;
-  dfareporting = dfareporting.dfareporting;
-  dialogflow = dialogflow.dialogflow;
-  digitalassetlinks = digitalassetlinks.digitalassetlinks;
-  discovery = discovery.discovery;
-  displayvideo = displayvideo.displayvideo;
-  dlp = dlp.dlp;
-  dns = dns.dns;
-  docs = docs.docs;
-  documentai = documentai.documentai;
-  domains = domains.domains;
-  domainsrdap = domainsrdap.domainsrdap;
-  doubleclickbidmanager = doubleclickbidmanager.doubleclickbidmanager;
-  doubleclicksearch = doubleclicksearch.doubleclicksearch;
-  drive = drive.drive;
-  driveactivity = driveactivity.driveactivity;
-  factchecktools = factchecktools.factchecktools;
-  fcm = fcm.fcm;
-  file = file.file;
-  firebase = firebase.firebase;
-  firebasedynamiclinks = firebasedynamiclinks.firebasedynamiclinks;
-  firebasehosting = firebasehosting.firebasehosting;
-  firebaseml = firebaseml.firebaseml;
-  firebaserules = firebaserules.firebaserules;
-  firestore = firestore.firestore;
-  fitness = fitness.fitness;
-  games = games.games;
-  gamesConfiguration = gamesConfiguration.gamesConfiguration;
-  gamesManagement = gamesManagement.gamesManagement;
-  gameservices = gameservices.gameservices;
-  genomics = genomics.genomics;
-  gmail = gmail.gmail;
-  gmailpostmastertools = gmailpostmastertools.gmailpostmastertools;
-  groupsmigration = groupsmigration.groupsmigration;
-  groupssettings = groupssettings.groupssettings;
-  healthcare = healthcare.healthcare;
-  homegraph = homegraph.homegraph;
-  iam = iam.iam;
-  iamcredentials = iamcredentials.iamcredentials;
-  iap = iap.iap;
-  identitytoolkit = identitytoolkit.identitytoolkit;
-  indexing = indexing.indexing;
-  jobs = jobs.jobs;
-  kgsearch = kgsearch.kgsearch;
-  language = language.language;
-  libraryagent = libraryagent.libraryagent;
-  licensing = licensing.licensing;
-  lifesciences = lifesciences.lifesciences;
-  localservices = localservices.localservices;
-  logging = logging.logging;
-  managedidentities = managedidentities.managedidentities;
-  manufacturers = manufacturers.manufacturers;
-  memcache = memcache.memcache;
-  ml = ml.ml;
-  monitoring = monitoring.monitoring;
-  networkmanagement = networkmanagement.networkmanagement;
-  oauth2 = oauth2.oauth2;
-  osconfig = osconfig.osconfig;
-  oslogin = oslogin.oslogin;
-  pagespeedonline = pagespeedonline.pagespeedonline;
-  people = people.people;
-  playablelocations = playablelocations.playablelocations;
-  playcustomapp = playcustomapp.playcustomapp;
-  plus = plus.plus;
-  policytroubleshooter = policytroubleshooter.policytroubleshooter;
-  poly = poly.poly;
-  prod_tt_sasportal = prod_tt_sasportal.prod_tt_sasportal;
-  pubsub = pubsub.pubsub;
-  pubsublite = pubsublite.pubsublite;
-  realtimebidding = realtimebidding.realtimebidding;
-  recommendationengine = recommendationengine.recommendationengine;
-  recommender = recommender.recommender;
-  redis = redis.redis;
-  remotebuildexecution = remotebuildexecution.remotebuildexecution;
-  reseller = reseller.reseller;
-  run = run.run;
-  runtimeconfig = runtimeconfig.runtimeconfig;
-  safebrowsing = safebrowsing.safebrowsing;
-  sasportal = sasportal.sasportal;
-  script = script.script;
-  searchconsole = searchconsole.searchconsole;
-  secretmanager = secretmanager.secretmanager;
-  securitycenter = securitycenter.securitycenter;
-  serviceconsumermanagement =
-    serviceconsumermanagement.serviceconsumermanagement;
-  servicecontrol = servicecontrol.servicecontrol;
-  servicedirectory = servicedirectory.servicedirectory;
-  servicemanagement = servicemanagement.servicemanagement;
-  servicenetworking = servicenetworking.servicenetworking;
-  serviceusage = serviceusage.serviceusage;
-  sheets = sheets.sheets;
-  siteVerification = siteVerification.siteVerification;
-  slides = slides.slides;
-  smartdevicemanagement = smartdevicemanagement.smartdevicemanagement;
-  sourcerepo = sourcerepo.sourcerepo;
-  spanner = spanner.spanner;
-  speech = speech.speech;
-  sql = sql.sql;
-  sqladmin = sqladmin.sqladmin;
-  storage = storage.storage;
-  storagetransfer = storagetransfer.storagetransfer;
-  streetviewpublish = streetviewpublish.streetviewpublish;
-  sts = sts.sts;
-  tagmanager = tagmanager.tagmanager;
-  tasks = tasks.tasks;
-  testing = testing.testing;
-  texttospeech = texttospeech.texttospeech;
-  toolresults = toolresults.toolresults;
-  tpu = tpu.tpu;
-  trafficdirector = trafficdirector.trafficdirector;
-  translate = translate.translate;
-  vault = vault.vault;
-  vectortile = vectortile.vectortile;
-  verifiedaccess = verifiedaccess.verifiedaccess;
-  videointelligence = videointelligence.videointelligence;
-  vision = vision.vision;
-  webfonts = webfonts.webfonts;
-  webmasters = webmasters.webmasters;
-  websecurityscanner = websecurityscanner.websecurityscanner;
-  workflowexecutions = workflowexecutions.workflowexecutions;
-  workflows = workflows.workflows;
-  youtube = youtube.youtube;
-  youtubeAnalytics = youtubeAnalytics.youtubeAnalytics;
-  youtubereporting = youtubereporting.youtubereporting;
+  abusiveexperiencereport = abusiveexperiencereport;
+  acceleratedmobilepageurl = acceleratedmobilepageurl;
+  accessapproval = accessapproval;
+  accesscontextmanager = accesscontextmanager;
+  adexchangebuyer = adexchangebuyer;
+  adexchangebuyer2 = adexchangebuyer2;
+  adexperiencereport = adexperiencereport;
+  admin = admin;
+  admob = admob;
+  adsense = adsense;
+  adsensehost = adsensehost;
+  alertcenter = alertcenter;
+  analytics = analytics;
+  analyticsadmin = analyticsadmin;
+  analyticsdata = analyticsdata;
+  analyticsreporting = analyticsreporting;
+  androiddeviceprovisioning = androiddeviceprovisioning;
+  androidenterprise = androidenterprise;
+  androidmanagement = androidmanagement;
+  androidpublisher = androidpublisher;
+  apigateway = apigateway;
+  appengine = appengine;
+  appsactivity = appsactivity;
+  area120tables = area120tables;
+  artifactregistry = artifactregistry;
+  assuredworkloads = assuredworkloads;
+  bigquery = bigquery;
+  bigqueryconnection = bigqueryconnection;
+  bigquerydatatransfer = bigquerydatatransfer;
+  bigqueryreservation = bigqueryreservation;
+  bigtableadmin = bigtableadmin;
+  billingbudgets = billingbudgets;
+  binaryauthorization = binaryauthorization;
+  blogger = blogger;
+  books = books;
+  calendar = calendar;
+  chat = chat;
+  chromeuxreport = chromeuxreport;
+  civicinfo = civicinfo;
+  classroom = classroom;
+  cloudasset = cloudasset;
+  cloudbilling = cloudbilling;
+  cloudbuild = cloudbuild;
+  clouddebugger = clouddebugger;
+  clouderrorreporting = clouderrorreporting;
+  cloudfunctions = cloudfunctions;
+  cloudidentity = cloudidentity;
+  cloudiot = cloudiot;
+  cloudkms = cloudkms;
+  cloudprofiler = cloudprofiler;
+  cloudresourcemanager = cloudresourcemanager;
+  cloudscheduler = cloudscheduler;
+  cloudsearch = cloudsearch;
+  cloudshell = cloudshell;
+  cloudtasks = cloudtasks;
+  cloudtrace = cloudtrace;
+  composer = composer;
+  compute = compute;
+  container = container;
+  containeranalysis = containeranalysis;
+  content = content;
+  customsearch = customsearch;
+  datacatalog = datacatalog;
+  dataflow = dataflow;
+  datafusion = datafusion;
+  dataproc = dataproc;
+  datastore = datastore;
+  deploymentmanager = deploymentmanager;
+  dfareporting = dfareporting;
+  dialogflow = dialogflow;
+  digitalassetlinks = digitalassetlinks;
+  discovery = discovery;
+  displayvideo = displayvideo;
+  dlp = dlp;
+  dns = dns;
+  docs = docs;
+  documentai = documentai;
+  domains = domains;
+  domainsrdap = domainsrdap;
+  doubleclickbidmanager = doubleclickbidmanager;
+  doubleclicksearch = doubleclicksearch;
+  drive = drive;
+  driveactivity = driveactivity;
+  eventarc = eventarc;
+  factchecktools = factchecktools;
+  fcm = fcm;
+  file = file;
+  firebase = firebase;
+  firebasedynamiclinks = firebasedynamiclinks;
+  firebasehosting = firebasehosting;
+  firebaseml = firebaseml;
+  firebaserules = firebaserules;
+  firestore = firestore;
+  fitness = fitness;
+  games = games;
+  gamesConfiguration = gamesConfiguration;
+  gamesManagement = gamesManagement;
+  gameservices = gameservices;
+  genomics = genomics;
+  gmail = gmail;
+  gmailpostmastertools = gmailpostmastertools;
+  groupsmigration = groupsmigration;
+  groupssettings = groupssettings;
+  healthcare = healthcare;
+  homegraph = homegraph;
+  iam = iam;
+  iamcredentials = iamcredentials;
+  iap = iap;
+  identitytoolkit = identitytoolkit;
+  indexing = indexing;
+  jobs = jobs;
+  kgsearch = kgsearch;
+  language = language;
+  libraryagent = libraryagent;
+  licensing = licensing;
+  lifesciences = lifesciences;
+  localservices = localservices;
+  logging = logging;
+  managedidentities = managedidentities;
+  manufacturers = manufacturers;
+  memcache = memcache;
+  ml = ml;
+  monitoring = monitoring;
+  networkmanagement = networkmanagement;
+  oauth2 = oauth2;
+  osconfig = osconfig;
+  oslogin = oslogin;
+  pagespeedonline = pagespeedonline;
+  people = people;
+  playablelocations = playablelocations;
+  playcustomapp = playcustomapp;
+  plus = plus;
+  policytroubleshooter = policytroubleshooter;
+  poly = poly;
+  prod_tt_sasportal = prod_tt_sasportal;
+  pubsub = pubsub;
+  pubsublite = pubsublite;
+  realtimebidding = realtimebidding;
+  recommendationengine = recommendationengine;
+  recommender = recommender;
+  redis = redis;
+  remotebuildexecution = remotebuildexecution;
+  reseller = reseller;
+  run = run;
+  runtimeconfig = runtimeconfig;
+  safebrowsing = safebrowsing;
+  sasportal = sasportal;
+  script = script;
+  searchconsole = searchconsole;
+  secretmanager = secretmanager;
+  securitycenter = securitycenter;
+  serviceconsumermanagement = serviceconsumermanagement;
+  servicecontrol = servicecontrol;
+  servicedirectory = servicedirectory;
+  servicemanagement = servicemanagement;
+  servicenetworking = servicenetworking;
+  serviceusage = serviceusage;
+  sheets = sheets;
+  siteVerification = siteVerification;
+  slides = slides;
+  smartdevicemanagement = smartdevicemanagement;
+  sourcerepo = sourcerepo;
+  spanner = spanner;
+  speech = speech;
+  sql = sql;
+  sqladmin = sqladmin;
+  storage = storage;
+  storagetransfer = storagetransfer;
+  streetviewpublish = streetviewpublish;
+  sts = sts;
+  tagmanager = tagmanager;
+  tasks = tasks;
+  testing = testing;
+  texttospeech = texttospeech;
+  toolresults = toolresults;
+  tpu = tpu;
+  trafficdirector = trafficdirector;
+  translate = translate;
+  vault = vault;
+  vectortile = vectortile;
+  verifiedaccess = verifiedaccess;
+  videointelligence = videointelligence;
+  vision = vision;
+  webfonts = webfonts;
+  webmasters = webmasters;
+  websecurityscanner = websecurityscanner;
+  workflowexecutions = workflowexecutions;
+  workflows = workflows;
+  youtube = youtube;
+  youtubeAnalytics = youtubeAnalytics;
+  youtubereporting = youtubereporting;
 }

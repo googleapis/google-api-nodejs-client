@@ -81,22 +81,20 @@ export function getType(item: SchemaItem): string {
 }
 
 /**
- * A multi-line string is turned into one line.
- * @param str String to process
- * @return Single line string processed
- */
-export function oneLine(str?: string) {
-  return str ? str.replace(/\n/g, ' ') : '';
-}
-
-/**
  * Clean a string of comment tags.
- * @param str String to process
+ * @param str - String to process
  * @return Single line string processed
  */
 export function cleanComments(str?: string) {
+  if (!str) {
+    return '';
+  }
   // Convert /* into /x and */ into x/
-  return str ? str.replace(/\*\//g, 'x/').replace(/\/\*/g, '/x') : '';
+  return str
+    .replace(/\*\//g, 'x/')
+    .replace(/\/\*/g, '/x')
+    .replace(/}/g, '\\}')
+    .replace(/>/g, '\\>');
 }
 
 export function getPathParams(params: SchemaParameters) {
@@ -134,16 +132,6 @@ const RESERVED_PARAMS = ['resource', 'media', 'auth'];
  */
 export function buildurl(input?: string) {
   return input ? `'${input}'`.replace(/([^:]\/)\/+/g, '$1') : '';
-}
-
-export function cleanPaths(str?: string) {
-  return str
-    ? str
-        .replace(/\/\*\//gi, '/x/')
-        .replace(/\/\*`/gi, '/x')
-        .replace(/\*\//gi, 'x/')
-        .replace(/\\n/gi, 'x/')
-    : '';
 }
 
 /**

@@ -27,8 +27,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/youtube/v3",
+  "baseUrl": "https://youtube.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "YouTube",
   "description": "The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.",
   "discoveryVersion": "v1",
@@ -40,7 +40,7 @@
   },
   "id": "youtube:v3",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://youtube.mtls.googleapis.com/",
   "name": "youtube",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -3855,8 +3855,8 @@
       }
     }
   },
-  "revision": "20201017",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20201027",
+  "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
       "id": "AbuseReport",

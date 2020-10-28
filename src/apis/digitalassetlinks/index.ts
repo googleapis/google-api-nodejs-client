@@ -35,3 +35,14 @@ export function digitalassetlinks<T = digitalassetlinks_v1.Digitalassetlinks>(
 
 const auth = new AuthPlus();
 export {auth};
+export {digitalassetlinks_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

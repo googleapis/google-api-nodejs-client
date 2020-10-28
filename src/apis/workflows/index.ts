@@ -33,3 +33,14 @@ export function workflows<T = workflows_v1beta.Workflows>(
 
 const auth = new AuthPlus();
 export {auth};
+export {workflows_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace poly_v1 {
    * The Poly API provides read access to assets hosted on poly.google.com to all, and upload access to poly.google.com for whitelisted accounts.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const poly = google.poly('v1');
-   *
-   * @namespace poly
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Poly
+   * ```
    */
   export class Poly {
     context: APIRequestContext;
@@ -134,7 +130,7 @@ export namespace poly_v1 {
    */
   export interface Schema$Asset {
     /**
-     * The author&#39;s publicly visible name. Use this name when giving credit to the author. For more information, see [Licensing](/poly/discover/licensing).
+     * The author's publicly visible name. Use this name when giving credit to the author. For more information, see [Licensing](/poly/discover/licensing).
      */
     authorName?: string | null;
     /**
@@ -142,11 +138,11 @@ export namespace poly_v1 {
      */
     createTime?: string | null;
     /**
-     * The human-readable description, set by the asset&#39;s author.
+     * The human-readable description, set by the asset's author.
      */
     description?: string | null;
     /**
-     * The human-readable name, set by the asset&#39;s author.
+     * The human-readable name, set by the asset's author.
      */
     displayName?: string | null;
     /**
@@ -162,11 +158,11 @@ export namespace poly_v1 {
      */
     license?: string | null;
     /**
-     * Application-defined opaque metadata for this asset. This field is only returned when querying for the signed-in user&#39;s own assets, not for public assets. This string is limited to 1K chars. It is up to the creator of the asset to define the format for this string (for example, JSON).
+     * Application-defined opaque metadata for this asset. This field is only returned when querying for the signed-in user's own assets, not for public assets. This string is limited to 1K chars. It is up to the creator of the asset to define the format for this string (for example, JSON).
      */
     metadata?: string | null;
     /**
-     * The unique identifier for the asset in the form: `assets/{ASSET_ID}`.
+     * The unique identifier for the asset in the form: `assets/{ASSET_ID\}`.
      */
     name?: string | null;
     /**
@@ -360,20 +356,20 @@ export namespace poly_v1 {
    */
   export interface Schema$PresentationParams {
     /**
-     * A background color which could be used for displaying the 3D asset in a &#39;thumbnail&#39; or &#39;palette&#39; style view. Authors have the option to set this background color when publishing or editing their asset. This is represented as a six-digit hexademical triplet specifying the RGB components of the background color, e.g. #FF0000 for Red.
+     * A background color which could be used for displaying the 3D asset in a 'thumbnail' or 'palette' style view. Authors have the option to set this background color when publishing or editing their asset. This is represented as a six-digit hexademical triplet specifying the RGB components of the background color, e.g. #FF0000 for Red.
      */
     backgroundColor?: string | null;
     /**
-     * The materials&#39; diffuse/albedo color. This does not apply to vertex colors or texture maps.
+     * The materials' diffuse/albedo color. This does not apply to vertex colors or texture maps.
      */
     colorSpace?: string | null;
     /**
-     * A rotation that should be applied to the object root to make it upright. More precisely, this quaternion transforms from &quot;object space&quot; (the space in which the object is defined) to &quot;presentation space&quot;, a coordinate system where +Y is up, +X is right, -Z is forward. For example, if the object is the Eiffel Tower, in its local coordinate system the object might be laid out such that the base of the tower is on the YZ plane and the tip of the tower is towards positive X. In this case this quaternion would specify a rotation (of 90 degrees about the Z axis) such that in the presentation space the base of the tower is aligned with the XZ plane, and the tip of the tower lies towards +Y. This rotation is unrelated to the object&#39;s pose in the web preview, which is just a camera position setting and is *not* reflected in this rotation. Please note: this is applicable only to the gLTF.
+     * A rotation that should be applied to the object root to make it upright. More precisely, this quaternion transforms from "object space" (the space in which the object is defined) to "presentation space", a coordinate system where +Y is up, +X is right, -Z is forward. For example, if the object is the Eiffel Tower, in its local coordinate system the object might be laid out such that the base of the tower is on the YZ plane and the tip of the tower is towards positive X. In this case this quaternion would specify a rotation (of 90 degrees about the Z axis) such that in the presentation space the base of the tower is aligned with the XZ plane, and the tip of the tower lies towards +Y. This rotation is unrelated to the object's pose in the web preview, which is just a camera position setting and is *not* reflected in this rotation. Please note: this is applicable only to the gLTF.
      */
     orientingRotation?: Schema$Quaternion;
   }
   /**
-   * A [Quaternion](//en.wikipedia.org/wiki/Quaternion). Please note: if in the response you see &quot;w: 1&quot; and nothing else this is the default value of [0, 0, 0, 1] where x,y, and z are 0.
+   * A [Quaternion](//en.wikipedia.org/wiki/Quaternion). Please note: if in the response you see "w: 1" and nothing else this is the default value of [0, 0, 0, 1] where x,y, and z are 0.
    */
   export interface Schema$Quaternion {
     /**
@@ -398,7 +394,7 @@ export namespace poly_v1 {
    */
   export interface Schema$RemixInfo {
     /**
-     * Resource ids for the sources of this remix, of the form: `assets/{ASSET_ID}`
+     * Resource ids for the sources of this remix, of the form: `assets/{ASSET_ID\}`
      */
     sourceAsset?: string[] | null;
   }
@@ -424,7 +420,7 @@ export namespace poly_v1 {
     publishUrl?: string | null;
   }
   /**
-   * Data about the user&#39;s asset.
+   * Data about the user's asset.
    */
   export interface Schema$UserAsset {
     /**
@@ -440,9 +436,9 @@ export namespace poly_v1 {
     }
 
     /**
-     * poly.assets.get
-     * @desc Returns detailed information about an asset given its name. PRIVATE assets are returned only if the currently authenticated user (via OAuth token) is the author of the asset.
+     * Returns detailed information about an asset given its name. PRIVATE assets are returned only if the currently authenticated user (via OAuth token) is the author of the asset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/poly.googleapis.com
@@ -466,7 +462,7 @@ export namespace poly_v1 {
      *
      *   // Do the magic
      *   const res = await poly.assets.get({
-     *     // Required. An asset's name in the form `assets/{ASSET_ID}`.
+     *     // Required. An asset's name in the form `assets/{ASSET_ID\}`.
      *     name: 'assets/my-asset',
      *   });
      *   console.log(res.data);
@@ -495,14 +491,12 @@ export namespace poly_v1 {
      *   throw e;
      * });
      *
-     * @alias poly.assets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. An asset's name in the form `assets/{ASSET_ID}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Assets$Get,
@@ -572,7 +566,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$Asset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asset>(parameters);
@@ -580,9 +574,9 @@ export namespace poly_v1 {
     }
 
     /**
-     * poly.assets.list
-     * @desc Lists all public, remixable assets. These are assets with an access level of PUBLIC and published under the CC-By license.
+     * Lists all public, remixable assets. These are assets with an access level of PUBLIC and published under the CC-By license.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/poly.googleapis.com
@@ -638,21 +632,12 @@ export namespace poly_v1 {
      *   throw e;
      * });
      *
-     * @alias poly.assets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.category Filter assets based on the specified category. Supported values are: `animals`, `architecture`, `art`, `food`, `nature`, `objects`, `people`, `scenes`, `technology`, and `transport`.
-     * @param {boolean=} params.curated Return only assets that have been curated by the Poly team.
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
-     * @param {string=} params.keywords One or more search terms to be matched against all text that Poly has indexed for assets, which includes display_name, description, and tags. Multiple keywords should be separated by spaces.
-     * @param {string=} params.maxComplexity Returns assets that are of the specified complexity or less. Defaults to COMPLEX. For example, a request for MEDIUM assets also includes SIMPLE assets.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Assets$List,
@@ -725,7 +710,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);
@@ -735,7 +720,7 @@ export namespace poly_v1 {
 
   export interface Params$Resource$Assets$Get extends StandardParameters {
     /**
-     * Required. An asset's name in the form `assets/{ASSET_ID}`.
+     * Required. An asset's name in the form `assets/{ASSET_ID\}`.
      */
     name?: string;
   }
@@ -792,9 +777,9 @@ export namespace poly_v1 {
     }
 
     /**
-     * poly.users.assets.list
-     * @desc Lists assets authored by the given user. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of PRIVATE or UNLISTED and assets which are All Rights Reserved for the currently-authenticated user.
+     * Lists assets authored by the given user. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of PRIVATE or UNLISTED and assets which are All Rights Reserved for the currently-authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/poly.googleapis.com
@@ -846,19 +831,12 @@ export namespace poly_v1 {
      *   throw e;
      * });
      *
-     * @alias poly.users.assets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, and `TILT`.
-     * @param {string} params.name A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`. Defaults to `BEST`, which ranks assets based on a combination of popularity and other features.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {string=} params.visibility The visibility of the assets to be returned. Defaults to VISIBILITY_UNSPECIFIED which returns all assets.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Assets$List,
@@ -934,7 +912,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserAssetsResponse>(parameters);
@@ -977,9 +955,9 @@ export namespace poly_v1 {
     }
 
     /**
-     * poly.users.likedassets.list
-     * @desc Lists assets that the user has liked. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of UNLISTED.
+     * Lists assets that the user has liked. Only the value 'me', representing the currently-authenticated user, is supported. May include assets with an access level of UNLISTED.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/poly.googleapis.com
@@ -1029,18 +1007,12 @@ export namespace poly_v1 {
      *   throw e;
      * });
      *
-     * @alias poly.users.likedassets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.format Return only assets with the matching format. Acceptable values are: `BLOCKS`, `FBX`, `GLTF`, `GLTF2`, `OBJ`, `TILT`.
-     * @param {string} params.name A valid user id. Currently, only the special value 'me', representing the currently-authenticated user is supported. To use 'me', you must pass an OAuth token with the request.
-     * @param {string=} params.orderBy Specifies an ordering for assets. Acceptable values are: `BEST`, `NEWEST`, `OLDEST`, 'LIKED_TIME'. Defaults to `LIKED_TIME`, which ranks assets based on how recently they were liked.
-     * @param {integer=} params.pageSize The maximum number of assets to be returned. This value must be between `1` and `100`. Defaults to `20`.
-     * @param {string=} params.pageToken Specifies a continuation token from a previous search whose results were split into multiple pages. To get the next page, submit the same request specifying the value from next_page_token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Likedassets$List,
@@ -1119,7 +1091,7 @@ export namespace poly_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLikedAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLikedAssetsResponse>(parameters);

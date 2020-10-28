@@ -35,3 +35,15 @@ export function sts<T = sts_v1.Sts | sts_v1beta.Sts>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sts_v1};
+export {sts_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

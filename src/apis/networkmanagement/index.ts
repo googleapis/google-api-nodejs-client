@@ -51,3 +51,15 @@ export function networkmanagement<
 
 const auth = new AuthPlus();
 export {auth};
+export {networkmanagement_v1};
+export {networkmanagement_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

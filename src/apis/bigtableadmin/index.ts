@@ -45,3 +45,15 @@ export function bigtableadmin<
 
 const auth = new AuthPlus();
 export {auth};
+export {bigtableadmin_v1};
+export {bigtableadmin_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

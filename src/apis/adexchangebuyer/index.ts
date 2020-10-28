@@ -62,3 +62,16 @@ export function adexchangebuyer<
 
 const auth = new AuthPlus();
 export {auth};
+export {adexchangebuyer_v1_2};
+export {adexchangebuyer_v1_3};
+export {adexchangebuyer_v1_4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

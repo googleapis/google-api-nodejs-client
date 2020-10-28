@@ -197,7 +197,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201016",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "AllocateInfo": {
@@ -1081,7 +1081,7 @@
           "type": "number"
         },
         "endTime": {
-          "description": "The end of the time period over which this metric value's measurement applies.",
+          "description": "The end of the time period over which this metric value's measurement applies. If not specified, google.api.servicecontrol.v1.Operation.end_time will be used.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1102,7 +1102,7 @@
           "description": "A money value."
         },
         "startTime": {
-          "description": "The start of the time period over which this metric value's measurement applies. The time period has different semantics for different metric types (cumulative, delta, and gauge). See the metric definition documentation in the service configuration for details.",
+          "description": "The start of the time period over which this metric value's measurement applies. The time period has different semantics for different metric types (cumulative, delta, and gauge). See the metric definition documentation in the service configuration for details. If not specified, google.api.servicecontrol.v1.Operation.start_time will be used.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1136,7 +1136,7 @@
       "id": "Money",
       "properties": {
         "currencyCode": {
-          "description": "The 3-letter currency code defined in ISO 4217.",
+          "description": "The three-letter currency code defined in ISO 4217.",
           "type": "string"
         },
         "nanos": {
@@ -1186,7 +1186,7 @@
           "enumDescriptions": [
             "The API implementation may cache and aggregate the data. The data may be lost when rare and unexpected system failures occur.",
             "The API implementation doesn't cache and aggregate the data. If the method returns successfully, it's guaranteed that the data has been persisted in durable storage.",
-            "In addition to the behavior described in HIGH, DEBUG enables additional validation logic that is only useful during the onboarding process. This is only available to Google internal services and the service must be whitelisted by chemist-dev@google.com in order to use this level."
+            "In addition to the behavior described in HIGH, DEBUG enables additional validation logic that is only useful during the onboarding process. This is only available to Google internal services and the service must be allowlisted by chemist-dev@google.com in order to use this level."
           ],
           "type": "string"
         },
@@ -1327,6 +1327,10 @@
           "description": "Free-form text that provides details on the cause of the error.",
           "type": "string"
         },
+        "status": {
+          "$ref": "Status",
+          "description": "Contains additional information about the quota error. If available, `status.code` will be non zero."
+        },
         "subject": {
           "description": "Subject to whom this error applies. See the specific enum for more details on this field. For example, \"clientip:\" or \"project:\".",
           "type": "string"
@@ -1408,7 +1412,7 @@
             "For AllocateQuota request, allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, allocation error will be returned and no quota will be allocated. If multiple quotas are part of the request, and one fails, none of the quotas are allocated or released.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the amount is higher than the available quota, request does not fail but all available quota will be allocated. For rate quota, BEST_EFFORT will continue to deduct from other groups even if one does not have enough quota. For allocation, it will find the minimum available amount across all groups and deduct that amount from all the affected groups.",
             "For AllocateQuota request, only checks if there is enough quota available and does not change the available quota. No lock is placed on the available quota either.",
-            "Unimplemented. When used in AllocateQuotaRequest, this returns the effective quota limit(s) in the response, and no quota check will be performed. Not supported for other requests, and even for AllocateQuotaRequest, this is currently supported only for whitelisted services.",
+            "Unimplemented. When used in AllocateQuotaRequest, this returns the effective quota limit(s) in the response, and no quota check will be performed. Not supported for other requests, and even for AllocateQuotaRequest, this is currently supported only for allowlisted services.",
             "The operation allocates quota for the amount specified in the service configuration or specified using the quota metrics. If the requested amount is higher than the available quota, request does not fail and remaining quota would become negative (going over the limit). Not supported for Rate Quota."
           ],
           "type": "string"
@@ -1625,6 +1629,10 @@
         "type": {
           "description": "The type of the resource. The syntax is platform-specific because different platforms define their resources differently. For Google APIs, the type format must be \"{service}/{kind}\".",
           "type": "string"
+        },
+        "uid": {
+          "description": "The unique identifier of the resource. UID is unique in the time and space for this resource within the scope of the service. It is typically generated by the server on successful creation of a resource and must not be changed. UID is used to uniquely identify resources with resource name reuses. This should be a UUID4.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1676,6 +1684,10 @@
         "firstPartyPrincipal": {
           "$ref": "FirstPartyPrincipal",
           "description": "First party (Google) identity as the real authority."
+        },
+        "principalSubject": {
+          "description": "A string representing the principal_subject associated with the identity. See go/3pical for more info on how principal_subject is formatted.",
+          "type": "string"
         },
         "thirdPartyPrincipal": {
           "$ref": "ThirdPartyPrincipal",

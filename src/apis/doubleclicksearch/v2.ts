@@ -104,14 +104,10 @@ export namespace doubleclicksearch_v2 {
    * The Search Ads 360 API allows developers to automate uploading conversions and downloading reports from Search Ads 360.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const doubleclicksearch = google.doubleclicksearch('v2');
-   *
-   * @namespace doubleclicksearch
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Doubleclicksearch
+   * ```
    */
   export class Doubleclicksearch {
     context: APIRequestContext;
@@ -189,7 +185,7 @@ export namespace doubleclicksearch_v2 {
      */
     campaignId?: string | null;
     /**
-     * Sales channel for the product. Acceptable values are: - &quot;`local`&quot;: a physical store - &quot;`online`&quot;: an online store
+     * Sales channel for the product. Acceptable values are: - "`local`": a physical store - "`online`": an online store
      */
     channel?: string | null;
     /**
@@ -197,7 +193,7 @@ export namespace doubleclicksearch_v2 {
      */
     clickId?: string | null;
     /**
-     * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser&#39;s Floodlight instructions.
+     * For offline conversions, advertisers provide this ID. Advertisers can specify any ID that is meaningful to them. Each conversion in a request must specify a unique ID, and the combination of ID and timestamp must be unique amongst all conversions within the advertiser. For online conversions, DS copies the `dsConversionId` or `floodlightOrderId` into this property depending on the advertiser's Floodlight instructions.
      */
     conversionId?: string | null;
     /**
@@ -217,7 +213,7 @@ export namespace doubleclicksearch_v2 {
      */
     criterionId?: string | null;
     /**
-     * The currency code for the conversion&#39;s revenue. Should be in ISO 4217 alphabetic (3-char) format.
+     * The currency code for the conversion's revenue. Should be in ISO 4217 alphabetic (3-char) format.
      */
     currencyCode?: string | null;
     /**
@@ -269,7 +265,7 @@ export namespace doubleclicksearch_v2 {
      */
     quantityMillis?: string | null;
     /**
-     * The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of &quot;10&quot; enter &quot;10000000&quot; (10 million) in your request.
+     * The revenue amount of this `TRANSACTION` conversion, in micros (value multiplied by 1000000, no decimal). For example, to specify a revenue value of "10" enter "10000000" (10 million) in your request.
      */
     revenueMicros?: string | null;
     /**
@@ -289,7 +285,7 @@ export namespace doubleclicksearch_v2 {
      */
     state?: string | null;
     /**
-     * The ID of the local store for which the product was advertised. Applicable only when the channel is &quot;`local`&quot;.
+     * The ID of the local store for which the product was advertised. Applicable only when the channel is "`local`".
      */
     storeId?: string | null;
     /**
@@ -406,11 +402,11 @@ export namespace doubleclicksearch_v2 {
      */
     headerText?: string | null;
     /**
-     * The platform that is used to provide data for the custom dimension. Acceptable values are &quot;floodlight&quot;.
+     * The platform that is used to provide data for the custom dimension. Acceptable values are "floodlight".
      */
     platformSource?: string | null;
     /**
-     * Returns metrics only for a specific type of product activity. Accepted values are: - &quot;`sold`&quot;: returns metrics only for products that were sold - &quot;`advertised`&quot;: returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
+     * Returns metrics only for a specific type of product activity. Accepted values are: - "`sold`": returns metrics only for products that were sold - "`advertised`": returns metrics only for products that were advertised in a Shopping campaign, and that might or might not have been sold
      */
     productReportPerspective?: string | null;
     /**
@@ -525,7 +521,7 @@ export namespace doubleclicksearch_v2 {
     type?: string | null;
   }
   /**
-   * A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you&#39;ll need the saved column names that are available from this list.
+   * A list of saved columns. Advertisers create saved columns to report on Floodlight activities, Google Analytics goals, or custom KPIs. To request reports with saved columns, you'll need the saved column names that are available from this list.
    */
   export interface Schema$SavedColumnList {
     /**
@@ -563,9 +559,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.conversion.get
-     * @desc Retrieves a list of conversions from a DoubleClick Search engine account.
+     * Retrieves a list of conversions from a DoubleClick Search engine account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -626,24 +622,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.conversion.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.adGroupId Numeric ID of the ad group.
-     * @param {string=} params.adId Numeric ID of the ad.
-     * @param {string} params.advertiserId Numeric ID of the advertiser.
-     * @param {string} params.agencyId Numeric ID of the agency.
-     * @param {string=} params.campaignId Numeric ID of the campaign.
-     * @param {string=} params.criterionId Numeric ID of the criterion.
-     * @param {integer} params.endDate Last date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param {string} params.engineAccountId Numeric ID of the engine account.
-     * @param {integer} params.rowCount The number of conversions to return per call.
-     * @param {integer} params.startDate First date (inclusive) on which to retrieve conversions. Format is yyyymmdd.
-     * @param {integer} params.startRow The 0-based starting index for retrieving conversions results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Conversion$Get,
@@ -725,7 +709,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -733,9 +717,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.conversion.insert
-     * @desc Inserts a batch of new conversions into DoubleClick Search.
+     * Inserts a batch of new conversions into DoubleClick Search.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -782,14 +766,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.conversion.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ConversionList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Conversion$Insert,
@@ -864,7 +846,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -872,9 +854,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.conversion.update
-     * @desc Updates a batch of conversions in DoubleClick Search.
+     * Updates a batch of conversions in DoubleClick Search.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -921,14 +903,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.conversion.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ConversionList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Conversion$Update,
@@ -1003,7 +983,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$ConversionList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionList>(parameters);
@@ -1011,9 +991,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.conversion.updateAvailability
-     * @desc Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
+     * Updates the availabilities of a batch of floodlight activities in DoubleClick Search.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1058,14 +1038,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.conversion.updateAvailability
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().UpdateAvailabilityRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateAvailability(
       params: Params$Resource$Conversion$Updateavailability,
@@ -1146,7 +1124,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$UpdateAvailabilityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UpdateAvailabilityResponse>(parameters);
@@ -1229,9 +1207,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.reports.generate
-     * @desc Generates and returns a report immediately.
+     * Generates and returns a report immediately.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1297,14 +1275,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.reports.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Reports$Generate,
@@ -1378,7 +1354,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1386,9 +1362,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.reports.get
-     * @desc Polls for the status of a report request.
+     * Polls for the status of a report request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1436,14 +1412,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.reports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.reportId ID of the report request being polled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Reports$Get,
@@ -1517,7 +1491,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1525,9 +1499,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.reports.getFile
-     * @desc Downloads a report file encoded in UTF-8.
+     * Downloads a report file encoded in UTF-8.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1564,15 +1538,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.reports.getFile
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.reportFragment The index of the report fragment to download.
-     * @param {string} params.reportId ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getFile(
       params: Params$Resource$Reports$Getfile,
@@ -1581,7 +1552,7 @@ export namespace doubleclicksearch_v2 {
     getFile(
       params?: Params$Resource$Reports$Getfile,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<unknown>;
     getFile(
       params: Params$Resource$Reports$Getfile,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1589,26 +1560,26 @@ export namespace doubleclicksearch_v2 {
     ): void;
     getFile(
       params: Params$Resource$Reports$Getfile,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<unknown>,
+      callback: BodyResponseCallback<unknown>
     ): void;
     getFile(
       params: Params$Resource$Reports$Getfile,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<unknown>
     ): void;
-    getFile(callback: BodyResponseCallback<void>): void;
+    getFile(callback: BodyResponseCallback<unknown>): void;
     getFile(
       paramsOrCallback?:
         | Params$Resource$Reports$Getfile
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<unknown>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?: BodyResponseCallback<unknown> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<unknown> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Reports$Getfile;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
@@ -1642,19 +1613,19 @@ export namespace doubleclicksearch_v2 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<unknown>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<unknown>(parameters);
       }
     }
 
     /**
-     * doubleclicksearch.reports.request
-     * @desc Inserts a report request into the reporting system.
+     * Inserts a report request into the reporting system.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1720,14 +1691,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.reports.request
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     request(
       params: Params$Resource$Reports$Request,
@@ -1801,7 +1770,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -1845,9 +1814,9 @@ export namespace doubleclicksearch_v2 {
     }
 
     /**
-     * doubleclicksearch.savedColumns.list
-     * @desc Retrieve the list of saved columns for a specified advertiser.
+     * Retrieve the list of saved columns for a specified advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclicksearch.googleapis.com
@@ -1890,15 +1859,12 @@ export namespace doubleclicksearch_v2 {
      *   throw e;
      * });
      *
-     * @alias doubleclicksearch.savedColumns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId DS ID of the advertiser.
-     * @param {string} params.agencyId DS ID of the agency.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Savedcolumns$List,
@@ -1973,7 +1939,7 @@ export namespace doubleclicksearch_v2 {
       if (callback) {
         createAPIRequest<Schema$SavedColumnList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SavedColumnList>(parameters);

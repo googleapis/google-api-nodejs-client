@@ -88,14 +88,10 @@ export namespace adexchangebuyer_v1_2 {
    * Accesses your bidding-account information, submits creatives for validation, finds available direct deals, and retrieves performance reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const adexchangebuyer = google.adexchangebuyer('v1.2');
-   *
-   * @namespace adexchangebuyer
-   * @type {Function}
-   * @version v1.2
-   * @variation v1.2
-   * @param {object=} options Options for Adexchangebuyer
+   * ```
    */
   export class Adexchangebuyer {
     context: APIRequestContext;
@@ -280,7 +276,7 @@ export namespace adexchangebuyer_v1_2 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through creatives. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -292,9 +288,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.accounts.get
-     * @desc Gets one account by ID.
+     * Gets one account by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -341,14 +337,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.id The account id
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -421,7 +415,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -429,9 +423,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.accounts.list
-     * @desc Retrieves the authenticated user's list of accounts.
+     * Retrieves the authenticated user's list of accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -469,13 +463,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -548,7 +541,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$AccountsList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsList>(parameters);
@@ -556,9 +549,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.accounts.patch
-     * @desc Updates an existing account. This method supports patch semantics.
+     * Updates an existing account. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -620,15 +613,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.id The account id
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Patch,
@@ -701,7 +691,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -709,9 +699,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.accounts.update
-     * @desc Updates an existing account.
+     * Updates an existing account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -773,15 +763,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.accounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.id The account id
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Update,
@@ -854,7 +841,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -899,9 +886,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.creatives.get
-     * @desc Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
+     * Gets the status for a single creative. A creative will be available 30-40 minutes after submission.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -965,15 +952,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.accountId The id for the account that will serve this creative.
-     * @param {string} params.buyerCreativeId The buyer-specific id for this creative.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creatives$Get,
@@ -1046,7 +1030,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1054,9 +1038,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.creatives.insert
-     * @desc Submit a new creative.
+     * Submit a new creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -1145,14 +1129,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creatives$Insert,
@@ -1225,7 +1207,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1233,9 +1215,9 @@ export namespace adexchangebuyer_v1_2 {
     }
 
     /**
-     * adexchangebuyer.creatives.list
-     * @desc Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
+     * Retrieves a list of the authenticated user's active creatives. A creative will be available 30-40 minutes after submission.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexchangebuyer.googleapis.com
@@ -1281,16 +1263,12 @@ export namespace adexchangebuyer_v1_2 {
      *   throw e;
      * });
      *
-     * @alias adexchangebuyer.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of entries returned on one result page. If not set, the default is 100. Optional.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response. Optional.
-     * @param {string=} params.statusFilter When specified, only creatives having the given status are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creatives$List,
@@ -1363,7 +1341,7 @@ export namespace adexchangebuyer_v1_2 {
       if (callback) {
         createAPIRequest<Schema$CreativesList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativesList>(parameters);

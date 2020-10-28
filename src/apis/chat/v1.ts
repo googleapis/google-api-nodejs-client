@@ -104,14 +104,10 @@ export namespace chat_v1 {
    * Enables bots to fetch information and perform actions in Hangouts Chat.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const chat = google.chat('v1');
-   *
-   * @namespace chat
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Chat
+   * ```
    */
   export class Chat {
     context: APIRequestContext;
@@ -143,7 +139,7 @@ export namespace chat_v1 {
     value?: string | null;
   }
   /**
-   * Parameters that a bot can use to configure how it&#39;s response is posted.
+   * Parameters that a bot can use to configure how it's response is posted.
    */
   export interface Schema$ActionResponse {
     /**
@@ -156,7 +152,7 @@ export namespace chat_v1 {
     url?: string | null;
   }
   /**
-   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!&quot; ``` The corresponding annotations metadata: ``` &quot;annotations&quot;:[{ &quot;type&quot;:&quot;USER_MENTION&quot;, &quot;startIndex&quot;:6, &quot;length&quot;:7, &quot;userMention&quot;: { &quot;user&quot;: { &quot;name&quot;:&quot;users/107946847022116401880&quot;, &quot;displayName&quot;:&quot;FooBot&quot;, &quot;avatarUrl&quot;:&quot;https://goo.gl/aeDtrS&quot;, &quot;type&quot;:&quot;BOT&quot; }, &quot;type&quot;:&quot;MENTION&quot; } }] ```
+   * Annotations associated with the plain-text body of the message. Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/107946847022116401880", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
    */
   export interface Schema$Annotation {
     /**
@@ -205,7 +201,7 @@ export namespace chat_v1 {
      */
     driveDataRef?: Schema$DriveDataRef;
     /**
-     * Resource name of the attachment, in the form &quot;spaces/x/messages/x/attachments/*&quot;.
+     * Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
      */
     name?: string | null;
     /**
@@ -275,7 +271,7 @@ export namespace chat_v1 {
   }
   export interface Schema$CardHeader {
     /**
-     * The image&#39;s type (e.g. square border or circular border).
+     * The image's type (e.g. square border or circular border).
      */
     imageStyle?: string | null;
     /**
@@ -342,7 +338,7 @@ export namespace chat_v1 {
     driveFileId?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -363,7 +359,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Image {
     /**
-     * The aspect ratio of this image (width/height). This field allows clients to reserve the right height for the image while waiting for it to load. It&#39;s not meant to override the native aspect ratio of the image. If unset, the server fills it by prefetching the image.
+     * The aspect ratio of this image (width/height). This field allows clients to reserve the right height for the image while waiting for it to load. It's not meant to override the native aspect ratio of the image. If unset, the server fills it by prefetching the image.
      */
     aspectRatio?: number | null;
     /**
@@ -388,7 +384,7 @@ export namespace chat_v1 {
      */
     iconUrl?: string | null;
     /**
-     * The name of this image_button which will be used for accessibility. Default value will be provided if developers don&#39;t specify.
+     * The name of this image_button which will be used for accessibility. Default value will be provided if developers don't specify.
      */
     name?: string | null;
     /**
@@ -509,11 +505,11 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
-     * A plain-text description of the message&#39;s cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
+     * A plain-text description of the message's cards, used when the actual cards cannot be displayed (e.g. mobile notifications).
      */
     fallbackText?: string | null;
     /**
-     * Resource name, in the form &quot;spaces/x/messages/*&quot;. Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
      */
     name?: string | null;
     /**
@@ -619,7 +615,7 @@ export namespace chat_v1 {
      */
     displayName?: string | null;
     /**
-     * Resource name of the space, in the form &quot;spaces/*&quot;. Example: spaces/AAAAMpdlehYs
+     * Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehYs
      */
     name?: string | null;
     /**
@@ -659,7 +655,7 @@ export namespace chat_v1 {
    */
   export interface Schema$Thread {
     /**
-     * Resource name, in the form &quot;spaces/x/threads/*&quot;. Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
+     * Resource name, in the form "spaces/x/threads/x". Example: spaces/AAAAMpdlehY/threads/UMxbHmzDlr4
      */
     name?: string | null;
   }
@@ -668,7 +664,7 @@ export namespace chat_v1 {
    */
   export interface Schema$User {
     /**
-     * The user&#39;s display name.
+     * The user's display name.
      */
     displayName?: string | null;
     /**
@@ -680,7 +676,7 @@ export namespace chat_v1 {
      */
     isAnonymous?: boolean | null;
     /**
-     * Resource name, in the format &quot;users/*&quot;.
+     * Resource name, in the format "users/x".
      */
     name?: string | null;
     /**
@@ -730,9 +726,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.media.download
-     * @desc Downloads media. Download is supported on the URI `/v1/media/{+name}?alt=media`.
+     * Downloads media. Download is supported on the URI `/v1/media/{+name\}?alt=media`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -772,14 +768,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.media.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Media$Download,
@@ -852,7 +846,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Media>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Media>(parameters);
@@ -878,9 +872,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.get
-     * @desc Returns a space.
+     * Returns a space.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -924,14 +918,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the space, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Spaces$Get,
@@ -1001,7 +993,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Space>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Space>(parameters);
@@ -1009,9 +1001,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.list
-     * @desc Lists spaces the caller is a member of.
+     * Lists spaces the caller is a member of.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1054,15 +1046,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Spaces$List,
@@ -1135,7 +1124,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSpacesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSpacesResponse>(parameters);
@@ -1167,9 +1156,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.members.get
-     * @desc Returns a membership.
+     * Returns a membership.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1212,14 +1201,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.members.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the membership to be retrieved, in the form "spaces/x/members/x". Example: spaces/AAAAMpdlehY/members/105115627578887013105
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Spaces$Members$Get,
@@ -1290,7 +1277,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Membership>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
@@ -1298,9 +1285,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.members.list
-     * @desc Lists human memberships in a space.
+     * Lists human memberships in a space.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1345,16 +1332,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.members.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. The value is capped at 1000. Server may return fewer results than requested. If unspecified, server will default to 100.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return.
-     * @param {string} params.parent Required. The resource name of the space for which membership list is to be fetched, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Spaces$Members$List,
@@ -1433,7 +1416,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
@@ -1473,9 +1456,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.messages.create
-     * @desc Creates a message.
+     * Creates a message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1551,16 +1534,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.messages.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Space resource name, in the form "spaces/x". Example: spaces/AAAAMpdlehY
-     * @param {string=} params.threadKey Opaque thread identifier string that can be specified to group messages into a single thread. If this is the first message with a given thread identifier, a new thread is created. Subsequent messages with the same thread identifier will be posted into the same thread. This relieves bots and webhooks from having to store the Hangouts Chat thread ID of a thread (created earlier by them) to post further updates to it. Has no effect if thread field, corresponding to an existing thread, is set in message.
-     * @param {().Message} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Spaces$Messages$Create,
@@ -1634,7 +1613,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -1642,9 +1621,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.messages.delete
-     * @desc Deletes a message.
+     * Deletes a message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1682,14 +1661,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.messages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be deleted, in the form "spaces/x/messages/x" Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Spaces$Messages$Delete,
@@ -1760,7 +1737,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1768,9 +1745,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.messages.get
-     * @desc Returns a message.
+     * Returns a message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1823,14 +1800,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.messages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the message to be retrieved, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Spaces$Messages$Get,
@@ -1901,7 +1876,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -1909,9 +1884,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.messages.update
-     * @desc Updates a message.
+     * Updates a message.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -1987,16 +1962,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.messages.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name, in the form "spaces/x/messages/x". Example: spaces/AAAAMpdlehY/messages/UMxbHmzDlr4.UMxbHmzDlr4
-     * @param {string=} params.updateMask Required. The field paths to be updated, comma separated if there are multiple. Currently supported field paths: * text * cards
-     * @param {().Message} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Spaces$Messages$Update,
@@ -2067,7 +2038,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -2129,9 +2100,9 @@ export namespace chat_v1 {
     }
 
     /**
-     * chat.spaces.messages.attachments.get
-     * @desc Gets the metadata of a message attachment. The attachment data is fetched using the media API.
+     * Gets the metadata of a message attachment. The attachment data is fetched using the media API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chat.googleapis.com
@@ -2178,14 +2149,12 @@ export namespace chat_v1 {
      *   throw e;
      * });
      *
-     * @alias chat.spaces.messages.attachments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the attachment, in the form "spaces/x/messages/x/attachments/x".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Spaces$Messages$Attachments$Get,
@@ -2256,7 +2225,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Attachment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Attachment>(parameters);

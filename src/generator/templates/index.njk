@@ -2,7 +2,10 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 {% for apiName, api in apis %}
-  import * as {{ apiName }} from './{{ apiName }}';
+  import { 
+    VERSIONS as {{apiName}}Versions,
+    {{apiName}}
+  } from './{{ apiName }}';
 {% endfor %}
 
 export interface APIList {
@@ -12,12 +15,12 @@ export interface APIList {
 
 export const APIS: APIList = {
   {% for apiName, api in apis %}
-    {{ apiName }}: {{ apiName }}.VERSIONS,
+    {{ apiName }}: {{ apiName }}Versions,
   {% endfor %}
 };
 
 export class GeneratedAPIs {
   {% for apiName, api in apis %}
-    {{ apiName }} = {{ apiName }}.{{ apiName }};
+    {{ apiName }} = {{ apiName }};
   {% endfor %}
 }

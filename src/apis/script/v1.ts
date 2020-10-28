@@ -104,14 +104,10 @@ export namespace script_v1 {
    * Manages and executes Google Apps Script projects.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const script = google.script('v1');
-   *
-   * @namespace script
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Script
+   * ```
    */
   export class Script {
     context: APIRequestContext;
@@ -136,11 +132,11 @@ export namespace script_v1 {
    */
   export interface Schema$Content {
     /**
-     * The list of script project files. One of the files is a script manifest; it must be named &quot;appsscript&quot;, must have type of JSON, and include the manifest configurations for the project.
+     * The list of script project files. One of the files is a script manifest; it must be named "appsscript", must have type of JSON, and include the manifest configurations for the project.
      */
     files?: Schema$File[];
     /**
-     * The script project&#39;s Drive ID.
+     * The script project's Drive ID.
      */
     scriptId?: string | null;
   }
@@ -170,7 +166,7 @@ export namespace script_v1 {
      */
     deploymentId?: string | null;
     /**
-     * The deployment&#39;s entry points.
+     * The deployment's entry points.
      */
     entryPoints?: Schema$EntryPoint[];
     /**
@@ -191,7 +187,7 @@ export namespace script_v1 {
      */
     manifestFileName?: string | null;
     /**
-     * The script project&#39;s Drive ID.
+     * The script project's Drive ID.
      */
     scriptId?: string | null;
     /**
@@ -200,7 +196,7 @@ export namespace script_v1 {
     versionNumber?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -234,11 +230,11 @@ export namespace script_v1 {
     result?: Schema$ScriptExecutionResult;
   }
   /**
-   * An object that provides information about the nature of an error resulting from an attempted execution of a script function using the Apps Script API. If a run call succeeds but the script function (or Apps Script itself) throws an exception, the response body&#39;s error field contains a Status object. The `Status` object&#39;s `details` field contains an array with a single one of these `ExecutionError` objects.
+   * An object that provides information about the nature of an error resulting from an attempted execution of a script function using the Apps Script API. If a run call succeeds but the script function (or Apps Script itself) throws an exception, the response body's error field contains a Status object. The `Status` object's `details` field contains an array with a single one of these `ExecutionError` objects.
    */
   export interface Schema$ExecutionError {
     /**
-     * The error message thrown by Apps Script, usually localized into the user&#39;s language.
+     * The error message thrown by Apps Script, usually localized into the user's language.
      */
     errorMessage?: string | null;
     /**
@@ -267,12 +263,12 @@ export namespace script_v1 {
      */
     parameters?: any[] | null;
     /**
-     * *Deprecated*. For use with Android add-ons only. An ID that represents the user&#39;s current session in the Android app for Google Docs or Sheets, included as extra data in the [Intent](https://developer.android.com/guide/components/intents-filters.html) that launches the add-on. When an Android add-on is run with a session state, it gains the privileges of a [bound](https://developers.google.com/apps-script/guides/bound) script—that is, it can access information like the user&#39;s current cursor position (in Docs) or selected cell (in Sheets). To retrieve the state, call `Intent.getStringExtra(&quot;com.google.android.apps.docs.addons.SessionState&quot;)`. Optional.
+     * *Deprecated*. For use with Android add-ons only. An ID that represents the user's current session in the Android app for Google Docs or Sheets, included as extra data in the [Intent](https://developer.android.com/guide/components/intents-filters.html) that launches the add-on. When an Android add-on is run with a session state, it gains the privileges of a [bound](https://developers.google.com/apps-script/guides/bound) script—that is, it can access information like the user's current cursor position (in Docs) or selected cell (in Sheets). To retrieve the state, call `Intent.getStringExtra("com.google.android.apps.docs.addons.SessionState")`. Optional.
      */
     sessionState?: string | null;
   }
   /**
-   * An object that provides the return value of a function executed using the Apps Script API. If the script function returns successfully, the response body&#39;s response field contains this `ExecutionResponse` object.
+   * An object that provides the return value of a function executed using the Apps Script API. If the script function returns successfully, the response body's response field contains this `ExecutionResponse` object.
    */
   export interface Schema$ExecutionResponse {
     /**
@@ -318,27 +314,27 @@ export namespace script_v1 {
    */
   export interface Schema$GoogleAppsScriptTypeAddOnEntryPoint {
     /**
-     * The add-on&#39;s required list of supported container types.
+     * The add-on's required list of supported container types.
      */
     addOnType?: string | null;
     /**
-     * The add-on&#39;s optional description.
+     * The add-on's optional description.
      */
     description?: string | null;
     /**
-     * The add-on&#39;s optional help URL.
+     * The add-on's optional help URL.
      */
     helpUrl?: string | null;
     /**
-     * The add-on&#39;s required post install tip URL.
+     * The add-on's required post install tip URL.
      */
     postInstallTipUrl?: string | null;
     /**
-     * The add-on&#39;s optional report issue URL.
+     * The add-on's optional report issue URL.
      */
     reportIssueUrl?: string | null;
     /**
-     * The add-on&#39;s required title.
+     * The add-on's required title.
      */
     title?: string | null;
   }
@@ -356,7 +352,7 @@ export namespace script_v1 {
    */
   export interface Schema$GoogleAppsScriptTypeExecutionApiEntryPoint {
     /**
-     * The entry point&#39;s configuration.
+     * The entry point's configuration.
      */
     entryPointConfig?: Schema$GoogleAppsScriptTypeExecutionApiConfig;
   }
@@ -416,19 +412,19 @@ export namespace script_v1 {
    */
   export interface Schema$GoogleAppsScriptTypeUser {
     /**
-     * The user&#39;s domain.
+     * The user's domain.
      */
     domain?: string | null;
     /**
-     * The user&#39;s identifying email address.
+     * The user's identifying email address.
      */
     email?: string | null;
     /**
-     * The user&#39;s display name.
+     * The user's display name.
      */
     name?: string | null;
     /**
-     * The user&#39;s photo.
+     * The user's photo.
      */
     photoUrl?: string | null;
   }
@@ -450,7 +446,7 @@ export namespace script_v1 {
    */
   export interface Schema$GoogleAppsScriptTypeWebAppEntryPoint {
     /**
-     * The entry point&#39;s configuration.
+     * The entry point's configuration.
      */
     entryPointConfig?: Schema$GoogleAppsScriptTypeWebAppConfig;
     /**
@@ -554,7 +550,7 @@ export namespace script_v1 {
     value?: string | null;
   }
   /**
-   * A representation of an execution of an Apps Script function started with run. The execution response does not arrive until the function finishes executing. The maximum execution runtime is listed in the [Apps Script quotas guide](/apps-script/guides/services/quotas#current_limitations). After execution has started, it can have one of four outcomes: - If the script function returns successfully, the response field contains an ExecutionResponse object with the function&#39;s return value in the object&#39;s `result` field. - If the script function (or Apps Script itself) throws an exception, the error field contains a Status object. The `Status` object&#39;s `details` field contains an array with a single ExecutionError object that provides information about the nature of the error. - If the execution has not yet completed, the done field is `false` and the neither the `response` nor `error` fields are present. - If the `run` call itself fails (for example, because of a malformed request or an authorization error), the method returns an HTTP response code in the 4XX range with a different format for the response body. Client libraries automatically convert a 4XX response into an exception class.
+   * A representation of an execution of an Apps Script function started with run. The execution response does not arrive until the function finishes executing. The maximum execution runtime is listed in the [Apps Script quotas guide](/apps-script/guides/services/quotas#current_limitations). After execution has started, it can have one of four outcomes: - If the script function returns successfully, the response field contains an ExecutionResponse object with the function's return value in the object's `result` field. - If the script function (or Apps Script itself) throws an exception, the error field contains a Status object. The `Status` object's `details` field contains an array with a single ExecutionError object that provides information about the nature of the error. - If the execution has not yet completed, the done field is `false` and the neither the `response` nor `error` fields are present. - If the `run` call itself fails (for example, because of a malformed request or an authorization error), the method returns an HTTP response code in the 4XX range with a different format for the response body. Client libraries automatically convert a 4XX response into an exception class.
    */
   export interface Schema$Operation {
     /**
@@ -562,11 +558,11 @@ export namespace script_v1 {
      */
     done?: boolean | null;
     /**
-     * If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field contains a Status object. The `Status` object&#39;s `details` field contains an array with a single ExecutionError object that provides information about the nature of the error.
+     * If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, this field contains a Status object. The `Status` object's `details` field contains an array with a single ExecutionError object that provides information about the nature of the error.
      */
     error?: Schema$Status;
     /**
-     * If the script function returns successfully, this field contains an ExecutionResponse object with the function&#39;s return value.
+     * If the script function returns successfully, this field contains an ExecutionResponse object with the function's return value.
      */
     response?: {[key: string]: any} | null;
   }
@@ -587,11 +583,11 @@ export namespace script_v1 {
      */
     lastModifyUser?: Schema$GoogleAppsScriptTypeUser;
     /**
-     * The parent&#39;s Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This filed is optional, and if not set, a stand-alone script will be created.
+     * The parent's Drive ID that the script will be attached to. This is usually the ID of a Google Document or Google Sheet. This filed is optional, and if not set, a stand-alone script will be created.
      */
     parentId?: string | null;
     /**
-     * The script project&#39;s Drive ID.
+     * The script project's Drive ID.
      */
     scriptId?: string | null;
     /**
@@ -626,7 +622,7 @@ export namespace script_v1 {
     lineNumber?: number | null;
   }
   /**
-   * If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, the response body&#39;s error field contains this `Status` object.
+   * If a `run` call succeeds but the script function (or Apps Script itself) throws an exception, the response body's error field contains this `Status` object.
    */
   export interface Schema$Status {
     /**
@@ -702,7 +698,7 @@ export namespace script_v1 {
     structValue?: Schema$Struct;
   }
   /**
-   * A resource representing a script project version. A version is a &quot;snapshot&quot; of a script project and is similar to a read-only branched release. When creating deployments, the version to use must be specified.
+   * A resource representing a script project version. A version is a "snapshot" of a script project and is similar to a read-only branched release. When creating deployments, the version to use must be specified.
    */
   export interface Schema$Version {
     /**
@@ -714,7 +710,7 @@ export namespace script_v1 {
      */
     description?: string | null;
     /**
-     * The script project&#39;s Drive ID.
+     * The script project's Drive ID.
      */
     scriptId?: string | null;
     /**
@@ -730,9 +726,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.processes.list
-     * @desc List information about processes made by or on behalf of a user, such as process type and current status.
+     * List information about processes made by or on behalf of a user, such as process type and current status.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -793,24 +789,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.processes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of returned processes per page of results. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-     * @param {string=} params.userProcessFilter.deploymentId Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
-     * @param {string=} params.userProcessFilter.endTime Optional field used to limit returned processes to those that completed on or before the given timestamp.
-     * @param {string=} params.userProcessFilter.functionName Optional field used to limit returned processes to those originating from a script function with the given function name.
-     * @param {string=} params.userProcessFilter.projectName Optional field used to limit returned processes to those originating from projects with project names containing a specific string.
-     * @param {string=} params.userProcessFilter.scriptId Optional field used to limit returned processes to those originating from projects with a specific script ID.
-     * @param {string=} params.userProcessFilter.startTime Optional field used to limit returned processes to those that were started on or after the given timestamp.
-     * @param {string=} params.userProcessFilter.statuses Optional field used to limit returned processes to those having one of the specified process statuses.
-     * @param {string=} params.userProcessFilter.types Optional field used to limit returned processes to those having one of the specified process types.
-     * @param {string=} params.userProcessFilter.userAccessLevels Optional field used to limit returned processes to those having one of the specified user access levels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Processes$List,
@@ -887,7 +871,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserProcessesResponse>(parameters);
@@ -895,9 +879,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.processes.listScriptProcesses
-     * @desc List information about a script's executed processes, such as process type and current status.
+     * List information about a script's executed processes, such as process type and current status.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -956,23 +940,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.processes.listScriptProcesses
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of returned processes per page of results. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-     * @param {string=} params.scriptId The script ID of the project whose processes are listed.
-     * @param {string=} params.scriptProcessFilter.deploymentId Optional field used to limit returned processes to those originating from projects with a specific deployment ID.
-     * @param {string=} params.scriptProcessFilter.endTime Optional field used to limit returned processes to those that completed on or before the given timestamp.
-     * @param {string=} params.scriptProcessFilter.functionName Optional field used to limit returned processes to those originating from a script function with the given function name.
-     * @param {string=} params.scriptProcessFilter.startTime Optional field used to limit returned processes to those that were started on or after the given timestamp.
-     * @param {string=} params.scriptProcessFilter.statuses Optional field used to limit returned processes to those having one of the specified process statuses.
-     * @param {string=} params.scriptProcessFilter.types Optional field used to limit returned processes to those having one of the specified process types.
-     * @param {string=} params.scriptProcessFilter.userAccessLevels Optional field used to limit returned processes to those having one of the specified user access levels.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listScriptProcesses(
       params: Params$Resource$Processes$Listscriptprocesses,
@@ -1053,7 +1026,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScriptProcessesResponse>(parameters);
@@ -1162,9 +1135,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.create
-     * @desc Creates a new, empty script project with no script files and a base manifest file.
+     * Creates a new, empty script project with no script files and a base manifest file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1216,14 +1189,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().CreateProjectRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Create,
@@ -1293,7 +1264,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1301,9 +1272,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.get
-     * @desc Gets a script project's metadata.
+     * Gets a script project's metadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1352,14 +1323,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Get,
@@ -1432,7 +1401,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1440,9 +1409,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.getContent
-     * @desc Gets the content of the script project, including the code source and metadata for each script file.
+     * Gets the content of the script project, including the code source and metadata for each script file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1488,15 +1457,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.getContent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {integer=} params.versionNumber The version number of the project to retrieve. If not provided, the project's HEAD version is returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getContent(
       params: Params$Resource$Projects$Getcontent,
@@ -1570,7 +1536,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Content>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
@@ -1578,9 +1544,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.getMetrics
-     * @desc Get metrics data for scripts, such as number of executions and active users.
+     * Get metrics data for scripts, such as number of executions and active users.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1626,16 +1592,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.getMetrics
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.metricsFilter.deploymentId Optional field indicating a specific deployment to retrieve metrics from.
-     * @param {string=} params.metricsGranularity Required field indicating what granularity of metrics are returned.
-     * @param {string} params.scriptId Required field indicating the script to get metrics for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetrics(
       params: Params$Resource$Projects$Getmetrics,
@@ -1709,7 +1671,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Metrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metrics>(parameters);
@@ -1717,9 +1679,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.updateContent
-     * @desc Updates the content of the specified script project. This content is stored as the HEAD version, and is used when the script is executed as a trigger, in the script editor, in add-on preview mode, or as a web app or Apps Script API in development mode. This clears all the existing files in the project.
+     * Updates the content of the specified script project. This content is stored as the HEAD version, and is used when the script is executed as a trigger, in the script editor, in add-on preview mode, or as a web app or Apps Script API in development mode. This clears all the existing files in the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1769,15 +1731,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.updateContent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Content} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateContent(
       params: Params$Resource$Projects$Updatecontent,
@@ -1851,7 +1810,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Content>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
@@ -1917,9 +1876,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.deployments.create
-     * @desc Creates a deployment of an Apps Script project.
+     * Creates a deployment of an Apps Script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -1973,15 +1932,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.deployments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().DeploymentConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Deployments$Create,
@@ -2055,7 +2011,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2063,9 +2019,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.deployments.delete
-     * @desc Deletes a deployment of an Apps Script project.
+     * Deletes a deployment of an Apps Script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2105,15 +2061,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.deployments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deploymentId The deployment ID to be undeployed.
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Deployments$Delete,
@@ -2186,7 +2139,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2194,9 +2147,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.deployments.get
-     * @desc Gets a deployment of an Apps Script project.
+     * Gets a deployment of an Apps Script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2244,15 +2197,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.deployments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deploymentId The deployment ID.
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Deployments$Get,
@@ -2325,7 +2275,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2333,9 +2283,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.deployments.list
-     * @desc Lists the deployments of an Apps Script project.
+     * Lists the deployments of an Apps Script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2383,16 +2333,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.deployments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of deployments on each returned page. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Deployments$List,
@@ -2471,7 +2417,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDeploymentsResponse>(parameters);
@@ -2479,9 +2425,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.deployments.update
-     * @desc Updates a deployment of an Apps Script project.
+     * Updates a deployment of an Apps Script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2534,16 +2480,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.deployments.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.deploymentId The deployment ID for this deployment.
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().UpdateDeploymentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Deployments$Update,
@@ -2616,7 +2558,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2697,9 +2639,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.versions.create
-     * @desc Creates a new immutable version using the current code, with a unique version number.
+     * Creates a new immutable version using the current code, with a unique version number.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2753,15 +2695,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {().Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Versions$Create,
@@ -2835,7 +2774,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -2843,9 +2782,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.versions.get
-     * @desc Gets a version of a script project.
+     * Gets a version of a script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -2893,15 +2832,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.versions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {integer} params.versionNumber The version number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Versions$Get,
@@ -2974,7 +2910,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -2982,9 +2918,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.projects.versions.list
-     * @desc List the versions of a script project.
+     * List the versions of a script project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -3032,16 +2968,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.projects.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of versions on each returned page. Defaults to 50.
-     * @param {string=} params.pageToken The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from a previous response.
-     * @param {string} params.scriptId The script project's Drive ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Versions$List,
@@ -3120,7 +3052,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
@@ -3174,9 +3106,9 @@ export namespace script_v1 {
     }
 
     /**
-     * script.scripts.run
-     * @desc Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project. This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File > Project properties** and click the **Scopes** tab. The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
+     * Runs a function in an Apps Script project. The script project must be deployed for use with the Apps Script API and the calling application must share the same Cloud Platform project. This method requires authorization with an OAuth 2.0 token that includes at least one of the scopes listed in the [Authorization](#authorization-scopes) section; script projects that do not require authorization cannot be executed through this API. To find the correct scopes to include in the authentication token, open the project in the script editor, then select **File \> Project properties** and click the **Scopes** tab. The error `403, PERMISSION_DENIED: The caller does not have permission` indicates that the Cloud Platform project used to authorize the request is not the same as the one used by the script.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/script.googleapis.com
@@ -3213,7 +3145,7 @@ export namespace script_v1 {
      *
      *   // Do the magic
      *   const res = await script.scripts.run({
-     *     // The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
+     *     // The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File \> Project properties**.
      *     scriptId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3242,15 +3174,12 @@ export namespace script_v1 {
      *   throw e;
      * });
      *
-     * @alias script.scripts.run
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.scriptId The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
-     * @param {().ExecutionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     run(
       params: Params$Resource$Scripts$Run,
@@ -3323,7 +3252,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3333,7 +3262,7 @@ export namespace script_v1 {
 
   export interface Params$Resource$Scripts$Run extends StandardParameters {
     /**
-     * The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File > Project properties**.
+     * The script ID of the script to be executed. To find the script ID, open the project in the script editor and select **File \> Project properties**.
      */
     scriptId?: string;
 

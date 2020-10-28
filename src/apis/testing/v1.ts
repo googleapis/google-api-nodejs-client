@@ -104,14 +104,10 @@ export namespace testing_v1 {
    * Allows developers to run automated tests for their mobile applications on Google infrastructure.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const testing = google.testing('v1');
-   *
-   * @namespace testing
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Testing
+   * ```
    */
   export class Testing {
     context: APIRequestContext;
@@ -204,7 +200,7 @@ export namespace testing_v1 {
      */
     appBundle?: Schema$AppBundle;
     /**
-     * The java package for the application under test. The default value is determined by examining the application&#39;s manifest.
+     * The java package for the application under test. The default value is determined by examining the application's manifest.
      */
     appPackageId?: string | null;
     /**
@@ -220,15 +216,15 @@ export namespace testing_v1 {
      */
     testApk?: Schema$FileReference;
     /**
-     * The java package for the test to be executed. The default value is determined by examining the application&#39;s manifest.
+     * The java package for the test to be executed. The default value is determined by examining the application's manifest.
      */
     testPackageId?: string | null;
     /**
-     * The InstrumentationTestRunner class. The default value is determined by examining the application&#39;s manifest.
+     * The InstrumentationTestRunner class. The default value is determined by examining the application's manifest.
      */
     testRunnerClass?: string | null;
     /**
-     * Each target must be fully qualified with the package name or class name, in one of these formats: - &quot;package package_name&quot; - &quot;class package_name.class_name&quot; - &quot;class package_name.class_name#method_name&quot; If empty, all targets in the module will be run.
+     * Each target must be fully qualified with the package name or class name, in one of these formats: - "package package_name" - "class package_name.class_name" - "class package_name.class_name#method_name" If empty, all targets in the module will be run.
      */
     testTargets?: string[] | null;
   }
@@ -258,7 +254,7 @@ export namespace testing_v1 {
    */
   export interface Schema$AndroidModel {
     /**
-     * The company that this device is branded with. Example: &quot;Google&quot;, &quot;Samsung&quot;.
+     * The company that this device is branded with. Example: "Google", "Samsung".
      */
     brand?: string | null;
     /**
@@ -286,7 +282,7 @@ export namespace testing_v1 {
      */
     manufacturer?: string | null;
     /**
-     * The human-readable marketing name for this device model. Examples: &quot;Nexus 5&quot;, &quot;Galaxy S5&quot;.
+     * The human-readable marketing name for this device model. Examples: "Nexus 5", "Galaxy S5".
      */
     name?: string | null;
     /**
@@ -302,7 +298,7 @@ export namespace testing_v1 {
      */
     screenY?: number | null;
     /**
-     * The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list. Elements are optionally prefixed by &quot;version_id:&quot; (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version.
+     * The list of supported ABIs for this device. This corresponds to either android.os.Build.SUPPORTED_ABIS (for API level 21 and above) or android.os.Build.CPU_ABI/CPU_ABI2. The most preferred ABI is the first element in the list. Elements are optionally prefixed by "version_id:" (where version_id is the id of an AndroidVersion), denoting an ABI that is supported only on a particular version.
      */
     supportedAbis?: string[] | null;
     /**
@@ -310,7 +306,7 @@ export namespace testing_v1 {
      */
     supportedVersionIds?: string[] | null;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
+     * Tags for this dimension. Examples: "default", "preview", "deprecated".
      */
     tags?: string[] | null;
     /**
@@ -335,7 +331,7 @@ export namespace testing_v1 {
      */
     appInitialActivity?: string | null;
     /**
-     * The java package for the application under test. The default value is determined by examining the application&#39;s manifest.
+     * The java package for the application under test. The default value is determined by examining the application's manifest.
      */
     appPackageId?: string | null;
     /**
@@ -385,15 +381,15 @@ export namespace testing_v1 {
      */
     appBundle?: Schema$AppBundle;
     /**
-     * The java package for the application under test. The default is determined by examining the application&#39;s manifest.
+     * The java package for the application under test. The default is determined by examining the application's manifest.
      */
     appPackageId?: string | null;
     /**
-     * The list of scenario labels that should be run during the test. The scenario labels should map to labels defined in the application&#39;s manifest. For example, player_experience and com.google.test.loops.player_experience add all of the loops labeled in the manifest with the com.google.test.loops.player_experience name to the execution. Scenarios can also be specified in the scenarios field.
+     * The list of scenario labels that should be run during the test. The scenario labels should map to labels defined in the application's manifest. For example, player_experience and com.google.test.loops.player_experience add all of the loops labeled in the manifest with the com.google.test.loops.player_experience name to the execution. Scenarios can also be specified in the scenarios field.
      */
     scenarioLabels?: string[] | null;
     /**
-     * The list of scenarios that should be run during the test. The default is all test loops, derived from the application&#39;s manifest.
+     * The list of scenarios that should be run during the test. The default is all test loops, derived from the application's manifest.
      */
     scenarios?: number[] | null;
   }
@@ -406,7 +402,7 @@ export namespace testing_v1 {
      */
     apiLevel?: number | null;
     /**
-     * The code name for this Android version. Examples: &quot;JellyBean&quot;, &quot;KitKat&quot;.
+     * The code name for this Android version. Examples: "JellyBean", "KitKat".
      */
     codeName?: string | null;
     /**
@@ -422,11 +418,11 @@ export namespace testing_v1 {
      */
     releaseDate?: Schema$Date;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
+     * Tags for this dimension. Examples: "default", "preview", "deprecated".
      */
     tags?: string[] | null;
     /**
-     * A string representing this version of the Android OS. Examples: &quot;4.3&quot;, &quot;4.4&quot;.
+     * A string representing this version of the Android OS. Examples: "4.3", "4.4".
      */
     versionString?: string | null;
   }
@@ -439,7 +435,7 @@ export namespace testing_v1 {
      */
     location?: Schema$FileReference;
     /**
-     * The java package for the APK to be installed. Value is determined by examining the application&#39;s manifest.
+     * The java package for the APK to be installed. Value is determined by examining the application's manifest.
      */
     packageName?: string | null;
   }
@@ -467,7 +463,7 @@ export namespace testing_v1 {
      */
     minSdkVersion?: number | null;
     /**
-     * Full Java-style package name for this application, e.g. &quot;com.example.foo&quot;.
+     * Full Java-style package name for this application, e.g. "com.example.foo".
      */
     packageName?: string | null;
     /**
@@ -507,7 +503,7 @@ export namespace testing_v1 {
     name?: string | null;
   }
   /**
-   * Key-value pair of detailed information about the client which invoked the test. Examples: {&#39;Version&#39;, &#39;1.0&#39;}, {&#39;Release Track&#39;, &#39;BETA&#39;}.
+   * Key-value pair of detailed information about the client which invoked the test. Examples: {'Version', '1.0'\}, {'Release Track', 'BETA'\}.
    */
   export interface Schema$ClientInfoDetail {
     /**
@@ -524,7 +520,7 @@ export namespace testing_v1 {
    */
   export interface Schema$Date {
     /**
-     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn&#39;t significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
@@ -734,7 +730,7 @@ export namespace testing_v1 {
      */
     content?: Schema$FileReference;
     /**
-     * Location of the file on the device, inside the app&#39;s sandboxed filesystem
+     * Location of the file on the device, inside the app's sandboxed filesystem
      */
     devicePath?: string | null;
   }
@@ -764,7 +760,7 @@ export namespace testing_v1 {
      */
     id?: string | null;
     /**
-     * The human-readable name for this device model. Examples: &quot;iPhone 4s&quot;, &quot;iPad Mini 2&quot;.
+     * The human-readable name for this device model. Examples: "iPhone 4s", "iPad Mini 2".
      */
     name?: string | null;
     /**
@@ -784,7 +780,7 @@ export namespace testing_v1 {
      */
     supportedVersionIds?: string[] | null;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
+     * Tags for this dimension. Examples: "default", "preview", "deprecated".
      */
     tags?: string[] | null;
   }
@@ -831,7 +827,7 @@ export namespace testing_v1 {
      */
     networkProfile?: string | null;
     /**
-     * List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (e.g. /private/var/mobile/Media) or within an accessible directory inside the app&#39;s filesystem (e.g. /Documents) by specifying the bundle id.
+     * List of directories on the device to upload to Cloud Storage at the end of the test. Directories should either be in a shared directory (e.g. /private/var/mobile/Media) or within an accessible directory inside the app's filesystem (e.g. /Documents) by specifying the bundle id.
      */
     pullDirectories?: Schema$IosDeviceFile[];
     /**
@@ -848,11 +844,11 @@ export namespace testing_v1 {
      */
     id?: string | null;
     /**
-     * An integer representing the major iOS version. Examples: &quot;8&quot;, &quot;9&quot;.
+     * An integer representing the major iOS version. Examples: "8", "9".
      */
     majorVersion?: number | null;
     /**
-     * An integer representing the minor iOS version. Examples: &quot;1&quot;, &quot;2&quot;.
+     * An integer representing the minor iOS version. Examples: "1", "2".
      */
     minorVersion?: number | null;
     /**
@@ -860,12 +856,12 @@ export namespace testing_v1 {
      */
     supportedXcodeVersionIds?: string[] | null;
     /**
-     * Tags for this dimension. Examples: &quot;default&quot;, &quot;preview&quot;, &quot;deprecated&quot;.
+     * Tags for this dimension. Examples: "default", "preview", "deprecated".
      */
     tags?: string[] | null;
   }
   /**
-   * A test of an iOS application that uses the XCTest framework. Xcode supports the option to &quot;build for testing&quot;, which generates an .xctestrun file that contains a test specification (arguments, test methods, etc). This test type accepts a zip file containing the .xctestrun file and the corresponding contents of the Build/Products directory that contains all the binaries needed to run the tests.
+   * A test of an iOS application that uses the XCTest framework. Xcode supports the option to "build for testing", which generates an .xctestrun file that contains a test specification (arguments, test methods, etc). This test type accepts a zip file containing the .xctestrun file and the corresponding contents of the Build/Products directory that contains all the binaries needed to run the tests.
    */
   export interface Schema$IosXcTest {
     /**
@@ -898,19 +894,19 @@ export namespace testing_v1 {
    */
   export interface Schema$Locale {
     /**
-     * The id for this locale. Example: &quot;en_US&quot;.
+     * The id for this locale. Example: "en_US".
      */
     id?: string | null;
     /**
-     * A human-friendly name for this language/locale. Example: &quot;English&quot;.
+     * A human-friendly name for this language/locale. Example: "English".
      */
     name?: string | null;
     /**
-     * A human-friendly string representing the region for this locale. Example: &quot;United States&quot;. Not present for every locale.
+     * A human-friendly string representing the region for this locale. Example: "United States". Not present for every locale.
      */
     region?: string | null;
     /**
-     * Tags for this dimension. Example: &quot;default&quot;.
+     * Tags for this dimension. Example: "default".
      */
     tags?: string[] | null;
   }
@@ -919,7 +915,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ManualSharding {
     /**
-     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected, the number of test_targets_for_shard must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 500.
+     * Required. Group of packages, classes, and/or test methods to be run for each shard. When any physical devices are selected, the number of test_targets_for_shard must be \>= 1 and <= 50. When no physical devices are selected, the number must be \>= 1 and <= 500.
      */
     testTargetsForShard?: Schema$TestTargetsForShard[];
   }
@@ -958,15 +954,15 @@ export namespace testing_v1 {
    */
   export interface Schema$Orientation {
     /**
-     * The id for this orientation. Example: &quot;portrait&quot;.
+     * The id for this orientation. Example: "portrait".
      */
     id?: string | null;
     /**
-     * A human-friendly name for this orientation. Example: &quot;portrait&quot;.
+     * A human-friendly name for this orientation. Example: "portrait".
      */
     name?: string | null;
     /**
-     * Tags for this dimension. Example: &quot;default&quot;.
+     * Tags for this dimension. Example: "default".
      */
     tags?: string[] | null;
   }
@@ -975,7 +971,7 @@ export namespace testing_v1 {
    */
   export interface Schema$ProvidedSoftwareCatalog {
     /**
-     * A string representing the current version of Android Test Orchestrator that is provided by TestExecutionService. Example: &quot;1.0.2 beta&quot;.
+     * A string representing the current version of Android Test Orchestrator that is provided by TestExecutionService. Example: "1.0.2 beta".
      */
     orchestratorVersion?: string | null;
   }
@@ -988,7 +984,7 @@ export namespace testing_v1 {
      */
     content?: Schema$FileReference;
     /**
-     * Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: ${EXTERNAL_STORAGE}, /sdcard, or /storage ${ANDROID_DATA}/local/tmp, or /data/local/tmp Specifying a path outside of these directory trees is invalid. The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there. It is strongly advised to use the Environment API in app and test code to access files on the device in a portable way.
+     * Required. Where to put the content on the device. Must be an absolute, allowlisted path. If the file exists, it will be replaced. The following device-side directories and any of their subdirectories are allowlisted: ${EXTERNAL_STORAGE\}, /sdcard, or /storage ${ANDROID_DATA\}/local/tmp, or /data/local/tmp Specifying a path outside of these directory trees is invalid. The paths /sdcard and /data will be made available and treated as implicit path substitutions. E.g. if /sdcard on a particular device does not map to external storage, the system will replace it with the external storage path prefix for that device and copy the file there. It is strongly advised to use the Environment API in app and test code to access files on the device in a portable way.
      */
     devicePath?: string | null;
   }
@@ -1026,7 +1022,7 @@ export namespace testing_v1 {
      */
     inputText?: string | null;
     /**
-     * Required. The android resource name of the target UI element. For example, in Java: R.string.foo in xml: @string/foo Only the &quot;foo&quot; part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html
+     * Required. The android resource name of the target UI element. For example, in Java: R.string.foo in xml: @string/foo Only the "foo" part is needed. Reference doc: https://developer.android.com/guide/topics/resources/accessing-resources.html
      */
     resourceName?: string | null;
   }
@@ -1109,7 +1105,7 @@ export namespace testing_v1 {
      */
     errorMessage?: string | null;
     /**
-     * Output only. Human-readable, detailed descriptions of the test&#39;s progress. For example: &quot;Provisioning a device&quot;, &quot;Starting Test&quot;. During the course of execution new data may be appended to the end of progress_messages.
+     * Output only. Human-readable, detailed descriptions of the test's progress. For example: "Provisioning a device", "Starting Test". During the course of execution new data may be appended to the end of progress_messages.
      */
     progressMessages?: string[] | null;
   }
@@ -1327,7 +1323,7 @@ export namespace testing_v1 {
    */
   export interface Schema$TestTargetsForShard {
     /**
-     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, &quot;package com.my.packages&quot; &quot;class com.my.package.MyClass&quot;. The number of shard_test_targets must be greater than 0.
+     * Group of packages, classes, and/or test methods to be run for each shard. The targets need to be specified in AndroidJUnitRunner argument format. For example, "package com.my.packages" "class com.my.package.MyClass". The number of shard_test_targets must be greater than 0.
      */
     testTargets?: string[] | null;
   }
@@ -1395,7 +1391,7 @@ export namespace testing_v1 {
      */
     burst?: number | null;
     /**
-     * Packet delay, must be &gt;= 0.
+     * Packet delay, must be \>= 0.
      */
     delay?: string | null;
     /**
@@ -1408,11 +1404,11 @@ export namespace testing_v1 {
     packetLossRatio?: number | null;
   }
   /**
-   * Uniformly shards test cases given a total number of shards. For Instrumentation test, it will be translated to &quot;-e numShard&quot; &quot;-e shardIndex&quot; AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
+   * Uniformly shards test cases given a total number of shards. For Instrumentation test, it will be translated to "-e numShard" "-e shardIndex" AndroidJUnitRunner arguments. With uniform sharding enabled, specifying these sharding arguments via environment_variables is invalid.
    */
   export interface Schema$UniformSharding {
     /**
-     * Required. Total number of shards. When any physical devices are selected, the number must be &gt;= 1 and &lt;= 50. When no physical devices are selected, the number must be &gt;= 1 and &lt;= 500.
+     * Required. Total number of shards. When any physical devices are selected, the number must be \>= 1 and <= 50. When no physical devices are selected, the number must be \>= 1 and <= 500.
      */
     numShards?: number | null;
   }
@@ -1421,11 +1417,11 @@ export namespace testing_v1 {
    */
   export interface Schema$XcodeVersion {
     /**
-     * Tags for this Xcode version. Example: &quot;default&quot;.
+     * Tags for this Xcode version. Example: "default".
      */
     tags?: string[] | null;
     /**
-     * The id for this version. Example: &quot;9.2&quot;.
+     * The id for this version. Example: "9.2".
      */
     version?: string | null;
   }
@@ -1437,9 +1433,9 @@ export namespace testing_v1 {
     }
 
     /**
-     * testing.applicationDetailService.getApkDetails
-     * @desc Gets the details of an Android application APK.
+     * Gets the details of an Android application APK.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/testing.googleapis.com
@@ -1484,14 +1480,12 @@ export namespace testing_v1 {
      *   throw e;
      * });
      *
-     * @alias testing.applicationDetailService.getApkDetails
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().FileReference} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getApkDetails(
       params: Params$Resource$Applicationdetailservice$Getapkdetails,
@@ -1571,7 +1565,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$GetApkDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetApkDetailsResponse>(parameters);
@@ -1603,9 +1597,9 @@ export namespace testing_v1 {
     }
 
     /**
-     * testing.projects.testMatrices.cancel
-     * @desc Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asynchronously. If the matrix is already final, this operation will have no effect. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * Cancels unfinished test executions in a test matrix. This call returns immediately and cancellation proceeds asynchronously. If the matrix is already final, this operation will have no effect. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/testing.googleapis.com
@@ -1647,15 +1641,12 @@ export namespace testing_v1 {
      *   throw e;
      * });
      *
-     * @alias testing.projects.testMatrices.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Cloud project that owns the test.
-     * @param {string} params.testMatrixId Test matrix that will be canceled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Testmatrices$Cancel,
@@ -1736,7 +1727,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$CancelTestMatrixResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CancelTestMatrixResponse>(parameters);
@@ -1744,9 +1735,9 @@ export namespace testing_v1 {
     }
 
     /**
-     * testing.projects.testMatrices.create
-     * @desc Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
+     * Creates and runs a matrix of tests according to the given specifications. Unsupported environments will be returned in the state UNSUPPORTED. A test matrix is limited to use at most 2000 devices in parallel. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to write to project - INVALID_ARGUMENT - if the request is malformed or if the matrix tries to use too many simultaneous devices.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/testing.googleapis.com
@@ -1820,16 +1811,12 @@ export namespace testing_v1 {
      *   throw e;
      * });
      *
-     * @alias testing.projects.testMatrices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId The GCE project under which this job will run.
-     * @param {string=} params.requestId A string id used to detect duplicated requests. Ids are automatically scoped to a project, so users should ensure the ID is unique per-project. A UUID is recommended. Optional, but strongly recommended.
-     * @param {().TestMatrix} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Testmatrices$Create,
@@ -1903,7 +1890,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
@@ -1911,9 +1898,9 @@ export namespace testing_v1 {
     }
 
     /**
-     * testing.projects.testMatrices.get
-     * @desc Checks the status of a test matrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
+     * Checks the status of a test matrix. May return any of the following canonical error codes: - PERMISSION_DENIED - if the user is not authorized to read project - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the Test Matrix does not exist
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/testing.googleapis.com
@@ -1970,15 +1957,12 @@ export namespace testing_v1 {
      *   throw e;
      * });
      *
-     * @alias testing.projects.testMatrices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Cloud project that owns the test matrix.
-     * @param {string} params.testMatrixId Unique test matrix id which was assigned by the service.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Testmatrices$Get,
@@ -2051,7 +2035,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestMatrix>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestMatrix>(parameters);
@@ -2105,9 +2089,9 @@ export namespace testing_v1 {
     }
 
     /**
-     * testing.testEnvironmentCatalog.get
-     * @desc Gets the catalog of supported test environments. May return any of the following canonical error codes: - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
+     * Gets the catalog of supported test environments. May return any of the following canonical error codes: - INVALID_ARGUMENT - if the request is malformed - NOT_FOUND - if the environment type does not exist - INTERNAL - if an internal error occurred
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/testing.googleapis.com
@@ -2156,15 +2140,12 @@ export namespace testing_v1 {
      *   throw e;
      * });
      *
-     * @alias testing.testEnvironmentCatalog.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.environmentType Required. The type of environment that should be listed.
-     * @param {string=} params.projectId For authorization, the cloud project requesting the TestEnvironmentCatalog.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Testenvironmentcatalog$Get,
@@ -2242,7 +2223,7 @@ export namespace testing_v1 {
       if (callback) {
         createAPIRequest<Schema$TestEnvironmentCatalog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestEnvironmentCatalog>(parameters);

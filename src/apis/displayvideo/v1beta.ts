@@ -104,14 +104,10 @@ export namespace displayvideo_v1beta {
    * Display &amp; Video 360 API allows users to manage and create campaigns and reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const displayvideo = google.displayvideo('v1beta');
-   *
-   * @namespace displayvideo
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Displayvideo
+   * ```
    */
   export class Displayvideo {
     context: APIRequestContext;
@@ -157,7 +153,7 @@ export namespace displayvideo_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -190,9 +186,9 @@ export namespace displayvideo_v1beta {
     }
 
     /**
-     * displayvideo.media.download
-     * @desc Downloads media. Download is supported on the URI `/download/{resource_name=**}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
+     * Downloads media. Download is supported on the URI `/download/{resource_name=**\}?alt=media.` **Note**: Download requests will not be successful without including `alt=media` query string.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -235,14 +231,12 @@ export namespace displayvideo_v1beta {
      *   throw e;
      * });
      *
-     * @alias displayvideo.media.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resourceName Name of the media that is being downloaded. See ReadRequest.resource_name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Media$Download,
@@ -322,7 +316,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$GoogleBytestreamMedia>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleBytestreamMedia>(parameters);
@@ -353,9 +347,9 @@ export namespace displayvideo_v1beta {
     }
 
     /**
-     * displayvideo.sdfdownloadtask.operations.get
-     * @desc Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -402,14 +396,12 @@ export namespace displayvideo_v1beta {
      *   throw e;
      * });
      *
-     * @alias displayvideo.sdfdownloadtask.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sdfdownloadtask$Operations$Get,
@@ -480,7 +472,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -512,9 +504,9 @@ export namespace displayvideo_v1beta {
     }
 
     /**
-     * displayvideo.sdfdownloadtasks.operations.get
-     * @desc Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
+     * Gets the latest state of an asynchronous SDF download task operation. Clients should poll this method at intervals of 30 seconds.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
@@ -561,14 +553,12 @@ export namespace displayvideo_v1beta {
      *   throw e;
      * });
      *
-     * @alias displayvideo.sdfdownloadtasks.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sdfdownloadtasks$Operations$Get,
@@ -639,7 +629,7 @@ export namespace displayvideo_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

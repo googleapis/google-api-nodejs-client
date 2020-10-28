@@ -104,14 +104,10 @@ export namespace cloudidentity_v1 {
    * API for provisioning and managing identity resources.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudidentity = google.cloudidentity('v1');
-   *
-   * @namespace cloudidentity
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Cloudidentity
+   * ```
    */
   export class Cloudidentity {
     context: APIRequestContext;
@@ -134,11 +130,11 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$EntityKey {
     /**
-     * The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source&#39;s requirements. Must be unique within a `namespace`.
+     * The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      */
     id?: string | null;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
      */
     namespace?: string | null;
   }
@@ -159,7 +155,7 @@ export namespace cloudidentity_v1 {
      */
     ownershipPrivilege?: string | null;
     /**
-     * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the &quot;Enforce Work Profile&quot; policy.
+     * Whether device supports Android work profiles. If false, this service will not block access to corp data even if an administrator turns on the "Enforce Work Profile" policy.
      */
     supportsWorkProfile?: boolean | null;
   }
@@ -168,7 +164,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -186,7 +182,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -204,7 +200,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -222,7 +218,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -280,7 +276,7 @@ export namespace cloudidentity_v1 {
      */
     managed?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the &quot;BeyondCorp Alliance&quot;, this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization&#39;s customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter &#39;C&#39;. The customer ID to be used in this API is the string after the letter &#39;C&#39; (not including &#39;C&#39;)
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      */
     name?: string | null;
     /**
@@ -390,7 +386,7 @@ export namespace cloudidentity_v1 {
      */
     model?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique id assigned to the Device.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique id assigned to the Device.
      */
     name?: string | null;
     /**
@@ -402,7 +398,7 @@ export namespace cloudidentity_v1 {
      */
     osVersion?: string | null;
     /**
-     * Output only. Domain name for Google accounts on device. Type for other accounts on device. On Android, will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account&#39;s domain has only one account. Examples: &quot;com.example&quot;, &quot;xyz.com&quot;.
+     * Output only. Domain name for Google accounts on device. Type for other accounts on device. On Android, will only be populated if |ownership_privilege| is |PROFILE_OWNER| or |DEVICE_OWNER|. Does not include the account signed in to the device policy app if that account's domain has only one account. Examples: "com.example", "xyz.com".
      */
     otherAccounts?: string[] | null;
     /**
@@ -427,7 +423,7 @@ export namespace cloudidentity_v1 {
     wifiMacAddresses?: string[] | null;
   }
   /**
-   * Represents a user&#39;s use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user&#39;s use of a Device
+   * Represents a user's use of a Device in the Cloud Identity Devices API. A DeviceUser is a resource representing a user's use of a Device
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1DeviceUser {
     /**
@@ -455,7 +451,7 @@ export namespace cloudidentity_v1 {
      */
     managementState?: string | null;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id}/deviceUsers/{user_id}`, where user_id is the ID of the user associated with the user session.
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the DeviceUser in format: `devices/{device_id\}/deviceUsers/{user_id\}`, where user_id is the ID of the user associated with the user session.
      */
     name?: string | null;
     /**
@@ -511,7 +507,7 @@ export namespace cloudidentity_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response containing resource names of the DeviceUsers associated with the caller&#39;s credentials.
+   * Response containing resource names of the DeviceUsers associated with the caller's credentials.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse {
     /**
@@ -519,7 +515,7 @@ export namespace cloudidentity_v1 {
      */
     customer?: string | null;
     /**
-     * [Resource names](https://cloud.google.com/apis/design/resource_names) of the DeviceUsers in the format: `devices/{device_id}/deviceUsers/{user_resource_id}`, where device_id is the unique ID assigned to a Device and user_resource_id is the unique user ID
+     * [Resource names](https://cloud.google.com/apis/design/resource_names) of the DeviceUsers in the format: `devices/{device_id\}/deviceUsers/{user_resource_id\}`, where device_id is the unique ID assigned to a Device and user_resource_id is the unique user ID
      */
     names?: string[] | null;
     /**
@@ -532,7 +528,7 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
@@ -550,12 +546,12 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you&#39;re using this API for your own organization, use `customers/my_customer` If you&#39;re using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string | null;
   }
   /**
-   * Response message for wiping the user&#39;s account from the device.
+   * Response message for wiping the user's account from the device.
    */
   export interface Schema$GoogleAppsCloudidentityDevicesV1WipeDeviceUserResponse {
     /**
@@ -584,15 +580,15 @@ export namespace cloudidentity_v1 {
      */
     groupKey?: Schema$EntityKey;
     /**
-     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {&quot;cloudidentity.googleapis.com/groups.discussion_forum&quot;: &quot;&quot;} or {&quot;system/groups/external&quot;: &quot;&quot;}.
+     * Required. One or more label entries that apply to the Group. Currently supported labels contain a key with an empty value. Google Groups are the default type of group and have a label with a key of `cloudidentity.googleapis.com/groups.discussion_forum` and an empty value. Existing Google Groups can have an additional label with a key of `cloudidentity.googleapis.com/groups.security` and an empty value added to them. **This is an immutable change and the security label cannot be removed once added.** Dynamic groups have a label with a key of `cloudidentity.googleapis.com/groups.dynamic`. Identity-mapped groups for Cloud Search have a label with a key of `system/groups/external` and an empty value. Examples: {"cloudidentity.googleapis.com/groups.discussion_forum": ""\} or {"system/groups/external": ""\}.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
      */
     name?: string | null;
     /**
-     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     * Required. Immutable. The resource name of the entity under which this `Group` resides in the Cloud Identity resource hierarchy. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
      */
     parent?: string | null;
     /**
@@ -640,12 +636,12 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$LookupMembershipNameResponse {
     /**
-     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Membership`. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * The [resource name](https://cloud.google.com/apis/design/resource_names) of the looked-up `Membership`. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      */
     name?: string | null;
   }
   /**
-   * A membership within the Cloud Identity Groups API. A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a &quot;member&quot;.
+   * A membership within the Cloud Identity Groups API. A `Membership` defines a relationship between a `Group` and an entity belonging to that `Group`, referred to as a "member".
    */
   export interface Schema$Membership {
     /**
@@ -653,7 +649,7 @@ export namespace cloudidentity_v1 {
      */
     createTime?: string | null;
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership`. Shall be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      */
     name?: string | null;
     /**
@@ -721,7 +717,7 @@ export namespace cloudidentity_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -769,9 +765,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.cancelWipe
-     * @desc Cancels an unfinished device wipe. This operation can be used to cancel device wipe in the gap between the wipe operation returning success and the device being wiped. This operation is possible when the device is in a "pending wipe" state. The device enters the "pending wipe" state when a wipe device command is issued, but has not yet been sent to the device. The cancel wipe will fail if the wipe command has already been issued to the device.
+     * Cancels an unfinished device wipe. This operation can be used to cancel device wipe in the gap between the wipe operation returning success and the device being wiped. This operation is possible when the device is in a "pending wipe" state. The device enters the "pending wipe" state when a wipe device command is issued, but has not yet been sent to the device. The cancel wipe will fail if the wipe command has already been issued to the device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -795,7 +791,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -823,15 +819,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.cancelWipe
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1CancelWipeDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancelWipe(
       params: Params$Resource$Devices$Cancelwipe,
@@ -906,7 +899,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -914,9 +907,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.create
-     * @desc Creates a device. Only company-owned device may be created.
+     * Creates a device. Only company-owned device may be created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -940,7 +933,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.create({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -995,15 +988,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {().GoogleAppsCloudidentityDevicesV1Device} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Devices$Create,
@@ -1074,7 +1064,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1082,9 +1072,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.delete
-     * @desc Deletes the specified device.
+     * Deletes the specified device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1108,9 +1098,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.delete({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
      *   console.log(res.data);
@@ -1130,15 +1120,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Devices$Delete,
@@ -1209,7 +1196,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1217,9 +1204,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.get
-     * @desc Retrieves the specified device.
+     * Retrieves the specified device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1243,9 +1230,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *   });
      *   console.log(res.data);
@@ -1288,15 +1275,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Devices$Get,
@@ -1380,7 +1364,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1Device>(
@@ -1390,9 +1374,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.list
-     * @desc Lists/Searches devices.
+     * Lists/Searches devices.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1416,7 +1400,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.list({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. [Help Center article link](https://support.google.com/a/answer/7549103)
      *     filter: 'placeholder-value',
@@ -1443,19 +1427,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string=} params.filter Optional. Additional restrictions when fetching list of devices. [Help Center article link](https://support.google.com/a/answer/7549103)
-     * @param {string=} params.orderBy Optional. Order specification for devices in the response. Only one of the following field names may be used to specify the order: `create_time`, `last_sync_time`, `model`, `os_version`, `device_type` and `serial_number`. `desc` may be specified optionally at the end to specify results to be sorted in descending order. Default order is ascending.
-     * @param {integer=} params.pageSize Optional. The maximum number of Devices to return. If unspecified, at most 20 Devices will be returned. The maximum value is 100; values above 100 will be coerced to 100.
-     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListDevices` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDevices` must match the call that provided the page token.
-     * @param {string=} params.view Optional. The view to use for the List request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Devices$List,
@@ -1551,7 +1528,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
@@ -1560,9 +1537,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.wipe
-     * @desc Wipes all data on the specified device.
+     * Wipes all data on the specified device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1586,7 +1563,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.wipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -1614,15 +1591,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.wipe
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1WipeDeviceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     wipe(
       params: Params$Resource$Devices$Wipe,
@@ -1693,7 +1667,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1704,7 +1678,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -1715,7 +1689,7 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Create extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
 
@@ -1726,27 +1700,27 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Delete extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Get extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in the format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$List extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -1772,7 +1746,7 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Devices$Wipe extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -1793,9 +1767,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.approve
-     * @desc Approves device to access user data.
+     * Approves device to access user data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1819,7 +1793,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.approve({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -1847,15 +1821,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.approve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1ApproveDeviceUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     approve(
       params: Params$Resource$Devices$Deviceusers$Approve,
@@ -1930,7 +1901,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1938,9 +1909,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.block
-     * @desc Blocks device from accessing user data
+     * Blocks device from accessing user data
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -1964,7 +1935,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.block({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -1992,15 +1963,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.block
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1BlockDeviceUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     block(
       params: Params$Resource$Devices$Deviceusers$Block,
@@ -2072,7 +2040,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2080,9 +2048,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.cancelWipe
-     * @desc Cancels an unfinished user account wipe. This operation can be used to cancel device wipe in the gap between the wipe operation returning success and the device being wiped.
+     * Cancels an unfinished user account wipe. This operation can be used to cancel device wipe in the gap between the wipe operation returning success and the device being wiped.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2106,7 +2074,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -2134,15 +2102,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.cancelWipe
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1CancelWipeDeviceUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancelWipe(
       params: Params$Resource$Devices$Deviceusers$Cancelwipe,
@@ -2217,7 +2182,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2225,9 +2190,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.delete
-     * @desc Deletes the specified DeviceUser. This also revokes the user's access to device data.
+     * Deletes the specified DeviceUser. This also revokes the user's access to device data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2251,9 +2216,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.delete({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
      *   console.log(res.data);
@@ -2273,15 +2238,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Devices$Deviceusers$Delete,
@@ -2353,7 +2315,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2361,9 +2323,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.get
-     * @desc Retrieves the specified DeviceUser
+     * Retrieves the specified DeviceUser
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2387,9 +2349,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
      *   console.log(res.data);
@@ -2414,15 +2376,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Devices$Deviceusers$Get,
@@ -2515,7 +2474,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -2525,9 +2484,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.list
-     * @desc Lists/Searches DeviceUsers.
+     * Lists/Searches DeviceUsers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2551,7 +2510,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.list({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
      *     filter: 'placeholder-value',
@@ -2561,7 +2520,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListDeviceUsers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. To list all DeviceUsers, set this to "devices/-". To list all DeviceUsers owned by a device, set this to the resource name of the device. Format: devices/{device}
+     *     // Required. To list all DeviceUsers, set this to "devices/-". To list all DeviceUsers owned by a device, set this to the resource name of the device. Format: devices/{device\}
      *     parent: 'devices/my-device',
      *   });
      *   console.log(res.data);
@@ -2578,19 +2537,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string=} params.filter Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
-     * @param {string=} params.orderBy Optional. Order specification for devices in the response.
-     * @param {integer=} params.pageSize Optional. The maximum number of DeviceUsers to return. If unspecified, at most 5 DeviceUsers will be returned. The maximum value is 20; values above 20 will be coerced to 20.
-     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListDeviceUsers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListBooks` must match the call that provided the page token.
-     * @param {string} params.parent Required. To list all DeviceUsers, set this to "devices/-". To list all DeviceUsers owned by a device, set this to the resource name of the device. Format: devices/{device}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Devices$Deviceusers$List,
@@ -2690,7 +2642,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
@@ -2699,9 +2651,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.lookup
-     * @desc Looks up resource names of the DeviceUsers associated with the caller's credentials, as well as the properties provided in the request. This method must be called with end-user credentials with the scope: https://www.googleapis.com/auth/cloud-identity.devices.lookup If multiple properties are provided, only DeviceUsers having all of these properties are considered as matches - i.e. the query behaves like an AND. Different platforms require different amounts of information from the caller to ensure that the DeviceUser is uniquely identified. - iOS: No properties need to be passed, the caller's credentials are sufficient to identify the corresponding DeviceUser. - Android: Specifying the 'android_id' field is required. - Desktop: Specifying the 'raw_resource_id' field is required.
+     * Looks up resource names of the DeviceUsers associated with the caller's credentials, as well as the properties provided in the request. This method must be called with end-user credentials with the scope: https://www.googleapis.com/auth/cloud-identity.devices.lookup If multiple properties are provided, only DeviceUsers having all of these properties are considered as matches - i.e. the query behaves like an AND. Different platforms require different amounts of information from the caller to ensure that the DeviceUser is uniquely identified. - iOS: No properties need to be passed, the caller's credentials are sufficient to identify the corresponding DeviceUser. - Android: Specifying the 'android_id' field is required. - Desktop: Specifying the 'raw_resource_id' field is required.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2753,19 +2705,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.lookup
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.androidId Android Id returned by [Settings.Secure#ANDROID_ID](https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID).
-     * @param {integer=} params.pageSize The maximum number of DeviceUsers to return. If unspecified, at most 20 DeviceUsers will be returned. The maximum value is 20; values above 20 will be coerced to 20.
-     * @param {string=} params.pageToken A page token, received from a previous `LookupDeviceUsers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `LookupDeviceUsers` must match the call that provided the page token.
-     * @param {string} params.parent Must be set to "devices/-/deviceUsers" to search across all DeviceUser belonging to the user.
-     * @param {string=} params.rawResourceId Raw Resource Id used by Google Endpoint Verification. If the user is enrolled into Google Endpoint Verification, this id will be saved as the 'device_resource_id' field in the following platform dependent files. Mac: ~/.secureConnect/context_aware_config.json Windows: C:\Users\%USERPROFILE%\.secureConnect\context_aware_config.json Linux: ~/.secureConnect/context_aware_config.json
-     * @param {string=} params.userId The user whose DeviceUser's resource name will be fetched. Must be set to 'me' to fetch the DeviceUser's resource name for the calling user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lookup(
       params: Params$Resource$Devices$Deviceusers$Lookup,
@@ -2865,7 +2810,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
@@ -2874,9 +2819,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.wipe
-     * @desc Wipes the user's account on a device. Other data on the device that is not associated with the user's work account is not affected. For example, if a Gmail app is installed on a device that is used for personal and work purposes, and the user is logged in to the Gmail app with their personal account as well as their work account, wiping the "deviceUser" by their work administrator will not affect their personal account within Gmail or other apps such as Photos.
+     * Wipes the user's account on a device. Other data on the device that is not associated with the user's work account is not affected. For example, if a Gmail app is installed on a device that is used for personal and work purposes, and the user is logged in to the Gmail app with their personal account as well as their work account, wiping the "deviceUser" by their work administrator will not affect their personal account within Gmail or other apps such as Photos.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -2900,7 +2845,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.wipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      *     name: 'devices/my-device/deviceUsers/my-deviceUser',
      *
      *     // Request body metadata
@@ -2928,15 +2873,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.wipe
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
-     * @param {().GoogleAppsCloudidentityDevicesV1WipeDeviceUserRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     wipe(
       params: Params$Resource$Devices$Deviceusers$Wipe,
@@ -3008,7 +2950,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3019,7 +2961,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Approve
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3031,7 +2973,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Block
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3043,7 +2985,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3055,29 +2997,29 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Delete
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Get
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$List
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -3097,7 +3039,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. To list all DeviceUsers, set this to "devices/-". To list all DeviceUsers owned by a device, set this to the resource name of the device. Format: devices/{device}
+     * Required. To list all DeviceUsers, set this to "devices/-". To list all DeviceUsers owned by a device, set this to the resource name of the device. Format: devices/{device\}
      */
     parent?: string;
   }
@@ -3131,7 +3073,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Wipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}/deviceUsers/{device_user_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}/deviceUsers/{device_user_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
      */
     name?: string;
 
@@ -3148,9 +3090,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.clientStates.get
-     * @desc Gets the client state for the device user
+     * Gets the client state for the device user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -3174,9 +3116,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.get({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientStates/{partner_id}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
      *     name:
      *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *   });
@@ -3204,15 +3146,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.clientStates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientStates/{partner_id}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Devices$Deviceusers$Clientstates$Get,
@@ -3305,7 +3244,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ClientState>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3315,9 +3254,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.clientStates.list
-     * @desc Lists the client states for the given search query.
+     * Lists the client states for the given search query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -3341,7 +3280,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.list({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
      *     // Optional. Additional restrictions when fetching list of client states.
      *     filter: 'placeholder-value',
@@ -3349,7 +3288,7 @@ export namespace cloudidentity_v1 {
      *     orderBy: 'placeholder-value',
      *     // Optional. A page token, received from a previous `ListClientStates` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListClientStates` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. To list all ClientStates, set this to "devices/-/deviceUsers/-". To list all ClientStates owned by a DeviceUser, set this to the resource name of the DeviceUser. Format: devices/{device}/deviceUsers/{deviceUser}
+     *     // Required. To list all ClientStates, set this to "devices/-/deviceUsers/-". To list all ClientStates owned by a DeviceUser, set this to the resource name of the DeviceUser. Format: devices/{device\}/deviceUsers/{deviceUser\}
      *     parent: 'devices/my-device/deviceUsers/my-deviceUser',
      *   });
      *   console.log(res.data);
@@ -3366,18 +3305,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.clientStates.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string=} params.filter Optional. Additional restrictions when fetching list of client states.
-     * @param {string=} params.orderBy Optional. Order specification for client states in the response.
-     * @param {string=} params.pageToken Optional. A page token, received from a previous `ListClientStates` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListClientStates` must match the call that provided the page token.
-     * @param {string} params.parent Required. To list all ClientStates, set this to "devices/-/deviceUsers/-". To list all ClientStates owned by a DeviceUser, set this to the resource name of the DeviceUser. Format: devices/{device}/deviceUsers/{deviceUser}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Devices$Deviceusers$Clientstates$List,
@@ -3477,7 +3410,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
@@ -3486,9 +3419,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.devices.deviceUsers.clientStates.patch
-     * @desc Updates the client state for the device user
+     * Updates the client state for the device user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -3512,9 +3445,9 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.patch({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      *     name:
      *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *     // Optional. Comma-separated list of fully qualified names of fields to be updated. If not specified, all updatable fields in ClientState are updated.
@@ -3556,17 +3489,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.devices.deviceUsers.clientStates.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
-     * @param {string} params.name Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
-     * @param {string=} params.updateMask Optional. Comma-separated list of fully qualified names of fields to be updated. If not specified, all updatable fields in ClientState are updated.
-     * @param {().GoogleAppsCloudidentityDevicesV1ClientState} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Devices$Deviceusers$Clientstates$Patch,
@@ -3638,7 +3566,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3649,18 +3577,18 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Get
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientStates/{partner_id}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
      */
     name?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Clientstates$List
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
@@ -3676,18 +3604,18 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. To list all ClientStates, set this to "devices/-/deviceUsers/-". To list all ClientStates owned by a DeviceUser, set this to the resource name of the DeviceUser. Format: devices/{device}/deviceUsers/{deviceUser}
+     * Required. To list all ClientStates, set this to "devices/-/deviceUsers/-". To list all ClientStates owned by a DeviceUser, set this to the resource name of the DeviceUser. Format: devices/{device\}/deviceUsers/{deviceUser\}
      */
     parent?: string;
   }
   export interface Params$Resource$Devices$Deviceusers$Clientstates$Patch
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id}`, where customer_id is the customer to whom the device belongs.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      */
     customer?: string;
     /**
-     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id}/deviceUsers/{device_user_id}/clientState/{partner_id}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientState/{partner_id\}`, where partner_id corresponds to the partner storing the data. For partners belonging to the "BeyondCorp Alliance", this is the partner ID specified to you by Google. For all other callers, this is a string of the form: `{customer_id\}-suffix`, where `customer_id` is your customer ID. The *suffix* is any string the caller specifies. This string will be displayed verbatim in the administration console. This suffix is used in setting up Custom Access Levels in Context-Aware Access. Your organization's customer ID can be obtained from the URL: `GET https://www.googleapis.com/admin/directory/v1/customers/my_customer` The `id` field in the response contains the customer ID starting with the letter 'C'. The customer ID to be used in this API is the string after the letter 'C' (not including 'C')
      */
     name?: string;
     /**
@@ -3710,9 +3638,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.create
-     * @desc Creates a Group.
+     * Creates a Group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -3774,15 +3702,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.initialGroupConfig Optional. The initial configuration option for the `Group`.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Groups$Create,
@@ -3853,7 +3778,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3861,9 +3786,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.delete
-     * @desc Deletes a `Group`.
+     * Deletes a `Group`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -3890,7 +3815,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.delete({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
      *     name: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -3910,14 +3835,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groups$Delete,
@@ -3988,7 +3911,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3996,9 +3919,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.get
-     * @desc Retrieves a `Group`.
+     * Retrieves a `Group`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4026,7 +3949,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.get({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
      *     name: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -4049,14 +3972,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Groups$Get,
@@ -4127,7 +4048,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -4135,9 +4056,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.list
-     * @desc Lists the `Group`s under a customer or namespace.
+     * Lists the `Group`s under a customer or namespace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4169,7 +4090,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous list request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     *     // Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
      *     parent: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -4188,17 +4109,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `View.BASIC` and to 50 for `View.FULL`. Must not be greater than 1000 for `View.BASIC` or 500 for `View.FULL`.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous list request, if any.
-     * @param {string=} params.parent Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
-     * @param {string=} params.view The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groups$List,
@@ -4272,7 +4188,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
@@ -4280,9 +4196,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.lookup
-     * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Group` by its `EntityKey`.
+     * Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Group` by its `EntityKey`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4312,7 +4228,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'groupKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
      *     'groupKey.namespace': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4328,15 +4244,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.lookup
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.groupKey.id The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
-     * @param {string=} params.groupKey.namespace The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lookup(
       params: Params$Resource$Groups$Lookup,
@@ -4414,7 +4327,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$LookupGroupNameResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LookupGroupNameResponse>(parameters);
@@ -4422,9 +4335,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.patch
-     * @desc Updates a `Group`.
+     * Updates a `Group`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4451,7 +4364,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.patch({
-     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id}`.
+     *     // Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
      *     name: 'groups/my-group',
      *     // Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`.
      *     updateMask: 'placeholder-value',
@@ -4488,16 +4401,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id}`.
-     * @param {string=} params.updateMask Required. The fully-qualified names of fields to update. May only contain the following fields: `display_name`, `description`.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Groups$Patch,
@@ -4568,7 +4477,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4576,9 +4485,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.search
-     * @desc Searches for `Group`s matching a specified query.
+     * Searches for `Group`s matching a specified query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4610,7 +4519,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     *     // Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
      *     query: 'placeholder-value',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -4629,17 +4538,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
-     * @param {string=} params.query Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
-     * @param {string=} params.view The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Groups$Search,
@@ -4715,7 +4619,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchGroupsResponse>(parameters);
@@ -4736,13 +4640,13 @@ export namespace cloudidentity_v1 {
   }
   export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group` to retrieve. Must be of the form `groups/{group_id\}`.
      */
     name?: string;
   }
@@ -4756,7 +4660,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id}` for external- identity-mapped groups or `customers/{customer_id}` for Google Groups.
+     * Required. The parent resource under which to list all `Group`s. Must be of the form `identitysources/{identity_source_id\}` for external- identity-mapped groups or `customers/{customer_id\}` for Google Groups.
      */
     parent?: string;
     /**
@@ -4770,13 +4674,13 @@ export namespace cloudidentity_v1 {
      */
     'groupKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
      */
     'groupKey.namespace'?: string;
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
-     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id}`.
+     * Output only. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Group`. Shall be of the form `groups/{group_id\}`.
      */
     name?: string;
     /**
@@ -4799,7 +4703,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
+     * Required. The search query. Must be specified in [Common Expression Language](https://opensource.google/projects/cel). May only contain equality operators on the parent and inclusion operators on labels (e.g., `parent == 'customers/{customer_id\}' && 'cloudidentity.googleapis.com/groups.discussion_forum' in labels`).
      */
     query?: string;
     /**
@@ -4815,9 +4719,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.create
-     * @desc Creates a `Membership`.
+     * Creates a `Membership`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4844,7 +4748,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.create({
-     *     // Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id}`.
+     *     // Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id\}`.
      *     parent: 'groups/my-group',
      *
      *     // Request body metadata
@@ -4877,15 +4781,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id}`.
-     * @param {().Membership} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Groups$Memberships$Create,
@@ -4960,7 +4861,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4968,9 +4869,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.delete
-     * @desc Deletes a `Membership`.
+     * Deletes a `Membership`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -4997,7 +4898,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.delete({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id}/memberships/{membership_id}`
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`
      *     name: 'groups/my-group/memberships/my-membership',
      *   });
      *   console.log(res.data);
@@ -5017,14 +4918,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id}/memberships/{membership_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groups$Memberships$Delete,
@@ -5096,7 +4995,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5104,9 +5003,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.get
-     * @desc Retrieves a `Membership`.
+     * Retrieves a `Membership`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -5134,7 +5033,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.get({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      *     name: 'groups/my-group/memberships/my-membership',
      *   });
      *   console.log(res.data);
@@ -5155,14 +5054,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Groups$Memberships$Get,
@@ -5234,7 +5131,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Membership>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
@@ -5242,9 +5139,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.list
-     * @desc Lists the `Membership`s within a `Group`.
+     * Lists the `Membership`s within a `Group`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -5276,7 +5173,7 @@ export namespace cloudidentity_v1 {
      *     pageSize: 'placeholder-value',
      *     // The `next_page_token` value returned from a previous search request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
      *     parent: 'groups/my-group',
      *     // The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
      *     view: 'placeholder-value',
@@ -5295,17 +5192,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return. Note that the number of results returned may be less than this value even if there are more available results. To fetch all results, clients must continue calling this method repeatedly until the response no longer contains a `next_page_token`. If unspecified, defaults to 200 for `GroupView.BASIC` and to 50 for `GroupView.FULL`. Must not be greater than 1000 for `GroupView.BASIC` or 500 for `GroupView.FULL`.
-     * @param {string=} params.pageToken The `next_page_token` value returned from a previous search request, if any.
-     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
-     * @param {string=} params.view The level of detail to be returned. If unspecified, defaults to `View.BASIC`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groups$Memberships$List,
@@ -5385,7 +5277,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
@@ -5393,9 +5285,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.lookup
-     * @desc Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Membership` by its `EntityKey`.
+     * Looks up the [resource name](https://cloud.google.com/apis/design/resource_names) of a `Membership` by its `EntityKey`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -5425,9 +5317,9 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.groups.memberships.lookup({
      *     // The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
      *     'memberKey.id': 'placeholder-value',
-     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     *     // The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
      *     'memberKey.namespace': 'placeholder-value',
-     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
+     *     // Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
      *     parent: 'groups/my-group',
      *   });
      *   console.log(res.data);
@@ -5443,16 +5335,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.lookup
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.memberKey.id The ID of the entity. For Google-managed entities, the `id` should be the email address of an existing group or user. For external-identity-mapped entities, the `id` must be a string conforming to the Identity Source's requirements. Must be unique within a `namespace`.
-     * @param {string=} params.memberKey.namespace The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
-     * @param {string} params.parent Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lookup(
       params: Params$Resource$Groups$Memberships$Lookup,
@@ -5534,7 +5422,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LookupMembershipNameResponse>(
@@ -5544,9 +5432,9 @@ export namespace cloudidentity_v1 {
     }
 
     /**
-     * cloudidentity.groups.memberships.modifyMembershipRoles
-     * @desc Modifies the `MembershipRole`s of a `Membership`.
+     * Modifies the `MembershipRole`s of a `Membership`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
@@ -5573,7 +5461,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.groups.memberships.modifyMembershipRoles({
-     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      *     name: 'groups/my-group/memberships/my-membership',
      *
      *     // Request body metadata
@@ -5598,15 +5486,12 @@ export namespace cloudidentity_v1 {
      *   throw e;
      * });
      *
-     * @alias cloudidentity.groups.memberships.modifyMembershipRoles
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
-     * @param {().ModifyMembershipRolesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyMembershipRoles(
       params: Params$Resource$Groups$Memberships$Modifymembershiproles,
@@ -5688,7 +5573,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ModifyMembershipRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyMembershipRolesResponse>(
@@ -5701,7 +5586,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Create
     extends StandardParameters {
     /**
-     * Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to create the `Membership`. Must be of the form `groups/{group_id\}`.
      */
     parent?: string;
 
@@ -5713,14 +5598,14 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Groups$Memberships$Delete
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id}/memberships/{membership_id}`
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to delete. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Groups$Memberships$Get
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` to retrieve. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      */
     name?: string;
   }
@@ -5735,7 +5620,7 @@ export namespace cloudidentity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
      */
     parent?: string;
     /**
@@ -5750,18 +5635,18 @@ export namespace cloudidentity_v1 {
      */
     'memberKey.id'?: string;
     /**
-     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id}.
+     * The namespace in which the entity exists. If not specified, the `EntityKey` represents a Google-managed entity such as a Google user or a Google Group. If specified, the `EntityKey` represents an external-identity-mapped group. The namespace must correspond to an identity source created in Admin Console and must be in the form of `identitysources/{identity_source_id\}.
      */
     'memberKey.namespace'?: string;
     /**
-     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id}`.
+     * Required. The parent `Group` resource under which to lookup the `Membership` name. Must be of the form `groups/{group_id\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Groups$Memberships$Modifymembershiproles
     extends StandardParameters {
     /**
-     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id}/memberships/{membership_id}`.
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the `Membership` whose roles are to be modified. Must be of the form `groups/{group_id\}/memberships/{membership_id\}`.
      */
     name?: string;
 

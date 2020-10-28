@@ -104,14 +104,10 @@ export namespace run_v1alpha1 {
    * Deploy and manage user provided container images that scale automatically based on HTTP traffic.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const run = google.run('v1alpha1');
-   *
-   * @namespace run
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Run
+   * ```
    */
   export class Run {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace run_v1alpha1 {
     url?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -153,7 +149,7 @@ export namespace run_v1alpha1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -187,7 +183,7 @@ export namespace run_v1alpha1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -210,11 +206,11 @@ export namespace run_v1alpha1 {
   }
   export interface Schema$CloudAuditLogsSource {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;CloudAuditLogsSource&quot;.
+     * The kind of resource, in this case "CloudAuditLogsSource".
      */
     kind?: string | null;
     /**
@@ -239,19 +235,19 @@ export namespace run_v1alpha1 {
      */
     ceOverrides?: Schema$CloudEventOverrides;
     /**
-     * Required. The method name at the service API. This must match &quot;methodName&quot; in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: &quot;google.cloud.bigquery.job.create&quot;.
+     * Required. The method name at the service API. This must match "methodName" in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: "google.cloud.bigquery.job.create".
      */
     methodName?: string | null;
     /**
-     * Optional. The resource specification. This must match &quot;methodName&quot; in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: &quot;projects/my-project/jobs/foo&quot;.
+     * Optional. The resource specification. This must match "methodName" in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: "projects/my-project/jobs/foo".
      */
     resourceName?: string | null;
     /**
-     * Optional. Email address of the IAM service account associated with the source. The service account represents the identity of the source, and determines what permissions the source has. If not provided, the source will use the project&#39;s default service account.
+     * Optional. Email address of the IAM service account associated with the source. The service account represents the identity of the source, and determines what permissions the source has. If not provided, the source will use the project's default service account.
      */
     serviceAccountName?: string | null;
     /**
-     * Required. The GCP service name. This must match &quot;serviceName&quot; in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: &quot;bigquery.googleapis.com&quot;.
+     * Required. The GCP service name. This must match "serviceName" in Cloud Audit Logs. Regex or Wildcards (*) are not supported. Example: "bigquery.googleapis.com".
      */
     serviceName?: string | null;
     /**
@@ -268,7 +264,7 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$Condition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the CloudAuditLogsSource that was last processed by the controller.
+     * ObservedGeneration is the 'Generation' of the CloudAuditLogsSource that was last processed by the controller.
      */
     observedGeneration?: number | null;
     /**
@@ -287,11 +283,11 @@ export namespace run_v1alpha1 {
   }
   export interface Schema$CloudPubSubSource {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;CloudPubSubSource&quot;.
+     * The kind of resource, in this case "CloudPubSubSource".
      */
     kind?: string | null;
     /**
@@ -312,7 +308,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$CloudPubSubSourceSpec {
     /**
-     * AckDeadline is the default maximum time after a subscriber receives a message before the subscriber should acknowledge the message. Defaults to 30 seconds (&#39;30s&#39;). +optional
+     * AckDeadline is the default maximum time after a subscriber receives a message before the subscriber should acknowledge the message. Defaults to 30 seconds ('30s'). +optional
      */
     ackDeadline?: string | null;
     /**
@@ -332,7 +328,7 @@ export namespace run_v1alpha1 {
      */
     retainAckedMessages?: boolean | null;
     /**
-     * RetentionDuration defines how long to retain messages in backlog, from the time of publish. If RetainAckedMessages is true, this duration affects the retention of acknowledged messages, otherwise only unacknowledged messages are retained. Cannot be longer than 7 days or shorter than 10 minutes. Defaults to 7 days (&#39;7d&#39;). +optional
+     * RetentionDuration defines how long to retain messages in backlog, from the time of publish. If RetainAckedMessages is true, this duration affects the retention of acknowledged messages, otherwise only unacknowledged messages are retained. Cannot be longer than 7 days or shorter than 10 minutes. Defaults to 7 days ('7d'). +optional
      */
     retentionDuration?: string | null;
     /**
@@ -344,7 +340,7 @@ export namespace run_v1alpha1 {
      */
     sink?: Schema$Destination;
     /**
-     * Topic is the ID of the CloudPubSubSource Topic to Subscribe to. It must be in the form of the unique identifier within the project, not the entire name. E.g. it must be &#39;laconia&#39;, not &#39;projects/my-proj/topics/laconia&#39;.
+     * Topic is the ID of the CloudPubSubSource Topic to Subscribe to. It must be in the form of the unique identifier within the project, not the entire name. E.g. it must be 'laconia', not 'projects/my-proj/topics/laconia'.
      */
     topic?: string | null;
   }
@@ -357,7 +353,7 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$Condition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the CloudPubSubSource that was last processed by the controller.
+     * ObservedGeneration is the 'Generation' of the CloudPubSubSource that was last processed by the controller.
      */
     observedGeneration?: number | null;
     /**
@@ -370,11 +366,11 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$CloudSchedulerSource {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;CloudSchedulerSource&quot;.
+     * The kind of resource, in this case "CloudSchedulerSource".
      */
     kind?: string | null;
     /**
@@ -415,7 +411,7 @@ export namespace run_v1alpha1 {
      */
     pubsubSecret?: Schema$SecretKeySelector;
     /**
-     * Schedule in cron format, for example: &quot;* * * * *&quot; would be run every minute.
+     * Schedule in cron format, for example: "* * * * *" would be run every minute.
      */
     schedule?: string | null;
     /**
@@ -436,7 +432,7 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$Condition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the CloudSchedulerSource that was last processed by the controller.
+     * ObservedGeneration is the 'Generation' of the CloudSchedulerSource that was last processed by the controller.
      */
     observedGeneration?: number | null;
     /**
@@ -449,11 +445,11 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$CloudStorageSource {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;CloudStorageSource&quot;.
+     * The kind of resource, in this case "CloudStorageSource".
      */
     kind?: string | null;
     /**
@@ -506,7 +502,7 @@ export namespace run_v1alpha1 {
      */
     secret?: Schema$SecretKeySelector;
     /**
-     * ServiceAccountName holds the name of the Kubernetes service account as which the underlying K8s resources should be run. If unspecified this will default to the &quot;default&quot; service account for the namespace in which the GCS exists.
+     * ServiceAccountName holds the name of the Kubernetes service account as which the underlying K8s resources should be run. If unspecified this will default to the "default" service account for the namespace in which the GCS exists.
      */
     serviceAccountName?: string | null;
     /**
@@ -523,7 +519,7 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$Condition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the CloudStorageSource that was last processed by the controller.
+     * ObservedGeneration is the 'Generation' of the CloudStorageSource that was last processed by the controller.
      */
     observedGeneration?: number | null;
     /**
@@ -544,7 +540,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * Optional. One-word CamelCase reason for the condition&#39;s last transition.
+     * Optional. One-word CamelCase reason for the condition's last transition.
      */
     reason?: string | null;
     /**
@@ -556,16 +552,16 @@ export namespace run_v1alpha1 {
      */
     status?: string | null;
     /**
-     * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * &quot;Ready&quot;: True when the Resource is ready.
+     * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * "Ready": True when the Resource is ready.
      */
     type?: string | null;
   }
   /**
-   * ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap&#39;s Data field will represent the key-value pairs as environment variables.
+   * ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap's Data field will represent the key-value pairs as environment variables.
    */
   export interface Schema$ConfigMapEnvSource {
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -586,7 +582,7 @@ export namespace run_v1alpha1 {
      */
     key?: string | null;
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -599,7 +595,7 @@ export namespace run_v1alpha1 {
     optional?: boolean | null;
   }
   /**
-   * Adapts a ConfigMap into a volume. The contents of the target ConfigMap&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
+   * Adapts a ConfigMap into a volume. The contents of the target ConfigMap's Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
    */
   export interface Schema$ConfigMapVolumeSource {
     /**
@@ -620,15 +616,15 @@ export namespace run_v1alpha1 {
     optional?: boolean | null;
   }
   /**
-   * Configuration represents the &quot;floating HEAD&quot; of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration&#39;s spec. The &quot;latest created&quot; revision&#39;s name is available under status, as is the &quot;latest ready&quot; revision&#39;s name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
+   * Configuration represents the "floating HEAD" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The "latest created" revision's name is available under status, as is the "latest ready" revision's name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
    */
   export interface Schema$Configuration {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case always &quot;Configuration&quot;.
+     * The kind of resource, in this case always "Configuration".
      */
     kind?: string | null;
     /**
@@ -657,7 +653,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * One-word CamelCase reason for the condition&#39;s last transition. +optional
+     * One-word CamelCase reason for the condition's last transition. +optional
      */
     reason?: string | null;
     /**
@@ -669,7 +665,7 @@ export namespace run_v1alpha1 {
      */
     status?: string | null;
     /**
-     * ConfigurationConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include:&quot;Ready&quot;
+     * ConfigurationConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include:"Ready"
      */
     type?: string | null;
   }
@@ -682,7 +678,7 @@ export namespace run_v1alpha1 {
      */
     generation?: number | null;
     /**
-     * RevisionTemplate holds the latest specification for the Revision to be stamped out. The template references the container image, and may also include labels and annotations that should be attached to the Revision. To correlate a Revision, and/or to force a Revision to be created when the spec doesn&#39;t otherwise change, a nonce label may be provided in the template metadata. For more details, see: https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions Cloud Run does not currently support referencing a build that is responsible for materializing the container image from source.
+     * RevisionTemplate holds the latest specification for the Revision to be stamped out. The template references the container image, and may also include labels and annotations that should be attached to the Revision. To correlate a Revision, and/or to force a Revision to be created when the spec doesn't otherwise change, a nonce label may be provided in the template metadata. For more details, see: https://github.com/knative/serving/blob/master/docs/client-conventions.md#associate-modifications-with-revisions Cloud Run does not currently support referencing a build that is responsible for materializing the container image from source.
      */
     revisionTemplate?: Schema$RevisionTemplate;
     /**
@@ -695,7 +691,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ConfigurationStatus {
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world.
      */
     conditions?: Schema$ConfigurationCondition[];
     /**
@@ -703,11 +699,11 @@ export namespace run_v1alpha1 {
      */
     latestCreatedRevisionName?: string | null;
     /**
-     * LatestReadyRevisionName holds the name of the latest Revision stamped out from this Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
+     * LatestReadyRevisionName holds the name of the latest Revision stamped out from this Configuration that has had its "Ready" condition become "True".
      */
     latestReadyRevisionName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Configuration that was last processed by the controller. The observed generation is updated even if the controller failed to process the spec and create the Revision. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Configuration that was last processed by the controller. The observed generation is updated even if the controller failed to process the spec and create the Revision. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
   }
@@ -716,11 +712,11 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Container {
     /**
-     * Arguments to the entrypoint. The docker image&#39;s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
+     * Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
      */
     args?: string[] | null;
     /**
-     * Entrypoint array. Not executed within a shell. The docker image&#39;s ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
+     * Entrypoint array. Not executed within a shell. The docker image's ENTRYPOINT is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Cannot be updated. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell +optional
      */
     command?: string[] | null;
     /**
@@ -752,7 +748,7 @@ export namespace run_v1alpha1 {
      */
     name?: string | null;
     /**
-     * List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default &quot;0.0.0.0&quot; address inside a container will be accessible from the network. Cannot be updated. +optional
+     * List of ports to expose from the container. Exposing a port here gives the system additional information about the network connections a container uses, but is primarily informational. Not specifying a port here DOES NOT prevent that port from being exposed. Any port which is listening on the default "0.0.0.0" address inside a container will be accessible from the network. Cannot be updated. +optional
      */
     ports?: Schema$ContainerPort[];
     /**
@@ -776,7 +772,7 @@ export namespace run_v1alpha1 {
      */
     stdinOnce?: boolean | null;
     /**
-     * Optional: Path at which the file to which the container&#39;s termination message will be written is mounted into the container&#39;s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. +optional
+     * Optional: Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log. Cannot be updated. +optional
      */
     terminationMessagePath?: string | null;
     /**
@@ -784,7 +780,7 @@ export namespace run_v1alpha1 {
      */
     terminationMessagePolicy?: string | null;
     /**
-     * Whether this container should allocate a TTY for itself, also requires &#39;stdin&#39; to be true. Default is false. +optional
+     * Whether this container should allocate a TTY for itself, also requires 'stdin' to be true. Default is false. +optional
      */
     tty?: boolean | null;
     /**
@@ -792,11 +788,11 @@ export namespace run_v1alpha1 {
      */
     volumeDevices?: Schema$VolumeDevice[];
     /**
-     * Pod volumes to mount into the container&#39;s filesystem. Cannot be updated. +optional
+     * Pod volumes to mount into the container's filesystem. Cannot be updated. +optional
      */
     volumeMounts?: Schema$VolumeMount[];
     /**
-     * Container&#39;s working directory. If not specified, the container runtime&#39;s default will be used, which might be configured in the container image. Cannot be updated. +optional
+     * Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image. Cannot be updated. +optional
      */
     workingDir?: string | null;
   }
@@ -805,7 +801,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ContainerPort {
     /**
-     * Number of port to expose on the pod&#39;s IP address. This must be a valid port number, 0 &lt; x &lt; 65536.
+     * Number of port to expose on the pod's IP address. This must be a valid port number, 0 < x < 65536.
      */
     containerPort?: number | null;
     /**
@@ -813,7 +809,7 @@ export namespace run_v1alpha1 {
      */
     hostIP?: string | null;
     /**
-     * Number of port to expose on the host. If specified, this must be a valid port number, 0 &lt; x &lt; 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. +optional
+     * Number of port to expose on the host. If specified, this must be a valid port number, 0 < x < 65536. If HostNetwork is specified, this must match ContainerPort. Most containers do not need this. +optional
      */
     hostPort?: number | null;
     /**
@@ -821,7 +817,7 @@ export namespace run_v1alpha1 {
      */
     name?: string | null;
     /**
-     * Protocol for port. Must be UDP or TCP. Defaults to &quot;TCP&quot;. +optional
+     * Protocol for port. Must be UDP or TCP. Defaults to "TCP". +optional
      */
     protocol?: string | null;
   }
@@ -836,15 +832,15 @@ export namespace run_v1alpha1 {
     uri?: string | null;
   }
   /**
-   * Resource to hold the state and status of a user&#39;s domain mapping.
+   * Resource to hold the state and status of a user's domain mapping.
    */
   export interface Schema$DomainMapping {
     /**
-     * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
+     * The API version for this call such as "domains.cloudrun.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;DomainMapping&quot;.
+     * The kind of resource, in this case "DomainMapping".
      */
     kind?: string | null;
     /**
@@ -873,7 +869,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * One-word CamelCase reason for the condition&#39;s current status. +optional
+     * One-word CamelCase reason for the condition's current status. +optional
      */
     reason?: string | null;
     /**
@@ -919,11 +915,11 @@ export namespace run_v1alpha1 {
      */
     mappedRouteName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the DomainMapping that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the DomainMapping that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
-     * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.
+     * The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.
      */
     resourceRecords?: Schema$ResourceRecord[];
     /**
@@ -932,7 +928,7 @@ export namespace run_v1alpha1 {
     url?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -961,11 +957,11 @@ export namespace run_v1alpha1 {
      */
     name?: string | null;
     /**
-     * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;. +optional
+     * Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "". +optional
      */
     value?: string | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Source for the environment variable&#39;s value. Cannot be used if value is not empty. +optional
+     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Source for the environment variable's value. Cannot be used if value is not empty. +optional
      */
     valueFrom?: Schema$EnvVarSource;
   }
@@ -978,21 +974,21 @@ export namespace run_v1alpha1 {
      */
     configMapKeyRef?: Schema$ConfigMapKeySelector;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Selects a key of a secret in the pod&#39;s namespace +optional
+     * Cloud Run fully managed: not supported Cloud Run on GKE: supported Selects a key of a secret in the pod's namespace +optional
      */
     secretKeyRef?: Schema$SecretKeySelector;
   }
   /**
-   * ExecAction describes a &quot;run in container&quot; action.
+   * ExecAction describes a "run in container" action.
    */
   export interface Schema$ExecAction {
     /**
-     * Command is the command line to execute inside the container, the working directory for the command is root (&#39;/&#39;) in the container&#39;s filesystem. The command is simply exec&#39;d, it is not run inside a shell, so traditional shell instructions (&#39;|&#39;, etc) won&#39;t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. +optional
+     * Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy. +optional
      */
     command?: string[] | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -1034,7 +1030,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$HTTPGetAction {
     /**
-     * Host name to connect to, defaults to the pod IP. You probably want to set &quot;Host&quot; in httpHeaders instead. +optional
+     * Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead. +optional
      */
     host?: string | null;
     /**
@@ -1097,7 +1093,7 @@ export namespace run_v1alpha1 {
      */
     mode?: number | null;
     /**
-     * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element &#39;..&#39;. May not start with the string &#39;..&#39;.
+     * The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
      */
     path?: string | null;
   }
@@ -1132,7 +1128,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListCloudAuditLogsSourcesResponse {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1140,7 +1136,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$CloudAuditLogsSource[];
     /**
-     * The kind of this resource, in this case &quot;CloudAuditLogsSourceList&quot;.
+     * The kind of this resource, in this case "CloudAuditLogsSourceList".
      */
     kind?: string | null;
     /**
@@ -1157,7 +1153,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListCloudPubSubSourcesResponse {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1165,7 +1161,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$CloudPubSubSource[];
     /**
-     * The kind of this resource, in this case &quot;CloudPubSubSourceList&quot;.
+     * The kind of this resource, in this case "CloudPubSubSourceList".
      */
     kind?: string | null;
     /**
@@ -1182,7 +1178,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListCloudSchedulerSourcesResponse {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1190,7 +1186,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$CloudSchedulerSource[];
     /**
-     * The kind of this resource, in this case &quot;CloudSchedulerSourceList&quot;.
+     * The kind of this resource, in this case "CloudSchedulerSourceList".
      */
     kind?: string | null;
     /**
@@ -1207,7 +1203,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListCloudStorageSourcesResponse {
     /**
-     * The API version for this call such as &quot;events.cloud.google.com/v1alpha1&quot;.
+     * The API version for this call such as "events.cloud.google.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1215,7 +1211,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$CloudStorageSource[];
     /**
-     * The kind of this resource, in this case &quot;CloudStorageSourceList&quot;.
+     * The kind of this resource, in this case "CloudStorageSourceList".
      */
     kind?: string | null;
     /**
@@ -1232,7 +1228,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListConfigurationsResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1240,7 +1236,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$Configuration[];
     /**
-     * The kind of this resource, in this case &quot;ConfigurationList&quot;.
+     * The kind of this resource, in this case "ConfigurationList".
      */
     kind?: string | null;
     /**
@@ -1257,7 +1253,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListDomainMappingsResponse {
     /**
-     * The API version for this call such as &quot;domains.cloudrun.com/v1alpha1&quot;.
+     * The API version for this call such as "domains.cloudrun.com/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1265,7 +1261,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$DomainMapping[];
     /**
-     * The kind of this resource, in this case &quot;DomainMappingList&quot;.
+     * The kind of this resource, in this case "DomainMappingList".
      */
     kind?: string | null;
     /**
@@ -1291,7 +1287,7 @@ export namespace run_v1alpha1 {
     nextPageToken?: string | null;
   }
   /**
-   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
+   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta\}.
    */
   export interface Schema$ListMeta {
     /**
@@ -1299,7 +1295,7 @@ export namespace run_v1alpha1 {
      */
     continue?: string | null;
     /**
-     * String that identifies the server&#39;s internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
+     * String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
     resourceVersion?: string | null;
     /**
@@ -1312,7 +1308,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListRevisionsResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1320,7 +1316,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$Revision[];
     /**
-     * The kind of this resource, in this case &quot;RevisionList&quot;.
+     * The kind of this resource, in this case "RevisionList".
      */
     kind?: string | null;
     /**
@@ -1337,7 +1333,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListRoutesResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1345,7 +1341,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$Route[];
     /**
-     * The kind of this resource, in this case always &quot;RouteList&quot;.
+     * The kind of this resource, in this case always "RouteList".
      */
     kind?: string | null;
     /**
@@ -1362,7 +1358,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListServicesResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1370,7 +1366,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$Service[];
     /**
-     * The kind of this resource, in this case &quot;ServiceList&quot;.
+     * The kind of this resource, in this case "ServiceList".
      */
     kind?: string | null;
     /**
@@ -1387,7 +1383,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ListTriggersResponse {
     /**
-     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "eventing.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
@@ -1395,7 +1391,7 @@ export namespace run_v1alpha1 {
      */
     items?: Schema$Trigger[];
     /**
-     * The kind of this resource, in this case &quot;TriggerList&quot;.
+     * The kind of this resource, in this case "TriggerList".
      */
     kind?: string | null;
     /**
@@ -1421,15 +1417,15 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -1437,7 +1433,7 @@ export namespace run_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -1515,7 +1511,7 @@ export namespace run_v1alpha1 {
      */
     apiVersion?: string | null;
     /**
-     * If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: &quot;spec.containers{name}&quot; (where &quot;name&quot; refers to the name of the container that triggered the event) or if no container name is specified &quot;spec.containers[2]&quot; (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
+     * If referring to a piece of an object instead of an entire object, this string should contain a valid JSON/Go field access statement, such as desiredState.manifest.containers[2]. For example, if the object reference is to a container within a pod, this would take on a value like: "spec.containers{name\}" (where "name" refers to the name of the container that triggered the event) or if no container name is specified "spec.containers[2]" (container with index 2 in this pod). This syntax is chosen only to have some well-defined way of referencing a part of an object.
      */
     fieldPath?: string | null;
     /**
@@ -1548,7 +1544,7 @@ export namespace run_v1alpha1 {
      */
     apiVersion?: string | null;
     /**
-     * If true, AND if the owner has the &quot;foregroundDeletion&quot; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &quot;delete&quot; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
+     * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
      */
     blockOwnerDeletion?: boolean | null;
     /**
@@ -1569,7 +1565,7 @@ export namespace run_v1alpha1 {
     uid?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -1619,11 +1615,11 @@ export namespace run_v1alpha1 {
     timeoutSeconds?: number | null;
   }
   /**
-   * The view model of a single quantity, e.g. &quot;800 MiB&quot;. Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto
+   * The view model of a single quantity, e.g. "800 MiB". Corresponds to https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/generated.proto
    */
   export interface Schema$Quantity {
     /**
-     * Stringified version of the quantity, e.g., &quot;800 MiB&quot;.
+     * Stringified version of the quantity, e.g., "800 MiB".
      */
     string?: string | null;
   }
@@ -1632,7 +1628,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ResourceRecord {
     /**
-     * Relative name of the object affected by this record. Only applicable for `CNAME` records. Example: &#39;www&#39;.
+     * Relative name of the object affected by this record. Only applicable for `CNAME` records. Example: 'www'.
      */
     name?: string | null;
     /**
@@ -1649,7 +1645,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$ResourceRequirements {
     /**
-     * Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
     limits?: {[key: string]: string} | null;
     /**
@@ -1657,7 +1653,7 @@ export namespace run_v1alpha1 {
      */
     limitsInMap?: {[key: string]: Schema$Quantity} | null;
     /**
-     * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
     requests?: {[key: string]: string} | null;
     /**
@@ -1670,11 +1666,11 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$Revision {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of this resource, in this case &quot;Revision&quot;.
+     * The kind of this resource, in this case "Revision".
      */
     kind?: string | null;
     /**
@@ -1703,7 +1699,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * One-word CamelCase reason for the condition&#39;s last transition. +optional
+     * One-word CamelCase reason for the condition's last transition. +optional
      */
     reason?: string | null;
     /**
@@ -1715,7 +1711,7 @@ export namespace run_v1alpha1 {
      */
     status?: string | null;
     /**
-     * RevisionConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: * &quot;Ready&quot;: True when the Revision is ready. * &quot;ResourcesAvailable&quot;: True when underlying resources have been provisioned. * &quot;ContainerHealthy&quot;: True when the Revision readiness check completes. * &quot;Active&quot;: True when the Revision may receive traffic.
+     * RevisionConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: * "Ready": True when the Revision is ready. * "ResourcesAvailable": True when underlying resources have been provisioned. * "ContainerHealthy": True when the Revision readiness check completes. * "Active": True when the Revision may receive traffic.
      */
     type?: string | null;
   }
@@ -1744,7 +1740,7 @@ export namespace run_v1alpha1 {
      */
     generation?: number | null;
     /**
-     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
+     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
     serviceAccountName?: string | null;
     /**
@@ -1762,7 +1758,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$RevisionStatus {
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world. As a Revision is being prepared, it will incrementally update conditions &quot;ResourcesAvailable&quot;, &quot;ContainerHealthy&quot;, and &quot;Active&quot;, which contribute to the overall &quot;Ready&quot; condition.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world. As a Revision is being prepared, it will incrementally update conditions "ResourcesAvailable", "ContainerHealthy", and "Active", which contribute to the overall "Ready" condition.
      */
     conditions?: Schema$RevisionCondition[];
     /**
@@ -1770,11 +1766,11 @@ export namespace run_v1alpha1 {
      */
     imageDigest?: string | null;
     /**
-     * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller&#39;s config. +optional
+     * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config. +optional
      */
     logUrl?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Revision that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Revision that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
@@ -1787,7 +1783,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$RevisionTemplate {
     /**
-     * Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. To set minimum instances for this revision, use the &quot;autoscaling.knative.dev/minScale&quot; annotation key. (Cloud Run on GKE only). To set maximum instances for this revision, use the &quot;autoscaling.knative.dev/maxScale&quot; annotation key. To set Cloud SQL connections for the revision, use the &quot;run.googleapis.com/cloudsql-instances&quot; annotation key. Values should be comma separated.
+     * Optional metadata for this Revision, including labels and annotations. Name will be generated by the Configuration. To set minimum instances for this revision, use the "autoscaling.knative.dev/minScale" annotation key. (Cloud Run on GKE only). To set maximum instances for this revision, use the "autoscaling.knative.dev/maxScale" annotation key. To set Cloud SQL connections for the revision, use the "run.googleapis.com/cloudsql-instances" annotation key. Values should be comma separated.
      */
     metadata?: Schema$ObjectMeta;
     /**
@@ -1796,15 +1792,15 @@ export namespace run_v1alpha1 {
     spec?: Schema$RevisionSpec;
   }
   /**
-   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for &quot;latest ready&quot; revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the &quot;latest ready&quot; Revision from that Configuration.
+   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for "latest ready" revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the "latest ready" Revision from that Configuration.
    */
   export interface Schema$Route {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of this resource, in this case always &quot;Route&quot;.
+     * The kind of this resource, in this case always "Route".
      */
     kind?: string | null;
     /**
@@ -1833,7 +1829,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * One-word CamelCase reason for the condition&#39;s last transition. +optional
+     * One-word CamelCase reason for the condition's last transition. +optional
      */
     reason?: string | null;
     /**
@@ -1841,11 +1837,11 @@ export namespace run_v1alpha1 {
      */
     severity?: string | null;
     /**
-     * Status of the condition, one of &quot;True&quot;, &quot;False&quot;, &quot;Unknown&quot;.
+     * Status of the condition, one of "True", "False", "Unknown".
      */
     status?: string | null;
     /**
-     * RouteConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: &quot;Ready&quot;.
+     * RouteConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: "Ready".
      */
     type?: string | null;
   }
@@ -1871,7 +1867,7 @@ export namespace run_v1alpha1 {
      */
     address?: Schema$Addressable;
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world.
      */
     conditions?: Schema$RouteCondition[];
     /**
@@ -1883,7 +1879,7 @@ export namespace run_v1alpha1 {
      */
     domainInternal?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new &quot;latest ready&quot; revisions from the Configuration are processed without an update to the Route&#39;s spec.
+     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new "latest ready" revisions from the Configuration are processed without an update to the Route's spec.
      */
     observedGeneration?: number | null;
     /**
@@ -1891,16 +1887,16 @@ export namespace run_v1alpha1 {
      */
     traffic?: Schema$TrafficTarget[];
     /**
-     * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash\}-{project-hash\}-{cluster-level-suffix\}.a.run.app
      */
     url?: string | null;
   }
   /**
-   * SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret&#39;s Data field will represent the key-value pairs as environment variables.
+   * SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret's Data field will represent the key-value pairs as environment variables.
    */
   export interface Schema$SecretEnvSource {
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -1921,11 +1917,11 @@ export namespace run_v1alpha1 {
      */
     key?: string | null;
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
-     * Cloud Run fully managed: not supported Cloud Run on GKE: supported The name of the secret in the pod&#39;s namespace to select from.
+     * Cloud Run fully managed: not supported Cloud Run on GKE: supported The name of the secret in the pod's namespace to select from.
      */
     name?: string | null;
     /**
@@ -1934,7 +1930,7 @@ export namespace run_v1alpha1 {
     optional?: boolean | null;
   }
   /**
-   * The contents of the target Secret&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names.
+   * The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.
    */
   export interface Schema$SecretVolumeSource {
     /**
@@ -1950,7 +1946,7 @@ export namespace run_v1alpha1 {
      */
     optional?: boolean | null;
     /**
-     * Name of the secret in the container&#39;s namespace to use.
+     * Name of the secret in the container's namespace to use.
      */
     secretName?: string | null;
   }
@@ -2013,15 +2009,15 @@ export namespace run_v1alpha1 {
     user?: string | null;
   }
   /**
-   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service&#39;s controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
+   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
    */
   export interface Schema$Service {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;Service&quot;.
+     * The kind of resource, in this case "Service".
      */
     kind?: string | null;
     /**
@@ -2050,7 +2046,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * One-word CamelCase reason for the condition&#39;s last transition. +optional
+     * One-word CamelCase reason for the condition's last transition. +optional
      */
     reason?: string | null;
     /**
@@ -2062,7 +2058,7 @@ export namespace run_v1alpha1 {
      */
     status?: string | null;
     /**
-     * ServiceConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: &quot;Ready&quot;, &quot;ConfigurationsReady&quot;, and &quot;RoutesReady&quot;. &quot;Ready&quot; will be true when the underlying Route and Configuration are ready.
+     * ServiceConditionType is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types include: "Ready", "ConfigurationsReady", and "RoutesReady". "Ready" will be true when the underlying Route and Configuration are ready.
      */
     type?: string | null;
   }
@@ -2125,7 +2121,7 @@ export namespace run_v1alpha1 {
      */
     configuration?: Schema$ConfigurationSpec;
     /**
-     * Revisions is an ordered list of 1 or 2 revisions. The first is the current revision, and the second is the candidate revision. If a single revision is provided, traffic will be pinned at that revision. &quot;@latest&quot; is a shortcut for usage that refers to the latest created revision by the configuration.
+     * Revisions is an ordered list of 1 or 2 revisions. The first is the current revision, and the second is the candidate revision. If a single revision is provided, traffic will be pinned at that revision. "@latest" is a shortcut for usage that refers to the latest created revision by the configuration.
      */
     revisions?: string[] | null;
     /**
@@ -2151,23 +2147,23 @@ export namespace run_v1alpha1 {
      */
     address?: Schema$Addressable;
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world.
      */
     conditions?: Schema$ServiceCondition[];
     /**
-     * From RouteStatus. Domain holds the top-level domain that will distribute traffic over the provided targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * From RouteStatus. Domain holds the top-level domain that will distribute traffic over the provided targets. It generally has the form https://{route-hash\}-{project-hash\}-{cluster-level-suffix\}.a.run.app
      */
     domain?: string | null;
     /**
-     * From ConfigurationStatus. LatestCreatedRevisionName is the last revision that was created from this Service&#39;s Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
+     * From ConfigurationStatus. LatestCreatedRevisionName is the last revision that was created from this Service's Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
      */
     latestCreatedRevisionName?: string | null;
     /**
-     * From ConfigurationStatus. LatestReadyRevisionName holds the name of the latest Revision stamped out from this Service&#39;s Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
+     * From ConfigurationStatus. LatestReadyRevisionName holds the name of the latest Revision stamped out from this Service's Configuration that has had its "Ready" condition become "True".
      */
     latestReadyRevisionName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
@@ -2175,7 +2171,7 @@ export namespace run_v1alpha1 {
      */
     traffic?: Schema$TrafficTarget[];
     /**
-     * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash\}-{project-hash\}-{cluster-level-suffix\}.a.run.app
      */
     url?: string | null;
   }
@@ -2188,7 +2184,7 @@ export namespace run_v1alpha1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -2210,7 +2206,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -2228,7 +2224,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$TrafficTarget {
     /**
-     * ConfigurationName of a configuration to whose latest revision we will send this portion of traffic. When the &quot;status.latestReadyRevisionName&quot; of the referenced configuration changes, we will automatically migrate traffic from the prior &quot;latest ready&quot; revision to the new one. This field is never set in Route&#39;s status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.
+     * ConfigurationName of a configuration to whose latest revision we will send this portion of traffic. When the "status.latestReadyRevisionName" of the referenced configuration changes, we will automatically migrate traffic from the prior "latest ready" revision to the new one. This field is never set in Route's status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.
      */
     configurationName?: string | null;
     /**
@@ -2258,11 +2254,11 @@ export namespace run_v1alpha1 {
   }
   export interface Schema$Trigger {
     /**
-     * The API version for this call such as &quot;eventing.knative.dev/v1alpha1&quot;.
+     * The API version for this call such as "eventing.knative.dev/v1alpha1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;Trigger&quot;.
+     * The kind of resource, in this case "Trigger".
      */
     kind?: string | null;
     /**
@@ -2291,7 +2287,7 @@ export namespace run_v1alpha1 {
      */
     message?: string | null;
     /**
-     * Optional. One-word CamelCase reason for the condition&#39;s current status.
+     * Optional. One-word CamelCase reason for the condition's current status.
      */
     reason?: string | null;
     /**
@@ -2309,7 +2305,7 @@ export namespace run_v1alpha1 {
   }
   export interface Schema$TriggerFilter {
     /**
-     * Optional. Attributes filters events by exact match on event context attributes. Each key in the map is compared with the equivalent key in the event context. An event passes the filter if all values are equal to the specified values. Nested context attributes are not supported as keys. Only string values are supported. Note that this field is optional in knative. In fully managed, &#39;type&#39; attribute is required due to different broker implementation.
+     * Optional. Attributes filters events by exact match on event context attributes. Each key in the map is compared with the equivalent key in the event context. An event passes the filter if all values are equal to the specified values. Nested context attributes are not supported as keys. Only string values are supported. Note that this field is optional in knative. In fully managed, 'type' attribute is required due to different broker implementation.
      */
     attributes?: {[key: string]: string} | null;
   }
@@ -2318,7 +2314,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$TriggerSpec {
     /**
-     * Broker is the broker that this trigger receives events from. If not specified, will default to &#39;default&#39;. Not currently supported by Cloud Run.
+     * Broker is the broker that this trigger receives events from. If not specified, will default to 'default'. Not currently supported by Cloud Run.
      */
     broker?: string | null;
     /**
@@ -2339,7 +2335,7 @@ export namespace run_v1alpha1 {
      */
     conditions?: Schema$TriggerCondition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Trigger that was last processed by the controller.
+     * ObservedGeneration is the 'Generation' of the Trigger that was last processed by the controller.
      */
     observedGeneration?: number | null;
     /**
@@ -2353,7 +2349,7 @@ export namespace run_v1alpha1 {
   export interface Schema$Volume {
     configMap?: Schema$ConfigMapVolumeSource;
     /**
-     * Volume&#39;s name.
+     * Volume's name.
      */
     name?: string | null;
     secret?: Schema$SecretVolumeSource;
@@ -2376,7 +2372,7 @@ export namespace run_v1alpha1 {
    */
   export interface Schema$VolumeMount {
     /**
-     * Path within the container at which the volume should be mounted. Must not contain &#39;:&#39;.
+     * Path within the container at which the volume should be mounted. Must not contain ':'.
      */
     mountPath?: string | null;
     /**
@@ -2392,7 +2388,7 @@ export namespace run_v1alpha1 {
      */
     readOnly?: boolean | null;
     /**
-     * Path within the volume from which the container&#39;s volume should be mounted. Defaults to &quot;&quot; (volume&#39;s root). +optional
+     * Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root). +optional
      */
     subPath?: string | null;
   }
@@ -2447,9 +2443,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.authorizeddomains.list
-     * @desc RPC to list authorized domains.
+     * RPC to list authorized domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2494,16 +2490,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.authorizeddomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.parent Name of the parent Application resource. Example: `apps/myapp`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Authorizeddomains$List,
@@ -2584,7 +2576,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -2617,9 +2609,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudauditlogssources.create
-     * @desc Creates a new cloudauditlogssource.
+     * Creates a new cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2675,15 +2667,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudauditlogssources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this cloudauditlogssource should be created.
-     * @param {().CloudAuditLogsSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Cloudauditlogssources$Create,
@@ -2762,7 +2751,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -2770,9 +2759,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudauditlogssources.delete
-     * @desc Rpc to delete a cloudauditlogssource.
+     * Rpc to delete a cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2800,7 +2789,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'namespaces/my-namespace/cloudauditlogssources/my-cloudauditlogssource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -2817,17 +2806,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudauditlogssources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Cloudauditlogssources$Delete,
@@ -2900,7 +2884,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2908,9 +2892,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudauditlogssources.get
-     * @desc Rpc to get information about a cloudauditlogssource.
+     * Rpc to get information about a cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2934,7 +2918,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.cloudauditlogssources.get({
-     *     // The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'namespaces/my-namespace/cloudauditlogssources/my-cloudauditlogssource',
      *   });
@@ -2955,14 +2939,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudauditlogssources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Cloudauditlogssources$Get,
@@ -3040,7 +3022,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -3048,9 +3030,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudauditlogssources.list
-     * @desc Rpc to list cloudauditlogssources.
+     * Rpc to list cloudauditlogssources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3108,21 +3090,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudauditlogssources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the cloudauditlogssources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Cloudauditlogssources$List,
@@ -3203,7 +3176,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
@@ -3236,7 +3209,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -3247,7 +3220,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudauditlogssources$Get
     extends StandardParameters {
     /**
-     * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -3294,9 +3267,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudpubsubsources.create
-     * @desc Creates a new cloudpubsubsource.
+     * Creates a new cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3352,15 +3325,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudpubsubsources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this cloudpubsubsource should be created.
-     * @param {().CloudPubSubSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Cloudpubsubsources$Create,
@@ -3437,7 +3407,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -3445,9 +3415,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudpubsubsources.delete
-     * @desc Rpc to delete a cloudpubsubsource.
+     * Rpc to delete a cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3475,7 +3445,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/cloudpubsubsources/my-cloudpubsubsource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -3491,17 +3461,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudpubsubsources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Cloudpubsubsources$Delete,
@@ -3574,7 +3539,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3582,9 +3547,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudpubsubsources.get
-     * @desc Rpc to get information about a cloudpubsubsource.
+     * Rpc to get information about a cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3608,7 +3573,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.cloudpubsubsources.get({
-     *     // The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/cloudpubsubsources/my-cloudpubsubsource',
      *   });
      *   console.log(res.data);
@@ -3628,14 +3593,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudpubsubsources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Cloudpubsubsources$Get,
@@ -3711,7 +3674,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -3719,9 +3682,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudpubsubsources.list
-     * @desc Rpc to list cloudpubsubsources.
+     * Rpc to list cloudpubsubsources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3779,21 +3742,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudpubsubsources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the cloudpubsubsources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Cloudpubsubsources$List,
@@ -3874,7 +3828,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
@@ -3907,7 +3861,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -3918,7 +3872,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudpubsubsources$Get
     extends StandardParameters {
     /**
-     * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -3965,9 +3919,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudschedulersources.create
-     * @desc Creates a new cloudschedulersource.
+     * Creates a new cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4023,15 +3977,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudschedulersources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project ID or project number in which this cloudschedulersource should be created.
-     * @param {().CloudSchedulerSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Cloudschedulersources$Create,
@@ -4110,7 +4061,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4118,9 +4069,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudschedulersources.delete
-     * @desc Rpc to delete a cloudschedulersource.
+     * Rpc to delete a cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4148,7 +4099,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -4165,17 +4116,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudschedulersources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Cloudschedulersources$Delete,
@@ -4248,7 +4194,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4256,9 +4202,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudschedulersources.get
-     * @desc Rpc to get information about a cloudschedulersource.
+     * Rpc to get information about a cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4282,7 +4228,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.cloudschedulersources.get({
-     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
      *   });
@@ -4303,14 +4249,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudschedulersources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Cloudschedulersources$Get,
@@ -4388,7 +4332,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4396,9 +4340,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudschedulersources.list
-     * @desc Rpc to list cloudschedulersources.
+     * Rpc to list cloudschedulersources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4456,21 +4400,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudschedulersources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent Required. The project ID or project number from which the cloudschedulersources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Cloudschedulersources$List,
@@ -4551,7 +4486,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
@@ -4561,9 +4496,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudschedulersources.replaceCloudSchedulerSource
-     * @desc Rpc to replace a cloudschedulersource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a cloudschedulersource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4588,7 +4523,7 @@ export namespace run_v1alpha1 {
      *   // Do the magic
      *   const res = await run.namespaces.cloudschedulersources.replaceCloudSchedulerSource(
      *     {
-     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *       name:
      *         'namespaces/my-namespace/cloudschedulersources/my-cloudschedulersource',
      *
@@ -4622,15 +4557,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudschedulersources.replaceCloudSchedulerSource
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {().CloudSchedulerSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceCloudSchedulerSource(
       params: Params$Resource$Namespaces$Cloudschedulersources$Replacecloudschedulersource,
@@ -4710,7 +4642,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -4741,7 +4673,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -4752,7 +4684,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudschedulersources$Get
     extends StandardParameters {
     /**
-     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -4794,7 +4726,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudschedulersources$Replacecloudschedulersource
     extends StandardParameters {
     /**
-     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -4811,9 +4743,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudstoragesources.create
-     * @desc Creates a new cloudstoragesource.
+     * Creates a new cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4869,15 +4801,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudstoragesources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project ID or project number in which this cloudstoragesource should be created.
-     * @param {().CloudStorageSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Cloudstoragesources$Create,
@@ -4954,7 +4883,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -4962,9 +4891,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudstoragesources.delete
-     * @desc Rpc to delete a cloudstoragesource.
+     * Rpc to delete a cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4992,7 +4921,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -5008,17 +4937,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudstoragesources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Cloudstoragesources$Delete,
@@ -5091,7 +5015,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5099,9 +5023,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudstoragesources.get
-     * @desc Rpc to get information about a cloudstoragesource.
+     * Rpc to get information about a cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5125,7 +5049,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.cloudstoragesources.get({
-     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
      *   });
      *   console.log(res.data);
@@ -5145,14 +5069,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudstoragesources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Cloudstoragesources$Get,
@@ -5228,7 +5150,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -5236,9 +5158,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudstoragesources.list
-     * @desc Rpc to list cloudstoragesources.
+     * Rpc to list cloudstoragesources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5296,21 +5218,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudstoragesources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent Required. The project ID or project number from which the cloudstoragesources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Cloudstoragesources$List,
@@ -5391,7 +5304,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
@@ -5401,9 +5314,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.cloudstoragesources.replaceCloudStorageSource
-     * @desc Rpc to replace a cloudstoragesource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a cloudstoragesource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5428,7 +5341,7 @@ export namespace run_v1alpha1 {
      *   // Do the magic
      *   const res = await run.namespaces.cloudstoragesources.replaceCloudStorageSource(
      *     {
-     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *       name: 'namespaces/my-namespace/cloudstoragesources/my-cloudstoragesource',
      *
      *       // Request body metadata
@@ -5461,15 +5374,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.cloudstoragesources.replaceCloudStorageSource
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {().CloudStorageSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceCloudStorageSource(
       params: Params$Resource$Namespaces$Cloudstoragesources$Replacecloudstoragesource,
@@ -5547,7 +5457,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -5578,7 +5488,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -5589,7 +5499,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudstoragesources$Get
     extends StandardParameters {
     /**
-     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -5631,7 +5541,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Cloudstoragesources$Replacecloudstoragesource
     extends StandardParameters {
     /**
-     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -5648,9 +5558,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.configurations.get
-     * @desc Rpc to get information about a configuration.
+     * Rpc to get information about a configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5674,7 +5584,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.configurations.get({
-     *     // The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the configuration being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/configurations/my-configuration',
      *   });
      *   console.log(res.data);
@@ -5694,14 +5604,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.configurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Configurations$Get,
@@ -5774,7 +5682,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -5782,9 +5690,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.configurations.list
-     * @desc Rpc to list configurations.
+     * Rpc to list configurations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5842,21 +5750,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.configurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the configurations should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Configurations$List,
@@ -5937,7 +5836,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -5948,7 +5847,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Configurations$Get
     extends StandardParameters {
     /**
-     * The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the configuration being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -5995,9 +5894,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.domainmappings.create
-     * @desc Creates a new domain mapping.
+     * Creates a new domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6053,15 +5952,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this domain mapping should be created.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Domainmappings$Create,
@@ -6135,7 +6031,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -6143,9 +6039,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.domainmappings.delete
-     * @desc Rpc to delete a domain mapping.
+     * Rpc to delete a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6173,7 +6069,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the domain mapping being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
      *     orphanDependents: 'placeholder-value',
@@ -6191,18 +6087,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Domainmappings$Delete,
@@ -6275,7 +6165,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6283,9 +6173,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.domainmappings.get
-     * @desc Rpc to get information about a domain mapping.
+     * Rpc to get information about a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6309,7 +6199,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.get({
-     *     // The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the domain mapping being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -6329,14 +6219,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Domainmappings$Get,
@@ -6409,7 +6297,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -6417,9 +6305,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.domainmappings.list
-     * @desc Rpc to list domain mappings.
+     * Rpc to list domain mappings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6477,21 +6365,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the domain mappings should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Domainmappings$List,
@@ -6572,7 +6451,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -6603,7 +6482,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the domain mapping being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -6618,7 +6497,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the domain mapping being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -6665,9 +6544,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.revisions.delete
-     * @desc Rpc to delete a revision.
+     * Rpc to delete a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6695,7 +6574,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the revision being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
      *     orphanDependents: 'placeholder-value',
@@ -6713,18 +6592,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Revisions$Delete,
@@ -6797,7 +6670,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6805,9 +6678,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.revisions.get
-     * @desc Rpc to get information about a revision.
+     * Rpc to get information about a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6831,7 +6704,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.get({
-     *     // The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the revision being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -6851,14 +6724,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Revisions$Get,
@@ -6931,7 +6802,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -6939,9 +6810,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.revisions.list
-     * @desc Rpc to list revisions.
+     * Rpc to list revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6999,21 +6870,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the revisions should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Revisions$List,
@@ -7091,7 +6953,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -7110,7 +6972,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the revision being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -7125,7 +6987,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the revision being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -7172,9 +7034,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.routes.get
-     * @desc Rpc to get information about a route.
+     * Rpc to get information about a route.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7198,7 +7060,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.get({
-     *     // The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the route being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -7218,14 +7080,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.routes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Routes$Get,
@@ -7298,7 +7158,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -7306,9 +7166,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.routes.list
-     * @desc Rpc to list routes.
+     * Rpc to list routes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7366,21 +7226,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.routes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the routes should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Routes$List,
@@ -7456,7 +7307,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -7467,7 +7318,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the route being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -7514,9 +7365,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.services.create
-     * @desc Rpc to create a service.
+     * Rpc to create a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7572,15 +7423,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this service should be created.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Services$Create,
@@ -7653,7 +7501,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7661,9 +7509,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.services.delete
-     * @desc Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7691,7 +7539,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/services/my-service',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
      *     orphanDependents: 'placeholder-value',
@@ -7709,18 +7557,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Services$Delete,
@@ -7793,7 +7635,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7801,9 +7643,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.services.get
-     * @desc Rpc to get information about a service.
+     * Rpc to get information about a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7827,7 +7669,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.get({
-     *     // The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/services/my-service',
      *   });
      *   console.log(res.data);
@@ -7847,14 +7689,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Services$Get,
@@ -7927,7 +7767,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7935,9 +7775,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.services.list
-     * @desc Rpc to list services.
+     * Rpc to list services.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7995,21 +7835,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the services should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Services$List,
@@ -8087,7 +7918,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -8095,9 +7926,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.services.replaceService
-     * @desc Rpc to replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -8121,7 +7952,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
-     *     // The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being replaced. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/services/my-service',
      *
      *     // Request body metadata
@@ -8153,15 +7984,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.replaceService
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceService(
       params: Params$Resource$Namespaces$Services$Replaceservice,
@@ -8234,7 +8062,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8265,7 +8093,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -8280,7 +8108,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -8322,7 +8150,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
     /**
-     * The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being replaced. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -8339,9 +8167,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.triggers.create
-     * @desc Creates a new trigger.
+     * Creates a new trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -8397,15 +8225,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.triggers.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this trigger should be created.
-     * @param {().Trigger} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Triggers$Create,
@@ -8478,7 +8303,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -8486,9 +8311,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.triggers.delete
-     * @desc Rpc to delete a trigger.
+     * Rpc to delete a trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -8516,7 +8341,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the trigger being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/triggers/my-trigger',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -8532,17 +8357,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.triggers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Triggers$Delete,
@@ -8615,7 +8435,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8623,9 +8443,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.triggers.get
-     * @desc Rpc to get information about a trigger.
+     * Rpc to get information about a trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -8649,7 +8469,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.triggers.get({
-     *     // The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the trigger being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'namespaces/my-namespace/triggers/my-trigger',
      *   });
      *   console.log(res.data);
@@ -8669,14 +8489,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.triggers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Triggers$Get,
@@ -8749,7 +8567,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -8757,9 +8575,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.namespaces.triggers.list
-     * @desc Rpc to list triggers.
+     * Rpc to list triggers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -8817,21 +8635,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.triggers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional. Encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the triggers should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Triggers$List,
@@ -8909,7 +8718,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
@@ -8940,7 +8749,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the trigger being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -8951,7 +8760,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Namespaces$Triggers$Get
     extends StandardParameters {
     /**
-     * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the trigger being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -9043,9 +8852,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9092,17 +8901,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -9181,7 +8985,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -9216,9 +9020,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.authorizeddomains.list
-     * @desc RPC to list authorized domains.
+     * RPC to list authorized domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9263,16 +9067,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.authorizeddomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.parent Name of the parent Application resource. Example: `apps/myapp`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Authorizeddomains$List,
@@ -9353,7 +9153,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -9386,9 +9186,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudauditlogssources.create
-     * @desc Creates a new cloudauditlogssource.
+     * Creates a new cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9444,15 +9244,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudauditlogssources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this cloudauditlogssource should be created.
-     * @param {().CloudAuditLogsSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Cloudauditlogssources$Create,
@@ -9530,7 +9327,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -9538,9 +9335,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudauditlogssources.delete
-     * @desc Rpc to delete a cloudauditlogssource.
+     * Rpc to delete a cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9568,7 +9365,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudauditlogssources/my-cloudauditlogssource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -9585,17 +9382,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudauditlogssources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Cloudauditlogssources$Delete,
@@ -9666,7 +9458,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9674,9 +9466,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudauditlogssources.get
-     * @desc Rpc to get information about a cloudauditlogssource.
+     * Rpc to get information about a cloudauditlogssource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9700,7 +9492,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.cloudauditlogssources.get({
-     *     // The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudauditlogssources/my-cloudauditlogssource',
      *   });
@@ -9721,14 +9513,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudauditlogssources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Cloudauditlogssources$Get,
@@ -9804,7 +9594,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudAuditLogsSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudAuditLogsSource>(parameters);
@@ -9812,9 +9602,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudauditlogssources.list
-     * @desc Rpc to list cloudauditlogssources.
+     * Rpc to list cloudauditlogssources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -9872,21 +9662,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudauditlogssources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the cloudauditlogssources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Cloudauditlogssources$List,
@@ -9966,7 +9747,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudAuditLogsSourcesResponse>(
@@ -9999,7 +9780,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudauditlogssource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -10010,7 +9791,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudauditlogssources$Get
     extends StandardParameters {
     /**
-     * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudauditlogssource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -10057,9 +9838,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudpubsubsources.create
-     * @desc Creates a new cloudpubsubsource.
+     * Creates a new cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10115,15 +9896,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudpubsubsources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this cloudpubsubsource should be created.
-     * @param {().CloudPubSubSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Cloudpubsubsources$Create,
@@ -10200,7 +9978,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -10208,9 +9986,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudpubsubsources.delete
-     * @desc Rpc to delete a cloudpubsubsource.
+     * Rpc to delete a cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10238,7 +10016,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudpubsubsources/my-cloudpubsubsource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -10255,17 +10033,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudpubsubsources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Cloudpubsubsources$Delete,
@@ -10336,7 +10109,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10344,9 +10117,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudpubsubsources.get
-     * @desc Rpc to get information about a cloudpubsubsource.
+     * Rpc to get information about a cloudpubsubsource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10370,7 +10143,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.cloudpubsubsources.get({
-     *     // The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudpubsubsources/my-cloudpubsubsource',
      *   });
@@ -10391,14 +10164,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudpubsubsources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Cloudpubsubsources$Get,
@@ -10472,7 +10243,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudPubSubSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudPubSubSource>(parameters);
@@ -10480,9 +10251,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudpubsubsources.list
-     * @desc Rpc to list cloudpubsubsources.
+     * Rpc to list cloudpubsubsources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10540,21 +10311,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudpubsubsources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the cloudpubsubsources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Cloudpubsubsources$List,
@@ -10635,7 +10397,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudPubSubSourcesResponse>(
@@ -10668,7 +10430,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudpubsubsource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -10679,7 +10441,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudpubsubsources$Get
     extends StandardParameters {
     /**
-     * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the cloudpubsubsource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -10726,9 +10488,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudschedulersources.create
-     * @desc Creates a new cloudschedulersource.
+     * Creates a new cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10784,15 +10546,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudschedulersources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project ID or project number in which this cloudschedulersource should be created.
-     * @param {().CloudSchedulerSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Cloudschedulersources$Create,
@@ -10870,7 +10629,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -10878,9 +10637,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudschedulersources.delete
-     * @desc Rpc to delete a cloudschedulersource.
+     * Rpc to delete a cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -10908,7 +10667,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -10925,17 +10684,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudschedulersources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Cloudschedulersources$Delete,
@@ -11006,7 +10760,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11014,9 +10768,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudschedulersources.get
-     * @desc Rpc to get information about a cloudschedulersource.
+     * Rpc to get information about a cloudschedulersource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11040,7 +10794,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.cloudschedulersources.get({
-     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
      *   });
@@ -11061,14 +10815,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudschedulersources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Cloudschedulersources$Get,
@@ -11144,7 +10896,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -11152,9 +10904,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudschedulersources.list
-     * @desc Rpc to list cloudschedulersources.
+     * Rpc to list cloudschedulersources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11212,21 +10964,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudschedulersources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent Required. The project ID or project number from which the cloudschedulersources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Cloudschedulersources$List,
@@ -11306,7 +11049,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudSchedulerSourcesResponse>(
@@ -11316,9 +11059,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource
-     * @desc Rpc to replace a cloudschedulersource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a cloudschedulersource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11343,7 +11086,7 @@ export namespace run_v1alpha1 {
      *   // Do the magic
      *   const res = await run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource(
      *     {
-     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *       // Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *       name:
      *         'projects/my-project/locations/my-location/cloudschedulersources/my-cloudschedulersource',
      *
@@ -11377,15 +11120,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudschedulersources.replaceCloudSchedulerSource
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {().CloudSchedulerSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceCloudSchedulerSource(
       params: Params$Resource$Projects$Locations$Cloudschedulersources$Replacecloudschedulersource,
@@ -11463,7 +11203,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudSchedulerSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudSchedulerSource>(parameters);
@@ -11494,7 +11234,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -11505,7 +11245,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Get
     extends StandardParameters {
     /**
-     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -11547,7 +11287,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudschedulersources$Replacecloudschedulersource
     extends StandardParameters {
     /**
-     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudschedulersource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -11564,9 +11304,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudstoragesources.create
-     * @desc Creates a new cloudstoragesource.
+     * Creates a new cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11622,15 +11362,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudstoragesources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project ID or project number in which this cloudstoragesource should be created.
-     * @param {().CloudStorageSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Cloudstoragesources$Create,
@@ -11707,7 +11444,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -11715,9 +11452,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudstoragesources.delete
-     * @desc Rpc to delete a cloudstoragesource.
+     * Rpc to delete a cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11745,7 +11482,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -11762,17 +11499,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudstoragesources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Cloudstoragesources$Delete,
@@ -11843,7 +11575,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11851,9 +11583,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudstoragesources.get
-     * @desc Rpc to get information about a cloudstoragesource.
+     * Rpc to get information about a cloudstoragesource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -11877,7 +11609,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.cloudstoragesources.get({
-     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
      *   });
@@ -11898,14 +11630,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudstoragesources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Cloudstoragesources$Get,
@@ -11979,7 +11709,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -11987,9 +11717,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudstoragesources.list
-     * @desc Rpc to list cloudstoragesources.
+     * Rpc to list cloudstoragesources.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12047,21 +11777,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudstoragesources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent Required. The project ID or project number from which the cloudstoragesources should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Cloudstoragesources$List,
@@ -12142,7 +11863,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCloudStorageSourcesResponse>(
@@ -12152,9 +11873,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.cloudstoragesources.replaceCloudStorageSource
-     * @desc Rpc to replace a cloudstoragesource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a cloudstoragesource. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12179,7 +11900,7 @@ export namespace run_v1alpha1 {
      *   // Do the magic
      *   const res = await run.projects.locations.cloudstoragesources.replaceCloudStorageSource(
      *     {
-     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     *       // Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      *       name:
      *         'projects/my-project/locations/my-location/cloudstoragesources/my-cloudstoragesource',
      *
@@ -12213,15 +11934,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.cloudstoragesources.replaceCloudStorageSource
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {().CloudStorageSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceCloudStorageSource(
       params: Params$Resource$Projects$Locations$Cloudstoragesources$Replacecloudstoragesource,
@@ -12297,7 +12015,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$CloudStorageSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudStorageSource>(parameters);
@@ -12328,7 +12046,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -12339,7 +12057,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Get
     extends StandardParameters {
     /**
-     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -12381,7 +12099,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Cloudstoragesources$Replacecloudstoragesource
     extends StandardParameters {
     /**
-     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id} with the project ID.
+     * Required. The name of the cloudstoragesource being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -12398,9 +12116,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.configurations.get
-     * @desc Rpc to get information about a configuration.
+     * Rpc to get information about a configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12424,7 +12142,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.configurations.get({
-     *     // The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the configuration being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/configurations/my-configuration',
      *   });
@@ -12445,14 +12163,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.configurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Configurations$Get,
@@ -12523,7 +12239,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -12531,9 +12247,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.configurations.list
-     * @desc Rpc to list configurations.
+     * Rpc to list configurations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12591,21 +12307,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.configurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the configurations should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Configurations$List,
@@ -12686,7 +12393,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -12697,7 +12404,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Configurations$Get
     extends StandardParameters {
     /**
-     * The name of the configuration being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the configuration being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -12744,9 +12451,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.create
-     * @desc Creates a new domain mapping.
+     * Creates a new domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12802,15 +12509,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this domain mapping should be created.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Domainmappings$Create,
@@ -12884,7 +12588,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -12892,9 +12596,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.delete
-     * @desc Rpc to delete a domain mapping.
+     * Rpc to delete a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -12922,7 +12626,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the domain mapping being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
@@ -12941,18 +12645,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Domainmappings$Delete,
@@ -13023,7 +12721,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13031,9 +12729,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.get
-     * @desc Rpc to get information about a domain mapping.
+     * Rpc to get information about a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13057,7 +12755,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.get({
-     *     // The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the domain mapping being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *   });
@@ -13078,14 +12776,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Domainmappings$Get,
@@ -13156,7 +12852,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -13164,9 +12860,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.list
-     * @desc Rpc to list domain mappings.
+     * Rpc to list domain mappings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13224,21 +12920,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the domain mappings should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Domainmappings$List,
@@ -13319,7 +13006,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -13350,7 +13037,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the domain mapping being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -13365,7 +13052,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the domain mapping being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -13412,9 +13099,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.revisions.delete
-     * @desc Rpc to delete a revision.
+     * Rpc to delete a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13442,7 +13129,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the revision being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
      *     orphanDependents: 'placeholder-value',
@@ -13460,18 +13147,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Revisions$Delete,
@@ -13542,7 +13223,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13550,9 +13231,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.revisions.get
-     * @desc Rpc to get information about a revision.
+     * Rpc to get information about a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13576,7 +13257,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.get({
-     *     // The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the revision being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -13596,14 +13277,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Revisions$Get,
@@ -13674,7 +13353,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -13682,9 +13361,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.revisions.list
-     * @desc Rpc to list revisions.
+     * Rpc to list revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13742,21 +13421,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the revisions should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Revisions$List,
@@ -13835,7 +13505,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -13854,7 +13524,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the revision being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the revision being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -13869,7 +13539,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the revision being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -13916,9 +13586,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.routes.get
-     * @desc Rpc to get information about a route.
+     * Rpc to get information about a route.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -13942,7 +13612,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.get({
-     *     // The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the route being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -13962,14 +13632,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.routes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Routes$Get,
@@ -14040,7 +13708,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -14048,9 +13716,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.routes.list
-     * @desc Rpc to list routes.
+     * Rpc to list routes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14108,21 +13776,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.routes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the routes should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Routes$List,
@@ -14199,7 +13858,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -14210,7 +13869,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the route being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -14257,9 +13916,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.create
-     * @desc Rpc to create a service.
+     * Rpc to create a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14315,15 +13974,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this service should be created.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
@@ -14397,7 +14053,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -14405,9 +14061,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.delete
-     * @desc Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * Rpc to delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14435,7 +14091,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
      *     orphanDependents: 'placeholder-value',
@@ -14453,18 +14109,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {boolean=} params.orphanDependents Deprecated. Specifies the cascade behavior on delete. Cloud Run only supports cascading behavior, so this must be false. This attribute is deprecated, and is now replaced with PropagationPolicy See https://github.com/kubernetes/kubernetes/issues/46659 for more info.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
@@ -14535,7 +14185,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14543,9 +14193,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.get
-     * @desc Rpc to get information about a service.
+     * Rpc to get information about a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14569,7 +14219,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -14589,14 +14239,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
@@ -14667,7 +14315,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -14675,9 +14323,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.getIamPolicy
-     * @desc Get the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
+     * Get the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14722,15 +14370,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
@@ -14804,7 +14449,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -14812,9 +14457,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.list
-     * @desc Rpc to list services.
+     * Rpc to list services.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14872,21 +14517,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the services should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Services$List,
@@ -14965,7 +14601,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -14973,9 +14609,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.replaceService
-     * @desc Rpc to replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Rpc to replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -14999,7 +14635,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
-     *     // The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the service being replaced. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -15031,15 +14667,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.replaceService
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceService(
       params: Params$Resource$Projects$Locations$Services$Replaceservice,
@@ -15110,7 +14743,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -15118,9 +14751,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.setIamPolicy
-     * @desc Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
+     * Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -15172,15 +14805,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
@@ -15254,7 +14884,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -15262,9 +14892,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.services.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
+     * Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -15312,15 +14942,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
@@ -15401,7 +15028,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -15432,7 +15059,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the service being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -15447,7 +15074,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -15500,7 +15127,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
     /**
-     * The name of the service being replaced. If needed, replace {namespace_id} with the project ID.
+     * The name of the service being replaced. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
 
@@ -15541,9 +15168,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.triggers.create
-     * @desc Creates a new trigger.
+     * Creates a new trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -15599,15 +15226,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.triggers.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project ID or project number in which this trigger should be created.
-     * @param {().Trigger} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Triggers$Create,
@@ -15681,7 +15305,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -15689,9 +15313,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.triggers.delete
-     * @desc Rpc to delete a trigger.
+     * Rpc to delete a trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -15719,7 +15343,7 @@ export namespace run_v1alpha1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the trigger being deleted. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -15735,17 +15359,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.triggers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Triggers$Delete,
@@ -15816,7 +15435,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15824,9 +15443,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.triggers.get
-     * @desc Rpc to get information about a trigger.
+     * Rpc to get information about a trigger.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -15850,7 +15469,7 @@ export namespace run_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.triggers.get({
-     *     // The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the trigger being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name: 'projects/my-project/locations/my-location/triggers/my-trigger',
      *   });
      *   console.log(res.data);
@@ -15870,14 +15489,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.triggers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Triggers$Get,
@@ -15948,7 +15565,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Trigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Trigger>(parameters);
@@ -15956,9 +15573,9 @@ export namespace run_v1alpha1 {
     }
 
     /**
-     * run.projects.locations.triggers.list
-     * @desc Rpc to list triggers.
+     * Rpc to list triggers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -16016,21 +15633,12 @@ export namespace run_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.triggers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional. Encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The project ID or project number from which the triggers should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Triggers$List,
@@ -16109,7 +15717,7 @@ export namespace run_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTriggersResponse>(parameters);
@@ -16140,7 +15748,7 @@ export namespace run_v1alpha1 {
      */
     kind?: string;
     /**
-     * The name of the trigger being deleted. If needed, replace {namespace_id} with the project ID.
+     * The name of the trigger being deleted. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
     /**
@@ -16151,7 +15759,7 @@ export namespace run_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Triggers$Get
     extends StandardParameters {
     /**
-     * The name of the trigger being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the trigger being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }

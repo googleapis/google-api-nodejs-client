@@ -48,7 +48,7 @@ interface StandardParameters {
 
   {% for pname, p in api.parameters|dictsort %}
   /**
-    * {{ p.description|oneLine|cleanComments|safe }}
+    * {{ p.description|cleanComments|safe|replace("\n", "\n * ") }}
     */
   {{ pname|cleanPropertyName|safe }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
   {% endfor %}
@@ -57,17 +57,13 @@ interface StandardParameters {
 /**
  * {{ api.title }}
  *
- * {{ api.description | oneLine }}
+ * {{ api.description | replace("\n", "\n * ") }}
  *
  * @example
+ * ```js
  * const {google} = require('googleapis');
  * const {{ api.name }} = google.{{ api.name }}('{{ api.version }}');
- *
- * @namespace {{ api.name }}
- * @type {Function}
- * @version {{ api.version }}
- * @variation {{ api.version }}
- * @param {object=} options Options for {{ Name }}
+ * ```
  */
 export class {{ Name }} {
   context: APIRequestContext;
@@ -102,7 +98,7 @@ export class {{ Name }} {
 {% for schemaName, schema in api.schemas|dictsort %}
 {% if schema.description %}
 /**
-  * {{ schema.description | cleanPaths | oneLine }}
+  * {{ schema.description | cleanComments | safe | replace("\n", "\n * ") }}
   */
 {% endif %}
 export interface Schema${{ schema.id }} {
@@ -110,7 +106,7 @@ export interface Schema${{ schema.id }} {
 {% for pname, p in schema.properties|dictsort %}
   {% if p.description %}
     /**
-     * {{ p.description | cleanPaths | oneLine }}
+     * {{ p.description | cleanComments | safe | replace("\n", "\n * ") }}
      */
   {% endif %}
   {% if p.$ref %}
@@ -132,7 +128,7 @@ export interface Schema${{ schema.id }} {
       {% if m.parameters %}
         {% for pname, p in m.parameters|dictsort %}
         /**
-         * {{ p.description|oneLine|cleanComments|safe }}
+         * {{ p.description|cleanComments|safe|replace("\n", "\n * ") }}
          */
         {{ pname|getSafeParamName }}?: {{ p.type }}{% if p.repeated %}[]{% endif %};
         {% endfor %}

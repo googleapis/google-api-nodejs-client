@@ -41,3 +41,15 @@ export function storage<T = storage_v1.Storage | storage_v1beta2.Storage>(
 
 const auth = new AuthPlus();
 export {auth};
+export {storage_v1};
+export {storage_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

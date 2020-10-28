@@ -104,14 +104,10 @@ export namespace doubleclickbidmanager_v1 {
    * DoubleClick Bid Manager API allows users to manage and create campaigns and reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const doubleclickbidmanager = google.doubleclickbidmanager('v1');
-   *
-   * @namespace doubleclickbidmanager
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Doubleclickbidmanager
+   * ```
    */
   export class Doubleclickbidmanager {
     context: APIRequestContext;
@@ -168,7 +164,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$DownloadRequest {
     /**
-     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. Acceptable values are: - &quot;AD&quot; - &quot;AD_GROUP&quot; - &quot;CAMPAIGN&quot; - &quot;INSERTION_ORDER&quot; - &quot;INVENTORY_SOURCE&quot; - &quot;LINE_ITEM&quot;
+     * File types that will be returned. If INVENTORY_SOURCE is requested, no other file types may be requested. Acceptable values are: - "AD" - "AD_GROUP" - "CAMPAIGN" - "INSERTION_ORDER" - "INVENTORY_SOURCE" - "LINE_ITEM"
      */
     fileTypes?: string[] | null;
     /**
@@ -228,7 +224,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListQueriesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listQueriesResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "doubleclickbidmanager#listQueriesResponse".
      */
     kind?: string | null;
     /**
@@ -241,7 +237,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$ListReportsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#listReportsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "doubleclickbidmanager#listReportsResponse".
      */
     kind?: string | null;
     /**
@@ -279,7 +275,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$Query {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;doubleclickbidmanager#query&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "doubleclickbidmanager#query".
      */
     kind?: string | null;
     /**
@@ -479,7 +475,7 @@ export namespace doubleclickbidmanager_v1 {
      */
     entityName?: string | null;
     /**
-     * Reasons why the entity can&#39;t be uploaded.
+     * Reasons why the entity can't be uploaded.
      */
     errors?: string[] | null;
     /**
@@ -543,7 +539,7 @@ export namespace doubleclickbidmanager_v1 {
    */
   export interface Schema$UploadStatus {
     /**
-     * Reasons why upload can&#39;t be completed.
+     * Reasons why upload can't be completed.
      */
     errors?: string[] | null;
     /**
@@ -559,9 +555,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.lineitems.downloadlineitems
-     * @desc Retrieves line items in CSV format. YouTube & partners line items are not supported.
+     * Retrieves line items in CSV format. YouTube & partners line items are not supported.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -609,14 +605,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.lineitems.downloadlineitems
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DownloadLineItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     downloadlineitems(
       params: Params$Resource$Lineitems$Downloadlineitems,
@@ -697,7 +691,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$DownloadLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadLineItemsResponse>(parameters);
@@ -705,9 +699,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.lineitems.uploadlineitems
-     * @desc Uploads line items in CSV format. YouTube & partners line items are not supported.
+     * Uploads line items in CSV format. YouTube & partners line items are not supported.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -754,14 +748,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.lineitems.uploadlineitems
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().UploadLineItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     uploadlineitems(
       params: Params$Resource$Lineitems$Uploadlineitems,
@@ -842,7 +834,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$UploadLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadLineItemsResponse>(parameters);
@@ -872,9 +864,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.queries.createquery
-     * @desc Creates a query.
+     * Creates a query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -933,14 +925,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.queries.createquery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Query} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createquery(
       params: Params$Resource$Queries$Createquery,
@@ -1015,7 +1005,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$Query>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
@@ -1023,9 +1013,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.queries.deletequery
-     * @desc Deletes a stored query as well as the associated stored reports.
+     * Deletes a stored query as well as the associated stored reports.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1060,14 +1050,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.queries.deletequery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.queryId Query ID to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     deletequery(
       params: Params$Resource$Queries$Deletequery,
@@ -1139,7 +1127,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1147,9 +1135,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.queries.getquery
-     * @desc Retrieves a stored query.
+     * Retrieves a stored query.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1196,14 +1184,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.queries.getquery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.queryId Query ID to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getquery(
       params: Params$Resource$Queries$Getquery,
@@ -1276,7 +1262,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$Query>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Query>(parameters);
@@ -1284,9 +1270,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.queries.listqueries
-     * @desc Retrieves stored queries.
+     * Retrieves stored queries.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1324,13 +1310,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.queries.listqueries
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listqueries(
       params: Params$Resource$Queries$Listqueries,
@@ -1410,7 +1395,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$ListQueriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListQueriesResponse>(parameters);
@@ -1418,9 +1403,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.queries.runquery
-     * @desc Runs a stored query to generate a report.
+     * Runs a stored query to generate a report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1466,15 +1451,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.queries.runquery
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.queryId Query ID to run.
-     * @param {().RunQueryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     runquery(
       params: Params$Resource$Queries$Runquery,
@@ -1545,7 +1527,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1594,9 +1576,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.reports.listreports
-     * @desc Retrieves stored reports.
+     * Retrieves stored reports.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1637,14 +1619,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.reports.listreports
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.queryId Query ID with which the reports are associated.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listreports(
       params: Params$Resource$Reports$Listreports,
@@ -1723,7 +1703,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReportsResponse>(parameters);
@@ -1746,9 +1726,9 @@ export namespace doubleclickbidmanager_v1 {
     }
 
     /**
-     * doubleclickbidmanager.sdf.download
-     * @desc Retrieves entities in SDF format.
+     * Retrieves entities in SDF format.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/doubleclickbidmanager.googleapis.com
@@ -1801,14 +1781,12 @@ export namespace doubleclickbidmanager_v1 {
      *   throw e;
      * });
      *
-     * @alias doubleclickbidmanager.sdf.download
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DownloadRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     download(
       params: Params$Resource$Sdf$Download,
@@ -1882,7 +1860,7 @@ export namespace doubleclickbidmanager_v1 {
       if (callback) {
         createAPIRequest<Schema$DownloadResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadResponse>(parameters);

@@ -104,14 +104,10 @@ export namespace monitoring_v3 {
    * Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the Cloud Monitoring documentation.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const monitoring = google.monitoring('v3');
-   *
-   * @namespace monitoring
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Monitoring
+   * ```
    */
   export class Monitoring {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace monitoring_v3 {
   }
 
   /**
-   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example &quot;the 95% latency across the average of all tasks in a cluster&quot;. This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
+   * Describes how to combine multiple time series to provide a different view of the data. Aggregation of time series is done in two steps. First, each time series in the set is aligned to the same time interval boundaries, then the set of time series is optionally reduced in number.Alignment consists of applying the per_series_aligner operation to each time series after its data has been divided into regular alignment_period time intervals. This process takes all of the data points in an alignment period, applies a mathematical transformation such as averaging, minimum, maximum, delta, etc., and converts them into a single data point per period.Reduction is when the aligned and transformed time series can optionally be combined, reducing the number of time series through similar mathematical transformations. Reduction involves applying a cross_series_reducer to all the time series, optionally sorting the time series into subsets with group_by_fields, and applying the reducer to each subset.The raw time series data can contain a huge amount of information from multiple sources. Alignment and reduction transforms this mass of data into a more manageable and representative collection of data, for example "the 95% latency across the average of all tasks in a cluster". This representative data can be more easily graphed and comprehended, and the individual time series data is still available for later drilldown. For more details, see Filtering and aggregation (https://cloud.google.com/monitoring/api/v3/aggregation).
    */
   export interface Schema$Aggregation {
     /**
@@ -153,7 +149,7 @@ export namespace monitoring_v3 {
     perSeriesAligner?: string | null;
   }
   /**
-   * A description of the conditions under which some aspect of your system is considered to be &quot;unhealthy&quot; and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/).
+   * A description of the conditions under which some aspect of your system is considered to be "unhealthy" and the ways to notify people or services about this state. For an overview of alert policies, see Introduction to Alerting (https://cloud.google.com/monitoring/alerts/).
    */
   export interface Schema$AlertPolicy {
     /**
@@ -169,7 +165,7 @@ export namespace monitoring_v3 {
      */
     creationRecord?: Schema$MutationRecord;
     /**
-     * A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.
+     * A short name or phrase used to identify the policy in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple policies in the same project. The name is limited to 512 Unicode characters.
      */
     displayName?: string | null;
     /**
@@ -240,20 +236,20 @@ export namespace monitoring_v3 {
      */
     latency?: Schema$LatencyCriteria;
     /**
-     * OPTIONAL: The set of locations to which this SLI is relevant. Telemetry from other locations will not be used to calculate performance for this SLI. If omitted, this SLI applies to all locations in which the Service has activity. For service types that don&#39;t support breaking down by location, setting this field will result in an error.
+     * OPTIONAL: The set of locations to which this SLI is relevant. Telemetry from other locations will not be used to calculate performance for this SLI. If omitted, this SLI applies to all locations in which the Service has activity. For service types that don't support breaking down by location, setting this field will result in an error.
      */
     location?: string[] | null;
     /**
-     * OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from other methods will not be used to calculate performance for this SLI. If omitted, this SLI applies to all the Service&#39;s methods. For service types that don&#39;t support breaking down by method, setting this field will result in an error.
+     * OPTIONAL: The set of RPCs to which this SLI is relevant. Telemetry from other methods will not be used to calculate performance for this SLI. If omitted, this SLI applies to all the Service's methods. For service types that don't support breaking down by method, setting this field will result in an error.
      */
     method?: string[] | null;
     /**
-     * OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry from other API versions will not be used to calculate performance for this SLI. If omitted, this SLI applies to all API versions. For service types that don&#39;t support breaking down by version, setting this field will result in an error.
+     * OPTIONAL: The set of API versions to which this SLI is relevant. Telemetry from other API versions will not be used to calculate performance for this SLI. If omitted, this SLI applies to all API versions. For service types that don't support breaking down by version, setting this field will result in an error.
      */
     version?: string[] | null;
   }
   /**
-   * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i &gt; 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
+   * BucketOptions describes the bucket boundaries used to create a histogram for the distribution. The buckets can be in a linear sequence, an exponential sequence, or each bucket can be specified explicitly. BucketOptions does not include the number of values in each bucket.A bucket has an inclusive lower bound and exclusive upper bound for the values that are counted for that bucket. The upper bound of a bucket must be strictly greater than the lower bound. The sequence of N buckets for a distribution consists of an underflow bucket (number 0), zero or more finite buckets (number 1 through N - 2) and an overflow bucket (number N - 1). The buckets are contiguous: the lower bound of bucket i (i \> 0) is the same as the upper bound of bucket i - 1. The buckets span the whole range of finite values: lower bound of the underflow bucket is -infinity and the upper bound of the overflow bucket is +infinity. The finite buckets are so-called because both bounds are finite.
    */
   export interface Schema$BucketOptions {
     /**
@@ -308,15 +304,15 @@ export namespace monitoring_v3 {
      */
     endTime?: string | null;
     /**
-     * The measurement metadata. Example: &quot;process_id&quot; -&gt; 12345
+     * The measurement metadata. Example: "process_id" -\> 12345
      */
     metadata?: {[key: string]: Schema$TypedValue} | null;
     /**
-     * The name of the plugin. Example: &quot;disk&quot;.
+     * The name of the plugin. Example: "disk".
      */
     plugin?: string | null;
     /**
-     * The instance name of the plugin Example: &quot;hdcl&quot;.
+     * The instance name of the plugin Example: "hdcl".
      */
     pluginInstance?: string | null;
     /**
@@ -324,11 +320,11 @@ export namespace monitoring_v3 {
      */
     startTime?: string | null;
     /**
-     * The measurement type. Example: &quot;memory&quot;.
+     * The measurement type. Example: "memory".
      */
     type?: string | null;
     /**
-     * The measurement type instance. Example: &quot;used&quot;.
+     * The measurement type instance. Example: "used".
      */
     typeInstance?: string | null;
     /**
@@ -341,7 +337,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$CollectdPayloadError {
     /**
-     * Records the error status for the payload. If this field is present, the partial errors for nested values won&#39;t be populated.
+     * Records the error status for the payload. If this field is present, the partial errors for nested values won't be populated.
      */
     error?: Schema$Status;
     /**
@@ -358,7 +354,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$CollectdValue {
     /**
-     * The data source for the collectd value. For example, there are two data sources for network measurements: &quot;rx&quot; and &quot;tx&quot;.
+     * The data source for the collectd value. For example, there are two data sources for network measurements: "rx" and "tx".
      */
     dataSourceName?: string | null;
     /**
@@ -400,7 +396,7 @@ export namespace monitoring_v3 {
      */
     conditionThreshold?: Schema$MetricThreshold;
     /**
-     * A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don&#39;t use the same display name for multiple conditions in the same policy.
+     * A short name or phrase used to identify the condition in dashboards, notifications, and incidents. To avoid confusion, don't use the same display name for multiple conditions in the same policy.
      */
     displayName?: string | null;
     /**
@@ -409,7 +405,7 @@ export namespace monitoring_v3 {
     name?: string | null;
   }
   /**
-   * Optional. Used to perform content matching. This allows matching based on substrings and regular expressions, together with their negations. Only the first 4 MB of an HTTP or HTTPS check&#39;s response (and the first 1 MB of a TCP check&#39;s response) are examined for purposes of content matching.
+   * Optional. Used to perform content matching. This allows matching based on substrings and regular expressions, together with their negations. Only the first 4 MB of an HTTP or HTTPS check's response (and the first 1 MB of a TCP check's response) are examined for purposes of content matching.
    */
   export interface Schema$ContentMatcher {
     /**
@@ -430,7 +426,7 @@ export namespace monitoring_v3 {
      */
     collectdPayloads?: Schema$CollectdPayload[];
     /**
-     * The version of collectd that collected the data. Example: &quot;5.3.0-192.el6&quot;.
+     * The version of collectd that collected the data. Example: "5.3.0-192.el6".
      */
     collectdVersion?: string | null;
     /**
@@ -510,12 +506,12 @@ export namespace monitoring_v3 {
      */
     range?: Schema$Range;
     /**
-     * The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, &quot;The Art of Computer Programming&quot;, Vol. 2, page 232, 3rd edition describes Welford&#39;s method for accumulating this sum in one pass.If count is zero then this field must be zero.
+     * The sum of squared deviations from the mean of the values in the population. For values x_i this is: Sum[i=1..n]((x_i - mean)^2) Knuth, "The Art of Computer Programming", Vol. 2, page 232, 3rd edition describes Welford's method for accumulating this sum in one pass.If count is zero then this field must be zero.
      */
     sumOfSquaredDeviation?: number | null;
   }
   /**
-   * A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the count of values x in the Distribution such that range.min &lt;= x &lt; range.max.
+   * A DistributionCut defines a TimeSeries and thresholds used for measuring good service and total service. The TimeSeries must have ValueType = DISTRIBUTION and MetricKind = DELTA or MetricKind = CUMULATIVE. The computed good_service will be the count of values x in the Distribution such that range.min <= x < range.max.
    */
   export interface Schema$DistributionCut {
     /**
@@ -523,12 +519,12 @@ export namespace monitoring_v3 {
      */
     distributionFilter?: string | null;
     /**
-     * Range of values considered &quot;good.&quot; For a one-sided range, set one bound to an infinite value.
+     * Range of values considered "good." For a one-sided range, set one bound to an infinite value.
      */
     range?: Schema$GoogleMonitoringV3Range;
   }
   /**
-   * A content string and a MIME type that describes the content string&#39;s format.
+   * A content string and a MIME type that describes the content string's format.
    */
   export interface Schema$Documentation {
     /**
@@ -536,7 +532,7 @@ export namespace monitoring_v3 {
      */
     content?: string | null;
     /**
-     * The format of the content field. Presently, only the value &quot;text/markdown&quot; is supported. See Markdown (https://en.wikipedia.org/wiki/Markdown) for more information.
+     * The format of the content field. Presently, only the value "text/markdown" is supported. See Markdown (https://en.wikipedia.org/wiki/Markdown) for more information.
      */
     mimeType?: string | null;
   }
@@ -550,7 +546,7 @@ export namespace monitoring_v3 {
     label?: {[key: string]: string} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for Empty is empty JSON object {}.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for Empty is empty JSON object {\}.
    */
   export interface Schema$Empty {}
   /**
@@ -558,7 +554,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Error {
     /**
-     * The number of points that couldn&#39;t be written because of status.
+     * The number of points that couldn't be written because of status.
      */
     pointCount?: number | null;
     /**
@@ -584,7 +580,7 @@ export namespace monitoring_v3 {
     value?: number | null;
   }
   /**
-   * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): boundsi Lower bound (1 &lt;= i &lt; N); boundsi - 1The bounds field must contain at least one element. If bounds has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
+   * Specifies a set of buckets with arbitrary widths.There are size(bounds) + 1 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): boundsi Lower bound (1 <= i < N); boundsi - 1The bounds field must contain at least one element. If bounds has only one element, then there are no finite buckets, and that single element is the common boundary of the overflow and underflow buckets.
    */
   export interface Schema$Explicit {
     /**
@@ -593,7 +589,7 @@ export namespace monitoring_v3 {
     bounds?: number[] | null;
   }
   /**
-   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): scale * (growth_factor ^ i). Lower bound (1 &lt;= i &lt; N): scale * (growth_factor ^ (i - 1)).
+   * Specifies an exponential sequence of buckets that have a width that is proportional to the value of the lower bound. Each bucket represents a constant relative uncertainty on a specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): scale * (growth_factor ^ i). Lower bound (1 <= i < N): scale * (growth_factor ^ (i - 1)).
    */
   export interface Schema$Exponential {
     /**
@@ -650,7 +646,7 @@ export namespace monitoring_v3 {
      */
     packed?: boolean | null;
     /**
-     * The field type URL, without the scheme, for message or enumeration types. Example: &quot;type.googleapis.com/google.protobuf.Timestamp&quot;.
+     * The field type URL, without the scheme, for message or enumeration types. Example: "type.googleapis.com/google.protobuf.Timestamp".
      */
     typeUrl?: string | null;
   }
@@ -659,7 +655,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$GetNotificationChannelVerificationCodeRequest {
     /**
-     * The desired expiration time. If specified, the API will guarantee that the returned code will not be valid after the specified timestamp; however, the API cannot guarantee that the returned code will be valid for at least as long as the requested time (the API puts an upper bound on the amount of time for which a code may be valid). If omitted, a default expiration will be used, which may be less than the max permissible expiration (so specifying an expiration may extend the code&#39;s lifetime over omitting an expiration, even though the API does impose an upper limit on the maximum expiration that is permitted).
+     * The desired expiration time. If specified, the API will guarantee that the returned code will not be valid after the specified timestamp; however, the API cannot guarantee that the returned code will be valid for at least as long as the requested time (the API puts an upper bound on the amount of time for which a code may be valid). If omitted, a default expiration will be used, which may be less than the max permissible expiration (so specifying an expiration may extend the code's lifetime over omitting an expiration, even though the API does impose an upper limit on the maximum expiration that is permitted).
      */
     expireTime?: string | null;
   }
@@ -677,7 +673,7 @@ export namespace monitoring_v3 {
     expireTime?: string | null;
   }
   /**
-   * Range of numerical values, inclusive of min and exclusive of max. If the open range &quot;&lt; range.max&quot; is desired, set range.min = -infinity. If the open range &quot;&gt;= range.min&quot; is desired, set range.max = infinity.
+   * Range of numerical values, inclusive of min and exclusive of max. If the open range "< range.max" is desired, set range.min = -infinity. If the open range "\>= range.min" is desired, set range.max = infinity.
    */
   export interface Schema$GoogleMonitoringV3Range {
     /**
@@ -690,7 +686,7 @@ export namespace monitoring_v3 {
     min?: number | null;
   }
   /**
-   * The description of a dynamic collection of monitored resources. Each group has a filter that is matched against monitored resources and their associated metadata. If a group&#39;s filter matches an available monitored resource, then that resource is a member of that group. Groups can contain any number of monitored resources, and each monitored resource can be a member of any number of groups.Groups can be nested in parent-child hierarchies. The parentName field identifies an optional parent for each group. If a group has a parent, then the only monitored resources available to be matched by the group&#39;s filter are the resources contained in the parent group. In other words, a group contains the monitored resources that match its filter and the filters of all the group&#39;s ancestors. A group without a parent can contain any monitored resource.For example, consider an infrastructure running a set of instances with two user-defined tags: &quot;environment&quot; and &quot;role&quot;. A parent group has a filter, environment=&quot;production&quot;. A child of that parent group has a filter, role=&quot;transcoder&quot;. The parent group contains all instances in the production environment, regardless of their roles. The child group contains instances that have the transcoder role and are in the production environment.The monitored resources contained in a group can change at any moment, depending on what resources exist and what filters are associated with the group and its ancestors.
+   * The description of a dynamic collection of monitored resources. Each group has a filter that is matched against monitored resources and their associated metadata. If a group's filter matches an available monitored resource, then that resource is a member of that group. Groups can contain any number of monitored resources, and each monitored resource can be a member of any number of groups.Groups can be nested in parent-child hierarchies. The parentName field identifies an optional parent for each group. If a group has a parent, then the only monitored resources available to be matched by the group's filter are the resources contained in the parent group. In other words, a group contains the monitored resources that match its filter and the filters of all the group's ancestors. A group without a parent can contain any monitored resource.For example, consider an infrastructure running a set of instances with two user-defined tags: "environment" and "role". A parent group has a filter, environment="production". A child of that parent group has a filter, role="transcoder". The parent group contains all instances in the production environment, regardless of their roles. The child group contains instances that have the transcoder role and are in the production environment.The monitored resources contained in a group can change at any moment, depending on what resources exist and what filters are associated with the group and its ancestors.
    */
   export interface Schema$Group {
     /**
@@ -710,7 +706,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The name of the group&#39;s parent, if it has one. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] For groups with no parent, parent_name is the empty string, &quot;&quot;.
+     * The name of the group's parent, if it has one. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] For groups with no parent, parent_name is the empty string, "".
      */
     parentName?: string | null;
   }
@@ -723,11 +719,11 @@ export namespace monitoring_v3 {
      */
     authInfo?: Schema$BasicAuthentication;
     /**
-     * The request body associated with the HTTP POST request. If content_type is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the request_method is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte. Note: As with all bytes fields JSON representations are base64 encoded. e.g.: &quot;foo=bar&quot; in URL-encoded form is &quot;foo%3Dbar&quot; and in base64 encoding is &quot;Zm9vJTI1M0RiYXI=&quot;.
+     * The request body associated with the HTTP POST request. If content_type is URL_ENCODED, the body passed in must be URL-encoded. Users can provide a Content-Length header via the headers field or the API will do so. If the request_method is GET and body is not empty, the API will return an error. The maximum byte size is 1 megabyte. Note: As with all bytes fields, JSON representations are base64 encoded. e.g.: "foo=bar" in URL-encoded form is "foo%3Dbar" and in base64 encoding is "Zm9vJTI1M0RiYXI=".
      */
     body?: string | null;
     /**
-     * The content type to use for the check.
+     * The content type header to use for the check. The following configurations result in errors: 1. Content type is specified in both the headers field and the content_type field. 2. Request method is GET and content_type is not TYPE_UNSPECIFIED 3. Request method is POST and content_type is TYPE_UNSPECIFIED. 4. Request method is POST and a "Content-Type" header is provided via headers field. The content_type field should be used instead.
      */
     contentType?: string | null;
     /**
@@ -739,7 +735,7 @@ export namespace monitoring_v3 {
      */
     maskHeaders?: boolean | null;
     /**
-     * Optional (defaults to &quot;/&quot;). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with &quot;/&quot;, a &quot;/&quot; will be prepended automatically.
+     * Optional (defaults to "/"). The path to the page against which to run the check. Will be combined with the host (specified within the monitored_resource) and port to construct the full URL. If the provided path does not begin with "/", a "/" will be prepended automatically.
      */
     path?: string | null;
     /**
@@ -764,7 +760,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$InternalChecker {
     /**
-     * The checker&#39;s human-readable name. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
+     * The checker's human-readable name. The display name should be unique within a Stackdriver Workspace in order to make it easier to identify; however, uniqueness is not enforced.
      */
     displayName?: string | null;
     /**
@@ -776,7 +772,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the internal resource lives (ex: &quot;default&quot;).
+     * The GCP VPC network (https://cloud.google.com/vpc/docs/vpc) where the internal resource lives (ex: "default").
      */
     network?: string | null;
     /**
@@ -832,7 +828,7 @@ export namespace monitoring_v3 {
     threshold?: string | null;
   }
   /**
-   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 &lt;= i &lt; N-1): offset + (width * i). Lower bound (1 &lt;= i &lt; N): offset + (width * (i - 1)).
+   * Specifies a linear sequence of buckets that all have the same width (except overflow and underflow). Each bucket represents a constant absolute uncertainty on the specific value in the bucket.There are num_finite_buckets + 2 (= N) buckets. Bucket i has the following boundaries:Upper bound (0 <= i < N-1): offset + (width * i). Lower bound (1 <= i < N): offset + (width * (i - 1)).
    */
   export interface Schema$Linear {
     /**
@@ -994,7 +990,7 @@ export namespace monitoring_v3 {
      */
     timeSeries?: Schema$TimeSeries[];
     /**
-     * The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be &quot;{not_a_unit}&quot;.
+     * The unit in which all time_series point values are reported. unit follows the UCUM format for units as seen in https://unitsofmeasure.org/ucum.html. If different time_series have different units (for example, because they come from different metric types, or a unit is absent), then unit will be "{not_a_unit\}".
      */
     unit?: string | null;
   }
@@ -1003,7 +999,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$ListUptimeCheckConfigsResponse {
     /**
-     * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field).
+     * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message's page_token field).
      */
     nextPageToken?: string | null;
     /**
@@ -1020,7 +1016,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$ListUptimeCheckIpsResponse {
     /**
-     * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message&#39;s page_token field). NOTE: this field is not yet implemented
+     * This field represents the pagination token to retrieve the next page of results. If the value is empty, it means no further results for the request. To retrieve the next page of results, the value of the next_page_token is passed to the subsequent List method call (in the request message's page_token field). NOTE: this field is not yet implemented
      */
     nextPageToken?: string | null;
     /**
@@ -1080,7 +1076,7 @@ export namespace monitoring_v3 {
     trigger?: Schema$Trigger;
   }
   /**
-   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type&#39;s existing data unusable.
+   * Defines a metric type and its schema. Once a metric descriptor is created, deleting or altering it stops data collection and makes the metric type's existing data unusable.
    */
   export interface Schema$MetricDescriptor {
     /**
@@ -1088,7 +1084,7 @@ export namespace monitoring_v3 {
      */
     description?: string | null;
     /**
-     * A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example &quot;Request count&quot;. This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.
+     * A concise name for the metric, which can be displayed in user interfaces. Use sentence case without an ending period, for example "Request count". This field is optional but it is recommended to be set for any metrics associated with user-visible concepts, such as Quota.
      */
     displayName?: string | null;
     /**
@@ -1116,11 +1112,11 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: &quot;custom.googleapis.com/invoice/paid/amount&quot; &quot;external.googleapis.com/prometheus/up&quot; &quot;appengine.googleapis.com/http/server/response_latencies&quot;
+     * The metric type, including its DNS name prefix. The type is not URL-encoded. All user-defined metric types have the DNS name custom.googleapis.com or external.googleapis.com. Metric types should use a natural hierarchical grouping. For example: "custom.googleapis.com/invoice/paid/amount" "external.googleapis.com/prometheus/up" "appengine.googleapis.com/http/server/response_latencies"
      */
     type?: string | null;
     /**
-     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU} (or equivalently 1s{CPU} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt}.h.The grammar for a unit is as follows: Expression = Component { &quot;.&quot; Component } { &quot;/&quot; Component } ; Component = ( [ PREFIX ] UNIT | &quot;%&quot; ) [ Annotation ] | Annotation | &quot;1&quot; ; Annotation = &quot;{&quot; NAME &quot;}&quot; ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request}/s == 1/s, By{transmitted}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or }. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, &quot;new users per day&quot; can be represented as 1/d or {new-users}/d (and a metric value 5 would mean &quot;5 new users). Alternatively, &quot;thousands of page views per day&quot; would be represented as 1000/d or k1/d or k{page_views}/d (and a metric value of 5.3 would mean &quot;5300 page views per day&quot;). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means &quot;3 percent&quot;). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means &quot;3 percent&quot;).
+     * The units in which the metric value is reported. It is only applicable if the value_type is INT64, DOUBLE, or DISTRIBUTION. The unit defines the representation of the stored metric values.Different systems may scale the values to be more easily displayed (so a value of 0.02KBy might be displayed as 20By, and a value of 3523KBy might be displayed as 3.5MBy). However, if the unit is KBy, then the value of the metric is always in thousands of bytes, no matter how it may be displayed..If you want a custom metric to record the exact number of CPU-seconds used by a job, you can create an INT64 CUMULATIVE metric whose unit is s{CPU\} (or equivalently 1s{CPU\} or just s). If the job uses 12,005 CPU-seconds, then the value is written as 12005.Alternatively, if you want a custom metric to record data in a more granular way, you can create a DOUBLE CUMULATIVE metric whose unit is ks{CPU\}, and then write the value 12.005 (which is 12005/1000), or use Kis{CPU\} and write 11.723 (which is 12005/1024).The supported units are a subset of The Unified Code for Units of Measure (http://unitsofmeasure.org/ucum.html) standard:Basic units (UNIT) bit bit By byte s second min minute h hour d day 1 dimensionlessPrefixes (PREFIX) k kilo (10^3) M mega (10^6) G giga (10^9) T tera (10^12) P peta (10^15) E exa (10^18) Z zetta (10^21) Y yotta (10^24) m milli (10^-3) u micro (10^-6) n nano (10^-9) p pico (10^-12) f femto (10^-15) a atto (10^-18) z zepto (10^-21) y yocto (10^-24) Ki kibi (2^10) Mi mebi (2^20) Gi gibi (2^30) Ti tebi (2^40) Pi pebi (2^50)GrammarThe grammar also includes these connectors: / division or ratio (as an infix operator). For examples, kBy/{email\} or MiBy/10ms (although you should almost never have /s in a metric unit; rates should always be computed at query time from the underlying cumulative or delta value). . multiplication or composition (as an infix operator). For examples, GBy.d or k{watt\}.h.The grammar for a unit is as follows: Expression = Component { "." Component \} { "/" Component \} ; Component = ( [ PREFIX ] UNIT | "%" ) [ Annotation ] | Annotation | "1" ; Annotation = "{" NAME "\}" ; Notes: Annotation is just a comment if it follows a UNIT. If the annotation is used alone, then the unit is equivalent to 1. For examples, {request\}/s == 1/s, By{transmitted\}/s == By/s. NAME is a sequence of non-blank printable ASCII characters not containing { or \}. 1 represents a unitary dimensionless unit (https://en.wikipedia.org/wiki/Dimensionless_quantity) of 1, such as in 1/s. It is typically used when none of the basic units are appropriate. For example, "new users per day" can be represented as 1/d or {new-users\}/d (and a metric value 5 would mean "5 new users). Alternatively, "thousands of page views per day" would be represented as 1000/d or k1/d or k{page_views\}/d (and a metric value of 5.3 would mean "5300 page views per day"). % represents dimensionless value of 1/100, and annotates values giving a percentage (so the metric values are typically in the range of 0..100, and a metric value 3 means "3 percent"). 10^2.% indicates a metric contains a ratio, typically in the range 0..1, that will be multiplied by 100 and displayed as a percentage (so a metric value 0.03 means "3 percent").
      */
     unit?: string | null;
     /**
@@ -1146,11 +1142,11 @@ export namespace monitoring_v3 {
     samplePeriod?: string | null;
   }
   /**
-   * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min &lt;= x &lt; range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
+   * A MetricRange is used when each window is good when the value x of a single TimeSeries satisfies range.min <= x < range.max. The provided TimeSeries must have ValueType = INT64 or ValueType = DOUBLE and MetricKind = GAUGE.
    */
   export interface Schema$MetricRange {
     /**
-     * Range of values considered &quot;good.&quot; For a one-sided range, set one bound to an infinite value.
+     * Range of values considered "good." For a one-sided range, set one bound to an infinite value.
      */
     range?: Schema$GoogleMonitoringV3Range;
     /**
@@ -1196,11 +1192,11 @@ export namespace monitoring_v3 {
     trigger?: Schema$Trigger;
   }
   /**
-   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource&#39;s schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for &quot;gce_instance&quot; has labels &quot;instance_id&quot; and &quot;zone&quot;: { &quot;type&quot;: &quot;gce_instance&quot;, &quot;labels&quot;: { &quot;instance_id&quot;: &quot;12345678901234&quot;, &quot;zone&quot;: &quot;us-central1-a&quot; }}
+   * An object representing a resource that can be used for monitoring, logging, billing, or other purposes. Examples include virtual machine instances, databases, and storage devices such as disks. The type field identifies a MonitoredResourceDescriptor object that describes the resource's schema. Information in the labels field identifies the actual resource and its attributes according to the schema. For example, a particular Compute Engine VM instance could be represented by the following object, because the MonitoredResourceDescriptor for "gce_instance" has labels "instance_id" and "zone": { "type": "gce_instance", "labels": { "instance_id": "12345678901234", "zone": "us-central1-a" \}\}
    */
   export interface Schema$MonitoredResource {
     /**
-     * Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels &quot;project_id&quot;, &quot;instance_id&quot;, and &quot;zone&quot;.
+     * Required. Values for all of the labels listed in the associated monitored resource descriptor. For example, Compute Engine VM instances use the labels "project_id", "instance_id", and "zone".
      */
     labels?: {[key: string]: string} | null;
     /**
@@ -1209,7 +1205,7 @@ export namespace monitoring_v3 {
     type?: string | null;
   }
   /**
-   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of &quot;gce_instance&quot; and specifies the use of the labels &quot;instance_id&quot; and &quot;zone&quot; to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API.
+   * An object that describes the schema of a MonitoredResource object using a type name and a set of labels. For example, the monitored resource descriptor for Google Compute Engine VM instances has a type of "gce_instance" and specifies the use of the labels "instance_id" and "zone" to identify particular VM instances.Different APIs can support different monitored resource types. APIs generally provide a list method that returns the monitored resource descriptors used by the API.
    */
   export interface Schema$MonitoredResourceDescriptor {
     /**
@@ -1217,11 +1213,11 @@ export namespace monitoring_v3 {
      */
     description?: string | null;
     /**
-     * Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, &quot;Google Cloud SQL Database&quot;.
+     * Optional. A concise name for the monitored resource type that might be displayed in user interfaces. It should be a Title Cased Noun Phrase, without any article or other determiners. For example, "Google Cloud SQL Database".
      */
     displayName?: string | null;
     /**
-     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels &quot;database_id&quot; and &quot;zone&quot;.
+     * Required. A set of labels used to describe instances of this monitored resource type. For example, an individual Google Cloud SQL database is identified by values for the labels "database_id" and "zone".
      */
     labels?: Schema$LabelDescriptor[];
     /**
@@ -1229,11 +1225,11 @@ export namespace monitoring_v3 {
      */
     launchStage?: string | null;
     /**
-     * Optional. The resource name of the monitored resource descriptor: &quot;projects/{project_id}/monitoredResourceDescriptors/{type}&quot; where {type} is the value of the type field in this object and {project_id} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format &quot;monitoredResourceDescriptors/{type}&quot;.
+     * Optional. The resource name of the monitored resource descriptor: "projects/{project_id\}/monitoredResourceDescriptors/{type\}" where {type\} is the value of the type field in this object and {project_id\} is a project ID that provides API-specific context for accessing the type. APIs that do not use project information can use the resource name format "monitoredResourceDescriptors/{type\}".
      */
     name?: string | null;
     /**
-     * Required. The monitored resource type. For example, the type &quot;cloudsql_database&quot; represents databases in Google Cloud SQL.
+     * Required. The monitored resource type. For example, the type "cloudsql_database" represents databases in Google Cloud SQL.
      */
     type?: string | null;
   }
@@ -1242,7 +1238,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$MonitoredResourceMetadata {
     /**
-     * Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including &quot;machine_image&quot;, &quot;vpc&quot;, &quot;subnet_id&quot;, &quot;security_group&quot;, &quot;name&quot;, etc. System label values can be only strings, Boolean values, or a list of strings. For example: { &quot;name&quot;: &quot;my-test-instance&quot;, &quot;security_group&quot;: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;], &quot;spot_instance&quot;: false }
+     * Output only. Values for predefined system metadata labels. System labels are a kind of metadata extracted by Google, including "machine_image", "vpc", "subnet_id", "security_group", "name", etc. System label values can be only strings, Boolean values, or a list of strings. For example: { "name": "my-test-instance", "security_group": ["a", "b", "c"], "spot_instance": false \}
      */
     systemLabels?: {[key: string]: any} | null;
     /**
@@ -1251,7 +1247,7 @@ export namespace monitoring_v3 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
-   * A condition type that allows alert policies to be defined using Monitoring Query Language.
+   * A condition type that allows alert policies to be defined using Monitoring Query Language (https://cloud.google.com/monitoring/mql).
    */
   export interface Schema$MonitoringQueryLanguageCondition {
     /**
@@ -1259,7 +1255,7 @@ export namespace monitoring_v3 {
      */
     duration?: string | null;
     /**
-     * Monitoring Query Language query that outputs a boolean stream.
+     * Monitoring Query Language (https://cloud.google.com/monitoring/mql) query that outputs a boolean stream.
      */
     query?: string | null;
     /**
@@ -1309,7 +1305,7 @@ export namespace monitoring_v3 {
      */
     type?: string | null;
     /**
-     * User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor&#39;s schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
+     * User-supplied key/value data that does not need to conform to the corresponding NotificationChannelDescriptor's schema, unlike the labels field. This field is intended to be used for organizing and identifying the NotificationChannel objects.The field can contain up to 64 entries. Each key and value is limited to 63 Unicode characters or 128 bytes, whichever is smaller. Labels and values can contain only lowercase letters, numerals, underscores, and dashes. Keys must begin with a letter.
      */
     userLabels?: {[key: string]: string} | null;
     /**
@@ -1342,7 +1338,7 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * The type of notification channel, such as &quot;email&quot; and &quot;sms&quot;. To view the full list of channels, see Channel descriptors (https://cloud.google.com/monitoring/alerts/using-channels-api#ncd). Notification channel types are globally unique.
+     * The type of notification channel, such as "email" and "sms". To view the full list of channels, see Channel descriptors (https://cloud.google.com/monitoring/alerts/using-channels-api#ncd). Notification channel types are globally unique.
      */
     type?: string | null;
   }
@@ -1351,11 +1347,11 @@ export namespace monitoring_v3 {
    */
   export interface Schema$Option {
     /**
-     * The option&#39;s name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, &quot;map_entry&quot;. For custom options, it should be the fully-qualified name. For example, &quot;google.api.http&quot;.
+     * The option's name. For protobuf built-in options (options defined in descriptor.proto), this is the short name. For example, "map_entry". For custom options, it should be the fully-qualified name. For example, "google.api.http".
      */
     name?: string | null;
     /**
-     * The option&#39;s value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
+     * The option's value packed in an Any message. If the value is a primitive, the corresponding wrapper type defined in google/protobuf/wrappers.proto should be used. If the value is an enum, it should be stored as an int32 value using the google.protobuf.Int32Value type.
      */
     value?: {[key: string]: any} | null;
   }
@@ -1372,7 +1368,7 @@ export namespace monitoring_v3 {
      */
     performance?: Schema$RequestBasedSli;
     /**
-     * If window performance &gt;= threshold, the window is counted as good.
+     * If window performance \>= threshold, the window is counted as good.
      */
     threshold?: number | null;
   }
@@ -1390,7 +1386,7 @@ export namespace monitoring_v3 {
     value?: Schema$TypedValue;
   }
   /**
-   * A point&#39;s value columns and time interval. Each point has one or more point values corresponding to the entries in point_descriptors field in the TimeSeriesDescriptor associated with this object.
+   * A point's value columns and time interval. Each point has one or more point values corresponding to the entries in point_descriptors field in the TimeSeriesDescriptor associated with this object.
    */
   export interface Schema$PointData {
     /**
@@ -1521,7 +1517,7 @@ export namespace monitoring_v3 {
     telemetry?: Schema$Telemetry;
   }
   /**
-   * A Service-Level Indicator (SLI) describes the &quot;performance&quot; of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a &quot;custom&quot; SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 &lt;= performance &lt;= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries.
+   * A Service-Level Indicator (SLI) describes the "performance" of a service. For some services, the SLI is well-defined. In such cases, the SLI can be described easily by referencing the well-known SLI and providing the needed parameters. Alternatively, a "custom" SLI can be defined with a query to the underlying metric store. An SLI is defined to be good_service / total_service over any queried time interval. The value of performance always falls into the range 0 <= performance <= 1. A custom SLI describes how to compute this ratio, whether this is by dividing values from a pair of time series, cutting a Distribution into good and bad counts, or counting time windows in which the service complies with a criterion. For separation of concerns, a single Service-Level Indicator measures performance for only one aspect of service quality, such as fraction of successful queries or fast-enough queries.
    */
   export interface Schema$ServiceLevelIndicator {
     /**
@@ -1538,11 +1534,11 @@ export namespace monitoring_v3 {
     windowsBased?: Schema$WindowsBasedSli;
   }
   /**
-   * A Service-Level Objective (SLO) describes a level of desired good service. It consists of a service-level indicator (SLI), a performance goal, and a period over which the objective is to be evaluated against that goal. The SLO can use SLIs defined in a number of different manners. Typical SLOs might include &quot;99% of requests in each rolling week have latency below 200 milliseconds&quot; or &quot;99.5% of requests in each calendar month return successfully.&quot;
+   * A Service-Level Objective (SLO) describes a level of desired good service. It consists of a service-level indicator (SLI), a performance goal, and a period over which the objective is to be evaluated against that goal. The SLO can use SLIs defined in a number of different manners. Typical SLOs might include "99% of requests in each rolling week have latency below 200 milliseconds" or "99.5% of requests in each calendar month return successfully."
    */
   export interface Schema$ServiceLevelObjective {
     /**
-     * A calendar period, semantically &quot;since the start of the current &quot;. At this time, only DAY, WEEK, FORTNIGHT, and MONTH are supported.
+     * A calendar period, semantically "since the start of the current ". At this time, only DAY, WEEK, FORTNIGHT, and MONTH are supported.
      */
     calendarPeriod?: string | null;
     /**
@@ -1550,7 +1546,7 @@ export namespace monitoring_v3 {
      */
     displayName?: string | null;
     /**
-     * The fraction of service that must be good in order for this objective to be met. 0 &lt; goal &lt;= 0.999.
+     * The fraction of service that must be good in order for this objective to be met. 0 < goal <= 0.999.
      */
     goal?: number | null;
     /**
@@ -1558,11 +1554,11 @@ export namespace monitoring_v3 {
      */
     name?: string | null;
     /**
-     * A rolling time period, semantically &quot;in the past &quot;. Must be an integer multiple of 1 day no larger than 30 days.
+     * A rolling time period, semantically "in the past ". Must be an integer multiple of 1 day no larger than 30 days.
      */
     rollingPeriod?: string | null;
     /**
-     * The definition of good service, used to measure and calculate the quality of the Service&#39;s performance with respect to a single aspect of service quality.
+     * The definition of good service, used to measure and calculate the quality of the Service's performance with respect to a single aspect of service quality.
      */
     serviceLevelIndicator?: Schema$ServiceLevelIndicator;
   }
@@ -1571,7 +1567,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$SourceContext {
     /**
-     * The path-qualified name of the .proto file that contained the associated protobuf element. For example: &quot;google/protobuf/source_context.proto&quot;.
+     * The path-qualified name of the .proto file that contained the associated protobuf element. For example: "google/protobuf/source_context.proto".
      */
     fileName?: string | null;
   }
@@ -1645,11 +1641,11 @@ export namespace monitoring_v3 {
      */
     metric?: Schema$Metric;
     /**
-     * The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
+     * The metric kind of the time series. When listing time series, this metric kind might be different from the metric kind of the associated metric if this time series is an alignment or reduction of other time series.When creating a time series, this field is optional. If present, it must be the same as the metric kind of the associated metric. If the associated metric's descriptor must be auto-created, then this field specifies the metric kind of the new descriptor and must be either GAUGE (the default) or CUMULATIVE.
      */
     metricKind?: string | null;
     /**
-     * The data points of this time series. When listing time series, points are returned in reverse time order.When creating a time series, this field must contain exactly one point and the point&#39;s type must be the same as the value type of the associated metric. If the associated metric&#39;s descriptor must be auto-created, then the value type of the descriptor is determined by the point&#39;s type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
+     * The data points of this time series. When listing time series, points are returned in reverse time order.When creating a time series, this field must contain exactly one point and the point's type must be the same as the value type of the associated metric. If the associated metric's descriptor must be auto-created, then the value type of the descriptor is determined by the point's type, which must be BOOL, INT64, DOUBLE, or DISTRIBUTION.
      */
     points?: Schema$Point[];
     /**
@@ -1709,7 +1705,7 @@ export namespace monitoring_v3 {
     totalServiceFilter?: string | null;
   }
   /**
-   * Specifies how many time series must fail a predicate to trigger a condition. If not specified, then a {count: 1} trigger is used.
+   * Specifies how many time series must fail a predicate to trigger a condition. If not specified, then a {count: 1\} trigger is used.
    */
   export interface Schema$Trigger {
     /**
@@ -1796,7 +1792,7 @@ export namespace monitoring_v3 {
      */
     internalCheckers?: Schema$InternalChecker[];
     /**
-     * If this is true, then checks are made only from the &#39;internal_checkers&#39;. If it is false, then checks are made only from the &#39;selected_regions&#39;. It is an error to provide &#39;selected_regions&#39; when is_internal is true, or to provide &#39;internal_checkers&#39; when is_internal is false.
+     * If this is true, then checks are made only from the 'internal_checkers'. If it is false, then checks are made only from the 'selected_regions'. It is an error to provide 'selected_regions' when is_internal is true, or to provide 'internal_checkers' when is_internal is false.
      */
     isInternal?: boolean | null;
     /**
@@ -1871,7 +1867,7 @@ export namespace monitoring_v3 {
    */
   export interface Schema$VerifyNotificationChannelRequest {
     /**
-     * Required. The verification code that was delivered to the channel as a result of invoking the SendNotificationChannelVerificationCode API method or that was retrieved from a verified channel via GetNotificationChannelVerificationCode. For example, one might have &quot;G-123456&quot; or &quot;TKNZGhhd2EyN3I1MnRnMjRv&quot; (in general, one is only guaranteed that the code is valid UTF-8; one should not make any assumptions regarding the structure or format of the code).
+     * Required. The verification code that was delivered to the channel as a result of invoking the SendNotificationChannelVerificationCode API method or that was retrieved from a verified channel via GetNotificationChannelVerificationCode. For example, one might have "G-123456" or "TKNZGhhd2EyN3I1MnRnMjRv" (in general, one is only guaranteed that the code is valid UTF-8; one should not make any assumptions regarding the structure or format of the code).
      */
     code?: string | null;
   }
@@ -1888,11 +1884,11 @@ export namespace monitoring_v3 {
      */
     goodTotalRatioThreshold?: Schema$PerformanceThreshold;
     /**
-     * A window is good if the metric&#39;s value is in a good range, averaged across returned streams.
+     * A window is good if the metric's value is in a good range, averaged across returned streams.
      */
     metricMeanInRange?: Schema$MetricRange;
     /**
-     * A window is good if the metric&#39;s value is in a good range, summed across returned streams.
+     * A window is good if the metric's value is in a good range, summed across returned streams.
      */
     metricSumInRange?: Schema$MetricRange;
     /**
@@ -1945,9 +1941,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.alertPolicies.create
-     * @desc Creates a new alerting policy.
+     * Creates a new alerting policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2018,15 +2014,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.alertPolicies.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project in which to create the alerting policy. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policy will be written, not the name of the created policy. |name| must be a host project of a workspace, otherwise INVALID_ARGUMENT error will return. The alerting policy that is returned will have a name that contains a normalized representation of this name as a prefix but adds a suffix of the form /alertPolicies/[ALERT_POLICY_ID], identifying the policy in the container.
-     * @param {().AlertPolicy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Alertpolicies$Create,
@@ -2100,7 +2093,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2108,9 +2101,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.alertPolicies.delete
-     * @desc Deletes an alerting policy.
+     * Deletes an alerting policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2151,14 +2144,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.alertPolicies.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The alerting policy to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] For more information, see AlertPolicy.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Alertpolicies$Delete,
@@ -2229,7 +2220,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2237,9 +2228,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.alertPolicies.get
-     * @desc Gets a single alerting policy.
+     * Gets a single alerting policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2293,14 +2284,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.alertPolicies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The alerting policy to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Alertpolicies$Get,
@@ -2371,7 +2360,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2379,9 +2368,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.alertPolicies.list
-     * @desc Lists the existing alerting policies for the workspace.
+     * Lists the existing alerting policies for the workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2435,18 +2424,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.alertPolicies.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter If provided, this field specifies the criteria that must be met by alert policies to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
-     * @param {string} params.name Required. The project whose alert policies are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER] Note that this field names the parent container in which the alerting policies to be listed are stored. To retrieve a single alerting policy by name, use the GetAlertPolicy operation, instead.
-     * @param {string=} params.orderBy A comma-separated list of fields by which to sort the result. Supports the same set of field references as the filter field. Entries can be prefixed with a minus sign to sort by the field in descending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
-     * @param {integer=} params.pageSize The maximum number of results to return in a single response.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Alertpolicies$List,
@@ -2527,7 +2510,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAlertPoliciesResponse>(parameters);
@@ -2535,9 +2518,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.alertPolicies.patch
-     * @desc Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.
+     * Updates an alerting policy. You can either replace the entire policy with a new one or replace only certain fields in the current alerting policy by specifying the fields to be updated via updateMask. Returns the updated alerting policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2610,16 +2593,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.alertPolicies.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required if the policy exists. The resource name for this policy. The format is: projects/[PROJECT_ID_OR_NUMBER]/alertPolicies/[ALERT_POLICY_ID] [ALERT_POLICY_ID] is assigned by Stackdriver Monitoring when the policy is created. When calling the alertPolicies.create method, do not include the name field in the alerting policy passed as part of the request.
-     * @param {string=} params.updateMask Optional. A list of alerting policy field names. If this field is not empty, each listed field in the existing alerting policy is set to the value of the corresponding field in the supplied policy (alert_policy), or to the field's default value if the field is not in the supplied alerting policy. Fields not listed retain their previous value.Examples of valid field masks include display_name, documentation, documentation.content, documentation.mime_type, user_labels, user_label.nameofkey, enabled, conditions, combiner, etc.If this field is empty, then the supplied alerting policy replaces the existing policy. It is the same as deleting the existing policy and adding the supplied policy, except for the following: The new policy will have the same [ALERT_POLICY_ID] as the former policy. This gives you continuity with the former policy in your notifications and incidents. Conditions in the new policy will keep their former [CONDITION_ID] if the supplied condition includes the name field with that [CONDITION_ID]. If the supplied condition omits the name field, then a new [CONDITION_ID] is created.
-     * @param {().AlertPolicy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Alertpolicies$Patch,
@@ -2690,7 +2669,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2771,9 +2750,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.collectdTimeSeries.create
-     * @desc Stackdriver Monitoring Agent only: Creates a new time series.This method is only for use by the Stackdriver Monitoring Agent. Use projects.timeSeries.create instead.
+     * Stackdriver Monitoring Agent only: Creates a new time series.This method is only for use by the Stackdriver Monitoring Agent. Use projects.timeSeries.create instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -2828,15 +2807,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.collectdTimeSeries.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The project in which to create the time series. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {().CreateCollectdTimeSeriesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Collectdtimeseries$Create,
@@ -2917,7 +2893,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
@@ -2949,9 +2925,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.create
-     * @desc Creates a new group.
+     * Creates a new group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3012,16 +2988,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project in which to create the group. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {boolean=} params.validateOnly If true, validate this request but do not create the group.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Groups$Create,
@@ -3092,7 +3064,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3100,9 +3072,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.delete
-     * @desc Deletes an existing group.
+     * Deletes an existing group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3145,15 +3117,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The group to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param {boolean=} params.recursive If this field is true, then the request means to delete a group with all its descendants. Otherwise, the request means to delete a group only when it has no descendants. The default value is false.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Groups$Delete,
@@ -3224,7 +3193,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3232,9 +3201,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.get
-     * @desc Gets a single group.
+     * Gets a single group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3282,14 +3251,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The group to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Groups$Get,
@@ -3360,7 +3327,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3368,9 +3335,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.list
-     * @desc Lists the existing groups.
+     * Lists the existing groups.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3425,19 +3392,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ancestorsOfGroup A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups that are ancestors of the specified group. The groups are returned in order, starting with the immediate parent and ending with the most distant ancestor. If the specified group has no immediate parent, the results are empty.
-     * @param {string=} params.childrenOfGroup A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns groups whose parent_name field contains the group name. If no groups have this parent, the results are empty.
-     * @param {string=} params.descendantsOfGroup A group name. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] Returns the descendants of the specified group. This is a superset of the results returned by the children_of_group filter, and includes children-of-children, and so forth.
-     * @param {string} params.name Required. The project whose groups are to be listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the next_page_token value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Groups$List,
@@ -3511,7 +3471,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
@@ -3519,9 +3479,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.update
-     * @desc Updates an existing group. You can change any group attributes except name.
+     * Updates an existing group. You can change any group attributes except name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3582,16 +3542,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The name of this group. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID] When creating a group, this field is ignored and a new name is created consisting of the project specified in the call to CreateGroup and a unique [GROUP_ID] that is generated automatically.
-     * @param {boolean=} params.validateOnly If true, validate this request but do not update the existing group.
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Projects$Groups$Update,
@@ -3662,7 +3618,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3755,9 +3711,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.groups.members.list
-     * @desc Lists the monitored resources that are members of a group.
+     * Lists the monitored resources that are members of a group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -3813,19 +3769,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.groups.members.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter An optional list filter (https://cloud.google.com/monitoring/api/learn_more#filtering) describing the members to be returned. The filter may reference the type, labels, and metadata of monitored resources that comprise the group. For example, to return only resources representing Compute Engine VM instances, use this filter: `resource.type = "gce_instance"`
-     * @param {string=} params.interval.endTime Required. The end of the time interval.
-     * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
-     * @param {string} params.name Required. The group whose members are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]/groups/[GROUP_ID]
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the next_page_token value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Groups$Members$List,
@@ -3904,7 +3853,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupMembersResponse>(parameters);
@@ -3947,9 +3896,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.metricDescriptors.create
-     * @desc Creates a new metric descriptor. User-created metric descriptors define custom metrics (https://cloud.google.com/monitoring/custom-metrics).
+     * Creates a new metric descriptor. User-created metric descriptors define custom metrics (https://cloud.google.com/monitoring/custom-metrics).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4021,15 +3970,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.metricDescriptors.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {().MetricDescriptor} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Metricdescriptors$Create,
@@ -4103,7 +4049,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
@@ -4111,9 +4057,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.metricDescriptors.delete
-     * @desc Deletes a metric descriptor. Only user-created custom metrics (https://cloud.google.com/monitoring/custom-metrics) can be deleted.
+     * Deletes a metric descriptor. Only user-created custom metrics (https://cloud.google.com/monitoring/custom-metrics) can be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4154,14 +4100,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.metricDescriptors.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example of [METRIC_ID] is: "custom.googleapis.com/my_test_metric".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Metricdescriptors$Delete,
@@ -4232,7 +4176,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4240,9 +4184,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.metricDescriptors.get
-     * @desc Gets a single metric descriptor. This method does not require a Workspace.
+     * Gets a single metric descriptor. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4297,14 +4241,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.metricDescriptors.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The metric descriptor on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/metricDescriptors/[METRIC_ID] An example value of [METRIC_ID] is "compute.googleapis.com/instance/disk/read_bytes_count".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Metricdescriptors$Get,
@@ -4375,7 +4317,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
@@ -4383,9 +4325,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.metricDescriptors.list
-     * @desc Lists metric descriptors that match a filter. This method does not require a Workspace.
+     * Lists metric descriptors that match a filter. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4437,17 +4379,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.metricDescriptors.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter If this field is empty, all custom and system-defined metric descriptors are returned. Otherwise, the filter (https://cloud.google.com/monitoring/api/v3/filters) specifies which metric descriptors are to be returned. For example, the following filter matches all custom metrics (https://cloud.google.com/monitoring/custom-metrics): metric.type = starts_with("custom.googleapis.com/")
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Metricdescriptors$List,
@@ -4528,7 +4465,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMetricDescriptorsResponse>(
@@ -4591,9 +4528,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.monitoredResourceDescriptors.get
-     * @desc Gets a single monitored resource descriptor. This method does not require a Workspace.
+     * Gets a single monitored resource descriptor. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4643,14 +4580,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.monitoredResourceDescriptors.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The monitored resource descriptor to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/monitoredResourceDescriptors/[RESOURCE_TYPE] The [RESOURCE_TYPE] is a predefined type, such as cloudsql_database.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$Get,
@@ -4728,7 +4663,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MonitoredResourceDescriptor>(parameters);
@@ -4736,9 +4671,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.monitoredResourceDescriptors.list
-     * @desc Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
+     * Lists monitored resource descriptors that match a filter. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4790,17 +4725,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.monitoredResourceDescriptors.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter An optional filter (https://cloud.google.com/monitoring/api/v3/filters) describing the descriptors to be returned. The filter can reference the descriptor's type and labels. For example, the following filter returns only Google Compute Engine descriptors that have an id label: resource.type = starts_with("gce_") AND resource.label:id
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
@@ -4887,7 +4817,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4931,9 +4861,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannelDescriptors.get
-     * @desc Gets a single channel descriptor. The descriptor indicates which fields are expected / permitted for a notification channel of the given type.
+     * Gets a single channel descriptor. The descriptor indicates which fields are expected / permitted for a notification channel of the given type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -4983,14 +4913,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannelDescriptors.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The channel type for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannelDescriptors/[CHANNEL_TYPE]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Notificationchanneldescriptors$Get,
@@ -5068,7 +4996,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannelDescriptor>(
@@ -5078,9 +5006,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannelDescriptors.list
-     * @desc Lists the descriptors for supported channel types. The use of descriptors makes it possible for new channel types to be dynamically added.
+     * Lists the descriptors for supported channel types. The use of descriptors makes it possible for new channel types to be dynamically added.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5129,16 +5057,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannelDescriptors.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The REST resource name of the parent from which to retrieve the notification channel descriptors. The expected syntax is: projects/[PROJECT_ID_OR_NUMBER] Note that this names the parent container in which to look for the descriptors; to retrieve a single descriptor by name, use the GetNotificationChannelDescriptor operation, instead.
-     * @param {integer=} params.pageSize The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
-     * @param {string=} params.pageToken If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
@@ -5232,7 +5156,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5272,9 +5196,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.create
-     * @desc Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.
+     * Creates a new notification channel, representing a single notification endpoint such as an email address, SMS number, or PagerDuty service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5339,15 +5263,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container into which the channel will be written, this does not name the newly created channel. The resulting channel's name will have a normalized version of this field as a prefix, but will add /notificationChannels/[CHANNEL_ID] to identify the channel.
-     * @param {().NotificationChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Notificationchannels$Create,
@@ -5424,7 +5345,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -5432,9 +5353,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.delete
-     * @desc Deletes a notification channel.
+     * Deletes a notification channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5477,15 +5398,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force If true, the notification channel will be deleted regardless of its use in alert policies (the policies will be updated to remove the channel). If false, channels that are still referenced by an existing alerting policy will fail to be deleted in a delete operation.
-     * @param {string} params.name Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Notificationchannels$Delete,
@@ -5556,7 +5474,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5564,9 +5482,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.get
-     * @desc Gets a single notification channel. The channel includes the relevant configuration details with which the channel was created. However, the response may truncate or omit passwords, API keys, or other private key matter and thus the response may not be 100% identical to the information that was supplied in the call to the create method.
+     * Gets a single notification channel. The channel includes the relevant configuration details with which the channel was created. However, the response may truncate or omit passwords, API keys, or other private key matter and thus the response may not be 100% identical to the information that was supplied in the call to the create method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5617,14 +5535,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The channel for which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Notificationchannels$Get,
@@ -5698,7 +5614,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -5706,9 +5622,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.getVerificationCode
-     * @desc Requests a verification code for an already verified channel that can then be used in a call to VerifyNotificationChannel() on a different channel with an equivalent identity in the same or in a different project. This makes it possible to copy a channel between projects without requiring manual reverification of the channel. If the channel is not in the verified state, this method will fail (in other words, this may only be used if the SendNotificationChannelVerificationCode and VerifyNotificationChannel paths have already been used to put the given channel into the verified state).There is no guarantee that the verification codes returned by this method will be of a similar structure or form as the ones that are delivered to the channel via SendNotificationChannelVerificationCode; while VerifyNotificationChannel() will recognize both the codes delivered via SendNotificationChannelVerificationCode() and returned from GetNotificationChannelVerificationCode(), it is typically the case that the verification codes delivered via SendNotificationChannelVerificationCode() will be shorter and also have a shorter expiration (e.g. codes such as "G-123456") whereas GetVerificationCode() will typically return a much longer, websafe base 64 encoded string that has a longer expiration time.
+     * Requests a verification code for an already verified channel that can then be used in a call to VerifyNotificationChannel() on a different channel with an equivalent identity in the same or in a different project. This makes it possible to copy a channel between projects without requiring manual reverification of the channel. If the channel is not in the verified state, this method will fail (in other words, this may only be used if the SendNotificationChannelVerificationCode and VerifyNotificationChannel paths have already been used to put the given channel into the verified state).There is no guarantee that the verification codes returned by this method will be of a similar structure or form as the ones that are delivered to the channel via SendNotificationChannelVerificationCode; while VerifyNotificationChannel() will recognize both the codes delivered via SendNotificationChannelVerificationCode() and returned from GetNotificationChannelVerificationCode(), it is typically the case that the verification codes delivered via SendNotificationChannelVerificationCode() will be shorter and also have a shorter expiration (e.g. codes such as "G-123456") whereas GetVerificationCode() will typically return a much longer, websafe base 64 encoded string that has a longer expiration time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5762,15 +5678,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.getVerificationCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The notification channel for which a verification code is to be generated and retrieved. This must name a channel that is already verified; if the specified channel is not verified, the request will fail.
-     * @param {().GetNotificationChannelVerificationCodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
@@ -5865,7 +5778,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5875,9 +5788,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.list
-     * @desc Lists the notification channels that have been created for the project.
+     * Lists the notification channels that have been created for the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -5931,18 +5844,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter If provided, this field specifies the criteria that must be met by notification channels to be included in the response.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER] This names the container in which to look for the notification channels; it does not name a specific channel. To query a specific channel by REST resource name, use the GetNotificationChannel operation.
-     * @param {string=} params.orderBy A comma-separated list of fields by which to sort the result. Supports the same set of fields as in filter. Entries can be prefixed with a minus sign to sort in descending rather than ascending order.For more details, see sorting and filtering (https://cloud.google.com/monitoring/api/v3/sorting-and-filtering).
-     * @param {integer=} params.pageSize The maximum number of results to return in a single response. If not set to a positive number, a reasonable value will be chosen by the service.
-     * @param {string=} params.pageToken If non-empty, page_token must contain a value returned as the next_page_token in a previous response to request the next set of results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Notificationchannels$List,
@@ -6023,7 +5930,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNotificationChannelsResponse>(
@@ -6033,9 +5940,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.patch
-     * @desc Updates a notification channel. Fields not specified in the field mask remain unchanged.
+     * Updates a notification channel. Fields not specified in the field mask remain unchanged.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6102,16 +6009,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The full REST resource name for this channel. The format is: projects/[PROJECT_ID_OR_NUMBER]/notificationChannels/[CHANNEL_ID] The [CHANNEL_ID] is automatically assigned by the server on creation.
-     * @param {string=} params.updateMask The fields to update.
-     * @param {().NotificationChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Notificationchannels$Patch,
@@ -6185,7 +6088,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -6193,9 +6096,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.sendVerificationCode
-     * @desc Causes a verification code to be delivered to the channel. The code can then be supplied in VerifyNotificationChannel to verify the channel.
+     * Causes a verification code to be delivered to the channel. The code can then be supplied in VerifyNotificationChannel to verify the channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6244,15 +6147,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.sendVerificationCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The notification channel to which to send a verification code.
-     * @param {().SendNotificationChannelVerificationCodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sendVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Sendverificationcode,
@@ -6326,7 +6226,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6334,9 +6234,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.notificationChannels.verify
-     * @desc Verifies a NotificationChannel by proving receipt of the code delivered to the channel as a result of calling SendNotificationChannelVerificationCode.
+     * Verifies a NotificationChannel by proving receipt of the code delivered to the channel as a result of calling SendNotificationChannelVerificationCode.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6394,15 +6294,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.notificationChannels.verify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The notification channel to verify.
-     * @param {().VerifyNotificationChannelRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verify(
       params: Params$Resource$Projects$Notificationchannels$Verify,
@@ -6476,7 +6373,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -6597,9 +6494,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.timeSeries.create
-     * @desc Creates or adds data to one or more time series. The response is empty if all time series in the request were written. If any time series could not be written, a corresponding failure message is included in the error response.
+     * Creates or adds data to one or more time series. The response is empty if all time series in the request were written. If any time series could not be written, a corresponding failure message is included in the error response.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6649,15 +6546,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.timeSeries.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {().CreateTimeSeriesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Timeseries$Create,
@@ -6731,7 +6625,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6739,9 +6633,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.timeSeries.list
-     * @desc Lists time series that match a filter. This method does not require a Workspace.
+     * Lists time series that match a filter. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6791,6 +6685,14 @@ export namespace monitoring_v3 {
      *     pageSize: 'placeholder-value',
      *     // If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
      *     pageToken: 'placeholder-value',
+     *     // The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     *     'secondaryAggregation.alignmentPeriod': 'placeholder-value',
+     *     // The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.crossSeriesReducer': 'placeholder-value',
+     *     // The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     *     'secondaryAggregation.groupByFields': 'placeholder-value',
+     *     // An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     *     'secondaryAggregation.perSeriesAligner': 'placeholder-value',
      *     // Required. Specifies which information is returned about the time series.
      *     view: 'placeholder-value',
      *   });
@@ -6810,25 +6712,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.timeSeries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.aggregation.alignmentPeriod The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
-     * @param {string=} params.aggregation.crossSeriesReducer The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
-     * @param {string=} params.aggregation.groupByFields The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
-     * @param {string=} params.aggregation.perSeriesAligner An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
-     * @param {string=} params.filter Required. A monitoring filter (https://cloud.google.com/monitoring/api/v3/filters) that specifies which time series should be returned. The filter must specify a single metric type, and can additionally specify metric labels and other information. For example: metric.type = "compute.googleapis.com/instance/cpu/usage_time" AND metric.labels.instance_name = "my-instance-name"
-     * @param {string=} params.interval.endTime Required. The end of the time interval.
-     * @param {string=} params.interval.startTime Optional. The beginning of the time interval. The default value for the start time is the end time. The start time must not be later than the end time.
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {string=} params.orderBy Unsupported: must be left blank. The points in each time series are currently returned in reverse time order (most recent to oldest).
-     * @param {integer=} params.pageSize A positive number that is the maximum number of results to return. If page_size is empty or more than 100,000 results, the effective page_size is 100,000 results. If view is set to FULL, this is the maximum number of Points returned. If view is set to HEADERS, this is the maximum number of TimeSeries returned.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string=} params.view Required. Specifies which information is returned about the time series.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Timeseries$List,
@@ -6907,7 +6796,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
@@ -6915,9 +6804,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.timeSeries.query
-     * @desc Queries time series using Monitoring Query Language. This method does not require a Workspace.
+     * Queries time series using Monitoring Query Language. This method does not require a Workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -6974,15 +6863,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.timeSeries.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The project on which to execute the request. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {().QueryTimeSeriesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Projects$Timeseries$Query,
@@ -7061,7 +6947,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$QueryTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryTimeSeriesResponse>(parameters);
@@ -7128,6 +7014,22 @@ export namespace monitoring_v3 {
      */
     pageToken?: string;
     /**
+     * The alignment_period specifies a time interval, in seconds, that is used to divide the data in all the time series into consistent blocks of time. This will be done before the per-series aligner can be applied to the data.The value must be at least 60 seconds. If a per-series aligner other than ALIGN_NONE is specified, this field is required or an error is returned. If no per-series aligner is specified, or the aligner ALIGN_NONE is specified, then this field is ignored.The maximum value of the alignment_period is 104 weeks (2 years) for charts, and 90,000 seconds (25 hours) for alerting policies.
+     */
+    'secondaryAggregation.alignmentPeriod'?: string;
+    /**
+     * The reduction operation to be used to combine time series into a single time series, where the value of each data point in the resulting series is a function of all the already aligned values in the input time series.Not all reducer operations can be applied to all time series. The valid choices depend on the metric_kind and the value_type of the original time series. Reduction can yield a time series with a different metric_kind or value_type than the input time series.Time series data must first be aligned (see per_series_aligner) in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified, and must not be ALIGN_NONE. An alignment_period must also be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.crossSeriesReducer'?: string;
+    /**
+     * The set of fields to preserve when cross_series_reducer is specified. The group_by_fields determine how the time series are partitioned into subsets prior to applying the aggregation operation. Each subset contains time series that have the same value for each of the grouping fields. Each individual time series is a member of exactly one subset. The cross_series_reducer is applied to each subset of time series. It is not possible to reduce across different resource types, so this field implicitly contains resource.type. Fields not specified in group_by_fields are aggregated away. If group_by_fields is not specified and all the time series have the same resource type, then the time series are aggregated into a single output time series. If cross_series_reducer is not defined, this field is ignored.
+     */
+    'secondaryAggregation.groupByFields'?: string[];
+    /**
+     * An Aligner describes how to bring the data points in a single time series into temporal alignment. Except for ALIGN_NONE, all alignments cause all the data points in an alignment_period to be mathematically grouped together, resulting in a single data point for each alignment_period with end timestamp at the end of the period.Not all alignment operations may be applied to all time series. The valid choices depend on the metric_kind and value_type of the original time series. Alignment can change the metric_kind or the value_type of the time series.Time series data must be aligned in order to perform cross-time series reduction. If cross_series_reducer is specified, then per_series_aligner must be specified and not equal to ALIGN_NONE and alignment_period must be specified; otherwise, an error is returned.
+     */
+    'secondaryAggregation.perSeriesAligner'?: string;
+    /**
      * Required. Specifies which information is returned about the time series.
      */
     view?: string;
@@ -7152,9 +7054,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.uptimeCheckConfigs.create
-     * @desc Creates a new Uptime check configuration.
+     * Creates a new Uptime check configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -7227,15 +7129,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.uptimeCheckConfigs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which to create the Uptime check. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {().UptimeCheckConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Uptimecheckconfigs$Create,
@@ -7312,7 +7211,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -7320,9 +7219,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.uptimeCheckConfigs.delete
-     * @desc Deletes an Uptime check configuration. Note that this method will fail if the Uptime check configuration is referenced by an alert policy or other dependent configs that would be rendered invalid by the deletion.
+     * Deletes an Uptime check configuration. Note that this method will fail if the Uptime check configuration is referenced by an alert policy or other dependent configs that would be rendered invalid by the deletion.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -7363,14 +7262,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.uptimeCheckConfigs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The Uptime check configuration to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Uptimecheckconfigs$Delete,
@@ -7441,7 +7338,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7449,9 +7346,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.uptimeCheckConfigs.get
-     * @desc Gets a single Uptime check configuration.
+     * Gets a single Uptime check configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -7506,14 +7403,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.uptimeCheckConfigs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The Uptime check configuration to retrieve. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Uptimecheckconfigs$Get,
@@ -7587,7 +7482,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -7595,9 +7490,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.uptimeCheckConfigs.list
-     * @desc Lists the existing valid Uptime check configurations for the project (leaving out any invalid configurations).
+     * Lists the existing valid Uptime check configurations for the project (leaving out any invalid configurations).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -7647,16 +7542,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.uptimeCheckConfigs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call.
-     * @param {string} params.parent Required. The project whose Uptime check configurations are listed. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Uptimecheckconfigs$List,
@@ -7737,7 +7628,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
@@ -7747,9 +7638,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.projects.uptimeCheckConfigs.patch
-     * @desc Updates an Uptime check configuration. You can either replace the entire configuration with a new one or replace only certain fields in the current configuration by specifying the fields to be updated via updateMask. Returns the updated configuration.
+     * Updates an Uptime check configuration. You can either replace the entire configuration with a new one or replace only certain fields in the current configuration by specifying the fields to be updated via updateMask. Returns the updated configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -7824,16 +7715,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.projects.uptimeCheckConfigs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A unique resource name for this Uptime check configuration. The format is: projects/[PROJECT_ID_OR_NUMBER]/uptimeCheckConfigs/[UPTIME_CHECK_ID] This field should be omitted when creating the Uptime check configuration; on create, the resource name is assigned by the server and included in the response.
-     * @param {string=} params.updateMask Optional. If present, only the listed fields in the current Uptime check configuration are updated with values from the new configuration. If this field is empty, then the current configuration is completely replaced with the new configuration.
-     * @param {().UptimeCheckConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Uptimecheckconfigs$Patch,
@@ -7907,7 +7794,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -7984,9 +7871,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.create
-     * @desc Create a Service.
+     * Create a Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8053,16 +7940,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the parent workspace. The format is: projects/[PROJECT_ID_OR_NUMBER]
-     * @param {string=} params.serviceId Optional. The Service id to use for this Service. If omitted, an id will be generated instead. Must match the pattern [a-z0-9\-]+
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Services$Create,
@@ -8135,7 +8018,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8143,9 +8026,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.delete
-     * @desc Soft delete this Service.
+     * Soft delete this Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8186,14 +8069,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the Service to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Services$Delete,
@@ -8263,7 +8144,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8271,9 +8152,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.get
-     * @desc Get the named Service.
+     * Get the named Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8324,14 +8205,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Services$Get,
@@ -8401,7 +8280,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8409,9 +8288,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.list
-     * @desc List Services for this workspace.
+     * List Services for this workspace.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8462,17 +8341,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter specifying what Services to return. The filter currently supports the following fields: - `identifier_case` - `app_engine.module_id` - `cloud_endpoints.service` (reserved for future use) - `mesh_istio.mesh_uid` - `mesh_istio.service_namespace` - `mesh_istio.service_name` - `cluster_istio.location` (deprecated) - `cluster_istio.cluster_name` (deprecated) - `cluster_istio.service_namespace` (deprecated) - `cluster_istio.service_name` (deprecated) identifier_case refers to which option in the identifier oneof is populated. For example, the filter identifier_case = "CUSTOM" would match all services with a value for the custom field. Valid options are "CUSTOM", "APP_ENGINE", "MESH_ISTIO", plus "CLUSTER_ISTIO" (deprecated) and "CLOUD_ENDPOINTS" (reserved for future use).
-     * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. Resource name of the parent containing the listed services, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER] workspaces/[HOST_PROJECT_ID_OR_NUMBER]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Services$List,
@@ -8550,7 +8424,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -8558,9 +8432,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.patch
-     * @desc Update this Service.
+     * Update this Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8627,16 +8501,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for this Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param {string=} params.updateMask A set of field paths defining which fields to use for the update.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Services$Patch,
@@ -8706,7 +8576,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8782,9 +8652,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.serviceLevelObjectives.create
-     * @desc Create a ServiceLevelObjective for the given Service.
+     * Create a ServiceLevelObjective for the given Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8847,16 +8717,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.serviceLevelObjectives.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Resource name of the parent Service. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]
-     * @param {string=} params.serviceLevelObjectiveId Optional. The ServiceLevelObjective id to use for this ServiceLevelObjective. If omitted, an id will be generated instead. Must match the pattern [a-z0-9\-]+
-     * @param {().ServiceLevelObjective} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Services$Servicelevelobjectives$Create,
@@ -8935,7 +8801,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -8943,9 +8809,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.serviceLevelObjectives.delete
-     * @desc Delete the given ServiceLevelObjective.
+     * Delete the given ServiceLevelObjective.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -8987,14 +8853,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.serviceLevelObjectives.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the ServiceLevelObjective to delete. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Services$Servicelevelobjectives$Delete,
@@ -9065,7 +8929,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9073,9 +8937,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.serviceLevelObjectives.get
-     * @desc Get a ServiceLevelObjective by name.
+     * Get a ServiceLevelObjective by name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -9127,15 +8991,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.serviceLevelObjectives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the ServiceLevelObjective to get. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param {string=} params.view View of the ServiceLevelObjective to return. If DEFAULT, return the ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Services$Servicelevelobjectives$Get,
@@ -9211,7 +9072,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -9219,9 +9080,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.serviceLevelObjectives.list
-     * @desc List the ServiceLevelObjectives for the given Service.
+     * List the ServiceLevelObjectives for the given Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -9274,18 +9135,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.serviceLevelObjectives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter specifying what ServiceLevelObjectives to return.
-     * @param {integer=} params.pageSize A non-negative number that is the maximum number of results to return. When 0, use default page size.
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return additional results from the previous method call.
-     * @param {string} params.parent Required. Resource name of the parent containing the listed SLOs, either a project or a Monitoring Workspace. The formats are: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID] workspaces/[HOST_PROJECT_ID_OR_NUMBER]/services/-
-     * @param {string=} params.view View of the ServiceLevelObjectives to return. If DEFAULT, return each ServiceLevelObjective as originally defined. If EXPLICIT and the ServiceLevelObjective is defined in terms of a BasicSli, replace the BasicSli with a RequestBasedSli spelling out how the SLI is computed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Services$Servicelevelobjectives$List,
@@ -9366,7 +9221,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
@@ -9376,9 +9231,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.services.serviceLevelObjectives.patch
-     * @desc Update the given ServiceLevelObjective.
+     * Update the given ServiceLevelObjective.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -9442,16 +9297,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.services.serviceLevelObjectives.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for this ServiceLevelObjective. The format is: projects/[PROJECT_ID_OR_NUMBER]/services/[SERVICE_ID]/serviceLevelObjectives/[SLO_NAME]
-     * @param {string=} params.updateMask A set of field paths defining which fields to use for the update.
-     * @param {().ServiceLevelObjective} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Services$Servicelevelobjectives$Patch,
@@ -9527,7 +9378,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -9616,9 +9467,9 @@ export namespace monitoring_v3 {
     }
 
     /**
-     * monitoring.uptimeCheckIps.list
-     * @desc Returns the list of IP addresses that checkers run from
+     * Returns the list of IP addresses that checkers run from
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/monitoring.googleapis.com
@@ -9665,15 +9516,12 @@ export namespace monitoring_v3 {
      *   throw e;
      * });
      *
-     * @alias monitoring.uptimeCheckIps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of results to return in a single response. The server may further constrain the maximum number of results returned in a single page. If the page_size is <=0, the server will decide the number of results to be returned. NOTE: this field is not yet implemented
-     * @param {string=} params.pageToken If this field is not empty then it must contain the nextPageToken value returned by a previous call to this method. Using this field causes the method to return more results from the previous method call. NOTE: this field is not yet implemented
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Uptimecheckips$List,
@@ -9751,7 +9599,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters);

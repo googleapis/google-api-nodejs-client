@@ -35,3 +35,14 @@ export function adexchangebuyer2<T = adexchangebuyer2_v2beta1.Adexchangebuyer2>(
 
 const auth = new AuthPlus();
 export {auth};
+export {adexchangebuyer2_v2beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

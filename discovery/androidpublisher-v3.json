@@ -2671,7 +2671,7 @@
       }
     }
   },
-  "revision": "20201020",
+  "revision": "20201027",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {
@@ -3715,7 +3715,7 @@
           "type": "string"
         },
         "paymentState": {
-          "description": "The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade",
+          "description": "The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade Not present for canceled, expired subscriptions.",
           "format": "int32",
           "type": "integer"
         },

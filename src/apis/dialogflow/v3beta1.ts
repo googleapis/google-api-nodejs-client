@@ -104,14 +104,10 @@ export namespace dialogflow_v3beta1 {
    * Builds conversational interfaces (for example, chatbots, and voice-powered apps and devices).
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const dialogflow = google.dialogflow('v3beta1');
-   *
-   * @namespace dialogflow
-   * @type {Function}
-   * @version v3beta1
-   * @variation v3beta1
-   * @param {object=} options Options for Dialogflow
+   * ```
    */
   export class Dialogflow {
     context: APIRequestContext;
@@ -132,7 +128,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Agent {
     /**
-     * The URI of the agent&#39;s avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.
+     * The URI of the agent's avatar. Avatars are used throughout the Dialogflow console and in the self-hosted [Web Demo](https://cloud.google.com/dialogflow/docs/integrations/web-demo) integration.
      */
     avatarUri?: string | null;
     /**
@@ -195,7 +191,7 @@ export namespace dialogflow_v3beta1 {
     version?: string | null;
   }
   /**
-   * The request to detect user&#39;s intent.
+   * The request to detect user's intent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1DetectIntentRequest {
     /**
@@ -233,7 +229,20 @@ export namespace dialogflow_v3beta1 {
     responseId?: string | null;
   }
   /**
-   * Entities are extracted from user input and represent parameters that are meaningful to your application. For example, a date range, a proper name such as a geographic location or landmark, and so on. Entities represent actionable data for your application. When you define an entity, you can also include synonyms that all map to that entity. For example, &quot;soft drink&quot;, &quot;soda&quot;, &quot;pop&quot;, and so on. There are three types of entities: * **System** - entities that are defined by the Dialogflow API for common data types such as date, time, currency, and so on. A system entity is represented by the `EntityType` type. * **Custom** - entities that are defined by you that represent actionable data that is meaningful to your application. For example, you could define a `pizza.sauce` entity for red or white pizza sauce, a `pizza.cheese` entity for the different types of cheese on a pizza, a `pizza.topping` entity for different toppings, and so on. A custom entity is represented by the `EntityType` type. * **User** - entities that are built for an individual user such as favorites, preferences, playlists, and so on. A user entity is represented by the SessionEntityType type. For more information about entity types, see the [Dialogflow documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+   * Represents the input for dtmf event.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3beta1DtmfInput {
+    /**
+     * The dtmf digits.
+     */
+    digits?: string | null;
+    /**
+     * The finish digit (if any).
+     */
+    finishDigit?: string | null;
+  }
+  /**
+   * Entities are extracted from user input and represent parameters that are meaningful to your application. For example, a date range, a proper name such as a geographic location or landmark, and so on. Entities represent actionable data for your application. When you define an entity, you can also include synonyms that all map to that entity. For example, "soft drink", "soda", "pop", and so on. There are three types of entities: * **System** - entities that are defined by the Dialogflow API for common data types such as date, time, currency, and so on. A system entity is represented by the `EntityType` type. * **Custom** - entities that are defined by you that represent actionable data that is meaningful to your application. For example, you could define a `pizza.sauce` entity for red or white pizza sauce, a `pizza.cheese` entity for the different types of cheese on a pizza, a `pizza.topping` entity for different toppings, and so on. A custom entity is represented by the `EntityType` type. * **User** - entities that are built for an individual user such as favorites, preferences, playlists, and so on. A user entity is represented by the SessionEntityType type. For more information about entity types, see the [Dialogflow documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1EntityType {
     /**
@@ -253,7 +262,7 @@ export namespace dialogflow_v3beta1 {
      */
     entities?: Schema$GoogleCloudDialogflowCxV3beta1EntityTypeEntity[];
     /**
-     * Collection of exceptional words and phrases that shouldn&#39;t be matched. For example, if you have a size entity type with entry `giant`(an adjective), you might consider adding `giants`(a noun) as an exclusion. If the kind of entity type is `KIND_MAP`, then the phrases specified by entities and excluded phrases should be mutually exclusive.
+     * Collection of exceptional words and phrases that shouldn't be matched. For example, if you have a size entity type with entry `giant`(an adjective), you might consider adding `giants`(a noun) as an exclusion. If the kind of entity type is `KIND_MAP`, then the phrases specified by entities and excluded phrases should be mutually exclusive.
      */
     excludedPhrases?: Schema$GoogleCloudDialogflowCxV3beta1EntityTypeExcludedPhrase[];
     /**
@@ -378,7 +387,7 @@ export namespace dialogflow_v3beta1 {
     agentUri?: string | null;
   }
   /**
-   * Flows represents the conversation flows when you build your chatbot agent. A flow consists of many pages connected by the transition routes. Conversations always start with the built-in Start Flow (with an all-0 ID). Transition routes can direct the conversation session from the current flow (parent flow) to another flow (sub flow). When the sub flow is finished, Dialogflow will bring the session back to the parent flow, where the sub flow is started. Usually, when a transition route is followed by a matched intent, the intent will be &quot;consumed&quot;. This means the intent won&#39;t activate more transition routes. However, when the followed transition route moves the conversation session into a different flow, the matched intent can be carried over and to be consumed in the target flow.
+   * Flows represents the conversation flows when you build your chatbot agent. A flow consists of many pages connected by the transition routes. Conversations always start with the built-in Start Flow (with an all-0 ID). Transition routes can direct the conversation session from the current flow (parent flow) to another flow (sub flow). When the sub flow is finished, Dialogflow will bring the session back to the parent flow, where the sub flow is started. Usually, when a transition route is followed by a matched intent, the intent will be "consumed". This means the intent won't activate more transition routes. However, when the followed transition route moves the conversation session into a different flow, the matched intent can be carried over and to be consumed in the target flow.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Flow {
     /**
@@ -390,7 +399,7 @@ export namespace dialogflow_v3beta1 {
      */
     displayName?: string | null;
     /**
-     * A flow&#39;s event handlers serve two purposes: * They are responsible for handling events (e.g. no match, webhook errors) in the flow. * They are inherited by every page&#39;s event handlers, which can be used to handle common events regardless of the current page. Event handlers defined in the page have higher priority than those defined in the flow. Unlike transition_routes, these handlers are evaluated on a first-match basis. The first one that matches the event get executed, with the rest being ignored.
+     * A flow's event handlers serve two purposes: * They are responsible for handling events (e.g. no match, webhook errors) in the flow. * They are inherited by every page's event handlers, which can be used to handle common events regardless of the current page. Event handlers defined in the page have higher priority than those defined in the flow. Unlike transition_routes, these handlers are evaluated on a first-match basis. The first one that matches the event get executed, with the rest being ignored.
      */
     eventHandlers?: Schema$GoogleCloudDialogflowCxV3beta1EventHandler[];
     /**
@@ -402,7 +411,7 @@ export namespace dialogflow_v3beta1 {
      */
     nluSettings?: Schema$GoogleCloudDialogflowCxV3beta1NluSettings;
     /**
-     * A flow&#39;s transition routes serve two purposes: * They are responsible for matching the user&#39;s first utterances in the flow. * They are inherited by every page&#39;s transition routes and can support use cases such as the user saying &quot;help&quot; or &quot;can I talk to a human?&quot;, which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
+     * A flow's transition routes serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition routes and can support use cases such as the user saying "help" or "can I talk to a human?", which can be handled in a common way regardless of the current page. Transition routes defined in the page have higher priority than those defined in the flow. TransitionRoutes are evalauted in the following order: * TransitionRoutes with intent specified.. * TransitionRoutes with only condition specified. TransitionRoutes with intent specified are inherited by pages in the flow.
      */
     transitionRoutes?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRoute[];
   }
@@ -457,7 +466,7 @@ export namespace dialogflow_v3beta1 {
      */
     initialPromptFulfillment?: Schema$GoogleCloudDialogflowCxV3beta1Fulfillment;
     /**
-     * The handlers for parameter-level events, used to provide reprompt for the parameter or transition to a different page/flow. The supported events are: * `sys.no-match-`, where N can be from 1 to 6 * `sys.no-match-default` * `sys.no-input-`, where N can be from 1 to 6 * `sys.no-input-default` * `sys.invalid-parameter` `initial_prompt_fulfillment` provides the first prompt for the parameter. If the user&#39;s response does not fill the parameter, a no-match/no-input event will be triggered, and the fulfillment associated with the `sys.no-match-1`/`sys.no-input-1` handler (if defined) will be called to provide a prompt. The `sys.no-match-2`/`sys.no-input-2` handler (if defined) will respond to the next no-match/no-input event, and so on. A `sys.no-match-default` or `sys.no-input-default` handler will be used to handle all following no-match/no-input events after all numbered no-match/no-input handlers for the parameter are consumed. A `sys.invalid-parameter` handler can be defined to handle the case where the parameter values have been `invalidated` by webhook. For example, if the user&#39;s response fill the parameter, however the parameter was invalidated by webhook, the fulfillment associated with the `sys.invalid-parameter` handler (if defined) will be called to provide a prompt. If the event handler for the corresponding event can&#39;t be found on the parameter, `initial_prompt_fulfillment` will be re-prompted.
+     * The handlers for parameter-level events, used to provide reprompt for the parameter or transition to a different page/flow. The supported events are: * `sys.no-match-`, where N can be from 1 to 6 * `sys.no-match-default` * `sys.no-input-`, where N can be from 1 to 6 * `sys.no-input-default` * `sys.invalid-parameter` `initial_prompt_fulfillment` provides the first prompt for the parameter. If the user's response does not fill the parameter, a no-match/no-input event will be triggered, and the fulfillment associated with the `sys.no-match-1`/`sys.no-input-1` handler (if defined) will be called to provide a prompt. The `sys.no-match-2`/`sys.no-input-2` handler (if defined) will respond to the next no-match/no-input event, and so on. A `sys.no-match-default` or `sys.no-input-default` handler will be used to handle all following no-match/no-input events after all numbered no-match/no-input handlers for the parameter are consumed. A `sys.invalid-parameter` handler can be defined to handle the case where the parameter values have been `invalidated` by webhook. For example, if the user's response fill the parameter, however the parameter was invalidated by webhook, the fulfillment associated with the `sys.invalid-parameter` handler (if defined) will be called to provide a prompt. If the event handler for the corresponding event can't be found on the parameter, `initial_prompt_fulfillment` will be re-prompted.
      */
     repromptEventHandlers?: Schema$GoogleCloudDialogflowCxV3beta1EventHandler[];
   }
@@ -500,7 +509,7 @@ export namespace dialogflow_v3beta1 {
     responseId?: string | null;
   }
   /**
-   * A fulfillment can do one or more of the following actions at the same time: * Generate rich message responses. * Set parameter values. * Call the webhook. Fulfillments can be called at various stages in the Page or Form lifecycle. For example, when a DetectIntentRequest drives a session to enter a new page, the page&#39;s entry fulfillment can add a static response to the QueryResult in the returning DetectIntentResponse, call the webhook (for example, to load user data from a database), or both.
+   * A fulfillment can do one or more of the following actions at the same time: * Generate rich message responses. * Set parameter values. * Call the webhook. Fulfillments can be called at various stages in the Page or Form lifecycle. For example, when a DetectIntentRequest drives a session to enter a new page, the page's entry fulfillment can add a static response to the QueryResult in the returning DetectIntentResponse, call the webhook (for example, to load user data from a database), or both.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Fulfillment {
     /**
@@ -573,15 +582,6 @@ export namespace dialogflow_v3beta1 {
     value?: any | null;
   }
   /**
-   * The response message for Agents.ImportAgent.
-   */
-  export interface Schema$GoogleCloudDialogflowCxV3beta1ImportAgentResponse {
-    /**
-     * The unique identifier of the new agent. Format: `projects//locations//agents/`.
-     */
-    agent?: string | null;
-  }
-  /**
    * Instructs the speech recognizer on how to process the audio content.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1InputAudioConfig {
@@ -590,7 +590,7 @@ export namespace dialogflow_v3beta1 {
      */
     audioEncoding?: string | null;
     /**
-     * Optional. If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn&#39;t return any word-level information.
+     * Optional. If `true`, Dialogflow returns SpeechWordInfo in StreamingRecognitionResult with information about the recognized speech words, e.g. start and end time offsets. If false or unspecified, Speech doesn't return any word-level information.
      */
     enableWordInfo?: boolean | null;
     /**
@@ -610,12 +610,12 @@ export namespace dialogflow_v3beta1 {
      */
     sampleRateHertz?: number | null;
     /**
-     * Optional. If `false` (default), recognition does not cease until the client closes the stream. If `true`, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio&#39;s voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. Note: This setting is relevant only for streaming methods.
+     * Optional. If `false` (default), recognition does not cease until the client closes the stream. If `true`, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio's voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. Note: This setting is relevant only for streaming methods.
      */
     singleUtterance?: boolean | null;
   }
   /**
-   * An intent represents a user&#39;s intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.
+   * An intent represents a user's intent to interact with a conversational agent. You can provide information for the Dialogflow API to use to match user input to an intent by adding training phrases (i.e., examples of user input) to your intent.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     /**
@@ -734,7 +734,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse {
     /**
-     * The list of environments. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn&#39;t the last page.
+     * The list of environments. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.
      */
     environments?: Schema$GoogleCloudDialogflowCxV3beta1Environment[];
     /**
@@ -803,7 +803,7 @@ export namespace dialogflow_v3beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * The list of transition route groups. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn&#39;t the last page.
+     * The list of transition route groups. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.
      */
     transitionRouteGroups?: Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup[];
   }
@@ -816,7 +816,7 @@ export namespace dialogflow_v3beta1 {
      */
     nextPageToken?: string | null;
     /**
-     * A list of versions. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn&#39;t the last page.
+     * A list of versions. There will be a maximum number of items returned based on the page_size field in the request. The list may in some cases be empty or contain fewer entries than page_size even if this isn't the last page.
      */
     versions?: Schema$GoogleCloudDialogflowCxV3beta1Version[];
   }
@@ -838,7 +838,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1LoadVersionRequest {
     /**
-     * This field is used to prevent accidental overwrite of other agent resources in the draft version, which can potentially impact other flow&#39;s behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).
+     * This field is used to prevent accidental overwrite of other agent resources in the draft version, which can potentially impact other flow's behavior. If `allow_override_agent_resources` is false, conflicted agent-level resources will not be overridden (i.e. intents, entities, webhooks).
      */
     allowOverrideAgentResources?: boolean | null;
   }
@@ -872,7 +872,7 @@ export namespace dialogflow_v3beta1 {
      */
     matchType?: string | null;
     /**
-     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters extracted from the query. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -948,7 +948,7 @@ export namespace dialogflow_v3beta1 {
      */
     audioEncoding?: string | null;
     /**
-     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then the synthesizer will use the default sample rate based on the audio encoding. If this is different from the voice&#39;s natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality).
+     * Optional. The synthesis sample rate (in hertz) for this audio. If not provided, then the synthesizer will use the default sample rate based on the audio encoding. If this is different from the voice's natural sample rate, then the synthesizer will honor this request by converting to the desired sample rate (which might result in worse audio quality).
      */
     sampleRateHertz?: number | null;
     /**
@@ -981,7 +981,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page&#39;s transition route -&gt; page&#39;s transition route group -&gt; flow&#39;s transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/`.
+     * Ordered list of `TransitionRouteGroups` associated with the page. Transition route groups must be unique within a page. * If multiple transition routes within a page scope refer to the same intent, then the precedence order is: page's transition route -\> page's transition route group -\> flow's transition routes. * If multiple transition route groups within a page contain the same intent, then the first group in the ordered list takes precedence. Format:`projects//locations//agents//flows//transitionRouteGroups/`.
      */
     transitionRouteGroups?: string[] | null;
     /**
@@ -1045,6 +1045,10 @@ export namespace dialogflow_v3beta1 {
      */
     audio?: Schema$GoogleCloudDialogflowCxV3beta1AudioInput;
     /**
+     * The DTMF event to be handled.
+     */
+    dtmf?: Schema$GoogleCloudDialogflowCxV3beta1DtmfInput;
+    /**
      * The event to be triggered.
      */
     event?: Schema$GoogleCloudDialogflowCxV3beta1EventInput;
@@ -1074,7 +1078,7 @@ export namespace dialogflow_v3beta1 {
      */
     geoLocation?: Schema$GoogleTypeLatLng;
     /**
-     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Additional parameters to be put into session parameters. To remove a parameter from the session, clients should explicitly set the parameter value to null. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1099,7 +1103,7 @@ export namespace dialogflow_v3beta1 {
      */
     currentPage?: Schema$GoogleCloudDialogflowCxV3beta1Page;
     /**
-     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct&#39;s fields map can change without notice.
+     * The free-form diagnostic info. For example, this field could contain webhook call latency. The string keys of the Struct's fields map can change without notice.
      */
     diagnosticInfo?: {[key: string]: any} | null;
     /**
@@ -1119,7 +1123,7 @@ export namespace dialogflow_v3beta1 {
      */
     match?: Schema$GoogleCloudDialogflowCxV3beta1Match;
     /**
-     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collected session parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1147,7 +1151,7 @@ export namespace dialogflow_v3beta1 {
      */
     triggerIntent?: string | null;
     /**
-     * The list of webhook payload in WebhookResponse.payload, in the order of call sequence. If some webhook call fails or doesn&#39;t return any payload, an empty `Struct` would be used instead.
+     * The list of webhook payload in WebhookResponse.payload, in the order of call sequence. If some webhook call fails or doesn't return any payload, an empty `Struct` would be used instead.
      */
     webhookPayloads?: Array<{[key: string]: any}> | null;
     /**
@@ -1164,7 +1168,7 @@ export namespace dialogflow_v3beta1 {
      */
     conversationSuccess?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess;
     /**
-     * Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` or `END_PAGE` page. It is not supposed to be defined by the user. It&#39;s guaranteed that there is at most one such message in each response.
+     * Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` or `END_PAGE` page. It is not supposed to be defined by the user. It's guaranteed that there is at most one such message in each response.
      */
     endInteraction?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageEndInteraction;
     /**
@@ -1193,11 +1197,11 @@ export namespace dialogflow_v3beta1 {
     text?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText;
   }
   /**
-   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn&#39;t process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don&#39;t return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
+   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageConversationSuccess {
     /**
-     * Custom metadata. Dialogflow doesn&#39;t impose any structure on this.
+     * Custom metadata. Dialogflow doesn't impose any structure on this.
      */
     metadata?: {[key: string]: any} | null;
   }
@@ -1210,7 +1214,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageLiveAgentHandoff {
     /**
-     * Custom metadata for your handoff procedure. Dialogflow doesn&#39;t impose any structure on this.
+     * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
      */
     metadata?: {[key: string]: any} | null;
   }
@@ -1228,11 +1232,11 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageMixedAudioSegment {
     /**
-     * Output only. Whether the playback of this segment can be interrupted by the end user&#39;s speech and the client should then start the next Dialogflow request.
+     * Output only. Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
-     * Raw audio synthesized from the Dialogflow agent&#39;s response using the output config specified in the request.
+     * Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.
      */
     audio?: string | null;
     /**
@@ -1245,7 +1249,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageOutputAudioText {
     /**
-     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -1262,7 +1266,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessagePlayAudio {
     /**
-     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -1275,7 +1279,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1ResponseMessageText {
     /**
-     * Output only. Whether the playback of this message can be interrupted by the end user&#39;s speech and the client can then starts the next Dialogflow request.
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
      */
     allowPlaybackInterruption?: boolean | null;
     /**
@@ -1297,7 +1301,7 @@ export namespace dialogflow_v3beta1 {
     agentUri?: string | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral.
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SentimentAnalysisResult {
     /**
@@ -1310,7 +1314,7 @@ export namespace dialogflow_v3beta1 {
     score?: number | null;
   }
   /**
-   * Session entity types are referred to as **User** entity types and are entities that are built for an individual user such as favorites, preferences, playlists, and so on. You can redefine a session entity type at the session level to extend or replace a custom entity type at the user session level (we refer to the entity types defined at the agent level as &quot;custom entity types&quot;). Note: session entity types apply to all queries, regardless of the language. For more information about entity types, see the [Dialogflow documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
+   * Session entity types are referred to as **User** entity types and are entities that are built for an individual user such as favorites, preferences, playlists, and so on. You can redefine a session entity type at the session level to extend or replace a custom entity type at the user session level (we refer to the entity types defined at the agent level as "custom entity types"). Note: session entity types apply to all queries, regardless of the language. For more information about entity types, see the [Dialogflow documentation](https://cloud.google.com/dialogflow/docs/entities-overview).
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType {
     /**
@@ -1322,7 +1326,7 @@ export namespace dialogflow_v3beta1 {
      */
     entityOverrideMode?: string | null;
     /**
-     * Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment.
+     * Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
      */
     name?: string | null;
   }
@@ -1331,7 +1335,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SessionInfo {
     /**
-     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters&#39; display names.
+     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters' display names.
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -1353,7 +1357,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SynthesizeSpeechConfig {
     /**
-     * Optional. An identifier which selects &#39;audio effects&#39; profiles that are applied on (post synthesized) text to speech. Effects are applied on top of each other in the order they are given.
+     * Optional. An identifier which selects 'audio effects' profiles that are applied on (post synthesized) text to speech. Effects are applied on top of each other in the order they are given.
      */
     effectsProfileId?: string[] | null;
     /**
@@ -1361,7 +1365,7 @@ export namespace dialogflow_v3beta1 {
      */
     pitch?: number | null;
     /**
-     * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values &lt; 0.25 or &gt; 4.0 will return an error.
+     * Optional. Speaking rate/speed, in the range [0.25, 4.0]. 1.0 is the normal native speed supported by the specific voice. 2.0 is twice as fast, and 0.5 is half as fast. If unset(0.0), defaults to the native 1.0 speed. Any other values < 0.25 or \> 4.0 will return an error.
      */
     speakingRate?: number | null;
     /**
@@ -1369,7 +1373,7 @@ export namespace dialogflow_v3beta1 {
      */
     voice?: Schema$GoogleCloudDialogflowCxV3beta1VoiceSelectionParams;
     /**
-     * Optional. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. We strongly recommend not to exceed +10 (dB) as there&#39;s usually no effective increase in loudness for any value greater than that.
+     * Optional. Volume gain (in dB) of the normal native volume supported by the specific voice, in the range [-96.0, 16.0]. If unset, or set to a value of 0.0 (dB), will play at normal native signal amplitude. A value of -6.0 (dB) will play at approximately half the amplitude of the normal native signal amplitude. A value of +6.0 (dB) will play at approximately twice the amplitude of the normal native signal amplitude. We strongly recommend not to exceed +10 (dB) as there's usually no effective increase in loudness for any value greater than that.
      */
     volumeGainDb?: number | null;
   }
@@ -1475,7 +1479,7 @@ export namespace dialogflow_v3beta1 {
     ssmlGender?: string | null;
   }
   /**
-   * Webhooks host the developer&#39;s business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow&#39;s natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
+   * Webhooks host the developer's business logic. During a session, webhooks allow the developer to use the data extracted by Dialogflow's natural language processing to generate dynamic responses, validate collected data, or trigger actions on the backend.
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Webhook {
     /**
@@ -1495,7 +1499,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * Webhook execution timeout. Execution is considered failed if Dialogflow doesn&#39;t receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.
+     * Webhook execution timeout. Execution is considered failed if Dialogflow doesn't receive a response from webhook at the end of the timeout period. Defaults to 5 seconds, maximum allowed timeout is 30 seconds.
      */
     timeout?: string | null;
   }
@@ -1571,7 +1575,7 @@ export namespace dialogflow_v3beta1 {
      */
     lastMatchedIntent?: string | null;
     /**
-     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user&#39;s utterance. All parameters defined in the matched intent that are identified will be surfaced here.
+     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user's utterance. All parameters defined in the matched intent that are identified will be surfaced here.
      */
     parameters?: {
       [
@@ -1635,6 +1639,308 @@ export namespace dialogflow_v3beta1 {
     messages?: Schema$GoogleCloudDialogflowCxV3beta1ResponseMessage[];
   }
   /**
+   * Represents page information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PageInfo {
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the current page. Format: `projects//locations//agents//flows//pages/`.
+     */
+    currentPage?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Information about the form.
+     */
+    formInfo?: Schema$GoogleCloudDialogflowCxV3PageInfoFormInfo;
+  }
+  /**
+   * Represents form information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PageInfoFormInfo {
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The parameters contained in the form. Note that the webhook cannot add or remove any form parameter.
+     */
+    parameterInfo?: Schema$GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo[];
+  }
+  /**
+   * Represents parameter information.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PageInfoFormInfoParameterInfo {
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The human-readable name of the parameter, unique within the form. This field cannot be modified by the webhook.
+     */
+    displayName?: string | null;
+    /**
+     * Optional for WebhookRequest. Ignored for WebhookResponse. Indicates if the parameter value was just collected on the last conversation turn.
+     */
+    justCollected?: boolean | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. Indicates whether the parameter is required. Optional parameters will not trigger prompts; however, they are filled if the user specifies them. Required parameters must be filled before form filling concludes.
+     */
+    required?: boolean | null;
+    /**
+     * Always present for WebhookRequest. Required for WebhookResponse. The state of the parameter. This field can be set to INVALID by the webhook to invalidate the parameter; other values set by the webhook will be ignored.
+     */
+    state?: string | null;
+    /**
+     * Optional for both WebhookRequest and WebhookResponse. The value of the parameter. This field can be set by the webhook to change the parameter value.
+     */
+    value?: any | null;
+  }
+  /**
+   * Represents a response message that can be returned by a conversational agent. Response messages are also used for output audio synthesis. The approach is as follows: * If at least one OutputAudioText response is present, then all OutputAudioText responses are linearly concatenated, and the result is used for output audio synthesis. * If the OutputAudioText responses are a mixture of text and SSML, then the concatenated result is treated as SSML; otherwise, the result is treated as either text or SSML as appropriate. The agent designer should ideally use either text or SSML consistently throughout the bot design. * Otherwise, all Text responses are linearly concatenated, and the result is used for output audio synthesis. This approach allows for more sophisticated user experience scenarios, where the text displayed to the user may differ from what is heard.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessage {
+    /**
+     * Indicates that the conversation succeeded.
+     */
+    conversationSuccess?: Schema$GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess;
+    /**
+     * Output only. A signal that indicates the interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only when the conversation reaches `END_SESSION` or `END_PAGE` page. It is not supposed to be defined by the user. It's guaranteed that there is at most one such message in each response.
+     */
+    endInteraction?: Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction;
+    /**
+     * Hands off conversation to a human agent.
+     */
+    liveAgentHandoff?: Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff;
+    /**
+     * Output only. An audio response message composed of both the synthesized Dialogflow agent responses and responses defined via play_audio. This message is generated by Dialogflow only and not supposed to be defined by the user.
+     */
+    mixedAudio?: Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudio;
+    /**
+     * A text or ssml response that is preferentially used for TTS output audio synthesis, as described in the comment on the ResponseMessage message.
+     */
+    outputAudioText?: Schema$GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText;
+    /**
+     * Returns a response containing a custom, platform-specific payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Signal that the client should play an audio clip hosted at a client-specific URI. Dialogflow uses this to construct mixed_audio. However, Dialogflow itself does not try to read or process the URI in any way.
+     */
+    playAudio?: Schema$GoogleCloudDialogflowCxV3ResponseMessagePlayAudio;
+    /**
+     * Returns a text response.
+     */
+    text?: Schema$GoogleCloudDialogflowCxV3ResponseMessageText;
+  }
+  /**
+   * Indicates that the conversation succeeded, i.e., the bot handled the issue that the customer talked to it about. Dialogflow only uses this to determine which conversations should be counted as successful and doesn't process the metadata in this message in any way. Note that Dialogflow also considers conversations that get to the conversation end page as successful even if they don't return ConversationSuccess. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates that the conversation succeeded. * In a webhook response when you determine that you handled the customer issue.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageConversationSuccess {
+    /**
+     * Custom metadata. Dialogflow doesn't impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Indicates that interaction with the Dialogflow agent has ended. This message is generated by Dialogflow only and not supposed to be defined by the user.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageEndInteraction {}
+  /**
+   * Indicates that the conversation should be handed off to a live agent. Dialogflow only uses this to determine which conversations were handed off to a human agent for measurement purposes. What else to do with this signal is up to you and your handoff procedures. You may set this, for example: * In the entry_fulfillment of a Page if entering the page indicates something went extremely wrong in the conversation. * In a webhook response when you determine that the customer issue can only be handled by a human.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageLiveAgentHandoff {
+    /**
+     * Custom metadata for your handoff procedure. Dialogflow doesn't impose any structure on this.
+     */
+    metadata?: {[key: string]: any} | null;
+  }
+  /**
+   * Represents an audio message that is composed of both segments synthesized from the Dialogflow agent prompts and ones hosted externally at the specified URIs. The external URIs are specified via play_audio. This message is generated by Dialogflow only and not supposed to be defined by the user.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudio {
+    /**
+     * Segments this audio response is composed of.
+     */
+    segments?: Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment[];
+  }
+  /**
+   * Represents one segment of audio.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageMixedAudioSegment {
+    /**
+     * Output only. Whether the playback of this segment can be interrupted by the end user's speech and the client should then start the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
+    /**
+     * Raw audio synthesized from the Dialogflow agent's response using the output config specified in the request.
+     */
+    audio?: string | null;
+    /**
+     * Client-specific URI that points to an audio clip accessible to the client. Dialogflow does not impose any validation on it.
+     */
+    uri?: string | null;
+  }
+  /**
+   * A text or ssml response that is preferentially used for TTS output audio synthesis, as described in the comment on the ResponseMessage message.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageOutputAudioText {
+    /**
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
+    /**
+     * The SSML text to be synthesized. For more information, see [SSML](/speech/text-to-speech/docs/ssml).
+     */
+    ssml?: string | null;
+    /**
+     * The raw text to be synthesized.
+     */
+    text?: string | null;
+  }
+  /**
+   * Specifies an audio clip to be played by the client as part of the response.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessagePlayAudio {
+    /**
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
+    /**
+     * Required. URI of the audio clip. Dialogflow does not impose any validation on this value. It is specific to the client that reads it.
+     */
+    audioUri?: string | null;
+  }
+  /**
+   * The text response message.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ResponseMessageText {
+    /**
+     * Output only. Whether the playback of this message can be interrupted by the end user's speech and the client can then starts the next Dialogflow request.
+     */
+    allowPlaybackInterruption?: boolean | null;
+    /**
+     * Required. A collection of text responses.
+     */
+    text?: string[] | null;
+  }
+  /**
+   * Represents session information communicated to and from the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3SessionInfo {
+    /**
+     * Optional for WebhookRequest. Optional for WebhookResponse. All parameters collected from forms and intents during the session. Parameters can be created, updated, or removed by the webhook. To remove a parameter from the session, the webhook should explicitly set the parameter value to null in WebhookResponse. The map is keyed by parameters' display names.
+     */
+    parameters?: {[key: string]: any} | null;
+    /**
+     * Always present for WebhookRequest. Ignored for WebhookResponse. The unique identifier of the session. This field can be used by the webhook to identify a user. Format: `projects//locations//agents//sessions/`.
+     */
+    session?: string | null;
+  }
+  /**
+   * The request message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequest {
+    /**
+     * Always present. The unique identifier of the DetectIntentResponse that will be returned to the API caller.
+     */
+    detectIntentResponseId?: string | null;
+    /**
+     * Always present. Information about the fulfillment that triggered this webhook call.
+     */
+    fulfillmentInfo?: Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo;
+    /**
+     * Information about the last matched intent.
+     */
+    intentInfo?: Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfo;
+    /**
+     * The list of rich message responses to present to the user. Webhook can choose to append or replace this list in WebhookResponse.fulfillment_response;
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+    /**
+     * Information about page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3PageInfo;
+    /**
+     * Custom data set in QueryParameters.payload.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
+  }
+  /**
+   * Represents fulfillment information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestFulfillmentInfo {
+    /**
+     * Always present. The tag used to identify which fulfillment is being called.
+     */
+    tag?: string | null;
+  }
+  /**
+   * Represents intent information communicated to the webhook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfo {
+    /**
+     * Always present. The unique identifier of the last matched intent. Format: `projects//locations//agents//intents/`.
+     */
+    lastMatchedIntent?: string | null;
+    /**
+     * Parameters identified as a result of intent matching. This is a map of the name of the identified parameter to the value of the parameter identified from the user's utterance. All parameters defined in the matched intent that are identified will be surfaced here.
+     */
+    parameters?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue;
+    } | null;
+  }
+  /**
+   * Represents a value for an intent parameter.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookRequestIntentInfoIntentParameterValue {
+    /**
+     * Always present. Original text value extracted from user utterance.
+     */
+    originalValue?: string | null;
+    /**
+     * Always present. Structured value for the parameter extracted from user utterance.
+     */
+    resolvedValue?: any | null;
+  }
+  /**
+   * The response message for a webhook call.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookResponse {
+    /**
+     * The fulfillment response to send to the user. This field can be omitted by the webhook if it does not intend to send any response to the user.
+     */
+    fulfillmentResponse?: Schema$GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse;
+    /**
+     * Information about page status. This field can be omitted by the webhook if it does not intend to modify page status.
+     */
+    pageInfo?: Schema$GoogleCloudDialogflowCxV3PageInfo;
+    /**
+     * Value to append directly to QueryResult.webhook_payloads.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Information about session status. This field can be omitted by the webhook if it does not intend to modify session status.
+     */
+    sessionInfo?: Schema$GoogleCloudDialogflowCxV3SessionInfo;
+    /**
+     * The target flow to transition to. Format: `projects//locations//agents//flows/`.
+     */
+    targetFlow?: string | null;
+    /**
+     * The target page to transition to. Format: `projects//locations//agents//flows//pages/`.
+     */
+    targetPage?: string | null;
+  }
+  /**
+   * Represents a fulfillment response to the user.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3WebhookResponseFulfillmentResponse {
+    /**
+     * Merge behavior for `messages`.
+     */
+    mergeBehavior?: string | null;
+    /**
+     * The list of rich message responses to present to the user.
+     */
+    messages?: Schema$GoogleCloudDialogflowCxV3ResponseMessage[];
+  }
+  /**
    * Represents a part of a message possibly annotated with an entity. The part can be an entity or purely a part of the message between two entities or message start/end.
    */
   export interface Schema$GoogleCloudDialogflowV2AnnotatedMessagePart {
@@ -1643,7 +1949,7 @@ export namespace dialogflow_v3beta1 {
      */
     entityType?: string | null;
     /**
-     * The [Dialogflow system entity formatted value ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of this message part. For example for a system entity of type `@sys.unit-currency`, this may contain: { &quot;amount&quot;: 5, &quot;currency&quot;: &quot;USD&quot; }
+     * The [Dialogflow system entity formatted value ](https://cloud.google.com/dialogflow/docs/reference/system-entities) of this message part. For example for a system entity of type `@sys.unit-currency`, this may contain: { "amount": 5, "currency": "USD" \}
      */
     formattedValue?: any | null;
     /**
@@ -1670,56 +1976,6 @@ export namespace dialogflow_v3beta1 {
     intents?: Schema$GoogleCloudDialogflowV2Intent[];
   }
   /**
-   * Represents an annotated conversation dataset. ConversationDataset can have multiple AnnotatedConversationDataset, each of them represents one result from one annotation task. AnnotatedConversationDataset can only be generated from annotation task, which will be triggered by LabelConversation.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1AnnotatedConversationDataset {
-    /**
-     * Output only. Number of examples that have annotations in the annotated conversation dataset.
-     */
-    completedExampleCount?: string | null;
-    /**
-     * Output only. Creation time of this annotated conversation dataset.
-     */
-    createTime?: string | null;
-    /**
-     * Optional. The description of the annotated conversation dataset. Maximum of 10000 bytes.
-     */
-    description?: string | null;
-    /**
-     * Required. The display name of the annotated conversation dataset. It&#39;s specified when user starts an annotation task. Maximum of 64 bytes.
-     */
-    displayName?: string | null;
-    /**
-     * Output only. Number of examples in the annotated conversation dataset.
-     */
-    exampleCount?: string | null;
-    /**
-     * Output only. AnnotatedConversationDataset resource name. Format: `projects//conversationDatasets//annotatedConversationDatasets/`
-     */
-    name?: string | null;
-    /**
-     * Output only. Question type name that identifies a labeling task. A question is a single task that a worker answers. A question type is set of related questions. Each question belongs to a particular question type. It can be used in CrowdCompute UI to filter and manage labeling tasks.
-     */
-    questionTypeName?: string | null;
-  }
-  /**
-   * Response message for [Documents.AutoApproveSmartMessagingEntries].
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1AutoApproveSmartMessagingEntriesResponse {
-    /**
-     * Number of smart messaging entries disabled.
-     */
-    disabledCount?: number | null;
-    /**
-     * Number of smart messaging entries enabled.
-     */
-    enabledCount?: number | null;
-    /**
-     * Number of smart messaging entries unreviewed.
-     */
-    unreviewedCount?: number | null;
-  }
-  /**
    * The response message for EntityTypes.BatchUpdateEntityTypes.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateEntityTypesResponse {
@@ -1738,16 +1994,7 @@ export namespace dialogflow_v3beta1 {
     intents?: Schema$GoogleCloudDialogflowV2beta1Intent[];
   }
   /**
-   * Response message for [Documents.BatchUpdateSmartMessagingEntries]
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1BatchUpdateSmartMessagingEntriesResponse {
-    /**
-     * List of updated smart message entries.
-     */
-    smartMessagingEntries?: Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntry[];
-  }
-  /**
-   * Dialogflow contexts are similar to natural language context. If a person says to you &quot;they are orange&quot;, you need context in order to understand what &quot;they&quot; is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
+   * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Context {
     /**
@@ -1755,11 +2002,11 @@ export namespace dialogflow_v3beta1 {
      */
     lifespanCount?: number | null;
     /**
-     * Required. The unique identifier of the context. Supported formats: - `projects//agent/sessions//contexts/`, - `projects//locations//agent/sessions//contexts/`, - `projects//agent/environments//users//sessions//contexts/`, - `projects//locations//agent/environments//users//sessions//contexts/`, The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * Required. The unique identifier of the context. Supported formats: - `projects//agent/sessions//contexts/`, - `projects//locations//agent/sessions//contexts/`, - `projects//agent/environments//users//sessions//contexts/`, - `projects//locations//agent/environments//users//sessions//contexts/`, The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -1806,7 +2053,7 @@ export namespace dialogflow_v3beta1 {
     value?: string | null;
   }
   /**
-   * Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `&quot;Hello #welcome_event.name! What can I do for you today?&quot;`.
+   * Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `"Hello #welcome_event.name! What can I do for you today?"`.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1EventInput {
     /**
@@ -1818,7 +2065,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -1836,16 +2083,7 @@ export namespace dialogflow_v3beta1 {
     agentUri?: string | null;
   }
   /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * An intent categorizes an end-user&#39;s intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
+   * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1Intent {
     /**
@@ -1938,7 +2176,7 @@ export namespace dialogflow_v3beta1 {
      */
     followupIntentName?: string | null;
     /**
-     * The unique identifier of the followup intent&#39;s parent. Format: `projects//agent/intents/`.
+     * The unique identifier of the followup intent's parent. Format: `projects//agent/intents/`.
      */
     parentFollowupIntentName?: string | null;
   }
@@ -2279,7 +2517,7 @@ export namespace dialogflow_v3beta1 {
      */
     mediaObjects?: Schema$GoogleCloudDialogflowV2beta1IntentMessageMediaContentResponseMediaObject[];
     /**
-     * Optional. What type of media is the content (ie &quot;audio&quot;).
+     * Optional. What type of media is the content (ie "audio").
      */
     mediaType?: string | null;
   }
@@ -2343,7 +2581,7 @@ export namespace dialogflow_v3beta1 {
     title?: string | null;
   }
   /**
-   * Rich Business Messaging (RBM) Media displayed in Cards The following media-types are currently supported: Image Types * image/jpeg * image/jpg&#39; * image/gif * image/png Video Types * video/h263 * video/m4v * video/mp4 * video/mpeg * video/mpeg4 * video/webm
+   * Rich Business Messaging (RBM) Media displayed in Cards The following media-types are currently supported: Image Types * image/jpeg * image/jpg' * image/gif * image/png Video Types * video/h263 * video/m4v * video/mp4 * video/mpeg * video/mpeg4 * video/webm
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmCardContentRbmMedia {
     /**
@@ -2355,7 +2593,7 @@ export namespace dialogflow_v3beta1 {
      */
     height?: string | null;
     /**
-     * Optional. Publicly reachable URI of the thumbnail.If you don&#39;t provide a thumbnail URI, the RBM platform displays a blank placeholder thumbnail until the user&#39;s device downloads the file. Depending on the user&#39;s setting, the file may not download automatically and may require the user to tap a download button.
+     * Optional. Publicly reachable URI of the thumbnail.If you don't provide a thumbnail URI, the RBM platform displays a blank placeholder thumbnail until the user's device downloads the file. Depending on the user's setting, the file may not download automatically and may require the user to tap a download button.
      */
     thumbnailUri?: string | null;
   }
@@ -2415,7 +2653,7 @@ export namespace dialogflow_v3beta1 {
     text?: string | null;
   }
   /**
-   * Opens the user&#39;s default dialer app with the specified phone number but does not dial automatically.
+   * Opens the user's default dialer app with the specified phone number but does not dial automatically.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionDial {
     /**
@@ -2424,7 +2662,7 @@ export namespace dialogflow_v3beta1 {
     phoneNumber?: string | null;
   }
   /**
-   * Opens the user&#39;s default web browser app to the specified uri If the user has an app installed that is registered as the default handler for the URL, then this app will be opened instead, and its icon will be used in the suggested action UI.
+   * Opens the user's default web browser app to the specified uri If the user has an app installed that is registered as the default handler for the URL, then this app will be opened instead, and its icon will be used in the suggested action UI.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionOpenUri {
     /**
@@ -2433,7 +2671,7 @@ export namespace dialogflow_v3beta1 {
     uri?: string | null;
   }
   /**
-   * Opens the device&#39;s location chooser so the user can pick a location to send back to the agent.
+   * Opens the device's location chooser so the user can pick a location to send back to the agent.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageRbmSuggestedActionRbmSuggestedActionShareLocation {}
   /**
@@ -2588,7 +2826,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageTelephonyPlayAudio {
     /**
-     * Required. URI to a Google Cloud Storage object containing the audio to play, e.g., &quot;gs://bucket/object&quot;. The object must contain a single channel (mono) of linear PCM audio (2 bytes / sample) at 8kHz. This object must be readable by the `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` service account where is the number of the Telephony Gateway project (usually the same as the Dialogflow agent project). If the Google Cloud Storage bucket is in the Telephony Gateway project, this permission is added by default when enabling the Dialogflow V2 API. For audio from other sources, consider using the `TelephonySynthesizeSpeech` message with SSML.
+     * Required. URI to a Google Cloud Storage object containing the audio to play, e.g., "gs://bucket/object". The object must contain a single channel (mono) of linear PCM audio (2 bytes / sample) at 8kHz. This object must be readable by the `service-@gcp-sa-dialogflow.iam.gserviceaccount.com` service account where is the number of the Telephony Gateway project (usually the same as the Dialogflow agent project). If the Google Cloud Storage bucket is in the Telephony Gateway project, this permission is added by default when enabling the Dialogflow V2 API. For audio from other sources, consider using the `TelephonySynthesizeSpeech` message with SSML.
      */
     audioUri?: string | null;
   }
@@ -2619,7 +2857,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1IntentMessageText {
     /**
-     * Optional. The collection of the agent&#39;s responses.
+     * Optional. The collection of the agent's responses.
      */
     text?: string[] | null;
   }
@@ -2724,11 +2962,11 @@ export namespace dialogflow_v3beta1 {
      */
     faqQuestion?: string | null;
     /**
-     * The system&#39;s confidence score that this Knowledge answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain). Note: The confidence score is likely to vary somewhat (possibly even for identical requests), as the underlying model is under constant improvement. It may be deprecated in the future. We recommend using `match_confidence_level` which should be generally more stable.
+     * The system's confidence score that this Knowledge answer is a good match for this conversational query. The range is from 0.0 (completely uncertain) to 1.0 (completely certain). Note: The confidence score is likely to vary somewhat (possibly even for identical requests), as the underlying model is under constant improvement. It may be deprecated in the future. We recommend using `match_confidence_level` which should be generally more stable.
      */
     matchConfidence?: number | null;
     /**
-     * The system&#39;s confidence level that this knowledge answer is a good match for this conversational query. NOTE: The confidence level for a given `` pair may change without notice, as it depends on models that are constantly being improved. However, it will change less frequently than the confidence score below, and should be preferred for referencing the quality of an answer.
+     * The system's confidence level that this knowledge answer is a good match for this conversational query. NOTE: The confidence level for a given `` pair may change without notice, as it depends on models that are constantly being improved. However, it will change less frequently than the confidence score below, and should be preferred for referencing the quality of an answer.
      */
     matchConfidenceLevel?: string | null;
     /**
@@ -2746,20 +2984,11 @@ export namespace dialogflow_v3beta1 {
     state?: string | null;
   }
   /**
-   * The response for ConversationDatasets.LabelConversation.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1LabelConversationResponse {
-    /**
-     * New annotated conversation dataset created by the labeling task.
-     */
-    annotatedConversationDataset?: Schema$GoogleCloudDialogflowV2beta1AnnotatedConversationDataset;
-  }
-  /**
    * Represents the contents of the original request that was passed to the `[Streaming]DetectIntent` call.
    */
   export interface Schema$GoogleCloudDialogflowV2beta1OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { "telephony": { "caller_id": "+18558363987" \} \} Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -2780,7 +3009,7 @@ export namespace dialogflow_v3beta1 {
      */
     action?: string | null;
     /**
-     * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn&#39;t contain any required parameters.
+     * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.
      */
     allRequiredParamsPresent?: boolean | null;
     /**
@@ -2816,7 +3045,7 @@ export namespace dialogflow_v3beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2beta1Context[];
     /**
-     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -2828,7 +3057,7 @@ export namespace dialogflow_v3beta1 {
      */
     sentimentAnalysisResult?: Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult;
     /**
-     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be accurate or set. In particular this field isn&#39;t set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
+     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be accurate or set. In particular this field isn't set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number | null;
     /**
@@ -2854,7 +3083,7 @@ export namespace dialogflow_v3beta1 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2beta1SentimentAnalysisResult {
     /**
@@ -2875,43 +3104,9 @@ export namespace dialogflow_v3beta1 {
      */
     entityOverrideMode?: string | null;
     /**
-     * Required. The unique identifier of this session entity type. Supported formats: - `projects//agent/sessions//entityTypes/` - `projects//locations//agent/sessions//entityTypes/` - `projects//agent/environments//users//sessions//entityTypes/` - `projects//locations//agent/environments/ /users//sessions//entityTypes/` If `Location ID` is not specified we assume default &#39;us&#39; location. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Supported formats: - `projects//agent/sessions//entityTypes/` - `projects//locations//agent/sessions//entityTypes/` - `projects//agent/environments//users//sessions//entityTypes/` - `projects//locations//agent/environments/ /users//sessions//entityTypes/` If `Location ID` is not specified we assume default 'us' location. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
-  }
-  /**
-   * Smart Messaging Entry resource.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntry {
-    /**
-     * Output only. Metadata of the message entry
-     */
-    messageInfo?: Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntryInfo;
-    /**
-     * The unique identifier of this message entry. Required for [Documents.GetSmartMessagingEntry], [Documents.CreateSmartMessagingEntry], [Documents.UpdateSmartMessagingEntry], and [Documents.DeleteSmartMessagingEntry]. Format: `projects//knowledgeBases//documents//smartMessagingEntries/`
-     */
-    name?: string | null;
-    /**
-     * Required. The raw text of the message.
-     */
-    rawText?: string | null;
-    /**
-     * Required. Smart Messaging Entry&#39;s enabled/disabled state.
-     */
-    state?: string | null;
-  }
-  /**
-   * Smart messaging entry info.
-   */
-  export interface Schema$GoogleCloudDialogflowV2beta1SmartMessagingEntryInfo {
-    /**
-     * Output only. Method of how the smart messaging entry was created. When the smart messaging entry was generated from GenerateDocument, the value is AUTOMATIC; when the entry was manually added through CreateSmartMessagingEntry, the value is MANUAL.
-     */
-    creationMethod?: string | null;
-    /**
-     * The number of times an entry&#39;s message text has been uttered
-     */
-    occurrenceCount?: number | null;
   }
   /**
    * The request message for a webhook call.
@@ -2939,7 +3134,7 @@ export namespace dialogflow_v3beta1 {
     session?: string | null;
   }
   /**
-   * The response message for a webhook call. This response is validated by the Dialogflow server. If validation fails, an error will be returned in the QueryResult.diagnostic_info field. Setting JSON fields to an empty value with the wrong type is a common error. To avoid this error: - Use `&quot;&quot;` for empty strings - Use `{}` or `null` for empty objects - Use `[]` or `null` for empty arrays For more information, see the [Protocol Buffers Language Guide](https://developers.google.com/protocol-buffers/docs/proto3#json).
+   * The response message for a webhook call. This response is validated by the Dialogflow server. If validation fails, an error will be returned in the QueryResult.diagnostic_info field. Setting JSON fields to an empty value with the wrong type is a common error. To avoid this error: - Use `""` for empty strings - Use `{\}` or `null` for empty objects - Use `[]` or `null` for empty arrays For more information, see the [Protocol Buffers Language Guide](https://developers.google.com/protocol-buffers/docs/proto3#json).
    */
   export interface Schema$GoogleCloudDialogflowV2beta1WebhookResponse {
     /**
@@ -2976,7 +3171,7 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
-   * Dialogflow contexts are similar to natural language context. If a person says to you &quot;they are orange&quot;, you need context in order to understand what &quot;they&quot; is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
+   * Dialogflow contexts are similar to natural language context. If a person says to you "they are orange", you need context in order to understand what "they" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Context {
     /**
@@ -2984,11 +3179,11 @@ export namespace dialogflow_v3beta1 {
      */
     lifespanCount?: number | null;
     /**
-     * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
+     * Required. The unique identifier of the context. Format: `projects//agent/sessions//contexts/`, or `projects//agent/environments//users//sessions//contexts/`. The `Context ID` is always converted to lowercase, may only contain characters in a-zA-Z0-9_-% and may be at most 250 bytes long. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. The following context names are reserved for internal use by Dialogflow. You should not use these contexts or create contexts with these names: * `__system_counters__` * `*_id_dialog_context` * `*_dialog_params_size`
      */
     name?: string | null;
     /**
-     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * Optional. The collection of parameters associated with this context. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -3056,7 +3251,7 @@ export namespace dialogflow_v3beta1 {
     value?: string | null;
   }
   /**
-   * Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `&quot;Hello #welcome_event.name! What can I do for you today?&quot;`.
+   * Events allow for matching intents by event name instead of the natural language input. For instance, input `` can trigger a personalized welcome response. The parameter `name` may be used by the agent in the response: `"Hello #welcome_event.name! What can I do for you today?"`.
    */
   export interface Schema$GoogleCloudDialogflowV2EventInput {
     /**
@@ -3068,7 +3263,7 @@ export namespace dialogflow_v3beta1 {
      */
     name?: string | null;
     /**
-     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of parameters associated with the event. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
   }
@@ -3086,16 +3281,7 @@ export namespace dialogflow_v3beta1 {
     agentUri?: string | null;
   }
   /**
-   * Response message for Documents.ImportDocuments.
-   */
-  export interface Schema$GoogleCloudDialogflowV2ImportDocumentsResponse {
-    /**
-     * Includes details about skipped documents or any other warnings.
-     */
-    warnings?: Schema$GoogleRpcStatus[];
-  }
-  /**
-   * An intent categorizes an end-user&#39;s intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
+   * An intent categorizes an end-user's intention for one conversation turn. For each agent, you define many intents, where your combined intents can handle a complete conversation. When an end-user writes or says something, referred to as an end-user expression or end-user input, Dialogflow matches the end-user input to the best intent in your agent. Matching an intent is also known as intent classification. For more information, see the [intent guide](https://cloud.google.com/dialogflow/docs/intents-overview).
    */
   export interface Schema$GoogleCloudDialogflowV2Intent {
     /**
@@ -3180,7 +3366,7 @@ export namespace dialogflow_v3beta1 {
      */
     followupIntentName?: string | null;
     /**
-     * The unique identifier of the followup intent&#39;s parent. Format: `projects//agent/intents/`.
+     * The unique identifier of the followup intent's parent. Format: `projects//agent/intents/`.
      */
     parentFollowupIntentName?: string | null;
   }
@@ -3497,7 +3683,7 @@ export namespace dialogflow_v3beta1 {
      */
     mediaObjects?: Schema$GoogleCloudDialogflowV2IntentMessageMediaContentResponseMediaObject[];
     /**
-     * Optional. What type of media is the content (ie &quot;audio&quot;).
+     * Optional. What type of media is the content (ie "audio").
      */
     mediaType?: string | null;
   }
@@ -3652,7 +3838,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2IntentMessageText {
     /**
-     * Optional. The collection of the agent&#39;s responses.
+     * Optional. The collection of the agent's responses.
      */
     text?: string[] | null;
   }
@@ -3748,7 +3934,7 @@ export namespace dialogflow_v3beta1 {
      */
     createTime?: string | null;
     /**
-     * Optional. The message language. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: &quot;en-US&quot;.
+     * Optional. The message language. This should be a [BCP-47](https://www.rfc-editor.org/rfc/bcp/bcp47.txt) language tag. Example: "en-US".
      */
     languageCode?: string | null;
     /**
@@ -3786,7 +3972,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2OriginalDetectIntentRequest {
     /**
-     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { &quot;telephony&quot;: { &quot;caller_id&quot;: &quot;+18558363987&quot; } } Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
+     * Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query a Dialogflow agent may provide additional information in the payload. In particular, for the Dialogflow Phone Gateway integration, this field has the form: { "telephony": { "caller_id": "+18558363987" \} \} Note: The caller ID field (`caller_id`) will be redacted for Trial Edition agents and populated with the caller ID in [E.164 format](https://en.wikipedia.org/wiki/E.164) for Essentials Edition agents.
      */
     payload?: {[key: string]: any} | null;
     /**
@@ -3807,7 +3993,7 @@ export namespace dialogflow_v3beta1 {
      */
     action?: string | null;
     /**
-     * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn&#39;t contain any required parameters.
+     * This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters.
      */
     allRequiredParamsPresent?: boolean | null;
     /**
@@ -3839,7 +4025,7 @@ export namespace dialogflow_v3beta1 {
      */
     outputContexts?: Schema$GoogleCloudDialogflowV2Context[];
     /**
-     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter&#39;s entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter&#39;s entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
+     * The collection of extracted parameters. Depending on your protocol or client library language, this is a map, associative array, symbol table, dictionary, or JSON object composed of a collection of (MapKey, MapValue) pairs: - MapKey type: string - MapKey value: parameter name - MapValue type: - If parameter's entity type is a composite entity: map - Else: string or number, depending on parameter value type - MapValue value: - If parameter's entity type is a composite entity: map from composite entity property names to property values - Else: parameter value
      */
     parameters?: {[key: string]: any} | null;
     /**
@@ -3851,7 +4037,7 @@ export namespace dialogflow_v3beta1 {
      */
     sentimentAnalysisResult?: Schema$GoogleCloudDialogflowV2SentimentAnalysisResult;
     /**
-     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be accurate or set. In particular this field isn&#39;t set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
+     * The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set. This field is not guaranteed to be accurate or set. In particular this field isn't set for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult.
      */
     speechRecognitionConfidence?: number | null;
     /**
@@ -3877,7 +4063,7 @@ export namespace dialogflow_v3beta1 {
     score?: number | null;
   }
   /**
-   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user&#39;s attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
+   * The result of sentiment analysis. Sentiment analysis inspects user input and identifies the prevailing subjective opinion, especially to determine a user's attitude as positive, negative, or neutral. For Participants.DetectIntent, it needs to be configured in DetectIntentRequest.query_params. For Participants.StreamingDetectIntent, it needs to be configured in StreamingDetectIntentRequest.query_params. And for Participants.AnalyzeContent and Participants.StreamingAnalyzeContent, it needs to be configured in ConversationProfile.human_agent_assistant_config
    */
   export interface Schema$GoogleCloudDialogflowV2SentimentAnalysisResult {
     /**
@@ -3898,7 +4084,7 @@ export namespace dialogflow_v3beta1 {
      */
     entityOverrideMode?: string | null;
     /**
-     * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default &#39;draft&#39; environment. If `User ID` is not specified, we assume default &#39;-&#39; user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
+     * Required. The unique identifier of this session entity type. Format: `projects//agent/sessions//entityTypes/`, or `projects//agent/environments//users//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. `` must be the display name of an existing entity type in the same agent that will be overridden or supplemented.
      */
     name?: string | null;
   }
@@ -3924,7 +4110,7 @@ export namespace dialogflow_v3beta1 {
     session?: string | null;
   }
   /**
-   * The response message for a webhook call. This response is validated by the Dialogflow server. If validation fails, an error will be returned in the QueryResult.diagnostic_info field. Setting JSON fields to an empty value with the wrong type is a common error. To avoid this error: - Use `&quot;&quot;` for empty strings - Use `{}` or `null` for empty objects - Use `[]` or `null` for empty arrays For more information, see the [Protocol Buffers Language Guide](https://developers.google.com/protocol-buffers/docs/proto3#json).
+   * The response message for a webhook call. This response is validated by the Dialogflow server. If validation fails, an error will be returned in the QueryResult.diagnostic_info field. Setting JSON fields to an empty value with the wrong type is a common error. To avoid this error: - Use `""` for empty strings - Use `{\}` or `null` for empty objects - Use `[]` or `null` for empty arrays For more information, see the [Protocol Buffers Language Guide](https://developers.google.com/protocol-buffers/docs/proto3#json).
    */
   export interface Schema$GoogleCloudDialogflowV2WebhookResponse {
     /**
@@ -3957,57 +4143,9 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
-   * The response message for Agents.ExportAgent.
+   * Metadata returned for the TestCases.RunTestCase long running operation.
    */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ExportAgentResponse {
-    /**
-     * Uncompressed raw byte content for agent.
-     */
-    agentContent?: string | null;
-    /**
-     * The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in ExportAgentRequest.
-     */
-    agentUri?: string | null;
-  }
-  /**
-   * Metadata returned for the TestCases.ExportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ExportTestCasesMetadata {}
-  /**
-   * The response message for TestCases.ExportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ExportTestCasesResponse {
-    /**
-     * Uncompressed raw byte content for test cases.
-     */
-    content?: string | null;
-    /**
-     * The URI to a file containing the exported test cases. This field is populated only if `gcs_uri` is specified in ExportTestCasesRequest.
-     */
-    gcsUri?: string | null;
-  }
-  /**
-   * The response message for Agents.ImportAgent.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportAgentResponse {
-    /**
-     * The unique identifier of the new agent. Format: `projects//locations//agents/`.
-     */
-    agent?: string | null;
-  }
-  /**
-   * Metadata returned for the TestCases.ImportTestCases long running operation.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportTestCasesMetadata {}
-  /**
-   * The response message for TestCases.ImportTestCases.
-   */
-  export interface Schema$GoogleCloudDialogflowV3alpha1ImportTestCasesResponse {
-    /**
-     * The unique identifiers of the new test cases. Format: `projects//locations//agents//testCases/`.
-     */
-    names?: string[] | null;
-  }
+  export interface Schema$GoogleCloudDialogflowV3alpha1RunTestCaseMetadata {}
   /**
    * The response message for Operations.ListOperations.
    */
@@ -4038,7 +4176,7 @@ export namespace dialogflow_v3beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -4047,7 +4185,7 @@ export namespace dialogflow_v3beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -4068,7 +4206,7 @@ export namespace dialogflow_v3beta1 {
     message?: string | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
@@ -4134,9 +4272,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.create
-     * @desc Creates an agent in the specified location.
+     * Creates an agent in the specified location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4205,15 +4343,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The location to create a agent for. Format: `projects//locations/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Agent} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Create,
@@ -4294,7 +4429,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
@@ -4304,9 +4439,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.delete
-     * @desc Deletes the specified agent.
+     * Deletes the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4347,14 +4482,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the agent to delete. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Delete,
@@ -4428,7 +4561,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -4436,9 +4569,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.export
-     * @desc Exports the specified agent to a binary file.
+     * Exports the specified agent to a binary file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4493,15 +4626,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.export
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the agent to export. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1ExportAgentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     export(
       params: Params$Resource$Projects$Locations$Agents$Export,
@@ -4582,7 +4712,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4590,9 +4720,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.get
-     * @desc Retrieves the specified agent.
+     * Retrieves the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4644,14 +4774,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the agent. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Get,
@@ -4729,7 +4857,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
@@ -4739,9 +4867,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.list
-     * @desc Returns the list of all agents in the specified location.
+     * Returns the list of all agents in the specified location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4789,16 +4917,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The location to list all agents for. Format: `projects//locations/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$List,
@@ -4893,7 +5017,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListAgentsResponse
@@ -4902,9 +5026,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.patch
-     * @desc Updates the specified agent.
+     * Updates the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -4975,16 +5099,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique identifier of the agent. Required for the Agents.UpdateAgent method. Agents.CreateAgent populates the name automatically. Format: `projects//locations//agents/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Agent} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Patch,
@@ -5062,7 +5182,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Agent>(
@@ -5072,9 +5192,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.restore
-     * @desc Restores the specified agent from a bianry file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed.
+     * Restores the specified agent from a binary file. Replaces the current agent with a new one. Note that all existing resources in agent (e.g. intents, entity types, flows) will be removed.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -5130,15 +5250,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.restore
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the agent to restore into. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1RestoreAgentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restore(
       params: Params$Resource$Projects$Locations$Agents$Restore,
@@ -5219,7 +5336,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -5316,9 +5433,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.entityTypes.create
-     * @desc Creates an entity type in the specified agent.
+     * Creates an entity type in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -5383,16 +5500,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.entityTypes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.parent Required. The agent to create a entity type for. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1EntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Create,
@@ -5479,7 +5592,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5489,9 +5602,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.entityTypes.delete
-     * @desc Deletes the specified entity type.
+     * Deletes the specified entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -5535,15 +5648,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.entityTypes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force This field has no effect for entity type not being used. For entity types that are used by intents or pages: * If `force` is set to false, an error will be returned with message indicating the referencing resources. * If `force` is set to true, Dialogflow will remove the entity type, as well as any references to the entity type (i.e. Page parameter of the entity type will be changed to '@sys.any' and intent parameter of the entity type will be removed).
-     * @param {string} params.name Required. The name of the entity type to delete. Format: `projects//locations//agents//entityTypes/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Delete,
@@ -5617,7 +5727,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -5625,9 +5735,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.entityTypes.get
-     * @desc Retrieves the specified entity type.
+     * Retrieves the specified entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -5679,15 +5789,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.entityTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to retrieve the entity type for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name Required. The name of the entity type. Format: `projects//locations//agents//entityTypes/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Get,
@@ -5771,7 +5878,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5781,9 +5888,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.entityTypes.list
-     * @desc Returns the list of all entity types in the specified agent.
+     * Returns the list of all entity types in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -5833,17 +5940,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.entityTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list entity types for. The following fields are language dependent: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The agent to list all entity types for. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$List,
@@ -5942,7 +6044,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListEntityTypesResponse
@@ -5951,9 +6053,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.entityTypes.patch
-     * @desc Updates the specified entity type.
+     * Updates the specified entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6021,17 +6123,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.entityTypes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `entity_type`: * `EntityType.entities.value` * `EntityType.entities.synonyms` * `EntityType.excluded_phrases.value` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name The unique identifier of the entity type. Required for EntityTypes.UpdateEntityType. Format: `projects//locations//agents//entityTypes/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1EntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Entitytypes$Patch,
@@ -6115,7 +6212,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1EntityType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6214,9 +6311,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.create
-     * @desc Creates an Environment in the specified Agent.
+     * Creates an Environment in the specified Agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6275,15 +6372,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The Agent to create an Environment for. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Environments$Create,
@@ -6364,7 +6458,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -6372,9 +6466,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.delete
-     * @desc Deletes the specified Environment.
+     * Deletes the specified Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6416,14 +6510,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Environment to delete. Format: `projects//locations//agents//environments/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Environments$Delete,
@@ -6497,7 +6589,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -6505,9 +6597,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.get
-     * @desc Retrieves the specified Environment.
+     * Retrieves the specified Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6555,14 +6647,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Environment. Format: `projects//locations//agents//environments/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Get,
@@ -6648,7 +6738,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Environment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6658,9 +6748,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.list
-     * @desc Returns the list of all environments in the specified Agent.
+     * Returns the list of all environments in the specified Agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6708,16 +6798,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 20 and at most 100.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The Agent to list all environments for. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$List,
@@ -6816,7 +6902,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListEnvironmentsResponse
@@ -6825,9 +6911,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.lookupEnvironmentHistory
-     * @desc Looks up the history of the specified Environment.
+     * Looks up the history of the specified Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -6878,16 +6964,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.lookupEnvironmentHistory
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Resource name of the environment to look up the history for. Format: `projects//locations//agents//environments/`.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lookupEnvironmentHistory(
       params: Params$Resource$Projects$Locations$Agents$Environments$Lookupenvironmenthistory,
@@ -6985,7 +7067,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1LookupEnvironmentHistoryResponse
@@ -6994,9 +7076,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.patch
-     * @desc Updates the specified Environment.
+     * Updates the specified Environment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -7058,16 +7140,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the environment. Format: `projects//locations//agents//environments/`.
-     * @param {string=} params.updateMask Required. The mask to control which fields get updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Environment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Environments$Patch,
@@ -7145,7 +7223,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -7237,9 +7315,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.detectIntent
-     * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause session entity types to be updated, which in turn might affect results of future queries.
+     * Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause session entity types to be updated, which in turn might affect results of future queries.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -7298,15 +7376,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.detectIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1DetectIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Detectintent,
@@ -7401,7 +7476,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
@@ -7410,9 +7485,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.fulfillIntent
-     * @desc Fulfills a matched intent returned by MatchIntent. Must be called after MatchIntent, with input from MatchIntentResponse. Otherwise, the behavior is undefined.
+     * Fulfills a matched intent returned by MatchIntent. Must be called after MatchIntent, with input from MatchIntentResponse. Otherwise, the behavior is undefined.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -7471,15 +7546,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.fulfillIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1FulfillIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Fulfillintent,
@@ -7578,7 +7650,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
@@ -7587,9 +7659,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.matchIntent
-     * @desc Returns preliminary intent match results, doesn't change the session status.
+     * Returns preliminary intent match results, doesn't change the session status.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -7649,15 +7721,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.matchIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1MatchIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Matchintent,
@@ -7752,7 +7821,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
@@ -7805,9 +7874,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.entityTypes.create
-     * @desc Creates a session entity type. If the specified session entity type already exists, overrides the session entity type.
+     * Creates a session entity type. If the specified session entity type already exists, overrides the session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -7865,15 +7934,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.entityTypes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {().GoogleCloudDialogflowCxV3beta1SessionEntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Create,
@@ -7968,7 +8034,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -7977,9 +8043,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.entityTypes.delete
-     * @desc Deletes the specified session entity type.
+     * Deletes the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8023,14 +8089,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.entityTypes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type to delete. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Delete,
@@ -8104,7 +8168,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8112,9 +8176,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.entityTypes.get
-     * @desc Retrieves the specified session entity type.
+     * Retrieves the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8162,14 +8226,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.entityTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Get,
@@ -8261,7 +8323,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -8270,9 +8332,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.entityTypes.list
-     * @desc Returns the list of all session entity types in the specified session.
+     * Returns the list of all session entity types in the specified session.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8323,16 +8385,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.entityTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$List,
@@ -8431,7 +8489,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
@@ -8440,9 +8498,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.environments.sessions.entityTypes.patch
-     * @desc Updates the specified session entity type.
+     * Updates the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8502,16 +8560,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.environments.sessions.entityTypes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {string=} params.updateMask The mask to control which fields get updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1SessionEntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Environments$Sessions$Entitytypes$Patch,
@@ -8603,7 +8657,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -8689,9 +8743,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.create
-     * @desc Creates a flow in the specified agent.
+     * Creates a flow in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8754,16 +8808,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.parent Required. The agent to create a flow for. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Flow} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Create,
@@ -8844,7 +8894,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
@@ -8854,9 +8904,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.delete
-     * @desc Deletes a specified flow.
+     * Deletes a specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -8900,15 +8950,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force This field has no effect for flows with no incoming transitions. For flows with incoming transitions: * If `force` is set to false, an error will be returned with message indicating the incoming transitions. * If `force` is set to true, Dialogflow will remove the flow, as well as any transitions to the flow (i.e. Target flow in event handlers or Target flow in transition routes that point to this flow will be cleared).
-     * @param {string} params.name Required. The name of the flow to delete. Format: `projects//locations//agents//flows/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Flows$Delete,
@@ -8982,7 +9029,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8990,9 +9037,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.get
-     * @desc Retrieves the specified flow.
+     * Retrieves the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9043,15 +9090,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to retrieve the flow for. The following fields are language dependent: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name Required. The name of the flow to get. Format: `projects//locations//agents//flows/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Get,
@@ -9129,7 +9173,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
@@ -9139,9 +9183,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.list
-     * @desc Returns the list of all flows in the specified agent.
+     * Returns the list of all flows in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9191,17 +9235,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list flows for. The following fields are language dependent: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The agent containing the flows. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$List,
@@ -9296,7 +9335,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListFlowsResponse
@@ -9305,9 +9344,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.patch
-     * @desc Updates the specified flow.
+     * Updates the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9373,17 +9412,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `flow`: * `Flow.event_handlers.trigger_fulfillment.messages` * `Flow.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name The unique identifier of the flow. Format: `projects//locations//agents//flows/`.
-     * @param {string=} params.updateMask Required. The mask to control which fields get updated. If `update_mask` is not specified, an error will be returned.
-     * @param {().GoogleCloudDialogflowCxV3beta1Flow} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Patch,
@@ -9461,7 +9495,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Flow>(
@@ -9471,9 +9505,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.train
-     * @desc Trains the specified flow. Note that only the flow in 'draft' environment is trained.
+     * Trains the specified flow. Note that only the flow in 'draft' environment is trained.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9527,15 +9561,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.train
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The flow to train. Format: `projects//locations//agents//flows/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1TrainFlowRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     train(
       params: Params$Resource$Projects$Locations$Agents$Flows$Train,
@@ -9616,7 +9647,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -9721,9 +9752,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.pages.create
-     * @desc Creates a page in the specified flow.
+     * Creates a page in the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9789,16 +9820,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.pages.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `page`: * `Page.entry_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_route_groups.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.parent Required. The flow to create a page for. Format: `projects//locations//agents//flows/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Page} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$Create,
@@ -9879,7 +9906,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
@@ -9889,9 +9916,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.pages.delete
-     * @desc Deletes the specified page.
+     * Deletes the specified page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -9935,15 +9962,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.pages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force This field has no effect for pages with no incoming transitions. For pages with incoming transitions: * If `force` is set to false, an error will be returned with message indicating the incoming transitions. * If `force` is set to true, Dialogflow will remove the page, as well as any transitions to the page (i.e. Target page in event handlers or Target page in transition routes that point to this page will be cleared).
-     * @param {string} params.name Required. The name of the page to delete. Format: `projects//locations//agents//Flows//pages/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$Delete,
@@ -10017,7 +10041,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -10025,9 +10049,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.pages.get
-     * @desc Retrieves the specified page.
+     * Retrieves the specified page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10079,15 +10103,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.pages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to retrieve the page for. The following fields are language dependent: * `Page.entry_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_route_groups.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name Required. The name of the page. Format: `projects//locations//agents//flows//pages/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$Get,
@@ -10165,7 +10186,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
@@ -10175,9 +10196,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.pages.list
-     * @desc Returns the list of all pages in the specified flow.
+     * Returns the list of all pages in the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10228,17 +10249,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.pages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list pages for. The following fields are language dependent: * `Page.entry_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_route_groups.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The flow to list all pages for. Format: `projects//locations//agents//flows/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$List,
@@ -10333,7 +10349,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListPagesResponse
@@ -10342,9 +10358,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.pages.patch
-     * @desc Updates the specified page.
+     * Updates the specified page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10412,17 +10428,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.pages.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `page`: * `Page.entry_fulfillment.messages` * `Page.form.parameters.fill_behavior.initial_prompt_fulfillment.messages` * `Page.form.parameters.fill_behavior.reprompt_event_handlers.messages` * `Page.transition_routes.trigger_fulfillment.messages` * `Page.transition_route_groups.transition_routes.trigger_fulfillment.messages` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name The unique identifier of the page. Required for the Pages.UpdatePage method. Pages.CreatePage populates the name automatically. Format: `projects//locations//agents//flows//pages/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Page} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Pages$Patch,
@@ -10500,7 +10511,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Page>(
@@ -10595,9 +10606,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.transitionRouteGroups.create
-     * @desc Creates an TransitionRouteGroup in the specified flow.
+     * Creates an TransitionRouteGroup in the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10657,16 +10668,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.transitionRouteGroups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list transition route groups for. The field `messages` in TransitionRoute is language dependent. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.parent Required. The flow to create an TransitionRouteGroup for. Format: `projects//locations//agents//flows/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1TransitionRouteGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Create,
@@ -10761,7 +10768,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
@@ -10770,9 +10777,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.transitionRouteGroups.delete
-     * @desc Deletes the specified TransitionRouteGroup.
+     * Deletes the specified TransitionRouteGroup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10818,15 +10825,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.transitionRouteGroups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force This field has no effect for transition route group that no page is using. If the transition route group is referenced by any page: * If `force` is set to false, an error will be returned with message indicating pages that reference the transition route group. * If `force` is set to true, Dialogflow will remove the transition route group, as well as any reference to it.
-     * @param {string} params.name Required. The name of the TransitionRouteGroup to delete. Format: `projects//locations//agents//flows//transitionRouteGroups/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Delete,
@@ -10900,7 +10904,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -10908,9 +10912,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.transitionRouteGroups.get
-     * @desc Retrieves the specified TransitionRouteGroup.
+     * Retrieves the specified TransitionRouteGroup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -10960,15 +10964,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.transitionRouteGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list transition route groups for. The field `messages` in TransitionRoute is language dependent. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name Required. The name of the TransitionRouteGroup. Format: `projects//locations//agents//flows//transitionRouteGroups/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Get,
@@ -11060,7 +11061,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
@@ -11069,9 +11070,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.transitionRouteGroups.list
-     * @desc Returns the list of all transition route groups in the specified flow.
+     * Returns the list of all transition route groups in the specified flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11124,17 +11125,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.transitionRouteGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list transition route groups for. The field `messages` in TransitionRoute is language dependent. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The flow to list all transition route groups for. Format: `projects//locations//agents//flows/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$List,
@@ -11233,7 +11229,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListTransitionRouteGroupsResponse
@@ -11242,9 +11238,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.transitionRouteGroups.patch
-     * @desc Updates the specified TransitionRouteGroup.
+     * Updates the specified TransitionRouteGroup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11306,17 +11302,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.transitionRouteGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to list transition route groups for. The field `messages` in TransitionRoute is language dependent. If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name The unique identifier of the transition route group. TransitionRouteGroups.CreateTransitionRouteGroup populates the name automatically. Format: `projects//locations//agents//flows//transitionRouteGroups/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1TransitionRouteGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Transitionroutegroups$Patch,
@@ -11408,7 +11399,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1TransitionRouteGroup
@@ -11502,9 +11493,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.create
-     * @desc Creates a Version in the specified Flow.
+     * Creates a Version in the specified Flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11565,15 +11556,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The Flow to create an Version for. Format: `projects//locations//agents//flows/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Create,
@@ -11654,7 +11642,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -11662,9 +11650,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.delete
-     * @desc Deletes the specified Version.
+     * Deletes the specified Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11706,14 +11694,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Version to delete. Format: `projects//locations//agents//flows//versions/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Delete,
@@ -11787,7 +11773,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -11795,9 +11781,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.get
-     * @desc Retrieves the specified Version.
+     * Retrieves the specified Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11846,14 +11832,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the Version. Format: `projects//locations//agents//flows//versions/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Get,
@@ -11937,7 +11921,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Version>(
@@ -11947,9 +11931,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.list
-     * @desc Returns the list of all versions in the specified Flow.
+     * Returns the list of all versions in the specified Flow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -11998,16 +11982,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 20 and at most 100.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The Flow to list all versions for. Format: `projects//locations//agents//flows/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$List,
@@ -12102,7 +12082,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListVersionsResponse
@@ -12111,9 +12091,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.load
-     * @desc Loads a specified version to draft version.
+     * Loads a specified version to draft version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -12169,15 +12149,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.load
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The Version to be loaded to draft version. Format: `projects//locations//agents//flows//versions/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1LoadVersionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     load(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Load,
@@ -12258,7 +12235,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -12266,9 +12243,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.flows.versions.patch
-     * @desc Updates the specified Version.
+     * Updates the specified Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -12332,16 +12309,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.flows.versions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Format: projects//locations//agents//flows//versions/. Version ID is a self-increasing number generated by Dialogflow upon version creation.
-     * @param {string=} params.updateMask Required. The mask to control which fields get updated. Currently only `description` and `display_name` can be updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Version} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Flows$Versions$Patch,
@@ -12425,7 +12398,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Version>(
@@ -12512,9 +12485,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.intents.create
-     * @desc Creates an intent in the specified agent.
+     * Creates an intent in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -12577,16 +12550,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.intents.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `intent`: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.parent Required. The agent to create an intent for. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Intent} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Intents$Create,
@@ -12673,7 +12642,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
@@ -12683,9 +12652,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.intents.delete
-     * @desc Deletes the specified intent.
+     * Deletes the specified intent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -12727,14 +12696,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.intents.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the intent to delete. Format: `projects//locations//agents//intents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Intents$Delete,
@@ -12808,7 +12775,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -12816,9 +12783,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.intents.get
-     * @desc Retrieves the specified intent.
+     * Retrieves the specified intent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -12869,15 +12836,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.intents.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language to retrieve the intent for. The following fields are language dependent: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name Required. The name of the intent. Format: `projects//locations//agents//intents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Intents$Get,
@@ -12961,7 +12925,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
@@ -12971,9 +12935,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.intents.list
-     * @desc Returns the list of all intents in the specified agent.
+     * Returns the list of all intents in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -13025,18 +12989,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.intents.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.intentView The resource view to apply to the returned intent.
-     * @param {string=} params.languageCode The language to list intents for. The following fields are language dependent: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The agent to list all intents for. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Intents$List,
@@ -13131,7 +13089,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListIntentsResponse
@@ -13140,9 +13098,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.intents.patch
-     * @desc Updates the specified intent.
+     * Updates the specified intent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -13208,17 +13166,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.intents.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.languageCode The language of the following fields in `intent`: * `Intent.training_phrases.parts.text` If not specified, the agent's default language is used. [Many languages](https://cloud.google.com/dialogflow/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used.
-     * @param {string} params.name The unique identifier of the intent. Required for the Intents.UpdateIntent method. Intents.CreateIntent populates the name automatically. Format: `projects//locations//agents//intents/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Intent} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Intents$Patch,
@@ -13302,7 +13255,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Intent>(
@@ -13401,9 +13354,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.detectIntent
-     * @desc Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause session entity types to be updated, which in turn might affect results of future queries.
+     * Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause session entity types to be updated, which in turn might affect results of future queries.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -13460,15 +13413,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.detectIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1DetectIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     detectIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Detectintent,
@@ -13563,7 +13513,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1DetectIntentResponse
@@ -13572,9 +13522,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.fulfillIntent
-     * @desc Fulfills a matched intent returned by MatchIntent. Must be called after MatchIntent, with input from MatchIntentResponse. Otherwise, the behavior is undefined.
+     * Fulfills a matched intent returned by MatchIntent. Must be called after MatchIntent, with input from MatchIntentResponse. Otherwise, the behavior is undefined.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -13633,15 +13583,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.fulfillIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1FulfillIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     fulfillIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Fulfillintent,
@@ -13740,7 +13687,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1FulfillIntentResponse
@@ -13749,9 +13696,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.matchIntent
-     * @desc Returns preliminary intent match results, doesn't change the session status.
+     * Returns preliminary intent match results, doesn't change the session status.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -13809,15 +13756,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.matchIntent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.session Required. The name of the session this query is sent to. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment. It's up to the API caller to choose an appropriate `Session ID`. It can be a random number or some type of session identifiers (preferably hashed). The length of the `Session ID` must not exceed 36 characters. For more information, see the [sessions guide](https://cloud.google.com/dialogflow/cx/docs/concept/session).
-     * @param {().GoogleCloudDialogflowCxV3beta1MatchIntentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     matchIntent(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Matchintent,
@@ -13912,7 +13856,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1MatchIntentResponse
@@ -13965,9 +13909,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.entityTypes.create
-     * @desc Creates a session entity type. If the specified session entity type already exists, overrides the session entity type.
+     * Creates a session entity type. If the specified session entity type already exists, overrides the session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14025,15 +13969,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.entityTypes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The session to create a session entity type for. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {().GoogleCloudDialogflowCxV3beta1SessionEntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Create,
@@ -14128,7 +14069,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -14137,9 +14078,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.entityTypes.delete
-     * @desc Deletes the specified session entity type.
+     * Deletes the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14183,14 +14124,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.entityTypes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type to delete. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Delete,
@@ -14264,7 +14203,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -14272,9 +14211,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.entityTypes.get
-     * @desc Retrieves the specified session entity type.
+     * Retrieves the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14322,14 +14261,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.entityTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Get,
@@ -14421,7 +14358,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -14430,9 +14367,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.entityTypes.list
-     * @desc Returns the list of all session entity types in the specified session.
+     * Returns the list of all session entity types in the specified session.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14483,16 +14420,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.entityTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The session to list all session entity types from. Format: `projects//locations//agents//sessions/` or `projects//locations//agents//environments//sessions/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$List,
@@ -14591,7 +14524,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListSessionEntityTypesResponse
@@ -14600,9 +14533,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.sessions.entityTypes.patch
-     * @desc Updates the specified session entity type.
+     * Updates the specified session entity type.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14662,16 +14595,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.sessions.entityTypes.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The unique identifier of the session entity type. Format: `projects//locations//agents//sessions//entityTypes/` or `projects//locations//agents//environments//sessions//entityTypes/`. If `Environment ID` is not specified, we assume default 'draft' environment.
-     * @param {string=} params.updateMask The mask to control which fields get updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1SessionEntityType} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Sessions$Entitytypes$Patch,
@@ -14763,7 +14692,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1SessionEntityType
@@ -14837,9 +14766,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.webhooks.create
-     * @desc Creates a webhook in the specified agent.
+     * Creates a webhook in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -14898,15 +14827,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.webhooks.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The agent to create a webhook for. Format: `projects//locations//agents/`.
-     * @param {().GoogleCloudDialogflowCxV3beta1Webhook} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Create,
@@ -14993,7 +14919,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
@@ -15003,9 +14929,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.webhooks.delete
-     * @desc Deletes the specified webhook.
+     * Deletes the specified webhook.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15049,15 +14975,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.webhooks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force This field has no effect for webhook not being used. For webhooks that are used by pages/flows/transition route groups: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the webhook, as well as any references to the webhook (i.e. Webhook and tagin fulfillments that point to this webhook will be removed).
-     * @param {string} params.name Required. The name of the webhook to delete. Format: `projects//locations//agents//webhooks/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Delete,
@@ -15131,7 +15054,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -15139,9 +15062,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.webhooks.get
-     * @desc Retrieves the specified webhook.
+     * Retrieves the specified webhook.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15189,14 +15112,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.webhooks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the webhook. Format: `projects//locations//agents//webhooks/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Get,
@@ -15280,7 +15201,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
@@ -15290,9 +15211,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.webhooks.list
-     * @desc Returns the list of all webhooks in the specified agent.
+     * Returns the list of all webhooks in the specified agent.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15340,16 +15261,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.webhooks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return in a single page. By default 100 and at most 1000.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request.
-     * @param {string} params.parent Required. The agent to list all webhooks for. Format: `projects//locations//agents/`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$List,
@@ -15444,7 +15361,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDialogflowCxV3beta1ListWebhooksResponse
@@ -15453,9 +15370,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.agents.webhooks.patch
-     * @desc Updates the specified webhook.
+     * Updates the specified webhook.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15517,16 +15434,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.agents.webhooks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The unique identifier of the webhook. Required for the Webhooks.UpdateWebhook method. Webhooks.CreateWebhook populates the name automatically. Format: `projects//locations//agents//webhooks/`.
-     * @param {string=} params.updateMask The mask to control which fields get updated. If the mask is not present, all fields will be updated.
-     * @param {().GoogleCloudDialogflowCxV3beta1Webhook} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Agents$Webhooks$Patch,
@@ -15610,7 +15523,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDialogflowCxV3beta1Webhook>(
@@ -15689,9 +15602,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15732,14 +15645,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -15816,7 +15727,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -15824,9 +15735,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -15873,14 +15784,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -15958,7 +15867,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -15966,9 +15875,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -16018,17 +15927,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -16115,7 +16019,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -16166,9 +16070,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -16209,14 +16113,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Operations$Cancel,
@@ -16293,7 +16195,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -16301,9 +16203,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -16350,14 +16252,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Operations$Get,
@@ -16435,7 +16335,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -16443,9 +16343,9 @@ export namespace dialogflow_v3beta1 {
     }
 
     /**
-     * dialogflow.projects.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dialogflow.googleapis.com
@@ -16495,17 +16395,12 @@ export namespace dialogflow_v3beta1 {
      *   throw e;
      * });
      *
-     * @alias dialogflow.projects.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Operations$List,
@@ -16592,7 +16487,7 @@ export namespace dialogflow_v3beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

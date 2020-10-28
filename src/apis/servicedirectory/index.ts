@@ -35,3 +35,14 @@ export function servicedirectory<T = servicedirectory_v1beta1.Servicedirectory>(
 
 const auth = new AuthPlus();
 export {auth};
+export {servicedirectory_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

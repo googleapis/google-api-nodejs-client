@@ -62,3 +62,16 @@ export function deploymentmanager<
 
 const auth = new AuthPlus();
 export {auth};
+export {deploymentmanager_alpha};
+export {deploymentmanager_v2};
+export {deploymentmanager_v2beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

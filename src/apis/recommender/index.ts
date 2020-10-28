@@ -47,3 +47,15 @@ export function recommender<
 
 const auth = new AuthPlus();
 export {auth};
+export {recommender_v1};
+export {recommender_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

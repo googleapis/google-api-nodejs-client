@@ -104,14 +104,10 @@ export namespace iap_v1 {
    * Controls access to cloud applications running on Google Cloud Platform.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const iap = google.iap('v1');
-   *
-   * @namespace iap
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Iap
+   * ```
    */
   export class Iap {
     context: APIRequestContext;
@@ -151,7 +147,7 @@ export namespace iap_v1 {
      */
     gcipSettings?: Schema$GcipSettings;
     /**
-     * Settings to configure IAP&#39;s OAuth behavior.
+     * Settings to configure IAP's OAuth behavior.
      */
     oauthSettings?: Schema$OAuthSettings;
     /**
@@ -172,7 +168,7 @@ export namespace iap_v1 {
      */
     cookieDomain?: string | null;
     /**
-     * Settings to configure IAP&#39;s behavior for a CSM mesh.
+     * Settings to configure IAP's behavior for a CSM mesh.
      */
     csmSettings?: Schema$CsmSettings;
   }
@@ -189,7 +185,7 @@ export namespace iap_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -219,7 +215,7 @@ export namespace iap_v1 {
     supportEmail?: string | null;
   }
   /**
-   * Allows customers to configure HTTP request paths that&#39;ll allow HTTP OPTIONS call to bypass authentication and authorization.
+   * Allows customers to configure HTTP request paths that'll allow HTTP OPTIONS call to bypass authentication and authorization.
    */
   export interface Schema$CorsSettings {
     /**
@@ -237,11 +233,11 @@ export namespace iap_v1 {
     rctokenAud?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -349,7 +345,7 @@ export namespace iap_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Configuration for OAuth login&amp;consent flow behavior as well as for OAuth Credentials.
+   * Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.
    */
   export interface Schema$OAuthSettings {
     /**
@@ -357,12 +353,12 @@ export namespace iap_v1 {
      */
     clientId?: string | null;
     /**
-     * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google&#39;s login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token&#39;s hd claim matches this value since access behavior is managed by IAM policies.
+     * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies.
      */
     loginHint?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -387,7 +383,7 @@ export namespace iap_v1 {
      */
     iamPermission?: string | null;
     /**
-     * The DNS name of the service (e.g. &quot;resourcemanager.googleapis.com&quot;). This should be the domain name part of the full resource names (see https://aip.dev/122#full-resource-names), which is usually the same as IamServiceSpec.service of the service where the resource type is defined.
+     * The DNS name of the service (e.g. "resourcemanager.googleapis.com"). This should be the domain name part of the full resource names (see https://aip.dev/122#full-resource-names), which is usually the same as IamServiceSpec.service of the service where the resource type is defined.
      */
     iamServiceName?: string | null;
     /**
@@ -402,11 +398,11 @@ export namespace iap_v1 {
   export interface Schema$PolicyName {
     id?: string | null;
     /**
-     * For Cloud IAM: The location of the Policy. Must be empty or &quot;global&quot; for Policies owned by global IAM. Must name a region from prodspec/cloud-iam-cloudspec for Regional IAM Policies, see go/iam-faq#where-is-iam-currently-deployed. For Local IAM: This field should be set to &quot;local&quot;.
+     * For Cloud IAM: The location of the Policy. Must be empty or "global" for Policies owned by global IAM. Must name a region from prodspec/cloud-iam-cloudspec for Regional IAM Policies, see go/iam-faq#where-is-iam-currently-deployed. For Local IAM: This field should be set to "local".
      */
     region?: string | null;
     /**
-     * Valid values for type might be &#39;gce&#39;, &#39;gcs&#39;, &#39;project&#39;, &#39;account&#39; etc.
+     * Valid values for type might be 'gce', 'gcs', 'project', 'account' etc.
      */
     type?: string | null;
   }
@@ -420,15 +416,15 @@ export namespace iap_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading &quot;/&quot;. Examples are &quot;projects/_/buckets/[BUCKET-ID]&quot; for storage buckets or &quot;projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]&quot; for a firewall. This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.
+     * Name of the resource on which conditions will be evaluated. Must use the Relative Resource Name of the resource, which is the URI path of the resource without the leading "/". Examples are "projects/_/buckets/[BUCKET-ID]" for storage buckets or "projects/[PROJECT-ID]/global/firewalls/[FIREWALL-ID]" for a firewall. This field is required for evaluating conditions with rules on resource names. For a `list` permission check, the resource.name value must be set to the parent resource. If the parent resource is a project, this field should be left unset.
      */
     name?: string | null;
     /**
-     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as &#39;cloudresourcemanager.googleapis.com&#39; according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml
+     * The name of the service this resource belongs to. It is configured using the official_service_name of the Service as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_service_name of cloud resource manager service is set as 'cloudresourcemanager.googleapis.com' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml
      */
     service?: string | null;
     /**
-     * The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as &#39;cloudresourcemanager.googleapis.com/Project&#39; according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.
+     * The public resource type name of the resource on which conditions will be evaluated. It is configured using the official_name of the ResourceType as defined in service configurations under //configs/cloud/resourcetypes. For example, the official_name for GCP projects is set as 'cloudresourcemanager.googleapis.com/Project' according to //configs/cloud/resourcetypes/google/cloud/resourcemanager/prod.yaml For details see go/iam-conditions-integration-guide.
      */
     type?: string | null;
   }
@@ -446,7 +442,7 @@ export namespace iap_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -480,9 +476,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.create
-     * @desc Constructs a new OAuth brand for the project if one does not exist. The created brand is "internal only", meaning that OAuth clients created under it only accept requests from users who belong to the same G Suite organization as the project. The brand is created in an un-reviewed status. NOTE: The "internal only" status can be manually changed in the Google Cloud console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.
+     * Constructs a new OAuth brand for the project if one does not exist. The created brand is "internal only", meaning that OAuth clients created under it only accept requests from users who belong to the same G Suite organization as the project. The brand is created in an un-reviewed status. NOTE: The "internal only" status can be manually changed in the Google Cloud console. Requires that a brand does not already exist for the project, and that the specified support email is owned by the caller.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -506,7 +502,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.create({
-     *     // Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.
+     *     // Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id\}.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -536,15 +532,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.
-     * @param {().Brand} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Brands$Create,
@@ -618,7 +611,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Brand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
@@ -626,9 +619,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.get
-     * @desc Retrieves the OAuth brand of the project.
+     * Retrieves the OAuth brand of the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -652,7 +645,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.get({
-     *     // Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.
+     *     // Required. Name of the brand to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}.
      *     name: 'projects/my-project/brands/my-brand',
      *   });
      *   console.log(res.data);
@@ -671,14 +664,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Brands$Get,
@@ -749,7 +740,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Brand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Brand>(parameters);
@@ -757,9 +748,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.list
-     * @desc Lists the existing brands for the project.
+     * Lists the existing brands for the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -783,7 +774,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.list({
-     *     // Required. GCP Project number/id. In the following format: projects/{project_number/id}.
+     *     // Required. GCP Project number/id. In the following format: projects/{project_number/id\}.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -799,14 +790,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. GCP Project number/id. In the following format: projects/{project_number/id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Brands$List,
@@ -883,7 +872,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$ListBrandsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBrandsResponse>(parameters);
@@ -894,7 +883,7 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Create
     extends StandardParameters {
     /**
-     * Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id}.
+     * Required. GCP Project number/id under which the brand is to be created. In the following format: projects/{project_number/id\}.
      */
     parent?: string;
 
@@ -906,14 +895,14 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Get
     extends StandardParameters {
     /**
-     * Required. Name of the brand to be fetched. In the following format: projects/{project_number/id}/brands/{brand}.
+     * Required. Name of the brand to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Brands$List
     extends StandardParameters {
     /**
-     * Required. GCP Project number/id. In the following format: projects/{project_number/id}.
+     * Required. GCP Project number/id. In the following format: projects/{project_number/id\}.
      */
     parent?: string;
   }
@@ -925,9 +914,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.identityAwareProxyClients.create
-     * @desc Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned by IAP. Requires that the brand for the project exists and that it is set for internal-only use.
+     * Creates an Identity Aware Proxy (IAP) OAuth client. The client is owned by IAP. Requires that the brand for the project exists and that it is set for internal-only use.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -951,7 +940,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.create({
-     *     // Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.
+     *     // Required. Path to create the client in. In the following format: projects/{project_number/id\}/brands/{brand\}. The project must belong to a G Suite account.
      *     parent: 'projects/my-project/brands/my-brand',
      *
      *     // Request body metadata
@@ -979,15 +968,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.identityAwareProxyClients.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.
-     * @param {().IdentityAwareProxyClient} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Create,
@@ -1068,7 +1054,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1076,9 +1062,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.identityAwareProxyClients.delete
-     * @desc Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing obsolete clients, managing the number of clients in a given project, and cleaning up after tests. Requires that the client is owned by IAP.
+     * Deletes an Identity Aware Proxy (IAP) OAuth client. Useful for removing obsolete clients, managing the number of clients in a given project, and cleaning up after tests. Requires that the client is owned by IAP.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1102,7 +1088,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.delete({
-     *     // Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     *     // Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      *     name:
      *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *   });
@@ -1117,14 +1103,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.identityAwareProxyClients.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Delete,
@@ -1195,7 +1179,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1203,9 +1187,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.identityAwareProxyClients.get
-     * @desc Retrieves an Identity Aware Proxy (IAP) OAuth client. Requires that the client is owned by IAP.
+     * Retrieves an Identity Aware Proxy (IAP) OAuth client. Requires that the client is owned by IAP.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1229,7 +1213,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.get({
-     *     // Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     *     // Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      *     name:
      *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *   });
@@ -1248,14 +1232,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.identityAwareProxyClients.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Get,
@@ -1331,7 +1313,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1339,9 +1321,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.identityAwareProxyClients.list
-     * @desc Lists the existing clients for the brand.
+     * Lists the existing clients for the brand.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1369,7 +1351,7 @@ export namespace iap_v1 {
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListIdentityAwareProxyClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityAwareProxyClients` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
-     *     // Required. Full brand path. In the following format: projects/{project_number/id}/brands/{brand}.
+     *     // Required. Full brand path. In the following format: projects/{project_number/id\}/brands/{brand\}.
      *     parent: 'projects/my-project/brands/my-brand',
      *   });
      *   console.log(res.data);
@@ -1386,16 +1368,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.identityAwareProxyClients.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of clients to return. The service may return fewer than this value. If unspecified, at most 100 clients will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListIdentityAwareProxyClients` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityAwareProxyClients` must match the call that provided the page token.
-     * @param {string} params.parent Required. Full brand path. In the following format: projects/{project_number/id}/brands/{brand}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
@@ -1482,7 +1460,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListIdentityAwareProxyClientsResponse>(
@@ -1492,9 +1470,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.projects.brands.identityAwareProxyClients.resetSecret
-     * @desc Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the secret was compromised. Requires that the client is owned by IAP.
+     * Resets an Identity Aware Proxy (IAP) OAuth client secret. Useful if the secret was compromised. Requires that the client is owned by IAP.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1518,7 +1496,7 @@ export namespace iap_v1 {
      *
      *   // Do the magic
      *   const res = await iap.projects.brands.identityAwareProxyClients.resetSecret({
-     *     // Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     *     // Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      *     name:
      *       'projects/my-project/brands/my-brand/identityAwareProxyClients/my-identityAwareProxyClient',
      *
@@ -1543,15 +1521,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.projects.brands.identityAwareProxyClients.resetSecret
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
-     * @param {().ResetIdentityAwareProxyClientSecretRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetSecret(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret,
@@ -1632,7 +1607,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IdentityAwareProxyClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IdentityAwareProxyClient>(parameters);
@@ -1643,7 +1618,7 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Create
     extends StandardParameters {
     /**
-     * Required. Path to create the client in. In the following format: projects/{project_number/id}/brands/{brand}. The project must belong to a G Suite account.
+     * Required. Path to create the client in. In the following format: projects/{project_number/id\}/brands/{brand\}. The project must belong to a G Suite account.
      */
     parent?: string;
 
@@ -1655,14 +1630,14 @@ export namespace iap_v1 {
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     * Required. Name of the Identity Aware Proxy client to be deleted. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Get
     extends StandardParameters {
     /**
-     * Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     * Required. Name of the Identity Aware Proxy client to be fetched. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
     name?: string;
   }
@@ -1677,14 +1652,14 @@ export namespace iap_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Full brand path. In the following format: projects/{project_number/id}/brands/{brand}.
+     * Required. Full brand path. In the following format: projects/{project_number/id\}/brands/{brand\}.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Brands$Identityawareproxyclients$Resetsecret
     extends StandardParameters {
     /**
-     * Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id}/brands/{brand}/identityAwareProxyClients/{client_id}.
+     * Required. Name of the Identity Aware Proxy client to that will have its secret reset. In the following format: projects/{project_number/id\}/brands/{brand\}/identityAwareProxyClients/{client_id\}.
      */
     name?: string;
 
@@ -1701,9 +1676,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.getIamPolicy
-     * @desc Gets the access control policy for an Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+     * Gets the access control policy for an Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1753,15 +1728,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$V1$Getiampolicy,
@@ -1834,7 +1806,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1842,9 +1814,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.getIapSettings
-     * @desc Gets the IAP settings on a particular IAP protected resource.
+     * Gets the IAP settings on a particular IAP protected resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -1886,14 +1858,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.getIapSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name for which to retrieve the settings. Authorization: Requires the `getSettings` permission for the associated resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIapSettings(
       params: Params$Resource$V1$Getiapsettings,
@@ -1967,7 +1937,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);
@@ -1975,9 +1945,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.setIamPolicy
-     * @desc Sets the access control policy for an Identity-Aware Proxy protected resource. Replaces any existing policy. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+     * Sets the access control policy for an Identity-Aware Proxy protected resource. Replaces any existing policy. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -2027,15 +1997,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$V1$Setiampolicy,
@@ -2108,7 +2075,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2116,9 +2083,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.testIamPermissions
-     * @desc Returns permissions that a caller has on the Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
+     * Returns permissions that a caller has on the Identity-Aware Proxy protected resource. More information about managing access via IAP can be found at: https://cloud.google.com/iap/docs/managing-access#managing_access_via_the_api
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -2166,15 +2133,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$V1$Testiampermissions,
@@ -2255,7 +2219,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2263,9 +2227,9 @@ export namespace iap_v1 {
     }
 
     /**
-     * iap.updateIapSettings
-     * @desc Updates the IAP settings on a particular IAP protected resource. It replaces all fields unless the `update_mask` is set.
+     * Updates the IAP settings on a particular IAP protected resource. It replaces all fields unless the `update_mask` is set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/iap.googleapis.com
@@ -2319,16 +2283,12 @@ export namespace iap_v1 {
      *   throw e;
      * });
      *
-     * @alias iap.updateIapSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the IAP protected resource.
-     * @param {string=} params.updateMask The field mask specifying which IAP settings should be updated. If omitted, the all of the settings are updated. See https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().IapSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateIapSettings(
       params: Params$Resource$V1$Updateiapsettings,
@@ -2402,7 +2362,7 @@ export namespace iap_v1 {
       if (callback) {
         createAPIRequest<Schema$IapSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IapSettings>(parameters);

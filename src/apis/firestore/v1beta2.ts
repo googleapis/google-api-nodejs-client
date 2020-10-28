@@ -104,14 +104,10 @@ export namespace firestore_v1beta2 {
    * Accesses the NoSQL document database built for automatic scaling, high performance, and ease of application development.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const firestore = google.firestore('v1beta2');
-   *
-   * @namespace firestore
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Firestore
+   * ```
    */
   export class Firestore {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace firestore_v1beta2 {
   }
 
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -187,7 +183,7 @@ export namespace firestore_v1beta2 {
     outputUriPrefix?: string | null;
   }
   /**
-   * Represents a single field in the database. Fields are grouped by their &quot;Collection Group&quot;, which represent all collections in the database with the same id.
+   * Represents a single field in the database. Fields are grouped by their "Collection Group", which represent all collections in the database with the same id.
    */
   export interface Schema$GoogleFirestoreAdminV1beta2Field {
     /**
@@ -195,7 +191,7 @@ export namespace firestore_v1beta2 {
      */
     indexConfig?: Schema$GoogleFirestoreAdminV1beta2IndexConfig;
     /**
-     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field&#39;s resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string | null;
   }
@@ -216,7 +212,7 @@ export namespace firestore_v1beta2 {
      */
     endTime?: string | null;
     /**
-     * The field resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}`
+     * The field resource that this operation is acting on. For example: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}`
      */
     field?: string | null;
     /**
@@ -287,7 +283,7 @@ export namespace firestore_v1beta2 {
      */
     fields?: Schema$GoogleFirestoreAdminV1beta2IndexField[];
     /**
-     * Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{composite_index_id}` For single field indexes, this field will be empty.
+     * Output only. A server defined name for this index. The form of this name for composite indexes will be: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{composite_index_id\}` For single field indexes, this field will be empty.
      */
     name?: string | null;
     /**
@@ -304,7 +300,7 @@ export namespace firestore_v1beta2 {
    */
   export interface Schema$GoogleFirestoreAdminV1beta2IndexConfig {
     /**
-     * Output only. Specifies the resource name of the `Field` from which this field&#39;s index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false).
+     * Output only. Specifies the resource name of the `Field` from which this field's index configuration is set (when `uses_ancestor_config` is true), or from which it *would* be set if this field had no index configuration (when `uses_ancestor_config` is false).
      */
     ancestorField?: string | null;
     /**
@@ -312,11 +308,11 @@ export namespace firestore_v1beta2 {
      */
     indexes?: Schema$GoogleFirestoreAdminV1beta2Index[];
     /**
-     * Output only When true, the `Field`&#39;s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`.
+     * Output only When true, the `Field`'s index configuration is in the process of being reverted. Once complete, the index config will transition to the same state as the field specified by `ancestor_field`, at which point `uses_ancestor_config` will be `true` and `reverting` will be `false`.
      */
     reverting?: boolean | null;
     /**
-     * Output only. When true, the `Field`&#39;s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`&#39;s index configuration is defined explicitly.
+     * Output only. When true, the `Field`'s index configuration is set from the configuration specified by the `ancestor_field`. When false, the `Field`'s index configuration is defined explicitly.
      */
     usesAncestorConfig?: boolean | null;
   }
@@ -346,7 +342,7 @@ export namespace firestore_v1beta2 {
      */
     fieldPath?: string | null;
     /**
-     * Indicates that this field supports ordering by the specified order or comparing using =, &lt;, &lt;=, &gt;, &gt;=.
+     * Indicates that this field supports ordering by the specified order or comparing using =, <, <=, \>, \>=.
      */
     order?: string | null;
   }
@@ -359,7 +355,7 @@ export namespace firestore_v1beta2 {
      */
     endTime?: string | null;
     /**
-     * The index resource that this operation is acting on. For example: `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * The index resource that this operation is acting on. For example: `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      */
     index?: string | null;
     /**
@@ -435,7 +431,7 @@ export namespace firestore_v1beta2 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -481,9 +477,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.exportDocuments
-     * @desc Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
+     * Exports a copy of all or a subset of documents from Google Cloud Firestore to another storage system, such as Google Cloud Storage. Recent updates to documents may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -510,7 +506,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.exportDocuments({
-     *     // Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
+     *     // Database to export. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -539,15 +535,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.exportDocuments
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta2ExportDocumentsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     exportDocuments(
       params: Params$Resource$Projects$Databases$Exportdocuments,
@@ -628,7 +621,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -636,9 +629,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.importDocuments
-     * @desc Imports documents into Google Cloud Firestore. Existing documents with the same name are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportDocuments operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Firestore.
+     * Imports documents into Google Cloud Firestore. Existing documents with the same name are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportDocuments operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Firestore.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -665,7 +658,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.importDocuments({
-     *     // Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
+     *     // Database to import into. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      *     name: 'projects/my-project/databases/my-database',
      *
      *     // Request body metadata
@@ -694,15 +687,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.importDocuments
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
-     * @param {().GoogleFirestoreAdminV1beta2ImportDocumentsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     importDocuments(
       params: Params$Resource$Projects$Databases$Importdocuments,
@@ -783,7 +773,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -794,7 +784,7 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Exportdocuments
     extends StandardParameters {
     /**
-     * Database to export. Should be of the form: `projects/{project_id}/databases/{database_id}`.
+     * Database to export. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
     name?: string;
 
@@ -806,7 +796,7 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Importdocuments
     extends StandardParameters {
     /**
-     * Database to import into. Should be of the form: `projects/{project_id}/databases/{database_id}`.
+     * Database to import into. Should be of the form: `projects/{project_id\}/databases/{database_id\}`.
      */
     name?: string;
 
@@ -838,9 +828,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.fields.get
-     * @desc Gets the metadata and configuration for a Field.
+     * Gets the metadata and configuration for a Field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -867,7 +857,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.get({
-     *     // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
+     *     // A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_id\}`
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
      *   });
@@ -885,14 +875,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.fields.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Get,
@@ -970,7 +958,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Field>(
@@ -980,9 +968,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.fields.list
-     * @desc Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
+     * Lists the field configuration and metadata for this database. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1015,7 +1003,7 @@ export namespace firestore_v1beta2 {
      *     pageSize: 'placeholder-value',
      *     // A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results.
      *     pageToken: 'placeholder-value',
-     *     // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *     // A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      *     parent:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *   });
@@ -1033,17 +1021,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.fields.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter to apply to list results. Currently, FirestoreAdmin.ListFields only supports listing fields that have been explicitly overridden. To issue this query, call FirestoreAdmin.ListFields with the filter set to `indexConfig.usesAncestorConfig:false`.
-     * @param {integer=} params.pageSize The number of results to return.
-     * @param {string=} params.pageToken A page token, returned from a previous call to FirestoreAdmin.ListFields, that may be used to get the next page of results.
-     * @param {string} params.parent A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
@@ -1138,7 +1121,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListFieldsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1148,9 +1131,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.fields.patch
-     * @desc Updates a field configuration. Currently, field updates apply only to single field index configuration. However, calls to FirestoreAdmin.UpdateField should provide a field mask to avoid changing any configuration that the caller isn't aware of. The field mask should be specified as: `{ paths: "index_config" }`. This call returns a google.longrunning.Operation which may be used to track the status of the field update. The metadata for the operation will be the type FieldOperationMetadata. To configure the default field settings for the database, use the special `Field` with resource name: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x`.
+     * Updates a field configuration. Currently, field updates apply only to single field index configuration. However, calls to FirestoreAdmin.UpdateField should provide a field mask to avoid changing any configuration that the caller isn't aware of. The field mask should be specified as: `{ paths: "index_config" \}`. This call returns a google.longrunning.Operation which may be used to track the status of the field update. The metadata for the operation will be the type FieldOperationMetadata. To configure the default field settings for the database, use the special `Field` with resource name: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1177,7 +1160,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.fields.patch({
-     *     // A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     *     // A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/fields/my-field',
      *     // A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
@@ -1209,16 +1192,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.fields.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
-     * @param {string=} params.updateMask A mask, relative to the field. If specified, only configuration specified by this field_mask will be updated in the field.
-     * @param {().GoogleFirestoreAdminV1beta2Field} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch,
@@ -1296,7 +1275,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1307,7 +1286,7 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Get
     extends StandardParameters {
     /**
-     * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_id}`
+     * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_id\}`
      */
     name?: string;
   }
@@ -1326,14 +1305,14 @@ export namespace firestore_v1beta2 {
      */
     pageToken?: string;
     /**
-     * A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Fields$Patch
     extends StandardParameters {
     /**
-     * A field name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/fields/{field_path}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id}/databases/{database_id}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
+     * A field name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/fields/{field_path\}` A field path may be a simple field name, e.g. `address` or a path to fields within map_value , e.g. `address.city`, or a special field path. The only valid special field is `*`, which represents any field. Field paths may be quoted using ` (backtick). The only character that needs to be escaped within a quoted field path is the backtick character itself, escaped using a backslash. Special characters in field paths that must be quoted include: `*`, `.`, ``` (backtick), `[`, `]`, as well as any ascii symbolic characters. Examples: (Note: Comments here are written in markdown syntax, so there is an additional layer of backticks to represent a code block) `\`address.city\`` represents a field named `address.city`, not the map key `city` in the field `address`. `\`*\`` represents a field named `*`, not any field. A special `Field` contains the default indexing settings for all fields. This field's resource name is: `projects/{project_id\}/databases/{database_id\}/collectionGroups/__default__/fields/x` Indexes defined on this `Field` will be applied to all fields which do not have their own `Field` index configuration.
      */
     name?: string;
     /**
@@ -1354,9 +1333,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.indexes.create
-     * @desc Creates a composite index. This returns a google.longrunning.Operation which may be used to track the status of the creation. The metadata for the operation will be the type IndexOperationMetadata.
+     * Creates a composite index. This returns a google.longrunning.Operation which may be used to track the status of the creation. The metadata for the operation will be the type IndexOperationMetadata.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1384,7 +1363,7 @@ export namespace firestore_v1beta2 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.create(
      *     {
-     *       // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *       // A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      *       parent:
      *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *
@@ -1417,15 +1396,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.indexes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param {().GoogleFirestoreAdminV1beta2Index} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create,
@@ -1506,7 +1482,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1514,9 +1490,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.indexes.delete
-     * @desc Deletes a composite index.
+     * Deletes a composite index.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1544,7 +1520,7 @@ export namespace firestore_v1beta2 {
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.delete(
      *     {
-     *       // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     *       // A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      *       name:
      *         'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
      *     }
@@ -1560,14 +1536,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.indexes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete,
@@ -1638,7 +1612,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1646,9 +1620,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.indexes.get
-     * @desc Gets a composite index.
+     * Gets a composite index.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1675,7 +1649,7 @@ export namespace firestore_v1beta2 {
      *
      *   // Do the magic
      *   const res = await firestore.projects.databases.collectionGroups.indexes.get({
-     *     // A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     *     // A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      *     name:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup/indexes/my-indexe',
      *   });
@@ -1695,14 +1669,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.indexes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get,
@@ -1780,7 +1752,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta2Index>(
@@ -1790,9 +1762,9 @@ export namespace firestore_v1beta2 {
     }
 
     /**
-     * firestore.projects.databases.collectionGroups.indexes.list
-     * @desc Lists composite indexes.
+     * Lists composite indexes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
@@ -1825,7 +1797,7 @@ export namespace firestore_v1beta2 {
      *     pageSize: 'placeholder-value',
      *     // A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results.
      *     pageToken: 'placeholder-value',
-     *     // A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     *     // A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      *     parent:
      *       'projects/my-project/databases/my-database/collectionGroups/my-collectionGroup',
      *   });
@@ -1843,17 +1815,12 @@ export namespace firestore_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias firestore.projects.databases.collectionGroups.indexes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The filter to apply to list results.
-     * @param {integer=} params.pageSize The number of results to return.
-     * @param {string=} params.pageToken A page token, returned from a previous call to FirestoreAdmin.ListIndexes, that may be used to get the next page of results.
-     * @param {string} params.parent A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
@@ -1948,7 +1915,7 @@ export namespace firestore_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta2ListIndexesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1961,7 +1928,7 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Create
     extends StandardParameters {
     /**
-     * A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      */
     parent?: string;
 
@@ -1973,14 +1940,14 @@ export namespace firestore_v1beta2 {
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Delete
     extends StandardParameters {
     /**
-     * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Databases$Collectiongroups$Indexes$Get
     extends StandardParameters {
     /**
-     * A name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}/indexes/{index_id}`
+     * A name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}/indexes/{index_id\}`
      */
     name?: string;
   }
@@ -1999,7 +1966,7 @@ export namespace firestore_v1beta2 {
      */
     pageToken?: string;
     /**
-     * A parent name of the form `projects/{project_id}/databases/{database_id}/collectionGroups/{collection_id}`
+     * A parent name of the form `projects/{project_id\}/databases/{database_id\}/collectionGroups/{collection_id\}`
      */
     parent?: string;
   }

@@ -45,3 +45,15 @@ export function dfareporting<
 
 const auth = new AuthPlus();
 export {auth};
+export {dfareporting_v3_3};
+export {dfareporting_v3_4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

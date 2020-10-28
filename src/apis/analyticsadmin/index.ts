@@ -35,3 +35,14 @@ export function analyticsadmin<T = analyticsadmin_v1alpha.Analyticsadmin>(
 
 const auth = new AuthPlus();
 export {auth};
+export {analyticsadmin_v1alpha};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

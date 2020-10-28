@@ -374,7 +374,7 @@
       }
     }
   },
-  "revision": "20200927",
+  "revision": "20201016",
   "rootUrl": "https://recommender.googleapis.com/",
   "schemas": {
     "GoogleCloudRecommenderV1beta1CostProjection": {
@@ -844,7 +844,7 @@
       "id": "GoogleTypeMoney",
       "properties": {
         "currencyCode": {
-          "description": "The 3-letter currency code defined in ISO 4217.",
+          "description": "The three-letter currency code defined in ISO 4217.",
           "type": "string"
         },
         "nanos": {

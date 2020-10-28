@@ -31,3 +31,14 @@ export function poly<T = poly_v1.Poly>(
 
 const auth = new AuthPlus();
 export {auth};
+export {poly_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace run_v1 {
    * Deploy and manage user provided container images that scale automatically based on HTTP traffic.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const run = google.run('v1');
-   *
-   * @namespace run
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Run
+   * ```
    */
   export class Run {
     context: APIRequestContext;
@@ -136,7 +132,7 @@ export namespace run_v1 {
     url?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -149,7 +145,7 @@ export namespace run_v1 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -183,7 +179,7 @@ export namespace run_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -192,11 +188,11 @@ export namespace run_v1 {
     role?: string | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap&#39;s Data field will represent the key-value pairs as environment variables.
+   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported ConfigMapEnvSource selects a ConfigMap to populate the environment variables with. The contents of the target ConfigMap's Data field will represent the key-value pairs as environment variables.
    */
   export interface Schema$ConfigMapEnvSource {
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -217,7 +213,7 @@ export namespace run_v1 {
      */
     key?: string | null;
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -230,7 +226,7 @@ export namespace run_v1 {
     optional?: boolean | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Adapts a ConfigMap into a volume. The contents of the target ConfigMap&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
+   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Adapts a ConfigMap into a volume. The contents of the target ConfigMap's Data field will be presented in a volume as files using the keys in the Data field as the file names, unless the items element is populated with specific mappings of keys to paths.
    */
   export interface Schema$ConfigMapVolumeSource {
     /**
@@ -251,15 +247,15 @@ export namespace run_v1 {
     optional?: boolean | null;
   }
   /**
-   * Configuration represents the &quot;floating HEAD&quot; of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration&#39;s spec. The &quot;latest created&quot; revision&#39;s name is available under status, as is the &quot;latest ready&quot; revision&#39;s name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
+   * Configuration represents the "floating HEAD" of a linear history of Revisions, and optionally how the containers those revisions reference are built. Users create new Revisions by updating the Configuration's spec. The "latest created" revision's name is available under status, as is the "latest ready" revision's name. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#configuration
    */
   export interface Schema$Configuration {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case always &quot;Configuration&quot;.
+     * The kind of resource, in this case always "Configuration".
      */
     kind?: string | null;
     /**
@@ -289,7 +285,7 @@ export namespace run_v1 {
    */
   export interface Schema$ConfigurationStatus {
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world.
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
@@ -297,11 +293,11 @@ export namespace run_v1 {
      */
     latestCreatedRevisionName?: string | null;
     /**
-     * LatestReadyRevisionName holds the name of the latest Revision stamped out from this Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
+     * LatestReadyRevisionName holds the name of the latest Revision stamped out from this Configuration that has had its "Ready" condition become "True".
      */
     latestReadyRevisionName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Configuration that was last processed by the controller. The observed generation is updated even if the controller failed to process the spec and create the Revision. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Configuration that was last processed by the controller. The observed generation is updated even if the controller failed to process the spec and create the Revision. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
   }
@@ -310,7 +306,7 @@ export namespace run_v1 {
    */
   export interface Schema$Container {
     /**
-     * (Optional) Cloud Run fully managed: supported Cloud Run for Anthos: supported Arguments to the entrypoint. The docker image&#39;s CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container&#39;s environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
+     * (Optional) Cloud Run fully managed: supported Cloud Run for Anthos: supported Arguments to the entrypoint. The docker image's CMD is used if this is not provided. Variable references $(VAR_NAME) are expanded using the container's environment. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. More info: https://kubernetes.io/docs/tasks/inject-data-application/define-command-argument-container/#running-a-command-in-a-shell
      */
     args?: string[] | null;
     command?: string[] | null;
@@ -355,7 +351,7 @@ export namespace run_v1 {
      */
     securityContext?: Schema$SecurityContext;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path at which the file to which the container&#39;s termination message will be written is mounted into the container&#39;s filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path at which the file to which the container's termination message will be written is mounted into the container's filesystem. Message written is intended to be brief final status, such as an assertion failure message. Will be truncated by the node if greater than 4096 bytes. The total message length across all containers will be limited to 12kb. Defaults to /dev/termination-log.
      */
     terminationMessagePath?: string | null;
     /**
@@ -363,11 +359,11 @@ export namespace run_v1 {
      */
     terminationMessagePolicy?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Pod volumes to mount into the container&#39;s filesystem.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Pod volumes to mount into the container's filesystem.
      */
     volumeMounts?: Schema$VolumeMount[];
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Container&#39;s working directory. If not specified, the container runtime&#39;s default will be used, which might be configured in the container image.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Container's working directory. If not specified, the container runtime's default will be used, which might be configured in the container image.
      */
     workingDir?: string | null;
   }
@@ -376,28 +372,28 @@ export namespace run_v1 {
    */
   export interface Schema$ContainerPort {
     /**
-     * (Optional) Port number the container listens on. This must be a valid port number, 0 &lt; x &lt; 65536.
+     * (Optional) Port number the container listens on. This must be a valid port number, 0 < x < 65536.
      */
     containerPort?: number | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If specified, used to specify which protocol to use. Allowed values are &quot;http1&quot; and &quot;h2c&quot;.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported If specified, used to specify which protocol to use. Allowed values are "http1" and "h2c".
      */
     name?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Protocol for port. Must be &quot;TCP&quot;. Defaults to &quot;TCP&quot;.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Protocol for port. Must be "TCP". Defaults to "TCP".
      */
     protocol?: string | null;
   }
   /**
-   * Resource to hold the state and status of a user&#39;s domain mapping.
+   * Resource to hold the state and status of a user's domain mapping.
    */
   export interface Schema$DomainMapping {
     /**
-     * The API version for this call such as &quot;domains.cloudrun.com/v1&quot;.
+     * The API version for this call such as "domains.cloudrun.com/v1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;DomainMapping&quot;.
+     * The kind of resource, in this case "DomainMapping".
      */
     kind?: string | null;
     /**
@@ -443,11 +439,11 @@ export namespace run_v1 {
      */
     mappedRouteName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the DomainMapping that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the DomainMapping that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
-     * The resource records required to configure this domain mapping. These records must be added to the domain&#39;s DNS configuration in order to serve the application via this domain mapping.
+     * The resource records required to configure this domain mapping. These records must be added to the domain's DNS configuration in order to serve the application via this domain mapping.
      */
     resourceRecords?: Schema$ResourceRecord[];
     /**
@@ -481,11 +477,11 @@ export namespace run_v1 {
      */
     name?: string | null;
     /**
-     * (Optional) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to &quot;&quot;.
+     * (Optional) Variable references $(VAR_NAME) are expanded using the previous defined environment variables in the container and any route environment variables. If a variable cannot be resolved, the reference in the input string will be unchanged. The $(VAR_NAME) syntax can be escaped with a double $$, ie: $$(VAR_NAME). Escaped references will never be expanded, regardless of whether the variable exists or not. Defaults to "".
      */
     value?: string | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Source for the environment variable&#39;s value. Cannot be used if value is not empty.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Source for the environment variable's value. Cannot be used if value is not empty.
      */
     valueFrom?: Schema$EnvVarSource;
   }
@@ -498,21 +494,21 @@ export namespace run_v1 {
      */
     configMapKeyRef?: Schema$ConfigMapKeySelector;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Selects a key of a secret in the pod&#39;s namespace
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Selects a key of a secret in the pod's namespace
      */
     secretKeyRef?: Schema$SecretKeySelector;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported ExecAction describes a &quot;run in container&quot; action.
+   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported ExecAction describes a "run in container" action.
    */
   export interface Schema$ExecAction {
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Command is the command line to execute inside the container, the working directory for the command is root (&#39;/&#39;) in the container&#39;s filesystem. The command is simply exec&#39;d, it is not run inside a shell, so traditional shell instructions (&#39;|&#39;, etc) won&#39;t work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Command is the command line to execute inside the container, the working directory for the command is root ('/') in the container's filesystem. The command is simply exec'd, it is not run inside a shell, so traditional shell instructions ('|', etc) won't work. To use a shell, you need to explicitly call out to that shell. Exit status of 0 is treated as live/healthy and non-zero is unhealthy.
      */
     command?: string[] | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -545,7 +541,7 @@ export namespace run_v1 {
      */
     message?: string | null;
     /**
-     * Optional. One-word CamelCase reason for the condition&#39;s last transition.
+     * Optional. One-word CamelCase reason for the condition's last transition.
      */
     reason?: string | null;
     /**
@@ -557,7 +553,7 @@ export namespace run_v1 {
      */
     status?: string | null;
     /**
-     * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * &quot;Ready&quot;: True when the Resource is ready.
+     * type is used to communicate the status of the reconciliation process. See also: https://github.com/knative/serving/blob/master/docs/spec/errors.md#error-conditions-and-reporting Types common to all resources include: * "Ready": True when the Resource is ready.
      */
     type?: string | null;
   }
@@ -566,7 +562,7 @@ export namespace run_v1 {
    */
   export interface Schema$HTTPGetAction {
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Host name to connect to, defaults to the pod IP. You probably want to set &quot;Host&quot; in httpHeaders instead.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Host name to connect to, defaults to the pod IP. You probably want to set "Host" in httpHeaders instead.
      */
     host?: string | null;
     /**
@@ -608,7 +604,7 @@ export namespace run_v1 {
      */
     mode?: number | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element &#39;..&#39;. May not start with the string &#39;..&#39;.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The relative path of the file to map the key to. May not be an absolute path. May not contain the path element '..'. May not start with the string '..'.
      */
     path?: string | null;
   }
@@ -630,7 +626,7 @@ export namespace run_v1 {
    */
   export interface Schema$ListConfigurationsResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
@@ -638,7 +634,7 @@ export namespace run_v1 {
      */
     items?: Schema$Configuration[];
     /**
-     * The kind of this resource, in this case &quot;ConfigurationList&quot;.
+     * The kind of this resource, in this case "ConfigurationList".
      */
     kind?: string | null;
     /**
@@ -655,7 +651,7 @@ export namespace run_v1 {
    */
   export interface Schema$ListDomainMappingsResponse {
     /**
-     * The API version for this call such as &quot;domains.cloudrun.com/v1&quot;.
+     * The API version for this call such as "domains.cloudrun.com/v1".
      */
     apiVersion?: string | null;
     /**
@@ -663,7 +659,7 @@ export namespace run_v1 {
      */
     items?: Schema$DomainMapping[];
     /**
-     * The kind of this resource, in this case &quot;DomainMappingList&quot;.
+     * The kind of this resource, in this case "DomainMappingList".
      */
     kind?: string | null;
     /**
@@ -689,7 +685,7 @@ export namespace run_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
+   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta\}.
    */
   export interface Schema$ListMeta {
     /**
@@ -697,7 +693,7 @@ export namespace run_v1 {
      */
     continue?: string | null;
     /**
-     * String that identifies the server&#39;s internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
+     * String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
     resourceVersion?: string | null;
     /**
@@ -710,7 +706,7 @@ export namespace run_v1 {
    */
   export interface Schema$ListRevisionsResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
@@ -718,7 +714,7 @@ export namespace run_v1 {
      */
     items?: Schema$Revision[];
     /**
-     * The kind of this resource, in this case &quot;RevisionList&quot;.
+     * The kind of this resource, in this case "RevisionList".
      */
     kind?: string | null;
     /**
@@ -735,7 +731,7 @@ export namespace run_v1 {
    */
   export interface Schema$ListRoutesResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
@@ -743,7 +739,7 @@ export namespace run_v1 {
      */
     items?: Schema$Route[];
     /**
-     * The kind of this resource, in this case always &quot;RouteList&quot;.
+     * The kind of this resource, in this case always "RouteList".
      */
     kind?: string | null;
     /**
@@ -760,7 +756,7 @@ export namespace run_v1 {
    */
   export interface Schema$ListServicesResponse {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
@@ -768,7 +764,7 @@ export namespace run_v1 {
      */
     items?: Schema$Service[];
     /**
-     * The kind of this resource, in this case &quot;ServiceList&quot;.
+     * The kind of this resource, in this case "ServiceList".
      */
     kind?: string | null;
     /**
@@ -794,15 +790,15 @@ export namespace run_v1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -810,7 +806,7 @@ export namespace run_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -888,7 +884,7 @@ export namespace run_v1 {
      */
     apiVersion?: string | null;
     /**
-     * If true, AND if the owner has the &quot;foregroundDeletion&quot; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &quot;delete&quot; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
+     * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
      */
     blockOwnerDeletion?: boolean | null;
     /**
@@ -909,7 +905,7 @@ export namespace run_v1 {
     uid?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -971,7 +967,7 @@ export namespace run_v1 {
    */
   export interface Schema$ResourceRecord {
     /**
-     * Relative name of the object affected by this record. Only applicable for `CNAME` records. Example: &#39;www&#39;.
+     * Relative name of the object affected by this record. Only applicable for `CNAME` records. Example: 'www'.
      */
     name?: string | null;
     /**
@@ -988,11 +984,11 @@ export namespace run_v1 {
    */
   export interface Schema$ResourceRequirements {
     /**
-     * (Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are &#39;1&#39;, &#39;2&#39;, and &#39;4&#39;. Setting 4 CPU requires at least 2Gi of memory. Cloud Run for Anthos: supported Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * (Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are '1', '2', and '4'. Setting 4 CPU requires at least 2Gi of memory. Cloud Run for Anthos: supported Limits describes the maximum amount of compute resources allowed. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
     limits?: {[key: string]: string} | null;
     /**
-     * (Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are &#39;1&#39; and &#39;2&#39;. Cloud Run for Anthos: supported Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the &#39;quantity&#39; k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
+     * (Optional) Cloud Run fully managed: Only memory and CPU are supported. Note: The only supported values for CPU are '1' and '2'. Cloud Run for Anthos: supported Requests describes the minimum amount of compute resources required. If Requests is omitted for a container, it defaults to Limits if that is explicitly specified, otherwise to an implementation-defined value. The values of the map is string form of the 'quantity' k8s type: https://github.com/kubernetes/kubernetes/blob/master/staging/src/k8s.io/apimachinery/pkg/api/resource/quantity.go
      */
     requests?: {[key: string]: string} | null;
   }
@@ -1001,11 +997,11 @@ export namespace run_v1 {
    */
   export interface Schema$Revision {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of this resource, in this case &quot;Revision&quot;.
+     * The kind of this resource, in this case "Revision".
      */
     kind?: string | null;
     /**
@@ -1034,7 +1030,7 @@ export namespace run_v1 {
      */
     containers?: Schema$Container[];
     /**
-     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project&#39;s default service account.
+     * Email address of the IAM service account associated with the revision of the service. The service account represents the identity of the running revision, and determines what permissions the revision has. If not provided, the revision will use the project's default service account.
      */
     serviceAccountName?: string | null;
     /**
@@ -1048,7 +1044,7 @@ export namespace run_v1 {
    */
   export interface Schema$RevisionStatus {
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world. As a Revision is being prepared, it will incrementally update conditions. Revision-specific conditions include: * &quot;ResourcesAvailable&quot;: True when underlying resources have been provisioned. * &quot;ContainerHealthy&quot;: True when the Revision readiness check completes. * &quot;Active&quot;: True when the Revision may receive traffic.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world. As a Revision is being prepared, it will incrementally update conditions. Revision-specific conditions include: * "ResourcesAvailable": True when underlying resources have been provisioned. * "ContainerHealthy": True when the Revision readiness check completes. * "Active": True when the Revision may receive traffic.
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
@@ -1056,11 +1052,11 @@ export namespace run_v1 {
      */
     imageDigest?: string | null;
     /**
-     * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller&#39;s config. +optional
+     * Specifies the generated logging url for this particular revision based on the revision url template specified in the controller's config. +optional
      */
     logUrl?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Revision that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Revision that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation, and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
@@ -1082,15 +1078,15 @@ export namespace run_v1 {
     spec?: Schema$RevisionSpec;
   }
   /**
-   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for &quot;latest ready&quot; revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the &quot;latest ready&quot; Revision from that Configuration.
+   * Route is responsible for configuring ingress over a collection of Revisions. Some of the Revisions a Route distributes traffic over may be specified by referencing the Configuration responsible for creating them; in these cases the Route is additionally responsible for monitoring the Configuration for "latest ready" revision changes, and smoothly rolling out latest revisions. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#route Cloud Run currently supports referencing a single Configuration to automatically deploy the "latest ready" Revision from that Configuration.
    */
   export interface Schema$Route {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of this resource, in this case always &quot;Route&quot;.
+     * The kind of this resource, in this case always "Route".
      */
     kind?: string | null;
     /**
@@ -1124,11 +1120,11 @@ export namespace run_v1 {
      */
     address?: Schema$Addressable;
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world.
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new &quot;latest ready&quot; revisions from the Configuration are processed without an update to the Route&#39;s spec.
+     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False. Note that providing a trafficTarget that only has a configurationName will result in a Route that does not increment either its metadata.generation or its observedGeneration, as new "latest ready" revisions from the Configuration are processed without an update to the Route's spec.
      */
     observedGeneration?: number | null;
     /**
@@ -1136,16 +1132,16 @@ export namespace run_v1 {
      */
     traffic?: Schema$TrafficTarget[];
     /**
-     * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form: https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form: https://{route-hash\}-{project-hash\}-{cluster-level-suffix\}.a.run.app
      */
     url?: string | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret&#39;s Data field will represent the key-value pairs as environment variables.
+   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported SecretEnvSource selects a Secret to populate the environment variables with. The contents of the target Secret's Data field will represent the key-value pairs as environment variables.
    */
   export interface Schema$SecretEnvSource {
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
@@ -1166,11 +1162,11 @@ export namespace run_v1 {
      */
     key?: string | null;
     /**
-     * This field should not be used directly as it is meant to be inlined directly into the message. Use the &quot;name&quot; field instead.
+     * This field should not be used directly as it is meant to be inlined directly into the message. Use the "name" field instead.
      */
     localObjectReference?: Schema$LocalObjectReference;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The name of the secret in the pod&#39;s namespace to select from.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The name of the secret in the pod's namespace to select from.
      */
     name?: string | null;
     /**
@@ -1179,11 +1175,11 @@ export namespace run_v1 {
     optional?: boolean | null;
   }
   /**
-   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The contents of the target Secret&#39;s Data field will be presented in a volume as files using the keys in the Data field as the file names.
+   * Cloud Run fully managed: not supported Cloud Run for Anthos: supported The contents of the target Secret's Data field will be presented in a volume as files using the keys in the Data field as the file names.
    */
   export interface Schema$SecretVolumeSource {
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Mode bits to use on created files by default. Must be a value between 0000 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. NOTE: This is an integer representation of the mode bits. So, the integer value should look exactly as the chmod numeric notation, i.e. Unix chmod &quot;777&quot; (a=rwx) should have the integer value 777.
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Mode bits to use on created files by default. Must be a value between 0000 and 0777. Defaults to 0644. Directories within the path are not affected by this setting. This might be in conflict with other options that affect the file mode, like fsGroup, and the result can be other mode bits set. NOTE: This is an integer representation of the mode bits. So, the integer value should look exactly as the chmod numeric notation, i.e. Unix chmod "777" (a=rwx) should have the integer value 777.
      */
     defaultMode?: number | null;
     /**
@@ -1195,7 +1191,7 @@ export namespace run_v1 {
      */
     optional?: boolean | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Name of the secret in the container&#39;s namespace to use.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Name of the secret in the container's namespace to use.
      */
     secretName?: string | null;
   }
@@ -1209,15 +1205,15 @@ export namespace run_v1 {
     runAsUser?: number | null;
   }
   /**
-   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service&#39;s controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
+   * Service acts as a top-level container that manages a set of Routes and Configurations which implement a network service. Service exists to provide a singular abstraction which can be access controlled, reasoned about, and which encapsulates software lifecycle decisions such as rollout policy and team resource ownership. Service acts only as an orchestrator of the underlying Routes and Configurations (much as a kubernetes Deployment orchestrates ReplicaSets). The Service's controller will track the statuses of its owned Configuration and Route, reflecting their statuses and conditions as its own. See also: https://github.com/knative/serving/blob/master/docs/spec/overview.md#service
    */
   export interface Schema$Service {
     /**
-     * The API version for this call such as &quot;serving.knative.dev/v1&quot;.
+     * The API version for this call such as "serving.knative.dev/v1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case &quot;Service&quot;.
+     * The kind of resource, in this case "Service".
      */
     kind?: string | null;
     /**
@@ -1255,19 +1251,19 @@ export namespace run_v1 {
      */
     address?: Schema$Addressable;
     /**
-     * Conditions communicates information about ongoing/complete reconciliation processes that bring the &quot;spec&quot; inline with the observed state of the world. Service-specific conditions include: * &quot;ConfigurationsReady&quot;: true when the underlying Configuration is ready. * &quot;RoutesReady&quot;: true when the underlying Route is ready. * &quot;Ready&quot;: true when both the underlying Route and Configuration are ready.
+     * Conditions communicates information about ongoing/complete reconciliation processes that bring the "spec" inline with the observed state of the world. Service-specific conditions include: * "ConfigurationsReady": true when the underlying Configuration is ready. * "RoutesReady": true when the underlying Route is ready. * "Ready": true when both the underlying Route and Configuration are ready.
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
-     * From ConfigurationStatus. LatestCreatedRevisionName is the last revision that was created from this Service&#39;s Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
+     * From ConfigurationStatus. LatestCreatedRevisionName is the last revision that was created from this Service's Configuration. It might not be ready yet, for that use LatestReadyRevisionName.
      */
     latestCreatedRevisionName?: string | null;
     /**
-     * From ConfigurationStatus. LatestReadyRevisionName holds the name of the latest Revision stamped out from this Service&#39;s Configuration that has had its &quot;Ready&quot; condition become &quot;True&quot;.
+     * From ConfigurationStatus. LatestReadyRevisionName holds the name of the latest Revision stamped out from this Service's Configuration that has had its "Ready" condition become "True".
      */
     latestReadyRevisionName?: string | null;
     /**
-     * ObservedGeneration is the &#39;Generation&#39; of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition&#39;s status is True or False.
+     * ObservedGeneration is the 'Generation' of the Route that was last processed by the controller. Clients polling for completed reconciliation should poll until observedGeneration = metadata.generation and the Ready condition's status is True or False.
      */
     observedGeneration?: number | null;
     /**
@@ -1275,7 +1271,7 @@ export namespace run_v1 {
      */
     traffic?: Schema$TrafficTarget[];
     /**
-     * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash}-{project-hash}-{cluster-level-suffix}.a.run.app
+     * From RouteStatus. URL holds the url that will distribute traffic over the provided traffic targets. It generally has the form https://{route-hash\}-{project-hash\}-{cluster-level-suffix\}.a.run.app
      */
     url?: string | null;
   }
@@ -1288,12 +1284,12 @@ export namespace run_v1 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
   /**
-   * Status is a return value for calls that don&#39;t return other objects
+   * Status is a return value for calls that don't return other objects
    */
   export interface Schema$Status {
     /**
@@ -1313,11 +1309,11 @@ export namespace run_v1 {
      */
     metadata?: Schema$ListMeta;
     /**
-     * A machine-readable description of why this operation is in the &quot;Failure&quot; status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it. +optional
+     * A machine-readable description of why this operation is in the "Failure" status. If this value is empty there is no information available. A Reason clarifies an HTTP status code but does not override it. +optional
      */
     reason?: string | null;
     /**
-     * Status of the operation. One of: &quot;Success&quot; or &quot;Failure&quot;. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status +optional
+     * Status of the operation. One of: "Success" or "Failure". More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#spec-and-status +optional
      */
     status?: string | null;
   }
@@ -1326,7 +1322,7 @@ export namespace run_v1 {
    */
   export interface Schema$StatusCause {
     /**
-     * The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed. Fields may appear more than once in an array of causes due to fields having multiple errors. Optional. Examples: &quot;name&quot; - the field &quot;name&quot; on the current resource &quot;items[0].name&quot; - the field &quot;name&quot; on the first array entry in &quot;items&quot; +optional
+     * The field of the resource that has caused this error, as named by its JSON serialization. May include dot and postfix notation for nested attributes. Arrays are zero-indexed. Fields may appear more than once in an array of causes due to fields having multiple errors. Optional. Examples: "name" - the field "name" on the current resource "items[0].name" - the field "name" on the first array entry in "items" +optional
      */
     field?: string | null;
     /**
@@ -1376,7 +1372,7 @@ export namespace run_v1 {
      */
     host?: string | null;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. This field is currently limited to integer types only because of proto&#39;s inability to properly support the IntOrString golang type.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Number or name of the port to access on the container. Number must be in the range 1 to 65535. Name must be an IANA_SVC_NAME. This field is currently limited to integer types only because of proto's inability to properly support the IntOrString golang type.
      */
     port?: number | null;
   }
@@ -1385,7 +1381,7 @@ export namespace run_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1403,7 +1399,7 @@ export namespace run_v1 {
    */
   export interface Schema$TrafficTarget {
     /**
-     * ConfigurationName of a configuration to whose latest revision we will send this portion of traffic. When the &quot;status.latestReadyRevisionName&quot; of the referenced configuration changes, we will automatically migrate traffic from the prior &quot;latest ready&quot; revision to the new one. This field is never set in Route&#39;s status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.
+     * ConfigurationName of a configuration to whose latest revision we will send this portion of traffic. When the "status.latestReadyRevisionName" of the referenced configuration changes, we will automatically migrate traffic from the prior "latest ready" revision to the new one. This field is never set in Route's status, only its spec. This is mutually exclusive with RevisionName. Cloud Run currently supports a single ConfigurationName.
      */
     configurationName?: string | null;
     /**
@@ -1436,7 +1432,7 @@ export namespace run_v1 {
      */
     configMap?: Schema$ConfigMapVolumeSource;
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Volume&#39;s name.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Volume's name.
      */
     name?: string | null;
     /**
@@ -1449,7 +1445,7 @@ export namespace run_v1 {
    */
   export interface Schema$VolumeMount {
     /**
-     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain &#39;:&#39;.
+     * Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the container at which the volume should be mounted. Must not contain ':'.
      */
     mountPath?: string | null;
     /**
@@ -1461,7 +1457,7 @@ export namespace run_v1 {
      */
     readOnly?: boolean | null;
     /**
-     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the volume from which the container&#39;s volume should be mounted. Defaults to &quot;&quot; (volume&#39;s root).
+     * (Optional) Cloud Run fully managed: not supported Cloud Run for Anthos: supported Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
      */
     subPath?: string | null;
   }
@@ -1498,9 +1494,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.authorizeddomains.list
-     * @desc List authorized domains.
+     * List authorized domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -1545,16 +1541,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.authorizeddomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.parent Name of the parent Project resource. Example: `projects/myproject`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Authorizeddomains$List,
@@ -1635,7 +1627,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1668,9 +1660,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.configurations.get
-     * @desc Get information about a configuration.
+     * Get information about a configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -1694,7 +1686,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.configurations.get({
-     *     // The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/configurations/my-configuration',
      *   });
      *   console.log(res.data);
@@ -1714,14 +1706,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.configurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Configurations$Get,
@@ -1795,7 +1785,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -1803,9 +1793,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.configurations.list
-     * @desc List configurations.
+     * List configurations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -1839,7 +1829,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -1863,21 +1853,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.configurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Configurations$List,
@@ -1957,7 +1938,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -1968,7 +1949,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Configurations$Get
     extends StandardParameters {
     /**
-     * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -1995,7 +1976,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -2015,9 +1996,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.domainmappings.create
-     * @desc Create a new domain mapping.
+     * Create a new domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2041,7 +2022,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.create({
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -2073,15 +2054,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Domainmappings$Create,
@@ -2154,7 +2132,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -2162,9 +2140,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.domainmappings.delete
-     * @desc Delete a domain mapping.
+     * Delete a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2192,7 +2170,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -2215,17 +2193,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Domainmappings$Delete,
@@ -2299,7 +2272,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -2307,9 +2280,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.domainmappings.get
-     * @desc Get information about a domain mapping.
+     * Get information about a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2333,7 +2306,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/domainmappings/my-domainmapping',
      *   });
      *   console.log(res.data);
@@ -2353,14 +2326,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Domainmappings$Get,
@@ -2434,7 +2405,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -2442,9 +2413,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.domainmappings.list
-     * @desc List domain mappings.
+     * List domain mappings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2478,7 +2449,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -2502,21 +2473,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.domainmappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Domainmappings$List,
@@ -2596,7 +2558,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -2607,7 +2569,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Create
     extends StandardParameters {
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
 
@@ -2627,7 +2589,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -2638,7 +2600,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -2665,7 +2627,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -2685,9 +2647,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.revisions.delete
-     * @desc Delete a revision.
+     * Delete a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2715,7 +2677,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -2738,17 +2700,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Revisions$Delete,
@@ -2822,7 +2779,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -2830,9 +2787,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.revisions.get
-     * @desc Get information about a revision.
+     * Get information about a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -2856,7 +2813,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -2876,14 +2833,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Revisions$Get,
@@ -2957,7 +2912,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -2965,9 +2920,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.revisions.list
-     * @desc List revisions.
+     * List revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3001,7 +2956,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -3025,21 +2980,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.revisions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Revisions$List,
@@ -3117,7 +3063,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -3136,7 +3082,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -3147,7 +3093,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -3174,7 +3120,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -3194,9 +3140,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.routes.get
-     * @desc Get information about a route.
+     * Get information about a route.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3220,7 +3166,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -3240,14 +3186,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.routes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Routes$Get,
@@ -3321,7 +3265,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -3329,9 +3273,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.routes.list
-     * @desc List routes.
+     * List routes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3365,7 +3309,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -3389,21 +3333,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.routes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Routes$List,
@@ -3479,7 +3414,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -3490,7 +3425,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -3517,7 +3452,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -3537,9 +3472,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.services.create
-     * @desc Create a service.
+     * Create a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3563,7 +3498,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.create({
-     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *
      *     // Request body metadata
@@ -3595,15 +3530,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Namespaces$Services$Create,
@@ -3676,7 +3608,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -3684,9 +3616,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.services.delete
-     * @desc Delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * Delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3714,7 +3646,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/services/my-service',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -3737,17 +3669,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Namespaces$Services$Delete,
@@ -3821,7 +3748,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -3829,9 +3756,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.services.get
-     * @desc Get information about a service.
+     * Get information about a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -3855,7 +3782,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.get({
-     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/services/my-service',
      *   });
      *   console.log(res.data);
@@ -3875,14 +3802,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Services$Get,
@@ -3956,7 +3881,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -3964,9 +3889,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.services.list
-     * @desc List services.
+     * List services.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4000,7 +3925,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'namespaces/my-namespace',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -4024,21 +3949,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Namespaces$Services$List,
@@ -4116,7 +4032,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -4124,9 +4040,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.namespaces.services.replaceService
-     * @desc Replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4150,7 +4066,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.services.replaceService({
-     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'namespaces/my-namespace/services/my-service',
      *
      *     // Request body metadata
@@ -4182,15 +4098,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.services.replaceService
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceService(
       params: Params$Resource$Namespaces$Services$Replaceservice,
@@ -4264,7 +4177,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -4275,7 +4188,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Create
     extends StandardParameters {
     /**
-     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
 
@@ -4295,7 +4208,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -4306,7 +4219,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -4333,7 +4246,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -4348,7 +4261,7 @@ export namespace run_v1 {
   export interface Params$Resource$Namespaces$Services$Replaceservice
     extends StandardParameters {
     /**
-     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
 
@@ -4378,9 +4291,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.authorizeddomains.list
-     * @desc List authorized domains.
+     * List authorized domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4425,16 +4338,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.authorizeddomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.parent Name of the parent Project resource. Example: `projects/myproject`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Authorizeddomains$List,
@@ -4515,7 +4424,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -4566,9 +4475,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4615,17 +4524,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -4704,7 +4608,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -4739,9 +4643,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.authorizeddomains.list
-     * @desc List authorized domains.
+     * List authorized domains.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4786,16 +4690,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.authorizeddomains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum results to return per page.
-     * @param {string=} params.pageToken Continuation token for fetching the next page of results.
-     * @param {string} params.parent Name of the parent Project resource. Example: `projects/myproject`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Authorizeddomains$List,
@@ -4876,7 +4776,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -4909,9 +4809,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.configurations.get
-     * @desc Get information about a configuration.
+     * Get information about a configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -4935,7 +4835,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.configurations.get({
-     *     // The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name:
      *       'projects/my-project/locations/my-location/configurations/my-configuration',
      *   });
@@ -4956,14 +4856,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.configurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Configurations$Get,
@@ -5034,7 +4932,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -5042,9 +4940,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.configurations.list
-     * @desc List configurations.
+     * List configurations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5078,7 +4976,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -5102,21 +5000,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.configurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Configurations$List,
@@ -5197,7 +5086,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -5208,7 +5097,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Configurations$Get
     extends StandardParameters {
     /**
-     * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the configuration to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -5235,7 +5124,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the configurations should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -5255,9 +5144,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.create
-     * @desc Create a new domain mapping.
+     * Create a new domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5281,7 +5170,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.create({
-     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -5313,15 +5202,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().DomainMapping} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Domainmappings$Create,
@@ -5395,7 +5281,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -5403,9 +5289,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.delete
-     * @desc Delete a domain mapping.
+     * Delete a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5433,7 +5319,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name:
      *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
@@ -5457,17 +5343,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Domainmappings$Delete,
@@ -5538,7 +5419,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -5546,9 +5427,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.get
-     * @desc Get information about a domain mapping.
+     * Get information about a domain mapping.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5572,7 +5453,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.domainmappings.get({
-     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name:
      *       'projects/my-project/locations/my-location/domainmappings/my-domainmapping',
      *   });
@@ -5593,14 +5474,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Domainmappings$Get,
@@ -5671,7 +5550,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -5679,9 +5558,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.domainmappings.list
-     * @desc List domain mappings.
+     * List domain mappings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5715,7 +5594,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -5739,21 +5618,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.domainmappings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Domainmappings$List,
@@ -5834,7 +5704,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -5845,7 +5715,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Create
     extends StandardParameters {
     /**
-     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace in which the domain mapping should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
 
@@ -5865,7 +5735,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the domain mapping to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -5876,7 +5746,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Domainmappings$Get
     extends StandardParameters {
     /**
-     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the domain mapping to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -5903,7 +5773,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the domain mappings should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -5923,9 +5793,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.revisions.delete
-     * @desc Delete a revision.
+     * Delete a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -5953,7 +5823,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -5976,17 +5846,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Revisions$Delete,
@@ -6057,7 +5922,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -6065,9 +5930,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.revisions.get
-     * @desc Get information about a revision.
+     * Get information about a revision.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6091,7 +5956,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.revisions.get({
-     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -6111,14 +5976,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Revisions$Get,
@@ -6189,7 +6052,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -6197,9 +6060,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.revisions.list
-     * @desc List revisions.
+     * List revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6233,7 +6096,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -6257,21 +6120,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.revisions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Revisions$List,
@@ -6350,7 +6204,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -6369,7 +6223,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the revision to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -6380,7 +6234,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Revisions$Get
     extends StandardParameters {
     /**
-     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the revision to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -6407,7 +6261,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the revisions should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -6427,9 +6281,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.routes.get
-     * @desc Get information about a route.
+     * Get information about a route.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6453,7 +6307,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.routes.get({
-     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/routes/my-route',
      *   });
      *   console.log(res.data);
@@ -6473,14 +6327,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.routes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Routes$Get,
@@ -6551,7 +6403,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -6559,9 +6411,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.routes.list
-     * @desc List routes.
+     * List routes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6595,7 +6447,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -6619,21 +6471,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.routes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Routes$List,
@@ -6710,7 +6553,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -6721,7 +6564,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Routes$Get
     extends StandardParameters {
     /**
-     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the route to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -6748,7 +6591,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the routes should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -6768,9 +6611,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.create
-     * @desc Create a service.
+     * Create a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6794,7 +6637,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.create({
-     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -6826,15 +6669,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Services$Create,
@@ -6908,7 +6748,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -6916,9 +6756,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.delete
-     * @desc Delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
+     * Delete a service. This will cause the Service to stop serving traffic and will delete the child entities like Routes, Configurations and Revisions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -6946,7 +6786,7 @@ export namespace run_v1 {
      *     apiVersion: 'placeholder-value',
      *     // Cloud Run currently ignores this parameter.
      *     kind: 'placeholder-value',
-     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *     // Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
      *     propagationPolicy: 'placeholder-value',
@@ -6969,17 +6809,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.apiVersion Cloud Run currently ignores this parameter.
-     * @param {string=} params.kind Cloud Run currently ignores this parameter.
-     * @param {string} params.name The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.propagationPolicy Specifies the propagation policy of delete. Cloud Run currently ignores this setting, and deletes in the background. Please see kubernetes.io/docs/concepts/workloads/controllers/garbage-collection/ for more information.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Services$Delete,
@@ -7050,7 +6885,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -7058,9 +6893,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.get
-     * @desc Get information about a service.
+     * Get information about a service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7084,7 +6919,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.get({
-     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *   });
      *   console.log(res.data);
@@ -7104,14 +6939,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Services$Get,
@@ -7182,7 +7015,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7190,9 +7023,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.getIamPolicy
-     * @desc Get the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
+     * Get the IAM Access Control policy currently in effect for the given Cloud Run service. This result does not include any inherited policies.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7237,15 +7070,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Getiampolicy,
@@ -7319,7 +7149,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7327,9 +7157,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.list
-     * @desc List services.
+     * List services.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7363,7 +7193,7 @@ export namespace run_v1 {
      *     labelSelector: 'placeholder-value',
      *     // The maximum number of records that should be returned.
      *     limit: 'placeholder-value',
-     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
      *     resourceVersion: 'placeholder-value',
@@ -7387,21 +7217,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit The maximum number of records that should be returned.
-     * @param {string} params.parent The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Services$List,
@@ -7480,7 +7301,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -7488,9 +7309,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.replaceService
-     * @desc Replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
+     * Replace a service. Only the spec and metadata labels and annotations are modifiable. After the Update request, Cloud Run will work to make the 'status' match the requested 'spec'. May provide metadata.resourceVersion to enforce update from last read for optimistic concurrency control.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7514,7 +7335,7 @@ export namespace run_v1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.services.replaceService({
-     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     *     // The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      *     name: 'projects/my-project/locations/my-location/services/my-service',
      *
      *     // Request body metadata
@@ -7546,15 +7367,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.replaceService
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
-     * @param {().Service} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     replaceService(
       params: Params$Resource$Projects$Locations$Services$Replaceservice,
@@ -7625,7 +7443,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7633,9 +7451,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.setIamPolicy
-     * @desc Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
+     * Sets the IAM Access control policy for the specified Service. Overwrites any existing policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7687,15 +7505,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Services$Setiampolicy,
@@ -7769,7 +7584,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7777,9 +7592,9 @@ export namespace run_v1 {
     }
 
     /**
-     * run.projects.locations.services.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
+     * Returns permissions that a caller has on the specified Project. There are no permissions required for making this API call.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -7827,15 +7642,12 @@ export namespace run_v1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.services.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Services$Testiampermissions,
@@ -7916,7 +7728,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -7927,7 +7739,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Create
     extends StandardParameters {
     /**
-     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace in which the service should be created. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
 
@@ -7947,7 +7759,7 @@ export namespace run_v1 {
      */
     kind?: string;
     /**
-     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service to delete. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
     /**
@@ -7958,7 +7770,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Get
     extends StandardParameters {
     /**
-     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service to retrieve. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
   }
@@ -7996,7 +7808,7 @@ export namespace run_v1 {
      */
     limit?: number;
     /**
-     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The namespace from which the services should be listed. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     parent?: string;
     /**
@@ -8011,7 +7823,7 @@ export namespace run_v1 {
   export interface Params$Resource$Projects$Locations$Services$Replaceservice
     extends StandardParameters {
     /**
-     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id} with the project ID or number.
+     * The name of the service being replaced. For Cloud Run (fully managed), replace {namespace_id\} with the project ID or number.
      */
     name?: string;
 

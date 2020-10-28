@@ -104,14 +104,10 @@ export namespace chromeuxreport_v1 {
    * The Chrome UX Report API lets you view real user experience data for millions of websites.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const chromeuxreport = google.chromeuxreport('v1');
-   *
-   * @namespace chromeuxreport
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Chromeuxreport
+   * ```
    */
   export class Chromeuxreport {
     context: APIRequestContext;
@@ -128,11 +124,11 @@ export namespace chromeuxreport_v1 {
   }
 
   /**
-   * A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf. A bin&#39;s start and end values are given in the value type of the metric it represents. For example, &quot;first contentful paint&quot; is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, &quot;cumulative layout shift&quot; is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type.
+   * A bin is a discrete portion of data spanning from start to end, or if no end is given, then from start to +inf. A bin's start and end values are given in the value type of the metric it represents. For example, "first contentful paint" is measured in milliseconds and exposed as ints, therefore its metric bins will use int32s for its start and end types. However, "cumulative layout shift" is measured in unitless decimals and is exposed as a decimal encoded as a string, therefore its metric bins will use strings for its value type.
    */
   export interface Schema$Bin {
     /**
-     * The proportion of users that experienced this bin&#39;s value for the given metric.
+     * The proportion of users that experienced this bin's value for the given metric.
      */
     density?: number | null;
     /**
@@ -149,7 +145,7 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$Key {
     /**
-     * The effective connection type is the general connection class that all users experienced for this record. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned.
+     * The effective connection type is the general connection class that all users experienced for this record. This field uses the values ["offline", "slow-2G", "2G", "3G", "4G"] as specified in: https://wicg.github.io/netinfo/#effective-connection-types If the effective connection type is unspecified, then aggregated data over all effective connection types will be returned.
      */
     effectiveConnectionType?: string | null;
     /**
@@ -161,12 +157,12 @@ export namespace chromeuxreport_v1 {
      */
     origin?: string | null;
     /**
-     * Url specifies a specific url that this record is for. Note: When specifying a &quot;url&quot; only data for that specific url will be aggregated.
+     * Url specifies a specific url that this record is for. Note: When specifying a "url" only data for that specific url will be aggregated.
      */
     url?: string | null;
   }
   /**
-   * A `metric` is a set of user experience data for a single web performance metric, like &quot;first contentful paint&quot;. It contains a summary histogram of real world Chrome usage as a series of `bins`.
+   * A `metric` is a set of user experience data for a single web performance metric, like "first contentful paint". It contains a summary histogram of real world Chrome usage as a series of `bins`.
    */
   export interface Schema$Metric {
     /**
@@ -179,7 +175,7 @@ export namespace chromeuxreport_v1 {
     percentiles?: Schema$Percentiles;
   }
   /**
-   * Percentiles contains synthetic values of a metric at a given statistical percentile. These are used for estimating a metric&#39;s value as experienced by a percentage of users out of the total number of users.
+   * Percentiles contains synthetic values of a metric at a given statistical percentile. These are used for estimating a metric's value as experienced by a percentage of users out of the total number of users.
    */
   export interface Schema$Percentiles {
     /**
@@ -192,23 +188,23 @@ export namespace chromeuxreport_v1 {
    */
   export interface Schema$QueryRequest {
     /**
-     * The effective connection type is a query dimension that specifies the effective network class that the record&#39;s data should belong to. This field uses the values [&quot;offline&quot;, &quot;slow-2G&quot;, &quot;2G&quot;, &quot;3G&quot;, &quot;4G&quot;] as specified in: https://wicg.github.io/netinfo/#effective-connection-types Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned.
+     * The effective connection type is a query dimension that specifies the effective network class that the record's data should belong to. This field uses the values ["offline", "slow-2G", "2G", "3G", "4G"] as specified in: https://wicg.github.io/netinfo/#effective-connection-types Note: If no effective connection type is specified, then a special record with aggregated data over all effective connection types will be returned.
      */
     effectiveConnectionType?: string | null;
     /**
-     * The form factor is a query dimension that specifies the device class that the record&#39;s data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
+     * The form factor is a query dimension that specifies the device class that the record's data should belong to. Note: If no form factor is specified, then a special record with aggregated data over all form factors will be returned.
      */
     formFactor?: string | null;
     /**
-     * The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
+     * The metrics that should be included in the response. If none are specified then any metrics found will be returned. Allowed values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift"]
      */
     metrics?: string[] | null;
     /**
-     * The url pattern &quot;origin&quot; refers to a url pattern that is the origin of a website. Examples: &quot;https://example.com&quot;, &quot;https://cloud.google.com&quot;
+     * The url pattern "origin" refers to a url pattern that is the origin of a website. Examples: "https://example.com", "https://cloud.google.com"
      */
     origin?: string | null;
     /**
-     * The url pattern &quot;url&quot; refers to a url pattern that is any arbitrary url. Examples: &quot;https://example.com/&quot;, &quot;https://cloud.google.com/why-google-cloud/&quot;
+     * The url pattern "url" refers to a url pattern that is any arbitrary url. Examples: "https://example.com/", "https://cloud.google.com/why-google-cloud/"
      */
     url?: string | null;
   }
@@ -234,7 +230,7 @@ export namespace chromeuxreport_v1 {
      */
     key?: Schema$Key;
     /**
-     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: [&quot;first_contentful_paint&quot;, &quot;first_input_delay&quot;, &quot;largest_contentful_paint&quot;, &quot;cumulative_layout_shift&quot;]
+     * Metrics is the map of user experience data available for the record defined in the key field. Metrics are keyed on the metric name. Allowed key values: ["first_contentful_paint", "first_input_delay", "largest_contentful_paint", "cumulative_layout_shift"]
      */
     metrics?: {[key: string]: Schema$Metric} | null;
   }
@@ -259,9 +255,9 @@ export namespace chromeuxreport_v1 {
     }
 
     /**
-     * chromeuxreport.records.queryRecord
-     * @desc Queries the Chrome User Experience for a single `record` for a given site. Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site.
+     * Queries the Chrome User Experience for a single `record` for a given site. Returns a `record` that contains one or more `metrics` corresponding to performance data about the requested site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/chromeuxreport.googleapis.com
@@ -311,14 +307,12 @@ export namespace chromeuxreport_v1 {
      *   throw e;
      * });
      *
-     * @alias chromeuxreport.records.queryRecord
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().QueryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     queryRecord(
       params: Params$Resource$Records$Queryrecord,
@@ -393,7 +387,7 @@ export namespace chromeuxreport_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);

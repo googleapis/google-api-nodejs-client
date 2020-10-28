@@ -104,14 +104,10 @@ export namespace content_v2_1 {
    * Manage your product listings and accounts for Google Shopping
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const content = google.content('v2.1');
-   *
-   * @namespace content
-   * @type {Function}
-   * @version v2.1
-   * @variation v2.1
-   * @param {object=} options Options for Content
+   * ```
    */
   export class Content {
     context: APIRequestContext;
@@ -204,7 +200,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#account`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#account`"
      */
     kind?: string | null;
     /**
@@ -224,7 +220,7 @@ export namespace content_v2_1 {
      */
     users?: Schema$AccountUser[];
     /**
-     * The merchant&#39;s website.
+     * The merchant's website.
      */
     websiteUrl?: string | null;
     /**
@@ -234,7 +230,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
+     * CLDR country code (e.g. "US"). This value cannot be set for a sub-account of an MCA. All MCA sub-accounts inherit the country of their parent MCA.
      */
     country?: string | null;
     /**
@@ -242,11 +238,11 @@ export namespace content_v2_1 {
      */
     locality?: string | null;
     /**
-     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     * Postal code or ZIP (e.g. "94043").
      */
     postalCode?: string | null;
     /**
-     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
      */
     region?: string | null;
     /**
@@ -260,7 +256,7 @@ export namespace content_v2_1 {
      */
     adsId?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in Google Ads or `pending` if it&#39;s pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending. Acceptable values are: - &quot;`active`&quot; - &quot;`pending`&quot;
+     * Status of the link between this Merchant Center account and the Ads account. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in Google Ads or `pending` if it's pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it's still pending or with status `pending` when it's already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending. Acceptable values are: - "`active`" - "`pending`"
      */
     status?: string | null;
   }
@@ -302,7 +298,7 @@ export namespace content_v2_1 {
      */
     gmbEmail?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the GMB account. Acceptable values are: - &quot;`active`&quot; - &quot;`pending`&quot;
+     * Status of the link between this Merchant Center account and the GMB account. Acceptable values are: - "`active`" - "`pending`"
      */
     status?: string | null;
   }
@@ -343,13 +339,13 @@ export namespace content_v2_1 {
      */
     accountIdentifiers?: Schema$AccountIdentifier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsAuthInfoResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsAuthInfoResponse".
      */
     kind?: string | null;
   }
   export interface Schema$AccountsClaimWebsiteResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsClaimWebsiteResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsClaimWebsiteResponse".
      */
     kind?: string | null;
   }
@@ -380,7 +376,7 @@ export namespace content_v2_1 {
      */
     force?: boolean | null;
     /**
-     * Label IDs for the &#39;updatelabels&#39; request.
+     * Label IDs for the 'updatelabels' request.
      */
     labelIds?: string[] | null;
     /**
@@ -392,7 +388,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`claimWebsite`&quot; - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`link`&quot; - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - "`claimWebsite`" - "`delete`" - "`get`" - "`insert`" - "`link`" - "`update`"
      */
     method?: string | null;
     /**
@@ -400,13 +396,13 @@ export namespace content_v2_1 {
      */
     overwrite?: boolean | null;
     /**
-     * Controls which fields are visible. Only applicable if the method is &#39;get&#39;.
+     * Controls which fields are visible. Only applicable if the method is 'get'.
      */
     view?: string | null;
   }
   export interface Schema$AccountsCustomBatchRequestEntryLinkRequest {
     /**
-     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants. Acceptable values are: - &quot;`approve`&quot; - &quot;`remove`&quot; - &quot;`request`&quot;
+     * Action to perform for this link. The `"request"` action is only available to select merchants. Acceptable values are: - "`approve`" - "`remove`" - "`request`"
      */
     action?: string | null;
     /**
@@ -414,7 +410,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts. Acceptable values are: - &quot;`channelPartner`&quot; - &quot;`eCommercePlatform`&quot;
+     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`"
      */
     linkType?: string | null;
     /**
@@ -428,7 +424,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -449,13 +445,13 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#accountsCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountsCustomBatchResponseEntry`"
      */
     kind?: string | null;
   }
   export interface Schema$AccountsLinkRequest {
     /**
-     * Action to perform for this link. The `&quot;request&quot;` action is only available to select merchants. Acceptable values are: - &quot;`approve`&quot; - &quot;`remove`&quot; - &quot;`request`&quot;
+     * Action to perform for this link. The `"request"` action is only available to select merchants. Acceptable values are: - "`approve`" - "`remove`" - "`request`"
      */
     action?: string | null;
     /**
@@ -463,7 +459,7 @@ export namespace content_v2_1 {
      */
     linkedAccountId?: string | null;
     /**
-     * Type of the link between the two accounts. Acceptable values are: - &quot;`channelPartner`&quot; - &quot;`eCommercePlatform`&quot;
+     * Type of the link between the two accounts. Acceptable values are: - "`channelPartner`" - "`eCommercePlatform`"
      */
     linkType?: string | null;
     /**
@@ -473,13 +469,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsLinkResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsLinkResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsLinkResponse".
      */
     kind?: string | null;
   }
   export interface Schema$AccountsListLinksResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsListLinksResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsListLinksResponse".
      */
     kind?: string | null;
     /**
@@ -493,7 +489,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsListResponse".
      */
     kind?: string | null;
     /**
@@ -515,7 +511,7 @@ export namespace content_v2_1 {
      */
     accountLevelIssues?: Schema$AccountStatusAccountLevelIssue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#accountStatus`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accountStatus`"
      */
     kind?: string | null;
     /**
@@ -523,7 +519,7 @@ export namespace content_v2_1 {
      */
     products?: Schema$AccountStatusProducts[];
     /**
-     * Whether the account&#39;s website is claimed or not.
+     * Whether the account's website is claimed or not.
      */
     websiteClaimed?: boolean | null;
   }
@@ -549,7 +545,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Severity of the issue. Acceptable values are: - &quot;`critical`&quot; - &quot;`error`&quot; - &quot;`suggestion`&quot;
+     * Severity of the issue. Acceptable values are: - "`critical`" - "`error`" - "`suggestion`"
      */
     severity?: string | null;
     /**
@@ -584,7 +580,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`"
      */
     method?: string | null;
   }
@@ -594,7 +590,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccountstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountstatusesCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -617,7 +613,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountstatusesListResponse".
      */
     kind?: string | null;
     /**
@@ -628,7 +624,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountStatusItemLevelIssue {
     /**
-     * The attribute&#39;s name, if the issue is caused by a single attribute.
+     * The attribute's name, if the issue is caused by a single attribute.
      */
     attributeName?: string | null;
     /**
@@ -662,7 +658,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountStatusProducts {
     /**
-     * The channel the data applies to. Acceptable values are: - &quot;`local`&quot; - &quot;`online`&quot;
+     * The channel the data applies to. Acceptable values are: - "`local`" - "`online`"
      */
     channel?: string | null;
     /**
@@ -708,7 +704,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$AccountsUpdateLabelsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountsUpdateLabelsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountsUpdateLabelsResponse".
      */
     kind?: string | null;
   }
@@ -721,7 +717,7 @@ export namespace content_v2_1 {
      */
     accountId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accountTax&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accountTax".
      */
     kind?: string | null;
     /**
@@ -756,7 +752,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`" - "`update`"
      */
     method?: string | null;
   }
@@ -766,7 +762,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$AccounttaxCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accounttaxCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -787,13 +783,13 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#accounttaxCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#accounttaxCustomBatchResponseEntry`"
      */
     kind?: string | null;
   }
   export interface Schema$AccounttaxListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#accounttaxListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#accounttaxListResponse".
      */
     kind?: string | null;
     /**
@@ -833,7 +829,7 @@ export namespace content_v2_1 {
      */
     admin?: boolean | null;
     /**
-     * User&#39;s email address.
+     * User's email address.
      */
     emailAddress?: string | null;
     /**
@@ -855,7 +851,7 @@ export namespace content_v2_1 {
      */
     channelId?: string | null;
     /**
-     * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in YT Creator Studio or `pending` if it&#39;s pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it&#39;s still pending or with status `pending` when it&#39;s already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
+     * Status of the link between this Merchant Center account and the YouTube channel. Upon retrieval, it represents the actual status of the link and can be either `active` if it was approved in YT Creator Studio or `pending` if it's pending approval. Upon insertion, it represents the *intended* status of the link. Re-uploading a link with status `active` when it's still pending or with status `pending` when it's already active will have no effect: the status will remain unchanged. Re-uploading a link with deprecated status `inactive` is equivalent to not submitting the link at all and will delete the link if it was active or cancel the link request if it was pending.
      */
     status?: string | null;
   }
@@ -877,15 +873,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$CarrierRate {
     /**
-     * Carrier service, such as `&quot;UPS&quot;` or `&quot;Fedex&quot;`. The list of supported carriers can be retrieved via the `getSupportedCarriers` method. Required.
+     * Carrier service, such as `"UPS"` or `"Fedex"`. The list of supported carriers can be retrieved via the `getSupportedCarriers` method. Required.
      */
     carrierName?: string | null;
     /**
-     * Carrier service, such as `&quot;ground&quot;` or `&quot;2 days&quot;`. The list of supported services for a carrier can be retrieved via the `getSupportedCarriers` method. Required.
+     * Carrier service, such as `"ground"` or `"2 days"`. The list of supported services for a carrier can be retrieved via the `getSupportedCarriers` method. Required.
      */
     carrierService?: string | null;
     /**
-     * Additive shipping rate modifier. Can be negative. For example `{ &quot;value&quot;: &quot;1&quot;, &quot;currency&quot; : &quot;USD&quot; }` adds $1 to the rate, `{ &quot;value&quot;: &quot;-3&quot;, &quot;currency&quot; : &quot;USD&quot; }` removes $3 from the rate. Optional.
+     * Additive shipping rate modifier. Can be negative. For example `{ "value": "1", "currency" : "USD" \}` adds $1 to the rate, `{ "value": "-3", "currency" : "USD" \}` removes $3 from the rate. Optional.
      */
     flatAdjustment?: Schema$Price;
     /**
@@ -897,21 +893,21 @@ export namespace content_v2_1 {
      */
     originPostalCode?: string | null;
     /**
-     * Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example `&quot;5.4&quot;` increases the rate by 5.4%, `&quot;-3&quot;` decreases the rate by 3%. Optional.
+     * Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example `"5.4"` increases the rate by 5.4%, `"-3"` decreases the rate by 3%. Optional.
      */
     percentageAdjustment?: string | null;
   }
   export interface Schema$CarriersCarrier {
     /**
-     * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
+     * The CLDR country code of the carrier (e.g., "US"). Always present.
      */
     country?: string | null;
     /**
-     * The name of the carrier (e.g., `&quot;UPS&quot;`). Always present.
+     * The name of the carrier (e.g., `"UPS"`). Always present.
      */
     name?: string | null;
     /**
-     * A list of supported services (e.g., `&quot;ground&quot;`) for that carrier. Contains at least one service.
+     * A list of supported services (e.g., `"ground"`) for that carrier. Contains at least one service.
      */
     services?: string[] | null;
   }
@@ -928,15 +924,15 @@ export namespace content_v2_1 {
      */
     cssGroupId?: string | null;
     /**
-     * Output only. Immutable. The CSS domain&#39;s display name, used when space is constrained.
+     * Output only. Immutable. The CSS domain's display name, used when space is constrained.
      */
     displayName?: string | null;
     /**
-     * Output only. Immutable. The CSS domain&#39;s full name.
+     * Output only. Immutable. The CSS domain's full name.
      */
     fullName?: string | null;
     /**
-     * Output only. Immutable. The CSS domain&#39;s homepage.
+     * Output only. Immutable. The CSS domain's homepage.
      */
     homepageUri?: string | null;
     /**
@@ -964,7 +960,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the return reason. Acceptable values are: - &quot;`betterPriceFound`&quot; - &quot;`changedMind`&quot; - &quot;`damagedOrDefectiveItem`&quot; - &quot;`didNotMatchDescription`&quot; - &quot;`doesNotFit`&quot; - &quot;`expiredItem`&quot; - &quot;`incorrectItemReceived`&quot; - &quot;`noLongerNeeded`&quot; - &quot;`notSpecified`&quot; - &quot;`orderedWrongItem`&quot; - &quot;`other`&quot; - &quot;`qualityNotExpected`&quot; - &quot;`receivedTooLate`&quot; - &quot;`undeliverable`&quot;
+     * Code of the return reason. Acceptable values are: - "`betterPriceFound`" - "`changedMind`" - "`damagedOrDefectiveItem`" - "`didNotMatchDescription`" - "`doesNotFit`" - "`expiredItem`" - "`incorrectItemReceived`" - "`noLongerNeeded`" - "`notSpecified`" - "`orderedWrongItem`" - "`other`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`undeliverable`"
      */
     reasonCode?: string | null;
   }
@@ -978,7 +974,7 @@ export namespace content_v2_1 {
      */
     minute?: number | null;
     /**
-     * Timezone identifier for the cutoff time. A list of identifiers can be found in the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
+     * Timezone identifier for the cutoff time. A list of identifiers can be found in the AdWords API documentation. E.g. "Europe/Zurich". Required.
      */
     timezone?: string | null;
   }
@@ -991,7 +987,7 @@ export namespace content_v2_1 {
      */
     attributeLanguage?: string | null;
     /**
-     * Required. The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported. Acceptable values are: - &quot;`local products`&quot; - &quot;`product inventory`&quot; - &quot;`products`&quot;
+     * Required. The type of data feed. For product inventory feeds, only feeds for local stores, not online stores, are supported. Acceptable values are: - "`local products`" - "`product inventory`" - "`products`"
      */
     contentType?: string | null;
     /**
@@ -1011,7 +1007,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#datafeed`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeed`"
      */
     kind?: string | null;
     /**
@@ -1052,7 +1048,7 @@ export namespace content_v2_1 {
      */
     paused?: boolean | null;
     /**
-     * Time zone used for schedule. UTC by default. E.g., &quot;America/Los_Angeles&quot;.
+     * Time zone used for schedule. UTC by default. E.g., "America/Los_Angeles".
      */
     timeZone?: string | null;
     /**
@@ -1060,21 +1056,21 @@ export namespace content_v2_1 {
      */
     username?: string | null;
     /**
-     * The day of the week the feed file should be fetched. Acceptable values are: - &quot;`monday`&quot; - &quot;`tuesday`&quot; - &quot;`wednesday`&quot; - &quot;`thursday`&quot; - &quot;`friday`&quot; - &quot;`saturday`&quot; - &quot;`sunday`&quot;
+     * The day of the week the feed file should be fetched. Acceptable values are: - "`monday`" - "`tuesday`" - "`wednesday`" - "`thursday`" - "`friday`" - "`saturday`" - "`sunday`"
      */
     weekday?: string | null;
   }
   export interface Schema$DatafeedFormat {
     /**
-     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - &quot;`pipe`&quot; - &quot;`tab`&quot; - &quot;`tilde`&quot;
+     * Delimiter for the separation of values in a delimiter-separated values feed. If not specified, the delimiter will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - "`pipe`" - "`tab`" - "`tilde`"
      */
     columnDelimiter?: string | null;
     /**
-     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected. Acceptable values are: - &quot;`latin-1`&quot; - &quot;`utf-16be`&quot; - &quot;`utf-16le`&quot; - &quot;`utf-8`&quot; - &quot;`windows-1252`&quot;
+     * Character encoding scheme of the data feed. If not specified, the encoding will be auto-detected. Acceptable values are: - "`latin-1`" - "`utf-16be`" - "`utf-16le`" - "`utf-8`" - "`windows-1252`"
      */
     fileEncoding?: string | null;
     /**
-     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - &quot;`normal character`&quot; - &quot;`value quoting`&quot;
+     * Specifies how double quotes are interpreted. If not specified, the mode will be auto-detected. Ignored for non-DSV data feeds. Acceptable values are: - "`normal character`" - "`value quoting`"
      */
     quotingMode?: string | null;
   }
@@ -1105,7 +1101,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`fetchNow`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - "`delete`" - "`fetchNow`" - "`get`" - "`insert`" - "`update`"
      */
     method?: string | null;
   }
@@ -1115,7 +1111,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -1138,13 +1134,13 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedsFetchNowResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsFetchNowResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsFetchNowResponse".
      */
     kind?: string | null;
   }
   export interface Schema$DatafeedsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedsListResponse".
      */
     kind?: string | null;
     /**
@@ -1178,7 +1174,7 @@ export namespace content_v2_1 {
      */
     itemsValid?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#datafeedStatus`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#datafeedStatus`"
      */
     kind?: string | null;
     /**
@@ -1190,7 +1186,7 @@ export namespace content_v2_1 {
      */
     lastUploadDate?: string | null;
     /**
-     * The processing status of the feed. Acceptable values are: - &quot;`&quot;`failure`&quot;: The feed could not be processed or all items had errors.`&quot; - &quot;`in progress`&quot;: The feed is being processed. - &quot;`none`&quot;: The feed has not yet been processed. For example, a feed that has never been uploaded will have this processing status. - &quot;`success`&quot;: The feed was processed successfully, though some items might have had errors.
+     * The processing status of the feed. Acceptable values are: - "`"`failure`": The feed could not be processed or all items had errors.`" - "`in progress`": The feed is being processed. - "`none`": The feed has not yet been processed. For example, a feed that has never been uploaded will have this processing status. - "`success`": The feed was processed successfully, though some items might have had errors.
      */
     processingStatus?: string | null;
     /**
@@ -1199,11 +1195,11 @@ export namespace content_v2_1 {
     warnings?: Schema$DatafeedStatusError[];
   }
   /**
-   * An error occurring in the feed, like &quot;invalid price&quot;.
+   * An error occurring in the feed, like "invalid price".
    */
   export interface Schema$DatafeedStatusError {
     /**
-     * The code of the error, e.g., &quot;validation/invalid_value&quot;.
+     * The code of the error, e.g., "validation/invalid_value".
      */
     code?: string | null;
     /**
@@ -1215,7 +1211,7 @@ export namespace content_v2_1 {
      */
     examples?: Schema$DatafeedStatusExample[];
     /**
-     * The error message, e.g., &quot;Invalid price&quot;.
+     * The error message, e.g., "Invalid price".
      */
     message?: string | null;
   }
@@ -1250,7 +1246,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`"
      */
     method?: string | null;
   }
@@ -1260,7 +1256,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$DatafeedstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedstatusesCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -1283,7 +1279,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$DatafeedstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#datafeedstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#datafeedstatusesListResponse".
      */
     kind?: string | null;
     /**
@@ -1353,7 +1349,7 @@ export namespace content_v2_1 {
      */
     minHandlingTimeInDays?: number | null;
     /**
-     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max}TransitTimeInDays` or `transitTimeTable` must be set, but not both.
+     * Minimum number of business days that is spent in transit. 0 means same day delivery, 1 means next day delivery. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` must be set, but not both.
      */
     minTransitTimeInDays?: number | null;
     /**
@@ -1361,7 +1357,7 @@ export namespace content_v2_1 {
      */
     transitBusinessDayConfig?: Schema$BusinessDayConfig;
     /**
-     * Transit time table, number of business days spent in transit based on row and column dimensions. Either `{min,max}TransitTimeInDays` or `transitTimeTable` can be set, but not both.
+     * Transit time table, number of business days spent in transit based on row and column dimensions. Either `{min,max\}TransitTimeInDays` or `transitTimeTable` can be set, but not both.
      */
     transitTimeTable?: Schema$TransitTable;
   }
@@ -1436,25 +1432,25 @@ export namespace content_v2_1 {
      */
     locations?: Schema$LocationIdSet[];
     /**
-     * A list of inclusive number of items upper bounds. The last value can be `&quot;infinity&quot;`. For example `[&quot;10&quot;, &quot;50&quot;, &quot;infinity&quot;]` represents the headers &quot;&lt;= 10 items&quot;, &quot;&lt;= 50 items&quot;, and &quot;&gt; 50 items&quot;. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive number of items upper bounds. The last value can be `"infinity"`. For example `["10", "50", "infinity"]` represents the headers "<= 10 items", "<= 50 items", and "\> 50 items". Must be non-empty. Can only be set if all other fields are not set.
      */
     numberOfItems?: string[] | null;
     /**
-     * A list of postal group names. The last value can be `&quot;all other locations&quot;`. Example: `[&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]`. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of postal group names. The last value can be `"all other locations"`. Example: `["zone 1", "zone 2", "all other locations"]`. The referred postal code groups must match the delivery country of the service. Must be non-empty. Can only be set if all other fields are not set.
      */
     postalCodeGroupNames?: string[] | null;
     /**
-     * A list of inclusive order price upper bounds. The last price&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;500&quot;, &quot;currency&quot;: &quot;USD&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;currency&quot;: &quot;USD&quot;}]` represents the headers &quot;&lt;= $10&quot;, &quot;&lt;= $500&quot;, and &quot;&gt; $500&quot;. All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive order price upper bounds. The last price's value can be `"infinity"`. For example `[{"value": "10", "currency": "USD"\}, {"value": "500", "currency": "USD"\}, {"value": "infinity", "currency": "USD"\}]` represents the headers "<= $10", "<= $500", and "\> $500". All prices within a service must have the same currency. Must be non-empty. Can only be set if all other fields are not set.
      */
     prices?: Schema$Price[];
     /**
-     * A list of inclusive order weight upper bounds. The last weight&#39;s value can be `&quot;infinity&quot;`. For example `[{&quot;value&quot;: &quot;10&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;50&quot;, &quot;unit&quot;: &quot;kg&quot;}, {&quot;value&quot;: &quot;infinity&quot;, &quot;unit&quot;: &quot;kg&quot;}]` represents the headers &quot;&lt;= 10kg&quot;, &quot;&lt;= 50kg&quot;, and &quot;&gt; 50kg&quot;. All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
+     * A list of inclusive order weight upper bounds. The last weight's value can be `"infinity"`. For example `[{"value": "10", "unit": "kg"\}, {"value": "50", "unit": "kg"\}, {"value": "infinity", "unit": "kg"\}]` represents the headers "<= 10kg", "<= 50kg", and "\> 50kg". All weights within a service must have the same unit. Must be non-empty. Can only be set if all other fields are not set.
      */
     weights?: Schema$Weight[];
   }
   export interface Schema$HolidayCutoff {
     /**
-     * Date of the order deadline, in ISO 8601 format. E.g. &quot;2016-11-29&quot; for 29th November 2016. Required.
+     * Date of the order deadline, in ISO 8601 format. E.g. "2016-11-29" for 29th November 2016. Required.
      */
     deadlineDate?: string | null;
     /**
@@ -1462,7 +1458,7 @@ export namespace content_v2_1 {
      */
     deadlineHour?: number | null;
     /**
-     * Timezone identifier for the deadline hour. A list of identifiers can be found in the AdWords API documentation. E.g. &quot;Europe/Zurich&quot;. Required.
+     * Timezone identifier for the deadline hour. A list of identifiers can be found in the AdWords API documentation. E.g. "Europe/Zurich". Required.
      */
     deadlineTimezone?: string | null;
     /**
@@ -1470,25 +1466,25 @@ export namespace content_v2_1 {
      */
     holidayId?: string | null;
     /**
-     * Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. &quot;2016-10-31&quot; for 31st October 2016. Required.
+     * Date on which the deadline will become visible to consumers in ISO 8601 format. E.g. "2016-10-31" for 31st October 2016. Required.
      */
     visibleFromDate?: string | null;
   }
   export interface Schema$HolidaysHoliday {
     /**
-     * The CLDR territory code of the country in which the holiday is available. E.g. &quot;US&quot;, &quot;DE&quot;, &quot;GB&quot;. A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
+     * The CLDR territory code of the country in which the holiday is available. E.g. "US", "DE", "GB". A holiday cutoff can only be configured in a shipping settings service with matching delivery country. Always present.
      */
     countryCode?: string | null;
     /**
-     * Date of the holiday, in ISO 8601 format. E.g. &quot;2016-12-25&quot; for Christmas 2016. Always present.
+     * Date of the holiday, in ISO 8601 format. E.g. "2016-12-25" for Christmas 2016. Always present.
      */
     date?: string | null;
     /**
-     * Date on which the order has to arrive at the customer&#39;s, in ISO 8601 format. E.g. &quot;2016-12-24&quot; for 24th December 2016. Always present.
+     * Date on which the order has to arrive at the customer's, in ISO 8601 format. E.g. "2016-12-24" for 24th December 2016. Always present.
      */
     deliveryGuaranteeDate?: string | null;
     /**
-     * Hour of the day in the delivery location&#39;s timezone on the guaranteed delivery date by which the order has to arrive at the customer&#39;s. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always present.
+     * Hour of the day in the delivery location's timezone on the guaranteed delivery date by which the order has to arrive at the customer's. Possible values are: 0 (midnight), 1, ..., 12 (noon), 13, ..., 23. Always present.
      */
     deliveryGuaranteeHour?: string | null;
     /**
@@ -1496,7 +1492,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * The holiday type. Always present. Acceptable values are: - &quot;`Christmas`&quot; - &quot;`Easter`&quot; - &quot;`Father&#39;s Day`&quot; - &quot;`Halloween`&quot; - &quot;`Independence Day (USA)`&quot; - &quot;`Mother&#39;s Day`&quot; - &quot;`Thanksgiving`&quot; - &quot;`Valentine&#39;s Day`&quot;
+     * The holiday type. Always present. Acceptable values are: - "`Christmas`" - "`Easter`" - "`Father's Day`" - "`Halloween`" - "`Independence Day (USA)`" - "`Mother's Day`" - "`Thanksgiving`" - "`Valentine's Day`"
      */
     type?: string | null;
   }
@@ -1526,7 +1522,7 @@ export namespace content_v2_1 {
      */
     totalAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge. Acceptable values are: - &quot;`shipping`&quot;
+     * [required] Type of the additional charge. Acceptable values are: - "`shipping`"
      */
     type?: string | null;
   }
@@ -1541,7 +1537,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiaAboutPageSettings {
     /**
-     * The status of the verification process for the About page. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
+     * The status of the verification process for the About page. Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
      */
     status?: string | null;
     /**
@@ -1555,11 +1551,11 @@ export namespace content_v2_1 {
      */
     about?: Schema$LiaAboutPageSettings;
     /**
-     * Required. CLDR country code (e.g. &quot;US&quot;).
+     * Required. CLDR country code (e.g. "US").
      */
     country?: string | null;
     /**
-     * The status of the &quot;Merchant hosted local storefront&quot; feature.
+     * The status of the "Merchant hosted local storefront" feature.
      */
     hostedLocalStorefrontActive?: boolean | null;
     /**
@@ -1567,7 +1563,7 @@ export namespace content_v2_1 {
      */
     inventory?: Schema$LiaInventorySettings;
     /**
-     * LIA &quot;On Display To Order&quot; settings.
+     * LIA "On Display To Order" settings.
      */
     onDisplayToOrder?: Schema$LiaOnDisplayToOrderSettings;
     /**
@@ -1575,7 +1571,7 @@ export namespace content_v2_1 {
      */
     posDataProvider?: Schema$LiaPosDataProvider;
     /**
-     * The status of the &quot;Store pickup&quot; feature.
+     * The status of the "Store pickup" feature.
      */
     storePickupActive?: boolean | null;
   }
@@ -1589,11 +1585,11 @@ export namespace content_v2_1 {
      */
     inventoryVerificationContactName?: string | null;
     /**
-     * The status of the verification contact. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
+     * The status of the verification contact. Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
      */
     inventoryVerificationContactStatus?: string | null;
     /**
-     * The status of the inventory verification process. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
+     * The status of the inventory verification process. Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
      */
     status?: string | null;
   }
@@ -1603,7 +1599,7 @@ export namespace content_v2_1 {
      */
     shippingCostPolicyUrl?: string | null;
     /**
-     * The status of the ?On display to order? feature. Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
+     * The status of the ?On display to order? feature. Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
      */
     status?: string | null;
   }
@@ -1630,7 +1626,7 @@ export namespace content_v2_1 {
      */
     countrySettings?: Schema$LiaCountrySettings[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#liaSettings`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liaSettings`"
      */
     kind?: string | null;
   }
@@ -1674,7 +1670,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`getAccessibleGmbAccounts`&quot; - &quot;`requestGmbAccess`&quot; - &quot;`requestInventoryVerification`&quot; - &quot;`setInventoryVerificationContact`&quot; - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`" - "`getAccessibleGmbAccounts`" - "`requestGmbAccess`" - "`requestInventoryVerification`" - "`setInventoryVerificationContact`" - "`update`"
      */
     method?: string | null;
     /**
@@ -1692,7 +1688,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$LiasettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -1710,7 +1706,7 @@ export namespace content_v2_1 {
      */
     gmbAccounts?: Schema$GmbAccounts;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#liasettingsCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#liasettingsCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -1732,13 +1728,13 @@ export namespace content_v2_1 {
      */
     gmbAccounts?: Schema$GmbAccountsGmbAccount[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsGetAccessibleGmbAccountsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsGetAccessibleGmbAccountsResponse".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsListPosDataProvidersResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListPosDataProvidersResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsListPosDataProvidersResponse".
      */
     kind?: string | null;
     /**
@@ -1748,7 +1744,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsListResponse".
      */
     kind?: string | null;
     /**
@@ -1759,25 +1755,25 @@ export namespace content_v2_1 {
   }
   export interface Schema$LiasettingsRequestGmbAccessResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestGmbAccessResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsRequestGmbAccessResponse".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsRequestInventoryVerificationResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsRequestInventoryVerificationResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsRequestInventoryVerificationResponse".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsSetInventoryVerificationContactResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetInventoryVerificationContactResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsSetInventoryVerificationContactResponse".
      */
     kind?: string | null;
   }
   export interface Schema$LiasettingsSetPosDataProviderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#liasettingsSetPosDataProviderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#liasettingsSetPosDataProviderResponse".
      */
     kind?: string | null;
   }
@@ -1793,11 +1789,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$LinkService {
     /**
-     * Service provided to or by the linked account. Acceptable values are: - &quot;`shoppingActionsOrderManagement`&quot; - &quot;`shoppingActionsProductManagement`&quot; - &quot;`shoppingAdsProductManagement`&quot;
+     * Service provided to or by the linked account. Acceptable values are: - "`shoppingActionsOrderManagement`" - "`shoppingActionsProductManagement`" - "`shoppingAdsProductManagement`"
      */
     service?: string | null;
     /**
-     * Status of the link Acceptable values are: - &quot;`active`&quot; - &quot;`inactive`&quot; - &quot;`pending`&quot;
+     * Status of the link Acceptable values are: - "`active`" - "`inactive`" - "`pending`"
      */
     status?: string | null;
   }
@@ -1853,11 +1849,11 @@ export namespace content_v2_1 {
      */
     instoreProductLocation?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#localInventory`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#localInventory`"
      */
     kind?: string | null;
     /**
-     * Supported pickup method for this offer. Unless the value is &quot;not supported&quot;, this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.
+     * Supported pickup method for this offer. Unless the value is "not supported", this field must be submitted together with `pickupSla`. For accepted attribute values, see the local product inventory feed // specification.
      */
     pickupMethod?: string | null;
     /**
@@ -1877,7 +1873,7 @@ export namespace content_v2_1 {
      */
     salePrice?: Schema$Price;
     /**
-     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates may be specified as &#39;null&#39; if undecided.
+     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates may be specified as 'null' if undecided.
      */
     salePriceEffectiveDate?: string | null;
     /**
@@ -1908,7 +1904,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry. Acceptable values are: - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - "`insert`"
      */
     method?: string | null;
     /**
@@ -1922,7 +1918,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$LocalinventoryCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#localinventoryCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#localinventoryCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -1939,7 +1935,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#localinventoryCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#localinventoryCustomBatchResponseEntry`"
      */
     kind?: string | null;
   }
@@ -1955,7 +1951,7 @@ export namespace content_v2_1 {
      */
     name?: string | null;
     /**
-     * The retailer&#39;s loyalty points in absolute value.
+     * The retailer's loyalty points in absolute value.
      */
     pointsValue?: string | null;
     /**
@@ -2038,7 +2034,7 @@ export namespace content_v2_1 {
      */
     shipmentUnitId?: string | null;
     /**
-     * State of the item. Acceptable values are: - &quot;`canceled`&quot; - &quot;`new`&quot; - &quot;`received`&quot; - &quot;`refunded`&quot; - &quot;`rejected`&quot;
+     * State of the item. Acceptable values are: - "`canceled`" - "`new`" - "`received`" - "`refunded`" - "`rejected`"
      */
     state?: string | null;
   }
@@ -2056,7 +2052,7 @@ export namespace content_v2_1 {
     storeCodeSetWithMovs?: Schema$MinimumOrderValueTableStoreCodeSetWithMov[];
   }
   /**
-   * A list of store code sets sharing the same minimum order value. At least two sets are required and the last one must be empty, which signifies &#39;MOV for all other stores&#39;. Each store code can only appear once across all the sets. All prices within a service must have the same currency.
+   * A list of store code sets sharing the same minimum order value. At least two sets are required and the last one must be empty, which signifies 'MOV for all other stores'. Each store code can only appear once across all the sets. All prices within a service must have the same currency.
    */
   export interface Schema$MinimumOrderValueTableStoreCodeSetWithMov {
     /**
@@ -2107,7 +2103,7 @@ export namespace content_v2_1 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#order`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#order`"
      */
     kind?: string | null;
     /**
@@ -2128,7 +2124,7 @@ export namespace content_v2_1 {
      */
     netTaxAmount?: Schema$Price;
     /**
-     * The status of the payment. Acceptable values are: - &quot;`paymentCaptured`&quot; - &quot;`paymentRejected`&quot; - &quot;`paymentSecured`&quot; - &quot;`pendingAuthorization`&quot;
+     * The status of the payment. Acceptable values are: - "`paymentCaptured`" - "`paymentRejected`" - "`paymentSecured`" - "`pendingAuthorization`"
      */
     paymentStatus?: string | null;
     /**
@@ -2160,17 +2156,17 @@ export namespace content_v2_1 {
      */
     shippingCostTax?: Schema$Price;
     /**
-     * The status of the order. Acceptable values are: - &quot;`canceled`&quot; - &quot;`delivered`&quot; - &quot;`inProgress`&quot; - &quot;`partiallyDelivered`&quot; - &quot;`partiallyReturned`&quot; - &quot;`partiallyShipped`&quot; - &quot;`pendingShipment`&quot; - &quot;`returned`&quot; - &quot;`shipped`&quot;
+     * The status of the order. Acceptable values are: - "`canceled`" - "`delivered`" - "`inProgress`" - "`partiallyDelivered`" - "`partiallyReturned`" - "`partiallyShipped`" - "`pendingShipment`" - "`returned`" - "`shipped`"
      */
     status?: string | null;
     /**
-     * The party responsible for collecting and remitting taxes. Acceptable values are: - &quot;`marketplaceFacilitator`&quot; - &quot;`merchant`&quot;
+     * The party responsible for collecting and remitting taxes. Acceptable values are: - "`marketplaceFacilitator`" - "`merchant`"
      */
     taxCollector?: string | null;
   }
   export interface Schema$OrderAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * CLDR country code (e.g. "US").
      */
     country?: string | null;
     /**
@@ -2186,7 +2182,7 @@ export namespace content_v2_1 {
      */
     locality?: string | null;
     /**
-     * Postal Code or ZIP (e.g. &quot;94043&quot;).
+     * Postal Code or ZIP (e.g. "94043").
      */
     postalCode?: string | null;
     /**
@@ -2194,7 +2190,7 @@ export namespace content_v2_1 {
      */
     recipientName?: string | null;
     /**
-     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
      */
     region?: string | null;
     /**
@@ -2204,7 +2200,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCancellation {
     /**
-     * The actor that created the cancellation. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
+     * The actor that created the cancellation. Acceptable values are: - "`customer`" - "`googleBot`" - "`googleCustomerService`" - "`googlePayments`" - "`googleSabre`" - "`merchant`"
      */
     actor?: string | null;
     /**
@@ -2216,7 +2212,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerInitiatedCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceError`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`customerCanceled`" - "`customerInitiatedCancel`" - "`customerSupportRequested`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceError`" - "`returnRefundAbuse`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`"
      */
     reason?: string | null;
     /**
@@ -2238,7 +2234,7 @@ export namespace content_v2_1 {
      */
     loyaltyInfo?: Schema$OrderCustomerLoyaltyInfo;
     /**
-     * Customer&#39;s marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
+     * Customer's marketing preferences. Contains the marketing opt-in information that is current at the time that the merchant call. User preference selections can change from one order to the next so preferences must be checked with every order.
      */
     marketingRightsInfo?: Schema$OrderCustomerMarketingRightsInfo;
   }
@@ -2254,15 +2250,15 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderCustomerMarketingRightsInfo {
     /**
-     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected `granted` in their most recent order, they can be subscribed to marketing emails. Customers who have chosen `denied` must not be subscribed, or must be unsubscribed if already opted-in. Acceptable values are: - &quot;`denied`&quot; - &quot;`granted`&quot;
+     * Last known customer selection regarding marketing preferences. In certain cases this selection might not be known, so this field would be empty. If a customer selected `granted` in their most recent order, they can be subscribed to marketing emails. Customers who have chosen `denied` must not be subscribed, or must be unsubscribed if already opted-in. Acceptable values are: - "`denied`" - "`granted`"
      */
     explicitMarketingPreference?: string | null;
     /**
-     * Timestamp when last time marketing preference was updated. Could be empty, if user wasn&#39;t offered a selection yet.
+     * Timestamp when last time marketing preference was updated. Could be empty, if user wasn't offered a selection yet.
      */
     lastUpdatedTimestamp?: string | null;
     /**
-     * Email address that can be used for marketing purposes. The field may be empty even if `explicitMarketingPreference` is &#39;granted&#39;. This happens when retrieving an old order from the customer who deleted their account.
+     * Email address that can be used for marketing purposes. The field may be empty even if `explicitMarketingPreference` is 'granted'. This happens when retrieving an old order from the customer who deleted their account.
      */
     marketingEmailAddress?: string | null;
   }
@@ -2300,11 +2296,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateChargeInvoiceResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateChargeInvoiceResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderinvoicesCreateChargeInvoiceResponse".
      */
     kind?: string | null;
   }
@@ -2332,11 +2328,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderinvoicesCreateRefundInvoiceResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderinvoicesCreateRefundInvoiceResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderinvoicesCreateRefundInvoiceResponse".
      */
     kind?: string | null;
   }
@@ -2346,7 +2342,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the refund. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * [required] Reason for the refund. Acceptable values are: - "`adjustment`" - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`courtesyAdjustment`" - "`customerCanceled`" - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`customerSupportRequested`" - "`deliveredLateByCarrier`" - "`deliveredTooLate`" - "`expiredItem`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`feeAdjustment`" - "`invalidCoupon`" - "`lateShipmentCredit`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceAdjustment`" - "`priceError`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`promoReallocation`" - "`qualityNotAsExpected`" - "`returnRefundAbuse`" - "`shippingCostAdjustment`" - "`shippingPriceError`" - "`taxAdjustment`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
   }
@@ -2356,7 +2352,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * [required] Reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * [required] Reason for the return. Acceptable values are: - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`deliveredTooLate`" - "`expiredItem`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`other`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`qualityNotAsExpected`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
   }
@@ -2444,7 +2440,7 @@ export namespace content_v2_1 {
      */
     taxAdjustment?: Schema$Price;
     /**
-     * Type of this adjustment. Acceptable values are: - &quot;`promotion`&quot;
+     * Type of this adjustment. Acceptable values are: - "`promotion`"
      */
     type?: string | null;
   }
@@ -2454,7 +2450,7 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Condition or state of the item. Acceptable values are: - &quot;`new`&quot; - &quot;`refurbished`&quot; - &quot;`used`&quot;
+     * Condition or state of the item. Acceptable values are: - "`new`" - "`refurbished`" - "`used`"
      */
     condition?: string | null;
     /**
@@ -2562,7 +2558,7 @@ export namespace content_v2_1 {
      */
     shipByDate?: string | null;
     /**
-     * Type of shipment. Indicates whether `deliveryDetails` or `pickupDetails` is applicable for this shipment. Acceptable values are: - &quot;`delivery`&quot; - &quot;`pickup`&quot;
+     * Type of shipment. Indicates whether `deliveryDetails` or `pickupDetails` is applicable for this shipment. Acceptable values are: - "`delivery`" - "`pickup`"
      */
     type?: string | null;
   }
@@ -2618,7 +2614,7 @@ export namespace content_v2_1 {
      */
     locationId?: string | null;
     /**
-     * The pickup type of this order. Acceptable values are: - &quot;`merchantStore`&quot; - &quot;`merchantStoreCurbside`&quot; - &quot;`merchantStoreLocker`&quot; - &quot;`thirdPartyPickupPoint`&quot; - &quot;`thirdPartyLocker`&quot;
+     * The pickup type of this order. Acceptable values are: - "`merchantStore`" - "`merchantStoreCurbside`" - "`merchantStoreLocker`" - "`thirdPartyPickupPoint`" - "`thirdPartyLocker`"
      */
     pickupType?: string | null;
   }
@@ -2642,15 +2638,15 @@ export namespace content_v2_1 {
      */
     appliedItems?: Schema$OrderPromotionItem[];
     /**
-     * Promotion end time in ISO 8601 format. Date, time, and offset required, e.g., &quot;2020-01-02T09:00:00+01:00&quot; or &quot;2020-01-02T09:00:00Z&quot;.
+     * Promotion end time in ISO 8601 format. Date, time, and offset required, e.g., "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
      */
     endTime?: string | null;
     /**
-     * Required. The party funding the promotion. Only `merchant` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`google`&quot; - &quot;`merchant`&quot;
+     * Required. The party funding the promotion. Only `merchant` is supported for `orders.createtestorder`. Acceptable values are: - "`google`" - "`merchant`"
      */
     funder?: string | null;
     /**
-     * Required. This field is used to identify promotions within merchants&#39; own systems.
+     * Required. This field is used to identify promotions within merchants' own systems.
      */
     merchantPromotionId?: string | null;
     /**
@@ -2662,11 +2658,11 @@ export namespace content_v2_1 {
      */
     shortTitle?: string | null;
     /**
-     * Promotion start time in ISO 8601 format. Date, time, and offset required, e.g., &quot;2020-01-02T09:00:00+01:00&quot; or &quot;2020-01-02T09:00:00Z&quot;.
+     * Promotion start time in ISO 8601 format. Date, time, and offset required, e.g., "2020-01-02T09:00:00+01:00" or "2020-01-02T09:00:00Z".
      */
     startTime?: string | null;
     /**
-     * Required. The category of the promotion. Only `moneyOff` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`buyMGetMoneyOff`&quot; - &quot;`buyMGetNMoneyOff`&quot; - &quot;`buyMGetNPercentOff`&quot; - &quot;`buyMGetPercentOff`&quot; - &quot;`freeGift`&quot; - &quot;`freeGiftWithItemId`&quot; - &quot;`freeGiftWithValue`&quot; - &quot;`freeShippingOvernight`&quot; - &quot;`freeShippingStandard`&quot; - &quot;`freeShippingTwoDay`&quot; - &quot;`moneyOff`&quot; - &quot;`percentOff`&quot; - &quot;`rewardPoints`&quot; - &quot;`salePrice`&quot;
+     * Required. The category of the promotion. Only `moneyOff` is supported for `orders.createtestorder`. Acceptable values are: - "`buyMGetMoneyOff`" - "`buyMGetNMoneyOff`" - "`buyMGetNPercentOff`" - "`buyMGetPercentOff`" - "`freeGift`" - "`freeGiftWithItemId`" - "`freeGiftWithValue`" - "`freeShippingOvernight`" - "`freeShippingStandard`" - "`freeShippingTwoDay`" - "`moneyOff`" - "`percentOff`" - "`rewardPoints`" - "`salePrice`"
      */
     subtype?: string | null;
     /**
@@ -2678,7 +2674,7 @@ export namespace content_v2_1 {
      */
     title?: string | null;
     /**
-     * Required. The scope of the promotion. Only `product` is supported for `orders.createtestorder`. Acceptable values are: - &quot;`product`&quot; - &quot;`shipping`&quot;
+     * Required. The scope of the promotion. Only `product` is supported for `orders.createtestorder`. Acceptable values are: - "`product`" - "`shipping`"
      */
     type?: string | null;
   }
@@ -2702,7 +2698,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderRefund {
     /**
-     * The actor that created the refund. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
+     * The actor that created the refund. Acceptable values are: - "`customer`" - "`googleBot`" - "`googleCustomerService`" - "`googlePayments`" - "`googleSabre`" - "`merchant`"
      */
     actor?: string | null;
     /**
@@ -2714,7 +2710,7 @@ export namespace content_v2_1 {
      */
     creationDate?: string | null;
     /**
-     * The reason for the refund. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * The reason for the refund. Acceptable values are: - "`adjustment`" - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`courtesyAdjustment`" - "`customerCanceled`" - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`customerSupportRequested`" - "`deliveredLateByCarrier`" - "`deliveredTooLate`" - "`expiredItem`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`feeAdjustment`" - "`invalidCoupon`" - "`lateShipmentCredit`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceAdjustment`" - "`priceError`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`promoReallocation`" - "`qualityNotAsExpected`" - "`returnRefundAbuse`" - "`shippingCostAdjustment`" - "`shippingPriceError`" - "`taxAdjustment`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
     /**
@@ -2753,7 +2749,7 @@ export namespace content_v2_1 {
      */
     disbursements?: Schema$OrderReportDisbursement[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListDisbursementsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreportsListDisbursementsResponse".
      */
     kind?: string | null;
     /**
@@ -2763,7 +2759,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreportsListTransactionsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreportsListTransactionsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreportsListTransactionsResponse".
      */
     kind?: string | null;
     /**
@@ -2815,7 +2811,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderReturn {
     /**
-     * The actor that created the refund. Acceptable values are: - &quot;`customer`&quot; - &quot;`googleBot`&quot; - &quot;`googleCustomerService`&quot; - &quot;`googlePayments`&quot; - &quot;`googleSabre`&quot; - &quot;`merchant`&quot;
+     * The actor that created the refund. Acceptable values are: - "`customer`" - "`googleBot`" - "`googleCustomerService`" - "`googlePayments`" - "`googleSabre`" - "`merchant`"
      */
     actor?: string | null;
     /**
@@ -2827,7 +2823,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`deliveredTooLate`" - "`expiredItem`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`other`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`qualityNotAsExpected`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
     /**
@@ -2843,11 +2839,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsAcknowledgeResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsAcknowledgeResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsAcknowledgeResponse".
      */
     kind?: string | null;
   }
@@ -2871,11 +2867,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsCreateOrderReturnResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsCreateOrderReturnResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsCreateOrderReturnResponse".
      */
     kind?: string | null;
     /**
@@ -2895,7 +2891,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsListResponse".
      */
     kind?: string | null;
     /**
@@ -2934,11 +2930,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderreturnsProcessResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#orderreturnsProcessResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#orderreturnsProcessResponse".
      */
     kind?: string | null;
   }
@@ -2996,17 +2992,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersAcknowledgeResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAcknowledgeResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersAcknowledgeResponse".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersAdvanceTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersAdvanceTestOrderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersAdvanceTestOrderResponse".
      */
     kind?: string | null;
   }
@@ -3028,7 +3024,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Acceptable values are: - &quot;`customerInitiatedCancel`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`noInventory`&quot; - &quot;`other`&quot; - &quot;`priceError`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Acceptable values are: - "`customerInitiatedCancel`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`noInventory`" - "`other`" - "`priceError`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`"
      */
     reason?: string | null;
     /**
@@ -3038,11 +3034,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelLineItemResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelLineItemResponse".
      */
     kind?: string | null;
   }
@@ -3052,7 +3048,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the cancellation. Acceptable values are: - &quot;`customerInitiatedCancel`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`noInventory`&quot; - &quot;`other`&quot; - &quot;`priceError`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot;
+     * The reason for the cancellation. Acceptable values are: - "`customerInitiatedCancel`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`noInventory`" - "`other`" - "`priceError`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`"
      */
     reason?: string | null;
     /**
@@ -3062,33 +3058,33 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCancelResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelResponse".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersCancelTestOrderByCustomerRequest {
     /**
-     * The reason for the cancellation. Acceptable values are: - &quot;`changedMind`&quot; - &quot;`orderedWrongItem`&quot; - &quot;`other`&quot;
+     * The reason for the cancellation. Acceptable values are: - "`changedMind`" - "`orderedWrongItem`" - "`other`"
      */
     reason?: string | null;
   }
   export interface Schema$OrdersCancelTestOrderByCustomerResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCancelTestOrderByCustomerResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCancelTestOrderByCustomerResponse".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersCreateTestOrderRequest {
     /**
-     * The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`. Acceptable values are: - &quot;`US`&quot; - &quot;`FR`&quot; Defaults to `US`.
+     * The CLDR territory code of the country of the test order to create. Affects the currency and addresses of orders created via `template_name`, or the addresses of orders created via `test_order`. Acceptable values are: - "`US`" - "`FR`" Defaults to `US`.
      */
     country?: string | null;
     /**
-     * The test order template to use. Specify as an alternative to `testOrder` as a shortcut for retrieving a template and then creating an order using that template. Acceptable values are: - &quot;`template1`&quot; - &quot;`template1a`&quot; - &quot;`template1b`&quot; - &quot;`template2`&quot; - &quot;`template3`&quot;
+     * The test order template to use. Specify as an alternative to `testOrder` as a shortcut for retrieving a template and then creating an order using that template. Acceptable values are: - "`template1`" - "`template1a`" - "`template1b`" - "`template2`" - "`template3`"
      */
     templateName?: string | null;
     /**
@@ -3098,7 +3094,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestOrderResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestOrderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCreateTestOrderResponse".
      */
     kind?: string | null;
     /**
@@ -3114,7 +3110,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersCreateTestReturnResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersCreateTestReturnResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersCreateTestReturnResponse".
      */
     kind?: string | null;
     /**
@@ -3180,7 +3176,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetByMerchantOrderIdResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetByMerchantOrderIdResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersGetByMerchantOrderIdResponse".
      */
     kind?: string | null;
     /**
@@ -3190,7 +3186,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersGetTestOrderTemplateResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersGetTestOrderTemplateResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersGetTestOrderTemplateResponse".
      */
     kind?: string | null;
     /**
@@ -3200,7 +3196,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipment {
     /**
-     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - &quot;`ups`&quot; (United Parcel Service) *automatic status updates* - &quot;`usps`&quot; (United States Postal Service) *automatic status updates* - &quot;`fedex`&quot; (FedEx) *automatic status updates * - &quot;`dhl`&quot; (DHL eCommerce) *automatic status updates* (US only) - &quot;`ontrac`&quot; (OnTrac) *automatic status updates * - &quot;`dhl express`&quot; (DHL Express) - &quot;`deliv`&quot; (Deliv) - &quot;`dynamex`&quot; (TForce) - &quot;`lasership`&quot; (LaserShip) - &quot;`mpx`&quot; (Military Parcel Xpress) - &quot;`uds`&quot; (United Delivery Service) - &quot;`efw`&quot; (Estes Forwarding Worldwide) - &quot;`jd logistics`&quot; (JD Logistics) - &quot;`yunexpress`&quot; (YunExpress) - &quot;`china post`&quot; (China Post) - &quot;`china ems`&quot; (China Post Express Mail Service) - &quot;`singapore post`&quot; (Singapore Post) - &quot;`pos malaysia`&quot; (Pos Malaysia) - &quot;`postnl`&quot; (PostNL) - &quot;`ptt`&quot; (PTT Turkish Post) - &quot;`eub`&quot; (ePacket) - &quot;`chukou1`&quot; (Chukou1 Logistics) - &quot;`bestex`&quot; (Best Express) - &quot;`canada post`&quot; (Canada Post) - &quot;`purolator`&quot; (Purolator) - &quot;`canpar`&quot; (Canpar) - &quot;`india post`&quot; (India Post) - &quot;`blue dart`&quot; (Blue Dart) - &quot;`delhivery`&quot; (Delhivery) - &quot;`dtdc`&quot; (DTDC) - &quot;`tpc india`&quot; (TPC India) Supported carriers for FR are: - &quot;`la poste`&quot; (La Poste) *automatic status updates * - &quot;`colissimo`&quot; (Colissimo by La Poste) *automatic status updates* - &quot;`ups`&quot; (United Parcel Service) *automatic status updates * - &quot;`chronopost`&quot; (Chronopost by La Poste) - &quot;`gls`&quot; (General Logistics Systems France) - &quot;`dpd`&quot; (DPD Group by GeoPost) - &quot;`bpost`&quot; (Belgian Post Group) - &quot;`colis prive`&quot; (Colis Privé) - &quot;`boxtal`&quot; (Boxtal) - &quot;`geodis`&quot; (GEODIS) - &quot;`tnt`&quot; (TNT) - &quot;`db schenker`&quot; (DB Schenker) - &quot;`aramex`&quot; (Aramex)
+     * The carrier handling the shipment. For supported carriers, Google includes the carrier name and tracking URL in emails to customers. For select supported carriers, Google also automatically updates the shipment status based on the provided shipment ID. *Note:* You can also use unsupported carriers, but emails to customers will not include the carrier name or tracking URL, and there will be no automatic order status updates. Supported carriers for US are: - "`ups`" (United Parcel Service) *automatic status updates* - "`usps`" (United States Postal Service) *automatic status updates* - "`fedex`" (FedEx) *automatic status updates * - "`dhl`" (DHL eCommerce) *automatic status updates* (US only) - "`ontrac`" (OnTrac) *automatic status updates * - "`dhl express`" (DHL Express) - "`deliv`" (Deliv) - "`dynamex`" (TForce) - "`lasership`" (LaserShip) - "`mpx`" (Military Parcel Xpress) - "`uds`" (United Delivery Service) - "`efw`" (Estes Forwarding Worldwide) - "`jd logistics`" (JD Logistics) - "`yunexpress`" (YunExpress) - "`china post`" (China Post) - "`china ems`" (China Post Express Mail Service) - "`singapore post`" (Singapore Post) - "`pos malaysia`" (Pos Malaysia) - "`postnl`" (PostNL) - "`ptt`" (PTT Turkish Post) - "`eub`" (ePacket) - "`chukou1`" (Chukou1 Logistics) - "`bestex`" (Best Express) - "`canada post`" (Canada Post) - "`purolator`" (Purolator) - "`canpar`" (Canpar) - "`india post`" (India Post) - "`blue dart`" (Blue Dart) - "`delhivery`" (Delhivery) - "`dtdc`" (DTDC) - "`tpc india`" (TPC India) Supported carriers for FR are: - "`la poste`" (La Poste) *automatic status updates * - "`colissimo`" (Colissimo by La Poste) *automatic status updates* - "`ups`" (United Parcel Service) *automatic status updates * - "`chronopost`" (Chronopost by La Poste) - "`gls`" (General Logistics Systems France) - "`dpd`" (DPD Group by GeoPost) - "`bpost`" (Belgian Post Group) - "`colis prive`" (Colis Privé) - "`boxtal`" (Boxtal) - "`geodis`" (GEODIS) - "`tnt`" (TNT) - "`db schenker`" (DB Schenker) - "`aramex`" (Aramex)
      */
     carrier?: string | null;
     /**
@@ -3228,7 +3224,7 @@ export namespace content_v2_1 {
      */
     shipmentGroupId?: string | null;
     /**
-     * The status of the shipment. Acceptable values are: - &quot;`delivered`&quot; - &quot;`readyForPickup`&quot; - &quot;`shipped`&quot; - &quot;`undeliverable`&quot;
+     * The status of the shipment. Acceptable values are: - "`delivered`" - "`readyForPickup`" - "`shipped`" - "`undeliverable`"
      */
     status?: string | null;
     /**
@@ -3252,7 +3248,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrderShipmentScheduledDeliveryDetails {
     /**
-     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., &quot;+41 44 668 1800&quot;).
+     * The phone number of the carrier fulfilling the delivery. The phone number is formatted as the international notation in ITU-T Recommendation E.123 (e.g., "+41 44 668 1800").
      */
     carrierPhoneNumber?: string | null;
     /**
@@ -3282,7 +3278,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`deliveredTooLate`" - "`expiredItem`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`other`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`qualityNotAsExpected`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
     /**
@@ -3296,17 +3292,17 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersInStoreRefundLineItemResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersInStoreRefundLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersInStoreRefundLineItemResponse".
      */
     kind?: string | null;
   }
   export interface Schema$OrdersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersListResponse".
      */
     kind?: string | null;
     /**
@@ -3325,7 +3321,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the refund. Acceptable values are: - &quot;`shippingCostAdjustment`&quot; - &quot;`priceAdjustment`&quot; - &quot;`taxAdjustment`&quot; - &quot;`feeAdjustment`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`adjustment`&quot; - &quot;`customerCancelled`&quot; - &quot;`noInventory`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`wrongProductShipped`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`productArrivedDamaged`&quot;
+     * The reason for the refund. Acceptable values are: - "`shippingCostAdjustment`" - "`priceAdjustment`" - "`taxAdjustment`" - "`feeAdjustment`" - "`courtesyAdjustment`" - "`adjustment`" - "`customerCancelled`" - "`noInventory`" - "`productNotAsDescribed`" - "`undeliverableShippingAddress`" - "`wrongProductShipped`" - "`lateShipmentCredit`" - "`deliveredLateByCarrier`" - "`productArrivedDamaged`"
      */
     reason?: string | null;
     /**
@@ -3339,11 +3335,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRefundItemResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRefundItemResponse".
      */
     kind?: string | null;
   }
@@ -3361,7 +3357,7 @@ export namespace content_v2_1 {
      */
     operationId?: string | null;
     /**
-     * The reason for the refund. Acceptable values are: - &quot;`courtesyAdjustment`&quot; - &quot;`other`&quot;
+     * The reason for the refund. Acceptable values are: - "`courtesyAdjustment`" - "`other`"
      */
     reason?: string | null;
     /**
@@ -3371,11 +3367,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRefundOrderResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRefundOrderResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRefundOrderResponse".
      */
     kind?: string | null;
   }
@@ -3397,7 +3393,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return. Acceptable values are: - &quot;`damagedOrUsed`&quot; - &quot;`missingComponent`&quot; - &quot;`notEligible`&quot; - &quot;`other`&quot; - &quot;`outOfReturnWindow`&quot;
+     * The reason for the return. Acceptable values are: - "`damagedOrUsed`" - "`missingComponent`" - "`notEligible`" - "`other`" - "`outOfReturnWindow`"
      */
     reason?: string | null;
     /**
@@ -3407,11 +3403,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersRejectReturnLineItemResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersRejectReturnLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersRejectReturnLineItemResponse".
      */
     kind?: string | null;
   }
@@ -3437,7 +3433,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the return. Acceptable values are: - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`invalidCoupon`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`other`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * The reason for the return. Acceptable values are: - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`deliveredTooLate`" - "`expiredItem`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`other`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`qualityNotAsExpected`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reason?: string | null;
     /**
@@ -3451,11 +3447,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersReturnRefundLineItemResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersReturnRefundLineItemResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersReturnRefundLineItemResponse".
      */
     kind?: string | null;
   }
@@ -3476,11 +3472,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersSetLineItemMetadataResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersSetLineItemMetadataResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersSetLineItemMetadataResponse".
      */
     kind?: string | null;
   }
@@ -3504,11 +3500,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersShipLineItemsResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersShipLineItemsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersShipLineItemsResponse".
      */
     kind?: string | null;
   }
@@ -3536,11 +3532,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateLineItemShippingDetailsResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateLineItemShippingDetailsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateLineItemShippingDetailsResponse".
      */
     kind?: string | null;
   }
@@ -3556,11 +3552,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateMerchantOrderIdResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateMerchantOrderIdResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateMerchantOrderIdResponse".
      */
     kind?: string | null;
   }
@@ -3590,7 +3586,7 @@ export namespace content_v2_1 {
      */
     shipmentId?: string | null;
     /**
-     * New status for the shipment. Not updated if missing. Acceptable values are: - &quot;`delivered`&quot; - &quot;`undeliverable`&quot; - &quot;`readyForPickup`&quot;
+     * New status for the shipment. Not updated if missing. Acceptable values are: - "`delivered`" - "`undeliverable`" - "`readyForPickup`"
      */
     status?: string | null;
     /**
@@ -3604,35 +3600,35 @@ export namespace content_v2_1 {
   }
   export interface Schema$OrdersUpdateShipmentResponse {
     /**
-     * The status of the execution. Acceptable values are: - &quot;`duplicate`&quot; - &quot;`executed`&quot;
+     * The status of the execution. Acceptable values are: - "`duplicate`" - "`executed`"
      */
     executionStatus?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#ordersUpdateShipmentResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#ordersUpdateShipmentResponse".
      */
     kind?: string | null;
   }
   export interface Schema$PickupCarrierService {
     /**
-     * The name of the pickup carrier (e.g., `&quot;UPS&quot;`). Required.
+     * The name of the pickup carrier (e.g., `"UPS"`). Required.
      */
     carrierName?: string | null;
     /**
-     * The name of the pickup service (e.g., `&quot;Access point&quot;`). Required.
+     * The name of the pickup service (e.g., `"Access point"`). Required.
      */
     serviceName?: string | null;
   }
   export interface Schema$PickupServicesPickupService {
     /**
-     * The name of the carrier (e.g., `&quot;UPS&quot;`). Always present.
+     * The name of the carrier (e.g., `"UPS"`). Always present.
      */
     carrierName?: string | null;
     /**
-     * The CLDR country code of the carrier (e.g., &quot;US&quot;). Always present.
+     * The CLDR country code of the carrier (e.g., "US"). Always present.
      */
     country?: string | null;
     /**
-     * The name of the pickup service (e.g., `&quot;Access point&quot;`). Always present.
+     * The name of the pickup service (e.g., `"Access point"`). Always present.
      */
     serviceName?: string | null;
   }
@@ -3656,7 +3652,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot; - &quot;`inventory`&quot; - &quot;`sale`&quot;
+     * The method of the batch entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`" - "`inventory`" - "`sale`"
      */
     method?: string | null;
     /**
@@ -3682,7 +3678,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$PosCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#posCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -3700,7 +3696,7 @@ export namespace content_v2_1 {
      */
     inventory?: Schema$PosInventory;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#posCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -3753,7 +3749,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#posInventory`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posInventory`"
      */
     kind?: string | null;
     /**
@@ -3765,7 +3761,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3799,7 +3795,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3825,7 +3821,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posInventoryResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#posInventoryResponse".
      */
     kind?: string | null;
     /**
@@ -3837,7 +3833,7 @@ export namespace content_v2_1 {
      */
     quantity?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3851,7 +3847,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$PosListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#posListResponse".
      */
     kind?: string | null;
     resources?: Schema$PosStore[];
@@ -3873,7 +3869,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#posSale`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posSale`"
      */
     kind?: string | null;
     /**
@@ -3889,7 +3885,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3927,7 +3923,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3953,7 +3949,7 @@ export namespace content_v2_1 {
      */
     itemId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#posSaleResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#posSaleResponse".
      */
     kind?: string | null;
     /**
@@ -3969,7 +3965,7 @@ export namespace content_v2_1 {
      */
     saleId?: string | null;
     /**
-     * Required. The identifier of the merchant&#39;s store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
+     * Required. The identifier of the merchant's store. Either a `storeCode` inserted via the API or the code of the store in Google My Business.
      */
     storeCode?: string | null;
     /**
@@ -3986,7 +3982,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$PosStore {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#posStore`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#posStore`"
      */
     kind?: string | null;
     /**
@@ -4014,7 +4010,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$PostalCodeRange {
     /**
-     * A postal code or a pattern of the form `prefix*` denoting the inclusive lower bound of the range defining the area. Examples values: `&quot;94108&quot;`, `&quot;9410*&quot;`, `&quot;9*&quot;`. Required.
+     * A postal code or a pattern of the form `prefix*` denoting the inclusive lower bound of the range defining the area. Examples values: `"94108"`, `"9410*"`, `"9*"`. Required.
      */
     postalCodeRangeBegin?: string | null;
     /**
@@ -4073,11 +4069,11 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * URL for the canonical version of your item&#39;s landing page.
+     * URL for the canonical version of your item's landing page.
      */
     canonicalLink?: string | null;
     /**
-     * Required. The item&#39;s channel (online or local). Acceptable values are: - &quot;`local`&quot; - &quot;`online`&quot;
+     * Required. The item's channel (online or local). Acceptable values are: - "`local`" - "`online`"
      */
     channel?: string | null;
     /**
@@ -4097,7 +4093,7 @@ export namespace content_v2_1 {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ &quot;name&quot;: &quot;size type&quot;, &quot;value&quot;: &quot;regular&quot; }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -4129,7 +4125,7 @@ export namespace content_v2_1 {
      */
     displayAdsId?: string | null;
     /**
-     * URL directly to your item&#39;s landing page for dynamic remarketing campaigns.
+     * URL directly to your item's landing page for dynamic remarketing campaigns.
      */
     displayAdsLink?: string | null;
     /**
@@ -4161,7 +4157,7 @@ export namespace content_v2_1 {
      */
     gender?: string | null;
     /**
-     * Google&#39;s category of the item (see Google product taxonomy).
+     * Google's category of the item (see Google product taxonomy).
      */
     googleProductCategory?: string | null;
     /**
@@ -4197,11 +4193,11 @@ export namespace content_v2_1 {
      */
     itemGroupId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#product`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#product`"
      */
     kind?: string | null;
     /**
-     * URL directly linking to your item&#39;s page on your website.
+     * URL directly linking to your item's page on your website.
      */
     link?: string | null;
     /**
@@ -4229,7 +4225,7 @@ export namespace content_v2_1 {
      */
     minHandlingTime?: string | null;
     /**
-     * URL for the mobile-optimized version of your item&#39;s landing page.
+     * URL for the mobile-optimized version of your item's landing page.
      */
     mobileLink?: string | null;
     /**
@@ -4245,7 +4241,7 @@ export namespace content_v2_1 {
      */
     offerId?: string | null;
     /**
-     * The item&#39;s pattern (e.g. polka dots).
+     * The item's pattern (e.g. polka dots).
      */
     pattern?: string | null;
     /**
@@ -4321,7 +4317,7 @@ export namespace content_v2_1 {
      */
     sizeType?: string | null;
     /**
-     * The source of the offer, i.e., how the offer was created. Acceptable values are: - &quot;`api`&quot; - &quot;`crawl`&quot; - &quot;`feed`&quot;
+     * The source of the offer, i.e., how the offer was created. Acceptable values are: - "`api`" - "`crawl`" - "`feed`"
      */
     source?: string | null;
     /**
@@ -4408,7 +4404,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
+     * The method of the batch entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`"
      */
     method?: string | null;
     /**
@@ -4426,7 +4422,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#productsCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -4443,7 +4439,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#productsCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productsCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -4503,7 +4499,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#productsListResponse".
      */
     kind?: string | null;
     /**
@@ -4533,7 +4529,7 @@ export namespace content_v2_1 {
      */
     itemLevelIssues?: Schema$ProductStatusItemLevelIssue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#productStatus`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productStatus`"
      */
     kind?: string | null;
     /**
@@ -4599,7 +4595,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`"
      */
     method?: string | null;
     /**
@@ -4613,7 +4609,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ProductstatusesCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#productstatusesCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -4630,7 +4626,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#productstatusesCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#productstatusesCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -4640,7 +4636,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ProductstatusesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#productstatusesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#productstatusesListResponse".
      */
     kind?: string | null;
     /**
@@ -4655,7 +4651,7 @@ export namespace content_v2_1 {
      */
     applicableCountries?: string[] | null;
     /**
-     * The attribute&#39;s name, if the issue is caused by a single attribute.
+     * The attribute's name, if the issue is caused by a single attribute.
      */
     attributeName?: string | null;
     /**
@@ -4756,11 +4752,11 @@ export namespace content_v2_1 {
      */
     cloudTopicName?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#pubsubNotificationSettings`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#pubsubNotificationSettings`"
      */
     kind?: string | null;
     /**
-     * List of event types. Acceptable values are: - &quot;`orderPendingShipment`&quot;
+     * List of event types. Acceptable values are: - "`orderPendingShipment`"
      */
     registeredEvents?: string[] | null;
   }
@@ -4796,7 +4792,7 @@ export namespace content_v2_1 {
      */
     description?: string | null;
     /**
-     * Code of the refund reason. Acceptable values are: - &quot;`adjustment`&quot; - &quot;`autoPostInternal`&quot; - &quot;`autoPostInvalidBillingAddress`&quot; - &quot;`autoPostNoInventory`&quot; - &quot;`autoPostPriceError`&quot; - &quot;`autoPostUndeliverableShippingAddress`&quot; - &quot;`couponAbuse`&quot; - &quot;`courtesyAdjustment`&quot; - &quot;`customerCanceled`&quot; - &quot;`customerDiscretionaryReturn`&quot; - &quot;`customerInitiatedMerchantCancel`&quot; - &quot;`customerSupportRequested`&quot; - &quot;`deliveredLateByCarrier`&quot; - &quot;`deliveredTooLate`&quot; - &quot;`expiredItem`&quot; - &quot;`failToPushOrderGoogleError`&quot; - &quot;`failToPushOrderMerchantError`&quot; - &quot;`failToPushOrderMerchantFulfillmentError`&quot; - &quot;`failToPushOrderToMerchant`&quot; - &quot;`failToPushOrderToMerchantOutOfStock`&quot; - &quot;`feeAdjustment`&quot; - &quot;`invalidCoupon`&quot; - &quot;`lateShipmentCredit`&quot; - &quot;`malformedShippingAddress`&quot; - &quot;`merchantDidNotShipOnTime`&quot; - &quot;`noInventory`&quot; - &quot;`orderTimeout`&quot; - &quot;`other`&quot; - &quot;`paymentAbuse`&quot; - &quot;`paymentDeclined`&quot; - &quot;`priceAdjustment`&quot; - &quot;`priceError`&quot; - &quot;`productArrivedDamaged`&quot; - &quot;`productNotAsDescribed`&quot; - &quot;`promoReallocation`&quot; - &quot;`qualityNotAsExpected`&quot; - &quot;`returnRefundAbuse`&quot; - &quot;`shippingCostAdjustment`&quot; - &quot;`shippingPriceError`&quot; - &quot;`taxAdjustment`&quot; - &quot;`taxError`&quot; - &quot;`undeliverableShippingAddress`&quot; - &quot;`unsupportedPoBoxAddress`&quot; - &quot;`wrongProductShipped`&quot;
+     * Code of the refund reason. Acceptable values are: - "`adjustment`" - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`courtesyAdjustment`" - "`customerCanceled`" - "`customerDiscretionaryReturn`" - "`customerInitiatedMerchantCancel`" - "`customerSupportRequested`" - "`deliveredLateByCarrier`" - "`deliveredTooLate`" - "`expiredItem`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`feeAdjustment`" - "`invalidCoupon`" - "`lateShipmentCredit`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceAdjustment`" - "`priceError`" - "`productArrivedDamaged`" - "`productNotAsDescribed`" - "`promoReallocation`" - "`qualityNotAsExpected`" - "`returnRefundAbuse`" - "`shippingCostAdjustment`" - "`shippingPriceError`" - "`taxAdjustment`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`" - "`wrongProductShipped`"
      */
     reasonCode?: string | null;
   }
@@ -4813,7 +4809,7 @@ export namespace content_v2_1 {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalInventory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#regionalInventory".
      */
     kind?: string | null;
     /**
@@ -4829,7 +4825,7 @@ export namespace content_v2_1 {
      */
     salePrice?: Schema$Price;
     /**
-     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as &#39;null&#39; if undecided.
+     * A date range represented by a pair of ISO 8601 dates separated by a space, comma, or slash. Both dates might be specified as 'null' if undecided.
      */
     salePriceEffectiveDate?: string | null;
   }
@@ -4852,7 +4848,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry. Acceptable values are: - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - "`insert`"
      */
     method?: string | null;
     /**
@@ -4870,7 +4866,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$RegionalinventoryCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalinventoryCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#regionalinventoryCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -4887,7 +4883,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#regionalinventoryCustomBatchResponseEntry&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#regionalinventoryCustomBatchResponseEntry".
      */
     kind?: string | null;
     /**
@@ -4900,7 +4896,7 @@ export namespace content_v2_1 {
    */
   export interface Schema$RepricingRule {
     /**
-     * Required. Immutable. CLDR country code (e.g. &quot;US&quot;).
+     * Required. Immutable. CLDR country code (e.g. "US").
      */
     countryCode?: string | null;
     /**
@@ -4972,7 +4968,7 @@ export namespace content_v2_1 {
      */
     itemGroupIdMatcher?: Schema$RepricingRuleEligibleOfferMatcherStringMatcher;
     /**
-     * Determines whether to use the custom matchers or the product feed attribute &quot;repricing_rule_id&quot; to specify offer-rule mapping.
+     * Determines whether to use the custom matchers or the product feed attribute "repricing_rule_id" to specify offer-rule mapping.
      */
     matcherOption?: string | null;
     /**
@@ -4990,11 +4986,11 @@ export namespace content_v2_1 {
     strAttributes?: string[] | null;
   }
   /**
-   * Definition of a rule restriction. At least one of the following needs to be true: (1) use_auto_pricing_min_price is true (2) floor.price_delta exists (3) floor.percentage_delta exists If floor.price_delta and floor.percentage_delta are both set on a rule, the highest value will be chosen by the Repricer. In other words, for a product with a price of $50, if the `floor.percentage_delta` is &quot;-10&quot; and the floor.price_delta is &quot;-12&quot;, the offer price will only be lowered $5 (10% lower than the original offer price).
+   * Definition of a rule restriction. At least one of the following needs to be true: (1) use_auto_pricing_min_price is true (2) floor.price_delta exists (3) floor.percentage_delta exists If floor.price_delta and floor.percentage_delta are both set on a rule, the highest value will be chosen by the Repricer. In other words, for a product with a price of $50, if the `floor.percentage_delta` is "-10" and the floor.price_delta is "-12", the offer price will only be lowered $5 (10% lower than the original offer price).
    */
   export interface Schema$RepricingRuleRestriction {
     /**
-     * The inclusive floor lower bound. The repricing rule only applies when new price &gt;= floor.
+     * The inclusive floor lower bound. The repricing rule only applies when new price \>= floor.
      */
     floor?: Schema$RepricingRuleRestrictionBoundary;
     /**
@@ -5007,11 +5003,11 @@ export namespace content_v2_1 {
    */
   export interface Schema$RepricingRuleRestrictionBoundary {
     /**
-     * The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be &gt; -100. If an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is &gt;= $7.
+     * The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be \> -100. If an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is \>= $7.
      */
     percentageDelta?: number | null;
     /**
-     * The price micros relative to the offer selling price. This field is signed. It must be negative in floor. If an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is &gt;= $8.
+     * The price micros relative to the offer selling price. This field is signed. It must be negative in floor. If an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is \>= $8.
      */
     priceDelta?: string | null;
   }
@@ -5028,15 +5024,15 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#returnAddress`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnAddress`"
      */
     kind?: string | null;
     /**
-     * Required. The user-defined label of the return address. For the default address, use the label &quot;default&quot;.
+     * Required. The user-defined label of the return address. For the default address, use the label "default".
      */
     label?: string | null;
     /**
-     * Required. The merchant&#39;s contact phone number regarding the return.
+     * Required. The merchant's contact phone number regarding the return.
      */
     phoneNumber?: string | null;
     /**
@@ -5046,7 +5042,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnAddressAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * CLDR country code (e.g. "US").
      */
     country?: string | null;
     /**
@@ -5054,7 +5050,7 @@ export namespace content_v2_1 {
      */
     locality?: string | null;
     /**
-     * Postal code or ZIP (e.g. &quot;94043&quot;).
+     * Postal code or ZIP (e.g. "94043").
      */
     postalCode?: string | null;
     /**
@@ -5062,7 +5058,7 @@ export namespace content_v2_1 {
      */
     recipientName?: string | null;
     /**
-     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
      */
     region?: string | null;
     /**
@@ -5086,7 +5082,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`"
      */
     method?: string | null;
     /**
@@ -5104,7 +5100,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ReturnaddressCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnaddressCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#returnaddressCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -5118,7 +5114,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#returnaddressCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnaddressCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -5128,7 +5124,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnaddressListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnaddressListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#returnaddressListResponse".
      */
     kind?: string | null;
     /**
@@ -5146,11 +5142,11 @@ export namespace content_v2_1 {
      */
     country?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#returnPolicy`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnPolicy`"
      */
     kind?: string | null;
     /**
-     * Required. The user-defined label of the return policy. For the default policy, use the label &quot;default&quot;.
+     * Required. The user-defined label of the return policy. For the default policy, use the label "default".
      */
     label?: string | null;
     /**
@@ -5190,7 +5186,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * Method of the batch request entry. Acceptable values are: - &quot;`delete`&quot; - &quot;`get`&quot; - &quot;`insert`&quot;
+     * Method of the batch request entry. Acceptable values are: - "`delete`" - "`get`" - "`insert`"
      */
     method?: string | null;
     /**
@@ -5208,7 +5204,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ReturnpolicyCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnpolicyCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#returnpolicyCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -5222,7 +5218,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#returnpolicyCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#returnpolicyCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -5232,22 +5228,22 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnpolicyListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#returnpolicyListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#returnpolicyListResponse".
      */
     kind?: string | null;
     resources?: Schema$ReturnPolicy[];
   }
   export interface Schema$ReturnPolicyPolicy {
     /**
-     * Required. Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to &quot;lastReturnDate&quot;. Use this for seasonal overrides only.
+     * Required. Last day for returning the items. In ISO 8601 format. When specifying the return window like this, set the policy type to "lastReturnDate". Use this for seasonal overrides only.
      */
     lastReturnDate?: string | null;
     /**
-     * The number of days items can be returned after delivery, where one day is defined to be 24 hours after the delivery timestamp. When specifying the return window like this, set the policy type to &quot;numberOfDaysAfterDelivery&quot;. Acceptable values are 30, 45, 60, 90, 100, 180, 270 and 365 for the default policy. Additional policies further allow 14, 15, 21 and 28 days, but note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics. A policy of less than 30 days can only be applied to those items.
+     * The number of days items can be returned after delivery, where one day is defined to be 24 hours after the delivery timestamp. When specifying the return window like this, set the policy type to "numberOfDaysAfterDelivery". Acceptable values are 30, 45, 60, 90, 100, 180, 270 and 365 for the default policy. Additional policies further allow 14, 15, 21 and 28 days, but note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics. A policy of less than 30 days can only be applied to those items.
      */
     numberOfDays?: string | null;
     /**
-     * Policy type. Use &quot;lastReturnDate&quot; for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items. Acceptable values are: - &quot;`lastReturnDate`&quot; - &quot;`lifetimeReturns`&quot; - &quot;`noReturns`&quot; - &quot;`numberOfDaysAfterDelivery`&quot;
+     * Policy type. Use "lastReturnDate" for seasonal overrides only. Note that for most items a minimum of 30 days is required for returns. Exceptions may be made for electronics or non-returnable items such as food, perishables, and living things. A policy of less than 30 days can only be applied to those items. Acceptable values are: - "`lastReturnDate`" - "`lifetimeReturns`" - "`noReturns`" - "`numberOfDaysAfterDelivery`"
      */
     type?: string | null;
   }
@@ -5271,11 +5267,11 @@ export namespace content_v2_1 {
   }
   export interface Schema$ReturnPricingInfo {
     /**
-     * Default option for whether merchant should charge the customer for return shipping costs, based on customer selected return reason and merchant&#39;s return policy for the items being returned.
+     * Default option for whether merchant should charge the customer for return shipping costs, based on customer selected return reason and merchant's return policy for the items being returned.
      */
     chargeReturnShippingFee?: boolean | null;
     /**
-     * Maximum return shipping costs that may be charged to the customer depending on merchant&#39;s assessment of the return reason and the merchant&#39;s return policy for the items being returned.
+     * Maximum return shipping costs that may be charged to the customer depending on merchant's assessment of the return reason and the merchant's return policy for the items being returned.
      */
     maxReturnShippingFee?: Schema$MonetaryAmount;
     /**
@@ -5301,7 +5297,7 @@ export namespace content_v2_1 {
      */
     deliveryDate?: string | null;
     /**
-     * Type of the return method. Acceptable values are: - &quot;`byMail`&quot; - &quot;`contactCustomerSupport`&quot; - &quot;`returnless`&quot;
+     * Type of the return method. Acceptable values are: - "`byMail`" - "`contactCustomerSupport`" - "`returnless`"
      */
     returnMethodType?: string | null;
     /**
@@ -5317,7 +5313,7 @@ export namespace content_v2_1 {
      */
     shippingDate?: string | null;
     /**
-     * State of the shipment. Acceptable values are: - &quot;`completed`&quot; - &quot;`new`&quot; - &quot;`shipped`&quot; - &quot;`undeliverable`&quot; - &quot;`pending`&quot;
+     * State of the shipment. Acceptable values are: - "`completed`" - "`new`" - "`shipped`" - "`undeliverable`" - "`pending`"
      */
     state?: string | null;
   }
@@ -5345,7 +5341,7 @@ export namespace content_v2_1 {
      */
     deliveryTime?: Schema$DeliveryTime;
     /**
-     * Eligibility for this service. Acceptable values are: - &quot;`All scenarios`&quot; - &quot;`All scenarios except Shopping Actions`&quot; - &quot;`Shopping Actions`&quot;
+     * Eligibility for this service. Acceptable values are: - "`All scenarios`" - "`All scenarios except Shopping Actions`" - "`Shopping Actions`"
      */
     eligibility?: string | null;
     /**
@@ -5365,11 +5361,11 @@ export namespace content_v2_1 {
      */
     pickupService?: Schema$PickupCarrierService;
     /**
-     * Shipping rate group definitions. Only the last one is allowed to have an empty `applicableShippingLabels`, which means &quot;everything else&quot;. The other `applicableShippingLabels` must not overlap.
+     * Shipping rate group definitions. Only the last one is allowed to have an empty `applicableShippingLabels`, which means "everything else". The other `applicableShippingLabels` must not overlap.
      */
     rateGroups?: Schema$RateGroup[];
     /**
-     * Type of locations this service ships orders to. Acceptable values are: - &quot;`delivery`&quot; - &quot;`pickup`&quot;
+     * Type of locations this service ships orders to. Acceptable values are: - "`delivery`" - "`pickup`"
      */
     shipmentType?: string | null;
   }
@@ -5382,7 +5378,7 @@ export namespace content_v2_1 {
      */
     endDate?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#settlementReport`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementReport`"
      */
     kind?: string | null;
     /**
@@ -5412,7 +5408,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$SettlementreportsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#settlementreportsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#settlementreportsListResponse".
      */
     kind?: string | null;
     /**
@@ -5434,7 +5430,7 @@ export namespace content_v2_1 {
      */
     identifiers?: Schema$SettlementTransactionIdentifiers;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#settlementTransaction`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#settlementTransaction`"
      */
     kind?: string | null;
     /**
@@ -5445,7 +5441,7 @@ export namespace content_v2_1 {
   export interface Schema$SettlementTransactionAmount {
     commission?: Schema$SettlementTransactionAmountCommission;
     /**
-     * The description of the event. Acceptable values are: - &quot;`taxWithhold`&quot; - &quot;`principal`&quot; - &quot;`principalAdjustment`&quot; - &quot;`shippingFee`&quot; - &quot;`merchantRemittedSalesTax`&quot; - &quot;`googleRemittedSalesTax`&quot; - &quot;`merchantCoupon`&quot; - &quot;`merchantCouponTax`&quot; - &quot;`merchantRemittedDisposalTax`&quot; - &quot;`googleRemittedDisposalTax`&quot; - &quot;`merchantRemittedRedemptionFee`&quot; - &quot;`googleRemittedRedemptionFee`&quot; - &quot;`eeeEcoFee`&quot; - &quot;`furnitureEcoFee`&quot; - &quot;`copyPrivateFee`&quot; - &quot;`eeeEcoFeeCommission`&quot; - &quot;`furnitureEcoFeeCommission`&quot; - &quot;`copyPrivateFeeCommission`&quot; - &quot;`principalRefund`&quot; - &quot;`principalRefundTax`&quot; - &quot;`itemCommission`&quot; - &quot;`adjustmentCommission`&quot; - &quot;`shippingFeeCommission`&quot; - &quot;`commissionRefund`&quot; - &quot;`damaged`&quot; - &quot;`damagedOrDefectiveItem`&quot; - &quot;`expiredItem`&quot; - &quot;`faultyItem`&quot; - &quot;`incorrectItemReceived`&quot; - &quot;`itemMissing`&quot; - &quot;`qualityNotExpected`&quot; - &quot;`receivedTooLate`&quot; - &quot;`storePackageMissing`&quot; - &quot;`transitPackageMissing`&quot; - &quot;`unsuccessfulDeliveryUndeliverable`&quot; - &quot;`wrongChargeInStore`&quot; - &quot;`wrongItem`&quot; - &quot;`returns`&quot; - &quot;`undeliverable`&quot; - &quot;`refundFromMerchant`&quot; - &quot;`returnLabelShippingFee`&quot;
+     * The description of the event. Acceptable values are: - "`taxWithhold`" - "`principal`" - "`principalAdjustment`" - "`shippingFee`" - "`merchantRemittedSalesTax`" - "`googleRemittedSalesTax`" - "`merchantCoupon`" - "`merchantCouponTax`" - "`merchantRemittedDisposalTax`" - "`googleRemittedDisposalTax`" - "`merchantRemittedRedemptionFee`" - "`googleRemittedRedemptionFee`" - "`eeeEcoFee`" - "`furnitureEcoFee`" - "`copyPrivateFee`" - "`eeeEcoFeeCommission`" - "`furnitureEcoFeeCommission`" - "`copyPrivateFeeCommission`" - "`principalRefund`" - "`principalRefundTax`" - "`itemCommission`" - "`adjustmentCommission`" - "`shippingFeeCommission`" - "`commissionRefund`" - "`damaged`" - "`damagedOrDefectiveItem`" - "`expiredItem`" - "`faultyItem`" - "`incorrectItemReceived`" - "`itemMissing`" - "`qualityNotExpected`" - "`receivedTooLate`" - "`storePackageMissing`" - "`transitPackageMissing`" - "`unsuccessfulDeliveryUndeliverable`" - "`wrongChargeInStore`" - "`wrongItem`" - "`returns`" - "`undeliverable`" - "`refundFromMerchant`" - "`returnLabelShippingFee`"
      */
     description?: string | null;
     /**
@@ -5453,13 +5449,13 @@ export namespace content_v2_1 {
      */
     transactionAmount?: Schema$Price;
     /**
-     * The type of the amount. Acceptable values are: - &quot;`itemPrice`&quot; - &quot;`orderPrice`&quot; - &quot;`refund`&quot; - &quot;`earlyRefund`&quot; - &quot;`courtesyRefund`&quot; - &quot;`returnRefund`&quot; - &quot;`returnLabelShippingFeeAmount`&quot;
+     * The type of the amount. Acceptable values are: - "`itemPrice`" - "`orderPrice`" - "`refund`" - "`earlyRefund`" - "`courtesyRefund`" - "`returnRefund`" - "`returnLabelShippingFeeAmount`"
      */
     type?: string | null;
   }
   export interface Schema$SettlementTransactionAmountCommission {
     /**
-     * The category of the commission. Acceptable values are: - &quot;`animalsAndPetSupplies`&quot; - &quot;`dogCatFoodAndCatLitter`&quot; - &quot;`apparelAndAccessories`&quot; - &quot;`shoesHandbagsAndSunglasses`&quot; - &quot;`costumesAndAccessories`&quot; - &quot;`jewelry`&quot; - &quot;`watches`&quot; - &quot;`hobbiesArtsAndCrafts`&quot; - &quot;`homeAndGarden`&quot; - &quot;`entertainmentCollectibles`&quot; - &quot;`collectibleCoins`&quot; - &quot;`sportsCollectibles`&quot; - &quot;`sportingGoods`&quot; - &quot;`toysAndGames`&quot; - &quot;`musicalInstruments`&quot; - &quot;`giftCards`&quot; - &quot;`babyAndToddler`&quot; - &quot;`babyFoodWipesAndDiapers`&quot; - &quot;`businessAndIndustrial`&quot; - &quot;`camerasOpticsAndPhotography`&quot; - &quot;`consumerElectronics`&quot; - &quot;`electronicsAccessories`&quot; - &quot;`personalComputers`&quot; - &quot;`videoGameConsoles`&quot; - &quot;`foodAndGrocery`&quot; - &quot;`beverages`&quot; - &quot;`tobaccoProducts`&quot; - &quot;`furniture`&quot; - &quot;`hardware`&quot; - &quot;`buildingMaterials`&quot; - &quot;`tools`&quot; - &quot;`healthAndPersonalCare`&quot; - &quot;`beauty`&quot; - &quot;`householdSupplies`&quot; - &quot;`kitchenAndDining`&quot; - &quot;`majorAppliances`&quot; - &quot;`luggageAndBags`&quot; - &quot;`media`&quot; - &quot;`officeSupplies`&quot; - &quot;`softwareAndVideoGames`&quot; - &quot;`vehiclePartsAndAccessories`&quot; - &quot;`vehicleTiresAndWheels`&quot; - &quot;`vehicles`&quot; - &quot;`everythingElse`&quot;
+     * The category of the commission. Acceptable values are: - "`animalsAndPetSupplies`" - "`dogCatFoodAndCatLitter`" - "`apparelAndAccessories`" - "`shoesHandbagsAndSunglasses`" - "`costumesAndAccessories`" - "`jewelry`" - "`watches`" - "`hobbiesArtsAndCrafts`" - "`homeAndGarden`" - "`entertainmentCollectibles`" - "`collectibleCoins`" - "`sportsCollectibles`" - "`sportingGoods`" - "`toysAndGames`" - "`musicalInstruments`" - "`giftCards`" - "`babyAndToddler`" - "`babyFoodWipesAndDiapers`" - "`businessAndIndustrial`" - "`camerasOpticsAndPhotography`" - "`consumerElectronics`" - "`electronicsAccessories`" - "`personalComputers`" - "`videoGameConsoles`" - "`foodAndGrocery`" - "`beverages`" - "`tobaccoProducts`" - "`furniture`" - "`hardware`" - "`buildingMaterials`" - "`tools`" - "`healthAndPersonalCare`" - "`beauty`" - "`householdSupplies`" - "`kitchenAndDining`" - "`majorAppliances`" - "`luggageAndBags`" - "`media`" - "`officeSupplies`" - "`softwareAndVideoGames`" - "`vehiclePartsAndAccessories`" - "`vehicleTiresAndWheels`" - "`vehicles`" - "`everythingElse`"
      */
     category?: string | null;
     /**
@@ -5495,7 +5491,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$SettlementtransactionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#settlementtransactionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#settlementtransactionsListResponse".
      */
     kind?: string | null;
     /**
@@ -5510,7 +5506,7 @@ export namespace content_v2_1 {
      */
     postDate?: string | null;
     /**
-     * The type of the transaction that occurred. Acceptable values are: - &quot;`order`&quot; - &quot;`reversal`&quot; - &quot;`orderRefund`&quot; - &quot;`reversalRefund`&quot; - &quot;`issueRelatedRefundAndReplacement`&quot; - &quot;`returnLabelShippingFeeTransaction`&quot; - &quot;`reversalIssueRelatedRefundAndReplacement`&quot; - &quot;`reversalReturnLabelShippingFeeTransaction`&quot;
+     * The type of the transaction that occurred. Acceptable values are: - "`order`" - "`reversal`" - "`orderRefund`" - "`reversalRefund`" - "`issueRelatedRefundAndReplacement`" - "`returnLabelShippingFeeTransaction`" - "`reversalIssueRelatedRefundAndReplacement`" - "`reversalReturnLabelShippingFeeTransaction`"
      */
     type?: string | null;
   }
@@ -5548,7 +5544,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ShipmentTrackingInfo {
     /**
-     * The shipping carrier that handles the package. Acceptable values are: - &quot;`boxtal`&quot; - &quot;`bpost`&quot; - &quot;`chronopost`&quot; - &quot;`colisPrive`&quot; - &quot;`colissimo`&quot; - &quot;`cxt`&quot; - &quot;`deliv`&quot; - &quot;`dhl`&quot; - &quot;`dpd`&quot; - &quot;`dynamex`&quot; - &quot;`eCourier`&quot; - &quot;`easypost`&quot; - &quot;`efw`&quot; - &quot;`fedex`&quot; - &quot;`fedexSmartpost`&quot; - &quot;`geodis`&quot; - &quot;`gls`&quot; - &quot;`googleCourier`&quot; - &quot;`gsx`&quot; - &quot;`jdLogistics`&quot; - &quot;`laPoste`&quot; - &quot;`lasership`&quot; - &quot;`manual`&quot; - &quot;`mpx`&quot; - &quot;`onTrac`&quot; - &quot;`other`&quot; - &quot;`tnt`&quot; - &quot;`uds`&quot; - &quot;`ups`&quot; - &quot;`usps`&quot;
+     * The shipping carrier that handles the package. Acceptable values are: - "`boxtal`" - "`bpost`" - "`chronopost`" - "`colisPrive`" - "`colissimo`" - "`cxt`" - "`deliv`" - "`dhl`" - "`dpd`" - "`dynamex`" - "`eCourier`" - "`easypost`" - "`efw`" - "`fedex`" - "`fedexSmartpost`" - "`geodis`" - "`gls`" - "`googleCourier`" - "`gsx`" - "`jdLogistics`" - "`laPoste`" - "`lasership`" - "`manual`" - "`mpx`" - "`onTrac`" - "`other`" - "`tnt`" - "`uds`" - "`ups`" - "`usps`"
      */
     carrier?: string | null;
     /**
@@ -5557,7 +5553,7 @@ export namespace content_v2_1 {
     trackingNumber?: string | null;
   }
   /**
-   * The merchant account&#39;s shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.
+   * The merchant account's shipping settings. All methods except getsupportedcarriers and getsupportedholidays require the admin role.
    */
   export interface Schema$ShippingSettings {
     /**
@@ -5569,7 +5565,7 @@ export namespace content_v2_1 {
      */
     postalCodeGroups?: Schema$PostalCodeGroup[];
     /**
-     * The target account&#39;s list of services. Optional.
+     * The target account's list of services. Optional.
      */
     services?: Schema$Service[];
   }
@@ -5596,7 +5592,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string | null;
     /**
-     * The method of the batch entry. Acceptable values are: - &quot;`get`&quot; - &quot;`update`&quot;
+     * The method of the batch entry. Acceptable values are: - "`get`" - "`update`"
      */
     method?: string | null;
     /**
@@ -5610,7 +5606,7 @@ export namespace content_v2_1 {
      */
     entries?: Schema$ShippingsettingsCustomBatchResponseEntry[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsCustomBatchResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsCustomBatchResponse".
      */
     kind?: string | null;
   }
@@ -5627,7 +5623,7 @@ export namespace content_v2_1 {
      */
     errors?: Schema$Errors;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#shippingsettingsCustomBatchResponseEntry`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#shippingsettingsCustomBatchResponseEntry`"
      */
     kind?: string | null;
     /**
@@ -5641,7 +5637,7 @@ export namespace content_v2_1 {
      */
     carriers?: Schema$CarriersCarrier[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedCarriersResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedCarriersResponse".
      */
     kind?: string | null;
   }
@@ -5651,13 +5647,13 @@ export namespace content_v2_1 {
      */
     holidays?: Schema$HolidaysHoliday[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedHolidaysResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedHolidaysResponse".
      */
     kind?: string | null;
   }
   export interface Schema$ShippingsettingsGetSupportedPickupServicesResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsGetSupportedPickupServicesResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsGetSupportedPickupServicesResponse".
      */
     kind?: string | null;
     /**
@@ -5667,7 +5663,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$ShippingsettingsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;content#shippingsettingsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "content#shippingsettingsListResponse".
      */
     kind?: string | null;
     /**
@@ -5678,7 +5674,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$Table {
     /**
-     * Headers of the table&#39;s columns. Optional: if not set then the table has only one dimension.
+     * Headers of the table's columns. Optional: if not set then the table has only one dimension.
      */
     columnHeaders?: Schema$Headers;
     /**
@@ -5686,7 +5682,7 @@ export namespace content_v2_1 {
      */
     name?: string | null;
     /**
-     * Headers of the table&#39;s rows. Required.
+     * Headers of the table's rows. Required.
      */
     rowHeaders?: Schema$Headers;
     /**
@@ -5704,7 +5700,7 @@ export namespace content_v2_1 {
      */
     enableOrderinvoices?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;`content#testOrder`&quot;
+     * Identifies what kind of resource this is. Value: the fixed string "`content#testOrder`"
      */
     kind?: string | null;
     /**
@@ -5720,19 +5716,19 @@ export namespace content_v2_1 {
      */
     pickupDetails?: Schema$TestOrderPickupDetails;
     /**
-     * Required. The billing address. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
+     * Required. The billing address. Acceptable values are: - "`dwight`" - "`jim`" - "`pam`"
      */
     predefinedBillingAddress?: string | null;
     /**
-     * Required. Identifier of one of the predefined delivery addresses for the delivery. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
+     * Required. Identifier of one of the predefined delivery addresses for the delivery. Acceptable values are: - "`dwight`" - "`jim`" - "`pam`"
      */
     predefinedDeliveryAddress?: string | null;
     /**
-     * Required. Email address of the customer. Acceptable values are: - &quot;`pog.dwight.schrute@gmail.com`&quot; - &quot;`pog.jim.halpert@gmail.com`&quot; - &quot;`penpog.pam.beesly@gmail.comding`&quot;
+     * Required. Email address of the customer. Acceptable values are: - "`pog.dwight.schrute@gmail.com`" - "`pog.jim.halpert@gmail.com`" - "`penpog.pam.beesly@gmail.comding`"
      */
     predefinedEmail?: string | null;
     /**
-     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type `pickup`. Acceptable values are: - &quot;`dwight`&quot; - &quot;`jim`&quot; - &quot;`pam`&quot;
+     * Identifier of one of the predefined pickup details. Required for orders containing line items with shipping type `pickup`. Acceptable values are: - "`dwight`" - "`jim`" - "`pam`"
      */
     predefinedPickupDetails?: string | null;
     /**
@@ -5744,13 +5740,13 @@ export namespace content_v2_1 {
      */
     shippingCost?: Schema$Price;
     /**
-     * Required. The requested shipping option. Acceptable values are: - &quot;`economy`&quot; - &quot;`expedited`&quot; - &quot;`oneDay`&quot; - &quot;`sameDay`&quot; - &quot;`standard`&quot; - &quot;`twoDay`&quot;
+     * Required. The requested shipping option. Acceptable values are: - "`economy`" - "`expedited`" - "`oneDay`" - "`sameDay`" - "`standard`" - "`twoDay`"
      */
     shippingOption?: string | null;
   }
   export interface Schema$TestOrderAddress {
     /**
-     * CLDR country code (e.g. &quot;US&quot;).
+     * CLDR country code (e.g. "US").
      */
     country?: string | null;
     /**
@@ -5766,7 +5762,7 @@ export namespace content_v2_1 {
      */
     locality?: string | null;
     /**
-     * Postal Code or ZIP (e.g. &quot;94043&quot;).
+     * Postal Code or ZIP (e.g. "94043").
      */
     postalCode?: string | null;
     /**
@@ -5774,7 +5770,7 @@ export namespace content_v2_1 {
      */
     recipientName?: string | null;
     /**
-     * Top-level administrative subdivision of the country. For example, a state like California (&quot;CA&quot;) or a province like Quebec (&quot;QC&quot;).
+     * Top-level administrative subdivision of the country. For example, a state like California ("CA") or a province like Quebec ("QC").
      */
     region?: string | null;
     /**
@@ -5816,11 +5812,11 @@ export namespace content_v2_1 {
      */
     brand?: string | null;
     /**
-     * Required. Condition or state of the item. Acceptable values are: - &quot;`new`&quot;
+     * Required. Condition or state of the item. Acceptable values are: - "`new`"
      */
     condition?: string | null;
     /**
-     * Required. The two-letter ISO 639-1 language code for the item. Acceptable values are: - &quot;`en`&quot; - &quot;`fr`&quot;
+     * Required. The two-letter ISO 639-1 language code for the item. Acceptable values are: - "`en`" - "`fr`"
      */
     contentLanguage?: string | null;
     /**
@@ -5874,7 +5870,7 @@ export namespace content_v2_1 {
      */
     pickupLocationAddress?: Schema$TestOrderAddress;
     /**
-     * Pickup location type. Acceptable values are: - &quot;`locker`&quot; - &quot;`store`&quot; - &quot;`curbside`&quot;
+     * Pickup location type. Acceptable values are: - "`locker`" - "`store`" - "`curbside`"
      */
     pickupLocationType?: string | null;
     /**
@@ -5894,12 +5890,12 @@ export namespace content_v2_1 {
   }
   export interface Schema$TransitTable {
     /**
-     * A list of postal group names. The last value can be `&quot;all other locations&quot;`. Example: `[&quot;zone 1&quot;, &quot;zone 2&quot;, &quot;all other locations&quot;]`. The referred postal code groups must match the delivery country of the service.
+     * A list of postal group names. The last value can be `"all other locations"`. Example: `["zone 1", "zone 2", "all other locations"]`. The referred postal code groups must match the delivery country of the service.
      */
     postalCodeGroupNames?: string[] | null;
     rows?: Schema$TransitTableTransitTimeRow[];
     /**
-     * A list of transit time labels. The last value can be `&quot;all other labels&quot;`. Example: `[&quot;food&quot;, &quot;electronics&quot;, &quot;all other labels&quot;]`.
+     * A list of transit time labels. The last value can be `"all other labels"`. Example: `["food", "electronics", "all other labels"]`.
      */
     transitTimeLabels?: string[] | null;
   }
@@ -5936,7 +5932,7 @@ export namespace content_v2_1 {
      */
     additionalChargeAmount?: Schema$Amount;
     /**
-     * [required] Type of the additional charge. Acceptable values are: - &quot;`shipping`&quot;
+     * [required] Type of the additional charge. Acceptable values are: - "`shipping`"
      */
     type?: string | null;
   }
@@ -5950,12 +5946,12 @@ export namespace content_v2_1 {
      */
     taxName?: string | null;
     /**
-     * [required] Type of the tax. Acceptable values are: - &quot;`otherFee`&quot; - &quot;`otherFeeTax`&quot; - &quot;`sales`&quot;
+     * [required] Type of the tax. Acceptable values are: - "`otherFee`" - "`otherFeeTax`" - "`sales`"
      */
     taxType?: string | null;
   }
   /**
-   * The single value of a rate group or the value of a rate group table&#39;s cell. Exactly one of `noShipping`, `flatRate`, `pricePercentage`, `carrierRateName`, `subtableName` must be set.
+   * The single value of a rate group or the value of a rate group table's cell. Exactly one of `noShipping`, `flatRate`, `pricePercentage`, `carrierRateName`, `subtableName` must be set.
    */
   export interface Schema$Value {
     /**
@@ -5967,11 +5963,11 @@ export namespace content_v2_1 {
      */
     flatRate?: Schema$Price;
     /**
-     * If true, then the product can&#39;t ship. Must be true when set, can only be set if all other fields are not set.
+     * If true, then the product can't ship. Must be true when set, can only be set if all other fields are not set.
      */
     noShipping?: boolean | null;
     /**
-     * A percentage of the price represented as a number in decimal notation (e.g., `&quot;5.4&quot;`). Can only be set if all other fields are not set.
+     * A percentage of the price represented as a number in decimal notation (e.g., `"5.4"`). Can only be set if all other fields are not set.
      */
     pricePercentage?: string | null;
     /**
@@ -5981,7 +5977,7 @@ export namespace content_v2_1 {
   }
   export interface Schema$Weight {
     /**
-     * Required. The weight unit. Acceptable values are: - &quot;`kg`&quot; - &quot;`lb`&quot;
+     * Required. The weight unit. Acceptable values are: - "`kg`" - "`lb`"
      */
     unit?: string | null;
     /**
@@ -5999,9 +5995,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.authinfo
-     * @desc Returns information about the authenticated user.
+     * Returns information about the authenticated user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6039,13 +6035,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.authinfo
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     authinfo(
       params: Params$Resource$Accounts$Authinfo,
@@ -6127,7 +6122,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsAuthInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsAuthInfoResponse>(parameters);
@@ -6135,9 +6130,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.claimwebsite
-     * @desc Claims the website of a Merchant Center sub-account.
+     * Claims the website of a Merchant Center sub-account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6181,16 +6176,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.claimwebsite
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account whose website is claimed.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {boolean=} params.overwrite Only available to selected merchants. When set to `True`, this flag removes any existing claim on the requested website by another account and replaces it with a claim from this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     claimwebsite(
       params: Params$Resource$Accounts$Claimwebsite,
@@ -6272,7 +6263,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsClaimWebsiteResponse>(
@@ -6282,9 +6273,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.custombatch
-     * @desc Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
+     * Retrieves, inserts, updates, and deletes multiple Merchant Center (sub-)accounts in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6330,14 +6321,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AccountsCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Accounts$Custombatch,
@@ -6419,7 +6408,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsCustomBatchResponse>(parameters);
@@ -6427,9 +6416,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.delete
-     * @desc Deletes a Merchant Center sub-account.
+     * Deletes a Merchant Center sub-account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6468,16 +6457,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account.
-     * @param {boolean=} params.force Flag to delete sub-accounts with products. The default value is false.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account, and accountId must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Delete,
@@ -6548,7 +6533,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6556,9 +6541,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.get
-     * @desc Retrieves a Merchant Center account.
+     * Retrieves a Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6614,16 +6599,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {string=} params.view Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -6696,7 +6677,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -6704,9 +6685,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.insert
-     * @desc Creates a Merchant Center sub-account.
+     * Creates a Merchant Center sub-account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6778,15 +6759,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Accounts$Insert,
@@ -6860,7 +6838,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -6868,9 +6846,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.link
-     * @desc Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
+     * Performs an action on a link between two Merchant Center accounts, namely accountId and linkedAccountId.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -6923,16 +6901,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.link
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account that should be linked.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {().AccountsLinkRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     link(
       params: Params$Resource$Accounts$Link,
@@ -7010,7 +6984,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsLinkResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsLinkResponse>(parameters);
@@ -7018,9 +6992,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.list
-     * @desc Lists the sub-accounts in your Merchant Center account.
+     * Lists the sub-accounts in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7070,18 +7044,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.label If view is set to "css", only return accounts that are assigned label with given ID.
-     * @param {integer=} params.maxResults The maximum number of accounts to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.view Controls which fields will be populated. Acceptable values are: "merchant" and "css". The default value is "merchant".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -7160,7 +7128,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
@@ -7168,9 +7136,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.listlinks
-     * @desc Returns the list of accounts linked to your Merchant Center account.
+     * Returns the list of accounts linked to your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7218,17 +7186,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.listlinks
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to list links.
-     * @param {integer=} params.maxResults The maximum number of links to return in the response, used for pagination.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listlinks(
       params: Params$Resource$Accounts$Listlinks,
@@ -7310,7 +7273,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsListLinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsListLinksResponse>(parameters);
@@ -7318,9 +7281,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.update
-     * @desc Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
+     * Updates a Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7394,16 +7357,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Update,
@@ -7476,7 +7435,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -7484,9 +7443,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.updatelabels
-     * @desc Updates labels that are assigned to the Merchant Center account by CSS user.
+     * Updates labels that are assigned to the Merchant Center account by CSS user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7536,16 +7495,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.updatelabels
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account whose labels are updated.
-     * @param {string} params.merchantId The ID of the managing account.
-     * @param {().AccountsUpdateLabelsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatelabels(
       params: Params$Resource$Accounts$Updatelabels,
@@ -7627,7 +7582,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountsUpdateLabelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsUpdateLabelsResponse>(
@@ -7795,9 +7750,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.labels.create
-     * @desc Creates a new label, not assigned to any account.
+     * Creates a new label, not assigned to any account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7851,15 +7806,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.labels.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Required. The id of the account this label belongs to.
-     * @param {().AccountLabel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Accounts$Labels$Create,
@@ -7933,7 +7885,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountLabel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountLabel>(parameters);
@@ -7941,9 +7893,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.labels.delete
-     * @desc Deletes a label and removes it from all accounts to which it was assigned.
+     * Deletes a label and removes it from all accounts to which it was assigned.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -7980,15 +7932,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.labels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Required. The id of the account that owns the label.
-     * @param {string} params.labelId Required. The id of the label to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Labels$Delete,
@@ -8060,7 +8009,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8068,9 +8017,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.labels.list
-     * @desc Lists the labels assigned to an account.
+     * Lists the labels assigned to an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8115,16 +8064,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.labels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Required. The account id for whose labels are to be listed.
-     * @param {integer=} params.pageSize The maximum number of labels to return. The service may return fewer than this value. If unspecified, at most 50 labels will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListAccountLabels` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountLabels` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Labels$List,
@@ -8205,7 +8150,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ListAccountLabelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAccountLabelsResponse>(parameters);
@@ -8213,9 +8158,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounts.labels.patch
-     * @desc Updates a label.
+     * Updates a label.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8271,16 +8216,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounts.labels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Required. The id of the account this label belongs to.
-     * @param {string} params.labelId Required. The id of the label to update.
-     * @param {().AccountLabel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Labels$Patch,
@@ -8354,7 +8295,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountLabel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountLabel>(parameters);
@@ -8424,9 +8365,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accountstatuses.custombatch
-     * @desc Retrieves multiple Merchant Center account statuses in a single request.
+     * Retrieves multiple Merchant Center account statuses in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8472,14 +8413,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accountstatuses.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AccountstatusesCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Accountstatuses$Custombatch,
@@ -8561,7 +8500,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountstatusesCustomBatchResponse>(
@@ -8571,9 +8510,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accountstatuses.get
-     * @desc Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
+     * Retrieves the status of a Merchant Center account. No itemLevelIssues are returned for multi-client accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8621,16 +8560,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accountstatuses.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account.
-     * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accountstatuses$Get,
@@ -8704,7 +8639,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountStatus>(parameters);
@@ -8712,9 +8647,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accountstatuses.list
-     * @desc Lists the statuses of the sub-accounts in your Merchant Center account.
+     * Lists the statuses of the sub-accounts in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8762,17 +8697,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accountstatuses.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     * @param {integer=} params.maxResults The maximum number of account statuses to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accountstatuses$List,
@@ -8853,7 +8783,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountstatusesListResponse>(parameters);
@@ -8910,9 +8840,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounttax.custombatch
-     * @desc Retrieves and updates tax settings of multiple accounts in a single request.
+     * Retrieves and updates tax settings of multiple accounts in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -8958,14 +8888,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounttax.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AccounttaxCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Accounttax$Custombatch,
@@ -9047,7 +8975,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccounttaxCustomBatchResponse>(
@@ -9057,9 +8985,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounttax.get
-     * @desc Retrieves the tax settings of the account.
+     * Retrieves the tax settings of the account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9103,15 +9031,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounttax.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounttax$Get,
@@ -9184,7 +9109,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountTax>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTax>(parameters);
@@ -9192,9 +9117,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounttax.list
-     * @desc Lists the tax settings of the sub-accounts in your Merchant Center account.
+     * Lists the tax settings of the sub-accounts in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9240,16 +9165,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounttax.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of tax settings to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounttax$List,
@@ -9328,7 +9249,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccounttaxListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccounttaxListResponse>(parameters);
@@ -9336,9 +9257,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.accounttax.update
-     * @desc Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
+     * Updates the tax settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9392,16 +9313,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.accounttax.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update account tax settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {().AccountTax} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounttax$Update,
@@ -9475,7 +9392,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$AccountTax>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTax>(parameters);
@@ -9538,9 +9455,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.csses.get
-     * @desc Retrieves a single CSS domain by ID.
+     * Retrieves a single CSS domain by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9587,15 +9504,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.csses.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cssDomainId Required. The ID of the CSS domain to return.
-     * @param {string} params.cssGroupId Required. The ID of the managing account. If this parameter is not the same as [cssDomainId](#cssDomainId), then this ID must be a CSS group ID and `cssDomainId` must be the ID of a CSS domain affiliated with this group.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Csses$Get,
@@ -9668,7 +9582,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Css>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Css>(parameters);
@@ -9676,9 +9590,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.csses.list
-     * @desc Lists CSS domains affiliated with a CSS group.
+     * Lists CSS domains affiliated with a CSS group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9723,16 +9637,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.csses.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cssGroupId Required. The CSS group ID of CSS domains to be listed.
-     * @param {integer=} params.pageSize The maximum number of CSS domains to return. The service may return fewer than this value. If unspecified, at most 50 CSS domains will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListCsses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListCsses` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Csses$List,
@@ -9809,7 +9719,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ListCssesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCssesResponse>(parameters);
@@ -9817,9 +9727,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.csses.updatelabels
-     * @desc Updates labels that are assigned to a CSS domain by its CSS group.
+     * Updates labels that are assigned to a CSS domain by its CSS group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -9874,16 +9784,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.csses.updatelabels
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.cssDomainId Required. The ID of the updated CSS domain.
-     * @param {string} params.cssGroupId Required. The CSS group ID of the updated CSS domain.
-     * @param {().LabelIds} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatelabels(
       params: Params$Resource$Csses$Updatelabels,
@@ -9958,7 +9864,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Css>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Css>(parameters);
@@ -10014,9 +9920,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.custombatch
-     * @desc Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
+     * Deletes, fetches, gets, inserts and updates multiple datafeeds in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10062,14 +9968,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DatafeedsCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Datafeeds$Custombatch,
@@ -10151,7 +10055,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsCustomBatchResponse>(
@@ -10161,9 +10065,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.delete
-     * @desc Deletes a datafeed configuration from your Merchant Center account.
+     * Deletes a datafeed configuration from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10200,15 +10104,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Datafeeds$Delete,
@@ -10279,7 +10180,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10287,9 +10188,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.fetchnow
-     * @desc Invokes a fetch for the datafeed in your Merchant Center account.
+     * Invokes a fetch for the datafeed in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10331,15 +10232,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.fetchnow
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datafeedId The ID of the datafeed to be fetched.
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     fetchnow(
       params: Params$Resource$Datafeeds$Fetchnow,
@@ -10421,7 +10319,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsFetchNowResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsFetchNowResponse>(parameters);
@@ -10429,9 +10327,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.get
-     * @desc Retrieves a datafeed configuration from your Merchant Center account.
+     * Retrieves a datafeed configuration from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10481,15 +10379,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Datafeeds$Get,
@@ -10562,7 +10457,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -10570,9 +10465,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.insert
-     * @desc Registers a datafeed configuration with your Merchant Center account.
+     * Registers a datafeed configuration with your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10636,15 +10531,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {().Datafeed} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Datafeeds$Insert,
@@ -10718,7 +10610,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -10726,9 +10618,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.list
-     * @desc Lists the configurations for datafeeds in your Merchant Center account.
+     * Lists the configurations for datafeeds in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10774,16 +10666,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Datafeeds$List,
@@ -10862,7 +10750,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedsListResponse>(parameters);
@@ -10870,9 +10758,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeeds.update
-     * @desc Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
+     * Updates a datafeed configuration of your Merchant Center account. Any fields that are not provided are deleted from the resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -10938,16 +10826,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeeds.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {().Datafeed} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Datafeeds$Update,
@@ -11020,7 +10904,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Datafeed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Datafeed>(parameters);
@@ -11114,9 +10998,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeedstatuses.custombatch
-     * @desc Gets multiple Merchant Center datafeed statuses in a single request.
+     * Gets multiple Merchant Center datafeed statuses in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11162,14 +11046,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeedstatuses.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().DatafeedstatusesCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Datafeedstatuses$Custombatch,
@@ -11251,7 +11133,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesCustomBatchResponse>(
@@ -11261,9 +11143,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeedstatuses.get
-     * @desc Retrieves the status of a datafeed from your Merchant Center account.
+     * Retrieves the status of a datafeed from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11318,17 +11200,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeedstatuses.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country The country for which to get the datafeed status. If this parameter is provided then language must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     * @param {string} params.datafeedId The ID of the datafeed.
-     * @param {string=} params.language The language for which to get the datafeed status. If this parameter is provided then country must also be provided. Note that this parameter is required for feeds targeting multiple countries and languages, since a feed may have a different status for each target.
-     * @param {string} params.merchantId The ID of the account that manages the datafeed. This account cannot be a multi-client account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Datafeedstatuses$Get,
@@ -11403,7 +11280,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedStatus>(parameters);
@@ -11411,9 +11288,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.datafeedstatuses.list
-     * @desc Lists the statuses of the datafeeds in your Merchant Center account.
+     * Lists the statuses of the datafeeds in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11459,16 +11336,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.datafeedstatuses.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that manages the datafeeds. This account cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Datafeedstatuses$List,
@@ -11549,7 +11422,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$DatafeedstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatafeedstatusesListResponse>(
@@ -11608,9 +11481,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.custombatch
-     * @desc Retrieves and/or updates the LIA settings of multiple accounts in a single request.
+     * Retrieves and/or updates the LIA settings of multiple accounts in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11656,14 +11529,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().LiasettingsCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Liasettings$Custombatch,
@@ -11745,7 +11616,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsCustomBatchResponse>(
@@ -11755,9 +11626,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.get
-     * @desc Retrieves the LIA settings of the account.
+     * Retrieves the LIA settings of the account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11801,15 +11672,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Liasettings$Get,
@@ -11882,7 +11750,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiaSettings>(parameters);
@@ -11890,9 +11758,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.getaccessiblegmbaccounts
-     * @desc Retrieves the list of accessible Google My Business accounts.
+     * Retrieves the list of accessible Google My Business accounts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -11936,15 +11804,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.getaccessiblegmbaccounts
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getaccessiblegmbaccounts(
       params: Params$Resource$Liasettings$Getaccessiblegmbaccounts,
@@ -12040,7 +11905,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsGetAccessibleGmbAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12050,9 +11915,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.list
-     * @desc Lists the LIA settings of the sub-accounts in your Merchant Center account.
+     * Lists the LIA settings of the sub-accounts in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12098,16 +11963,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of LIA settings to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Liasettings$List,
@@ -12186,7 +12047,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsListResponse>(parameters);
@@ -12194,9 +12055,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.listposdataproviders
-     * @desc Retrieves the list of POS data providers that have active settings for the all eiligible countries.
+     * Retrieves the list of POS data providers that have active settings for the all eiligible countries.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12234,13 +12095,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.listposdataproviders
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listposdataproviders(
       params: Params$Resource$Liasettings$Listposdataproviders,
@@ -12327,7 +12187,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsListPosDataProvidersResponse>(
@@ -12337,9 +12197,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.requestgmbaccess
-     * @desc Requests access to a specified Google My Business account.
+     * Requests access to a specified Google My Business account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12383,16 +12243,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.requestgmbaccess
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which GMB access is requested.
-     * @param {string=} params.gmbEmail The email of the Google My Business account.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     requestgmbaccess(
       params: Params$Resource$Liasettings$Requestgmbaccess,
@@ -12474,7 +12330,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsRequestGmbAccessResponse>(
@@ -12484,9 +12340,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.requestinventoryverification
-     * @desc Requests inventory validation for the specified country.
+     * Requests inventory validation for the specified country.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12530,16 +12386,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.requestinventoryverification
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.country The country for which inventory validation is requested.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     requestinventoryverification(
       params: Params$Resource$Liasettings$Requestinventoryverification,
@@ -12635,7 +12487,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<
           Schema$LiasettingsRequestInventoryVerificationResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$LiasettingsRequestInventoryVerificationResponse
@@ -12644,9 +12496,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.setinventoryverificationcontact
-     * @desc Sets the inventory verification contract for the specified country.
+     * Sets the inventory verification contract for the specified country.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12696,19 +12548,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.setinventoryverificationcontact
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.contactEmail The email of the inventory verification contact.
-     * @param {string=} params.contactName The name of the inventory verification contact.
-     * @param {string=} params.country The country for which inventory verification is requested.
-     * @param {string=} params.language The language for which inventory verification is requested.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setinventoryverificationcontact(
       params: Params$Resource$Liasettings$Setinventoryverificationcontact,
@@ -12804,7 +12649,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<
           Schema$LiasettingsSetInventoryVerificationContactResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$LiasettingsSetInventoryVerificationContactResponse
@@ -12813,9 +12658,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.setposdataprovider
-     * @desc Sets the POS data provider for the specified country.
+     * Sets the POS data provider for the specified country.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -12863,18 +12708,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.setposdataprovider
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to retrieve accessible Google My Business accounts.
-     * @param {string=} params.country The country for which the POS data provider is selected.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {string=} params.posDataProviderId The ID of POS data provider.
-     * @param {string=} params.posExternalAccountId The account ID by which this merchant is known to the POS data provider.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setposdataprovider(
       params: Params$Resource$Liasettings$Setposdataprovider,
@@ -12962,7 +12801,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiasettingsSetPosDataProviderResponse>(
@@ -12972,9 +12811,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.liasettings.update
-     * @desc Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
+     * Updates the LIA settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -13028,16 +12867,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.liasettings.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get or update LIA settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {().LiaSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Liasettings$Update,
@@ -13111,7 +12946,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LiaSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LiaSettings>(parameters);
@@ -13267,9 +13102,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.localinventory.custombatch
-     * @desc Updates local inventory for multiple products or stores in a single request.
+     * Updates local inventory for multiple products or stores in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -13315,14 +13150,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.localinventory.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().LocalinventoryCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Localinventory$Custombatch,
@@ -13404,7 +13237,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LocalinventoryCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocalinventoryCustomBatchResponse>(
@@ -13414,9 +13247,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.localinventory.insert
-     * @desc Updates the local inventory of a product in your Merchant Center account.
+     * Updates the local inventory of a product in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -13484,16 +13317,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.localinventory.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST ID of the product for which to update local inventory.
-     * @param {().LocalInventory} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Localinventory$Insert,
@@ -13568,7 +13397,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$LocalInventory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LocalInventory>(parameters);
@@ -13607,9 +13436,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderinvoices.createchargeinvoice
-     * @desc Creates a charge invoice for a shipment group, and triggers a charge capture for orderinvoice enabled orders.
+     * Creates a charge invoice for a shipment group, and triggers a charge capture for orderinvoice enabled orders.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -13664,16 +13493,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderinvoices.createchargeinvoice
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrderinvoicesCreateChargeInvoiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createchargeinvoice(
       params: Params$Resource$Orderinvoices$Createchargeinvoice,
@@ -13761,7 +13586,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateChargeInvoiceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13771,9 +13596,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderinvoices.createrefundinvoice
-     * @desc Creates a refund invoice for one or more shipment groups, and triggers a refund for orderinvoice enabled orders. This can only be used for line items that have previously been charged using `createChargeInvoice`. All amounts (except for the summary) are incremental with respect to the previous invoice.
+     * Creates a refund invoice for one or more shipment groups, and triggers a refund for orderinvoice enabled orders. This can only be used for line items that have previously been charged using `createChargeInvoice`. All amounts (except for the summary) are incremental with respect to the previous invoice.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -13828,16 +13653,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderinvoices.createrefundinvoice
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrderinvoicesCreateRefundInvoiceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createrefundinvoice(
       params: Params$Resource$Orderinvoices$Createrefundinvoice,
@@ -13925,7 +13746,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderinvoicesCreateRefundInvoiceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13975,9 +13796,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreports.listdisbursements
-     * @desc Retrieves a report for disbursements from your Merchant Center account.
+     * Retrieves a report for disbursements from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14027,18 +13848,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreports.listdisbursements
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.disbursementEndDate The last date which disbursements occurred. In ISO 8601 format. Default: current date.
-     * @param {string=} params.disbursementStartDate The first date which disbursements occurred. In ISO 8601 format.
-     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listdisbursements(
       params: Params$Resource$Orderreports$Listdisbursements,
@@ -14125,7 +13940,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreportsListDisbursementsResponse>(
@@ -14135,9 +13950,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreports.listtransactions
-     * @desc Retrieves a list of transactions for a disbursement from your Merchant Center account.
+     * Retrieves a list of transactions for a disbursement from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14189,19 +14004,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreports.listtransactions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.disbursementId The Google-provided ID of the disbursement (found in Wallet).
-     * @param {integer=} params.maxResults The maximum number of disbursements to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.transactionEndDate The last date in which transaction occurred. In ISO 8601 format. Default: current date.
-     * @param {string=} params.transactionStartDate The first date in which transaction occurred. In ISO 8601 format.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listtransactions(
       params: Params$Resource$Orderreports$Listtransactions,
@@ -14289,7 +14097,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreportsListTransactionsResponse>(
@@ -14357,9 +14165,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreturns.acknowledge
-     * @desc Acks an order return in your Merchant Center account.
+     * Acks an order return in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14410,16 +14218,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreturns.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.returnId The ID of the return.
-     * @param {().OrderreturnsAcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Orderreturns$Acknowledge,
@@ -14501,7 +14305,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreturnsAcknowledgeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreturnsAcknowledgeResponse>(
@@ -14511,9 +14315,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreturns.createorderreturn
-     * @desc Create return in your Merchant Center account.
+     * Create return in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14566,15 +14370,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreturns.createorderreturn
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {().OrderreturnsCreateOrderReturnRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createorderreturn(
       params: Params$Resource$Orderreturns$Createorderreturn,
@@ -14662,7 +14463,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreturnsCreateOrderReturnResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreturnsCreateOrderReturnResponse>(
@@ -14672,9 +14473,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreturns.get
-     * @desc Retrieves an order return from your Merchant Center account.
+     * Retrieves an order return from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14722,15 +14523,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreturns.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.returnId Merchant order return ID generated by Google.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Orderreturns$Get,
@@ -14806,7 +14604,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$MerchantOrderReturn>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MerchantOrderReturn>(parameters);
@@ -14814,9 +14612,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreturns.list
-     * @desc Lists order returns in your Merchant Center account.
+     * Lists order returns in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -14880,25 +14678,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreturns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledged Obtains order returns that match the acknowledgement status. When set to true, obtains order returns that have been acknowledged. When false, obtains order returns that have not been acknowledged. When not provided, obtains order returns regardless of their acknowledgement status. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged order returns are returned.
-     * @param {string=} params.createdEndDate Obtains order returns created before this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.createdStartDate Obtains order returns created after this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.googleOrderIds Obtains order returns with the specified order ids. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
-     * @param {integer=} params.maxResults The maximum number of order returns to return in the response, used for paging. The default value is 25 returns per page, and the maximum allowed value is 250 returns per page.
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.orderBy Return the results in the specified order.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.shipmentStates Obtains order returns that match any shipment state provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment states.
-     * @param {string=} params.shipmentStatus Obtains order returns that match any shipment status provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment statuses.
-     * @param {string=} params.shipmentTrackingNumbers Obtains order returns with the specified tracking numbers. If this parameter is provided, createdStartDate, createdEndDate, shipmentType, shipmentStatus, shipmentState and acknowledged parameters must be not set. Note: if googleOrderId and shipmentTrackingNumber parameters are provided, the obtained results will include all order returns that either match the specified order id or the specified tracking number.
-     * @param {string=} params.shipmentTypes Obtains order returns that match any shipment type provided in this parameter. When this parameter is not provided, order returns are obtained regardless of their shipment types.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Orderreturns$List,
@@ -14978,7 +14763,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreturnsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreturnsListResponse>(parameters);
@@ -14986,9 +14771,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orderreturns.process
-     * @desc Processes return in your Merchant Center account.
+     * Processes return in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15042,16 +14827,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orderreturns.process
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.returnId The ID of the return.
-     * @param {().OrderreturnsProcessRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     process(
       params: Params$Resource$Orderreturns$Process,
@@ -15133,7 +14914,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrderreturnsProcessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderreturnsProcessResponse>(parameters);
@@ -15254,9 +15035,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.acknowledge
-     * @desc Marks an order as acknowledged.
+     * Marks an order as acknowledged.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15307,16 +15088,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersAcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Orders$Acknowledge,
@@ -15398,7 +15175,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersAcknowledgeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersAcknowledgeResponse>(parameters);
@@ -15406,9 +15183,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.advancetestorder
-     * @desc Sandbox only. Moves a test order from state "`inProgress`" to state "`pendingShipment`".
+     * Sandbox only. Moves a test order from state "`inProgress`" to state "`pendingShipment`".
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15450,15 +15227,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.advancetestorder
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the test order to modify.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     advancetestorder(
       params: Params$Resource$Orders$Advancetestorder,
@@ -15540,7 +15314,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersAdvanceTestOrderResponse>(
@@ -15550,9 +15324,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.cancel
-     * @desc Cancels all line items in an order, making a full refund.
+     * Cancels all line items in an order, making a full refund.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15605,16 +15379,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order to cancel.
-     * @param {().OrdersCancelRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Orders$Cancel,
@@ -15692,7 +15462,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelResponse>(parameters);
@@ -15700,9 +15470,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.cancellineitem
-     * @desc Cancels a line item, making a full refund.
+     * Cancels a line item, making a full refund.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15758,16 +15528,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.cancellineitem
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersCancelLineItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancellineitem(
       params: Params$Resource$Orders$Cancellineitem,
@@ -15849,7 +15615,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelLineItemResponse>(
@@ -15859,9 +15625,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.canceltestorderbycustomer
-     * @desc Sandbox only. Cancels a test order for customer-initiated cancellation.
+     * Sandbox only. Cancels a test order for customer-initiated cancellation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -15911,16 +15677,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.canceltestorderbycustomer
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the test order to cancel.
-     * @param {().OrdersCancelTestOrderByCustomerRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     canceltestorderbycustomer(
       params: Params$Resource$Orders$Canceltestorderbycustomer,
@@ -16008,7 +15770,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCancelTestOrderByCustomerResponse>(
@@ -16018,9 +15780,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.createtestorder
-     * @desc Sandbox only. Creates a test order.
+     * Sandbox only. Creates a test order.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16071,15 +15833,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.createtestorder
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
-     * @param {().OrdersCreateTestOrderRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createtestorder(
       params: Params$Resource$Orders$Createtestorder,
@@ -16161,7 +15920,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestOrderResponse>(
@@ -16171,9 +15930,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.createtestreturn
-     * @desc Sandbox only. Creates a test return.
+     * Sandbox only. Creates a test return.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16224,16 +15983,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.createtestreturn
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersCreateTestReturnRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createtestreturn(
       params: Params$Resource$Orders$Createtestreturn,
@@ -16314,7 +16069,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersCreateTestReturnResponse>(
@@ -16324,9 +16079,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.get
-     * @desc Retrieves an order from your Merchant Center account.
+     * Retrieves an order from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16389,15 +16144,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Orders$Get,
@@ -16470,7 +16222,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Order>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Order>(parameters);
@@ -16478,9 +16230,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.getbymerchantorderid
-     * @desc Retrieves an order using merchant order ID.
+     * Retrieves an order using merchant order ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16523,15 +16275,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.getbymerchantorderid
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.merchantOrderId The merchant order ID to be looked for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getbymerchantorderid(
       params: Params$Resource$Orders$Getbymerchantorderid,
@@ -16613,7 +16362,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersGetByMerchantOrderIdResponse>(
@@ -16623,9 +16372,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.gettestordertemplate
-     * @desc Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
+     * Sandbox only. Retrieves an order template that can be used to quickly create a new order in sandbox.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16670,16 +16419,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.gettestordertemplate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country The country of the template to retrieve. Defaults to `US`.
-     * @param {string} params.merchantId The ID of the account that should manage the order. This cannot be a multi-client account.
-     * @param {string} params.templateName The name of the template to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     gettestordertemplate(
       params: Params$Resource$Orders$Gettestordertemplate,
@@ -16761,7 +16506,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersGetTestOrderTemplateResponse>(
@@ -16771,9 +16516,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.instorerefundlineitem
-     * @desc Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
+     * Deprecated. Notifies that item return and refund was handled directly by merchant outside of Google payments processing (e.g. cash refund done in store). Note: We recommend calling the returnrefundlineitem method to refund in-store returns. We will issue the refund directly to the customer. This helps to prevent possible differences arising between merchant and Google transaction records. We also recommend having the point of sale system communicate with Google to ensure that customers do not receive a double refund by first refunding via Google then via an in-store return.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16831,16 +16576,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.instorerefundlineitem
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersInStoreRefundLineItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     instorerefundlineitem(
       params: Params$Resource$Orders$Instorerefundlineitem,
@@ -16922,7 +16663,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersInStoreRefundLineItemResponse>(
@@ -16932,9 +16673,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.list
-     * @desc Lists the orders in your Merchant Center account.
+     * Lists the orders in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -16990,21 +16731,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acknowledged Obtains orders that match the acknowledgement status. When set to true, obtains orders that have been acknowledged. When false, obtains orders that have not been acknowledged. We recommend using this filter set to `false`, in conjunction with the `acknowledge` call, such that only un-acknowledged orders are returned.
-     * @param {integer=} params.maxResults The maximum number of orders to return in the response, used for paging. The default value is 25 orders per page, and the maximum allowed value is 250 orders per page.
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string=} params.orderBy Order results by placement date in descending or ascending order. Acceptable values are: - placedDateAsc - placedDateDesc
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.placedDateEnd Obtains orders placed before this date (exclusively), in ISO 8601 format.
-     * @param {string=} params.placedDateStart Obtains orders placed after this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.statuses Obtains orders that match any of the specified statuses. Please note that `active` is a shortcut for `pendingShipment` and `partiallyShipped`, and `completed` is a shortcut for `shipped`, `partiallyDelivered`, `delivered`, `partiallyReturned`, `returned`, and `canceled`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Orders$List,
@@ -17081,7 +16813,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersListResponse>(parameters);
@@ -17089,9 +16821,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.refunditem
-     * @desc Issues a partial or total refund for items and shipment.
+     * Issues a partial or total refund for items and shipment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17146,16 +16878,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.refunditem
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order to refund.
-     * @param {().OrdersRefundItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     refunditem(
       params: Params$Resource$Orders$Refunditem,
@@ -17236,7 +16964,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersRefundItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersRefundItemResponse>(parameters);
@@ -17244,9 +16972,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.refundorder
-     * @desc Issues a partial or total refund for an order.
+     * Issues a partial or total refund for an order.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17301,16 +17029,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.refundorder
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order to refund.
-     * @param {().OrdersRefundOrderRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     refundorder(
       params: Params$Resource$Orders$Refundorder,
@@ -17392,7 +17116,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersRefundOrderResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersRefundOrderResponse>(parameters);
@@ -17400,9 +17124,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.rejectreturnlineitem
-     * @desc Rejects return on an line item.
+     * Rejects return on an line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17458,16 +17182,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.rejectreturnlineitem
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersRejectReturnLineItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rejectreturnlineitem(
       params: Params$Resource$Orders$Rejectreturnlineitem,
@@ -17549,7 +17269,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersRejectReturnLineItemResponse>(
@@ -17559,9 +17279,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.returnrefundlineitem
-     * @desc Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
+     * Returns and refunds a line item. Note that this method can only be called on fully shipped orders. Please also note that the Orderreturns API is the preferred way to handle returns after you receive a return from a customer. You can use Orderreturns.list or Orderreturns.get to search for the return, and then use Orderreturns.processreturn to issue the refund. If the return cannot be found, then we recommend using this API to issue a refund.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17619,16 +17339,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.returnrefundlineitem
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersReturnRefundLineItemRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     returnrefundlineitem(
       params: Params$Resource$Orders$Returnrefundlineitem,
@@ -17710,7 +17426,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersReturnRefundLineItemResponse>(
@@ -17720,9 +17436,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.setlineitemmetadata
-     * @desc Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
+     * Sets (or overrides if it already exists) merchant provided annotations in the form of key-value pairs. A common use case would be to supply us with additional structured information about a line item that cannot be provided via other methods. Submitted key-value pairs can be retrieved as part of the orders resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17776,16 +17492,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.setlineitemmetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersSetLineItemMetadataRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setlineitemmetadata(
       params: Params$Resource$Orders$Setlineitemmetadata,
@@ -17867,7 +17579,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersSetLineItemMetadataResponse>(
@@ -17877,9 +17589,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.shiplineitems
-     * @desc Marks line item(s) as shipped.
+     * Marks line item(s) as shipped.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -17933,16 +17645,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.shiplineitems
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersShipLineItemsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     shiplineitems(
       params: Params$Resource$Orders$Shiplineitems,
@@ -18024,7 +17732,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersShipLineItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersShipLineItemsResponse>(parameters);
@@ -18032,9 +17740,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.updatelineitemshippingdetails
-     * @desc Updates ship by and delivery by dates for a line item.
+     * Updates ship by and delivery by dates for a line item.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -18089,16 +17797,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.updatelineitemshippingdetails
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersUpdateLineItemShippingDetailsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatelineitemshippingdetails(
       params: Params$Resource$Orders$Updatelineitemshippingdetails,
@@ -18194,7 +17898,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateLineItemShippingDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -18204,9 +17908,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.updatemerchantorderid
-     * @desc Updates the merchant order ID for a given order.
+     * Updates the merchant order ID for a given order.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -18258,16 +17962,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.updatemerchantorderid
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersUpdateMerchantOrderIdRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updatemerchantorderid(
       params: Params$Resource$Orders$Updatemerchantorderid,
@@ -18349,7 +18049,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersUpdateMerchantOrderIdResponse>(
@@ -18359,9 +18059,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.orders.updateshipment
-     * @desc Updates a shipment's status, carrier, and/or tracking ID.
+     * Updates a shipment's status, carrier, and/or tracking ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -18420,16 +18120,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.orders.updateshipment
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that manages the order. This cannot be a multi-client account.
-     * @param {string} params.orderId The ID of the order.
-     * @param {().OrdersUpdateShipmentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateshipment(
       params: Params$Resource$Orders$Updateshipment,
@@ -18511,7 +18207,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersUpdateShipmentResponse>(
@@ -18861,9 +18557,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.custombatch
-     * @desc Batches multiple POS-related calls in a single request.
+     * Batches multiple POS-related calls in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -18909,14 +18605,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().PosCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Pos$Custombatch,
@@ -18997,7 +18691,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosCustomBatchResponse>(parameters);
@@ -19005,9 +18699,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.delete
-     * @desc Deletes a store for the given merchant.
+     * Deletes a store for the given merchant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19046,16 +18740,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.storeCode A store code that is unique per merchant.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Pos$Delete,
@@ -19127,7 +18817,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -19135,9 +18825,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.get
-     * @desc Retrieves information about the given store.
+     * Retrieves information about the given store.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19183,16 +18873,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.storeCode A store code that is unique per merchant.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pos$Get,
@@ -19266,7 +18952,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosStore>(parameters);
@@ -19274,9 +18960,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.insert
-     * @desc Creates a store for the given merchant.
+     * Creates a store for the given merchant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19330,16 +19016,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {().PosStore} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Pos$Insert,
@@ -19413,7 +19095,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosStore>(parameters);
@@ -19421,9 +19103,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.inventory
-     * @desc Submit inventory for the given merchant.
+     * Submit inventory for the given merchant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19488,16 +19170,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.inventory
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {().PosInventoryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     inventory(
       params: Params$Resource$Pos$Inventory,
@@ -19578,7 +19256,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosInventoryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosInventoryResponse>(parameters);
@@ -19586,9 +19264,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.list
-     * @desc Lists the stores of the target merchant.
+     * Lists the stores of the target merchant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19631,15 +19309,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Pos$List,
@@ -19713,7 +19388,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosListResponse>(parameters);
@@ -19721,9 +19396,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pos.sale
-     * @desc Submit a sale event for the given merchant.
+     * Submit a sale event for the given merchant.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -19790,16 +19465,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pos.sale
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the POS or inventory data provider.
-     * @param {string} params.targetMerchantId The ID of the target merchant.
-     * @param {().PosSaleRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sale(
       params: Params$Resource$Pos$Sale,
@@ -19872,7 +19543,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PosSaleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PosSaleResponse>(parameters);
@@ -19977,9 +19648,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.products.custombatch
-     * @desc Retrieves, inserts, and deletes multiple products in a single request.
+     * Retrieves, inserts, and deletes multiple products in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -20025,14 +19696,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.products.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ProductsCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Products$Custombatch,
@@ -20114,7 +19783,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ProductsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsCustomBatchResponse>(parameters);
@@ -20122,9 +19791,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.products.delete
-     * @desc Deletes a product from your Merchant Center account.
+     * Deletes a product from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -20163,16 +19832,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.products.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.feedId The Content API Supplemental Feed ID.
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Products$Delete,
@@ -20243,7 +19908,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -20251,9 +19916,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.products.get
-     * @desc Retrieves a product from your Merchant Center account.
+     * Retrieves a product from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -20374,15 +20039,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.products.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Products$Get,
@@ -20455,7 +20117,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -20463,9 +20125,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.products.insert
-     * @desc Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
+     * Uploads a product to your Merchant Center account. If an item with the same channel, contentLanguage, offerId, and targetCountry already exists, this method updates that entry.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -20673,16 +20335,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.products.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.feedId The Content API Supplemental Feed ID.
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {().Product} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Products$Insert,
@@ -20756,7 +20414,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -20764,9 +20422,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.products.list
-     * @desc Lists the products in your Merchant Center account. The response might contain fewer items than specified by maxResults. Rely on nextPageToken to determine if there are more items to be requested.
+     * Lists the products in your Merchant Center account. The response might contain fewer items than specified by maxResults. Rely on nextPageToken to determine if there are more items to be requested.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -20812,16 +20470,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.products.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of products to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Products$List,
@@ -20900,7 +20554,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsListResponse>(parameters);
@@ -20976,9 +20630,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.productstatuses.custombatch
-     * @desc Gets the statuses of multiple products in a single request.
+     * Gets the statuses of multiple products in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21024,14 +20678,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.productstatuses.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ProductstatusesCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Productstatuses$Custombatch,
@@ -21113,7 +20765,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductstatusesCustomBatchResponse>(
@@ -21123,9 +20775,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.productstatuses.get
-     * @desc Gets the status of a product from your Merchant Center account.
+     * Gets the status of a product from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21177,16 +20829,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.productstatuses.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST ID of the product.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Productstatuses$Get,
@@ -21260,7 +20908,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ProductStatus>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductStatus>(parameters);
@@ -21268,9 +20916,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.productstatuses.list
-     * @desc Lists the statuses of the products in your Merchant Center account.
+     * Lists the statuses of the products in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21318,17 +20966,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.productstatuses.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.destinations If set, only issues for the specified destinations are returned, otherwise only issues for the Shopping destination.
-     * @param {integer=} params.maxResults The maximum number of product statuses to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the account that contains the products. This account cannot be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Productstatuses$List,
@@ -21409,7 +21052,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ProductstatusesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductstatusesListResponse>(parameters);
@@ -21466,9 +21109,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pubsubnotificationsettings.get
-     * @desc Retrieves a Merchant Center account's pubsub notification settings.
+     * Retrieves a Merchant Center account's pubsub notification settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21510,14 +21153,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pubsubnotificationsettings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account for which to get pubsub notification settings.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pubsubnotificationsettings$Get,
@@ -21598,7 +21239,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PubsubNotificationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PubsubNotificationSettings>(parameters);
@@ -21606,9 +21247,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.pubsubnotificationsettings.update
-     * @desc Register a Merchant Center account for pubsub notifications. Note that cloud topic name should not be provided as part of the request.
+     * Register a Merchant Center account for pubsub notifications. Note that cloud topic name should not be provided as part of the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21660,15 +21301,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.pubsubnotificationsettings.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account.
-     * @param {().PubsubNotificationSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Pubsubnotificationsettings$Update,
@@ -21749,7 +21387,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$PubsubNotificationSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PubsubNotificationSettings>(parameters);
@@ -21784,9 +21422,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.regionalinventory.custombatch
-     * @desc Updates regional inventory for multiple products or regions in a single request.
+     * Updates regional inventory for multiple products or regions in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -21832,14 +21470,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.regionalinventory.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().RegionalinventoryCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Regionalinventory$Custombatch,
@@ -21927,7 +21563,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RegionalinventoryCustomBatchResponse>(
@@ -21937,9 +21573,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.regionalinventory.insert
-     * @desc Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
+     * Update the regional inventory of a product in your Merchant Center account. If a regional inventory with the same region ID already exists, this method updates that entry.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22001,16 +21637,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.regionalinventory.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account that contains the product. This account cannot be a multi-client account.
-     * @param {string} params.productId The REST ID of the product for which to update the regional inventory.
-     * @param {().RegionalInventory} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Regionalinventory$Insert,
@@ -22088,7 +21720,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$RegionalInventory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RegionalInventory>(parameters);
@@ -22127,9 +21759,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.repricingrules.create
-     * @desc Creates a repricing rule for your Merchant Center account.
+     * Creates a repricing rule for your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22197,16 +21829,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.repricingrules.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
-     * @param {string=} params.ruleId Required. The id of the rule to create.
-     * @param {().RepricingRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Repricingrules$Create,
@@ -22280,7 +21908,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$RepricingRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RepricingRule>(parameters);
@@ -22288,9 +21916,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.repricingrules.delete
-     * @desc Deletes a repricing rule in your Merchant Center account.
+     * Deletes a repricing rule in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22327,15 +21955,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.repricingrules.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
-     * @param {string} params.ruleId Required. The id of the rule to Delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Repricingrules$Delete,
@@ -22407,7 +22032,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -22415,9 +22040,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.repricingrules.get
-     * @desc Retrieves a repricing rule from your Merchant Center account.
+     * Retrieves a repricing rule from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22468,15 +22093,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.repricingrules.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
-     * @param {string} params.ruleId Required. The id of the rule to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Repricingrules$Get,
@@ -22550,7 +22172,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$RepricingRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RepricingRule>(parameters);
@@ -22558,9 +22180,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.repricingrules.list
-     * @desc Lists the repricing rules in your Merchant Center account.
+     * Lists the repricing rules in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22609,18 +22231,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.repricingrules.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.countryCode CLDR country code (e.g. "US"), used as a filter on repricing rules.
-     * @param {string=} params.languageCode The two-letter ISO 639-1 language code associated with the repricing rule, used as a filter.
-     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
-     * @param {integer=} params.pageSize The maximum number of repricing rules to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
-     * @param {string=} params.pageToken A page token, received from a previous `ListRepricingRules` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRepricingRules` must match the call that provided the page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Repricingrules$List,
@@ -22701,7 +22317,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ListRepricingRulesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRepricingRulesResponse>(parameters);
@@ -22709,9 +22325,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.repricingrules.patch
-     * @desc Updates a repricing rule in your Merchant Center account. All mutable fields will be overwritten in each update request. In each update, you must provide all required mutable fields, or an error will be thrown. If you do not provide an optional field in the update request, if that field currently exists, it will be deleted from the rule.
+     * Updates a repricing rule in your Merchant Center account. All mutable fields will be overwritten in each update request. In each update, you must provide all required mutable fields, or an error will be thrown. If you do not provide an optional field in the update request, if that field currently exists, it will be deleted from the rule.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -22779,16 +22395,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.repricingrules.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId Required. The id of the merchant who owns the repricing rule.
-     * @param {string} params.ruleId Required. The id of the rule to update.
-     * @param {().RepricingRule} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Repricingrules$Patch,
@@ -22862,7 +22474,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$RepricingRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RepricingRule>(parameters);
@@ -22955,9 +22567,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnaddress.custombatch
-     * @desc Batches multiple return address related calls in a single request.
+     * Batches multiple return address related calls in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23003,14 +22615,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnaddress.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ReturnaddressCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Returnaddress$Custombatch,
@@ -23092,7 +22702,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnaddressCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnaddressCustomBatchResponse>(
@@ -23102,9 +22712,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnaddress.delete
-     * @desc Deletes a return address for the given Merchant Center account.
+     * Deletes a return address for the given Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23141,15 +22751,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnaddress.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account from which to delete the given return address.
-     * @param {string} params.returnAddressId Return address ID generated by Google.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Returnaddress$Delete,
@@ -23222,7 +22829,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -23230,9 +22837,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnaddress.get
-     * @desc Gets a return address of the Merchant Center account.
+     * Gets a return address of the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23279,15 +22886,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnaddress.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account to get a return address for.
-     * @param {string} params.returnAddressId Return address ID generated by Google.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Returnaddress$Get,
@@ -23362,7 +22966,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnAddress>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnAddress>(parameters);
@@ -23370,9 +22974,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnaddress.insert
-     * @desc Inserts a return address for the Merchant Center account.
+     * Inserts a return address for the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23430,15 +23034,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnaddress.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account to insert a return address for.
-     * @param {().ReturnAddress} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Returnaddress$Insert,
@@ -23513,7 +23114,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnAddress>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnAddress>(parameters);
@@ -23521,9 +23122,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnaddress.list
-     * @desc Lists the return addresses of the Merchant Center account.
+     * Lists the return addresses of the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23571,17 +23172,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnaddress.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.country List only return addresses applicable to the given country of sale. When omitted, all return addresses are listed.
-     * @param {integer=} params.maxResults The maximum number of addresses in the response, used for paging.
-     * @param {string} params.merchantId The Merchant Center account to list return addresses for.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Returnaddress$List,
@@ -23663,7 +23259,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnaddressListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnaddressListResponse>(parameters);
@@ -23739,9 +23335,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnpolicy.custombatch
-     * @desc Batches multiple return policy related calls in a single request.
+     * Batches multiple return policy related calls in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23787,14 +23383,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnpolicy.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ReturnpolicyCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Returnpolicy$Custombatch,
@@ -23876,7 +23470,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnpolicyCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnpolicyCustomBatchResponse>(
@@ -23886,9 +23480,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnpolicy.delete
-     * @desc Deletes a return policy for the given Merchant Center account.
+     * Deletes a return policy for the given Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -23925,15 +23519,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnpolicy.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account from which to delete the given return policy.
-     * @param {string} params.returnPolicyId Return policy ID generated by Google.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Returnpolicy$Delete,
@@ -24006,7 +23597,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -24014,9 +23605,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnpolicy.get
-     * @desc Gets a return policy of the Merchant Center account.
+     * Gets a return policy of the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24065,15 +23656,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnpolicy.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account to get a return policy for.
-     * @param {string} params.returnPolicyId Return policy ID generated by Google.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Returnpolicy$Get,
@@ -24147,7 +23735,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnPolicy>(parameters);
@@ -24155,9 +23743,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnpolicy.insert
-     * @desc Inserts a return policy for the Merchant Center account.
+     * Inserts a return policy for the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24219,15 +23807,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnpolicy.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account to insert a return policy for.
-     * @param {().ReturnPolicy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Returnpolicy$Insert,
@@ -24302,7 +23887,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnPolicy>(parameters);
@@ -24310,9 +23895,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.returnpolicy.list
-     * @desc Lists the return policies of the Merchant Center account.
+     * Lists the return policies of the Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24353,14 +23938,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.returnpolicy.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account to list return policies for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Returnpolicy$List,
@@ -24440,7 +24023,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ReturnpolicyListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReturnpolicyListResponse>(parameters);
@@ -24503,9 +24086,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.settlementreports.get
-     * @desc Retrieves a settlement report from your Merchant Center account.
+     * Retrieves a settlement report from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24554,15 +24137,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.settlementreports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The Merchant Center account of the settlement report.
-     * @param {string} params.settlementId The Google-provided ID of the settlement.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Settlementreports$Get,
@@ -24637,7 +24217,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$SettlementReport>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SettlementReport>(parameters);
@@ -24645,9 +24225,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.settlementreports.list
-     * @desc Retrieves a list of settlement reports from your Merchant Center account.
+     * Retrieves a list of settlement reports from your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24697,18 +24277,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.settlementreports.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of settlements to return in the response, used for paging. The default value is 200 returns per page, and the maximum allowed value is 5000 returns per page.
-     * @param {string} params.merchantId The Merchant Center account to list settlements for.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string=} params.transferEndDate Obtains settlements which have transactions before this date (inclusively), in ISO 8601 format.
-     * @param {string=} params.transferStartDate Obtains settlements which have transactions after this date (inclusively), in ISO 8601 format.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Settlementreports$List,
@@ -24789,7 +24363,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$SettlementreportsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SettlementreportsListResponse>(
@@ -24841,9 +24415,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.settlementtransactions.list
-     * @desc Retrieves a list of transactions for the settlement.
+     * Retrieves a list of transactions for the settlement.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -24893,18 +24467,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.settlementtransactions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of transactions to return in the response, used for paging. The default value is 200 transactions per page, and the maximum allowed value is 5000 transactions per page.
-     * @param {string} params.merchantId The Merchant Center account to list transactions for.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {string} params.settlementId The Google-provided ID of the settlement.
-     * @param {string=} params.transactionIds The list of transactions to return. If not set, all transactions will be returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Settlementtransactions$List,
@@ -24986,7 +24554,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$SettlementtransactionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SettlementtransactionsListResponse>(
@@ -25027,9 +24595,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.custombatch
-     * @desc Retrieves and updates the shipping settings of multiple accounts in a single request.
+     * Retrieves and updates the shipping settings of multiple accounts in a single request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25075,14 +24643,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.custombatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ShippingsettingsCustomBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     custombatch(
       params: Params$Resource$Shippingsettings$Custombatch,
@@ -25164,7 +24730,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingsettingsCustomBatchResponse>(
@@ -25174,9 +24740,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.get
-     * @desc Retrieves the shipping settings of the account.
+     * Retrieves the shipping settings of the account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25220,15 +24786,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Shippingsettings$Get,
@@ -25303,7 +24866,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingSettings>(parameters);
@@ -25311,9 +24874,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.getsupportedcarriers
-     * @desc Retrieves supported carriers and carrier services for an account.
+     * Retrieves supported carriers and carrier services for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25354,14 +24917,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.getsupportedcarriers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account for which to retrieve the supported carriers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getsupportedcarriers(
       params: Params$Resource$Shippingsettings$Getsupportedcarriers,
@@ -25456,7 +25017,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedCarriersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -25466,9 +25027,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.getsupportedholidays
-     * @desc Retrieves supported holidays for an account.
+     * Retrieves supported holidays for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25509,14 +25070,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.getsupportedholidays
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account for which to retrieve the supported holidays.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getsupportedholidays(
       params: Params$Resource$Shippingsettings$Getsupportedholidays,
@@ -25611,7 +25170,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsGetSupportedHolidaysResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -25621,9 +25180,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.getsupportedpickupservices
-     * @desc Retrieves supported pickup services for an account.
+     * Retrieves supported pickup services for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25664,14 +25223,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.getsupportedpickupservices
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.merchantId The ID of the account for which to retrieve the supported pickup services.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getsupportedpickupservices(
       params: Params$Resource$Shippingsettings$Getsupportedpickupservices,
@@ -25766,7 +25323,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<
           Schema$ShippingsettingsGetSupportedPickupServicesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$ShippingsettingsGetSupportedPickupServicesResponse
@@ -25775,9 +25332,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.list
-     * @desc Lists the shipping settings of the sub-accounts in your Merchant Center account.
+     * Lists the shipping settings of the sub-accounts in your Merchant Center account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25823,16 +25380,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of shipping settings to return in the response, used for paging.
-     * @param {string} params.merchantId The ID of the managing account. This must be a multi-client account.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Shippingsettings$List,
@@ -25913,7 +25466,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingsettingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingsettingsListResponse>(
@@ -25923,9 +25476,9 @@ export namespace content_v2_1 {
     }
 
     /**
-     * content.shippingsettings.update
-     * @desc Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
+     * Updates the shipping settings of the account. Any fields that are not provided are deleted from the resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/content.googleapis.com
@@ -25979,16 +25532,12 @@ export namespace content_v2_1 {
      *   throw e;
      * });
      *
-     * @alias content.shippingsettings.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId The ID of the account for which to get/update shipping settings.
-     * @param {string} params.merchantId The ID of the managing account. If this parameter is not the same as accountId, then this account must be a multi-client account and `accountId` must be the ID of a sub-account of this account.
-     * @param {().ShippingSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Shippingsettings$Update,
@@ -26063,7 +25612,7 @@ export namespace content_v2_1 {
       if (callback) {
         createAPIRequest<Schema$ShippingSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ShippingSettings>(parameters);

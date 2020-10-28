@@ -104,14 +104,10 @@ export namespace gameservices_v1beta {
    * Deploy and manage infrastructure for global multiplayer gaming experiences.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const gameservices = google.gameservices('v1beta');
-   *
-   * @namespace gameservices
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Gameservices
+   * ```
    */
   export class Gameservices {
     context: APIRequestContext;
@@ -128,7 +124,7 @@ export namespace gameservices_v1beta {
   }
 
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -142,7 +138,7 @@ export namespace gameservices_v1beta {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -177,7 +173,7 @@ export namespace gameservices_v1beta {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -228,7 +224,7 @@ export namespace gameservices_v1beta {
     values?: string[] | null;
   }
   /**
-   * Increment a streamz counter with the specified metric and field names. Metric names should start with a &#39;/&#39;, generally be lowercase-only, and end in &quot;_count&quot;. Field names should not contain an initial slash. The actual exported metric names will have &quot;/iam/policy&quot; prepended. Field names correspond to IAM request parameters and field values are their respective values. Supported field names: - &quot;authority&quot;, which is &quot;[token]&quot; if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - &quot;iam_principal&quot;, a representation of IAMContext.principal even if a token or authority selector is present; or - &quot;&quot; (empty string), resulting in a counter with no fields. Examples: counter { metric: &quot;/debug_access_count&quot; field: &quot;iam_principal&quot; } ==&gt; increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]}
+   * Increment a streamz counter with the specified metric and field names. Metric names should start with a '/', generally be lowercase-only, and end in "_count". Field names should not contain an initial slash. The actual exported metric names will have "/iam/policy" prepended. Field names correspond to IAM request parameters and field values are their respective values. Supported field names: - "authority", which is "[token]" if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - "iam_principal", a representation of IAMContext.principal even if a token or authority selector is present; or - "" (empty string), resulting in a counter with no fields. Examples: counter { metric: "/debug_access_count" field: "iam_principal" \} ==\> increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]\}
    */
   export interface Schema$CounterOptions {
     /**
@@ -344,16 +340,16 @@ export namespace gameservices_v1beta {
      */
     replicas?: string | null;
     /**
-     * The number of GameServer replicas in the RESERVED state in this fleet. Reserved instances won&#39;t be deleted on scale down, but won&#39;t cause an autoscaler to scale up.
+     * The number of GameServer replicas in the RESERVED state in this fleet. Reserved instances won't be deleted on scale down, but won't cause an autoscaler to scale up.
      */
     reservedReplicas?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -428,7 +424,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string | null;
     /**
@@ -470,7 +466,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server config, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
+     * The resource name of the game server config, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-game/configs/my-config`.
      */
     name?: string | null;
     /**
@@ -516,7 +512,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string | null;
     /**
@@ -545,7 +541,7 @@ export namespace gameservices_v1beta {
      */
     gameServerConfigOverrides?: Schema$GameServerConfigOverride[];
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string | null;
     /**
@@ -558,7 +554,7 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$GkeClusterReference {
     /**
-     * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project}/locations/{location}/clusters/{cluster}` * `locations/{location}/clusters/{cluster}` * `{cluster}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
+     * The full or partial name of a GKE cluster, using one of the following forms: * `projects/{project\}/locations/{location\}/clusters/{cluster\}` * `locations/{location\}/clusters/{cluster\}` * `{cluster\}` If project and location are not specified, the project and location of the GameServerCluster resource are used to generate the full name of the GKE cluster.
      */
     cluster?: string | null;
   }
@@ -670,15 +666,15 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -686,7 +682,7 @@ export namespace gameservices_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -724,7 +720,7 @@ export namespace gameservices_v1beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -788,7 +784,7 @@ export namespace gameservices_v1beta {
     errorMessage?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -903,7 +899,7 @@ export namespace gameservices_v1beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      */
     name?: string | null;
     /**
@@ -941,7 +937,7 @@ export namespace gameservices_v1beta {
      */
     description?: string | null;
     /**
-     * If one or more &#39;in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
+     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
      */
     in?: string[] | null;
     /**
@@ -949,11 +945,11 @@ export namespace gameservices_v1beta {
      */
     logConfig?: Schema$LogConfig[];
     /**
-     * If one or more &#39;not_in&#39; clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries. The format for in and not_in entries can be found at in the Local IAM documentation (see go/local-iam#features).
+     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries. The format for in and not_in entries can be found at in the Local IAM documentation (see go/local-iam#features).
      */
     notIn?: string[] | null;
     /**
-     * A permission is a string of form &#39;..&#39; (e.g., &#39;storage.buckets.list&#39;). A value of &#39;*&#39; matches all permissions, and a verb part of &#39;*&#39; (e.g., &#39;storage.buckets.*&#39;) matches all verbs.
+     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
      */
     permissions?: string[] | null;
   }
@@ -979,11 +975,11 @@ export namespace gameservices_v1beta {
     selectors?: Schema$LabelSelector[];
   }
   /**
-   * The schedule of a recurring or one time event. The event&#39;s time span is specified by start_time and end_time. If the scheduled event&#39;s timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration
+   * The schedule of a recurring or one time event. The event's time span is specified by start_time and end_time. If the scheduled event's timespan is larger than the cron_spec + cron_job_duration, the event will be recurring. If only cron_spec + cron_job_duration are specified, the event is effective starting at the local time specified by cron_spec, and is recurring. start_time|-------[cron job]-------[cron job]-------[cron job]---|end_time cron job: cron spec start time + duration
    */
   export interface Schema$Schedule {
     /**
-     * The duration for the cron job event. The duration of the event is effective after the cron job&#39;s start time.
+     * The duration for the cron job event. The duration of the event is effective after the cron job's start time.
      */
     cronJobDuration?: string | null;
     /**
@@ -1008,7 +1004,7 @@ export namespace gameservices_v1beta {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -1017,7 +1013,7 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$SpecSource {
     /**
-     * The game server config resource. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}/configs/{config_id}`.
+     * The game server config resource. Uses the form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment_id\}/configs/{config_id\}`.
      */
     gameServerConfigName?: string | null;
     /**
@@ -1051,11 +1047,11 @@ export namespace gameservices_v1beta {
      */
     fleetDetails?: Schema$TargetFleetDetails[];
     /**
-     * The game server cluster name. Uses the form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`.
+     * The game server cluster name. Uses the form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`.
      */
     gameServerClusterName?: string | null;
     /**
-     * The game server deployment name. Uses the form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment_id}`.
+     * The game server deployment name. Uses the form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment_id\}`.
      */
     gameServerDeploymentName?: string | null;
   }
@@ -1112,7 +1108,7 @@ export namespace gameservices_v1beta {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -1152,9 +1148,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1198,14 +1194,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -1276,7 +1270,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1284,9 +1278,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1335,18 +1329,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -1425,7 +1413,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1475,9 +1463,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.create
-     * @desc Creates a new game server deployment in a given project and location.
+     * Creates a new game server deployment in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1504,7 +1492,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server delpoyment resource to be created.
      *       deploymentId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      *       parent: 'projects/my-project/locations/my-location',
      *
      *       // Request body metadata
@@ -1538,16 +1526,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.deploymentId Required. The ID of the game server delpoyment resource to be created.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
-     * @param {().GameServerDeployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Create,
@@ -1621,7 +1605,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1629,9 +1613,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.delete
-     * @desc Deletes a single game server deployment.
+     * Deletes a single game server deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1656,7 +1640,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.delete(
      *     {
-     *       // Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -1678,14 +1662,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Delete,
@@ -1756,7 +1738,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1764,9 +1746,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.fetchDeploymentState
-     * @desc Retrieves information about the current state of the game server deployment. Gathers all the Agones fleets and Agones autoscalers, including fleets running an older version of the game server deployment.
+     * Retrieves information about the current state of the game server deployment. Gathers all the Agones fleets and Agones autoscalers, including fleets running an older version of the game server deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1791,7 +1773,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.fetchDeploymentState(
      *     {
-     *       // Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *       // Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -1816,15 +1798,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.fetchDeploymentState
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
-     * @param {().FetchDeploymentStateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     fetchDeploymentState(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate,
@@ -1905,7 +1884,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$FetchDeploymentStateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchDeploymentStateResponse>(
@@ -1915,9 +1894,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.get
-     * @desc Gets details of a single game server deployment.
+     * Gets details of a single game server deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -1941,7 +1920,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.get({
-     *     // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     *     // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      *     name:
      *       'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *   });
@@ -1963,14 +1942,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Get,
@@ -2046,7 +2023,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$GameServerDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerDeployment>(parameters);
@@ -2054,9 +2031,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2106,15 +2083,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Getiampolicy,
@@ -2188,7 +2162,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2196,9 +2170,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.getRollout
-     * @desc Gets details a single game server deployment rollout.
+     * Gets details a single game server deployment rollout.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2223,7 +2197,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.getRollout(
      *     {
-     *       // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     *       // Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -2246,14 +2220,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.getRollout
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout,
@@ -2334,7 +2306,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$GameServerDeploymentRollout>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerDeploymentRollout>(parameters);
@@ -2342,9 +2314,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.list
-     * @desc Lists game server deployments in a given project and location.
+     * Lists game server deployments in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2376,7 +2348,7 @@ export namespace gameservices_v1beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2394,18 +2366,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to apply to list results.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerDeployments left to be queried.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$List,
@@ -2486,7 +2452,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerDeploymentsResponse>(
@@ -2496,9 +2462,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.patch
-     * @desc Patches a game server deployment.
+     * Patches a game server deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2523,7 +2489,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.patch(
      *     {
-     *       // The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     *       // The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -2560,16 +2526,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().GameServerDeployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Patch,
@@ -2640,7 +2602,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2648,9 +2610,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.previewRollout
-     * @desc Previews the game server deployment rollout. This API does not mutate the rollout resource.
+     * Previews the game server deployment rollout. This API does not mutate the rollout resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2675,7 +2637,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.previewRollout(
      *     {
-     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
@@ -2712,17 +2674,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.previewRollout
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
-     * @param {string=} params.previewTime Optional. The target timestamp to compute the preview. Defaults to the immediately after the proposed rollout completes.
-     * @param {string=} params.updateMask Optional. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().GameServerDeploymentRollout} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     previewRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout,
@@ -2817,7 +2774,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewGameServerDeploymentRolloutResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -2827,9 +2784,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -2886,15 +2843,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Setiampolicy,
@@ -2968,7 +2922,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2976,9 +2930,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3029,15 +2983,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Testiampermissions,
@@ -3118,7 +3069,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3126,9 +3077,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.updateRollout
-     * @desc Patches a single game server deployment rollout. The method will not return an error if the update does not affect any existing realms. For example - if the default_game_server_config is changed but all existing realms use the override, that is valid. Similarly, if a non existing realm is explicitly called out in game_server_config_overrides field, that will also not result in an error.
+     * Patches a single game server deployment rollout. The method will not return an error if the update does not affect any existing realms. For example - if the default_game_server_config is changed but all existing realms use the override, that is valid. Similarly, if a non existing realm is explicitly called out in game_server_config_overrides field, that will also not result in an error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3153,7 +3104,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.updateRollout(
      *     {
-     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     *       // The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -3190,16 +3141,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.updateRollout
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().GameServerDeploymentRollout} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateRollout(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout,
@@ -3273,7 +3220,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3288,7 +3235,7 @@ export namespace gameservices_v1beta {
      */
     deploymentId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
 
@@ -3300,14 +3247,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Fetchdeploymentstate
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      */
     name?: string;
 
@@ -3319,7 +3266,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`.
+     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`.
      */
     name?: string;
   }
@@ -3337,7 +3284,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Getrollout
     extends StandardParameters {
     /**
-     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`.
+     * Required. The name of the game server delpoyment to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`.
      */
     name?: string;
   }
@@ -3360,14 +3307,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Patch
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
+     * The resource name of the game server deployment, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment`.
      */
     name?: string;
     /**
@@ -3383,7 +3330,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Previewrollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3427,7 +3374,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Updaterollout
     extends StandardParameters {
     /**
-     * The resource name of the game server deployment rollout, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
+     * The resource name of the game server deployment rollout, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/rollout`. For example, `projects/my-project/locations/global/gameServerDeployments/my-deployment/rollout`.
      */
     name?: string;
     /**
@@ -3448,9 +3395,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.configs.create
-     * @desc Creates a new game server config in a given project, location, and game server deployment. Game server configs are immutable, and are not applied until referenced in the game server deployment rollout resource.
+     * Creates a new game server config in a given project, location, and game server deployment. Game server configs are immutable, and are not applied until referenced in the game server deployment rollout resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3477,7 +3424,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server config resource to be created.
      *       configId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *
@@ -3513,16 +3460,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.configs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.configId Required. The ID of the game server config resource to be created.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
-     * @param {().GameServerConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Create,
@@ -3596,7 +3539,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3604,9 +3547,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.configs.delete
-     * @desc Deletes a single game server config. The deletion will fail if the game server config is referenced in a game server deployment rollout.
+     * Deletes a single game server config. The deletion will fail if the game server config is referenced in a game server deployment rollout.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3631,7 +3574,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.delete(
      *     {
-     *       // Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3653,14 +3596,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.configs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete,
@@ -3731,7 +3672,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3739,9 +3680,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.configs.get
-     * @desc Gets details of a single game server config.
+     * Gets details of a single game server config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3766,7 +3707,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.gameServerDeployments.configs.get(
      *     {
-     *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     *       // Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
      *       name:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment/configs/my-config',
      *     }
@@ -3790,14 +3731,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.configs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get,
@@ -3868,7 +3807,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$GameServerConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerConfig>(parameters);
@@ -3876,9 +3815,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.gameServerDeployments.configs.list
-     * @desc Lists game server configs in a given project, location, and game server deployment.
+     * Lists game server configs in a given project, location, and game server deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -3911,7 +3850,7 @@ export namespace gameservices_v1beta {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous list request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/x`.
      *       parent:
      *         'projects/my-project/locations/my-location/gameServerDeployments/my-gameServerDeployment',
      *     }
@@ -3931,18 +3870,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.gameServerDeployments.configs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to apply to list results.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerConfigs left to be queried.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Gameserverdeployments$Configs$List,
@@ -4023,7 +3956,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerConfigsResponse>(
@@ -4040,7 +3973,7 @@ export namespace gameservices_v1beta {
      */
     configId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/`.
      */
     parent?: string;
 
@@ -4052,14 +3985,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to delete, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Gameserverdeployments$Configs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server config to retrieve, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/{config}`.
+     * Required. The name of the game server config to retrieve, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/{config\}`.
      */
     name?: string;
   }
@@ -4082,7 +4015,7 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/gameServerDeployments/{deployment}/configs/x`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/gameServerDeployments/{deployment\}/configs/x`.
      */
     parent?: string;
   }
@@ -4094,9 +4027,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4140,15 +4073,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -4222,7 +4152,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4230,9 +4160,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4270,14 +4200,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -4348,7 +4276,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4356,9 +4284,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4402,14 +4330,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -4480,7 +4406,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4488,9 +4414,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4537,17 +4463,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -4626,7 +4547,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -4691,9 +4612,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.create
-     * @desc Creates a new realm in a given project and location.
+     * Creates a new realm in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4717,7 +4638,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.create({
-     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Required. The ID of the realm resource to be created.
      *     realmId: 'placeholder-value',
@@ -4753,16 +4674,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
-     * @param {string=} params.realmId Required. The ID of the realm resource to be created.
-     * @param {().Realm} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Realms$Create,
@@ -4836,7 +4753,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4844,9 +4761,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.delete
-     * @desc Deletes a single realm.
+     * Deletes a single realm.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -4870,7 +4787,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.delete({
-     *     // Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -4890,14 +4807,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Realms$Delete,
@@ -4968,7 +4883,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4976,9 +4891,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.get
-     * @desc Gets details of a single realm.
+     * Gets details of a single realm.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5002,7 +4917,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.get({
-     *     // Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *     // Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *   });
      *   console.log(res.data);
@@ -5024,14 +4939,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Realms$Get,
@@ -5102,7 +5015,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Realm>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Realm>(parameters);
@@ -5110,9 +5023,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.list
-     * @desc Lists realms in a given project and location.
+     * Lists realms in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5144,7 +5057,7 @@ export namespace gameservices_v1beta {
      *     pageSize: 'placeholder-value',
      *     // Optional. The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     *     // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -5162,18 +5075,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to apply to list results.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, server will pick an appropriate default. Server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more realms left to be queried.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Realms$List,
@@ -5250,7 +5157,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListRealmsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRealmsResponse>(parameters);
@@ -5258,9 +5165,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.patch
-     * @desc Patches a single realm.
+     * Patches a single realm.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5284,7 +5191,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.patch({
-     *     // The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
      *     updateMask: 'placeholder-value',
@@ -5320,16 +5227,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
-     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().Realm} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Realms$Patch,
@@ -5400,7 +5303,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5408,9 +5311,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.previewUpdate
-     * @desc Previews patches to a single realm.
+     * Previews patches to a single realm.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5434,7 +5337,7 @@ export namespace gameservices_v1beta {
      *
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.previewUpdate({
-     *     // The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     *     // The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      *     name: 'projects/my-project/locations/my-location/realms/my-realm',
      *     // Optional. The target timestamp to compute the preview.
      *     previewTime: 'placeholder-value',
@@ -5469,17 +5372,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.previewUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
-     * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {string=} params.updateMask Required. The update mask applies to the resource. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().Realm} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     previewUpdate(
       params: Params$Resource$Projects$Locations$Realms$Previewupdate,
@@ -5560,7 +5458,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewRealmUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewRealmUpdateResponse>(parameters);
@@ -5571,7 +5469,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
     /**
@@ -5587,14 +5485,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the realm to delete, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The name of the realm to delete, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Get
     extends StandardParameters {
     /**
-     * Required. The name of the realm to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The name of the realm to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      */
     name?: string;
   }
@@ -5617,14 +5515,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Patch
     extends StandardParameters {
     /**
-     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      */
     name?: string;
     /**
@@ -5640,7 +5538,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Previewupdate
     extends StandardParameters {
     /**
-     * The resource name of the realm, in the following form: `projects/{project}/locations/{location}/realms/{realm}`. For example, `projects/my-project/locations/{location}/realms/my-realm`.
+     * The resource name of the realm, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`. For example, `projects/my-project/locations/{location\}/realms/my-realm`.
      */
     name?: string;
     /**
@@ -5665,9 +5563,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.create
-     * @desc Creates a new game server cluster in a given project and location.
+     * Creates a new game server cluster in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5694,7 +5592,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *
      *       // Request body metadata
@@ -5729,16 +5627,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.gameServerClusterId Required. The ID of the game server cluster resource to be created.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
-     * @param {().GameServerCluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Create,
@@ -5812,7 +5706,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5820,9 +5714,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.delete
-     * @desc Deletes a single game server cluster.
+     * Deletes a single game server cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5847,7 +5741,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.delete(
      *     {
-     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -5869,14 +5763,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete,
@@ -5947,7 +5839,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5955,9 +5847,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.get
-     * @desc Gets details of a single game server cluster.
+     * Gets details of a single game server cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -5982,7 +5874,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.get(
      *     {
-     *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *     }
@@ -6006,14 +5898,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get,
@@ -6087,7 +5977,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$GameServerCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GameServerCluster>(parameters);
@@ -6095,9 +5985,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.list
-     * @desc Lists game server clusters in a given project and location.
+     * Lists game server clusters in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -6130,7 +6020,7 @@ export namespace gameservices_v1beta {
      *       pageSize: 'placeholder-value',
      *       // Optional. The next_page_token value returned from a previous List request, if any.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
+     *       // Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *     }
      *   );
@@ -6149,18 +6039,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Optional. The filter to apply to list results.
-     * @param {string=} params.orderBy Optional. Specifies the ordering of results following syntax at https://cloud.google.com/apis/design/design_patterns#sorting_order.
-     * @param {integer=} params.pageSize Optional. The maximum number of items to return. If unspecified, the server will pick an appropriate default. The server may return fewer items than requested. A caller should only rely on response's next_page_token to determine if there are more GameServerClusters left to be queried.
-     * @param {string=} params.pageToken Optional. The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$List,
@@ -6241,7 +6125,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGameServerClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGameServerClustersResponse>(
@@ -6251,9 +6135,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.patch
-     * @desc Patches a single game server cluster.
+     * Patches a single game server cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -6278,7 +6162,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.patch(
      *     {
-     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
@@ -6316,16 +6200,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().GameServerCluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch,
@@ -6396,7 +6276,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6404,9 +6284,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.previewCreate
-     * @desc Previews creation of a new game server cluster in a given project and location.
+     * Previews creation of a new game server cluster in a given project and location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -6433,7 +6313,7 @@ export namespace gameservices_v1beta {
      *     {
      *       // Required. The ID of the game server cluster resource to be created.
      *       gameServerClusterId: 'placeholder-value',
-     *       // Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     *       // Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      *       parent: 'projects/my-project/locations/my-location/realms/my-realm',
      *       // Optional. The target timestamp to compute the preview.
      *       previewTime: 'placeholder-value',
@@ -6467,17 +6347,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.previewCreate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.gameServerClusterId Required. The ID of the game server cluster resource to be created.
-     * @param {string} params.parent Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
-     * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {().GameServerCluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     previewCreate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewcreate,
@@ -6563,7 +6438,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewCreateGameServerClusterResponse>(
@@ -6573,9 +6448,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.previewDelete
-     * @desc Previews deletion of a single game server cluster.
+     * Previews deletion of a single game server cluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -6600,7 +6475,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewDelete(
      *     {
-     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     *       // Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
@@ -6621,15 +6496,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.previewDelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
-     * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     previewDelete(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete,
@@ -6716,7 +6588,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewDeleteGameServerClusterResponse>(
@@ -6726,9 +6598,9 @@ export namespace gameservices_v1beta {
     }
 
     /**
-     * gameservices.projects.locations.realms.gameServerClusters.previewUpdate
-     * @desc Previews updating a GameServerCluster.
+     * Previews updating a GameServerCluster.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gameservices.googleapis.com
@@ -6753,7 +6625,7 @@ export namespace gameservices_v1beta {
      *   // Do the magic
      *   const res = await gameservices.projects.locations.realms.gameServerClusters.previewUpdate(
      *     {
-     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     *       // Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      *       name:
      *         'projects/my-project/locations/my-location/realms/my-realm/gameServerClusters/my-gameServerCluster',
      *       // Optional. The target timestamp to compute the preview.
@@ -6790,17 +6662,12 @@ export namespace gameservices_v1beta {
      *   throw e;
      * });
      *
-     * @alias gameservices.projects.locations.realms.gameServerClusters.previewUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
-     * @param {string=} params.previewTime Optional. The target timestamp to compute the preview.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. For the `FieldMask` definition, see https: //developers.google.com/protocol-buffers // /docs/reference/google.protobuf#fieldmask
-     * @param {().GameServerCluster} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     previewUpdate(
       params: Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate,
@@ -6887,7 +6754,7 @@ export namespace gameservices_v1beta {
       if (callback) {
         createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PreviewUpdateGameServerClusterResponse>(
@@ -6904,7 +6771,7 @@ export namespace gameservices_v1beta {
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}`.
      */
     parent?: string;
 
@@ -6916,14 +6783,14 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Get
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project}/locations/{location}/realms/{realm-id}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to retrieve, in the following form: `projects/{project\}/locations/{location\}/realms/{realm-id\}/gameServerClusters/{cluster\}`.
      */
     name?: string;
   }
@@ -6946,14 +6813,14 @@ export namespace gameservices_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource name, in the following form: "projects/{project}/locations/{location}/realms/{realm}".
+     * Required. The parent resource name, in the following form: "projects/{project\}/locations/{location\}/realms/{realm\}".
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**
@@ -6973,7 +6840,7 @@ export namespace gameservices_v1beta {
      */
     gameServerClusterId?: string;
     /**
-     * Required. The parent resource name, in the following form: `projects/{project}/locations/{location}/realms/{realm}`.
+     * Required. The parent resource name, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}`.
      */
     parent?: string;
     /**
@@ -6989,7 +6856,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewdelete
     extends StandardParameters {
     /**
-     * Required. The name of the game server cluster to delete, in the following form: `projects/{project}/locations/{location}/gameServerClusters/{cluster}`.
+     * Required. The name of the game server cluster to delete, in the following form: `projects/{project\}/locations/{location\}/gameServerClusters/{cluster\}`.
      */
     name?: string;
     /**
@@ -7000,7 +6867,7 @@ export namespace gameservices_v1beta {
   export interface Params$Resource$Projects$Locations$Realms$Gameserverclusters$Previewupdate
     extends StandardParameters {
     /**
-     * Required. The resource name of the game server cluster, in the following form: `projects/{project}/locations/{location}/realms/{realm}/gameServerClusters/{cluster}`. For example, `projects/my-project/locations/{location}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
+     * Required. The resource name of the game server cluster, in the following form: `projects/{project\}/locations/{location\}/realms/{realm\}/gameServerClusters/{cluster\}`. For example, `projects/my-project/locations/{location\}/realms/zanzibar/gameServerClusters/my-onprem-cluster`.
      */
     name?: string;
     /**

@@ -104,14 +104,10 @@ export namespace gmailpostmastertools_v1beta1 {
    * The Postmaster Tools API is a RESTful API that provides programmatic access to email traffic metrics (like spam reports, delivery errors etc) otherwise available through the Gmail Postmaster Tools UI currently.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const gmailpostmastertools = google.gmailpostmastertools('v1beta1');
-   *
-   * @namespace gmailpostmastertools
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Gmailpostmastertools
+   * ```
    */
   export class Gmailpostmastertools {
     context: APIRequestContext;
@@ -153,7 +149,7 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     createTime?: string | null;
     /**
-     * The resource name of the Domain. Domain names have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).
+     * The resource name of the Domain. Domain names have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com).
      */
     name?: string | null;
     /**
@@ -246,7 +242,7 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     ipReputations?: Schema$IpReputation[];
     /**
-     * The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain}/trafficStats/{date}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807
+     * The resource name of the traffic statistics. Traffic statistic names have the form `domains/{domain\}/trafficStats/{date\}`, where domain_name is the fully qualified domain name (i.e., mymail.mydomain.com) of the domain this traffic statistics pertains to and date is the date in yyyymmdd format that these statistics corresponds to. For example: domains/mymail.mydomain.com/trafficStats/20160807
      */
     name?: string | null;
     /**
@@ -276,9 +272,9 @@ export namespace gmailpostmastertools_v1beta1 {
     }
 
     /**
-     * gmailpostmastertools.domains.get
-     * @desc Gets a specific domain registered by the client. Returns NOT_FOUND if the domain does not exist.
+     * Gets a specific domain registered by the client. Returns NOT_FOUND if the domain does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
@@ -302,7 +298,7 @@ export namespace gmailpostmastertools_v1beta1 {
      *
      *   // Do the magic
      *   const res = await gmailpostmastertools.domains.get({
-     *     // The resource name of the domain. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
+     *     // The resource name of the domain. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
      *     name: 'domains/my-domain',
      *   });
      *   console.log(res.data);
@@ -320,14 +316,12 @@ export namespace gmailpostmastertools_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias gmailpostmastertools.domains.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the domain. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Domains$Get,
@@ -398,7 +392,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -406,9 +400,9 @@ export namespace gmailpostmastertools_v1beta1 {
     }
 
     /**
-     * gmailpostmastertools.domains.list
-     * @desc Lists the domains that have been registered by the client. The order of domains in the response is unspecified and non-deterministic. Newly created domains will not necessarily be added to the end of this list.
+     * Lists the domains that have been registered by the client. The order of domains in the response is unspecified and non-deterministic. Newly created domains will not necessarily be added to the end of this list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
@@ -451,15 +445,12 @@ export namespace gmailpostmastertools_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias gmailpostmastertools.domains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer domains than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. This is the value of ListDomainsResponse.next_page_token returned from the previous call to `ListDomains` method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Domains$List,
@@ -533,7 +524,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
@@ -543,7 +534,7 @@ export namespace gmailpostmastertools_v1beta1 {
 
   export interface Params$Resource$Domains$Get extends StandardParameters {
     /**
-     * The resource name of the domain. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
+     * The resource name of the domain. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
      */
     name?: string;
   }
@@ -565,9 +556,9 @@ export namespace gmailpostmastertools_v1beta1 {
     }
 
     /**
-     * gmailpostmastertools.domains.trafficStats.get
-     * @desc Get traffic statistics for a domain on a specific date. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
+     * Get traffic statistics for a domain on a specific date. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
@@ -617,14 +608,12 @@ export namespace gmailpostmastertools_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias gmailpostmastertools.domains.trafficStats.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the traffic statistics to get. E.g., domains/mymail.mydomain.com/trafficStats/20160807.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Domains$Trafficstats$Get,
@@ -696,7 +685,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TrafficStats>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TrafficStats>(parameters);
@@ -704,9 +693,9 @@ export namespace gmailpostmastertools_v1beta1 {
     }
 
     /**
-     * gmailpostmastertools.domains.trafficStats.list
-     * @desc List traffic statistics for all available days. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
+     * List traffic statistics for all available days. Returns PERMISSION_DENIED if user does not have permission to access TrafficStats for the domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gmailpostmastertools.googleapis.com
@@ -740,7 +729,7 @@ export namespace gmailpostmastertools_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.
      *     pageToken: 'placeholder-value',
-     *     // The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
+     *     // The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
      *     parent: 'domains/my-domain',
      *     // Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      *     'startDate.day': 'placeholder-value',
@@ -763,22 +752,12 @@ export namespace gmailpostmastertools_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias gmailpostmastertools.domains.trafficStats.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.endDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.endDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.endDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {integer=} params.pageSize Requested page size. Server may return fewer TrafficStats than requested. If unspecified, server will pick an appropriate default.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any. This is the value of ListTrafficStatsResponse.next_page_token returned from the previous call to `ListTrafficStats` method.
-     * @param {string} params.parent The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
-     * @param {integer=} params.startDate.day Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
-     * @param {integer=} params.startDate.month Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
-     * @param {integer=} params.startDate.year Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Domains$Trafficstats$List,
@@ -858,7 +837,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListTrafficStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTrafficStatsResponse>(parameters);
@@ -896,7 +875,7 @@ export namespace gmailpostmastertools_v1beta1 {
      */
     pageToken?: string;
     /**
-     * The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name}`, where domain_name is the fully qualified domain name.
+     * The resource name of the domain whose traffic statistics we'd like to list. It should have the form `domains/{domain_name\}`, where domain_name is the fully qualified domain name.
      */
     parent?: string;
     /**

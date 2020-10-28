@@ -3,7 +3,8 @@
   "compilerOptions": {
     "rootDir": ".",
     "outDir": "build",
-    "incremental": true
+    "incremental": true,
+    "declarationMap": true
   },
   "include": [
     "src/*.ts",

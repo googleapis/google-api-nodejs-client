@@ -33,3 +33,14 @@ export function apigateway<T = apigateway_v1beta.Apigateway>(
 
 const auth = new AuthPlus();
 export {auth};
+export {apigateway_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

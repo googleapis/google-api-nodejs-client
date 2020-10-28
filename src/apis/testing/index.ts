@@ -31,3 +31,14 @@ export function testing<T = testing_v1.Testing>(
 
 const auth = new AuthPlus();
 export {auth};
+export {testing_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

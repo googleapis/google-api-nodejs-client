@@ -104,14 +104,10 @@ export namespace bigtableadmin_v1 {
    * Administer your Cloud Bigtable tables and instances.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const bigtableadmin = google.bigtableadmin('v1');
-   *
-   * @namespace bigtableadmin
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Bigtableadmin
+   * ```
    */
   export class Bigtableadmin {
     context: APIRequestContext;
@@ -137,7 +133,7 @@ export namespace bigtableadmin_v1 {
      */
     expireTime?: string | null;
     /**
-     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project}/instances/{instance}/clusters/{cluster}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project}/instances/{instance}/clusters/{cluster}`.
+     * A globally unique identifier for the backup which cannot be changed. Values are of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}/ backups/_a-zA-Z0-9*` The final segment of the name must be between 1 and 50 characters in length. The backup is stored in the cluster identified by the prefix of the backup name of the form `projects/{project\}/instances/{instance\}/clusters/{cluster\}`.
      */
     name?: string | null;
     /**
@@ -145,7 +141,7 @@ export namespace bigtableadmin_v1 {
      */
     sizeBytes?: string | null;
     /**
-     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project}/instances/{instance}/tables/{source_table}`.
+     * Required. Immutable. Name of the table from which this backup was created. This needs to be in the same instance as the backup. Values are of the form `projects/{project\}/instances/{instance\}/tables/{source_table\}`.
      */
     sourceTable?: string | null;
     /**
@@ -183,15 +179,15 @@ export namespace bigtableadmin_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Immutable. The type of storage used by this cluster to serve its parent instance&#39;s tables, unless explicitly overridden.
+     * Immutable. The type of storage used by this cluster to serve its parent instance's tables, unless explicitly overridden.
      */
     defaultStorageType?: string | null;
     /**
-     * Immutable. The location where this cluster&#39;s nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project}/locations/{zone}`.
+     * Immutable. The location where this cluster's nodes and storage reside. For best performance, clients should be located as close as possible to this cluster. Currently only zones are supported, so values should be of the form `projects/{project\}/locations/{zone\}`.
      */
     location?: string | null;
     /**
-     * The unique name of the cluster. Values are of the form `projects/{project}/instances/{instance}/clusters/a-z*`.
+     * The unique name of the cluster. Values are of the form `projects/{project\}/instances/{instance\}/clusters/a-z*`.
      */
     name?: string | null;
     /**
@@ -241,7 +237,7 @@ export namespace bigtableadmin_v1 {
      */
     requestTime?: string | null;
     /**
-     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table&#39;s data has been copied to the newly-created cluster so far.
+     * Keys: the full `name` of each table that existed in the instance when CreateCluster was first called, i.e. `projects//instances//tables/`. Any table added to the instance by a later API call will be created in the new cluster by that API call, not this one. Values: information on how much of a table's data has been copied to the newly-created cluster so far.
      */
     tables?: {[key: string]: Schema$TableProgress} | null;
   }
@@ -258,7 +254,7 @@ export namespace bigtableadmin_v1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project}/instances/{instance}`.
+     * Required. The unique name of the instance in which to create the new cluster. Values are of the form `projects/{project\}/instances/{instance\}`.
      */
     parent?: string | null;
   }
@@ -296,7 +292,7 @@ export namespace bigtableadmin_v1 {
      */
     instanceId?: string | null;
     /**
-     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project}`.
+     * Required. The unique name of the project in which to create the new instance. Values are of the form `projects/{project\}`.
      */
     parent?: string | null;
   }
@@ -320,11 +316,11 @@ export namespace bigtableadmin_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer&#39;s organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll}\p{Lo}{0,62}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll}\p{Lo}\p{N}_-]{0,63}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
+     * Required. Labels are a flexible and lightweight mechanism for organizing cloud resources into groups that reflect a customer's organizational needs and deployment strategies. They can be used to filter resources and aggregate metrics. * Label keys must be between 1 and 63 characters long and must conform to the regular expression: `\p{Ll\}\p{Lo\}{0,62\}`. * Label values must be between 0 and 63 characters long and must conform to the regular expression: `[\p{Ll\}\p{Lo\}\p{N\}_-]{0,63\}`. * No more than 64 labels can be associated with a given resource. * Keys and values must both be under 128 bytes.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The unique name of the instance. Values are of the form `projects/{project}/instances/a-z+[a-z0-9]`.
+     * The unique name of the instance. Values are of the form `projects/{project\}/instances/a-z+[a-z0-9]`.
      */
     name?: string | null;
     /**
@@ -402,11 +398,11 @@ export namespace bigtableadmin_v1 {
     sourceType?: string | null;
   }
   /**
-   * Progress info for copying a table&#39;s data to the new cluster.
+   * Progress info for copying a table's data to the new cluster.
    */
   export interface Schema$TableProgress {
     /**
-     * Estimate of the number of bytes copied so far for this table. This will eventually reach &#39;estimated_size_bytes&#39; unless the table copy is CANCELLED.
+     * Estimate of the number of bytes copied so far for this table. This will eventually reach 'estimated_size_bytes' unless the table copy is CANCELLED.
      */
     estimatedCopiedBytes?: string | null;
     /**

@@ -35,3 +35,14 @@ export function identitytoolkit<T = identitytoolkit_v3.Identitytoolkit>(
 
 const auth = new AuthPlus();
 export {auth};
+export {identitytoolkit_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

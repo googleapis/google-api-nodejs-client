@@ -43,3 +43,15 @@ export function domains<T = domains_v1alpha2.Domains | domains_v1beta1.Domains>(
 
 const auth = new AuthPlus();
 export {auth};
+export {domains_v1alpha2};
+export {domains_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

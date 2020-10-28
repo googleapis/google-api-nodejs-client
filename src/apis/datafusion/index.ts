@@ -45,3 +45,15 @@ export function datafusion<
 
 const auth = new AuthPlus();
 export {auth};
+export {datafusion_v1};
+export {datafusion_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

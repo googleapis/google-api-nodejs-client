@@ -104,14 +104,10 @@ export namespace analyticsdata_v1alpha {
    * Accesses report data in Google Analytics.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const analyticsdata = google.analyticsdata('v1alpha');
-   *
-   * @namespace analyticsdata
-   * @type {Function}
-   * @version v1alpha
-   * @variation v1alpha
-   * @param {object=} options Options for Analyticsdata
+   * ```
    */
   export class Analyticsdata {
     context: APIRequestContext;
@@ -200,7 +196,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$Cohort {
     /**
-     * The cohort selects users whose first visit date is between start date and end date defined in the `dateRange`. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. The date range should be aligned with the cohort&#39;s granularity. If CohortsRange uses daily granularity, the date range can be aligned to any day. If CohortsRange uses weekly granularity, the date range should be aligned to the week boundary, starting at Sunday and ending Saturday. If CohortsRange uses monthly granularity, the date range should be aligned to the month, starting at the first and ending on the last day of the month.
+     * The cohort selects users whose first visit date is between start date and end date defined in the `dateRange`. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. The date range should be aligned with the cohort's granularity. If CohortsRange uses daily granularity, the date range can be aligned to any day. If CohortsRange uses weekly granularity, the date range should be aligned to the week boundary, starting at Sunday and ending Saturday. If CohortsRange uses monthly granularity, the date range should be aligned to the month, starting at the first and ending on the last day of the month.
      */
     dateRange?: Schema$DateRange;
     /**
@@ -260,7 +256,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$ConcatenateExpression {
     /**
-     * The delimiter placed between dimension names. Delimiters are often single characters such as &quot;|&quot; or &quot;,&quot; but can be longer strings. If a dimension value contains the delimiter, both will be present in response with no distinction. For example if dimension 1 value = &quot;US,FR&quot;, dimension 2 value = &quot;JP&quot;, and delimiter = &quot;,&quot;, then the response will contain &quot;US,FR,JP&quot;.
+     * The delimiter placed between dimension names. Delimiters are often single characters such as "|" or "," but can be longer strings. If a dimension value contains the delimiter, both will be present in response with no distinction. For example if dimension 1 value = "US,FR", dimension 2 value = "JP", and delimiter = ",", then the response will contain "US,FR,JP".
      */
     delimiter?: string | null;
     /**
@@ -273,7 +269,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$DateRange {
     /**
-     * The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `start_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property&#39;s reporting time zone.
+     * The inclusive end date for the query in the format `YYYY-MM-DD`. Cannot be before `start_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone.
      */
     endDate?: string | null;
     /**
@@ -281,20 +277,20 @@ export namespace analyticsdata_v1alpha {
      */
     name?: string | null;
     /**
-     * The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `end_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property&#39;s reporting time zone.
+     * The inclusive start date for the query in the format `YYYY-MM-DD`. Cannot be after `end_date`. The format `NdaysAgo`, `yesterday`, or `today` is also accepted, and in that case, the date is inferred based on the property's reporting time zone.
      */
     startDate?: string | null;
   }
   /**
-   * Dimensions are attributes of your data. For example, the dimension City indicates the city, for example, &quot;Paris&quot; or &quot;New York&quot;, from which an event originates. Requests are allowed up to 8 dimensions.
+   * Dimensions are attributes of your data. For example, the dimension city indicates the city from which an event originates. Dimension values in report responses are strings; for example, city could be "Paris" or "New York". Requests are allowed up to 8 dimensions.
    */
   export interface Schema$Dimension {
     /**
-     * One dimension can be the result of an expression of multiple dimensions. For example, dimension &quot;country, city&quot;: concatenate(country, &quot;, &quot;, city).
+     * One dimension can be the result of an expression of multiple dimensions. For example, dimension "country, city": concatenate(country, ", ", city).
      */
     dimensionExpression?: Schema$DimensionExpression;
     /**
-     * The name of the dimension.
+     * The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions) for the list of dimension names. If `dimensionExpression` is specified, `name` can be any string that you would like. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`.
      */
     name?: string | null;
   }
@@ -303,7 +299,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$DimensionExpression {
     /**
-     * Used to combine dimension values to a single dimension. For example, dimension &quot;country, city&quot;: concatenate(country, &quot;, &quot;, city).
+     * Used to combine dimension values to a single dimension. For example, dimension "country, city": concatenate(country, ", ", city).
      */
     concatenate?: Schema$ConcatenateExpression;
     /**
@@ -320,7 +316,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$DimensionHeader {
     /**
-     * The dimension&#39;s name.
+     * The dimension's name.
      */
     name?: string | null;
   }
@@ -329,7 +325,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$DimensionMetadata {
     /**
-     * This dimension&#39;s name. Useable in [Dimension](#Dimension)&#39;s `name`. For example, `eventName`.
+     * This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`.
      */
     apiName?: string | null;
     /**
@@ -341,7 +337,7 @@ export namespace analyticsdata_v1alpha {
      */
     description?: string | null;
     /**
-     * This dimension&#39;s name within the Google Analytics user interface. For example, `Event name`.
+     * This dimension's name within the Google Analytics user interface. For example, `Event name`.
      */
     uiName?: string | null;
   }
@@ -372,7 +368,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$Entity {
     /**
-     * A Google Analytics GA4 property id.
+     * A Google Analytics GA4 property id. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).
      */
     propertyId?: string | null;
   }
@@ -466,19 +462,19 @@ export namespace analyticsdata_v1alpha {
     name?: string | null;
   }
   /**
-   * The quantitative measurements of a report. For example, the metric eventCount is the total number of events. Requests are allowed up to 10 metrics.
+   * The quantitative measurements of a report. For example, the metric `eventCount` is the total number of events. Requests are allowed up to 10 metrics.
    */
   export interface Schema$Metric {
     /**
-     * A mathematical expression for derived metrics. For example, the metric Event count per user is eventCount/totalUsers.
+     * A mathematical expression for derived metrics. For example, the metric Event count per user is `eventCount/totalUsers`.
      */
     expression?: string | null;
     /**
-     * Indicates if a metric is invisible. If a metric is invisible, the metric is not in the response, but can be used in filters, order_bys or being referred to in a metric expression.
+     * Indicates if a metric is invisible in the report response. If a metric is invisible, the metric will not produce a column in the response, but can be used in `metricFilter`, `orderBys`, or a metric `expression`.
      */
     invisible?: boolean | null;
     /**
-     * The name of the metric.
+     * The name of the metric. See the [API Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics) for the list of metric names. If `expression` is specified, `name` can be any string that you would like. For example if `expression` is `screenPageViews/sessions`, you could call that metric's name = `viewsPerSession`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`.
      */
     name?: string | null;
   }
@@ -487,11 +483,11 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$MetricHeader {
     /**
-     * The metric&#39;s name.
+     * The metric's name.
      */
     name?: string | null;
     /**
-     * The metric&#39;s data type.
+     * The metric's data type.
      */
     type?: string | null;
   }
@@ -500,7 +496,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$MetricMetadata {
     /**
-     * A metric name. Useable in [Metric](#Metric)&#39;s `name`. For example, `eventCount`.
+     * A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.
      */
     apiName?: string | null;
     /**
@@ -512,7 +508,7 @@ export namespace analyticsdata_v1alpha {
      */
     description?: string | null;
     /**
-     * The mathematical expression for this derived metric. Can be used in [Metric](#Metric)&#39;s `expression` field for equivalent reports. Most metrics are not expressions, and for non-expressions, this field is empty.
+     * The mathematical expression for this derived metric. Can be used in [Metric](#Metric)'s `expression` field for equivalent reports. Most metrics are not expressions, and for non-expressions, this field is empty.
      */
     expression?: string | null;
     /**
@@ -520,7 +516,7 @@ export namespace analyticsdata_v1alpha {
      */
     type?: string | null;
     /**
-     * This metric&#39;s name within the Google Analytics user interface. For example, `Event count`.
+     * This metric's name within the Google Analytics user interface. For example, `Event count`.
      */
     uiName?: string | null;
   }
@@ -577,15 +573,15 @@ export namespace analyticsdata_v1alpha {
      */
     desc?: boolean | null;
     /**
-     * Sorts results by a dimension&#39;s values.
+     * Sorts results by a dimension's values.
      */
     dimension?: Schema$DimensionOrderBy;
     /**
-     * Sorts results by a metric&#39;s values.
+     * Sorts results by a metric's values.
      */
     metric?: Schema$MetricOrderBy;
     /**
-     * Sorts results by a metric&#39;s values within a pivot column group.
+     * Sorts results by a metric's values within a pivot column group.
      */
     pivot?: Schema$PivotOrderBy;
   }
@@ -594,7 +590,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$Pivot {
     /**
-     * Dimension names for visible columns in the report response. Including &quot;dateRange&quot; produces a date range column; for each row in the response, dimension values in the date range column will indicate the corresponding date range from the request.
+     * Dimension names for visible columns in the report response. Including "dateRange" produces a date range column; for each row in the response, dimension values in the date range column will indicate the corresponding date range from the request.
      */
     fieldNames?: string[] | null;
     /**
@@ -624,7 +620,7 @@ export namespace analyticsdata_v1alpha {
     dimensionValues?: Schema$DimensionValue[];
   }
   /**
-   * Dimensions&#39; values in a single pivot.
+   * Dimensions' values in a single pivot.
    */
   export interface Schema$PivotHeader {
     /**
@@ -632,7 +628,7 @@ export namespace analyticsdata_v1alpha {
      */
     pivotDimensionHeaders?: Schema$PivotDimensionHeader[];
     /**
-     * The cardinality of the pivot as if offset = 0 and limit = -1. The total number of rows for this pivot&#39;s fields regardless of how the parameters offset and limit are specified in the request.
+     * The cardinality of the pivot as if offset = 0 and limit = -1. The total number of rows for this pivot's fields regardless of how the parameters offset and limit are specified in the request.
      */
     rowCount?: number | null;
   }
@@ -645,12 +641,12 @@ export namespace analyticsdata_v1alpha {
      */
     metricName?: string | null;
     /**
-     * Used to select a dimension name and value pivot. If multiple pivot selections are given, the sort occurs on rows where all pivot selection dimension name and value pairs match the row&#39;s dimension name and value pair.
+     * Used to select a dimension name and value pivot. If multiple pivot selections are given, the sort occurs on rows where all pivot selection dimension name and value pairs match the row's dimension name and value pair.
      */
     pivotSelections?: Schema$PivotSelection[];
   }
   /**
-   * A pair of dimension names and values. Rows with this dimension pivot pair are ordered by the metric&#39;s value. For example if pivots = {{&quot;browser&quot;, &quot;Chrome&quot;}} and metric_name = &quot;Sessions&quot;, then the rows will be sorted based on Sessions in Chrome. ---------|----------|----------------|----------|---------------- | Chrome | Chrome | Safari | Safari ---------|----------|----------------|----------|---------------- Country | Sessions | Pages/Sessions | Sessions | Pages/Sessions ---------|----------|----------------|----------|---------------- US | 2 | 2 | 3 | 1 ---------|----------|----------------|----------|---------------- Canada | 3 | 1 | 4 | 1 ---------|----------|----------------|----------|----------------
+   * A pair of dimension names and values. Rows with this dimension pivot pair are ordered by the metric's value. For example if pivots = {{"browser", "Chrome"\}\} and metric_name = "Sessions", then the rows will be sorted based on Sessions in Chrome. ---------|----------|----------------|----------|---------------- | Chrome | Chrome | Safari | Safari ---------|----------|----------------|----------|---------------- Country | Sessions | Pages/Sessions | Sessions | Pages/Sessions ---------|----------|----------------|----------|---------------- US | 2 | 2 | 3 | 1 ---------|----------|----------------|----------|---------------- Canada | 3 | 1 | 4 | 1 ---------|----------|----------------|----------|----------------
    */
   export interface Schema$PivotSelection {
     /**
@@ -697,16 +693,16 @@ export namespace analyticsdata_v1alpha {
     remaining?: number | null;
   }
   /**
-   * Response&#39;s metadata carrying additional information about the report content.
+   * Response's metadata carrying additional information about the report content.
    */
   export interface Schema$ResponseMetaData {
     /**
-     * If true, indicates some buckets of dimension combinations are rolled into &quot;(other)&quot; row. This can happen for high cardinality reports.
+     * If true, indicates some buckets of dimension combinations are rolled into "(other)" row. This can happen for high cardinality reports.
      */
     dataLossFromOtherRow?: boolean | null;
   }
   /**
-   * Report data for each row. For example if RunReportRequest contains: ```none dimensions { name: &quot;eventName&quot; } dimensions { name: &quot;countryId&quot; } metrics { name: &quot;eventCount&quot; } ``` One row with &#39;in_app_purchase&#39; as the eventName, &#39;us&#39; as the countryId, and 15 as the eventCount, would be: ```none dimension_values { name: &#39;in_app_purchase&#39; name: &#39;us&#39; } metric_values { int64_value: 15 } ```
+   * Report data for each row. For example if RunReportRequest contains: ```none dimensions { name: "eventName" \} dimensions { name: "countryId" \} metrics { name: "eventCount" \} ``` One row with 'in_app_purchase' as the eventName, 'us' as the countryId, and 15 as the eventCount, would be: ```none dimension_values { name: 'in_app_purchase' name: 'us' \} metric_values { int64_value: 15 \} ```
    */
   export interface Schema$Row {
     /**
@@ -723,15 +719,15 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$RunPivotReportRequest {
     /**
-     * Cohort group associated with this request. If there is a cohort group in the request the &#39;cohort&#39; dimension must be present.
+     * Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present.
      */
     cohortSpec?: Schema$CohortSpec;
     /**
-     * A currency code in ISO4217 format, such as &quot;AED&quot;, &quot;USD&quot;, &quot;JPY&quot;. If the field is empty, the report uses the entity&#39;s default currency.
+     * A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the entity's default currency.
      */
     currencyCode?: string | null;
     /**
-     * The date range to retrieve event data for the report. If multiple date ranges are specified, event data from each date range is used in the report. A special dimension with field name &quot;dateRange&quot; can be included in a Pivot&#39;s field names; if included, the report compares between date ranges. In a cohort request, this `dateRanges` must be unspecified.
+     * The date range to retrieve event data for the report. If multiple date ranges are specified, event data from each date range is used in the report. A special dimension with field name "dateRange" can be included in a Pivot's field names; if included, the report compares between date ranges. In a cohort request, this `dateRanges` must be unspecified.
      */
     dateRanges?: Schema$DateRange[];
     /**
@@ -759,11 +755,11 @@ export namespace analyticsdata_v1alpha {
      */
     metrics?: Schema$Metric[];
     /**
-     * Describes the visual format of the report&#39;s dimensions in columns or rows. The union of the fieldNames (dimension names) in all pivots must be a subset of dimension names defined in Dimensions. No two pivots can share a dimension. A dimension is only visible if it appears in a pivot.
+     * Describes the visual format of the report's dimensions in columns or rows. The union of the fieldNames (dimension names) in all pivots must be a subset of dimension names defined in Dimensions. No two pivots can share a dimension. A dimension is only visible if it appears in a pivot.
      */
     pivots?: Schema$Pivot[];
     /**
-     * Toggles whether to return the current state of this Analytics Property&#39;s quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      */
     returnPropertyQuota?: boolean | null;
   }
@@ -772,7 +768,7 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$RunPivotReportResponse {
     /**
-     * Aggregation of metric values. Can be totals, minimums, or maximums. The returned aggregations are controlled by the metric_aggregations in the pivot. The type of aggregation returned in each row is shown by the dimension_values which are set to &quot;RESERVED_&quot;.
+     * Aggregation of metric values. Can be totals, minimums, or maximums. The returned aggregations are controlled by the metric_aggregations in the pivot. The type of aggregation returned in each row is shown by the dimension_values which are set to "RESERVED_".
      */
     aggregates?: Schema$Row[];
     /**
@@ -788,11 +784,11 @@ export namespace analyticsdata_v1alpha {
      */
     metricHeaders?: Schema$MetricHeader[];
     /**
-     * Summarizes the columns and rows created by a pivot. Each pivot in the request produces one header in the response. If we have a request like this: &quot;pivots&quot;: [{ &quot;fieldNames&quot;: [&quot;country&quot;, &quot;city&quot;] }, { &quot;fieldNames&quot;: &quot;eventName&quot; }] We will have the following `pivotHeaders` in the response: &quot;pivotHeaders&quot; : [{ &quot;dimensionHeaders&quot;: [{ &quot;dimensionValues&quot;: [ { &quot;value&quot;: &quot;United Kingdom&quot; }, { &quot;value&quot;: &quot;London&quot; } ] }, { &quot;dimensionValues&quot;: [ { &quot;value&quot;: &quot;Japan&quot; }, { &quot;value&quot;: &quot;Osaka&quot; } ] }] }, { &quot;dimensionHeaders&quot;: [{ &quot;dimensionValues&quot;: [{ &quot;value&quot;: &quot;session_start&quot; }] }, { &quot;dimensionValues&quot;: [{ &quot;value&quot;: &quot;scroll&quot; }] }] }]
+     * Summarizes the columns and rows created by a pivot. Each pivot in the request produces one header in the response. If we have a request like this: "pivots": [{ "fieldNames": ["country", "city"] \}, { "fieldNames": "eventName" \}] We will have the following `pivotHeaders` in the response: "pivotHeaders" : [{ "dimensionHeaders": [{ "dimensionValues": [ { "value": "United Kingdom" \}, { "value": "London" \} ] \}, { "dimensionValues": [ { "value": "Japan" \}, { "value": "Osaka" \} ] \}] \}, { "dimensionHeaders": [{ "dimensionValues": [{ "value": "session_start" \}] \}, { "dimensionValues": [{ "value": "scroll" \}] \}] \}]
      */
     pivotHeaders?: Schema$PivotHeader[];
     /**
-     * This Analytics Property&#39;s quota state including this request.
+     * This Analytics Property's quota state including this request.
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
@@ -805,11 +801,11 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$RunReportRequest {
     /**
-     * Cohort group associated with this request. If there is a cohort group in the request the &#39;cohort&#39; dimension must be present.
+     * Cohort group associated with this request. If there is a cohort group in the request the 'cohort' dimension must be present.
      */
     cohortSpec?: Schema$CohortSpec;
     /**
-     * A currency code in ISO4217 format, such as &quot;AED&quot;, &quot;USD&quot;, &quot;JPY&quot;. If the field is empty, the report uses the entity&#39;s default currency.
+     * A currency code in ISO4217 format, such as "AED", "USD", "JPY". If the field is empty, the report uses the entity's default currency.
      */
     currencyCode?: string | null;
     /**
@@ -837,7 +833,7 @@ export namespace analyticsdata_v1alpha {
      */
     limit?: string | null;
     /**
-     * Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to &quot;RESERVED_(MetricAggregation)&quot;.
+     * Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)".
      */
     metricAggregations?: string[] | null;
     /**
@@ -857,7 +853,7 @@ export namespace analyticsdata_v1alpha {
      */
     orderBys?: Schema$OrderBy[];
     /**
-     * Toggles whether to return the current state of this Analytics Property&#39;s quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     * Toggles whether to return the current state of this Analytics Property's quota. Quota is returned in [PropertyQuota](#PropertyQuota).
      */
     returnPropertyQuota?: boolean | null;
   }
@@ -886,7 +882,7 @@ export namespace analyticsdata_v1alpha {
      */
     minimums?: Schema$Row[];
     /**
-     * This Analytics Property&#39;s quota state including this request.
+     * This Analytics Property's quota state including this request.
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
@@ -940,9 +936,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.properties.getMetadata
-     * @desc Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics GA4 Property Identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
+     * Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. In this method, a Google Analytics GA4 Property Identifier is specified in the request, and the metadata response includes Custom dimensions and metrics as well as Universal metadata. For example if a custom metric with parameter name `levels_unlocked` is registered to a property, the Metadata response will contain `customEvent:levels_unlocked`. Universal metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -969,7 +965,7 @@ export namespace analyticsdata_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsdata.properties.getMetadata({
-     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
+     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      *     name: 'properties/my-propertie/metadata',
      *   });
      *   console.log(res.data);
@@ -987,14 +983,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.properties.getMetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetadata(
       params: Params$Resource$Properties$Getmetadata,
@@ -1066,7 +1060,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$Metadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
@@ -1077,7 +1071,7 @@ export namespace analyticsdata_v1alpha {
   export interface Params$Resource$Properties$Getmetadata
     extends StandardParameters {
     /**
-     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. Example: properties/1234/metadata
+     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      */
     name?: string;
   }
@@ -1089,9 +1083,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.batchRunPivotReports
-     * @desc Returns multiple pivot reports in a batch. All reports must be for the same Entity.
+     * Returns multiple pivot reports in a batch. All reports must be for the same Entity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -1140,14 +1134,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.batchRunPivotReports
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchRunPivotReportsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchRunPivotReports(
       params: Params$Resource$V1alpha$Batchrunpivotreports,
@@ -1229,7 +1221,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$BatchRunPivotReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchRunPivotReportsResponse>(
@@ -1239,9 +1231,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.batchRunReports
-     * @desc Returns multiple reports in a batch. All reports must be for the same Entity.
+     * Returns multiple reports in a batch. All reports must be for the same Entity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -1290,14 +1282,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.batchRunReports
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().BatchRunReportsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchRunReports(
       params: Params$Resource$V1alpha$Batchrunreports,
@@ -1379,7 +1369,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$BatchRunReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchRunReportsResponse>(parameters);
@@ -1387,9 +1377,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.getUniversalMetadata
-     * @desc Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. Dimensions and metrics will be mostly added over time, but renames and deletions may occur. This method returns Universal Metadata. Universal Metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
+     * Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. Dimensions and metrics will be mostly added over time, but renames and deletions may occur. This method returns Universal Metadata. Universal Metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -1430,13 +1420,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.getUniversalMetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getUniversalMetadata(
       params: Params$Resource$V1alpha$Getuniversalmetadata,
@@ -1516,7 +1505,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$UniversalMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UniversalMetadata>(parameters);
@@ -1524,9 +1513,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.runPivotReport
-     * @desc Returns a customized pivot report of your Google Analytics event data. Pivot reports are more advanced and expressive formats than regular reports. In a pivot report, dimensions are only visible if they are included in a pivot. Multiple pivots can be specified to further dissect your data.
+     * Returns a customized pivot report of your Google Analytics event data. Pivot reports are more advanced and expressive formats than regular reports. In a pivot report, dimensions are only visible if they are included in a pivot. Multiple pivots can be specified to further dissect your data.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -1590,14 +1579,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.runPivotReport
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().RunPivotReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     runPivotReport(
       params: Params$Resource$V1alpha$Runpivotreport,
@@ -1679,7 +1666,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$RunPivotReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunPivotReportResponse>(parameters);
@@ -1687,9 +1674,9 @@ export namespace analyticsdata_v1alpha {
     }
 
     /**
-     * analyticsdata.runReport
-     * @desc Returns a customized report of your Google Analytics event data. Reports contain statistics derived from data collected by the Google Analytics tracking code. The data returned from the API is as a table with columns for the requested dimensions and metrics. Metrics are individual measurements of user activity on your property, such as active users or event count. Dimensions break down metrics across some common criteria, such as country or event name.
+     * Returns a customized report of your Google Analytics event data. Reports contain statistics derived from data collected by the Google Analytics tracking code. The data returned from the API is as a table with columns for the requested dimensions and metrics. Metrics are individual measurements of user activity on your property, such as active users or event count. Dimensions break down metrics across some common criteria, such as country or event name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
@@ -1758,14 +1745,12 @@ export namespace analyticsdata_v1alpha {
      *   throw e;
      * });
      *
-     * @alias analyticsdata.runReport
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().RunReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     runReport(
       params: Params$Resource$V1alpha$Runreport,
@@ -1840,7 +1825,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$RunReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunReportResponse>(parameters);

@@ -104,14 +104,10 @@ export namespace artifactregistry_v1beta1 {
    * Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const artifactregistry = google.artifactregistry('v1beta1');
-   *
-   * @namespace artifactregistry
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Artifactregistry
+   * ```
    */
   export class Artifactregistry {
     context: APIRequestContext;
@@ -140,7 +136,7 @@ export namespace artifactregistry_v1beta1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -149,11 +145,11 @@ export namespace artifactregistry_v1beta1 {
     role?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -186,7 +182,7 @@ export namespace artifactregistry_v1beta1 {
      */
     hashes?: Schema$Hash[];
     /**
-     * The name of the file, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt&quot;.
+     * The name of the file, for example: "projects/p1/locations/us-central1/repositories/repo1/files/a/b/c.txt".
      */
     name?: string | null;
     /**
@@ -254,7 +250,7 @@ export namespace artifactregistry_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1&quot;.
+     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1".
      */
     name?: string | null;
     /**
@@ -371,15 +367,15 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -387,7 +383,7 @@ export namespace artifactregistry_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -408,7 +404,7 @@ export namespace artifactregistry_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -429,7 +425,7 @@ export namespace artifactregistry_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * The name of the package, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1&quot;.
+     * The name of the package, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1".
      */
     name?: string | null;
     /**
@@ -438,7 +434,7 @@ export namespace artifactregistry_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -479,7 +475,7 @@ export namespace artifactregistry_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The name of the repository, for example: &quot;projects/p1/locations/us-central1/repositories/repo1&quot;.
+     * The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
      */
     name?: string | null;
     /**
@@ -518,11 +514,11 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$Tag {
     /**
-     * The name of the tag, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1&quot;.
+     * The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
      */
     name?: string | null;
     /**
-     * The name of the version the tag refers to, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811&quot;
+     * The name of the version the tag refers to, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/sha256:5243811"
      */
     version?: string | null;
   }
@@ -531,7 +527,7 @@ export namespace artifactregistry_v1beta1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -557,7 +553,7 @@ export namespace artifactregistry_v1beta1 {
      */
     description?: string | null;
     /**
-     * The name of the version, for example: &quot;projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1&quot;.
+     * The name of the version, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/art1".
      */
     name?: string | null;
     /**
@@ -594,9 +590,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -643,14 +639,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -722,7 +716,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -730,9 +724,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -782,17 +776,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -872,7 +861,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -914,9 +903,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -963,14 +952,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -1042,7 +1029,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1050,9 +1037,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1102,17 +1089,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -1192,7 +1174,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1242,9 +1224,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.create
-     * @desc Creates a repository. The returned Operation will finish once the repository has been created. Its response will be the created Repository.
+     * Creates a repository. The returned Operation will finish once the repository has been created. Its response will be the created Repository.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1304,16 +1286,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the parent resource where the repository will be created.
-     * @param {string=} params.repositoryId The repository id to use for this repository.
-     * @param {().Repository} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Repositories$Create,
@@ -1388,7 +1366,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1396,9 +1374,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.delete
-     * @desc Deletes a repository and all of its contents. The returned Operation will finish once the repository has been deleted. It will not have any Operation metadata and will return a google.protobuf.Empty response.
+     * Deletes a repository and all of its contents. The returned Operation will finish once the repository has been deleted. It will not have any Operation metadata and will return a google.protobuf.Empty response.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1443,14 +1421,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the repository to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Delete,
@@ -1522,7 +1498,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1530,9 +1506,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.get
-     * @desc Gets a repository.
+     * Gets a repository.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1582,14 +1558,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the repository to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Repositories$Get,
@@ -1661,7 +1635,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Repository>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
@@ -1669,9 +1643,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.getIamPolicy
-     * @desc Gets the IAM policy for a given resource.
+     * Gets the IAM policy for a given resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1721,15 +1695,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Getiampolicy,
@@ -1804,7 +1775,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1812,9 +1783,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.list
-     * @desc Lists repositories.
+     * Lists repositories.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -1862,16 +1833,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of repositories to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent The name of the parent resource whose repositories will be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Repositories$List,
@@ -1951,7 +1918,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListRepositoriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRepositoriesResponse>(parameters);
@@ -1959,9 +1926,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.patch
-     * @desc Updates a repository.
+     * Updates a repository.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2024,16 +1991,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the repository, for example: "projects/p1/locations/us-central1/repositories/repo1".
-     * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().Repository} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Patch,
@@ -2105,7 +2068,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Repository>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Repository>(parameters);
@@ -2113,9 +2076,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.setIamPolicy
-     * @desc Updates the IAM policy for a given resource.
+     * Updates the IAM policy for a given resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2168,15 +2131,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Locations$Repositories$Setiampolicy,
@@ -2251,7 +2211,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2259,9 +2219,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.testIamPermissions
-     * @desc Tests if the caller has a list of permissions on a resource.
+     * Tests if the caller has a list of permissions on a resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2315,15 +2275,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Locations$Repositories$Testiampermissions,
@@ -2405,7 +2362,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2517,9 +2474,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.files.get
-     * @desc Gets a file.
+     * Gets a file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2568,14 +2525,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.files.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the file to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Repositories$Files$Get,
@@ -2647,7 +2602,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -2655,9 +2610,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.files.list
-     * @desc Lists files.
+     * Lists files.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2685,7 +2640,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.files.list(
      *     {
-     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Files owned by the version `1.0` in package `pkg1`.
+     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --\> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Files owned by the version `1.0` in package `pkg1`.
      *       filter: 'placeholder-value',
      *       // The maximum number of files to return.
      *       pageSize: 'placeholder-value',
@@ -2710,17 +2665,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Files owned by the version `1.0` in package `pkg1`.
-     * @param {integer=} params.pageSize The maximum number of files to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent The name of the parent resource whose files will be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Repositories$Files$List,
@@ -2798,7 +2748,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFilesResponse>(parameters);
@@ -2816,7 +2766,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Files$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Files owned by the version `1.0` in package `pkg1`.
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `name` * `owner` An example of using a filter: * `name="projects/p1/locations/us-central1/repositories/repo1/files/a/b/x"` --\> Files with an ID starting with "a/b/". * `owner="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Files owned by the version `1.0` in package `pkg1`.
      */
     filter?: string;
     /**
@@ -2848,9 +2798,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.delete
-     * @desc Deletes a package and all of its versions and tags. The returned operation will complete once the package has been deleted.
+     * Deletes a package and all of its versions and tags. The returned operation will complete once the package has been deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -2897,14 +2847,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the package to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Delete,
@@ -2976,7 +2924,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2984,9 +2932,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.get
-     * @desc Gets a package.
+     * Gets a package.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3035,14 +2983,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the package to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Get,
@@ -3114,7 +3060,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Package>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Package>(parameters);
@@ -3122,9 +3068,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.list
-     * @desc Lists packages.
+     * Lists packages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3175,16 +3121,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of packages to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent The name of the parent resource whose packages will be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$List,
@@ -3264,7 +3206,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListPackagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPackagesResponse>(parameters);
@@ -3309,9 +3251,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.tags.create
-     * @desc Creates a tag.
+     * Creates a tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3366,16 +3308,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.tags.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The name of the parent resource where the tag will be created.
-     * @param {string=} params.tagId The tag id to use for this repository.
-     * @param {().Tag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Create,
@@ -3450,7 +3388,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -3458,9 +3396,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.tags.delete
-     * @desc Deletes a tag.
+     * Deletes a tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3501,14 +3439,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.tags.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the tag to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Delete,
@@ -3580,7 +3516,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3588,9 +3524,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.tags.get
-     * @desc Gets a tag.
+     * Gets a tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3637,14 +3573,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.tags.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the tag to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Get,
@@ -3716,7 +3650,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -3724,9 +3658,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.tags.list
-     * @desc Lists tags.
+     * Lists tags.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3754,7 +3688,7 @@ export namespace artifactregistry_v1beta1 {
      *   // Do the magic
      *   const res = await artifactregistry.projects.locations.repositories.packages.tags.list(
      *     {
-     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Tags that are applied to the version `1.0` in package `pkg1`.
+     *       // An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
      *       filter: 'placeholder-value',
      *       // The maximum number of tags to return.
      *       pageSize: 'placeholder-value',
@@ -3779,17 +3713,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.tags.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Tags that are applied to the version `1.0` in package `pkg1`.
-     * @param {integer=} params.pageSize The maximum number of tags to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent The name of the parent resource whose tags will be listed.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$List,
@@ -3864,7 +3793,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTagsResponse>(parameters);
@@ -3872,9 +3801,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.tags.patch
-     * @desc Updates a tag.
+     * Updates a tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -3929,16 +3858,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.tags.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the tag, for example: "projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/tags/tag1".
-     * @param {string=} params.updateMask The update mask applies to the resource. For the `FieldMask` definition, see https://developers.google.com/protocol-buffers/docs/reference/google.protobuf#fieldmask
-     * @param {().Tag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Tags$Patch,
@@ -4010,7 +3935,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tag>(parameters);
@@ -4051,7 +3976,7 @@ export namespace artifactregistry_v1beta1 {
   export interface Params$Resource$Projects$Locations$Repositories$Packages$Tags$List
     extends StandardParameters {
     /**
-     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --> Tags that are applied to the version `1.0` in package `pkg1`.
+     * An expression for filtering the results of the request. Filter rules are case insensitive. The fields eligible for filtering are: * `version` An example of using a filter: * `version="projects/p1/locations/us-central1/repositories/repo1/packages/pkg1/versions/1.0"` --\> Tags that are applied to the version `1.0` in package `pkg1`.
      */
     filter?: string;
     /**
@@ -4091,9 +4016,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.versions.delete
-     * @desc Deletes a version and all of its content. The returned operation will complete once the version has been deleted.
+     * Deletes a version and all of its content. The returned operation will complete once the version has been deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -4142,15 +4067,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.versions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.force By default, a version that is tagged may not be deleted. If force=true, the version and any tags pointing to the version are deleted.
-     * @param {string} params.name The name of the version to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Delete,
@@ -4222,7 +4144,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4230,9 +4152,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.versions.get
-     * @desc Gets a version
+     * Gets a version
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -4284,15 +4206,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.versions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the version to retrieve.
-     * @param {string=} params.view The view that should be returned in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$Get,
@@ -4364,7 +4283,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -4372,9 +4291,9 @@ export namespace artifactregistry_v1beta1 {
     }
 
     /**
-     * artifactregistry.projects.locations.repositories.packages.versions.list
-     * @desc Lists versions.
+     * Lists versions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/artifactregistry.googleapis.com
@@ -4427,17 +4346,12 @@ export namespace artifactregistry_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias artifactregistry.projects.locations.repositories.packages.versions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of versions to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous list request, if any.
-     * @param {string} params.parent The name of the parent resource whose versions will be listed.
-     * @param {string=} params.view The view that should be returned in the response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Repositories$Packages$Versions$List,
@@ -4517,7 +4431,7 @@ export namespace artifactregistry_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);

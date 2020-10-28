@@ -37,3 +37,14 @@ export function gamesManagement<
 
 const auth = new AuthPlus();
 export {auth};
+export {gamesManagement_v1management};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

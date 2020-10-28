@@ -104,14 +104,10 @@ export namespace sqladmin_v1beta4 {
    * API for Cloud SQL database instance management
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const sqladmin = google.sqladmin('v1beta4');
-   *
-   * @namespace sqladmin
-   * @type {Function}
-   * @version v1beta4
-   * @variation v1beta4
-   * @param {object=} options Options for Sqladmin
+   * ```
    */
   export class Sqladmin {
     context: APIRequestContext;
@@ -223,11 +219,11 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$BackupRetentionSettings {
     /**
-     * Depending on the value of retention_unit, this is used to determine if a backup needs to be deleted. If retention_unit is &#39;COUNT&#39;, we will retain this many backups.
+     * Depending on the value of retention_unit, this is used to determine if a backup needs to be deleted. If retention_unit is 'COUNT', we will retain this many backups.
      */
     retainedBackups?: number | null;
     /**
-     * The unit that &#39;retained_backups&#39; represents.
+     * The unit that 'retained_backups' represents.
      */
     retentionUnit?: string | null;
   }
@@ -292,7 +288,7 @@ export namespace sqladmin_v1beta4 {
      */
     status?: string | null;
     /**
-     * The type of this run; can be either &quot;AUTOMATED&quot; or &quot;ON_DEMAND&quot;.
+     * The type of this run; can be either "AUTOMATED" or "ON_DEMAND".
      */
     type?: string | null;
     /**
@@ -406,7 +402,7 @@ export namespace sqladmin_v1beta4 {
      */
     name?: string | null;
     /**
-     * The value of the flag. Booleans are set to *on* for true and *off* for false. This field must be omitted if the flag doesn&#39;t take a value.
+     * The value of the flag. Booleans are set to *on* for true and *off* for false. This field must be omitted if the flag doesn't take a value.
      */
     value?: string | null;
   }
@@ -423,7 +419,7 @@ export namespace sqladmin_v1beta4 {
      */
     connectionName?: string | null;
     /**
-     * The current disk usage of the instance in bytes. This property has been deprecated. Use the &quot;cloudsql.googleapis.com/database/disk/bytes_used&quot; metric in Cloud Monitoring API instead. Please see this announcement for details.
+     * The current disk usage of the instance in bytes. This property has been deprecated. Use the "cloudsql.googleapis.com/database/disk/bytes_used" metric in Cloud Monitoring API instead. Please see this announcement for details.
      */
     currentDiskSize?: string | null;
     /**
@@ -451,7 +447,7 @@ export namespace sqladmin_v1beta4 {
      */
     gceZone?: string | null;
     /**
-     * The instance type. This can be one of the following. *CLOUD_SQL_INSTANCE*: A Cloud SQL instance that is not replicating from a primary instance. *ON_PREMISES_INSTANCE*: An instance running on the customer&#39;s premises. *READ_REPLICA_INSTANCE*: A Cloud SQL instance configured as a read-replica.
+     * The instance type. This can be one of the following. *CLOUD_SQL_INSTANCE*: A Cloud SQL instance that is not replicating from a primary instance. *ON_PREMISES_INSTANCE*: An instance running on the customer's premises. *READ_REPLICA_INSTANCE*: A Cloud SQL instance configured as a read-replica.
      */
     instanceType?: string | null;
     /**
@@ -503,9 +499,17 @@ export namespace sqladmin_v1beta4 {
      */
     rootPassword?: string | null;
     /**
+     * The status indicating if instance satisfies physical zone separation. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * The start time of any upcoming scheduled maintenance for this instance.
      */
     scheduledMaintenance?: Schema$SqlScheduledMaintenance;
+    /**
+     * The Compute Engine zone that the failover instance is currently serving from for a regional instance. This value could be different from the zone that was specified when the instance was created if the instance has failed over to its secondary/failover zone. Reserved for future use.
+     */
+    secondaryGceZone?: string | null;
     /**
      * The URI of this resource.
      */
@@ -523,7 +527,7 @@ export namespace sqladmin_v1beta4 {
      */
     settings?: Schema$Settings;
     /**
-     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it&#39;s ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
+     * The current serving state of the Cloud SQL instance. This can be one of the following. *SQL_INSTANCE_STATE_UNSPECIFIED*: The state of the instance is unknown. *RUNNABLE*: The instance has been stopped by owner. It is not currently running, but it's ready to be restarted. *SUSPENDED*: The instance is not available, for example due to problems with billing. for example due to problems with billing. *PENDING_DELETE*: The instance is being deleted. *PENDING_CREATE*: The instance is being created. *MAINTENANCE*: The instance is down for maintenance. *FAILED*: The instance creation failed.
      */
     state?: string | null;
     /**
@@ -583,15 +587,15 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DemoteMasterMySqlReplicaConfiguration {
     /**
-     * PEM representation of the trusted CA&#39;s x509 certificate.
+     * PEM representation of the trusted CA's x509 certificate.
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s x509 certificate.
+     * PEM representation of the replica's x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate. The format of the replica&#39;s private key can be either PKCS #1 or PKCS #8.
+     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate. The format of the replica's private key can be either PKCS #1 or PKCS #8.
      */
     clientKey?: string | null;
     /**
@@ -612,15 +616,15 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$DenyMaintenancePeriod {
     /**
-     * &quot;deny maintenance period&quot; end date. If the year of the end date is empty, the year of the start date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01
+     * "deny maintenance period" end date. If the year of the end date is empty, the year of the start date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01
      */
     endDate?: string | null;
     /**
-     * &quot;deny maintenance period&quot; start date. If the year of the start date is empty, the year of the end date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01
+     * "deny maintenance period" start date. If the year of the start date is empty, the year of the end date also must be empty. In this case, it means the deny maintenance period recurs every year. The date is in format yyyy-mm-dd i.e., 2020-11-01, or mm-dd, i.e., 11-01
      */
     startDate?: string | null;
     /**
-     * Time in UTC when the &quot;deny maintenance period&quot; starts on start_date and ends on end_date. The time is in format: HH:mm:SS, i.e., 00:00:00
+     * Time in UTC when the "deny maintenance period" starts on start_date and ends on end_date. The time is in format: HH:mm:SS, i.e., 00:00:00
      */
     time?: string | null;
   }
@@ -696,7 +700,7 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
-     * The current settings version of this instance. Request will be rejected if this version doesn&#39;t match the current settings version.
+     * The current settings version of this instance. Request will be rejected if this version doesn't match the current settings version.
      */
     settingsVersion?: string | null;
   }
@@ -909,7 +913,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$IpConfiguration {
     /**
-     * The list of external networks that are allowed to connect to the instance using the IP. In &#39;CIDR&#39; notation, also known as &#39;slash&#39; notation (for example: *192.168.100.0/24*).
+     * The list of external networks that are allowed to connect to the instance using the IP. In 'CIDR' notation, also known as 'slash' notation (for example: *192.168.100.0/24*).
      */
     authorizedNetworks?: Schema$AclEntry[];
     /**
@@ -955,6 +959,10 @@ export namespace sqladmin_v1beta4 {
      */
     kind?: string | null;
     /**
+     * The preferred Compute Engine zone for the secondary/failover (for example: us-central1-a, us-central1-b, etc.). Reserved for future use.
+     */
+    secondaryZone?: string | null;
+    /**
      * The preferred Compute Engine zone (for example: us-central1-a, us-central1-b, etc.).
      */
     zone?: string | null;
@@ -985,19 +993,19 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$MySqlReplicaConfiguration {
     /**
-     * PEM representation of the trusted CA&#39;s x509 certificate.
+     * PEM representation of the trusted CA's x509 certificate.
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s x509 certificate.
+     * PEM representation of the replica's x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
+     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**
-     * Seconds to wait between connect retries. MySQL&#39;s default is 60 seconds.
+     * Seconds to wait between connect retries. MySQL's default is 60 seconds.
      */
     connectRetryInterval?: number | null;
     /**
@@ -1025,7 +1033,7 @@ export namespace sqladmin_v1beta4 {
      */
     username?: string | null;
     /**
-     * Whether or not to check the primary instance&#39;s Common Name value in the certificate that it sends during the SSL handshake.
+     * Whether or not to check the primary instance's Common Name value in the certificate that it sends during the SSL handshake.
      */
     verifyServerCertificate?: boolean | null;
   }
@@ -1034,15 +1042,15 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$OnPremisesConfiguration {
     /**
-     * PEM representation of the trusted CA&#39;s x509 certificate.
+     * PEM representation of the trusted CA's x509 certificate.
      */
     caCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s x509 certificate.
+     * PEM representation of the replica's x509 certificate.
      */
     clientCertificate?: string | null;
     /**
-     * PEM representation of the replica&#39;s private key. The corresponsing public key is encoded in the client&#39;s certificate.
+     * PEM representation of the replica's private key. The corresponsing public key is encoded in the client's certificate.
      */
     clientKey?: string | null;
     /**
@@ -1245,7 +1253,7 @@ export namespace sqladmin_v1beta4 {
      */
     activationPolicy?: string | null;
     /**
-     * Active Directory configuration, for now relevant only for SQL Server
+     * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
      */
     activeDirectoryConfig?: Schema$SqlActiveDirectoryConfig;
     /**
@@ -1334,15 +1342,15 @@ export namespace sqladmin_v1beta4 {
     userLabels?: {[key: string]: string} | null;
   }
   /**
-   * Active Directory configuration, for now relevant only for SQL Server
+   * Active Directory configuration, relevant only for Cloud SQL for SQL Server.
    */
   export interface Schema$SqlActiveDirectoryConfig {
     /**
-     * Domain name
+     * The name of the domain (e.g., mydomain.com).
      */
     domain?: string | null;
     /**
-     * This will be always sql#activeDirectoryConfig.
+     * This is always sql#activeDirectoryConfig.
      */
     kind?: string | null;
   }
@@ -1514,7 +1522,7 @@ export namespace sqladmin_v1beta4 {
      */
     operation?: Schema$Operation;
     /**
-     * The server Certificate Authority&#39;s certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
+     * The server Certificate Authority's certificate. If this is missing you can force a new one to be generated by calling resetSslConfig method on instances resource.
      */
     serverCaCert?: Schema$SslCert;
   }
@@ -1616,7 +1624,7 @@ export namespace sqladmin_v1beta4 {
     project?: string | null;
     sqlserverUserDetails?: Schema$SqlServerUserDetails;
     /**
-     * The user type. It determines the method to authenticate the user during login. The default is the database&#39;s built-in user type.
+     * The user type. It determines the method to authenticate the user during login. The default is the database's built-in user type.
      */
     type?: string | null;
   }
@@ -1645,9 +1653,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.backupRuns.delete
-     * @desc Deletes the backup taken by a backup run.
+     * Deletes the backup taken by a backup run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -1708,16 +1716,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.backupRuns.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of the Backup Run to delete. To find a Backup Run ID, use the list method.
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Backupruns$Delete,
@@ -1791,7 +1795,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1799,9 +1803,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.backupRuns.get
-     * @desc Retrieves a resource containing information about a backup run.
+     * Retrieves a resource containing information about a backup run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -1863,16 +1867,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.backupRuns.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id The ID of this Backup Run.
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Backupruns$Get,
@@ -1945,7 +1945,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$BackupRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BackupRun>(parameters);
@@ -1953,9 +1953,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.backupRuns.insert
-     * @desc Creates a new backup run on demand. This method is applicable only to Second Generation instances.
+     * Creates a new backup run on demand. This method is applicable only to Second Generation instances.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2037,16 +2037,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.backupRuns.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().BackupRun} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Backupruns$Insert,
@@ -2120,7 +2116,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2128,9 +2124,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.backupRuns.list
-     * @desc Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the backup initiation time.
+     * Lists all backup runs associated with a given instance and configuration in the reverse chronological order of the backup initiation time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2181,17 +2177,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.backupRuns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {integer=} params.maxResults Maximum number of backup runs per response.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Backupruns$List,
@@ -2269,7 +2260,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$BackupRunsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BackupRunsListResponse>(parameters);
@@ -2348,9 +2339,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.delete
-     * @desc Deletes a database from a Cloud SQL instance.
+     * Deletes a database from a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2411,16 +2402,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be deleted in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Databases$Delete,
@@ -2493,7 +2480,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2501,9 +2488,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.get
-     * @desc Retrieves a resource containing information about a database inside a Cloud SQL instance.
+     * Retrieves a resource containing information about a database inside a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2558,16 +2545,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Databases$Get,
@@ -2640,7 +2623,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Database>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Database>(parameters);
@@ -2648,9 +2631,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.insert
-     * @desc Inserts a resource containing information about a database inside a Cloud SQL instance.
+     * Inserts a resource containing information about a database inside a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2725,16 +2708,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().Database} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Databases$Insert,
@@ -2807,7 +2786,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2815,9 +2794,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.list
-     * @desc Lists databases in the specified Cloud SQL instance.
+     * Lists databases in the specified Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -2863,15 +2842,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Databases$List,
@@ -2949,7 +2925,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$DatabasesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatabasesListResponse>(parameters);
@@ -2957,9 +2933,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.patch
-     * @desc Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
+     * Partially updates a resource containing information about a database inside a Cloud SQL instance. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3036,17 +3012,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be updated in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().Database} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Databases$Patch,
@@ -3119,7 +3090,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3127,9 +3098,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.databases.update
-     * @desc Updates a resource containing information about a database inside a Cloud SQL instance.
+     * Updates a resource containing information about a database inside a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3206,17 +3177,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.databases.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.database Name of the database to be updated in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().Database} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Databases$Update,
@@ -3289,7 +3255,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3396,9 +3362,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.flags.list
-     * @desc List all available database flags for Cloud SQL instances.
+     * List all available database flags for Cloud SQL instances.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3442,14 +3408,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.flags.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.databaseVersion Database type and version you want to retrieve flags for. By default, this method returns flags for all database types and versions.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Flags$List,
@@ -3522,7 +3486,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$FlagsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FlagsListResponse>(parameters);
@@ -3544,9 +3508,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.addServerCa
-     * @desc Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
+     * Add a new trusted Certificate Authority (CA) version for the specified instance. Required to prepare for a certificate rotation. If a CA version was previously added but never used in a certificate rotation, this operation replaces that version. There cannot be more than one CA version waiting to be rotated in.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3605,15 +3569,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.addServerCa
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     addServerCa(
       params: Params$Resource$Instances$Addserverca,
@@ -3687,7 +3648,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3695,9 +3656,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.clone
-     * @desc Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
+     * Creates a Cloud SQL instance as a clone of the source instance. Using this operation might cause your instance to restart.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3764,16 +3725,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.clone
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance The ID of the Cloud SQL instance to be cloned (source). This does not include the project ID.
-     * @param {string} params.project Project ID of the source as well as the clone Cloud SQL instance.
-     * @param {().InstancesCloneRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clone(
       params: Params$Resource$Instances$Clone,
@@ -3846,7 +3803,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3854,9 +3811,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.delete
-     * @desc Deletes a Cloud SQL instance.
+     * Deletes a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -3915,15 +3872,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Instances$Delete,
@@ -3995,7 +3949,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4003,9 +3957,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.demoteMaster
-     * @desc Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
+     * Demotes the stand-alone instance to be a Cloud SQL read replica for an external database server.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4072,16 +4026,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.demoteMaster
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance name.
-     * @param {string} params.project ID of the project that contains the instance.
-     * @param {().InstancesDemoteMasterRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     demoteMaster(
       params: Params$Resource$Instances$Demotemaster,
@@ -4155,7 +4105,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4163,9 +4113,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.export
-     * @desc Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
+     * Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4229,16 +4179,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.export
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance to be exported.
-     * @param {().InstancesExportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     export(
       params: Params$Resource$Instances$Export,
@@ -4311,7 +4257,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4319,9 +4265,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.failover
-     * @desc Failover the instance to its failover replica instance. Using this operation might cause your instance to restart.
+     * Failover the instance to its failover replica instance. Using this operation might cause your instance to restart.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4388,16 +4334,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.failover
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project ID of the project that contains the read replica.
-     * @param {().InstancesFailoverRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     failover(
       params: Params$Resource$Instances$Failover,
@@ -4471,7 +4413,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4479,9 +4421,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.get
-     * @desc Retrieves a resource containing information about a Cloud SQL instance.
+     * Retrieves a resource containing information about a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4539,7 +4481,9 @@ export namespace sqladmin_v1beta4 {
      *   //   "replicaConfiguration": {},
      *   //   "replicaNames": [],
      *   //   "rootPassword": "my_rootPassword",
+     *   //   "satisfiesPzs": false,
      *   //   "scheduledMaintenance": {},
+     *   //   "secondaryGceZone": "my_secondaryGceZone",
      *   //   "selfLink": "my_selfLink",
      *   //   "serverCaCert": {},
      *   //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -4554,15 +4498,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Instances$Get,
@@ -4634,7 +4575,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$DatabaseInstance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatabaseInstance>(parameters);
@@ -4642,9 +4583,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.import
-     * @desc Imports data into a Cloud SQL instance from a SQL dump or CSV file in Cloud Storage.
+     * Imports data into a Cloud SQL instance from a SQL dump or CSV file in Cloud Storage.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4708,16 +4649,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().InstancesImportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Instances$Import,
@@ -4790,7 +4727,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4798,9 +4735,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.insert
-     * @desc Creates a new Cloud SQL instance.
+     * Creates a new Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -4856,7 +4793,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -4893,15 +4832,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID of the project to which the newly created Cloud SQL instances should belong.
-     * @param {().DatabaseInstance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Instances$Insert,
@@ -4973,7 +4909,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4981,9 +4917,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.list
-     * @desc Lists instances under a given project.
+     * Lists instances under a given project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5035,17 +4971,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters resources listed in the response. The expression is in the form of field:value. For example, 'instanceType:CLOUD_SQL_INSTANCE'. Fields can be nested as needed as per their JSON representation, such as 'settings.userLabels.auto_start:true'. Multiple filter queries are space-separated. For example. 'state:RUNNABLE instanceType:CLOUD_SQL_INSTANCE'. By default, each expression is an AND expression. However, you can include AND and OR expressions explicitly.
-     * @param {integer=} params.maxResults The maximum number of results to return per response.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project for which to list Cloud SQL instances.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Instances$List,
@@ -5122,7 +5053,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$InstancesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstancesListResponse>(parameters);
@@ -5130,9 +5061,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.listServerCas
-     * @desc Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
+     * Lists all of the trusted Certificate Authorities (CAs) for the specified instance. There can be up to three CAs listed: the CA that was used to sign the certificate that is currently in use, a CA that has been added but not yet used to sign a certificate, and a CA used to sign a certificate that has previously rotated out.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5179,15 +5110,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.listServerCas
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listServerCas(
       params: Params$Resource$Instances$Listservercas,
@@ -5268,7 +5196,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$InstancesListServerCasResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstancesListServerCasResponse>(
@@ -5278,9 +5206,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.patch
-     * @desc Updates settings of a Cloud SQL instance. This method supports patch semantics.
+     * Updates settings of a Cloud SQL instance. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5338,7 +5266,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -5375,16 +5305,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().DatabaseInstance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Instances$Patch,
@@ -5456,7 +5382,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5464,9 +5390,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.promoteReplica
-     * @desc Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.
+     * Promotes the read replica instance to be a stand-alone Cloud SQL instance. Using this operation might cause your instance to restart.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5525,15 +5451,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.promoteReplica
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read replica.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     promoteReplica(
       params: Params$Resource$Instances$Promotereplica,
@@ -5607,7 +5530,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5615,9 +5538,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.resetSslConfig
-     * @desc Deletes all client certificates and generates a new server SSL certificate for the instance.
+     * Deletes all client certificates and generates a new server SSL certificate for the instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5676,15 +5599,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.resetSslConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetSslConfig(
       params: Params$Resource$Instances$Resetsslconfig,
@@ -5758,7 +5678,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5766,9 +5686,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.restart
-     * @desc Restarts a Cloud SQL instance.
+     * Restarts a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5827,15 +5747,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.restart
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance to be restarted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restart(
       params: Params$Resource$Instances$Restart,
@@ -5909,7 +5826,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5917,9 +5834,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.restoreBackup
-     * @desc Restores a backup of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * Restores a backup of a Cloud SQL instance. Using this operation might cause your instance to restart.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -5986,16 +5903,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.restoreBackup
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().InstancesRestoreBackupRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restoreBackup(
       params: Params$Resource$Instances$Restorebackup,
@@ -6069,7 +5982,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6077,9 +5990,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.rotateServerCa
-     * @desc Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.
+     * Rotates the server certificate to one signed by the Certificate Authority (CA) version previously added with the addServerCA method.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -6146,16 +6059,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.rotateServerCa
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().InstancesRotateServerCaRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rotateServerCa(
       params: Params$Resource$Instances$Rotateserverca,
@@ -6229,7 +6138,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6237,9 +6146,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.startReplica
-     * @desc Starts the replication in the read replica instance.
+     * Starts the replication in the read replica instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -6298,15 +6207,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.startReplica
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read replica.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startReplica(
       params: Params$Resource$Instances$Startreplica,
@@ -6380,7 +6286,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6388,9 +6294,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.stopReplica
-     * @desc Stops the replication in the read replica instance.
+     * Stops the replication in the read replica instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -6449,15 +6355,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.stopReplica
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL read replica instance name.
-     * @param {string} params.project ID of the project that contains the read replica.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stopReplica(
       params: Params$Resource$Instances$Stopreplica,
@@ -6531,7 +6434,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6539,9 +6442,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.truncateLog
-     * @desc Truncate MySQL general and slow query log tables
+     * Truncate MySQL general and slow query log tables
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -6608,16 +6511,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.truncateLog
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the Cloud SQL project.
-     * @param {().InstancesTruncateLogRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     truncateLog(
       params: Params$Resource$Instances$Truncatelog,
@@ -6691,7 +6590,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6699,9 +6598,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.instances.update
-     * @desc Updates settings of a Cloud SQL instance. Using this operation might cause your instance to restart.
+     * Updates settings of a Cloud SQL instance. Using this operation might cause your instance to restart.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -6759,7 +6658,9 @@ export namespace sqladmin_v1beta4 {
      *       //   "replicaConfiguration": {},
      *       //   "replicaNames": [],
      *       //   "rootPassword": "my_rootPassword",
+     *       //   "satisfiesPzs": false,
      *       //   "scheduledMaintenance": {},
+     *       //   "secondaryGceZone": "my_secondaryGceZone",
      *       //   "selfLink": "my_selfLink",
      *       //   "serverCaCert": {},
      *       //   "serviceAccountEmailAddress": "my_serviceAccountEmailAddress",
@@ -6796,16 +6697,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.instances.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().DatabaseInstance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Instances$Update,
@@ -6877,7 +6774,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7174,9 +7071,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.operations.get
-     * @desc Retrieves an instance operation that has been performed on an instance.
+     * Retrieves an instance operation that has been performed on an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -7235,15 +7132,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.operation Instance operation ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operations$Get,
@@ -7315,7 +7209,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7323,9 +7217,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.operations.list
-     * @desc Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
+     * Lists all instance operations that have been performed on the given Cloud SQL instance in the reverse chronological order of the start time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -7376,17 +7270,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {integer=} params.maxResults Maximum number of operations per response.
-     * @param {string=} params.pageToken A previously-returned page token representing part of the larger set of results to view.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operations$List,
@@ -7463,7 +7352,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$OperationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperationsListResponse>(parameters);
@@ -7516,9 +7405,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.projects.instances.rescheduleMaintenance
-     * @desc Reschedules the maintenance on the given instance.
+     * Reschedules the maintenance on the given instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -7585,16 +7474,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.projects.instances.rescheduleMaintenance
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project ID of the project that contains the instance.
-     * @param {().SqlInstancesRescheduleMaintenanceRequestBody} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rescheduleMaintenance(
       params: Params$Resource$Projects$Instances$Reschedulemaintenance,
@@ -7670,7 +7555,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7678,9 +7563,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.projects.instances.startExternalSync
-     * @desc Start External primary instance migration.
+     * Start External primary instance migration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -7741,16 +7626,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.projects.instances.startExternalSync
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project ID of the project that contains the instance.
-     * @param {string=} params.syncMode External sync mode
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startExternalSync(
       params: Params$Resource$Projects$Instances$Startexternalsync,
@@ -7824,7 +7705,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7832,9 +7713,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.projects.instances.verifyExternalSyncSettings
-     * @desc Verify External primary instance external sync settings.
+     * Verify External primary instance external sync settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -7884,17 +7765,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.projects.instances.verifyExternalSyncSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {string=} params.syncMode External sync mode
-     * @param {boolean=} params.verifyConnectionOnly Flag to enable verifying connection only
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
@@ -7989,7 +7865,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8057,9 +7933,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.sslCerts.createEphemeral
-     * @desc Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
+     * Generates a short-lived X509 certificate containing the provided public key and signed by a private key specific to the target instance. Users may use the certificate to authenticate as themselves when connecting to the database.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8120,16 +7996,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.sslCerts.createEphemeral
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the Cloud SQL project.
-     * @param {().SslCertsCreateEphemeralRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createEphemeral(
       params: Params$Resource$Sslcerts$Createephemeral,
@@ -8203,7 +8075,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCert>(parameters);
@@ -8211,9 +8083,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.sslCerts.delete
-     * @desc Deletes the SSL certificate. For First Generation instances, the certificate remains valid until the instance is restarted.
+     * Deletes the SSL certificate. For First Generation instances, the certificate remains valid until the instance is restarted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8274,16 +8146,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.sslCerts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sslcerts$Delete,
@@ -8356,7 +8224,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8364,9 +8232,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.sslCerts.get
-     * @desc Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
+     * Retrieves a particular SSL certificate. Does not include the private key (required for usage). The private key must be saved from the response to initial creation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8421,16 +8289,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.sslCerts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {string} params.sha1Fingerprint Sha1 FingerPrint.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sslcerts$Get,
@@ -8503,7 +8367,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCert>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCert>(parameters);
@@ -8511,9 +8375,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.sslCerts.insert
-     * @desc Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
+     * Creates an SSL certificate and returns it along with the private key and server certificate authority. The new certificate will not be usable until the instance is restarted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8569,16 +8433,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.sslCerts.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().SslCertsInsertRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Sslcerts$Insert,
@@ -8656,7 +8516,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCertsInsertResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCertsInsertResponse>(parameters);
@@ -8664,9 +8524,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.sslCerts.list
-     * @desc Lists all of the current SSL certificates for the instance.
+     * Lists all of the current SSL certificates for the instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8712,15 +8572,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.sslCerts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Cloud SQL instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sslcerts$List,
@@ -8798,7 +8655,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$SslCertsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SslCertsListResponse>(parameters);
@@ -8883,9 +8740,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.tiers.list
-     * @desc Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see Pricing.
+     * Lists all available machine types (tiers) for Cloud SQL, for example, db-n1-standard-1. For related information, see Pricing.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -8929,14 +8786,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.tiers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.project Project ID of the project for which to list tiers.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tiers$List,
@@ -9012,7 +8867,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$TiersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TiersListResponse>(parameters);
@@ -9034,9 +8889,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.users.delete
-     * @desc Deletes a user from a Cloud SQL instance.
+     * Deletes a user from a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -9099,17 +8954,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.users.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.host Host of the user in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string=} params.name Name of the user in the instance.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Delete,
@@ -9182,7 +9032,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9190,9 +9040,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.users.insert
-     * @desc Creates a new user in a Cloud SQL instance.
+     * Creates a new user in a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -9267,16 +9117,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.users.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Users$Insert,
@@ -9349,7 +9195,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9357,9 +9203,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.users.list
-     * @desc Lists users in the specified Cloud SQL instance.
+     * Lists users in the specified Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -9406,15 +9252,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.users.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$List,
@@ -9490,7 +9333,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsersListResponse>(parameters);
@@ -9498,9 +9341,9 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
-     * sql.users.update
-     * @desc Updates an existing user in a Cloud SQL instance.
+     * Updates an existing user in a Cloud SQL instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
@@ -9579,18 +9422,12 @@ export namespace sqladmin_v1beta4 {
      *   throw e;
      * });
      *
-     * @alias sql.users.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.host Optional. Host of the user in the instance.
-     * @param {string} params.instance Database instance ID. This does not include the project ID.
-     * @param {string=} params.name Name of the user in the instance.
-     * @param {string} params.project Project ID of the project that contains the instance.
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Update,
@@ -9663,7 +9500,7 @@ export namespace sqladmin_v1beta4 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

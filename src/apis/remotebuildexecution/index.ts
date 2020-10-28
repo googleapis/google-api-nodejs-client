@@ -62,3 +62,16 @@ export function remotebuildexecution<
 
 const auth = new AuthPlus();
 export {auth};
+export {remotebuildexecution_v1};
+export {remotebuildexecution_v1alpha};
+export {remotebuildexecution_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

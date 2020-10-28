@@ -104,14 +104,10 @@ export namespace bigquerydatatransfer_v1 {
    * Schedule queries or transfer external data from SaaS applications to Google BigQuery on a regular basis.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const bigquerydatatransfer = google.bigquerydatatransfer('v1');
-   *
-   * @namespace bigquerydatatransfer
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Bigquerydatatransfer
+   * ```
    */
   export class Bigquerydatatransfer {
     context: APIRequestContext;
@@ -153,7 +149,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     clientId?: string | null;
     /**
-     * Specifies whether the data source supports automatic data refresh for the past few days, and how it&#39;s supported. For some data sources, data might not be complete until a few days later, so it&#39;s useful to refresh data automatically.
+     * Specifies whether the data source supports automatic data refresh for the past few days, and how it's supported. For some data sources, data might not be complete until a few days later, so it's useful to refresh data automatically.
      */
     dataRefreshType?: string | null;
     /**
@@ -296,7 +292,7 @@ export namespace bigquerydatatransfer_v1 {
     enableFailureEmail?: boolean | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -369,15 +365,15 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -385,7 +381,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -411,11 +407,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$ScheduleTransferRunsRequest {
     /**
-     * Required. End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`.
+     * Required. End time of the range of transfer runs. For example, `"2017-05-30T00:00:00+00:00"`.
      */
     endTime?: string | null;
     /**
-     * Required. Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`.
+     * Required. Start time of the range of transfer runs. For example, `"2017-05-25T00:00:00+00:00"`.
      */
     startTime?: string | null;
   }
@@ -472,11 +468,11 @@ export namespace bigquerydatatransfer_v1 {
    */
   export interface Schema$TimeRange {
     /**
-     * End time of the range of transfer runs. For example, `&quot;2017-05-30T00:00:00+00:00&quot;`. The end_time must not be in the future. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
+     * End time of the range of transfer runs. For example, `"2017-05-30T00:00:00+00:00"`. The end_time must not be in the future. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
      */
     endTime?: string | null;
     /**
-     * Start time of the range of transfer runs. For example, `&quot;2017-05-25T00:00:00+00:00&quot;`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
+     * Start time of the range of transfer runs. For example, `"2017-05-25T00:00:00+00:00"`. The start_time must be strictly less than the end_time. Creates transfer runs where run_time is in the range between start_time (inclusive) and end_time (exclusive).
      */
     startTime?: string | null;
   }
@@ -513,7 +509,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     emailPreferences?: Schema$EmailPreferences;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
     name?: string | null;
     /**
@@ -591,7 +587,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     errorStatus?: Schema$Status;
     /**
-     * The resource name of the transfer run. Transfer run names have the form `projects/{project_id}/locations/{location}/transferConfigs/{config_id}/runs/{run_id}`. The name is ignored when creating a transfer run.
+     * The resource name of the transfer run. Transfer run names have the form `projects/{project_id\}/locations/{location\}/transferConfigs/{config_id\}/runs/{run_id\}`. The name is ignored when creating a transfer run.
      */
     name?: string | null;
     /**
@@ -607,7 +603,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     runTime?: string | null;
     /**
-     * Output only. Describes the schedule of this transfer run if it was created as part of a regular schedule. For batch transfer runs that are scheduled manually, this is empty. NOTE: the system might choose to delay the schedule depending on the current load, so `schedule_time` doesn&#39;t always match this.
+     * Output only. Describes the schedule of this transfer run if it was created as part of a regular schedule. For batch transfer runs that are scheduled manually, this is empty. NOTE: the system might choose to delay the schedule depending on the current load, so `schedule_time` doesn't always match this.
      */
     schedule?: string | null;
     /**
@@ -654,9 +650,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.dataSources.checkValidCreds
-     * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -685,7 +681,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.checkValidCreds({
-     *     // Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *     // Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
      *     name: 'projects/my-project/dataSources/my-dataSource',
      *
      *     // Request body metadata
@@ -707,15 +703,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.dataSources.checkValidCreds
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
-     * @param {().CheckValidCredsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     checkValidCreds(
       params: Params$Resource$Projects$Datasources$Checkvalidcreds,
@@ -797,7 +790,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
@@ -805,9 +798,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.dataSources.get
-     * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * Retrieves a supported data source and returns its settings, which can be used for UI rendering.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -836,7 +829,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.dataSources.get({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      *     name: 'projects/my-project/dataSources/my-dataSource',
      *   });
      *   console.log(res.data);
@@ -869,14 +862,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.dataSources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Datasources$Get,
@@ -948,7 +939,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -956,9 +947,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.dataSources.list
-     * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * Lists supported data sources and returns their settings, which can be used for UI rendering.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -991,7 +982,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1008,16 +999,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.dataSources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Datasources$List,
@@ -1097,7 +1084,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -1108,7 +1095,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     * Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
      */
     name?: string;
 
@@ -1120,7 +1107,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Datasources$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
@@ -1135,7 +1122,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
      */
     parent?: string;
   }
@@ -1155,9 +1142,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -1206,14 +1193,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -1285,7 +1270,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1293,9 +1278,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -1347,17 +1332,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -1437,7 +1417,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1479,9 +1459,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
-     * @desc Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
+     * Returns true if valid credentials exist for the given data source and requesting user. Some data sources doesn't support service account, so we need to talk to them on behalf of the end user. This API just checks whether we have OAuth token for the particular user, which is a pre-requisite before user can create a transfer config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -1511,7 +1491,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.checkValidCreds(
      *     {
-     *       // Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     *       // Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
      *       name:
      *         'projects/my-project/locations/my-location/dataSources/my-dataSource',
      *
@@ -1535,15 +1515,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.dataSources.checkValidCreds
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
-     * @param {().CheckValidCredsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     checkValidCreds(
       params: Params$Resource$Projects$Locations$Datasources$Checkvalidcreds,
@@ -1625,7 +1602,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckValidCredsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckValidCredsResponse>(parameters);
@@ -1633,9 +1610,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.dataSources.get
-     * @desc Retrieves a supported data source and returns its settings, which can be used for UI rendering.
+     * Retrieves a supported data source and returns its settings, which can be used for UI rendering.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -1664,7 +1641,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.dataSources.get({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      *     name: 'projects/my-project/locations/my-location/dataSources/my-dataSource',
      *   });
      *   console.log(res.data);
@@ -1697,14 +1674,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.dataSources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Datasources$Get,
@@ -1776,7 +1751,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1784,9 +1759,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.dataSources.list
-     * @desc Lists supported data sources and returns their settings, which can be used for UI rendering.
+     * Lists supported data sources and returns their settings, which can be used for UI rendering.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -1819,7 +1794,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
+     *     // Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1836,16 +1811,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.dataSources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListDataSourcesRequest` list results. For multiple-page results, `ListDataSourcesResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Datasources$List,
@@ -1925,7 +1896,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -1936,7 +1907,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Checkvalidcreds
     extends StandardParameters {
     /**
-     * Required. The data source in the form: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`.
+     * Required. The data source in the form: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`.
      */
     name?: string;
 
@@ -1948,7 +1919,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Datasources$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/dataSources/{data_source_id}` or `projects/{project_id}/locations/{location_id}/dataSources/{data_source_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/dataSources/{data_source_id\}` or `projects/{project_id\}/locations/{location_id\}/dataSources/{data_source_id\}`
      */
     name?: string;
   }
@@ -1963,7 +1934,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}
+     * Required. The BigQuery project id for which data sources should be returned. Must be in the form: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}
      */
     parent?: string;
   }
@@ -1979,9 +1950,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.create
-     * @desc Creates a new data transfer configuration.
+     * Creates a new data transfer configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2008,7 +1979,7 @@ export namespace bigquerydatatransfer_v1 {
      *     {
      *       // Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
-     *       // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     *       // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id\}/locations/{location_id\} or projects/{project_id\}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      *       parent: 'projects/my-project/locations/my-location',
      *       // Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *       serviceAccountName: 'placeholder-value',
@@ -2067,18 +2038,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
-     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
-     * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
-     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Transferconfigs$Create,
@@ -2153,7 +2118,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2161,9 +2126,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.delete
-     * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * Deletes a data transfer configuration, including any associated transfer runs and logs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2191,7 +2156,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.delete(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *     }
@@ -2207,14 +2172,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Delete,
@@ -2286,7 +2249,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2294,9 +2257,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.get
-     * @desc Returns information about a data transfer config.
+     * Returns information about a data transfer config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2326,7 +2289,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.get(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *     }
@@ -2359,14 +2322,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Get,
@@ -2438,7 +2399,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2446,9 +2407,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.list
-     * @desc Returns information about all data transfers in the project.
+     * Returns information about all data transfers in the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2484,7 +2445,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
+     *       // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *       parent: 'projects/my-project/locations/my-location',
      *     }
      *   );
@@ -2502,17 +2463,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$List,
@@ -2594,7 +2550,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -2602,9 +2558,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.patch
-     * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * Updates a data transfer configuration. All fields must be set, even if they are not updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2631,7 +2587,7 @@ export namespace bigquerydatatransfer_v1 {
      *     {
      *       // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *       authorizationCode: 'placeholder-value',
-     *       // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     *       // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *       // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
@@ -2693,19 +2649,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
-     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
-     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
-     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Transferconfigs$Patch,
@@ -2777,7 +2726,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -2785,9 +2734,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
-     * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2815,7 +2764,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns(
      *     {
-     *       // Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *
@@ -2842,15 +2791,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.scheduleRuns
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {().ScheduleTransferRunsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     scheduleRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns,
@@ -2932,7 +2878,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -2942,9 +2888,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
-     * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -2972,7 +2918,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns(
      *     {
-     *       // Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *
@@ -2999,15 +2945,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.startManualRuns
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {().StartManualTransferRunsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startManualRuns(
       params: Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns,
@@ -3089,7 +3032,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -3106,7 +3049,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id\}/locations/{location_id\} or projects/{project_id\}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
     /**
@@ -3126,14 +3069,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
@@ -3152,7 +3095,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -3163,7 +3106,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
     name?: string;
     /**
@@ -3187,7 +3130,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -3199,7 +3142,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -3220,9 +3163,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
-     * @desc Deletes the specified transfer run.
+     * Deletes the specified transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -3250,7 +3193,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.delete(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -3266,14 +3209,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete,
@@ -3345,7 +3286,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3353,9 +3294,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.runs.get
-     * @desc Returns information about the particular transfer run.
+     * Returns information about the particular transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -3385,7 +3326,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.locations.transferConfigs.runs.get(
      *     {
-     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *       name:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -3417,14 +3358,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Get,
@@ -3496,7 +3435,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
@@ -3504,9 +3443,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.runs.list
-     * @desc Returns information about running and completed jobs.
+     * Returns information about running and completed jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -3540,7 +3479,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig',
      *       // Indicates how run attempts are to be pulled.
@@ -3563,18 +3502,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
-     * @param {string=} params.states When specified, only transfer runs with requested states are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$List,
@@ -3651,7 +3584,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
@@ -3662,14 +3595,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
@@ -3684,7 +3617,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
     /**
@@ -3704,9 +3637,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
-     * @desc Returns user facing log messages for the data transfer run.
+     * Returns user facing log messages for the data transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -3742,7 +3675,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *       parent:
      *         'projects/my-project/locations/my-location/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -3761,17 +3694,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.locations.transferConfigs.runs.transferLogs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Transferconfigs$Runs$Transferlogs$List,
@@ -3851,7 +3779,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
@@ -3874,7 +3802,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     parent?: string;
   }
@@ -3888,9 +3816,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.create
-     * @desc Creates a new data transfer configuration.
+     * Creates a new data transfer configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -3916,7 +3844,7 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.transferConfigs.create({
      *     // Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *     authorizationCode: 'placeholder-value',
-     *     // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     *     // Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id\}/locations/{location_id\} or projects/{project_id\}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      *     parent: 'projects/my-project',
      *     // Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *     serviceAccountName: 'placeholder-value',
@@ -3974,18 +3902,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. This is required if new credentials are needed, as indicated by `CheckValidCreds`. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
-     * @param {string} params.parent Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
-     * @param {string=} params.serviceAccountName Optional service account name. If this field is set, transfer config will be created with this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
-     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Transferconfigs$Create,
@@ -4060,7 +3982,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4068,9 +3990,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.delete
-     * @desc Deletes a data transfer configuration, including any associated transfer runs and logs.
+     * Deletes a data transfer configuration, including any associated transfer runs and logs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4097,7 +4019,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.delete({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *   });
      *   console.log(res.data);
@@ -4111,14 +4033,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Transferconfigs$Delete,
@@ -4190,7 +4110,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4198,9 +4118,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.get
-     * @desc Returns information about a data transfer config.
+     * Returns information about a data transfer config.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4229,7 +4149,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.get({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *   });
      *   console.log(res.data);
@@ -4260,14 +4180,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Transferconfigs$Get,
@@ -4339,7 +4257,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4347,9 +4265,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.list
-     * @desc Returns information about all data transfers in the project.
+     * Returns information about all data transfers in the project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4384,7 +4302,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
+     *     // Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4401,17 +4319,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dataSourceIds When specified, only configurations of requested data sources are returned.
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransfersRequest` list results. For multiple-page results, `ListTransfersResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Transferconfigs$List,
@@ -4493,7 +4406,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferConfigsResponse>(parameters);
@@ -4501,9 +4414,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.patch
-     * @desc Updates a data transfer configuration. All fields must be set, even if they are not updated.
+     * Updates a data transfer configuration. All fields must be set, even if they are not updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4529,7 +4442,7 @@ export namespace bigquerydatatransfer_v1 {
      *   const res = await bigquerydatatransfer.projects.transferConfigs.patch({
      *     // Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
      *     authorizationCode: 'placeholder-value',
-     *     // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     *     // The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      *     name: 'projects/my-project/transferConfigs/my-transferConfig',
      *     // Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
      *     serviceAccountName: 'placeholder-value',
@@ -4589,19 +4502,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.authorizationCode Optional OAuth2 authorization code to use with this transfer configuration. If it is provided, the transfer configuration will be associated with the authorizing user. In order to obtain authorization_code, please make a request to https://www.gstatic.com/bigquerydatatransfer/oauthz/auth?client_id=&scope=&redirect_uri= * client_id should be OAuth client_id of BigQuery DTS API for the given data source returned by ListDataSources method. * data_source_scopes are the scopes returned by ListDataSources method. * redirect_uri is an optional parameter. If not specified, then authorization code is posted to the opener of authorization flow window. Otherwise it will be sent to the redirect uri. A special value of urn:ietf:wg:oauth:2.0:oob means that authorization code should be returned in the title bar of the browser, with the page text prompting the user to copy the code and paste it in the application.
-     * @param {string} params.name The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
-     * @param {string=} params.serviceAccountName Optional service account name. If this field is set and "service_account_name" is set in update_mask, transfer config will be updated to use this service account credentials. It requires that requesting user calling this API has permissions to act as this service account.
-     * @param {string=} params.updateMask Required. Required list of fields to be updated in this request.
-     * @param {string=} params.versionInfo Optional version info. If users want to find a very recent access token, that is, immediately after approving access, users have to set the version_info claim in the token request. To obtain the version_info, users must use the "none+gsession" response type. which be return a version_info back in the authorization response which be be put in a JWT claim in the token request.
-     * @param {().TransferConfig} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Transferconfigs$Patch,
@@ -4673,7 +4579,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferConfig>(parameters);
@@ -4681,9 +4587,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.scheduleRuns
-     * @desc Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
+     * Creates transfer runs for a time range [start_time, end_time]. For each date - or whatever granularity the data source supports - in the range, one transfer run is created. Note that runs are created per UTC time in the time range. DEPRECATED: use StartManualTransferRuns instead.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4710,7 +4616,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.scheduleRuns({
-     *     // Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     // Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *
      *     // Request body metadata
@@ -4735,15 +4641,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.scheduleRuns
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {().ScheduleTransferRunsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     scheduleRuns(
       params: Params$Resource$Projects$Transferconfigs$Scheduleruns,
@@ -4825,7 +4728,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ScheduleTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScheduleTransferRunsResponse>(
@@ -4835,9 +4738,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.startManualRuns
-     * @desc Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
+     * Start manual transfer runs to be executed now with schedule_time equal to current time. The transfer runs can be created for a time range where the run_time is between start_time (inclusive) and end_time (exclusive), or for a specific run_time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -4865,7 +4768,7 @@ export namespace bigquerydatatransfer_v1 {
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.startManualRuns(
      *     {
-     *       // Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *       // Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *       parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *
      *       // Request body metadata
@@ -4891,15 +4794,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.startManualRuns
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {().StartManualTransferRunsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     startManualRuns(
       params: Params$Resource$Projects$Transferconfigs$Startmanualruns,
@@ -4981,7 +4881,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$StartManualTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StartManualTransferRunsResponse>(
@@ -4998,7 +4898,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id}/locations/{location_id} or projects/{project_id}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
+     * Required. The BigQuery project id where the transfer configuration should be created. Must be in the format projects/{project_id\}/locations/{location_id\} or projects/{project_id\}. If specified location and location of the destination bigquery dataset do not match - the request will fail.
      */
     parent?: string;
     /**
@@ -5018,14 +4918,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`
      */
     name?: string;
   }
@@ -5044,7 +4944,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id}` or `projects/{project_id}/locations/{location_id}`
+     * Required. The BigQuery project id for which data sources should be returned: `projects/{project_id\}` or `projects/{project_id\}/locations/{location_id\}`
      */
     parent?: string;
   }
@@ -5055,7 +4955,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     authorizationCode?: string;
     /**
-     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id}/locations/{region}/transferConfigs/{config_id}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
+     * The resource name of the transfer config. Transfer config names have the form of `projects/{project_id\}/locations/{region\}/transferConfigs/{config_id\}`. The name is automatically generated based on the config_id specified in CreateTransferConfigRequest along with project_id and region. If config_id is not provided, usually a uuid, even though it is not guaranteed or required, will be generated for config_id.
      */
     name?: string;
     /**
@@ -5079,7 +4979,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Scheduleruns
     extends StandardParameters {
     /**
-     * Required. Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Required. Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -5091,7 +4991,7 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Startmanualruns
     extends StandardParameters {
     /**
-     * Transfer configuration name in the form: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Transfer configuration name in the form: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
 
@@ -5112,9 +5012,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.runs.delete
-     * @desc Deletes the specified transfer run.
+     * Deletes the specified transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -5141,7 +5041,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.delete({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *   });
      *   console.log(res.data);
@@ -5155,14 +5055,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.runs.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Transferconfigs$Runs$Delete,
@@ -5234,7 +5132,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5242,9 +5140,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.runs.get
-     * @desc Returns information about the particular transfer run.
+     * Returns information about the particular transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -5273,7 +5171,7 @@ export namespace bigquerydatatransfer_v1 {
      *
      *   // Do the magic
      *   const res = await bigquerydatatransfer.projects.transferConfigs.runs.get({
-     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *     // Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *     name: 'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *   });
      *   console.log(res.data);
@@ -5303,14 +5201,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.runs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Transferconfigs$Runs$Get,
@@ -5382,7 +5278,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferRun>(parameters);
@@ -5390,9 +5286,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.runs.list
-     * @desc Returns information about running and completed jobs.
+     * Returns information about running and completed jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -5425,7 +5321,7 @@ export namespace bigquerydatatransfer_v1 {
      *     pageSize: 'placeholder-value',
      *     // Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     *     // Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      *     parent: 'projects/my-project/transferConfigs/my-transferConfig',
      *     // Indicates how run attempts are to be pulled.
      *     runAttempt: 'placeholder-value',
@@ -5446,18 +5342,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.runs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferRunsRequest` list results. For multiple-page results, `ListTransferRunsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
-     * @param {string=} params.runAttempt Indicates how run attempts are to be pulled.
-     * @param {string=} params.states When specified, only transfer runs with requested states are returned.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$List,
@@ -5534,7 +5424,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferRunsResponse>(parameters);
@@ -5545,14 +5435,14 @@ export namespace bigquerydatatransfer_v1 {
   export interface Params$Resource$Projects$Transferconfigs$Runs$Delete
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Transferconfigs$Runs$Get
     extends StandardParameters {
     /**
-     * Required. The field will contain name of the resource requested, for example: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. The field will contain name of the resource requested, for example: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     name?: string;
   }
@@ -5567,7 +5457,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id}/transferConfigs/{config_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}`.
+     * Required. Name of transfer configuration for which transfer runs should be retrieved. Format of transfer configuration resource name is: `projects/{project_id\}/transferConfigs/{config_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}`.
      */
     parent?: string;
     /**
@@ -5587,9 +5477,9 @@ export namespace bigquerydatatransfer_v1 {
     }
 
     /**
-     * bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
-     * @desc Returns user facing log messages for the data transfer run.
+     * Returns user facing log messages for the data transfer run.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquerydatatransfer.googleapis.com
@@ -5625,7 +5515,7 @@ export namespace bigquerydatatransfer_v1 {
      *       pageSize: 'placeholder-value',
      *       // Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
      *       pageToken: 'placeholder-value',
-     *       // Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     *       // Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      *       parent:
      *         'projects/my-project/transferConfigs/my-transferConfig/runs/my-run',
      *     }
@@ -5644,17 +5534,12 @@ export namespace bigquerydatatransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias bigquerydatatransfer.projects.transferConfigs.runs.transferLogs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.messageTypes Message types to return. If not populated - INFO, WARNING and ERROR messages are returned.
-     * @param {integer=} params.pageSize Page size. The default page size is the maximum value of 1000 results.
-     * @param {string=} params.pageToken Pagination token, which can be used to request a specific page of `ListTransferLogsRequest` list results. For multiple-page results, `ListTransferLogsResponse` outputs a `next_page` token, which can be used as the `page_token` value to request the next page of list results.
-     * @param {string} params.parent Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Transferconfigs$Runs$Transferlogs$List,
@@ -5734,7 +5619,7 @@ export namespace bigquerydatatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTransferLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferLogsResponse>(parameters);
@@ -5757,7 +5642,7 @@ export namespace bigquerydatatransfer_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Transfer run name in the form: `projects/{project_id}/transferConfigs/{config_id}/runs/{run_id}` or `projects/{project_id}/locations/{location_id}/transferConfigs/{config_id}/runs/{run_id}`
+     * Required. Transfer run name in the form: `projects/{project_id\}/transferConfigs/{config_id\}/runs/{run_id\}` or `projects/{project_id\}/locations/{location_id\}/transferConfigs/{config_id\}/runs/{run_id\}`
      */
     parent?: string;
   }

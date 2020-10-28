@@ -33,3 +33,14 @@ export function homegraph<T = homegraph_v1.Homegraph>(
 
 const auth = new AuthPlus();
 export {auth};
+export {homegraph_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -11,7 +11,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import * as apis from './apis';
+import {GeneratedAPIs, APIS} from './apis';
 
 import {
   AuthPlus,
@@ -23,7 +23,7 @@ import {
 
 export {AuthPlus};
 
-export class GoogleApis extends apis.GeneratedAPIs {
+export class GoogleApis extends GeneratedAPIs {
   private _discovery = new Discovery({debug: false, includePrivate: false});
   auth = new AuthPlus();
   _options: GlobalOptions = {};
@@ -33,11 +33,12 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * GoogleApis constructor.
    *
    * @example
+   * ```js
    * const GoogleApis = require('googleapis').GoogleApis;
    * const google = new GoogleApis();
+   * ```
    *
-   * @class GoogleApis
-   * @param {Object} [options] Configuration options.
+   * @param options - Configuration options.
    */
   constructor(options?: GlobalOptions) {
     super();
@@ -49,8 +50,8 @@ export class GoogleApis extends apis.GeneratedAPIs {
    */
   getSupportedAPIs() {
     const apiMap = {} as {[index: string]: string[]};
-    Object.keys(apis.APIS).forEach(a => {
-      apiMap[a] = Object.keys(apis.APIS[a]);
+    Object.keys(APIS).forEach(a => {
+      apiMap[a] = Object.keys(APIS[a]);
     });
     return apiMap;
   }
@@ -58,7 +59,7 @@ export class GoogleApis extends apis.GeneratedAPIs {
   /**
    * Set options.
    *
-   * @param  {Object} [options] Configuration options.
+   * @param options - Configuration options.
    */
   options(options?: GlobalOptions) {
     this._options = options || {};
@@ -68,12 +69,9 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * Add APIs endpoints to googleapis object
    * E.g. googleapis.drive and googleapis.datastore
    *
-   * @name GoogleApis#addAPIs
-   * @method
-   * @param {Object} apis Apis to be added to this GoogleApis instance.
-   * @private
+   * @param apisToAdd - Apis to be added to this GoogleApis instance.
    */
-  private addAPIs(apisToAdd: apis.GeneratedAPIs) {
+  private addAPIs(apisToAdd: GeneratedAPIs) {
     for (const apiName in apisToAdd) {
       // eslint-disable-next-line no-prototype-builtins
       if (apisToAdd.hasOwnProperty(apiName)) {
@@ -88,18 +86,16 @@ export class GoogleApis extends apis.GeneratedAPIs {
    * the discovered APIs.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
-   * const discoveryUrl =
-   * 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
+   * const discoveryUrl = 'https://myapp.appspot.com/_ah/api/discovery/v1/apis/';
    * google.discover(discoveryUrl, function (err) {
    *   const someapi = google.someapi('v1');
    * });
+   * ```
    *
-   * @name GoogleApis#discover
-   * @method
-   * @param url Url to the discovery service for a set of APIs. e.g.,
-   * https://www.googleapis.com/discovery/v1/apis
-   * @param {Function} callback Callback function.
+   * @param url - Url to the discovery service for a set of APIs. e.g. https://www.googleapis.com/discovery/v1/apis
+   * @param callback - Callback function.
    */
   discover(url: string): Promise<void>;
   discover(url: string, callback: (err?: Error) => void): void;
@@ -118,15 +114,14 @@ export class GoogleApis extends apis.GeneratedAPIs {
 
   private async discoverAsync(url: string) {
     const allApis = await this._discovery.discoverAllAPIs(url);
-    this.addAPIs(allApis as apis.GeneratedAPIs);
+    this.addAPIs(allApis as GeneratedAPIs);
   }
 
   /**
    * Dynamically generate an Endpoint object from a discovery doc.
    *
-   * @param path Url or file path to discover doc for a single API.
-   * @param Options to configure the Endpoint object generated from the
-   * discovery doc.
+   * @param path - Url or file path to discover doc for a single API.
+   * @param options - Options to configure the Endpoint object generated from the discovery doc.
    * @returns A promise that resolves with the configured endpoint.
    */
   async discoverAPI<T = Endpoint>(

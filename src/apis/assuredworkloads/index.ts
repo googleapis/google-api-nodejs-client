@@ -35,3 +35,14 @@ export function assuredworkloads<T = assuredworkloads_v1beta1.Assuredworkloads>(
 
 const auth = new AuthPlus();
 export {auth};
+export {assuredworkloads_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

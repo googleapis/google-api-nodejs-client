@@ -80,3 +80,18 @@ export function cloudasset<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudasset_v1};
+export {cloudasset_v1beta1};
+export {cloudasset_v1p1beta1};
+export {cloudasset_v1p4beta1};
+export {cloudasset_v1p5beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

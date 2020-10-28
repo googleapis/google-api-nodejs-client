@@ -104,14 +104,10 @@ export namespace admin_directory_v1 {
    * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const admin = google.admin('directory_v1');
-   *
-   * @namespace admin
-   * @type {Function}
-   * @version directory_v1
-   * @variation directory_v1
-   * @param {object=} options Options for Admin
+   * ```
    */
   export class Admin {
     context: APIRequestContext;
@@ -184,7 +180,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * The template that returns individual ASP (Access Code) data. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * The template that returns individual ASP (Access Code) data. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Asp {
     /**
@@ -217,7 +213,7 @@ export namespace admin_directory_v1 {
     userKey?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Asps {
     /**
@@ -246,7 +242,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string | null;
     /**
-     * The building name as seen by users in Calendar. Must be unique for the customer. For example, &quot;NYC-CHEL&quot;. The maximum length is 100 characters.
+     * The building name as seen by users in Calendar. Must be unique for the customer. For example, "NYC-CHEL". The maximum length is 100 characters.
      */
     buildingName?: string | null;
     /**
@@ -254,7 +250,7 @@ export namespace admin_directory_v1 {
      */
     coordinates?: Schema$BuildingCoordinates;
     /**
-     * A brief description of the building. For example, &quot;Chelsea Market&quot;.
+     * A brief description of the building. For example, "Chelsea Market".
      */
     description?: string | null;
     /**
@@ -262,7 +258,7 @@ export namespace admin_directory_v1 {
      */
     etags?: string | null;
     /**
-     * The display names for all floors in this building. The floors are expected to be sorted in ascending order, from lowest floor to highest floor. For example, [&quot;B2&quot;, &quot;B1&quot;, &quot;L&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2M&quot;, &quot;3&quot;, &quot;PH&quot;] Must contain at least one entry.
+     * The display names for all floors in this building. The floors are expected to be sorted in ascending order, from lowest floor to highest floor. For example, ["B2", "B1", "L", "1", "2", "2M", "3", "PH"] Must contain at least one entry.
      */
     floorNames?: string[] | null;
     /**
@@ -366,7 +362,7 @@ export namespace admin_directory_v1 {
      */
     floorSection?: string | null;
     /**
-     * The read-only auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, &quot;NYC-2-Training Room 1A (16)&quot;.
+     * The read-only auto-generated name of the calendar resource which includes metadata about the resource such as building name, floor, capacity, etc. For example, "NYC-2-Training Room 1A (16)".
      */
     generatedResourceName?: string | null;
     /**
@@ -390,7 +386,7 @@ export namespace admin_directory_v1 {
      */
     resourceId?: string | null;
     /**
-     * The name of the calendar resource. For example, &quot;Training Room 1A&quot;.
+     * The name of the calendar resource. For example, "Training Room 1A".
      */
     resourceName?: string | null;
     /**
@@ -440,7 +436,7 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is &quot;api#channel&quot;.
+     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
      */
     kind?: string | null;
     /**
@@ -469,7 +465,7 @@ export namespace admin_directory_v1 {
     type?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ChromeOsDevice {
     /**
@@ -653,7 +649,7 @@ export namespace admin_directory_v1 {
     deprovisionReason?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$ChromeOsDevices {
     /**
@@ -680,19 +676,19 @@ export namespace admin_directory_v1 {
     deviceIds?: string[] | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Customer {
     /**
-     * The customer&#39;s secondary contact email address. This email address cannot be on the same domain as the customerDomain
+     * The customer's secondary contact email address. This email address cannot be on the same domain as the customerDomain
      */
     alternateEmail?: string | null;
     /**
-     * The customer&#39;s creation time (Readonly)
+     * The customer's creation time (Readonly)
      */
     customerCreationTime?: string | null;
     /**
-     * The customer&#39;s primary domain name string. Do not include the www prefix when creating a new customer.
+     * The customer's primary domain name string. Do not include the www prefix when creating a new customer.
      */
     customerDomain?: string | null;
     /**
@@ -700,7 +696,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The unique ID for the customer&#39;s G Suite account. (Readonly)
+     * The unique ID for the customer's G Suite account. (Readonly)
      */
     id?: string | null;
     /**
@@ -708,24 +704,24 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * The customer&#39;s ISO 639-2 language code. The default value is en-US
+     * The customer's ISO 639-2 language code. The default value is en-US
      */
     language?: string | null;
     /**
-     * The customer&#39;s contact phone number in E.164 format.
+     * The customer's contact phone number in E.164 format.
      */
     phoneNumber?: string | null;
     /**
-     * The customer&#39;s postal address information.
+     * The customer's postal address information.
      */
     postalAddress?: Schema$CustomerPostalAddress;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;address_line2&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;address_line3&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'address_line2' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'address_line3' to avoid collision. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$CustomerPostalAddress {
     /**
-     * A customer&#39;s physical address. The address can be composed of one to three lines.
+     * A customer's physical address. The address can be composed of one to three lines.
      */
     addressLine1?: string | null;
     /**
@@ -737,7 +733,7 @@ export namespace admin_directory_v1 {
      */
     addressLine3?: string | null;
     /**
-     * The customer contact&#39;s name.
+     * The customer contact's name.
      */
     contactName?: string | null;
     /**
@@ -766,7 +762,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$DirectoryChromeosdevicesCommand {
     /**
-     * The time at which the command will expire. If the device doesn&#39;t execute the command within this time the command will become expired.
+     * The time at which the command will expire. If the device doesn't execute the command within this time the command will become expired.
      */
     commandExpireTime?: string | null;
     /**
@@ -820,7 +816,7 @@ export namespace admin_directory_v1 {
      */
     commandType?: string | null;
     /**
-     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { &quot;volume&quot;: 50 }. The volume has to be an integer in the range [0,100].
+     * The payload for the command, provide it only if command supports it. The following commands support adding payload: - SET_VOLUME: Payload is a stringified JSON object in the form: { "volume": 50 \}. The volume has to be an integer in the range [0,100].
      */
     payload?: string | null;
   }
@@ -971,7 +967,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Group {
     /**
@@ -1016,7 +1012,7 @@ export namespace admin_directory_v1 {
     nonEditableAliases?: string[] | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Groups {
     /**
@@ -1050,7 +1046,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Unique identifier of group (Read-only) Unique identifier of member (Read-only) The unique ID of the group member. A member id can be used as a member request URI&#39;s memberKey.
+     * Unique identifier of group (Read-only) Unique identifier of member (Read-only) The unique ID of the group member. A member id can be used as a member request URI's memberKey.
      */
     id?: string | null;
     /**
@@ -1149,7 +1145,7 @@ export namespace admin_directory_v1 {
      */
     devicePasswordStatus?: string | null;
     /**
-     * List of owner user&#39;s email addresses (Read-only)
+     * List of owner user's email addresses (Read-only)
      */
     email?: string[] | null;
     /**
@@ -1205,7 +1201,7 @@ export namespace admin_directory_v1 {
      */
     model?: string | null;
     /**
-     * List of owner user&#39;s names (Read-only)
+     * List of owner user's names (Read-only)
      */
     name?: string[] | null;
     /**
@@ -1290,7 +1286,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Org Unit resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for Org Unit resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$OrgUnit {
     /**
@@ -1331,7 +1327,7 @@ export namespace admin_directory_v1 {
     parentOrgUnitPath?: string | null;
   }
   /**
-   * JSON response template for List Organization Units operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List Organization Units operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$OrgUnits {
     /**
@@ -1486,7 +1482,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Schema resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for Schema resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Schema {
     /**
@@ -1515,7 +1511,7 @@ export namespace admin_directory_v1 {
     schemaName?: string | null;
   }
   /**
-   * JSON template for FieldSpec resource for Schemas in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for FieldSpec resource for Schemas in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$SchemaFieldSpec {
     /**
@@ -1555,12 +1551,12 @@ export namespace admin_directory_v1 {
      */
     numericIndexingSpec?: {maxValue?: number; minValue?: number} | null;
     /**
-     * Read ACLs on the field specifying who can view values of this field. Valid values are &quot;ALL_DOMAIN_USERS&quot; and &quot;ADMINS_AND_SELF&quot;.
+     * Read ACLs on the field specifying who can view values of this field. Valid values are "ALL_DOMAIN_USERS" and "ADMINS_AND_SELF".
      */
     readAccessType?: string | null;
   }
   /**
-   * JSON response template for List Schema operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List Schema operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Schemas {
     /**
@@ -1577,7 +1573,7 @@ export namespace admin_directory_v1 {
     schemas?: Schema$Schema[];
   }
   /**
-   * JSON template for token resource in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for token resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Token {
     /**
@@ -1614,7 +1610,7 @@ export namespace admin_directory_v1 {
     userKey?: string | null;
   }
   /**
-   * JSON response template for List tokens operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List tokens operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Tokens {
     /**
@@ -1631,7 +1627,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;external_ids&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;relations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;addresses&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;organizations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;phones&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;languages&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;posix_accounts&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;ssh_public_keys&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;notes&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;websites&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;locations&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;keywords&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;gender&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;thumbnail_photo_etag&#39; to avoid collision. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'external_ids' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'relations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'addresses' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'organizations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'phones' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'languages' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'posix_accounts' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'ssh_public_keys' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'notes' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'websites' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'locations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'keywords' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'gender' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'thumbnail_photo_etag' to avoid collision. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$User {
     /**
@@ -1655,7 +1651,7 @@ export namespace admin_directory_v1 {
      */
     changePasswordAtNextLogin?: boolean | null;
     /**
-     * User&#39;s G Suite account creation time. (Read-only)
+     * User's G Suite account creation time. (Read-only)
      */
     creationTime?: string | null;
     /**
@@ -1692,7 +1688,7 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * User&#39;s Instant Messenger
+     * User's Instant Messenger
      */
     ims?: any | null;
     /**
@@ -1736,7 +1732,7 @@ export namespace admin_directory_v1 {
      */
     languages?: any | null;
     /**
-     * User&#39;s last login time. (Read-only)
+     * User's last login time. (Read-only)
      */
     lastLoginTime?: string | null;
     /**
@@ -1744,7 +1740,7 @@ export namespace admin_directory_v1 {
      */
     locations?: any | null;
     /**
-     * User&#39;s name
+     * User's name
      */
     name?: Schema$UserName;
     /**
@@ -1764,7 +1760,7 @@ export namespace admin_directory_v1 {
      */
     orgUnitPath?: string | null;
     /**
-     * User&#39;s password
+     * User's password
      */
     password?: string | null;
     /**
@@ -1804,7 +1800,7 @@ export namespace admin_directory_v1 {
      */
     suspensionReason?: string | null;
     /**
-     * Output only. ETag of the user&#39;s photo (Read-only)
+     * Output only. ETag of the user's photo (Read-only)
      */
     thumbnailPhotoEtag?: string | null;
     /**
@@ -1866,7 +1862,7 @@ export namespace admin_directory_v1 {
      */
     postalCode?: string | null;
     /**
-     * If this is user&#39;s primary address. Only one entry could be marked as primary.
+     * If this is user's primary address. Only one entry could be marked as primary.
      */
     primary?: boolean | null;
     /**
@@ -1903,7 +1899,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string | null;
     /**
-     * If this is user&#39;s primary email. Only one entry could be marked as primary.
+     * If this is user's primary email. Only one entry could be marked as primary.
      */
     primary?: boolean | null;
     /**
@@ -1959,7 +1955,7 @@ export namespace admin_directory_v1 {
      */
     im?: string | null;
     /**
-     * If this is user&#39;s primary im. Only one entry could be marked as primary.
+     * If this is user's primary im. Only one entry could be marked as primary.
      */
     primary?: boolean | null;
     /**
@@ -1993,7 +1989,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLanguage {
     /**
-     * Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can&#39;t be set
+     * Other language. User can provide own language name if there is no corresponding Google III language code. If this is set LanguageCode can't be set
      */
     customLanguage?: string | null;
     /**
@@ -2006,7 +2002,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$UserLocation {
     /**
-     * Textual location. This is most useful for display purposes to concisely describe the location. For example &#39;Mountain View, CA&#39;, &#39;Near Seattle&#39;, &#39;US-NYC-9TH 9A209A.&#39;&#39;
+     * Textual location. This is most useful for display purposes to concisely describe the location. For example 'Mountain View, CA', 'Near Seattle', 'US-NYC-9TH 9A209A.''
      */
     area?: string | null;
     /**
@@ -2026,11 +2022,11 @@ export namespace admin_directory_v1 {
      */
     floorName?: string | null;
     /**
-     * Floor section. More specific location within the floor. For example if a floor is divided into sections &#39;A&#39;, &#39;B&#39; and &#39;C&#39; this field would identify one of those values.
+     * Floor section. More specific location within the floor. For example if a floor is divided into sections 'A', 'B' and 'C' this field would identify one of those values.
      */
     floorSection?: string | null;
     /**
-     * Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type an entry can have a custom type and can give it any name. Such types should have &#39;custom&#39; as type and also have a customType value.
+     * Each entry can have a type which indicates standard types of that entry. For example location could be of types default and desk. In addition to standard type an entry can have a custom type and can give it any name. Such types should have 'custom' as type and also have a customType value.
      */
     type?: string | null;
   }
@@ -2091,7 +2087,7 @@ export namespace admin_directory_v1 {
      */
     name?: string | null;
     /**
-     * If it user&#39;s primary organization.
+     * If it user's primary organization.
      */
     primary?: boolean | null;
     /**
@@ -2116,7 +2112,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string | null;
     /**
-     * If this is user&#39;s primary phone or not.
+     * If this is user's primary phone or not.
      */
     primary?: boolean | null;
     /**
@@ -2129,7 +2125,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$UserPhoto {
     /**
@@ -2190,7 +2186,7 @@ export namespace admin_directory_v1 {
      */
     operatingSystemType?: string | null;
     /**
-     * If this is user&#39;s primary account within the SystemId.
+     * If this is user's primary account within the SystemId.
      */
     primary?: boolean | null;
     /**
@@ -2228,7 +2224,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$Users {
     /**
@@ -2284,7 +2280,7 @@ export namespace admin_directory_v1 {
      */
     customType?: string | null;
     /**
-     * If this is user&#39;s primary website or not.
+     * If this is user's primary website or not.
      */
     primary?: boolean | null;
     /**
@@ -2297,7 +2293,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * JSON template for verification codes in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for verification codes in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$VerificationCode {
     /**
@@ -2318,7 +2314,7 @@ export namespace admin_directory_v1 {
     verificationCode?: string | null;
   }
   /**
-   * JSON response template for List verification codes operation in Directory API. STEPLADDER: Generated unstable field number for field &#39;kind&#39;. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field &#39;etag&#39;. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List verification codes operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
    */
   export interface Schema$VerificationCodes {
     /**
@@ -2342,9 +2338,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.asps.delete
-     * @desc Delete an ASP issued by a user.
+     * Delete an ASP issued by a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -2381,15 +2377,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.asps.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.codeId The unique ID of the ASP to be deleted.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Asps$Delete,
@@ -2459,7 +2452,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2467,9 +2460,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.asps.get
-     * @desc Get information about an ASP issued by a user.
+     * Get information about an ASP issued by a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -2517,15 +2510,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.asps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.codeId The unique ID of the ASP.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Asps$Get,
@@ -2597,7 +2587,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Asp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asp>(parameters);
@@ -2605,9 +2595,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.asps.list
-     * @desc List the ASPs issued by a user.
+     * List the ASPs issued by a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -2649,14 +2639,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.asps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Asps$List,
@@ -2729,7 +2717,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Asps>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asps>(parameters);
@@ -2771,9 +2759,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * admin.channels.stop
-     * @desc Stop watching resources through this channel.
+     * Stop watching resources through this channel.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -2828,14 +2816,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias admin.channels.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Channels$Stop,
@@ -2906,7 +2892,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2928,9 +2914,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.action
-     * @desc Take action on Chrome OS Device
+     * Take action on Chrome OS Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -2976,16 +2962,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.action
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.resourceId Immutable ID of Chrome OS Device
-     * @param {().ChromeOsDeviceAction} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     action(
       params: Params$Resource$Chromeosdevices$Action,
@@ -3057,7 +3039,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3065,9 +3047,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.get
-     * @desc Retrieve Chrome OS Device
+     * Retrieve Chrome OS Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -3149,16 +3131,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Chromeosdevices$Get,
@@ -3232,7 +3210,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -3240,9 +3218,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.list
-     * @desc Retrieve all Chrome OS Devices of a customer (paginated)
+     * Retrieve all Chrome OS Devices of a customer (paginated)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -3302,21 +3280,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Chromeosdevices$List,
@@ -3390,7 +3359,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevices>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevices>(parameters);
@@ -3398,9 +3367,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.moveDevicesToOu
-     * @desc Move or insert multiple Chrome OS Devices to organizational unit
+     * Move or insert multiple Chrome OS Devices to organizational unit
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -3445,16 +3414,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.moveDevicesToOu
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the target organizational unit or its ID
-     * @param {().ChromeOsMoveDevicesToOu} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     moveDevicesToOu(
       params: Params$Resource$Chromeosdevices$Movedevicestoou,
@@ -3526,7 +3491,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3534,9 +3499,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.patch
-     * @desc Patch Chrome OS Device
+     * Patch Chrome OS Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -3658,17 +3623,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {().ChromeOsDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Chromeosdevices$Patch,
@@ -3742,7 +3702,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -3750,9 +3710,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.chromeosdevices.update
-     * @desc Update Chrome OS Device
+     * Update Chrome OS Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -3874,17 +3834,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.chromeosdevices.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.deviceId Immutable ID of Chrome OS Device
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {().ChromeOsDevice} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Chromeosdevices$Update,
@@ -3958,7 +3913,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -4118,9 +4073,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * admin.customer.devices.chromeos.issueCommand
-     * @desc Issues a command for the device to execute.
+     * Issues a command for the device to execute.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -4171,16 +4126,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias admin.customer.devices.chromeos.issueCommand
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable. Immutable ID of the G Suite account.
-     * @param {string} params.deviceId Immutable. Immutable ID of Chrome OS Device.
-     * @param {().DirectoryChromeosdevicesIssueCommandRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     issueCommand(
       params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
@@ -4275,7 +4226,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DirectoryChromeosdevicesIssueCommandResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4309,9 +4260,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * admin.customer.devices.chromeos.commands.get
-     * @desc Gets command data a specific command issued to the device.
+     * Gets command data a specific command issued to the device.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -4364,16 +4315,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias admin.customer.devices.chromeos.commands.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.commandId Immutable. Immutable ID of Chrome OS Device Command.
-     * @param {string} params.customerId Immutable. Immutable ID of the G Suite account.
-     * @param {string} params.deviceId Immutable. Immutable ID of Chrome OS Device.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customer$Devices$Chromeos$Commands$Get,
@@ -4454,7 +4401,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
@@ -4487,9 +4434,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.customers.get
-     * @desc Retrieves a customer.
+     * Retrieves a customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -4540,14 +4487,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.customers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerKey Id of the customer to be retrieved
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customers$Get,
@@ -4619,7 +4564,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -4627,9 +4572,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.customers.patch
-     * @desc Patch Customers via Apiary Patch Orchestration
+     * Patch Customers via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -4693,15 +4638,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.customers.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerKey Id of the customer to be updated
-     * @param {().Customer} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Customers$Patch,
@@ -4773,7 +4715,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -4781,9 +4723,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.customers.update
-     * @desc Updates a customer.
+     * Updates a customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -4847,15 +4789,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.customers.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerKey Id of the customer to be updated
-     * @param {().Customer} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Customers$Update,
@@ -4927,7 +4866,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -4971,9 +4910,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domainAliases.delete
-     * @desc Deletes a domain Alias of the customer.
+     * Deletes a domain Alias of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5010,15 +4949,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domainAliases.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainAliasName Name of domain alias to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Domainaliases$Delete,
@@ -5090,7 +5026,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5098,9 +5034,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domainAliases.get
-     * @desc Retrieves a domain alias of the customer.
+     * Retrieves a domain alias of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5150,15 +5086,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domainAliases.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainAliasName Name of domain alias to be retrieved.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Domainaliases$Get,
@@ -5232,7 +5165,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAlias>(parameters);
@@ -5240,9 +5173,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domainAliases.insert
-     * @desc Inserts a domain alias of the customer.
+     * Inserts a domain alias of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5300,15 +5233,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domainAliases.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().DomainAlias} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Domainaliases$Insert,
@@ -5381,7 +5311,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAlias>(parameters);
@@ -5389,9 +5319,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domainAliases.list
-     * @desc Lists the domain aliases of the customer.
+     * Lists the domain aliases of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5438,15 +5368,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domainAliases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string=} params.parentDomainName Name of the parent domain for which domain aliases are to be fetched.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Domainaliases$List,
@@ -5519,7 +5446,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAliases>(parameters);
@@ -5580,9 +5507,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domains.delete
-     * @desc Deletes a domain of the customer.
+     * Deletes a domain of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5619,15 +5546,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domains.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainName Name of domain to be deleted
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Domains$Delete,
@@ -5698,7 +5622,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5706,9 +5630,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domains.get
-     * @desc Retrieves a domain of the customer.
+     * Retrieves a domain of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5759,15 +5683,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domains.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.domainName Name of domain to be retrieved
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Domains$Get,
@@ -5840,7 +5761,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains>(parameters);
@@ -5848,9 +5769,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domains.insert
-     * @desc Inserts a domain of the customer.
+     * Inserts a domain of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -5910,15 +5831,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domains.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().Domains} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Domains$Insert,
@@ -5990,7 +5908,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains>(parameters);
@@ -5998,9 +5916,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.domains.list
-     * @desc Lists the domains of the customer.
+     * Lists the domains of the customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6045,14 +5963,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.domains.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Domains$List,
@@ -6124,7 +6040,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains2>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains2>(parameters);
@@ -6179,9 +6095,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.delete
-     * @desc Delete Group
+     * Delete Group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6216,14 +6132,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groups$Delete,
@@ -6294,7 +6208,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6302,9 +6216,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.get
-     * @desc Retrieve Group
+     * Retrieve Group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6356,14 +6270,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Groups$Get,
@@ -6436,7 +6348,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -6444,9 +6356,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.insert
-     * @desc Create Group
+     * Create Group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6509,14 +6421,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Groups$Insert,
@@ -6589,7 +6499,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -6597,9 +6507,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.list
-     * @desc Retrieve all groups of a domain or of a user given a userKey (paginated)
+     * Retrieve all groups of a domain or of a user given a userKey (paginated)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6659,21 +6569,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
-     * @param {string=} params.domain Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
-     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {string=} params.userKey Email or immutable ID of the user if only those groups are to be listed, the given user is a member of. If it's an ID, it should match with the ID of the user object.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groups$List,
@@ -6746,7 +6647,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Groups>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
@@ -6754,9 +6655,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.patch
-     * @desc Patch Groups via Apiary Patch Orchestration
+     * Patch Groups via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6822,15 +6723,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Groups$Patch,
@@ -6903,7 +6801,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -6911,9 +6809,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.update
-     * @desc Update Group
+     * Update Group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -6979,15 +6877,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {().Group} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Groups$Update,
@@ -7060,7 +6955,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -7150,9 +7045,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.aliases.delete
-     * @desc Remove a alias for the group
+     * Remove a alias for the group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7189,15 +7084,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.aliases.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alias The alias to be removed
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Groups$Aliases$Delete,
@@ -7268,7 +7160,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7276,9 +7168,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.aliases.insert
-     * @desc Add a alias for the group
+     * Add a alias for the group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7334,15 +7226,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.aliases.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {().Alias} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Groups$Aliases$Insert,
@@ -7415,7 +7304,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Alias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alias>(parameters);
@@ -7423,9 +7312,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.groups.aliases.list
-     * @desc List all aliases for a group
+     * List all aliases for a group
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7470,14 +7359,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.groups.aliases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Groups$Aliases$List,
@@ -7550,7 +7437,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Aliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Aliases>(parameters);
@@ -7596,9 +7483,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.delete
-     * @desc Remove membership.
+     * Remove membership.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7638,15 +7525,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {string} params.memberKey Email or immutable ID of the member
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Members$Delete,
@@ -7717,7 +7601,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7725,9 +7609,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.get
-     * @desc Retrieve Group Member
+     * Retrieve Group Member
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7781,15 +7665,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {string} params.memberKey Email or immutable ID of the member
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Members$Get,
@@ -7862,7 +7743,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -7870,9 +7751,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.hasMember
-     * @desc Checks whether the given user is a member of the group. Membership can be direct or nested.
+     * Checks whether the given user is a member of the group. Membership can be direct or nested.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -7919,15 +7800,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.hasMember
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
-     * @param {string} params.memberKey Identifies the user member in the API request. The value can be the user's primary email address, alias, or unique ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     hasMember(
       params: Params$Resource$Members$Hasmember,
@@ -8001,7 +7879,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MembersHasMember>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MembersHasMember>(parameters);
@@ -8009,9 +7887,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.insert
-     * @desc Add user to the specified group.
+     * Add user to the specified group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8076,15 +7954,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {().Member} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Members$Insert,
@@ -8156,7 +8031,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8164,9 +8039,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.list
-     * @desc Retrieve all members in a group (paginated)
+     * Retrieve all members in a group (paginated)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8222,18 +8097,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group
-     * @param {boolean=} params.includeDerivedMembership Whether to list indirect memberships. Default: false.
-     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 200.
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.roles Comma separated role values to filter list results on.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Members$List,
@@ -8305,7 +8174,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Members>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Members>(parameters);
@@ -8313,9 +8182,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.patch
-     * @desc Patch Member via Apiary Patch Orchestration
+     * Patch Member via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8382,16 +8251,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {().Member} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Members$Patch,
@@ -8464,7 +8329,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8472,9 +8337,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.members.update
-     * @desc Update membership of a user in the specified group.
+     * Update membership of a user in the specified group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8541,16 +8406,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.members.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.groupKey Email or immutable ID of the group. If ID, it should match with id of group object
-     * @param {string} params.memberKey Email or immutable ID of the user. If ID, it should match with id of member object
-     * @param {().Member} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Members$Update,
@@ -8623,7 +8484,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8733,9 +8594,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.mobiledevices.action
-     * @desc Take action on Mobile Device
+     * Take action on Mobile Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8783,16 +8644,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.mobiledevices.action
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {().MobileDeviceAction} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     action(
       params: Params$Resource$Mobiledevices$Action,
@@ -8864,7 +8721,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8872,9 +8729,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.mobiledevices.delete
-     * @desc Delete Mobile Device
+     * Delete Mobile Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -8911,15 +8768,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.mobiledevices.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Mobiledevices$Delete,
@@ -8991,7 +8845,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8999,9 +8853,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.mobiledevices.get
-     * @desc Retrieve Mobile Device
+     * Retrieve Mobile Device
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9088,16 +8942,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.mobiledevices.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string} params.resourceId Immutable ID of Mobile Device
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Mobiledevices$Get,
@@ -9171,7 +9021,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MobileDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileDevice>(parameters);
@@ -9179,9 +9029,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.mobiledevices.list
-     * @desc Retrieve all Mobile Devices of a customer (paginated)
+     * Retrieve all Mobile Devices of a customer (paginated)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9240,20 +9090,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.mobiledevices.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {integer=} params.maxResults Maximum number of results to return. Max allowed value is 100.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields.
-     * @param {string=} params.query Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order. Only of use when orderBy is also used
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mobiledevices$List,
@@ -9327,7 +9169,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MobileDevices>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileDevices>(parameters);
@@ -9416,9 +9258,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.delete
-     * @desc Remove organizational unit
+     * Remove organizational unit
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9455,15 +9297,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Orgunits$Delete,
@@ -9534,7 +9373,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9542,9 +9381,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.get
-     * @desc Retrieve organizational unit
+     * Retrieve organizational unit
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9597,15 +9436,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Orgunits$Get,
@@ -9678,7 +9514,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -9686,9 +9522,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.insert
-     * @desc Add organizational unit
+     * Add organizational unit
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9752,15 +9588,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {().OrgUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Orgunits$Insert,
@@ -9832,7 +9665,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -9840,9 +9673,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.list
-     * @desc Retrieve all organizational units
+     * Retrieve all organizational units
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -9891,16 +9724,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string=} params.orgUnitPath the URL-encoded organizational unit's path or its ID
-     * @param {string=} params.type Whether to return all sub-organizations or just immediate children
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Orgunits$List,
@@ -9972,7 +9801,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnits>(parameters);
@@ -9980,9 +9809,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.patch
-     * @desc Patch organization unit via Apiary Patch Orchestration
+     * Patch organization unit via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10048,16 +9877,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {().OrgUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Orgunits$Patch,
@@ -10130,7 +9955,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -10138,9 +9963,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.orgunits.update
-     * @desc Update organizational unit
+     * Update organizational unit
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10206,16 +10031,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.orgunits.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.orgUnitPath Full path of the organizational unit or its ID
-     * @param {().OrgUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Orgunits$Update,
@@ -10288,7 +10109,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -10379,9 +10200,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.privileges.list
-     * @desc Retrieves a paginated list of all privileges for a customer.
+     * Retrieves a paginated list of all privileges for a customer.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10426,14 +10247,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.privileges.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Privileges$List,
@@ -10506,7 +10325,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Privileges>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Privileges>(parameters);
@@ -10541,9 +10360,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.delete
-     * @desc Deletes a building.
+     * Deletes a building.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10582,15 +10401,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.buildingId The id of the building to delete.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Resources$Buildings$Delete,
@@ -10662,7 +10478,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10670,9 +10486,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.get
-     * @desc Retrieves a building.
+     * Retrieves a building.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10724,15 +10540,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.buildingId The unique ID of the building to retrieve.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Resources$Buildings$Get,
@@ -10806,7 +10619,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -10814,9 +10627,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.insert
-     * @desc Inserts a building.
+     * Inserts a building.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -10882,16 +10695,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Resources$Buildings$Insert,
@@ -10965,7 +10774,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -10973,9 +10782,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.list
-     * @desc Retrieves a list of buildings for an account.
+     * Retrieves a list of buildings for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11025,16 +10834,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Resources$Buildings$List,
@@ -11108,7 +10913,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Buildings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Buildings>(parameters);
@@ -11116,9 +10921,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.patch
-     * @desc Patches a building via Apiary Patch Orchestration.
+     * Patches a building via Apiary Patch Orchestration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11186,17 +10991,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.buildingId The id of the building to update.
-     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Resources$Buildings$Patch,
@@ -11270,7 +11070,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -11278,9 +11078,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.buildings.update
-     * @desc Updates a building.
+     * Updates a building.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11348,17 +11148,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.buildings.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.buildingId The id of the building to update.
-     * @param {string=} params.coordinatesSource Source from which Building.coordinates are derived.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Building} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Resources$Buildings$Update,
@@ -11432,7 +11227,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -11541,9 +11336,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.delete
-     * @desc Deletes a calendar resource.
+     * Deletes a calendar resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11582,15 +11377,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarResourceId The unique ID of the calendar resource to delete.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Resources$Calendars$Delete,
@@ -11662,7 +11454,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11670,9 +11462,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.get
-     * @desc Retrieves a calendar resource.
+     * Retrieves a calendar resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11731,15 +11523,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarResourceId The unique ID of the calendar resource to retrieve.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Resources$Calendars$Get,
@@ -11813,7 +11602,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -11821,9 +11610,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.insert
-     * @desc Inserts a calendar resource.
+     * Inserts a calendar resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -11901,15 +11690,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Resources$Calendars$Insert,
@@ -11983,7 +11769,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -11991,9 +11777,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.list
-     * @desc Retrieves a list of calendar resources for an account.
+     * Retrieves a list of calendar resources for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12047,18 +11833,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.query String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Resources$Calendars$List,
@@ -12135,7 +11915,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResources>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResources>(parameters);
@@ -12143,9 +11923,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.patch
-     * @desc Patches a calendar resource via Apiary Patch Orchestration.
+     * Patches a calendar resource via Apiary Patch Orchestration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12225,16 +12005,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Resources$Calendars$Patch,
@@ -12308,7 +12084,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -12316,9 +12092,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.calendars.update
-     * @desc Updates a calendar resource. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
+     * Updates a calendar resource. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12398,16 +12174,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.calendars.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.calendarResourceId The unique ID of the calendar resource to update.
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().CalendarResource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Resources$Calendars$Update,
@@ -12481,7 +12253,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -12586,9 +12358,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.delete
-     * @desc Deletes a feature.
+     * Deletes a feature.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12627,15 +12399,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {string} params.featureKey The unique ID of the feature to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Resources$Features$Delete,
@@ -12707,7 +12476,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12715,9 +12484,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.get
-     * @desc Retrieves a feature.
+     * Retrieves a feature.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12764,15 +12533,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {string} params.featureKey The unique ID of the feature to retrieve.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Resources$Features$Get,
@@ -12846,7 +12612,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -12854,9 +12620,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.insert
-     * @desc Inserts a feature.
+     * Inserts a feature.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -12910,15 +12676,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {().Feature} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Resources$Features$Insert,
@@ -12992,7 +12755,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13000,9 +12763,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.list
-     * @desc Retrieves a list of features for an account.
+     * Retrieves a list of features for an account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13052,16 +12815,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Resources$Features$List,
@@ -13135,7 +12894,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Features>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Features>(parameters);
@@ -13143,9 +12902,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.patch
-     * @desc Patches a feature via Apiary Patch Orchestration.
+     * Patches a feature via Apiary Patch Orchestration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13201,16 +12960,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {string} params.featureKey The unique ID of the feature to update.
-     * @param {().Feature} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Resources$Features$Patch,
@@ -13284,7 +13039,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13292,9 +13047,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.rename
-     * @desc Renames a feature.
+     * Renames a feature.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13341,16 +13096,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.rename
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {string} params.oldName The unique ID of the feature to rename.
-     * @param {().FeatureRename} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     rename(
       params: Params$Resource$Resources$Features$Rename,
@@ -13422,7 +13173,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -13430,9 +13181,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.resources.features.update
-     * @desc Updates a feature.
+     * Updates a feature.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13488,16 +13239,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.resources.features.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
-     * @param {string} params.featureKey The unique ID of the feature to update.
-     * @param {().Feature} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Resources$Features$Update,
@@ -13571,7 +13318,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13684,9 +13431,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roleAssignments.delete
-     * @desc Deletes a role assignment.
+     * Deletes a role assignment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13723,15 +13470,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roleAssignments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Roleassignments$Delete,
@@ -13803,7 +13547,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -13811,9 +13555,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roleAssignments.get
-     * @desc Retrieve a role assignment.
+     * Retrieve a role assignment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -13864,15 +13608,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roleAssignments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleAssignmentId Immutable ID of the role assignment.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Roleassignments$Get,
@@ -13946,7 +13687,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignment>(parameters);
@@ -13954,9 +13695,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roleAssignments.insert
-     * @desc Creates a role assignment.
+     * Creates a role assignment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14016,15 +13757,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roleAssignments.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().RoleAssignment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Roleassignments$Insert,
@@ -14098,7 +13836,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignment>(parameters);
@@ -14106,9 +13844,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roleAssignments.list
-     * @desc Retrieves a paginated list of all roleAssignments.
+     * Retrieves a paginated list of all roleAssignments.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14162,18 +13900,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roleAssignments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {string=} params.roleId Immutable ID of a role. If included in the request, returns only role assignments containing this role ID.
-     * @param {string=} params.userKey The user's primary email address, alias email address, or unique user ID. If included in the request, returns role assignments only for this user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Roleassignments$List,
@@ -14247,7 +13979,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignments>(parameters);
@@ -14320,9 +14052,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.delete
-     * @desc Deletes a role.
+     * Deletes a role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14359,15 +14091,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Roles$Delete,
@@ -14437,7 +14166,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -14445,9 +14174,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.get
-     * @desc Retrieves a role.
+     * Retrieves a role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14499,15 +14228,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Roles$Get,
@@ -14579,7 +14305,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -14587,9 +14313,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.insert
-     * @desc Creates a role.
+     * Creates a role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14651,15 +14377,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {().Role} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Roles$Insert,
@@ -14731,7 +14454,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -14739,9 +14462,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.list
-     * @desc Retrieves a paginated list of all the roles in a domain.
+     * Retrieves a paginated list of all the roles in a domain.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14791,16 +14514,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Token to specify the next page in the list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Roles$List,
@@ -14872,7 +14591,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Roles>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Roles>(parameters);
@@ -14880,9 +14599,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.patch
-     * @desc Patch role via Apiary Patch Orchestration
+     * Patch role via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -14946,16 +14665,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {().Role} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Roles$Patch,
@@ -15027,7 +14742,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -15035,9 +14750,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.roles.update
-     * @desc Updates a role.
+     * Updates a role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15101,16 +14816,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.roles.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customer Immutable ID of the G Suite account.
-     * @param {string} params.roleId Immutable ID of the role.
-     * @param {().Role} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Roles$Update,
@@ -15182,7 +14893,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -15273,9 +14984,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.delete
-     * @desc Delete schema
+     * Delete schema
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15312,15 +15023,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Schemas$Delete,
@@ -15391,7 +15099,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -15399,9 +15107,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.get
-     * @desc Retrieve schema
+     * Retrieve schema
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15451,15 +15159,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Schemas$Get,
@@ -15532,7 +15237,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -15540,9 +15245,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.insert
-     * @desc Create schema.
+     * Create schema.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15600,15 +15305,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {().Schema} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Schemas$Insert,
@@ -15680,7 +15382,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -15688,9 +15390,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.list
-     * @desc Retrieve all schemas for a customer
+     * Retrieve all schemas for a customer
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15735,14 +15437,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Schemas$List,
@@ -15814,7 +15514,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schemas>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schemas>(parameters);
@@ -15822,9 +15522,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.patch
-     * @desc Patch Schema via Apiary Patch Orchestration
+     * Patch Schema via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -15884,16 +15584,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {().Schema} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Schemas$Patch,
@@ -15966,7 +15662,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -15974,9 +15670,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.schemas.update
-     * @desc Update schema
+     * Update schema
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16036,16 +15732,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.schemas.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.customerId Immutable ID of the G Suite account
-     * @param {string} params.schemaKey Name or immutable ID of the schema.
-     * @param {().Schema} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Schemas$Update,
@@ -16118,7 +15810,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -16201,9 +15893,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.tokens.delete
-     * @desc Delete all access tokens issued by a user for an application.
+     * Delete all access tokens issued by a user for an application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16240,15 +15932,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.tokens.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clientId The Client ID of the application the token is issued to.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Tokens$Delete,
@@ -16318,7 +16007,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16326,9 +16015,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.tokens.get
-     * @desc Get information about an access token issued by a user.
+     * Get information about an access token issued by a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16377,15 +16066,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.tokens.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.clientId The Client ID of the application the token is issued to.
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tokens$Get,
@@ -16457,7 +16143,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Token>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Token>(parameters);
@@ -16465,9 +16151,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.tokens.list
-     * @desc Returns the set of tokens specified user has issued to 3rd party applications.
+     * Returns the set of tokens specified user has issued to 3rd party applications.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16509,14 +16195,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.tokens.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tokens$List,
@@ -16588,7 +16272,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Tokens>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tokens>(parameters);
@@ -16630,9 +16314,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.twoStepVerification.turnOff
-     * @desc Turn off 2-Step Verification for user.
+     * Turn off 2-Step Verification for user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16667,14 +16351,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.twoStepVerification.turnOff
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     turnOff(
       params: Params$Resource$Twostepverification$Turnoff,
@@ -16746,7 +16428,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16773,9 +16455,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.delete
-     * @desc Delete user
+     * Delete user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16810,14 +16492,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Delete,
@@ -16888,7 +16568,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16896,9 +16576,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.get
-     * @desc retrieve user
+     * retrieve user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -16992,17 +16672,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Get,
@@ -17075,7 +16750,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17083,9 +16758,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.insert
-     * @desc create user.
+     * create user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -17220,14 +16895,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Users$Insert,
@@ -17300,7 +16973,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17308,9 +16981,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.list
-     * @desc Retrieve either deleted users or all users in a domain (paginated)
+     * Retrieve either deleted users or all users in a domain (paginated)
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -17378,24 +17051,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$List,
@@ -17468,7 +17129,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Users>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Users>(parameters);
@@ -17476,9 +17137,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.makeAdmin
-     * @desc change admin status of a user
+     * change admin status of a user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -17521,15 +17182,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.makeAdmin
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user as admin
-     * @param {().UserMakeAdmin} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     makeAdmin(
       params: Params$Resource$Users$Makeadmin,
@@ -17599,7 +17257,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17607,9 +17265,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.patch
-     * @desc Patch Users via Apiary Patch Orchestration
+     * Patch Users via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -17747,15 +17405,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Patch,
@@ -17828,7 +17483,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17836,9 +17491,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.signOut
-     * @desc Sign a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.
+     * Sign a user out of all web and device sessions and reset their sign-in cookies. User will have to sign in by authenticating again.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -17873,14 +17528,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.signOut
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the target user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     signOut(
       params: Params$Resource$Users$Signout,
@@ -17950,7 +17603,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17958,9 +17611,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.undelete
-     * @desc Undelete a deleted user
+     * Undelete a deleted user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -18003,15 +17656,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.undelete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey The immutable id of the user
-     * @param {().UserUndelete} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     undelete(
       params: Params$Resource$Users$Undelete,
@@ -18081,7 +17731,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18089,9 +17739,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.update
-     * @desc update user
+     * update user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -18229,15 +17879,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user. If ID, it should match with id of user object
-     * @param {().User} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Update,
@@ -18310,7 +17957,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -18318,9 +17965,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.watch
-     * @desc Watch for changes in users list
+     * Watch for changes in users list
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -18412,26 +18059,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.customer Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
-     * @param {string=} params.customFieldMask Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
-     * @param {string=} params.domain Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
-     * @param {string=} params.event Event on which subscription is intended
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderBy Column to use for sorting results
-     * @param {string=} params.pageToken Token to specify next page in the list
-     * @param {string=} params.projection What subset of fields to fetch for this user.
-     * @param {string=} params.query Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
-     * @param {string=} params.showDeleted If set to true, retrieves the list of deleted users. (Default: false)
-     * @param {string=} params.sortOrder Whether to return results in ascending or descending order.
-     * @param {string=} params.viewType Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Users$Watch,
@@ -18504,7 +18137,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -18701,9 +18334,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.aliases.delete
-     * @desc Remove a alias for the user
+     * Remove a alias for the user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -18743,15 +18376,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.aliases.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.alias The alias to be removed
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Aliases$Delete,
@@ -18822,7 +18452,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18830,9 +18460,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.aliases.insert
-     * @desc Add a alias for the user
+     * Add a alias for the user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -18891,15 +18521,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.aliases.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().Alias} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Users$Aliases$Insert,
@@ -18972,7 +18599,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Alias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alias>(parameters);
@@ -18980,9 +18607,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.aliases.list
-     * @desc List all aliases for a user
+     * List all aliases for a user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19029,14 +18656,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.aliases.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Aliases$List,
@@ -19109,7 +18734,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Aliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Aliases>(parameters);
@@ -19117,9 +18742,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.aliases.watch
-     * @desc Watch for changes in users list
+     * Watch for changes in users list
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19192,16 +18817,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.aliases.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.event Event on which subscription is intended (if subscribing)
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().Channel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Users$Aliases$Watch,
@@ -19274,7 +18895,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -19336,9 +18957,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.photos.delete
-     * @desc Remove photos for the user
+     * Remove photos for the user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19373,14 +18994,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.photos.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Photos$Delete,
@@ -19451,7 +19070,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -19459,9 +19078,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.photos.get
-     * @desc Retrieve photo of a user
+     * Retrieve photo of a user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19511,14 +19130,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.photos.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Photos$Get,
@@ -19590,7 +19207,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -19598,9 +19215,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.photos.patch
-     * @desc Patch Photo via Apiary Patch Orchestration
+     * Patch Photo via Apiary Patch Orchestration
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19662,15 +19279,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.photos.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().UserPhoto} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Photos$Patch,
@@ -19743,7 +19357,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -19751,9 +19365,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.users.photos.update
-     * @desc Add a photo for the user
+     * Add a photo for the user
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19815,15 +19429,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.users.photos.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {().UserPhoto} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Photos$Update,
@@ -19896,7 +19507,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -19949,9 +19560,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.verificationCodes.generate
-     * @desc Generate new backup verification codes for the user.
+     * Generate new backup verification codes for the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -19986,14 +19597,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.verificationCodes.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Verificationcodes$Generate,
@@ -20065,7 +19674,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -20073,9 +19682,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.verificationCodes.invalidate
-     * @desc Invalidate the current backup verification codes for the user.
+     * Invalidate the current backup verification codes for the user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -20110,14 +19719,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.verificationCodes.invalidate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Email or immutable ID of the user
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     invalidate(
       params: Params$Resource$Verificationcodes$Invalidate,
@@ -20189,7 +19796,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -20197,9 +19804,9 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * directory.verificationCodes.list
-     * @desc Returns the current set of valid backup verification codes for the specified user.
+     * Returns the current set of valid backup verification codes for the specified user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admin.googleapis.com
@@ -20241,14 +19848,12 @@ export namespace admin_directory_v1 {
      *   throw e;
      * });
      *
-     * @alias directory.verificationCodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userKey Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Verificationcodes$List,
@@ -20324,7 +19929,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$VerificationCodes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerificationCodes>(parameters);

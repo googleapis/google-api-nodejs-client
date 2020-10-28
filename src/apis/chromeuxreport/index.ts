@@ -33,3 +33,14 @@ export function chromeuxreport<T = chromeuxreport_v1.Chromeuxreport>(
 
 const auth = new AuthPlus();
 export {auth};
+export {chromeuxreport_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

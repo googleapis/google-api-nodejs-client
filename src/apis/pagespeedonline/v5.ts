@@ -104,14 +104,10 @@ export namespace pagespeedonline_v5 {
    * The PageSpeed Insights API lets you analyze the performance of your website with a simple API. It offers tailored suggestions for how you can optimize your site, and lets you easily integrate PageSpeed Insights analysis into your development tools and workflow.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const pagespeedonline = google.pagespeedonline('v5');
-   *
-   * @namespace pagespeedonline
-   * @type {Function}
-   * @version v5
-   * @variation v5
-   * @param {object=} options Options for Pagespeedonline
+   * ```
    */
   export class Pagespeedonline {
     context: APIRequestContext;
@@ -140,20 +136,20 @@ export namespace pagespeedonline_v5 {
      */
     id?: string | null;
     /**
-     * The weight this audit&#39;s score has on the overall category score.
+     * The weight this audit's score has on the overall category score.
      */
     weight?: number | null;
   }
   /**
-   * A proportion of data in the total distribution, bucketed by a min/max percentage. Each bucket&#39;s range is bounded by min &lt;= x &lt; max, In millisecond.
+   * A proportion of data in the total distribution, bucketed by a min/max percentage. Each bucket's range is bounded by min <= x < max, In millisecond.
    */
   export interface Schema$Bucket {
     /**
-     * Upper bound for a bucket&#39;s range.
+     * Upper bound for a bucket's range.
      */
     max?: number | null;
     /**
-     * Lower bound for a bucket&#39;s range.
+     * Lower bound for a bucket's range.
      */
     min?: number | null;
     /**
@@ -247,7 +243,7 @@ export namespace pagespeedonline_v5 {
     rendererFormattedStrings?: Schema$RendererFormattedStrings;
   }
   /**
-   * An audit&#39;s result object in a Lighthouse result.
+   * An audit's result object in a Lighthouse result.
    */
   export interface Schema$LighthouseAuditResultV5 {
     /**
@@ -271,7 +267,7 @@ export namespace pagespeedonline_v5 {
      */
     explanation?: string | null;
     /**
-     * The audit&#39;s id.
+     * The audit's id.
      */
     id?: string | null;
     /**
@@ -316,7 +312,7 @@ export namespace pagespeedonline_v5 {
      */
     manualDescription?: string | null;
     /**
-     * The overall score of the category, the weighted average of all its audits. (The category&#39;s score, can be null.)
+     * The overall score of the category, the weighted average of all its audits. (The category's score, can be null.)
      */
     score?: any | null;
     /**
@@ -398,7 +394,7 @@ export namespace pagespeedonline_v5 {
      */
     id?: string | null;
     /**
-     * The requested URL, which may differ from the resolved &quot;id&quot;.
+     * The requested URL, which may differ from the resolved "id".
      */
     initial_url?: string | null;
     /**
@@ -410,7 +406,7 @@ export namespace pagespeedonline_v5 {
      */
     origin_fallback?: boolean | null;
     /**
-     * The human readable speed &quot;category&quot; of the id.
+     * The human readable speed "category" of the id.
      */
     overall_category?: string | null;
   }
@@ -439,7 +435,7 @@ export namespace pagespeedonline_v5 {
      */
     lighthouseResult?: Schema$LighthouseResultV5;
     /**
-     * Metrics of end users&#39; page loading experience.
+     * Metrics of end users' page loading experience.
      */
     loadingExperience?: Schema$PagespeedApiLoadingExperienceV5;
     /**
@@ -572,7 +568,7 @@ export namespace pagespeedonline_v5 {
    */
   export interface Schema$Timing {
     /**
-     * The total duration of Lighthouse&#39;s run.
+     * The total duration of Lighthouse's run.
      */
     total?: number | null;
   }
@@ -613,9 +609,9 @@ export namespace pagespeedonline_v5 {
     }
 
     /**
-     * pagespeedonline.pagespeedapi.runpagespeed
-     * @desc Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
+     * Runs PageSpeed analysis on the page at the specified URL, and returns PageSpeed scores, a list of suggestions to make that page faster, and other information.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pagespeedonline.googleapis.com
@@ -674,20 +670,12 @@ export namespace pagespeedonline_v5 {
      *   throw e;
      * });
      *
-     * @alias pagespeedonline.pagespeedapi.runpagespeed
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.captchaToken The captcha token passed when filling out a captcha.
-     * @param {string=} params.category A Lighthouse category to run; if none are given, only Performance category will be run
-     * @param {string=} params.locale The locale used to localize formatted results
-     * @param {string=} params.strategy The analysis strategy (desktop or mobile) to use, and desktop is the default
-     * @param {string=} params.url Required. The URL to fetch and analyze
-     * @param {string=} params.utm_campaign Campaign name for analytics.
-     * @param {string=} params.utm_source Campaign source for analytics.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     runpagespeed(
       params: Params$Resource$Pagespeedapi$Runpagespeed,
@@ -769,7 +757,7 @@ export namespace pagespeedonline_v5 {
       if (callback) {
         createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(

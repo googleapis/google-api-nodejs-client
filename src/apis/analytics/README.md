@@ -2,7 +2,7 @@
 
 # analytics
 
-> Views and manages your Google Analytics data.
+> The Analytics API provides access to Analytics configuration and report data.
 
 ## Installation
 
