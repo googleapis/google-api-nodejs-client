@@ -417,6 +417,10 @@ export namespace tagmanager_v2 {
      */
     name?: string | null;
     /**
+     * Number of clients in the container version.
+     */
+    numClients?: string | null;
+    /**
      * Number of custom templates in the container version.
      */
     numCustomTemplates?: string | null;
@@ -543,7 +547,11 @@ export namespace tagmanager_v2 {
      */
     changeStatus?: string | null;
     /**
-     * The Folder being represented by the entity.
+     * The client being represented by the entity.
+     */
+    client?: Schema$Client;
+    /**
+     * The folder being represented by the entity.
      */
     folder?: Schema$Folder;
     /**
@@ -5016,6 +5024,7 @@ export namespace tagmanager_v2 {
      *   //   "containerVersionId": "my_containerVersionId",
      *   //   "deleted": false,
      *   //   "name": "my_name",
+     *   //   "numClients": "my_numClients",
      *   //   "numCustomTemplates": "my_numCustomTemplates",
      *   //   "numMacros": "my_numMacros",
      *   //   "numRules": "my_numRules",
@@ -6371,6 +6380,7 @@ export namespace tagmanager_v2 {
      *       // request body parameters
      *       // {
      *       //   "changeStatus": "my_changeStatus",
+     *       //   "client": {},
      *       //   "folder": {},
      *       //   "tag": {},
      *       //   "trigger": {},
