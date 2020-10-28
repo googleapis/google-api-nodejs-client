@@ -25,7 +25,7 @@
     "docs2": "npm run docs-extract && npm run docs-md",
     "presystem-test": "npm run compile",
     "system-test": "mocha build/system-test",
-    "samples-test": "cd samples && npm link ../ && pwd && npm test",
+    "samples-test": "cd samples && npm install && npm link ../ && pwd && npm test",
     "lint": "gts check",
     "compile": "tsc -p .",
     "build-tools": "tsc -p tsconfig.tools.json",

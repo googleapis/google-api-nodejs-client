@@ -41,7 +41,8 @@ describe('Auth samples', () => {
     const realPath = path.resolve('jwt.keys.json');
     const exists = fs.existsSync(realPath);
     if (!exists) {
-      fs.symlinkSync(fakePath, realPath);
+      const contents = fs.readFileSync(fakePath);
+      fs.writeFileSync(realPath, contents);
     }
     const data = await samples.jwt.runSample();
     assert(data);
