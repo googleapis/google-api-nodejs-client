@@ -479,6 +479,22 @@ describe('Media', () => {
     assert.strictEqual(typeof res2, 'object');
   });
 
+  it('should provide unknown return types for media downloads', async () => {
+    const google = new GoogleApis();
+    const drive = google.drive('v3');
+    const scope = nock(Utils.baseUrl)
+      .get('/drive/v3/files/fileId/export')
+      .reply(200, '👋');
+    const res = await drive.files.export({
+      fileId: 'fileId',
+      mimeType: 'mimeType',
+    });
+    // this is just verifying that we can directly cast `res.data` from
+    // `unknown` to a string without type gymnastics
+    res.data as string;
+    scope.done();
+  });
+
   after(() => {
     nock.cleanAll();
   });
