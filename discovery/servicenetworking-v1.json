@@ -774,7 +774,7 @@
       }
     }
   },
-  "revision": "20201020",
+  "revision": "20201026",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -908,6 +908,13 @@
         "requestedAddress": {
           "description": "Optional. The starting address of a range. The address must be a valid IPv4 address in the x.x.x.x format. This value combined with the IP prefix range is the CIDR range for the subnet. The range must be within the allocated range that is assigned to the private connection. If the CIDR range isn't available, the call fails.",
           "type": "string"
+        },
+        "secondaryIpRangeSpecs": {
+          "description": "Optional. A list of secondary IP ranges to be created within the new subnetwork.",
+          "items": {
+            "$ref": "SecondaryIpRangeSpec"
+          },
+          "type": "array"
         },
         "subnetwork": {
           "description": "Required. A name for the new subnet. For information about the naming requirements, see [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
@@ -2620,6 +2627,39 @@
       },
       "type": "object"
     },
+    "SecondaryIpRange": {
+      "id": "SecondaryIpRange",
+      "properties": {
+        "ipCidrRange": {
+          "description": "Secondary IP CIDR range in `x.x.x.x/y` format.",
+          "type": "string"
+        },
+        "rangeName": {
+          "description": "Name of the secondary IP range.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecondaryIpRangeSpec": {
+      "id": "SecondaryIpRangeSpec",
+      "properties": {
+        "ipPrefixLength": {
+          "description": "Required. The prefix length of the secondary IP range. Use CIDR range notation, such as `30` to provision a secondary IP range with an `x.x.x.x/30` CIDR range. The IP address range is drawn from a pool of available ranges in the service consumer's allocated range.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rangeName": {
+          "description": "Required. A name for the secondary IP range. The name must be 1-63 characters long, and comply with RFC1035. The name must be unique within the subnetwork.",
+          "type": "string"
+        },
+        "requestedAddress": {
+          "description": "Optional. The starting address of a range. The address must be a valid IPv4 address in the x.x.x.x format. This value combined with the IP prefix range is the CIDR range for the secondary IP range. The range must be within the allocated range that is assigned to the private connection. If the CIDR range isn't available, the call fails.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Service": {
       "description": "`Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details. Example: type: google.api.Service config_version: 3 name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: \"*\" requirements: provider_id: google_calendar_auth",
       "id": "Service",
@@ -2835,6 +2875,13 @@
         "outsideAllocation": {
           "description": "This is a discovered subnet that is not within the current consumer allocated ranges.",
           "type": "boolean"
+        },
+        "secondaryIpRanges": {
+          "description": "List of secondary IP ranges in this subnetwork.",
+          "items": {
+            "$ref": "SecondaryIpRange"
+          },
+          "type": "array"
         }
       },
       "type": "object"

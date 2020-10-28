@@ -1286,6 +1286,16 @@ export namespace servicenetworking_v1beta {
      */
     network?: string | null;
   }
+  export interface Schema$SecondaryIpRange {
+    /**
+     * Secondary IP CIDR range in `x.x.x.x/y` format.
+     */
+    ipCidrRange?: string | null;
+    /**
+     * Name of the secondary IP range.
+     */
+    rangeName?: string | null;
+  }
   /**
    * `Service` is the root object of Google service configuration schema. It describes basic information about a service, such as the name and the title, and delegates other aspects to sub-sections. Each sub-section is either a proto message or a repeated proto message that configures a specific aspect, such as auth. See each proto message definition for details. Example: type: google.api.Service config_version: 3 name: calendar.googleapis.com title: Google Calendar API apis: - name: google.calendar.v3.Calendar authentication: providers: - id: google_calendar_auth jwks_uri: https://www.googleapis.com/oauth2/v1/certs issuer: https://securetoken.google.com rules: - selector: &quot;*&quot; requirements: provider_id: google_calendar_auth
    */
@@ -1454,6 +1464,10 @@ export namespace servicenetworking_v1beta {
      * This is a discovered subnet that is not within the current consumer allocated ranges.
      */
     outsideAllocation?: boolean | null;
+    /**
+     * List of secondary IP ranges in this subnetwork.
+     */
+    secondaryIpRanges?: Schema$SecondaryIpRange[];
   }
   /**
    * Define a parameter&#39;s name and location. The parameter may be passed as either an HTTP header or a URL query parameter, and if both are passed the behavior is implementation-dependent.
