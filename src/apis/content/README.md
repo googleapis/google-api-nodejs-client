@@ -2,7 +2,7 @@
 
 # content
 
-> Manages product items, inventory, and Merchant Center accounts for Google Shopping.
+> Manage your product listings and accounts for Google Shopping
 
 ## Installation
 
