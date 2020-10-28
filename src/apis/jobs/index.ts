@@ -45,3 +45,16 @@ export function jobs<T = jobs_v2.Jobs | jobs_v3.Jobs | jobs_v3p1beta1.Jobs>(
 
 const auth = new AuthPlus();
 export {auth};
+export {jobs_v2};
+export {jobs_v3};
+export {jobs_v3p1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

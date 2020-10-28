@@ -104,14 +104,10 @@ export namespace lifesciences_v2beta {
    * Cloud Life Sciences is a suite of services and tools for managing, processing, and transforming life sciences data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const lifesciences = google.lifesciences('v2beta');
-   *
-   * @namespace lifesciences
-   * @type {Function}
-   * @version v2beta
-   * @variation v2beta
-   * @param {object=} options Options for Lifesciences
+   * ```
    */
   export class Lifesciences {
     context: APIRequestContext;
@@ -136,7 +132,7 @@ export namespace lifesciences_v2beta {
      */
     count?: string | null;
     /**
-     * The accelerator type string (for example, &quot;nvidia-tesla-k80&quot;). Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
+     * The accelerator type string (for example, "nvidia-tesla-k80"). Only NVIDIA GPU accelerators are currently supported. If an NVIDIA GPU is attached, the required runtime libraries will be made available to all containers under `/usr/local/nvidia`. The driver version to install must be specified using the NVIDIA driver version parameter on the virtual machine specification. Note that attaching a GPU increases the worker VM startup time by a few minutes.
      */
     type?: string | null;
   }
@@ -165,7 +161,7 @@ export namespace lifesciences_v2beta {
      */
     disableImagePrefetch?: boolean | null;
     /**
-     * A small portion of the container&#39;s standard error stream is typically captured and returned inside the `ContainerStoppedEvent`. Setting this flag disables this functionality.
+     * A small portion of the container's standard error stream is typically captured and returned inside the `ContainerStoppedEvent`. Setting this flag disables this functionality.
      */
     disableStandardErrorCapture?: boolean | null;
     /**
@@ -177,7 +173,7 @@ export namespace lifesciences_v2beta {
      */
     entrypoint?: string | null;
     /**
-     * The environment to pass into the container. This environment is merged with values specified in the google.cloud.lifesciences.v2beta.Pipeline message, overwriting any duplicate values. In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten. `GOOGLE_PIPELINE_FAILED` will be set to &quot;1&quot; if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute. `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
+     * The environment to pass into the container. This environment is merged with values specified in the google.cloud.lifesciences.v2beta.Pipeline message, overwriting any duplicate values. In addition to the values passed here, a few other values are automatically injected into the environment. These cannot be hidden or overwritten. `GOOGLE_PIPELINE_FAILED` will be set to "1" if the pipeline failed because an action has exited with a non-zero status (and did not have the `IGNORE_EXIT_STATUS` flag set). This can be used to determine if additional debug or logging actions should execute. `GOOGLE_LAST_EXIT_STATUS` will be set to the exit status of the last non-background action that executed. This can be used by workflow engine authors to determine whether an individual action has succeeded or failed.
      */
     environment?: {[key: string]: string} | null;
     /**
@@ -185,7 +181,7 @@ export namespace lifesciences_v2beta {
      */
     ignoreExitStatus?: boolean | null;
     /**
-     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline. The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name (&#39;bash&#39;) to pull from the default library. No schema is required in any of these cases. If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.cloud.lifesciences.v2beta.Action.credentials field.
+     * Required. The URI to pull the container image from. Note that all images referenced by actions in the pipeline are pulled before the first action runs. If multiple actions reference the same image, it is only pulled once, ensuring that the same image is used for all actions in a single pipeline. The image URI can be either a complete host and image specification (e.g., quay.io/biocontainers/samtools), a library and image name (e.g., google/cloud-sdk) or a bare image name ('bash') to pull from the default library. No schema is required in any of these cases. If the specified image is not public, the service account specified for the Virtual Machine must have access to pull the images from GCR, or appropriate credentials must be specified in the google.cloud.lifesciences.v2beta.Action.credentials field.
      */
     imageUri?: string | null;
     /**
@@ -193,7 +189,7 @@ export namespace lifesciences_v2beta {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * A list of mounts to make available to the action. In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components. - /google/logs All logs written during the pipeline execution. - /google/logs/output The combined standard output and standard error of all actions run as part of the pipeline execution. - /google/logs/action/x/stdout The complete contents of each individual action&#39;s standard output. - /google/logs/action/x/stderr The complete contents of each individual action&#39;s standard error output.
+     * A list of mounts to make available to the action. In addition to the values specified here, every action has a special virtual disk mounted under `/google` that contains log files and other operational components. - /google/logs All logs written during the pipeline execution. - /google/logs/output The combined standard output and standard error of all actions run as part of the pipeline execution. - /google/logs/action/x/stdout The complete contents of each individual action's standard output. - /google/logs/action/x/stderr The complete contents of each individual action's standard error output.
      */
     mounts?: Schema$Mount[];
     /**
@@ -299,7 +295,7 @@ export namespace lifesciences_v2beta {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -356,6 +352,15 @@ export namespace lifesciences_v2beta {
     workerReleased?: Schema$WorkerReleasedEvent;
   }
   /**
+   * Configuration for an existing disk to be attached to the VM.
+   */
+  export interface Schema$ExistingDisk {
+    /**
+     * If `disk` contains slashes, the Cloud Life Sciences API assumes that it is a complete URL for the disk. If `disk` does not contain slashes, the Cloud Life Sciences API assumes that the disk is a zonal disk and a URL will be generated of the form `zones//disks/`, where `` is the zone in which the instance is allocated. The disk must be ext4 formatted. If all `Mount` references to this disk have the `read_only` flag set to true, the disk will be attached in `read-only` mode and can be shared with other instances. Otherwise, the disk will be available for writing but cannot be shared.
+     */
+    disk?: string | null;
+  }
+  /**
    * An event generated when the execution of a pipeline has failed. Note that other events can continue to occur after this event.
    */
   export interface Schema$FailedEvent {
@@ -399,15 +404,15 @@ export namespace lifesciences_v2beta {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -415,12 +420,12 @@ export namespace lifesciences_v2beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
   /**
-   * Carries information about the pipeline execution that is returned in the long running operation&#39;s metadata field.
+   * Carries information about the pipeline execution that is returned in the long running operation's metadata field.
    */
   export interface Schema$Metadata {
     /**
@@ -470,7 +475,7 @@ export namespace lifesciences_v2beta {
    */
   export interface Schema$Network {
     /**
-     * The network name to attach the VM&#39;s network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL. If unspecified, the global default network is used.
+     * The network name to attach the VM's network interface to. The value will be prefixed with `global/networks/` unless it contains a `/`, in which case it is assumed to be a fully specified network resource URL. If unspecified, the global default network is used.
      */
     network?: string | null;
     /**
@@ -499,13 +504,30 @@ export namespace lifesciences_v2beta {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name for the operation. This may be passed to the other operation methods to retrieve information about the operation&#39;s status.
+     * The server-assigned name for the operation. This may be passed to the other operation methods to retrieve information about the operation's status.
      */
     name?: string | null;
     /**
      * An Empty object.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Configuration for a persistent disk to be attached to the VM. See https://cloud.google.com/compute/docs/disks/performance for more information about disk type, size, and performance considerations.
+   */
+  export interface Schema$PersistentDisk {
+    /**
+     * The size, in GB, of the disk to attach. If the size is not specified, a default is chosen to ensure reasonable I/O performance. If the disk type is specified as `local-ssd`, multiple local drives are automatically combined to provide the requested size. Note, however, that each physical SSD is 375GB in size, and no more than 8 drives can be attached to a single instance.
+     */
+    sizeGb?: number | null;
+    /**
+     * An image to put on the disk before attaching it to the VM.
+     */
+    sourceImage?: string | null;
+    /**
+     * The Compute Engine disk type. If unspecified, `pd-standard` is used.
+     */
+    type?: string | null;
   }
   /**
    * Specifies a series of actions to execute, expressed as Docker containers.
@@ -577,7 +599,7 @@ export namespace lifesciences_v2beta {
     pipeline?: Schema$Pipeline;
   }
   /**
-   * The response to the RunPipeline method, returned in the operation&#39;s result field on success.
+   * The response to the RunPipeline method, returned in the operation's result field on success.
    */
   export interface Schema$RunPipelineResponse {}
   /**
@@ -653,7 +675,7 @@ export namespace lifesciences_v2beta {
      */
     bootImage?: string | null;
     /**
-     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as &quot;Intel Skylake&quot;). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact. For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
+     * The CPU platform to request. An instance based on a newer platform can be allocated, but never one with fewer capabilities. The value of this parameter must be a valid Compute Engine CPU platform name (such as "Intel Skylake"). This parameter is only useful for carefully optimized work loads where the CPU platform has a significant impact. For more information about the effect of this parameter, see https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform.
      */
     cpuPlatform?: string | null;
     /**
@@ -669,11 +691,11 @@ export namespace lifesciences_v2beta {
      */
     enableStackdriverMonitoring?: boolean | null;
     /**
-     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine. Labels keys with the prefix &#39;google-&#39; are reserved for use by Google. Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
+     * Optional set of labels to apply to the VM and any attached disk resources. These labels must adhere to the [name and value restrictions](https://cloud.google.com/compute/docs/labeling-resources) on VM labels imposed by Compute Engine. Labels keys with the prefix 'google-' are reserved for use by Google. Labels applied at creation time to the VM. Applied on a best-effort basis to attached disk resources shortly after VM creation.
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The machine type of the virtual machine to create. Must be the short name of a standard machine type (such as &quot;n1-standard-1&quot;) or a custom machine type (such as &quot;custom-1-4096&quot;, where &quot;1&quot; indicates the number of vCPUs and &quot;4096&quot; indicates the memory in MB). See [Creating an instance with a custom machine type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) for more specifications on creating a custom machine type.
+     * Required. The machine type of the virtual machine to create. Must be the short name of a standard machine type (such as "n1-standard-1") or a custom machine type (such as "custom-1-4096", where "1" indicates the number of vCPUs and "4096" indicates the memory in MB). See [Creating an instance with a custom machine type](https://cloud.google.com/compute/docs/instances/creating-instance-with-custom-machine-type#create) for more specifications on creating a custom machine type.
      */
     machineType?: string | null;
     /**
@@ -692,13 +714,34 @@ export namespace lifesciences_v2beta {
      * The service account to install on the VM. This account does not need any permissions other than those required by the pipeline.
      */
     serviceAccount?: Schema$ServiceAccount;
+    /**
+     * The list of disks and other storage to create or attach to the VM.
+     */
+    volumes?: Schema$Volume[];
+  }
+  /**
+   * Carries information about storage that can be attached to a VM.
+   */
+  export interface Schema$Volume {
+    /**
+     * Configuration for a existing disk.
+     */
+    existingDisk?: Schema$ExistingDisk;
+    /**
+     * Configuration for a persistent disk.
+     */
+    persistentDisk?: Schema$PersistentDisk;
+    /**
+     * A user-supplied name for the volume. Used when mounting the volume into `Actions`. The name must contain only upper and lowercase alphanumeric characters and hyphens and cannot start with a hyphen.
+     */
+    volume?: string | null;
   }
   /**
    * An event generated after a worker VM has been assigned to run the pipeline.
    */
   export interface Schema$WorkerAssignedEvent {
     /**
-     * The worker&#39;s instance name.
+     * The worker's instance name.
      */
     instance?: string | null;
     /**
@@ -715,7 +758,7 @@ export namespace lifesciences_v2beta {
    */
   export interface Schema$WorkerReleasedEvent {
     /**
-     * The worker&#39;s instance name.
+     * The worker's instance name.
      */
     instance?: string | null;
     /**
@@ -746,9 +789,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -792,14 +835,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -870,7 +911,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -878,9 +919,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -927,17 +968,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -1016,7 +1052,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1058,9 +1094,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.cancel`
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. Clients may use Operations.GetOperation or Operations.ListOperations to check whether the cancellation succeeded or the operation completed despite cancellation. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.cancel`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -1104,15 +1140,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -1186,7 +1219,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1194,9 +1227,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.get`
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.get`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -1240,14 +1273,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -1318,7 +1349,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1326,9 +1357,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.list`
+     * Lists operations that match the specified filter in the request. Authorization requires the following [Google IAM](https://cloud.google.com/iam) permission: * `lifesciences.operations.list`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -1375,17 +1406,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A string for filtering Operations. The following filter fields are supported: * createTime: The time this job was created * events: The set of event (names) that have occurred while running the pipeline. The : operator can be used to determine if a particular event has occurred. * error: If the pipeline is running, this value is NULL. Once the pipeline finishes, the value is the standard Google error code. * labels.key or labels."key with space" where key is a label key. * done: If the pipeline is running, this value is false. Once the pipeline finishes, the value is true.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The maximum number of results to return. The maximum value is 256.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -1464,7 +1490,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1518,9 +1544,9 @@ export namespace lifesciences_v2beta {
     }
 
     /**
-     * lifesciences.projects.locations.pipelines.run
-     * @desc Runs a pipeline. The returned Operation's metadata field will contain a google.cloud.lifesciences.v2beta.Metadata object describing the status of the pipeline execution. The response field will contain a google.cloud.lifesciences.v2beta.RunPipelineResponse object if the pipeline completes successfully. **Note:** Before you can use this method, the *Life Sciences Service Agent* must have access to your project. This is done automatically when the Cloud Life Sciences API is first enabled, but if you delete this permission you must disable and re-enable the API to grant the Life Sciences Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission: * `lifesciences.workflows.run`
+     * Runs a pipeline. The returned Operation's metadata field will contain a google.cloud.lifesciences.v2beta.Metadata object describing the status of the pipeline execution. The response field will contain a google.cloud.lifesciences.v2beta.RunPipelineResponse object if the pipeline completes successfully. **Note:** Before you can use this method, the *Life Sciences Service Agent* must have access to your project. This is done automatically when the Cloud Life Sciences API is first enabled, but if you delete this permission you must disable and re-enable the API to grant the Life Sciences Service Agent the required permissions. Authorization requires the following [Google IAM](https://cloud.google.com/iam/) permission: * `lifesciences.workflows.run`
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/lifesciences.googleapis.com
@@ -1573,15 +1599,12 @@ export namespace lifesciences_v2beta {
      *   throw e;
      * });
      *
-     * @alias lifesciences.projects.locations.pipelines.run
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent The project and location that this request should be executed against.
-     * @param {().RunPipelineRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     run(
       params: Params$Resource$Projects$Locations$Pipelines$Run,
@@ -1655,7 +1678,7 @@ export namespace lifesciences_v2beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

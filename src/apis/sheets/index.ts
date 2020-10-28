@@ -31,3 +31,14 @@ export function sheets<T = sheets_v4.Sheets>(
 
 const auth = new AuthPlus();
 export {auth};
+export {sheets_v4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

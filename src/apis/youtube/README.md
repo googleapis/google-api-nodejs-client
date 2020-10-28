@@ -2,7 +2,7 @@
 
 # youtube
 
-> Supports core YouTube features, such as uploading videos, creating and managing playlists, searching for content, and much more.
+> The YouTube Data API v3 is an API that provides access to YouTube data, such as videos, playlists, and channels.
 
 ## Installation
 

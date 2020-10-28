@@ -104,14 +104,10 @@ export namespace pubsub_v1beta1a {
    * Provides reliable, many-to-many, asynchronous messaging between applications.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const pubsub = google.pubsub('v1beta1a');
-   *
-   * @namespace pubsub
-   * @type {Function}
-   * @version v1beta1a
-   * @variation v1beta1a
-   * @param {object=} options Options for Pubsub
+   * ```
    */
   export class Pubsub {
     context: APIRequestContext;
@@ -143,7 +139,7 @@ export namespace pubsub_v1beta1a {
     subscription?: string | null;
   }
   /**
-   * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance: service Foo { rpc Bar (proto2.Empty) returns (proto2.Empty) { }; }; BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
+   * An empty message that you can re-use to avoid defining duplicated empty messages in your project. A typical example is to use it as argument or the return value of a service API. For instance: service Foo { rpc Bar (proto2.Empty) returns (proto2.Empty) { \}; \}; BEGIN GOOGLE-INTERNAL The difference between this one and net/rpc/empty-message.proto is that 1) The generated message here is in proto2 C++ API. 2) The proto2.Empty has minimum dependencies (no message_set or net/rpc dependencies) END GOOGLE-INTERNAL
    */
   export interface Schema$Empty {}
   /**
@@ -151,7 +147,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$Label {
     /**
-     * The key of a label is a syntactically valid URL (as per RFC 1738) with the &quot;scheme&quot; and initial slashes omitted and with the additional restrictions noted below. Each key should be globally unique. The &quot;host&quot; portion is called the &quot;namespace&quot; and is not necessarily resolvable to a network endpoint. Instead, the namespace indicates what system or entity defines the semantics of the label. Namespaces do not restrict the set of objects to which a label may be associated. Keys are defined by the following grammar: key = hostname &quot;/&quot; kpath kpath = ksegment *[ &quot;/&quot; ksegment ] ksegment = alphadigit | *[ alphadigit | &quot;-&quot; | &quot;_&quot; | &quot;.&quot; ] where &quot;hostname&quot; and &quot;alphadigit&quot; are defined as in RFC 1738. Example key: spanner.google.com/universe
+     * The key of a label is a syntactically valid URL (as per RFC 1738) with the "scheme" and initial slashes omitted and with the additional restrictions noted below. Each key should be globally unique. The "host" portion is called the "namespace" and is not necessarily resolvable to a network endpoint. Instead, the namespace indicates what system or entity defines the semantics of the label. Namespaces do not restrict the set of objects to which a label may be associated. Keys are defined by the following grammar: key = hostname "/" kpath kpath = ksegment *[ "/" ksegment ] ksegment = alphadigit | *[ alphadigit | "-" | "_" | "." ] where "hostname" and "alphadigit" are defined as in RFC 1738. Example key: spanner.google.com/universe
      */
     key?: string | null;
     /**
@@ -194,7 +190,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$ModifyAckDeadlineRequest {
     /**
-     * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be &gt;= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the ModifyAckDeadline call was made. Specifying zero may immediately make the message available for another pull request.
+     * The new ack deadline with respect to the time this request was sent to the Pub/Sub system. Must be \>= 0. For example, if the value is 10, the new ack deadline will expire 10 seconds after the ModifyAckDeadline call was made. Specifying zero may immediately make the message available for another pull request.
      */
     ackDeadlineSeconds?: number | null;
     /**
@@ -357,7 +353,7 @@ export namespace pubsub_v1beta1a {
    */
   export interface Schema$PushConfig {
     /**
-     * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use &quot;https://example.com/push&quot;.
+     * A URL locating the endpoint to which messages should be pushed. For example, a Webhook endpoint might use "https://example.com/push".
      */
     pushEndpoint?: string | null;
   }
@@ -399,9 +395,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.acknowledge
-     * @desc Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
+     * Acknowledges a particular received message: the Pub/Sub system can remove the given message from the subscription. Acknowledging a message whose Ack deadline has expired may succeed, but the message could have been already redelivered. Acknowledging a message more than once will not result in an error. This is only used for messages received via pull.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -448,14 +444,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Subscriptions$Acknowledge,
@@ -529,7 +523,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -537,9 +531,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.create
-     * @desc Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
+     * Creates a subscription on a given topic for a given subscriber. If the subscription already exists, returns ALREADY_EXISTS. If the corresponding topic doesn't exist, returns NOT_FOUND. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -593,14 +587,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Subscription} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Subscriptions$Create,
@@ -674,7 +666,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -682,9 +674,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.delete
-     * @desc Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND.
+     * Deletes an existing subscription. All pending messages in the subscription are immediately dropped. Calls to Pull after deletion will return NOT_FOUND.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -725,14 +717,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription The subscription to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Subscriptions$Delete,
@@ -806,7 +796,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -814,9 +804,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.get
-     * @desc Gets the configuration details of a subscription.
+     * Gets the configuration details of a subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -862,14 +852,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription The name of the subscription to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Subscriptions$Get,
@@ -943,7 +931,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -951,9 +939,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.list
-     * @desc Lists matching subscriptions.
+     * Lists matching subscriptions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1001,16 +989,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of subscriptions to return.
-     * @param {string=} params.pageToken The value obtained in the last ListSubscriptionsResponse for continuation.
-     * @param {string=} params.query A valid label query expression.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Subscriptions$List,
@@ -1091,7 +1075,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
@@ -1099,9 +1083,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.modifyAckDeadline
-     * @desc Modifies the Ack deadline for a message received from a pull request.
+     * Modifies the Ack deadline for a message received from a pull request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1150,14 +1134,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.modifyAckDeadline
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ModifyAckDeadlineRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyAckDeadline(
       params: Params$Resource$Subscriptions$Modifyackdeadline,
@@ -1230,7 +1212,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1238,9 +1220,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.modifyPushConfig
-     * @desc Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
+     * Modifies the PushConfig for a specified subscription. This method can be used to suspend the flow of messages to an endpoint by clearing the PushConfig field in the request. Messages will be accumulated for delivery even if no push configuration is defined or while the configuration is modified.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1287,14 +1269,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.modifyPushConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ModifyPushConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyPushConfig(
       params: Params$Resource$Subscriptions$Modifypushconfig,
@@ -1368,7 +1348,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1376,9 +1356,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.pull
-     * @desc Pulls a single message from the server. If return_immediately is true, and no messages are available in the subscription, this method returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE error if no messages are available in a reasonable amount of time (to reduce system load).
+     * Pulls a single message from the server. If return_immediately is true, and no messages are available in the subscription, this method returns FAILED_PRECONDITION. The system is free to return an UNAVAILABLE error if no messages are available in a reasonable amount of time (to reduce system load).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1428,14 +1408,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.pull
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().PullRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     pull(
       params: Params$Resource$Subscriptions$Pull,
@@ -1509,7 +1487,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PullResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PullResponse>(parameters);
@@ -1517,9 +1495,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.subscriptions.pullBatch
-     * @desc Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
+     * Pulls messages from the server. Returns an empty list if there are no messages available in the backlog. The system is free to return UNAVAILABLE if there are too many pull requests outstanding for the given subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1569,14 +1547,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.subscriptions.pullBatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().PullBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     pullBatch(
       params: Params$Resource$Subscriptions$Pullbatch,
@@ -1653,7 +1629,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PullBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PullBatchResponse>(parameters);
@@ -1740,9 +1716,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.create
-     * @desc Creates the given topic with the given name.
+     * Creates the given topic with the given name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1790,14 +1766,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Topic} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Topics$Create,
@@ -1867,7 +1841,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -1875,9 +1849,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.delete
-     * @desc Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
+     * Deletes the topic with the given name. Returns NOT_FOUND if the topic does not exist. After a topic is deleted, a new topic may be created with the same name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1918,14 +1892,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic Name of the topic to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Topics$Delete,
@@ -1998,7 +1970,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2006,9 +1978,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.get
-     * @desc Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
+     * Gets the configuration of a topic. Since the topic only has the name attribute, this method is only useful to check the existence of a topic. If other attributes are added in the future, they will be returned here.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2051,14 +2023,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic The name of the topic to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Topics$Get,
@@ -2131,7 +2101,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -2139,9 +2109,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.list
-     * @desc Lists matching topics.
+     * Lists matching topics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2189,16 +2159,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of topics to return.
-     * @param {string=} params.pageToken The value obtained in the last ListTopicsResponse for continuation.
-     * @param {string=} params.query A valid label query expression.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Topics$List,
@@ -2271,7 +2237,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicsResponse>(parameters);
@@ -2279,9 +2245,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.publish
-     * @desc Adds a message to the topic. Returns NOT_FOUND if the topic does not exist.
+     * Adds a message to the topic. Returns NOT_FOUND if the topic does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2328,14 +2294,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().PublishRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Topics$Publish,
@@ -2408,7 +2372,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2416,9 +2380,9 @@ export namespace pubsub_v1beta1a {
     }
 
     /**
-     * pubsub.topics.publishBatch
-     * @desc Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
+     * Adds one or more messages to the topic. Returns NOT_FOUND if the topic does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2467,14 +2431,12 @@ export namespace pubsub_v1beta1a {
      *   throw e;
      * });
      *
-     * @alias pubsub.topics.publishBatch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().PublishBatchRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publishBatch(
       params: Params$Resource$Topics$Publishbatch,
@@ -2555,7 +2517,7 @@ export namespace pubsub_v1beta1a {
       if (callback) {
         createAPIRequest<Schema$PublishBatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishBatchResponse>(parameters);

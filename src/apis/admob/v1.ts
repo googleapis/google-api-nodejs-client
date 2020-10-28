@@ -104,14 +104,10 @@ export namespace admob_v1 {
    * The AdMob API allows publishers to programmatically get information about their AdMob account.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const admob = google.admob('v1');
-   *
-   * @namespace admob
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Admob
+   * ```
    */
   export class Admob {
     context: APIRequestContext;
@@ -128,19 +124,19 @@ export namespace admob_v1 {
   }
 
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
@@ -167,7 +163,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$MediationReportSpec;
   }
   /**
-   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ &quot;header&quot;: { &quot;date_range&quot;: { &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1} }, &quot;localization_settings&quot;: { &quot;currency_code&quot;: &quot;USD&quot;, &quot;language_code&quot;: &quot;en-US&quot; } } }, { &quot;row&quot;: { &quot;dimension_values&quot;: { &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;}, &quot;APP&quot;: { &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;, &quot;display_label&quot;: &quot;My app name!&quot; } }, &quot;metric_values&quot;: { &quot;ESTIMATED_EARNINGS&quot;: {&quot;decimal_value&quot;: &quot;1324746&quot;} } } }, { &quot;footer&quot;: {&quot;matching_row_count&quot;: 1} }]
+   * The streaming response for the AdMob Mediation report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 1\} \}, "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} \}, { "row": { "dimension_values": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", "display_label": "My app name!" \} \}, "metric_values": { "ESTIMATED_EARNINGS": {"decimal_value": "1324746"\} \} \} \}, { "footer": {"matching_row_count": 1\} \}]
    */
   export interface Schema$GenerateMediationReportResponse {
     /**
@@ -193,7 +189,7 @@ export namespace admob_v1 {
     reportSpec?: Schema$NetworkReportSpec;
   }
   /**
-   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ &quot;header&quot;: { &quot;dateRange&quot;: { &quot;startDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;endDate&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1} }, &quot;localizationSettings&quot;: { &quot;currencyCode&quot;: &quot;USD&quot;, &quot;languageCode&quot;: &quot;en-US&quot; } } }, { &quot;row&quot;: { &quot;dimensionValues&quot;: { &quot;DATE&quot;: {&quot;value&quot;: &quot;20180918&quot;}, &quot;APP&quot;: { &quot;value&quot;: &quot;ca-app-pub-8123415297019784~1001342552&quot;, displayLabel: &quot;My app name!&quot; } }, &quot;metricValues&quot;: { &quot;ESTIMATED_EARNINGS&quot;: {&quot;microsValue&quot;: 6500000} } } }, { &quot;footer&quot;: {&quot;matchingRowCount&quot;: 1} }]
+   * The streaming response for the AdMob Network report where the first response contains the report header, then a stream of row responses, and finally a footer as the last response message. For example: [{ "header": { "dateRange": { "startDate": {"year": 2018, "month": 9, "day": 1\}, "endDate": {"year": 2018, "month": 9, "day": 1\} \}, "localizationSettings": { "currencyCode": "USD", "languageCode": "en-US" \} \} \}, { "row": { "dimensionValues": { "DATE": {"value": "20180918"\}, "APP": { "value": "ca-app-pub-8123415297019784~1001342552", displayLabel: "My app name!" \} \}, "metricValues": { "ESTIMATED_EARNINGS": {"microsValue": 6500000\} \} \} \}, { "footer": {"matchingRowCount": 1\} \}]
    */
   export interface Schema$GenerateNetworkReportResponse {
     /**
@@ -231,12 +227,12 @@ export namespace admob_v1 {
      */
     currencyCode?: string | null;
     /**
-     * Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to &#39;en-US&#39; if unspecified.
+     * Language used for any localized text, such as some dimension value display labels. The language tag defined in the IETF BCP47. Defaults to 'en-US' if unspecified.
      */
     languageCode?: string | null;
   }
   /**
-   * The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the &#39;US&#39; and &#39;CN&#39; countries can look like the following example: { &quot;date_range&quot;: { &quot;start_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 1}, &quot;end_date&quot;: {&quot;year&quot;: 2018, &quot;month&quot;: 9, &quot;day&quot;: 30} }, &quot;dimensions&quot;: [&quot;AD_SOURCE&quot;, &quot;APP&quot;, &quot;COUNTRY&quot;], &quot;metrics&quot;: [&quot;OBSERVED_ECPM&quot;], &quot;dimension_filters&quot;: [ { &quot;dimension&quot;: &quot;COUNTRY&quot;, &quot;matches_any&quot;: {&quot;values&quot;: [{&quot;value&quot;: &quot;US&quot;, &quot;value&quot;: &quot;CN&quot;}]} } ], &quot;sort_conditions&quot;: [ {&quot;dimension&quot;:&quot;APP&quot;, order: &quot;ASCENDING&quot;} ], &quot;localization_settings&quot;: { &quot;currency_code&quot;: &quot;USD&quot;, &quot;language_code&quot;: &quot;en-US&quot; } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39; AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;) GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;
+   * The specification for generating an AdMob Mediation report. For example, the specification to get observed ECPM sliced by ad source and app for the 'US' and 'CN' countries can look like the following example: { "date_range": { "start_date": {"year": 2018, "month": 9, "day": 1\}, "end_date": {"year": 2018, "month": 9, "day": 30\} \}, "dimensions": ["AD_SOURCE", "APP", "COUNTRY"], "metrics": ["OBSERVED_ECPM"], "dimension_filters": [ { "dimension": "COUNTRY", "matches_any": {"values": [{"value": "US", "value": "CN"\}]\} \} ], "sort_conditions": [ {"dimension":"APP", order: "ASCENDING"\} ], "localization_settings": { "currency_code": "USD", "language_code": "en-US" \} \} For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT AD_SOURCE, APP, COUNTRY, OBSERVED_ECPM FROM MEDIATION_REPORT WHERE DATE \>= '2018-09-01' AND DATE <= '2018-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY AD_SOURCE, APP, COUNTRY ORDER BY APP ASC;
    */
   export interface Schema$MediationReportSpec {
     /**
@@ -268,7 +264,7 @@ export namespace admob_v1 {
      */
     sortConditions?: Schema$MediationReportSpecSortCondition[];
     /**
-     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot; If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
+     * A report time zone. Accepts an IANA TZ name values, such as "America/Los_Angeles." If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The "America/Los_Angeles" is the only supported value at the moment.
      */
     timeZone?: string | null;
   }
@@ -303,7 +299,7 @@ export namespace admob_v1 {
     order?: string | null;
   }
   /**
-   * The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the &#39;US&#39; and &#39;CN&#39; countries can look like the following example: { &#39;date_range&#39;: { &#39;start_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 1}, &#39;end_date&#39;: {&#39;year&#39;: 2018, &#39;month&#39;: 9, &#39;day&#39;: 30} }, &#39;dimensions&#39;: [&#39;DATE&#39;, &#39;APP&#39;, &#39;COUNTRY&#39;], &#39;metrics&#39;: [&#39;CLICKS&#39;, &#39;ESTIMATED_EARNINGS&#39;], &#39;dimension_filters&#39;: [ { &#39;dimension&#39;: &#39;COUNTRY&#39;, &#39;matches_any&#39;: {&#39;values&#39;: [{&#39;value&#39;: &#39;US&#39;, &#39;value&#39;: &#39;CN&#39;}]} } ], &#39;sort_conditions&#39;: [ {&#39;dimension&#39;:&#39;APP&#39;, order: &#39;ASCENDING&#39;}, {&#39;metric&#39;:&#39;CLICKS&#39;, order: &#39;DESCENDING&#39;} ], &#39;localization_settings&#39;: { &#39;currency_code&#39;: &#39;USD&#39;, &#39;language_code&#39;: &#39;en-US&#39; } } For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE &gt;= &#39;2018-09-01&#39; AND DATE &lt;= &#39;2018-09-30&#39; AND COUNTRY IN (&#39;US&#39;, &#39;CN&#39;) GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;
+   * The specification for generating an AdMob Network report. For example, the specification to get clicks and estimated earnings for only the 'US' and 'CN' countries can look like the following example: { 'date_range': { 'start_date': {'year': 2018, 'month': 9, 'day': 1\}, 'end_date': {'year': 2018, 'month': 9, 'day': 30\} \}, 'dimensions': ['DATE', 'APP', 'COUNTRY'], 'metrics': ['CLICKS', 'ESTIMATED_EARNINGS'], 'dimension_filters': [ { 'dimension': 'COUNTRY', 'matches_any': {'values': [{'value': 'US', 'value': 'CN'\}]\} \} ], 'sort_conditions': [ {'dimension':'APP', order: 'ASCENDING'\}, {'metric':'CLICKS', order: 'DESCENDING'\} ], 'localization_settings': { 'currency_code': 'USD', 'language_code': 'en-US' \} \} For a better understanding, you can treat the preceding specification like the following pseudo SQL: SELECT DATE, APP, COUNTRY, CLICKS, ESTIMATED_EARNINGS FROM NETWORK_REPORT WHERE DATE \>= '2018-09-01' AND DATE <= '2018-09-30' AND COUNTRY IN ('US', 'CN') GROUP BY DATE, APP, COUNTRY ORDER BY APP ASC, CLICKS DESC;
    */
   export interface Schema$NetworkReportSpec {
     /**
@@ -335,7 +331,7 @@ export namespace admob_v1 {
      */
     sortConditions?: Schema$NetworkReportSpecSortCondition[];
     /**
-     * A report time zone. Accepts an IANA TZ name values, such as &quot;America/Los_Angeles.&quot; If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The &quot;America/Los_Angeles&quot; is the only supported value at the moment.
+     * A report time zone. Accepts an IANA TZ name values, such as "America/Los_Angeles." If no time zone is defined, the account default takes effect. Check default value by the get account action. **Warning:** The "America/Los_Angeles" is the only supported value at the moment.
      */
     timeZone?: string | null;
   }
@@ -378,7 +374,7 @@ export namespace admob_v1 {
      */
     currencyCode?: string | null;
     /**
-     * Resource name of this account. Format is accounts/{publisher_id}.
+     * Resource name of this account. Format is accounts/{publisher_id\}.
      */
     name?: string | null;
     /**
@@ -386,7 +382,7 @@ export namespace admob_v1 {
      */
     publisherId?: string | null;
     /**
-     * The time zone that is used in reports that are generated for this account. The value is a time-zone ID as specified by the CLDR project, for example, &quot;America/Los_Angeles&quot;.
+     * The time zone that is used in reports that are generated for this account. The value is a time-zone ID as specified by the CLDR project, for example, "America/Los_Angeles".
      */
     reportingTimeZone?: string | null;
   }
@@ -416,7 +412,7 @@ export namespace admob_v1 {
      */
     localizationSettings?: Schema$LocalizationSettings;
     /**
-     * The report time zone. The value is a time-zone ID as specified by the CLDR project, for example, &quot;America/Los_Angeles&quot;.
+     * The report time zone. The value is a time-zone ID as specified by the CLDR project, for example, "America/Los_Angeles".
      */
     reportingTimeZone?: string | null;
   }
@@ -442,7 +438,7 @@ export namespace admob_v1 {
      */
     displayLabel?: string | null;
     /**
-     * Dimension value in the format specified in the report&#39;s spec Dimension enum.
+     * Dimension value in the format specified in the report's spec Dimension enum.
      */
     value?: string | null;
   }
@@ -499,9 +495,9 @@ export namespace admob_v1 {
     }
 
     /**
-     * admob.accounts.get
-     * @desc Gets information about the specified AdMob publisher account.
+     * Gets information about the specified AdMob publisher account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admob.googleapis.com
@@ -544,14 +540,12 @@ export namespace admob_v1 {
      *   throw e;
      * });
      *
-     * @alias admob.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name of the publisher account to retrieve. Example: accounts/pub-9876543210987654
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -621,7 +615,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$PublisherAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublisherAccount>(parameters);
@@ -629,9 +623,9 @@ export namespace admob_v1 {
     }
 
     /**
-     * admob.accounts.list
-     * @desc Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
+     * Lists the AdMob publisher account accessible with the client credential. Currently, all credentials have access to at most one AdMob account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admob.googleapis.com
@@ -674,15 +668,12 @@ export namespace admob_v1 {
      *   throw e;
      * });
      *
-     * @alias admob.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of accounts to return.
-     * @param {string=} params.pageToken The value returned by the last `ListPublisherAccountsResponse`; indicates that this is a continuation of a prior `ListPublisherAccounts` call, and that the system should return the next page of data.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -759,7 +750,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPublisherAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPublisherAccountsResponse>(
@@ -793,9 +784,9 @@ export namespace admob_v1 {
     }
 
     /**
-     * admob.accounts.mediationReport.generate
-     * @desc Generates an AdMob Mediation report based on the provided report specification.
+     * Generates an AdMob Mediation report based on the provided report specification.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admob.googleapis.com
@@ -845,15 +836,12 @@ export namespace admob_v1 {
      *   throw e;
      * });
      *
-     * @alias admob.accounts.mediationReport.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
-     * @param {().GenerateMediationReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Accounts$Mediationreport$Generate,
@@ -934,7 +922,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateMediationReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateMediationReportResponse>(
@@ -964,9 +952,9 @@ export namespace admob_v1 {
     }
 
     /**
-     * admob.accounts.networkReport.generate
-     * @desc Generates an AdMob Network report based on the provided report specification.
+     * Generates an AdMob Network report based on the provided report specification.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/admob.googleapis.com
@@ -1016,15 +1004,12 @@ export namespace admob_v1 {
      *   throw e;
      * });
      *
-     * @alias admob.accounts.networkReport.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Resource name of the account to generate the report for. Example: accounts/pub-9876543210987654
-     * @param {().GenerateNetworkReportRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Accounts$Networkreport$Generate,
@@ -1105,7 +1090,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateNetworkReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateNetworkReportResponse>(

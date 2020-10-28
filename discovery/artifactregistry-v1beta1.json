@@ -966,7 +966,7 @@
       }
     }
   },
-  "revision": "20200918",
+  "revision": "20201009",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1086,6 +1086,10 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "useWildcards": {
+          "description": "Supports URI wildcards for matching multiple objects from a single URI.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -1421,17 +1425,11 @@
           "description": "The format of packages that are stored in the repository.",
           "enum": [
             "FORMAT_UNSPECIFIED",
-            "DOCKER",
-            "MAVEN",
-            "NPM",
-            "APT"
+            "DOCKER"
           ],
           "enumDescriptions": [
             "Unspecified package format.",
-            "Docker package format.",
-            "Maven package format.",
-            "NPM package format.",
-            "APT package format."
+            "Docker package format."
           ],
           "type": "string"
         },

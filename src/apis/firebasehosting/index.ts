@@ -51,3 +51,15 @@ export function firebasehosting<
 
 const auth = new AuthPlus();
 export {auth};
+export {firebasehosting_v1};
+export {firebasehosting_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

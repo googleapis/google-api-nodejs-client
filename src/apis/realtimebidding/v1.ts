@@ -104,14 +104,10 @@ export namespace realtimebidding_v1 {
    * Allows external bidders to manage their RTB integration with Google. This includes managing bidder endpoints, QPS quotas, configuring what ad inventory to receive via pretargeting, submitting creatives for verification, and accessing creative metadata such as approval status.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const realtimebidding = google.realtimebidding('v1');
-   *
-   * @namespace realtimebidding
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Realtimebidding
+   * ```
    */
   export class Realtimebidding {
     context: APIRequestContext;
@@ -195,7 +191,7 @@ export namespace realtimebidding_v1 {
      */
     dealIds?: string[] | null;
     /**
-     * All declared attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto&quot;) contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
+     * All declared attributes for the ads that may be shown from this creative. Can be used to filter the response of the creatives.list method. If the `excluded_attribute` field of a [bid request](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto") contains one of the attributes that were declared or detected for a given creative, and a bid is submitted with that creative, the bid will be filtered before the auction.
      */
     declaredAttributes?: string[] | null;
     /**
@@ -219,7 +215,7 @@ export namespace realtimebidding_v1 {
      */
     impressionTrackingUrls?: string[] | null;
     /**
-     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Output only. Name of the creative. Follows the pattern `buyers/{buyer\}/creatives/{creative\}`, where `{buyer\}` represents the account ID of the buyer who owns the creative, and `{creative\}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string | null;
     /**
@@ -244,13 +240,13 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$CreativeServingDecision {
     /**
-     * The serving status of this creative in China. When approved or disapproved, this status applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
+     * The policy compliance of this creative in China. When approved or disapproved, this applies to both deals and open auction in China. When pending review, this creative is allowed to serve for deals but not for open auction.
      */
-    chinaServingStatus?: Schema$ServingStatus;
+    chinaPolicyCompliance?: Schema$PolicyCompliance;
     /**
-     * Status of this creative when bidding on PG and PD deals (outside of Russia and China).
+     * Policy compliance of this creative when bidding on Programmatic Guaranteed and Preferred Deals (outside of Russia and China).
      */
-    dealsServingStatus?: Schema$ServingStatus;
+    dealsPolicyCompliance?: Schema$PolicyCompliance;
     /**
      * Detected advertisers and brands.
      */
@@ -288,33 +284,37 @@ export namespace realtimebidding_v1 {
      */
     lastStatusUpdate?: string | null;
     /**
-     * Status of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China).
+     * Policy compliance of this creative when bidding in open auction, private auction, or auction packages (outside of Russia and China).
      */
-    openAuctionServingStatus?: Schema$ServingStatus;
+    networkPolicyCompliance?: Schema$PolicyCompliance;
     /**
-     * The serving status of this creative in Russia. When approved or disapproved, this status applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction.
+     * Policy compliance of this creative when bidding in Open Bidding (outside of Russia and China). For the list of platform policies, see: https://support.google.com/platformspolicy/answer/3013851.
      */
-    russiaServingStatus?: Schema$ServingStatus;
+    platformPolicyCompliance?: Schema$PolicyCompliance;
+    /**
+     * The policy compliance of this creative in Russia. When approved or disapproved, this applies to both deals and open auction in Russia. When pending review, this creative is allowed to serve for deals but not for open auction.
+     */
+    russiaPolicyCompliance?: Schema$PolicyCompliance;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
   /**
-   * Evidence that the creative&#39;s destination URL was not crawlable by Google.
+   * Evidence that the creative's destination URL was not crawlable by Google.
    */
   export interface Schema$DestinationNotCrawlableEvidence {
     /**
@@ -331,7 +331,7 @@ export namespace realtimebidding_v1 {
     reason?: string | null;
   }
   /**
-   * Evidence of the creative&#39;s destination URL not functioning properly or having been incorrectly set up.
+   * Evidence of the creative's destination URL not functioning properly or having been incorrectly set up.
    */
   export interface Schema$DestinationNotWorkingEvidence {
     /**
@@ -420,7 +420,7 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$GetRemarketingTagResponse {
     /**
-     * A HTML tag that can be placed on the advertiser&#39;s page to add users to a user list. For more information and code samples on using snippet on your website refer to [Tag your site for remarketing]( https://support.google.com/google-ads/answer/2476688).
+     * A HTML tag that can be placed on the advertiser's page to add users to a user list. For more information and code samples on using snippet on your website refer to [Tag your site for remarketing]( https://support.google.com/google-ads/answer/2476688).
      */
     snippet?: string | null;
   }
@@ -556,7 +556,7 @@ export namespace realtimebidding_v1 {
      */
     image?: Schema$Image;
     /**
-     * A smaller image, for the advertiser&#39;s logo.
+     * A smaller image, for the advertiser's logo.
      */
     logo?: Schema$Image;
     /**
@@ -577,6 +577,19 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$OpenUserListRequest {}
   /**
+   * Policy compliance of the creative for a transaction type or a region.
+   */
+  export interface Schema$PolicyCompliance {
+    /**
+     * Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.
+     */
+    status?: string | null;
+    /**
+     * Topics related to the policy compliance for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.
+     */
+    topics?: Schema$PolicyTopicEntry[];
+  }
+  /**
    * Each policy topic entry will represent a violation of a policy topic for a creative, with the policy topic information and optional evidence for the policy violation.
    */
   export interface Schema$PolicyTopicEntry {
@@ -589,7 +602,7 @@ export namespace realtimebidding_v1 {
      */
     helpCenterUrl?: string | null;
     /**
-     * Policy topic this entry refers to. For example, &quot;ALCOHOL&quot;, &quot;TRADEMARKS_IN_AD_TEXT&quot;, or &quot;DESTINATION_NOT_WORKING&quot;. The set of possible policy topics is not fixed for a particular API version and may change at any time. Can be used to filter the response of the creatives.list method
+     * Policy topic this entry refers to. For example, "ALCOHOL", "TRADEMARKS_IN_AD_TEXT", or "DESTINATION_NOT_WORKING". The set of possible policy topics is not fixed for a particular API version and may change at any time. Can be used to filter the response of the creatives.list method
      */
     policyTopic?: string | null;
   }
@@ -598,11 +611,11 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$PolicyTopicEvidence {
     /**
-     * The creative&#39;s destination URL was not crawlable by Google.
+     * The creative's destination URL was not crawlable by Google.
      */
     destinationNotCrawlable?: Schema$DestinationNotCrawlableEvidence;
     /**
-     * The creative&#39;s destination URL did not function properly or was incorrectly set up.
+     * The creative's destination URL did not function properly or was incorrectly set up.
      */
     destinationNotWorking?: Schema$DestinationNotWorkingEvidence;
     /**
@@ -625,19 +638,6 @@ export namespace realtimebidding_v1 {
      * Evidence for HTTP cookie-related policy violations.
      */
     httpCookie?: Schema$HttpCookieEvidence;
-  }
-  /**
-   * Serving status of the creative for a transaction type or a region.
-   */
-  export interface Schema$ServingStatus {
-    /**
-     * Serving status for the given transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Can be used to filter the response of the creatives.list method.
-     */
-    status?: string | null;
-    /**
-     * Policy topics related to the serving decision for this transaction type (e.g., open auction, deals) or region (e.g., China, Russia). Topics may be present only if status is DISAPPROVED.
-     */
-    topics?: Schema$PolicyTopicEntry[];
   }
   /**
    * The URL-level breakdown for the download size.
@@ -674,7 +674,7 @@ export namespace realtimebidding_v1 {
     url?: string | null;
   }
   /**
-   * Represents an Authorized Buyers user list. Authorized Buyers can create/update/list user lists. Once a user list is created in the system, Authorized Buyers can add users to the user list using the bulk uploader API. Alternatively, users can be added by hosting a tag on the advertiser&#39;s page.
+   * Represents an Authorized Buyers user list. Authorized Buyers can create/update/list user lists. Once a user list is created in the system, Authorized Buyers can add users to the user list using the bulk uploader API. Alternatively, users can be added by hosting a tag on the advertiser's page.
    */
   export interface Schema$UserList {
     /**
@@ -686,11 +686,11 @@ export namespace realtimebidding_v1 {
      */
     displayName?: string | null;
     /**
-     * Required. The number of days a user&#39;s cookie stays on the user list. The field must be between 0 and 540 inclusive.
+     * Required. The number of days a user's cookie stays on the user list. The field must be between 0 and 540 inclusive.
      */
     membershipDurationDays?: string | null;
     /**
-     * Output only. Name of the user list that must follow the pattern `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer}` represents the account ID of the child seat buyer. `{user_list}` is an int64 identifier assigned by Google to uniquely identify a user list.
+     * Output only. Name of the user list that must follow the pattern `buyers/{buyer\}/userLists/{user_list\}`, where `{buyer\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer\}` represents the account ID of the child seat buyer. `{user_list\}` is an int64 identifier assigned by Google to uniquely identify a user list.
      */
     name?: string | null;
     /**
@@ -753,15 +753,15 @@ export namespace realtimebidding_v1 {
    */
   export interface Schema$WatchCreativesRequest {}
   /**
-   * A response for the request to receive push notification when a bidder&#39;s creatives change status.
+   * A response for the request to receive push notification when a bidder's creatives change status.
    */
   export interface Schema$WatchCreativesResponse {
     /**
-     * The Pub/Sub subscription that can be used to pull creative status notifications. This would be of the format `projects/{project_id}/subscriptions/{subscription_id}`. Subscription is created with pull delivery. All service accounts belonging to the bidder will have read access to this subscription. Subscriptions that are inactive for more than 90 days will be disabled. Please use watchCreatives to re-enable the subscription.
+     * The Pub/Sub subscription that can be used to pull creative status notifications. This would be of the format `projects/{project_id\}/subscriptions/{subscription_id\}`. Subscription is created with pull delivery. All service accounts belonging to the bidder will have read access to this subscription. Subscriptions that are inactive for more than 90 days will be disabled. Please use watchCreatives to re-enable the subscription.
      */
     subscription?: string | null;
     /**
-     * The Pub/Sub topic that will be used to publish creative serving status notifications. This would be of the format `projects/{project_id}/topics/{topic_id}`.
+     * The Pub/Sub topic that will be used to publish creative serving status notifications. This would be of the format `projects/{project_id\}/topics/{topic_id\}`.
      */
     topic?: string | null;
   }
@@ -782,9 +782,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.bidders.creatives.list
-     * @desc Lists creatives.
+     * Lists creatives.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -814,7 +814,7 @@ export namespace realtimebidding_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'bidders/my-bidder',
      *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      *     view: 'placeholder-value',
@@ -833,18 +833,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.bidders.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
-     * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
-     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
-     * @param {string=} params.view Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Bidders$Creatives$List,
@@ -924,7 +918,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -932,9 +926,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.bidders.creatives.watch
-     * @desc Watches all creatives pertaining to a bidder. It is sufficient to invoke this endpoint once per bidder. A Pub/Sub topic will be created and notifications will be pushed to the topic when any of the bidder's creatives change status. All of the bidder's service accounts will have access to read from the topic. Subsequent invocations of this method will return the existing Pub/Sub configuration.
+     * Watches all creatives pertaining to a bidder. It is sufficient to invoke this endpoint once per bidder. A Pub/Sub topic will be created and notifications will be pushed to the topic when any of the bidder's creatives change status. All of the bidder's service accounts will have access to read from the topic. Subsequent invocations of this method will return the existing Pub/Sub configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -958,7 +952,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.bidders.creatives.watch({
-     *     // Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId}`.
+     *     // Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId\}`.
      *     parent: 'bidders/my-bidder',
      *
      *     // Request body metadata
@@ -981,15 +975,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.bidders.creatives.watch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId}`.
-     * @param {().WatchCreativesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     watch(
       params: Params$Resource$Bidders$Creatives$Watch,
@@ -1069,7 +1060,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$WatchCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WatchCreativesResponse>(parameters);
@@ -1092,7 +1083,7 @@ export namespace realtimebidding_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      */
     parent?: string;
     /**
@@ -1103,7 +1094,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Bidders$Creatives$Watch
     extends StandardParameters {
     /**
-     * Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId}`.
+     * Required. To watch all creatives pertaining to the bidder and all its child seat accounts, the bidder must follow the pattern `bidders/{bidderAccountId\}`.
      */
     parent?: string;
 
@@ -1124,9 +1115,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.getRemarketingTag
-     * @desc Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
+     * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -1150,7 +1141,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
+     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      *     name: 'buyers/my-buyer',
      *   });
      *   console.log(res.data);
@@ -1166,14 +1157,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.getRemarketingTag
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getRemarketingTag(
       params: Params$Resource$Buyers$Getremarketingtag,
@@ -1255,7 +1244,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$GetRemarketingTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetRemarketingTagResponse>(parameters);
@@ -1266,7 +1255,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Getremarketingtag
     extends StandardParameters {
     /**
-     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
+     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
   }
@@ -1278,9 +1267,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.creatives.create
-     * @desc Creates a creative.
+     * Creates a creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -1304,7 +1293,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.create({
-     *     // Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *
      *     // Request body metadata
@@ -1366,15 +1355,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.creatives.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId}` should represent the account ID of the child seat buyer.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Buyers$Creatives$Create,
@@ -1449,7 +1435,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1457,9 +1443,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.creatives.get
-     * @desc Gets a creative.
+     * Gets a creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -1520,15 +1506,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.creatives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the creative to retrieve. See creative.name.
-     * @param {string=} params.view Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Buyers$Creatives$Get,
@@ -1600,7 +1583,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1608,9 +1591,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.creatives.list
-     * @desc Lists creatives.
+     * Lists creatives.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -1640,7 +1623,7 @@ export namespace realtimebidding_v1 {
      *     pageSize: 'placeholder-value',
      *     // A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
      *     pageToken: 'placeholder-value',
-     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     *     // Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      *     parent: 'buyers/my-buyer',
      *     // Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
      *     view: 'placeholder-value',
@@ -1659,18 +1642,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Query string to filter creatives. If no filter is specified, all active creatives will be returned. Example: 'accountId=12345 AND (dealsStatus:DISAPPROVED AND disapprovalReason:UNACCEPTABLE_CONTENT) OR declaredAttributes:IS_COOKIE_TARGETED'
-     * @param {integer=} params.pageSize Requested page size. The server may return fewer creatives than requested (due to timeout constraint) even if more are available via another call. If unspecified, server will pick an appropriate default. Acceptable values are 1 to 1000, inclusive.
-     * @param {string=} params.pageToken A token identifying a page of results the server should return. Typically, this is the value of ListCreativesResponse.nextPageToken returned from the previous call to the 'ListCreatives' method.
-     * @param {string} params.parent Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
-     * @param {string=} params.view Controls the amount of information included in the response. By default only creativeServingDecision is included. To retrieve the entire creative resource (including the declared fields and the creative content) specify the view as "FULL".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Buyers$Creatives$List,
@@ -1750,7 +1727,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -1758,9 +1735,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.creatives.patch
-     * @desc Updates a creative.
+     * Updates a creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -1784,7 +1761,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.creatives.patch({
-     *     // Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     *     // Output only. Name of the creative. Follows the pattern `buyers/{buyer\}/creatives/{creative\}`, where `{buyer\}` represents the account ID of the buyer who owns the creative, and `{creative\}` is the buyer-specific creative ID that references this creative in the bid response.
      *     name: 'buyers/my-buyer/creatives/my-creative',
      *     // Field mask to use for partial in-place updates.
      *     updateMask: 'placeholder-value',
@@ -1848,16 +1825,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.creatives.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
-     * @param {string=} params.updateMask Field mask to use for partial in-place updates.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Buyers$Creatives$Patch,
@@ -1929,7 +1902,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1940,7 +1913,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$Create
     extends StandardParameters {
     /**
-     * Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     * Required. The name of the parent buyer that the new creative belongs to that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns a creative. For a bidder accessing creatives on behalf of a child seat buyer, `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
     parent?: string;
 
@@ -1975,7 +1948,7 @@ export namespace realtimebidding_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId}` or `bidders/{bidderAccountId}`. For `buyers/{buyerAccountId}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
+     * Required. Name of the parent buyer that owns the creatives. The pattern for this resource is either `buyers/{buyerAccountId\}` or `bidders/{bidderAccountId\}`. For `buyers/{buyerAccountId\}`, the `buyerAccountId` can be one of the following: 1. The ID of the buyer that is accessing their own creatives. 2. The ID of the child seat buyer under a bidder account. So for listing creatives pertaining to the child seat buyer (`456`) under bidder account (`123`), you would use the pattern: `buyers/456`. 3. The ID of the bidder itself. So for listing creatives pertaining to bidder (`123`), you would use `buyers/123`. If you want to access all creatives pertaining to both the bidder and all of its child seat accounts, you would use `bidders/{bidderAccountId\}`, e.g., for all creatives pertaining to bidder (`123`), use `bidders/123`.
      */
     parent?: string;
     /**
@@ -1986,7 +1959,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Creatives$Patch
     extends StandardParameters {
     /**
-     * Name of the creative. Follows the pattern `buyers/{buyer}/creatives/{creative}`, where `{buyer}` represents the account ID of the buyer who owns the creative, and `{creative}` is the buyer-specific creative ID that references this creative in the bid response.
+     * Output only. Name of the creative. Follows the pattern `buyers/{buyer\}/creatives/{creative\}`, where `{buyer\}` represents the account ID of the buyer who owns the creative, and `{creative\}` is the buyer-specific creative ID that references this creative in the bid response.
      */
     name?: string;
     /**
@@ -2007,9 +1980,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.close
-     * @desc Change the status of a user list to CLOSED. This prevents new users from being added to the user list.
+     * Change the status of a user list to CLOSED. This prevents new users from being added to the user list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2060,15 +2033,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.close
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the user list to close. See UserList.name
-     * @param {().CloseUserListRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     close(
       params: Params$Resource$Buyers$Userlists$Close,
@@ -2140,7 +2110,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2148,9 +2118,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.create
-     * @desc Create a new user list.
+     * Create a new user list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2174,7 +2144,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.create({
-     *     // Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *
      *     // Request body metadata
@@ -2208,15 +2178,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
-     * @param {().UserList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Buyers$Userlists$Create,
@@ -2291,7 +2258,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2299,9 +2266,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.get
-     * @desc Gets a user list by its name.
+     * Gets a user list by its name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2346,14 +2313,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the user list to be retrieved. See UserList.name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Buyers$Userlists$Get,
@@ -2425,7 +2390,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2433,9 +2398,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.getRemarketingTag
-     * @desc Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
+     * Gets remarketing tag for a buyer. A remarketing tag is a piece of JavaScript code that can be placed on a web page. When a user visits a page containing a remarketing tag, Google adds the user to a user list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2459,7 +2424,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.getRemarketingTag({
-     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
+     *     // Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *   });
      *   console.log(res.data);
@@ -2475,14 +2440,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.getRemarketingTag
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getRemarketingTag(
       params: Params$Resource$Buyers$Userlists$Getremarketingtag,
@@ -2564,7 +2527,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$GetRemarketingTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetRemarketingTagResponse>(parameters);
@@ -2572,9 +2535,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.list
-     * @desc Lists the user lists visible to the current user.
+     * Lists the user lists visible to the current user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2602,7 +2565,7 @@ export namespace realtimebidding_v1 {
      *     pageSize: 'placeholder-value',
      *     // Continuation page token (as received from a previous response).
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     *     // Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      *     parent: 'buyers/my-buyer',
      *   });
      *   console.log(res.data);
@@ -2619,16 +2582,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The number of results to return per page.
-     * @param {string=} params.pageToken Continuation page token (as received from a previous response).
-     * @param {string} params.parent Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Buyers$Userlists$List,
@@ -2708,7 +2667,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserListsResponse>(parameters);
@@ -2716,9 +2675,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.open
-     * @desc Change the status of a user list to OPEN. This allows new users to be added to the user list.
+     * Change the status of a user list to OPEN. This allows new users to be added to the user list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2769,15 +2728,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.open
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the user list to open. See UserList.name
-     * @param {().OpenUserListRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     open(
       params: Params$Resource$Buyers$Userlists$Open,
@@ -2849,7 +2805,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2857,9 +2813,9 @@ export namespace realtimebidding_v1 {
     }
 
     /**
-     * realtimebidding.buyers.userLists.update
-     * @desc Update the given user list. Only user lists with URLRestrictions can be updated.
+     * Update the given user list. Only user lists with URLRestrictions can be updated.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
@@ -2883,7 +2839,7 @@ export namespace realtimebidding_v1 {
      *
      *   // Do the magic
      *   const res = await realtimebidding.buyers.userLists.update({
-     *     // Output only. Name of the user list that must follow the pattern `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer}` represents the account ID of the child seat buyer. `{user_list}` is an int64 identifier assigned by Google to uniquely identify a user list.
+     *     // Output only. Name of the user list that must follow the pattern `buyers/{buyer\}/userLists/{user_list\}`, where `{buyer\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer\}` represents the account ID of the child seat buyer. `{user_list\}` is an int64 identifier assigned by Google to uniquely identify a user list.
      *     name: 'buyers/my-buyer/userLists/my-userList',
      *
      *     // Request body metadata
@@ -2917,15 +2873,12 @@ export namespace realtimebidding_v1 {
      *   throw e;
      * });
      *
-     * @alias realtimebidding.buyers.userLists.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. Name of the user list that must follow the pattern `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer}` represents the account ID of the child seat buyer. `{user_list}` is an int64 identifier assigned by Google to uniquely identify a user list.
-     * @param {().UserList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Buyers$Userlists$Update,
@@ -2997,7 +2950,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -3020,7 +2973,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Userlists$Create
     extends StandardParameters {
     /**
-     * Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     * Required. The name of the parent buyer of the user list to be retrieved that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
     parent?: string;
 
@@ -3039,7 +2992,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Userlists$Getremarketingtag
     extends StandardParameters {
     /**
-     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId}` where `{accountId}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId}/userLists/{userListId}`. See UserList.name.
+     * Required. To fetch remarketing tag for an account, name must follow the pattern `buyers/{accountId\}` where `{accountId\}` represents ID of a buyer that owns the remarketing tag. For a bidder accessing remarketing tag on behalf of a child seat buyer, `{accountId\}` should represent the ID of the child seat buyer. To fetch remarketing tag for a specific user list, name must follow the pattern `buyers/{accountId\}/userLists/{userListId\}`. See UserList.name.
      */
     name?: string;
   }
@@ -3054,7 +3007,7 @@ export namespace realtimebidding_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId}`, where `{buyerAccountId}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId}` should represent the account ID of the child seat buyer.
+     * Required. The name of the parent buyer for the user lists to be returned that must follow the pattern `buyers/{buyerAccountId\}`, where `{buyerAccountId\}` represents the account ID of the buyer who owns user lists. For a bidder accessing user lists on behalf of a child seat buyer , `{buyerAccountId\}` should represent the account ID of the child seat buyer.
      */
     parent?: string;
   }
@@ -3073,7 +3026,7 @@ export namespace realtimebidding_v1 {
   export interface Params$Resource$Buyers$Userlists$Update
     extends StandardParameters {
     /**
-     * Output only. Name of the user list that must follow the pattern `buyers/{buyer}/userLists/{user_list}`, where `{buyer}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer}` represents the account ID of the child seat buyer. `{user_list}` is an int64 identifier assigned by Google to uniquely identify a user list.
+     * Output only. Name of the user list that must follow the pattern `buyers/{buyer\}/userLists/{user_list\}`, where `{buyer\}` represents the account ID of the buyer who owns the user list. For a bidder accessing user lists on behalf of a child seat buyer, `{buyer\}` represents the account ID of the child seat buyer. `{user_list\}` is an int64 identifier assigned by Google to uniquely identify a user list.
      */
     name?: string;
 

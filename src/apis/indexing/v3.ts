@@ -104,14 +104,10 @@ export namespace indexing_v3 {
    * Notifies Google when your web pages change.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const indexing = google.indexing('v3');
-   *
-   * @namespace indexing
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Indexing
+   * ```
    */
   export class Indexing {
     context: APIRequestContext;
@@ -178,9 +174,9 @@ export namespace indexing_v3 {
     }
 
     /**
-     * indexing.urlNotifications.getMetadata
-     * @desc Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API.
+     * Gets metadata about a Web Document. This method can _only_ be used to query URLs that were previously seen in successful Indexing API notifications. Includes the latest `UrlNotification` received via this API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
@@ -222,14 +218,12 @@ export namespace indexing_v3 {
      *   throw e;
      * });
      *
-     * @alias indexing.urlNotifications.getMetadata
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.url URL that is being queried.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getMetadata(
       params: Params$Resource$Urlnotifications$Getmetadata,
@@ -310,7 +304,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$UrlNotificationMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlNotificationMetadata>(parameters);
@@ -318,9 +312,9 @@ export namespace indexing_v3 {
     }
 
     /**
-     * indexing.urlNotifications.publish
-     * @desc Notifies that a URL has been updated or deleted.
+     * Notifies that a URL has been updated or deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/indexing.googleapis.com
@@ -367,14 +361,12 @@ export namespace indexing_v3 {
      *   throw e;
      * });
      *
-     * @alias indexing.urlNotifications.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().UrlNotification} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Urlnotifications$Publish,
@@ -455,7 +447,7 @@ export namespace indexing_v3 {
       if (callback) {
         createAPIRequest<Schema$PublishUrlNotificationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishUrlNotificationResponse>(

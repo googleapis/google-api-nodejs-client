@@ -104,14 +104,10 @@ export namespace run_v1beta1 {
    * Deploy and manage user provided container images that scale automatically based on HTTP traffic.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const run = google.run('v1beta1');
-   *
-   * @namespace run
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Run
+   * ```
    */
   export class Run {
     context: APIRequestContext;
@@ -142,7 +138,7 @@ export namespace run_v1beta1 {
      */
     description?: string | null;
     /**
-     * format is an optional OpenAPI type definition for this column. The &#39;name&#39; format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more. +optional
+     * format is an optional OpenAPI type definition for this column. The 'name' format is applied to the primary identifier column to assist in clients identifying column is the resource name. See https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#data-types for more. +optional
      */
     format?: string | null;
     /**
@@ -163,15 +159,15 @@ export namespace run_v1beta1 {
     type?: string | null;
   }
   /**
-   * CustomResourceDefinition represents a resource that should be exposed on the API server. Its name MUST be in the format &lt;.spec.name&gt;.&lt;.spec.group&gt;.
+   * CustomResourceDefinition represents a resource that should be exposed on the API server. Its name MUST be in the format <.spec.name\>.<.spec.group\>.
    */
   export interface Schema$CustomResourceDefinition {
     /**
-     * The API version for this call such as &quot;k8s.apiextensions.io/v1beta1&quot;.
+     * The API version for this call such as "k8s.apiextensions.io/v1beta1".
      */
     apiVersion?: string | null;
     /**
-     * The kind of resource, in this case always &quot;CustomResourceDefinition&quot;.
+     * The kind of resource, in this case always "CustomResourceDefinition".
      */
     kind?: string | null;
     /**
@@ -188,7 +184,7 @@ export namespace run_v1beta1 {
    */
   export interface Schema$CustomResourceDefinitionNames {
     /**
-     * Categories is a list of grouped resources custom resources belong to (e.g. &#39;all&#39;) +optional
+     * Categories is a list of grouped resources custom resources belong to (e.g. 'all') +optional
      */
     categories?: string[] | null;
     /**
@@ -245,7 +241,7 @@ export namespace run_v1beta1 {
      */
     version?: string | null;
     /**
-     * Versions is the list of all supported versions for this resource. If Version field is provided, this field is optional. Validation: All versions must use the same validation schema for now. i.e., top level Validation field is applied to all of these versions. Order: The version name will be used to compute the order. If the version string is &quot;kube-like&quot;, it will sort above non &quot;kube-like&quot; version strings, which are ordered lexicographically. &quot;Kube-like&quot; versions start with a &quot;v&quot;, then are followed by a number (the major version), then optionally the string &quot;alpha&quot; or &quot;beta&quot; and another number (the minor version). These are sorted first by GA &gt; beta &gt; alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. +optional
+     * Versions is the list of all supported versions for this resource. If Version field is provided, this field is optional. Validation: All versions must use the same validation schema for now. i.e., top level Validation field is applied to all of these versions. Order: The version name will be used to compute the order. If the version string is "kube-like", it will sort above non "kube-like" version strings, which are ordered lexicographically. "Kube-like" versions start with a "v", then are followed by a number (the major version), then optionally the string "alpha" or "beta" and another number (the minor version). These are sorted first by GA \> beta \> alpha (where GA is a version with no suffix such as beta or alpha), and then by comparing major version, then minor version. An example sorted list of versions: v10, v2, v1, v11beta2, v10beta3, v3beta1, v12alpha1, v11alpha2, foo1, foo10. +optional
      */
     versions?: Schema$CustomResourceDefinitionVersion[];
   }
@@ -314,7 +310,7 @@ export namespace run_v1beta1 {
     url?: string | null;
   }
   /**
-   * JSON represents any valid JSON value. These types are supported: bool, int64, float64, string, []interface{}, map[string]interface{} and nil.
+   * JSON represents any valid JSON value. These types are supported: bool, int64, float64, string, []interface{\}, map[string]interface{\} and nil.
    */
   export interface Schema$JSON {
     raw?: string | null;
@@ -383,7 +379,7 @@ export namespace run_v1beta1 {
   }
   export interface Schema$ListCustomResourceDefinitionsResponse {
     /**
-     * The API version for this call such as &quot;k8s.apiextensions.io/v1beta1&quot;.
+     * The API version for this call such as "k8s.apiextensions.io/v1beta1".
      */
     apiVersion?: string | null;
     /**
@@ -391,7 +387,7 @@ export namespace run_v1beta1 {
      */
     items?: Schema$CustomResourceDefinition[];
     /**
-     * The kind of this resource, in this case &quot;CustomResourceDefinitionList&quot;.
+     * The kind of this resource, in this case "CustomResourceDefinitionList".
      */
     kind?: string | null;
     /**
@@ -404,7 +400,7 @@ export namespace run_v1beta1 {
     unreachable?: string[] | null;
   }
   /**
-   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta}.
+   * ListMeta describes metadata that synthetic resources must have, including lists and various status objects. A resource may have only one of {ObjectMeta, ListMeta\}.
    */
   export interface Schema$ListMeta {
     /**
@@ -412,7 +408,7 @@ export namespace run_v1beta1 {
      */
     continue?: string | null;
     /**
-     * String that identifies the server&#39;s internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
+     * String that identifies the server's internal version of this object that can be used by clients to determine when objects have changed. Value must be treated as opaque by clients and passed unmodified back to the server. Populated by the system. Read-only. More info: https://git.k8s.io/community/contributors/devel/api-conventions.md#concurrency-control-and-consistency +optional
      */
     resourceVersion?: string | null;
     /**
@@ -494,7 +490,7 @@ export namespace run_v1beta1 {
      */
     apiVersion?: string | null;
     /**
-     * If true, AND if the owner has the &quot;foregroundDeletion&quot; finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs &quot;delete&quot; permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
+     * If true, AND if the owner has the "foregroundDeletion" finalizer, then the owner cannot be deleted from the key-value store until this reference is removed. Defaults to false. To set this field, a user needs "delete" permission of the owner, otherwise 422 (Unprocessable Entity) will be returned. +optional
      */
     blockOwnerDeletion?: boolean | null;
     /**
@@ -522,9 +518,9 @@ export namespace run_v1beta1 {
     }
 
     /**
-     * run.customresourcedefinitions.list
-     * @desc Rpc to list custom resource definitions.
+     * Rpc to list custom resource definitions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -582,21 +578,12 @@ export namespace run_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias run.customresourcedefinitions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit
-     * @param {string=} params.parent The project ID or project number from which the storages should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customresourcedefinitions$List,
@@ -683,7 +670,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
@@ -747,9 +734,9 @@ export namespace run_v1beta1 {
     }
 
     /**
-     * run.namespaces.customresourcedefinitions.get
-     * @desc Rpc to get information about a CustomResourceDefinition.
+     * Rpc to get information about a CustomResourceDefinition.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -773,7 +760,7 @@ export namespace run_v1beta1 {
      *
      *   // Do the magic
      *   const res = await run.namespaces.customresourcedefinitions.get({
-     *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'namespaces/my-namespace/customresourcedefinitions/my-customresourcedefinition',
      *   });
@@ -793,14 +780,12 @@ export namespace run_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias run.namespaces.customresourcedefinitions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Namespaces$Customresourcedefinitions$Get,
@@ -878,7 +863,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CustomResourceDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
@@ -889,7 +874,7 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Namespaces$Customresourcedefinitions$Get
     extends StandardParameters {
     /**
-     * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }
@@ -921,9 +906,9 @@ export namespace run_v1beta1 {
     }
 
     /**
-     * run.projects.locations.customresourcedefinitions.get
-     * @desc Rpc to get information about a CustomResourceDefinition.
+     * Rpc to get information about a CustomResourceDefinition.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -947,7 +932,7 @@ export namespace run_v1beta1 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.customresourcedefinitions.get({
-     *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
+     *     // The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
      *     name:
      *       'projects/my-project/locations/my-location/customresourcedefinitions/my-customresourcedefinition',
      *   });
@@ -967,14 +952,12 @@ export namespace run_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.customresourcedefinitions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Customresourcedefinitions$Get,
@@ -1050,7 +1033,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CustomResourceDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
@@ -1058,9 +1041,9 @@ export namespace run_v1beta1 {
     }
 
     /**
-     * run.projects.locations.customresourcedefinitions.list
-     * @desc Rpc to list custom resource definitions.
+     * Rpc to list custom resource definitions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/run.googleapis.com
@@ -1118,21 +1101,12 @@ export namespace run_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias run.projects.locations.customresourcedefinitions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.continue Optional encoded string to continue paging.
-     * @param {string=} params.fieldSelector Allows to filter resources based on a specific value for a field name. Send this in a query string format. i.e. 'metadata.name%3Dlorem'. Not currently used by Cloud Run.
-     * @param {boolean=} params.includeUninitialized Not currently used by Cloud Run.
-     * @param {string=} params.labelSelector Allows to filter resources based on a label. Supported operations are =, !=, exists, in, and notIn.
-     * @param {integer=} params.limit
-     * @param {string} params.parent The project ID or project number from which the storages should be listed.
-     * @param {string=} params.resourceVersion The baseline resource version from which the list or watch operation should start. Not currently used by Cloud Run.
-     * @param {boolean=} params.watch Flag that indicates that the client expects to watch this resource as well. Not currently used by Cloud Run.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
@@ -1218,7 +1192,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
@@ -1231,7 +1205,7 @@ export namespace run_v1beta1 {
   export interface Params$Resource$Projects$Locations$Customresourcedefinitions$Get
     extends StandardParameters {
     /**
-     * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id} with the project ID.
+     * The name of the CustomResourceDefinition being retrieved. If needed, replace {namespace_id\} with the project ID.
      */
     name?: string;
   }

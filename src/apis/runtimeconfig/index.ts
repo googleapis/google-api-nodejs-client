@@ -47,3 +47,15 @@ export function runtimeconfig<
 
 const auth = new AuthPlus();
 export {auth};
+export {runtimeconfig_v1};
+export {runtimeconfig_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

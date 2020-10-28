@@ -88,14 +88,10 @@ export namespace bigquery_v2 {
    * A data platform for customers to create, manage, share and query data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const bigquery = google.bigquery('v2');
-   *
-   * @namespace bigquery
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Bigquery
+   * ```
    */
   export class Bigquery {
     context: APIRequestContext;
@@ -104,6 +100,7 @@ export namespace bigquery_v2 {
     models: Resource$Models;
     projects: Resource$Projects;
     routines: Resource$Routines;
+    rowAccessPolicies: Resource$Rowaccesspolicies;
     tabledata: Resource$Tabledata;
     tables: Resource$Tables;
 
@@ -118,6 +115,7 @@ export namespace bigquery_v2 {
       this.models = new Resource$Models(this.context);
       this.projects = new Resource$Projects(this.context);
       this.routines = new Resource$Routines(this.context);
+      this.rowAccessPolicies = new Resource$Rowaccesspolicies(this.context);
       this.tabledata = new Resource$Tabledata(this.context);
       this.tables = new Resource$Tables(this.context);
     }
@@ -325,7 +323,7 @@ export namespace bigquery_v2 {
     timeSeriesId?: string | null;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { &quot;audit_configs&quot;: [ { &quot;service&quot;: &quot;allServices&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; }, { &quot;log_type&quot;: &quot;ADMIN_READ&quot; } ] }, { &quot;service&quot;: &quot;sampleservice.googleapis.com&quot;, &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot; }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot;, &quot;exempted_members&quot;: [ &quot;user:aliya@example.com&quot; ] } ] } ] } For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
@@ -338,7 +336,7 @@ export namespace bigquery_v2 {
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example: { &quot;audit_log_configs&quot;: [ { &quot;log_type&quot;: &quot;DATA_READ&quot;, &quot;exempted_members&quot;: [ &quot;user:jose@example.com&quot; ] }, { &quot;log_type&quot;: &quot;DATA_WRITE&quot; } ] } This enables &#39;DATA_READ&#39; and &#39;DATA_WRITE&#39; logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
@@ -362,7 +360,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$BigtableColumn {
     /**
-     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. &#39;encoding&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;encoding&#39; is set at both levels.
+     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. 'encoding' can also be set at the column family level. However, the setting at this level takes precedence if 'encoding' is set at both levels.
      */
     encoding?: string | null;
     /**
@@ -370,7 +368,7 @@ export namespace bigquery_v2 {
      */
     fieldName?: string | null;
     /**
-     * [Optional] If this is set, only the latest version of value in this column are exposed. &#39;onlyReadLatest&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;onlyReadLatest&#39; is set at both levels.
+     * [Optional] If this is set, only the latest version of value in this column are exposed. 'onlyReadLatest' can also be set at the column family level. However, the setting at this level takes precedence if 'onlyReadLatest' is set at both levels.
      */
     onlyReadLatest?: boolean | null;
     /**
@@ -379,7 +377,7 @@ export namespace bigquery_v2 {
     qualifierEncoded?: string | null;
     qualifierString?: string | null;
     /**
-     * [Optional] The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. &#39;type&#39; can also be set at the column family level. However, the setting at this level takes precedence if &#39;type&#39; is set at both levels.
+     * [Optional] The type to convert the value in cells of this column. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. 'type' can also be set at the column family level. However, the setting at this level takes precedence if 'type' is set at both levels.
      */
     type?: string | null;
   }
@@ -389,7 +387,7 @@ export namespace bigquery_v2 {
      */
     columns?: Schema$BigtableColumn[];
     /**
-     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying an encoding for it.
+     * [Optional] The encoding of the values when the type is not STRING. Acceptable encoding values are: TEXT - indicates values are alphanumeric text strings. BINARY - indicates values are encoded using HBase Bytes.toBytes family of functions. This can be overridden for a specific column by listing that column in 'columns' and specifying an encoding for it.
      */
     encoding?: string | null;
     /**
@@ -397,17 +395,17 @@ export namespace bigquery_v2 {
      */
     familyId?: string | null;
     /**
-     * [Optional] If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a different setting for that column.
+     * [Optional] If this is set only the latest version of value are exposed for all columns in this column family. This can be overridden for a specific column by listing that column in 'columns' and specifying a different setting for that column.
      */
     onlyReadLatest?: boolean | null;
     /**
-     * [Optional] The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. This can be overridden for a specific column by listing that column in &#39;columns&#39; and specifying a type for it.
+     * [Optional] The type to convert the value in cells of this column family. The values are expected to be encoded using HBase Bytes.toBytes function when using the BINARY encoding value. Following BigQuery types are allowed (case-sensitive) - BYTES STRING INTEGER FLOAT BOOLEAN Default type is BYTES. This can be overridden for a specific column by listing that column in 'columns' and specifying a type for it.
      */
     type?: string | null;
   }
   export interface Schema$BigtableOptions {
     /**
-     * [Optional] List of column families to expose in the table schema along with their types. This list restricts the column families that can be referenced in queries and specifies their value types. You can use this list to do type conversions - see the &#39;type&#39; field for more details. If you leave this list empty, all column families are present in the table schema and their values are read as BYTES. During a query only the column families referenced in that query are read from Bigtable.
+     * [Optional] List of column families to expose in the table schema along with their types. This list restricts the column families that can be referenced in queries and specifies their value types. You can use this list to do type conversions - see the 'type' field for more details. If you leave this list empty, all column families are present in the table schema and their values are read as BYTES. During a query only the column families referenced in that query are read from Bigtable.
      */
     columnFamilies?: Schema$BigtableColumnFamily[];
     /**
@@ -490,7 +488,7 @@ export namespace bigquery_v2 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -553,7 +551,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$CategoricalValue {
     /**
-     * Counts of all categories for the categorical feature. If there are more than ten categories, we return top ten (by count) and return one more CategoryCount with category &quot;_OTHER_&quot; and count as aggregate counts of remaining categories.
+     * Counts of all categories for the categorical feature. If there are more than ten categories, we return top ten (by count) and return one more CategoryCount with category "_OTHER_" and count as aggregate counts of remaining categories.
      */
     categoryCounts?: Schema$CategoryCount[];
   }
@@ -664,15 +662,15 @@ export namespace bigquery_v2 {
      */
     encoding?: string | null;
     /**
-     * [Optional] The separator for fields in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
+     * [Optional] The separator for fields in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence "\t" to specify a tab separator. The default value is a comma (',').
      */
     fieldDelimiter?: string | null;
     /**
-     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
+     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
      */
     quote?: string | null;
     /**
-     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
+     * [Optional] The number of rows at the top of a CSV file that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows in the file that should be skipped. When autodetect is on, the behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
   }
@@ -685,6 +683,7 @@ export namespace bigquery_v2 {
       groupByEmail?: string;
       iamMember?: string;
       role?: string;
+      routine?: Schema$RoutineReference;
       specialGroup?: string;
       userByEmail?: string;
       view?: Schema$TableReference;
@@ -703,7 +702,7 @@ export namespace bigquery_v2 {
      */
     defaultPartitionExpirationMs?: string | null;
     /**
-     * [Optional] The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one hour). Once this property is set, all newly-created tables in the dataset will have an expirationTime property set to the creation time plus the value in this property, and changing the value will only affect new tables, not existing ones. When the expirationTime for a given table is reached, that table will be deleted automatically. If a table&#39;s expirationTime is modified or removed before the table expires, or if you provide an explicit expirationTime when creating a table, that value takes precedence over the default expiration time indicated by this property.
+     * [Optional] The default lifetime of all tables in the dataset, in milliseconds. The minimum value is 3600000 milliseconds (one hour). Once this property is set, all newly-created tables in the dataset will have an expirationTime property set to the creation time plus the value in this property, and changing the value will only affect new tables, not existing ones. When the expirationTime for a given table is reached, that table will be deleted automatically. If a table's expirationTime is modified or removed before the table expires, or if you provide an explicit expirationTime when creating a table, that value takes precedence over the default expiration time indicated by this property.
      */
     defaultTableExpirationMs?: string | null;
     /**
@@ -764,7 +763,7 @@ export namespace bigquery_v2 {
      */
     etag?: string | null;
     /**
-     * The list type. This property always returns the value &quot;bigquery#datasetList&quot;.
+     * The list type. This property always returns the value "bigquery#datasetList".
      */
     kind?: string | null;
     /**
@@ -824,7 +823,7 @@ export namespace bigquery_v2 {
      */
     itemCount?: string | null;
     /**
-     * The predicted label. For confidence_threshold &gt; 0, we will also add an entry indicating the number of items under the confidence threshold.
+     * The predicted label. For confidence_threshold \> 0, we will also add an entry indicating the number of items under the confidence threshold.
      */
     predictedLabel?: string | null;
   }
@@ -1008,7 +1007,20 @@ export namespace bigquery_v2 {
     substeps?: string[] | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Explanation for a single feature.
+   */
+  export interface Schema$Explanation {
+    /**
+     * Attribution of feature.
+     */
+    attribution?: number | null;
+    /**
+     * Full name of the feature. For non-numerical features, will be formatted like .. Overall size of feature name will always be truncated to first 120 characters.
+     */
+    featureName?: string | null;
+  }
+  /**
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -1058,7 +1070,7 @@ export namespace bigquery_v2 {
      */
     hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
-     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.
+     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names Google Cloud Bigtable: This setting is ignored. Google Cloud Datastore backups: This setting is ignored. Avro: This setting is ignored.
      */
     ignoreUnknownValues?: boolean | null;
     /**
@@ -1070,11 +1082,11 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * [Required] The data format. For CSV files, specify &quot;CSV&quot;. For Google sheets, specify &quot;GOOGLE_SHEETS&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro files, specify &quot;AVRO&quot;. For Google Cloud Datastore backups, specify &quot;DATASTORE_BACKUP&quot;. [Beta] For Google Cloud Bigtable, specify &quot;BIGTABLE&quot;.
+     * [Required] The data format. For CSV files, specify "CSV". For Google sheets, specify "GOOGLE_SHEETS". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro files, specify "AVRO". For Google Cloud Datastore backups, specify "DATASTORE_BACKUP". [Beta] For Google Cloud Bigtable, specify "BIGTABLE".
      */
     sourceFormat?: string | null;
     /**
-     * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
+     * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character and it must come after the 'bucket' name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups, exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
      */
     sourceUris?: string[] | null;
   }
@@ -1173,13 +1185,26 @@ export namespace bigquery_v2 {
      */
     kind?: string | null;
   }
+  /**
+   * Global explanations containing the top most important features after training.
+   */
+  export interface Schema$GlobalExplanation {
+    /**
+     * Class label for this set of global explanations. Will be empty/null for binary logistic and linear regression models. Sorted alphabetically in descending order.
+     */
+    classLabel?: string | null;
+    /**
+     * A list of the top global explanations. Sorted by absolute value of attribution in descending order.
+     */
+    explanations?: Schema$Explanation[];
+  }
   export interface Schema$GoogleSheetsOptions {
     /**
      * [Optional] Range of a sheet to query from. Only used when non-empty. Typical format: sheet_name!top_left_cell_id:bottom_right_cell_id For example: sheet1!A1:B20
      */
     range?: string | null;
     /**
-     * [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N &gt; 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
+     * [Optional] The number of rows at the top of a sheet that BigQuery will skip when reading the data. The default value is 0. This property is useful if you have header rows that should be skipped. When autodetect is on, behavior is the following: * skipLeadingRows unspecified - Autodetect tries to detect headers in the first row. If they are not detected, the row is read as data. Otherwise data is read starting from the second row. * skipLeadingRows is 0 - Instructs autodetect that there are no headers and data should be read starting from the first row. * skipLeadingRows = N \> 0 - Autodetect skips N-1 rows and tries to detect headers in row N. If headers are not detected, row N is just skipped. Otherwise row N is used to extract column names for the detected schema.
      */
     skipLeadingRows?: string | null;
   }
@@ -1281,7 +1306,7 @@ export namespace bigquery_v2 {
      */
     copy?: Schema$JobConfigurationTableCopy;
     /**
-     * [Optional] If set, don&#39;t actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn&#39;t a dry run. Behavior of non-query jobs is undefined.
+     * [Optional] If set, don't actually run this job. A valid query will return a mostly empty response with some processing statistics, while an invalid query will return the same error it would if it wasn't a dry run. Behavior of non-query jobs is undefined.
      */
     dryRun?: boolean | null;
     /**
@@ -1327,7 +1352,7 @@ export namespace bigquery_v2 {
      */
     destinationUris?: string[] | null;
     /**
-     * [Optional] Delimiter to use between fields in the exported data. Default is &#39;,&#39;. Not applicable when extracting models.
+     * [Optional] Delimiter to use between fields in the exported data. Default is ','. Not applicable when extracting models.
      */
     fieldDelimiter?: string | null;
     /**
@@ -1343,7 +1368,7 @@ export namespace bigquery_v2 {
      */
     sourceTable?: Schema$TableReference;
     /**
-     * [Optional] If destinationFormat is set to &quot;AVRO&quot;, this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long). Not applicable when extracting models.
+     * [Optional] If destinationFormat is set to "AVRO", this flag indicates whether to enable extracting applicable column types (such as TIMESTAMP) to their corresponding AVRO logical types (timestamp-micros), instead of only using their raw types (avro-long). Not applicable when extracting models.
      */
     useAvroLogicalTypes?: boolean | null;
   }
@@ -1365,11 +1390,11 @@ export namespace bigquery_v2 {
      */
     clustering?: Schema$Clustering;
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
-     * [Trusted Tester] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. For example: suppose decimal_target_type = [&quot;NUMERIC&quot;, &quot;BIGNUMERIC&quot;]. Then if (precision,scale) is: * (38,9) -&gt; NUMERIC; * (39,9) -&gt; BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -&gt; BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -&gt; BIGNUMERIC; * (77,38) -&gt; BIGNUMERIC (error if value exeeds supported range). For duplicated types in this field, only one will be considered and the rest will be ignored. The order of the types in this field is ignored. For example, [&quot;BIGNUMERIC&quot;, &quot;NUMERIC&quot;] is the same as [&quot;NUMERIC&quot;, &quot;BIGNUMERIC&quot;] and NUMERIC always takes precedence over BIGNUMERIC.
+     * [Trusted Tester] Defines the list of possible SQL data types to which the source decimal values are converted. This list and the precision and the scale parameters of the decimal field determine the target type. In the order of NUMERIC, BIGNUMERIC, and STRING, a type is picked if it is in the specified list and if it supports the precision and the scale. STRING supports all precision and scale values. If none of the listed types supports the precision and the scale, the type supporting the widest range in the specified list is picked, and if a value exceeds the supported range when reading the data, an error will be thrown. For example: suppose decimal_target_type = ["NUMERIC", "BIGNUMERIC"]. Then if (precision,scale) is: * (38,9) -\> NUMERIC; * (39,9) -\> BIGNUMERIC (NUMERIC cannot hold 30 integer digits); * (38,10) -\> BIGNUMERIC (NUMERIC cannot hold 10 fractional digits); * (76,38) -\> BIGNUMERIC; * (77,38) -\> BIGNUMERIC (error if value exeeds supported range). For duplicated types in this field, only one will be considered and the rest will be ignored. The order of the types in this field is ignored. For example, ["BIGNUMERIC", "NUMERIC"] is the same as ["NUMERIC", "BIGNUMERIC"] and NUMERIC always takes precedence over BIGNUMERIC.
      */
     decimalTargetTypes?: string[] | null;
     /**
@@ -1389,7 +1414,7 @@ export namespace bigquery_v2 {
      */
     encoding?: string | null;
     /**
-     * [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence &quot;\t&quot; to specify a tab separator. The default value is a comma (&#39;,&#39;).
+     * [Optional] The separator for fields in a CSV file. The separator can be any ISO-8859-1 single-byte character. To use a character in the range 128-255, you must encode the character as UTF8. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. BigQuery also supports the escape sequence "\t" to specify a tab separator. The default value is a comma (',').
      */
     fieldDelimiter?: string | null;
     /**
@@ -1397,7 +1422,7 @@ export namespace bigquery_v2 {
      */
     hivePartitioningOptions?: Schema$HivePartitioningOptions;
     /**
-     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don&#39;t match any column names
+     * [Optional] Indicates if BigQuery should allow extra values that are not represented in the table schema. If true, the extra values are ignored. If false, records with extra columns are treated as bad records, and if there are too many bad records, an invalid error is returned in the job result. The default value is false. The sourceFormat property determines what BigQuery treats as an extra value: CSV: Trailing columns JSON: Named values that don't match any column names
      */
     ignoreUnknownValues?: boolean | null;
     /**
@@ -1405,15 +1430,15 @@ export namespace bigquery_v2 {
      */
     maxBadRecords?: number | null;
     /**
-     * [Optional] Specifies a string that represents a null value in a CSV file. For example, if you specify &quot;x/&quot;, BigQuery interprets &quot;x/&quot; as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
+     * [Optional] Specifies a string that represents a null value in a CSV file. For example, if you specify "\N", BigQuery interprets "\N" as a null value when loading a CSV file. The default value is the empty string. If you set this property to a custom value, BigQuery throws an error if an empty string is present for all data types except for STRING and BYTE. For STRING and BYTE columns, BigQuery interprets the empty string as an empty value.
      */
     nullMarker?: string | null;
     /**
-     * If sourceFormat is set to &quot;DATASTORE_BACKUP&quot;, indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn&#39;t found in the Cloud Datastore backup, an invalid error is returned in the job result.
+     * If sourceFormat is set to "DATASTORE_BACKUP", indicates which entity properties to load into BigQuery from a Cloud Datastore backup. Property names are case sensitive and must be top-level properties. If no properties are specified, BigQuery loads all properties. If any named property isn't found in the Cloud Datastore backup, an invalid error is returned in the job result.
      */
     projectionFields?: string[] | null;
     /**
-     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote (&#39;&quot;&#39;). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
+     * [Optional] The value that is used to quote data sections in a CSV file. BigQuery converts the string to ISO-8859-1 encoding, and then uses the first byte of the encoded string to split the data in its raw, binary state. The default value is a double-quote ('"'). If your data does not contain quoted sections, set the property value to an empty string. If your data contains quoted newline characters, you must also set the allowQuotedNewlines property to true.
      */
     quote?: string | null;
     /**
@@ -1421,11 +1446,11 @@ export namespace bigquery_v2 {
      */
     rangePartitioning?: Schema$RangePartitioning;
     /**
-     * [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you&#39;re loading data from Google Cloud Datastore.
+     * [Optional] The schema for the destination table. The schema can be omitted if the destination table already exists, or if you're loading data from Google Cloud Datastore.
      */
     schema?: Schema$TableSchema;
     /**
-     * [Deprecated] The inline schema. For CSV schemas, specify as &quot;Field1:Type1[,Field2:Type2]*&quot;. For example, &quot;foo:STRING, bar:INTEGER, baz:FLOAT&quot;.
+     * [Deprecated] The inline schema. For CSV schemas, specify as "Field1:Type1[,Field2:Type2]*". For example, "foo:STRING, bar:INTEGER, baz:FLOAT".
      */
     schemaInline?: string | null;
     /**
@@ -1441,11 +1466,11 @@ export namespace bigquery_v2 {
      */
     skipLeadingRows?: number | null;
     /**
-     * [Optional] The format of the data files. For CSV files, specify &quot;CSV&quot;. For datastore backups, specify &quot;DATASTORE_BACKUP&quot;. For newline-delimited JSON, specify &quot;NEWLINE_DELIMITED_JSON&quot;. For Avro, specify &quot;AVRO&quot;. For parquet, specify &quot;PARQUET&quot;. For orc, specify &quot;ORC&quot;. The default value is CSV.
+     * [Optional] The format of the data files. For CSV files, specify "CSV". For datastore backups, specify "DATASTORE_BACKUP". For newline-delimited JSON, specify "NEWLINE_DELIMITED_JSON". For Avro, specify "AVRO". For parquet, specify "PARQUET". For orc, specify "ORC". The default value is CSV.
      */
     sourceFormat?: string | null;
     /**
-     * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one &#39;*&#39; wildcard character and it must come after the &#39;bucket&#39; name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the &#39;*&#39; wildcard character is not allowed.
+     * [Required] The fully-qualified URIs that point to your data in Google Cloud. For Google Cloud Storage URIs: Each URI can contain one '*' wildcard character and it must come after the 'bucket' name. Size limits related to load jobs apply to external data sources. For Google Cloud Bigtable URIs: Exactly one URI can be specified and it has be a fully specified and valid HTTPS URL for a Google Cloud Bigtable table. For Google Cloud Datastore backups: Exactly one URI can be specified. Also, the '*' wildcard character is not allowed.
      */
     sourceUris?: string[] | null;
     /**
@@ -1453,11 +1478,11 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Optional] If sourceFormat is set to &quot;AVRO&quot;, indicates whether to enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).
+     * [Optional] If sourceFormat is set to "AVRO", indicates whether to enable interpreting logical types into their corresponding types (ie. TIMESTAMP), instead of only using their raw types (ie. INTEGER).
      */
     useAvroLogicalTypes?: boolean | null;
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
@@ -1475,7 +1500,7 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
@@ -1539,7 +1564,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
@@ -1551,13 +1576,13 @@ export namespace bigquery_v2 {
      */
     userDefinedFunctionResources?: Schema$UserDefinedFunctionResource[];
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data and uses the schema from the query result. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
   export interface Schema$JobConfigurationTableCopy {
     /**
-     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a &#39;notFound&#39; error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies whether the job is allowed to create new tables. The following values are supported: CREATE_IF_NEEDED: If the table does not exist, BigQuery creates the table. CREATE_NEVER: The table must already exist. If it does not, a 'notFound' error is returned in the job result. The default value is CREATE_IF_NEEDED. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     createDisposition?: string | null;
     /**
@@ -1585,7 +1610,7 @@ export namespace bigquery_v2 {
      */
     sourceTables?: Schema$TableReference[];
     /**
-     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a &#39;duplicate&#39; error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
+     * [Optional] Specifies the action that occurs if the destination table already exists. The following values are supported: WRITE_TRUNCATE: If the table already exists, BigQuery overwrites the table data. WRITE_APPEND: If the table already exists, BigQuery appends the data to the table. WRITE_EMPTY: If the table already exists and contains data, a 'duplicate' error is returned in the job result. The default value is WRITE_EMPTY. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Creation, truncation and append actions occur as one atomic update upon job completion.
      */
     writeDisposition?: string | null;
   }
@@ -1633,7 +1658,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics {
     /**
-     * [TrustedTester] [Output-only] Job progress (0.0 -&gt; 1.0) for LOAD and EXTRACT jobs.
+     * [TrustedTester] [Output-only] Job progress (0.0 -\> 1.0) for LOAD and EXTRACT jobs.
      */
     completionRatio?: number | null;
     /**
@@ -1665,7 +1690,7 @@ export namespace bigquery_v2 {
      */
     query?: Schema$JobStatistics2;
     /**
-     * [Output-only] Quotas which delayed this job&#39;s start time.
+     * [Output-only] Quotas which delayed this job's start time.
      */
     quotaDeferments?: string[] | null;
     /**
@@ -1715,7 +1740,7 @@ export namespace bigquery_v2 {
      */
     ddlAffectedRowAccessPolicyCount?: string | null;
     /**
-     * The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): &quot;CREATE&quot;: The query created the DDL target. &quot;SKIP&quot;: No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. &quot;REPLACE&quot;: The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. &quot;DROP&quot;: The query deleted the DDL target.
+     * The DDL operation performed, possibly dependent on the pre-existence of the DDL target. Possible values (new values might be added in the future): "CREATE": The query created the DDL target. "SKIP": No-op. Example cases: the query is CREATE TABLE IF NOT EXISTS while the table already exists, or the query is DROP TABLE IF EXISTS while the table does not exist. "REPLACE": The query replaced the DDL target. Example case: the query is CREATE OR REPLACE TABLE, and the table already exists. "DROP": The query deleted the DDL target.
      */
     ddlOperationPerformed?: string | null;
     /**
@@ -1771,7 +1796,7 @@ export namespace bigquery_v2 {
      */
     schema?: Schema$TableSchema;
     /**
-     * The type of query statement, if valid. Possible values (new values might be added in the future): &quot;SELECT&quot;: SELECT query. &quot;INSERT&quot;: INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;UPDATE&quot;: UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;DELETE&quot;: DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;MERGE&quot;: MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. &quot;ALTER_TABLE&quot;: ALTER TABLE query. &quot;ALTER_VIEW&quot;: ALTER VIEW query. &quot;ASSERT&quot;: ASSERT condition AS &#39;description&#39;. &quot;CREATE_FUNCTION&quot;: CREATE FUNCTION query. &quot;CREATE_MODEL&quot;: CREATE [OR REPLACE] MODEL ... AS SELECT ... . &quot;CREATE_PROCEDURE&quot;: CREATE PROCEDURE query. &quot;CREATE_TABLE&quot;: CREATE [OR REPLACE] TABLE without AS SELECT. &quot;CREATE_TABLE_AS_SELECT&quot;: CREATE [OR REPLACE] TABLE ... AS SELECT ... . &quot;CREATE_VIEW&quot;: CREATE [OR REPLACE] VIEW ... AS SELECT ... . &quot;DROP_FUNCTION&quot; : DROP FUNCTION query. &quot;DROP_PROCEDURE&quot;: DROP PROCEDURE query. &quot;DROP_TABLE&quot;: DROP TABLE query. &quot;DROP_VIEW&quot;: DROP VIEW query.
+     * The type of query statement, if valid. Possible values (new values might be added in the future): "SELECT": SELECT query. "INSERT": INSERT query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "UPDATE": UPDATE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "DELETE": DELETE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "MERGE": MERGE query; see https://cloud.google.com/bigquery/docs/reference/standard-sql/data-manipulation-language. "ALTER_TABLE": ALTER TABLE query. "ALTER_VIEW": ALTER VIEW query. "ASSERT": ASSERT condition AS 'description'. "CREATE_FUNCTION": CREATE FUNCTION query. "CREATE_MODEL": CREATE [OR REPLACE] MODEL ... AS SELECT ... . "CREATE_PROCEDURE": CREATE PROCEDURE query. "CREATE_TABLE": CREATE [OR REPLACE] TABLE without AS SELECT. "CREATE_TABLE_AS_SELECT": CREATE [OR REPLACE] TABLE ... AS SELECT ... . "CREATE_VIEW": CREATE [OR REPLACE] VIEW ... AS SELECT ... . "DROP_FUNCTION" : DROP FUNCTION query. "DROP_PROCEDURE": DROP PROCEDURE query. "DROP_TABLE": DROP TABLE query. "DROP_VIEW": DROP VIEW query.
      */
     statementType?: string | null;
     /**
@@ -1827,7 +1852,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$JobStatistics4 {
     /**
-     * [Output-only] Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the &#39;destinationUris&#39; field.
+     * [Output-only] Number of files per destination URI or URI pattern specified in the extract configuration. These values will be in the same order as the URIs specified in the 'destinationUris' field.
      */
     destinationUriFileCounts?: string[] | null;
     /**
@@ -1875,6 +1900,19 @@ export namespace bigquery_v2 {
     routines?: Schema$Routine[];
   }
   /**
+   * Response message for the ListRowAccessPolicies method.
+   */
+  export interface Schema$ListRowAccessPoliciesResponse {
+    /**
+     * A token to request the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Row access policies on the requested table.
+     */
+    rowAccessPolicies?: Schema$RowAccessPolicy[];
+  }
+  /**
    * BigQuery-specific metadata about a location. This will be set on google.cloud.location.Location.metadata in Cloud Location API responses.
    */
   export interface Schema$LocationMetadata {
@@ -1885,7 +1923,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$MaterializedViewDefinition {
     /**
-     * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is &quot;true&quot;.
+     * [Optional] [TrustedTester] Enable automatic refresh of the materialized view when the base table is updated. The default value is "true".
      */
     enableRefresh?: boolean | null;
     /**
@@ -1897,7 +1935,7 @@ export namespace bigquery_v2 {
      */
     query?: string | null;
     /**
-     * [Optional] [TrustedTester] The maximum frequency at which this materialized view will be refreshed. The default value is &quot;1800000&quot; (30 minutes).
+     * [Optional] [TrustedTester] The maximum frequency at which this materialized view will be refreshed. The default value is "1800000" (30 minutes).
      */
     refreshIntervalMs?: string | null;
   }
@@ -1931,7 +1969,7 @@ export namespace bigquery_v2 {
      */
     friendlyName?: string | null;
     /**
-     * Output only. Label columns that were used to train this model. The output of the model will have a &quot;predicted_&quot; prefix to these columns.
+     * Output only. Label columns that were used to train this model. The output of the model will have a "predicted_" prefix to these columns.
      */
     labelColumns?: Schema$StandardSqlField[];
     /**
@@ -2001,7 +2039,7 @@ export namespace bigquery_v2 {
     confusionMatrixList?: Schema$ConfusionMatrix[];
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -2071,7 +2109,7 @@ export namespace bigquery_v2 {
   }
   export interface Schema$QueryParameterType {
     /**
-     * [Optional] The type of the array&#39;s elements, if this is an array.
+     * [Optional] The type of the array's elements, if this is an array.
      */
     arrayType?: Schema$QueryParameterType;
     /**
@@ -2093,7 +2131,7 @@ export namespace bigquery_v2 {
      */
     arrayValues?: Schema$QueryParameterValue[];
     /**
-     * [Optional] The struct field values, in order of the struct type&#39;s declaration.
+     * [Optional] The struct field values, in order of the struct type's declaration.
      */
     structValues?: {[key: string]: Schema$QueryParameterValue} | null;
     /**
@@ -2107,11 +2145,11 @@ export namespace bigquery_v2 {
      */
     connectionProperties?: Schema$ConnectionProperty[];
     /**
-     * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format &#39;datasetId.tableId&#39;.
+     * [Optional] Specifies the default datasetId and projectId to assume for any unqualified table names in the query. If not set, all table names in the query string must be qualified in the format 'datasetId.tableId'.
      */
     defaultDataset?: Schema$DatasetReference;
     /**
-     * [Optional] If set to true, BigQuery doesn&#39;t run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
+     * [Optional] If set to true, BigQuery doesn't run the job. Instead, if the query is valid, BigQuery returns statistics about the job such as how many bytes would be processed. If the query is invalid, an error returns. The default value is false.
      */
     dryRun?: boolean | null;
     /**
@@ -2143,7 +2181,7 @@ export namespace bigquery_v2 {
      */
     preserveNulls?: boolean | null;
     /**
-     * [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: &quot;SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]&quot;.
+     * [Required] A query string, following the BigQuery query syntax, of the query to execute. Example: "SELECT count(f1) FROM [myProjectId:myDatasetId.myTableId]".
      */
     query?: string | null;
     /**
@@ -2151,15 +2189,15 @@ export namespace bigquery_v2 {
      */
     queryParameters?: Schema$QueryParameter[];
     /**
-     * A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of the previous request, all parameters in the request that may affect the behavior are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don&#39;t affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
+     * A unique user provided identifier to ensure idempotent behavior for queries. Note that this is different from the job_id. It has the following properties: 1. It is case-sensitive, limited to up to 36 ASCII characters. A UUID is recommended. 2. Read only queries can ignore this token since they are nullipotent by definition. 3. For the purposes of idempotency ensured by the request_id, a request is considered duplicate of another only if they have the same request_id and are actually duplicates. When determining whether a request is a duplicate of the previous request, all parameters in the request that may affect the behavior are considered. For example, query, connection_properties, query_parameters, use_legacy_sql are parameters that affect the result and are considered when determining whether a request is a duplicate, but properties like timeout_ms don't affect the result and are thus not considered. Dry run query requests are never considered duplicate of another request. 4. When a duplicate mutating query request is detected, it returns: a. the results of the mutation if it completes successfully within the timeout. b. the running operation if it is still in progress at the end of the timeout. 5. Its lifetime is limited to 15 minutes. In other words, if two requests are sent with the same request_id, but more than 15 minutes apart, idempotency is not guaranteed.
      */
     requestId?: string | null;
     /**
-     * [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the &#39;jobComplete&#39; flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
+     * [Optional] How long to wait for the query to complete, in milliseconds, before the request times out and returns. Note that this is only a timeout for the request, not the query. If the query takes longer to run than the timeout value, the call returns without any results and with the 'jobComplete' flag set to false. You can call GetQueryResults() to wait for the query to complete and read the results. The default value is 10000 milliseconds (10 seconds).
      */
     timeoutMs?: number | null;
     /**
-     * Specifies whether to use BigQuery&#39;s legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
+     * Specifies whether to use BigQuery's legacy SQL dialect for this query. The default value is true. If set to false, the query will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ When useLegacySql is set to false, the value of flattenResults is ignored; query will be run as if flattenResults is false.
      */
     useLegacySql?: boolean | null;
     /**
@@ -2304,7 +2342,7 @@ export namespace bigquery_v2 {
      */
     creationTime?: string | null;
     /**
-     * Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, &quot;x/&quot;, y))` The definition_body is `concat(x, &quot;x/&quot;, y)` (x/ is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS &#39;return &quot;x/&quot;;x/&#39;` The definition_body is `return &quot;x/&quot;;x/` Note that both x/ are replaced with linebreaks.
+     * Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks.
      */
     definitionBody?: string | null;
     /**
@@ -2320,11 +2358,11 @@ export namespace bigquery_v2 {
      */
     etag?: string | null;
     /**
-     * Optional. If language = &quot;JAVASCRIPT&quot;, this field stores the path of the imported JAVASCRIPT libraries.
+     * Optional. If language = "JAVASCRIPT", this field stores the path of the imported JAVASCRIPT libraries.
      */
     importedLibraries?: string[] | null;
     /**
-     * Optional. Defaults to &quot;SQL&quot;.
+     * Optional. Defaults to "SQL".
      */
     language?: string | null;
     /**
@@ -2332,7 +2370,7 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
-     * Optional if language = &quot;SQL&quot;; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: &quot;FLOAT64&quot;}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
+     * Optional if language = "SQL"; required otherwise. If absent, the return type is inferred from definition_body at query time in each query that references this routine. If present, then the evaluated result will be cast to the specified returned type at query time. For example, for the functions created with the following statements: * `CREATE FUNCTION Add(x FLOAT64, y FLOAT64) RETURNS FLOAT64 AS (x + y);` * `CREATE FUNCTION Increment(x FLOAT64) AS (Add(x, 1));` * `CREATE FUNCTION Decrement(x FLOAT64) RETURNS FLOAT64 AS (Add(x, -1));` The return_type is `{type_kind: "FLOAT64"\}` for `Add` and `Decrement`, and is absent for `Increment` (inferred as FLOAT64 at query time). Suppose the function `Add` is replaced by `CREATE OR REPLACE FUNCTION Add(x INT64, y INT64) AS (x + y);` Then the inferred return type of `Increment` is automatically changed to INT64 at query time, while the return type of `Decrement` remains FLOAT64.
      */
     returnType?: Schema$StandardSqlDataType;
     /**
@@ -2370,6 +2408,31 @@ export namespace bigquery_v2 {
      * Info describing predicted label distribution.
      */
     entries?: Schema$Entry[];
+  }
+  /**
+   * Represents access on a subset of rows on the specified table, defined by its filter predicate. Access to the subset of rows is controlled by its IAM policy.
+   */
+  export interface Schema$RowAccessPolicy {
+    /**
+     * Output only. The time when this row access policy was created, in milliseconds since the epoch.
+     */
+    creationTime?: string | null;
+    /**
+     * Output only. A hash of this resource.
+     */
+    etag?: string | null;
+    /**
+     * Required. A SQL boolean expression that represents the rows defined by this row access policy, similar to the boolean expression in a WHERE clause of a SELECT query on a table. References to other tables, routines, and temporary functions are not supported. Examples: region="EU" date_field = CAST('2019-9-27' as DATE) nullable_field is not NULL numeric_field BETWEEN 1.0 AND 5.0
+     */
+    filterPredicate?: string | null;
+    /**
+     * Output only. The time when this row access policy was last modified, in milliseconds since the epoch.
+     */
+    lastModifiedTime?: string | null;
+    /**
+     * Required. Reference describing the ID of this row access policy.
+     */
+    rowAccessPolicyReference?: Schema$RowAccessPolicyReference;
   }
   export interface Schema$RowAccessPolicyReference {
     /**
@@ -2440,7 +2503,7 @@ export namespace bigquery_v2 {
      */
     policy?: Schema$Policy;
     /**
-     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: &quot;bindings, etag&quot;`
+     * OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: "bindings, etag"`
      */
     updateMask?: string | null;
   }
@@ -2455,19 +2518,19 @@ export namespace bigquery_v2 {
     snapshotTime?: string | null;
   }
   /**
-   * The type of a variable, e.g., a function argument. Examples: INT64: {type_kind=&quot;INT64&quot;} ARRAY: {type_kind=&quot;ARRAY&quot;, array_element_type=&quot;STRING&quot;} STRUCT&gt;: {type_kind=&quot;STRUCT&quot;, struct_type={fields=[ {name=&quot;x&quot;, type={type_kind=&quot;STRING&quot;}}, {name=&quot;y&quot;, type={type_kind=&quot;ARRAY&quot;, array_element_type=&quot;DATE&quot;}} ]}}
+   * The type of a variable, e.g., a function argument. Examples: INT64: {type_kind="INT64"\} ARRAY: {type_kind="ARRAY", array_element_type="STRING"\} STRUCT\>: {type_kind="STRUCT", struct_type={fields=[ {name="x", type={type_kind="STRING"\}\}, {name="y", type={type_kind="ARRAY", array_element_type="DATE"\}\} ]\}\}
    */
   export interface Schema$StandardSqlDataType {
     /**
-     * The type of the array&#39;s elements, if type_kind = &quot;ARRAY&quot;.
+     * The type of the array's elements, if type_kind = "ARRAY".
      */
     arrayElementType?: Schema$StandardSqlDataType;
     /**
-     * The fields of this struct, in order, if type_kind = &quot;STRUCT&quot;.
+     * The fields of this struct, in order, if type_kind = "STRUCT".
      */
     structType?: Schema$StandardSqlStructType;
     /**
-     * Required. The top level type of this field. Can be any standard SQL data type (e.g., &quot;INT64&quot;, &quot;DATE&quot;, &quot;ARRAY&quot;).
+     * Required. The top level type of this field. Can be any standard SQL data type (e.g., "INT64", "DATE", "ARRAY").
      */
     typeKind?: string | null;
   }
@@ -2480,7 +2543,7 @@ export namespace bigquery_v2 {
      */
     name?: string | null;
     /**
-     * Optional. The type of this parameter. Absent if not explicitly specified (e.g., CREATE FUNCTION statement can omit the return type; in this case the output parameter does not have this &quot;type&quot; field).
+     * Optional. The type of this parameter. Absent if not explicitly specified (e.g., CREATE FUNCTION statement can omit the return type; in this case the output parameter does not have this "type" field).
      */
     type?: Schema$StandardSqlDataType;
   }
@@ -2559,7 +2622,7 @@ export namespace bigquery_v2 {
      */
     materializedView?: Schema$MaterializedViewDefinition;
     /**
-     * [Output-only, Beta] Present iff this table represents a ML model. Describes the training information for the model, and it is required to run &#39;PREDICT&#39; queries.
+     * [Output-only, Beta] Present iff this table represents a ML model. Describes the training information for the model, and it is required to run 'PREDICT' queries.
      */
     model?: Schema$ModelDefinition;
     /**
@@ -2567,7 +2630,7 @@ export namespace bigquery_v2 {
      */
     numBytes?: string | null;
     /**
-     * [Output-only] The number of bytes in the table that are considered &quot;long-term storage&quot;.
+     * [Output-only] The number of bytes in the table that are considered "long-term storage".
      */
     numLongTermBytes?: string | null;
     /**
@@ -2599,7 +2662,7 @@ export namespace bigquery_v2 {
      */
     snapshotDefinition?: Schema$SnapshotDefinition;
     /**
-     * [Output-only] Contains information regarding this table&#39;s streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer.
+     * [Output-only] Contains information regarding this table's streaming buffer, if one is present. This field will be absent if the table is not being streamed to or if there is no data in the streaming buffer.
      */
     streamingBuffer?: Schema$Streamingbuffer;
     /**
@@ -2611,7 +2674,7 @@ export namespace bigquery_v2 {
      */
     timePartitioning?: Schema$TimePartitioning;
     /**
-     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. [TrustedTester] SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
+     * [Output-only] Describes the table type. The following values are supported: TABLE: A normal BigQuery table. VIEW: A virtual table defined by a SQL query. SNAPSHOT: An immutable, read-only table that is a copy of another table. [TrustedTester] MATERIALIZED_VIEW: SQL query whose result is persisted. EXTERNAL: A table that references data stored in an external storage system, such as Google Cloud Storage. The default value is TABLE.
      */
     type?: string | null;
     /**
@@ -2640,7 +2703,7 @@ export namespace bigquery_v2 {
      */
     skipInvalidRows?: boolean | null;
     /**
-     * If specified, treats the destination table as a base template, and inserts the rows into an instance table named &quot;{destination}{templateSuffix}&quot;. BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
+     * If specified, treats the destination table as a base template, and inserts the rows into an instance table named "{destination\}{templateSuffix\}". BigQuery will manage creation of the instance table, using the schema of the base template table. See https://cloud.google.com/bigquery/streaming-data-into-bigquery#template-tables for considerations when working with templates tables.
      */
     templateSuffix?: string | null;
   }
@@ -2769,7 +2832,7 @@ export namespace bigquery_v2 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -2788,7 +2851,7 @@ export namespace bigquery_v2 {
      */
     expirationMs?: string | null;
     /**
-     * [Beta] [Optional] If not set, the table is partitioned by pseudo column, referenced via either &#39;_PARTITIONTIME&#39; as TIMESTAMP type, or &#39;_PARTITIONDATE&#39; as DATE type. If field is specified, the table is instead partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
+     * [Beta] [Optional] If not set, the table is partitioned by pseudo column, referenced via either '_PARTITIONTIME' as TIMESTAMP type, or '_PARTITIONDATE' as DATE type. If field is specified, the table is instead partitioned by this field. The field must be a top-level TIMESTAMP or DATE field. Its mode must be NULLABLE or REQUIRED.
      */
     field?: string | null;
     requirePartitionFilter?: boolean | null;
@@ -2815,7 +2878,7 @@ export namespace bigquery_v2 {
      */
     dataFrequency?: string | null;
     /**
-     * The column to split data with. This column won&#39;t be used as a feature. 1. When data_split_method is CUSTOM, the corresponding column should be boolean. The rows with true value tag are eval data, and the false are training data. 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the corresponding column are used as training data, and the rest are eval data. It respects the order in Orderable data types: https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties
+     * The column to split data with. This column won't be used as a feature. 1. When data_split_method is CUSTOM, the corresponding column should be boolean. The rows with true value tag are eval data, and the false are training data. 2. When data_split_method is SEQ, the first DATA_SPLIT_EVAL_FRACTION rows (from smallest to largest) in the corresponding column are used as training data, and the rest are eval data. It respects the order in Orderable data types: https://cloud.google.com/bigquery/docs/reference/standard-sql/data-types#data-type-properties
      */
     dataSplitColumn?: string | null;
     /**
@@ -2835,7 +2898,7 @@ export namespace bigquery_v2 {
      */
     dropout?: number | null;
     /**
-     * Whether to stop early when the loss doesn&#39;t improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.
+     * Whether to stop early when the loss doesn't improve significantly any more (compared to min_relative_progress). Used only for iterative training algorithms.
      */
     earlyStop?: boolean | null;
     /**
@@ -2911,7 +2974,7 @@ export namespace bigquery_v2 {
      */
     maxTreeDepth?: string | null;
     /**
-     * When early_stop is true, stops training when accuracy improvement is less than &#39;min_relative_progress&#39;. Used only for iterative training algorithms.
+     * When early_stop is true, stops training when accuracy improvement is less than 'min_relative_progress'. Used only for iterative training algorithms.
      */
     minRelativeProgress?: number | null;
     /**
@@ -2984,7 +3047,11 @@ export namespace bigquery_v2 {
      */
     evaluationMetrics?: Schema$EvaluationMetrics;
     /**
-     * Output of each iteration run, results.size() &lt;= max_iterations.
+     * Global explanations for important features of the model. For multi-class models, there is one entry for each label class. For other models, there is only one entry in the list.
+     */
+    globalExplanations?: Schema$GlobalExplanation[];
+    /**
+     * Output of each iteration run, results.size() <= max_iterations.
      */
     results?: Schema$IterationResult[];
     /**
@@ -3021,7 +3088,7 @@ export namespace bigquery_v2 {
      */
     query?: string | null;
     /**
-     * Specifies whether to use BigQuery&#39;s legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery&#39;s standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
+     * Specifies whether to use BigQuery's legacy SQL for this view. The default value is true. If set to false, the view will use BigQuery's standard SQL: https://cloud.google.com/bigquery/sql-reference/ Queries and views that reference this view must use the same flag value.
      */
     useLegacySql?: boolean | null;
     /**
@@ -3037,9 +3104,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.delete
-     * @desc Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
+     * Deletes the dataset specified by the datasetId value. Before you can delete a dataset, you must delete all its tables, either manually or by specifying deleteContents. Immediately after deletion, you can create another dataset with the same name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3081,16 +3148,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of dataset being deleted
-     * @param {boolean=} params.deleteContents If True, delete all the tables in the dataset. If False and the dataset contains tables, the request will fail. Default is False
-     * @param {string} params.projectId Project ID of the dataset being deleted
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Datasets$Delete,
@@ -3160,7 +3223,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3168,9 +3231,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.get
-     * @desc Returns the dataset specified by datasetID.
+     * Returns the dataset specified by datasetID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3232,15 +3295,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the requested dataset
-     * @param {string} params.projectId Project ID of the requested dataset
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Datasets$Get,
@@ -3312,7 +3372,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3320,9 +3380,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.insert
-     * @desc Creates a new empty dataset.
+     * Creates a new empty dataset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3403,15 +3463,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the new dataset
-     * @param {().Dataset} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Datasets$Insert,
@@ -3483,7 +3540,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3491,9 +3548,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.list
-     * @desc Lists all datasets in the specified project to which you have been granted the READER dataset role.
+     * Lists all datasets in the specified project to which you have been granted the READER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3524,7 +3581,7 @@ export namespace bigquery_v2 {
      *   const res = await bigquery.datasets.list({
      *     // Whether to list all datasets, including hidden ones
      *     all: 'placeholder-value',
-     *     // An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+     *     // An expression for filtering the results of the request by label. The syntax is "labels.<name\>[:<value\>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
      *     filter: 'placeholder-value',
      *     // The maximum number of results to return
      *     maxResults: 'placeholder-value',
@@ -3549,18 +3606,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.all Whether to list all datasets, including hidden ones
-     * @param {string=} params.filter An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
-     * @param {integer=} params.maxResults The maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Project ID of the datasets to be listed
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Datasets$List,
@@ -3632,7 +3683,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$DatasetList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatasetList>(parameters);
@@ -3640,9 +3691,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.patch
-     * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
+     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3725,16 +3776,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the dataset being updated
-     * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {().Dataset} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Datasets$Patch,
@@ -3806,7 +3853,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3814,9 +3861,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.datasets.update
-     * @desc Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
+     * Updates information in an existing dataset. The update method replaces the entire dataset resource, whereas the patch method only replaces fields that are provided in the submitted dataset resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -3899,16 +3946,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.datasets.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the dataset being updated
-     * @param {string} params.projectId Project ID of the dataset being updated
-     * @param {().Dataset} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Datasets$Update,
@@ -3980,7 +4023,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -4029,7 +4072,7 @@ export namespace bigquery_v2 {
      */
     all?: boolean;
     /**
-     * An expression for filtering the results of the request by label. The syntax is "labels.<name>[:<value>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
+     * An expression for filtering the results of the request by label. The syntax is "labels.<name\>[:<value\>]". Multiple filters can be ANDed together by connecting with a space. Example: "labels.department:receiving labels.active". See Filtering datasets using labels for details.
      */
     filter?: string;
     /**
@@ -4083,9 +4126,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.cancel
-     * @desc Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
+     * Requests that a job be cancelled. This call will return immediately, and the client will need to poll for the job status to see if the cancel completed successfully. Cancelled jobs may still incur costs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4133,16 +4176,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId [Required] Job ID of the job to cancel
-     * @param {string=} params.location The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the job to cancel
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Jobs$Cancel,
@@ -4217,7 +4256,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobCancelResponse>(parameters);
@@ -4225,9 +4264,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.get
-     * @desc Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
+     * Returns information about a specific job. Job information is available for a six month period after creation. Requires that you're the person who ran the job, or have the Is Owner project role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4284,16 +4323,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId [Required] Job ID of the requested job
-     * @param {string=} params.location The geographic location of the job. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
-     * @param {string} params.projectId [Required] Project ID of the requested job
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Jobs$Get,
@@ -4365,7 +4400,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -4373,9 +4408,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.getQueryResults
-     * @desc Retrieves the results of a query job.
+     * Retrieves the results of a query job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4443,20 +4478,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.getQueryResults
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobId [Required] Job ID of the query job
-     * @param {string=} params.location The geographic location where the job should run. Required except for US and EU. See details at https://cloud.google.com/bigquery/docs/locations#specifying_your_location.
-     * @param {integer=} params.maxResults Maximum number of results to read
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId [Required] Project ID of the query job
-     * @param {string=} params.startIndex Zero-based index of the starting row
-     * @param {integer=} params.timeoutMs How long to wait for the query to complete, in milliseconds, before returning. Default is 10 seconds. If the timeout passes before the job completes, the 'jobComplete' field in the response will be false
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getQueryResults(
       params: Params$Resource$Jobs$Getqueryresults,
@@ -4536,7 +4563,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetQueryResultsResponse>(parameters);
@@ -4544,9 +4571,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.insert
-     * @desc Starts a new asynchronous job. Requires the Can View project role.
+     * Starts a new asynchronous job. Requires the Can View project role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4620,18 +4647,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project that will be billed for the job
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Jobs$Insert,
@@ -4707,7 +4728,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -4715,9 +4736,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.list
-     * @desc Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
+     * Lists all jobs that you started in the specified project. Job information is available for a six month period after creation. The job list is sorted in reverse chronological order, by job creation time. Requires the Can View project role, or the Is Owner project role if you set the allUsers property.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4781,22 +4802,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.allUsers Whether to display jobs owned by all users in the project. Default false
-     * @param {string=} params.maxCreationTime Max value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created before or at this timestamp are returned
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.minCreationTime Min value for job creation time, in milliseconds since the POSIX epoch. If set, only jobs created after or at this timestamp are returned
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string=} params.parentJobId If set, retrieves only jobs whose parent is this job. Otherwise, retrieves only jobs which have no parent
-     * @param {string} params.projectId Project ID of the jobs to list
-     * @param {string=} params.projection Restrict information returned to a set of selected fields
-     * @param {string=} params.stateFilter Filter for job state
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Jobs$List,
@@ -4869,7 +4880,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$JobList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobList>(parameters);
@@ -4877,9 +4888,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.jobs.query
-     * @desc Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
+     * Runs a BigQuery SQL query synchronously and returns query results if the query completes within a specified timeout.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -4957,15 +4968,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.jobs.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID of the project billed for the query
-     * @param {().QueryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Jobs$Query,
@@ -5037,7 +5045,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
@@ -5187,9 +5195,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.models.delete
-     * @desc Deletes the model specified by modelId from the dataset.
+     * Deletes the model specified by modelId from the dataset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -5231,16 +5239,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.models.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the model to delete.
-     * @param {string} params.modelId Required. Model ID of the model to delete.
-     * @param {string} params.projectId Required. Project ID of the model to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Models$Delete,
@@ -5311,7 +5315,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5319,9 +5323,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.models.get
-     * @desc Gets the specified model resource by model ID.
+     * Gets the specified model resource by model ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -5383,16 +5387,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.models.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the requested model.
-     * @param {string} params.modelId Required. Model ID of the requested model.
-     * @param {string} params.projectId Required. Project ID of the requested model.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Models$Get,
@@ -5465,7 +5465,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Model>(parameters);
@@ -5473,9 +5473,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.models.list
-     * @desc Lists all models in the specified dataset. Requires the READER dataset role.
+     * Lists all models in the specified dataset. Requires the READER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -5527,17 +5527,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.models.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the models to list.
-     * @param {integer=} params.maxResults The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
-     * @param {string=} params.pageToken Page token, returned by a previous call to request the next page of results
-     * @param {string} params.projectId Required. Project ID of the models to list.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Models$List,
@@ -5613,7 +5608,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ListModelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListModelsResponse>(parameters);
@@ -5621,9 +5616,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.models.patch
-     * @desc Patch specific fields in the specified model.
+     * Patch specific fields in the specified model.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -5704,17 +5699,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.models.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the model to patch.
-     * @param {string} params.modelId Required. Model ID of the model to patch.
-     * @param {string} params.projectId Required. Project ID of the model to patch.
-     * @param {().Model} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Models$Patch,
@@ -5787,7 +5777,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Model>(parameters);
@@ -5868,9 +5858,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.projects.getServiceAccount
-     * @desc Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
+     * Returns the email address of the service account for your project used for interactions with Google Cloud KMS.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -5916,14 +5906,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.projects.getServiceAccount
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID for which the service account is requested.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getServiceAccount(
       params: Params$Resource$Projects$Getserviceaccount,
@@ -6003,7 +5991,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetServiceAccountResponse>(parameters);
@@ -6011,9 +5999,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.projects.list
-     * @desc Lists all projects to which you have been granted any project role.
+     * Lists all projects to which you have been granted any project role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6064,15 +6052,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.projects.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$List,
@@ -6145,7 +6130,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ProjectList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectList>(parameters);
@@ -6178,9 +6163,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.routines.delete
-     * @desc Deletes the routine specified by routineId from the dataset.
+     * Deletes the routine specified by routineId from the dataset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6222,16 +6207,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.routines.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the routine to delete
-     * @param {string} params.projectId Required. Project ID of the routine to delete
-     * @param {string} params.routineId Required. Routine ID of the routine to delete
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Routines$Delete,
@@ -6302,7 +6283,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6310,9 +6291,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.routines.get
-     * @desc Gets the specified routine resource by routine ID.
+     * Gets the specified routine resource by routine ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6374,17 +6355,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.routines.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the requested routine
-     * @param {string} params.projectId Required. Project ID of the requested routine
-     * @param {string=} params.readMask If set, only the Routine fields in the field mask are returned in the response. If unset, all Routine fields are returned.
-     * @param {string} params.routineId Required. Routine ID of the requested routine
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Routines$Get,
@@ -6457,7 +6433,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -6465,9 +6441,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.routines.insert
-     * @desc Creates a new routine in the dataset.
+     * Creates a new routine in the dataset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6542,16 +6518,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.routines.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the new routine
-     * @param {string} params.projectId Required. Project ID of the new routine
-     * @param {().Routine} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Routines$Insert,
@@ -6624,7 +6596,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -6632,9 +6604,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.routines.list
-     * @desc Lists all routines in the specified dataset. Requires the READER dataset role.
+     * Lists all routines in the specified dataset. Requires the READER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6690,19 +6662,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.routines.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the routines to list
-     * @param {string=} params.filter If set, then only the Routines matching this filter are returned. The current supported form is either "routine_type:" or "routineType:", where is a RoutineType enum. Example: "routineType:SCALAR_FUNCTION".
-     * @param {integer=} params.maxResults The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Required. Project ID of the routines to list
-     * @param {string=} params.readMask If set, then only the Routine fields in the field mask, as well as project_id, dataset_id and routine_id, are returned in the response. If unset, then the following Routine fields are returned: etag, project_id, dataset_id, routine_id, routine_type, creation_time, last_modified_time, and language.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Routines$List,
@@ -6780,7 +6745,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ListRoutinesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutinesResponse>(parameters);
@@ -6788,9 +6753,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.routines.update
-     * @desc Updates information in an existing routine. The update method replaces the entire Routine resource.
+     * Updates information in an existing routine. The update method replaces the entire Routine resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -6867,17 +6832,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.routines.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Required. Dataset ID of the routine to update
-     * @param {string} params.projectId Required. Project ID of the routine to update
-     * @param {string} params.routineId Required. Routine ID of the routine to update
-     * @param {().Routine} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Routines$Update,
@@ -6950,7 +6910,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -7051,6 +7011,189 @@ export namespace bigquery_v2 {
     requestBody?: Schema$Routine;
   }
 
+  export class Resource$Rowaccesspolicies {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists all row access policies on the specified table.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/bigquery.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.rowAccessPolicies.list({
+     *     // Required. Dataset ID of row access policies to list.
+     *     datasetId: '[^/]+',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Project ID of the row access policies to list.
+     *     projectId: '[^/]+',
+     *     // Required. Table ID of the table to list row access policies.
+     *     tableId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "rowAccessPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Rowaccesspolicies$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRowAccessPoliciesResponse>;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>,
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Rowaccesspolicies$List,
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Rowaccesspolicies$List
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRowAccessPoliciesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRowAccessPoliciesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Rowaccesspolicies$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Rowaccesspolicies$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/bigquery/v2/projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'datasetId', 'tableId'],
+        pathParams: ['datasetId', 'projectId', 'tableId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Rowaccesspolicies$List
+    extends StandardParameters {
+    /**
+     * Required. Dataset ID of row access policies to list.
+     */
+    datasetId?: string;
+    /**
+     * The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     */
+    pageSize?: number;
+    /**
+     * Page token, returned by a previous call, to request the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. Project ID of the row access policies to list.
+     */
+    projectId?: string;
+    /**
+     * Required. Table ID of the table to list row access policies.
+     */
+    tableId?: string;
+  }
+
   export class Resource$Tabledata {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -7058,9 +7201,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tabledata.insertAll
-     * @desc Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
+     * Streams data into BigQuery one record at a time without needing to run a load job. Requires the WRITER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7121,17 +7264,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tabledata.insertAll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the destination table.
-     * @param {string} params.projectId Project ID of the destination table.
-     * @param {string} params.tableId Table ID of the destination table.
-     * @param {().TableDataInsertAllRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insertAll(
       params: Params$Resource$Tabledata$Insertall,
@@ -7212,7 +7350,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableDataInsertAllResponse>(parameters);
@@ -7220,9 +7358,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tabledata.list
-     * @desc Retrieves table data from a specified set of rows. Requires the READER dataset role.
+     * Retrieves table data from a specified set of rows. Requires the READER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7283,20 +7421,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tabledata.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to read
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, identifying the result set
-     * @param {string} params.projectId Project ID of the table to read
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
-     * @param {string=} params.startIndex Zero-based index of the starting row to read
-     * @param {string} params.tableId Table ID of the table to read
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tabledata$List,
@@ -7369,7 +7499,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableDataList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableDataList>(parameters);
@@ -7435,9 +7565,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.delete
-     * @desc Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
+     * Deletes the table specified by tableId from the dataset. If the table contains data, all the data will be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7479,16 +7609,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to delete
-     * @param {string} params.projectId Project ID of the table to delete
-     * @param {string} params.tableId Table ID of the table to delete
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Tables$Delete,
@@ -7559,7 +7685,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7567,9 +7693,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.get
-     * @desc Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
+     * Gets the specified table resource by table ID. This method does not return the data in the table, it only returns the table resource, which describes the structure of this table.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7648,17 +7774,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the requested table
-     * @param {string} params.projectId Project ID of the requested table
-     * @param {string=} params.selectedFields List of fields to return (comma-separated). If unspecified, all fields are returned
-     * @param {string} params.tableId Table ID of the requested table
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tables$Get,
@@ -7731,7 +7852,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -7739,9 +7860,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7797,15 +7918,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().GetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Tables$Getiampolicy,
@@ -7879,7 +7997,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7887,9 +8005,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.insert
-     * @desc Creates a new, empty table in the dataset.
+     * Creates a new, empty table in the dataset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -7998,16 +8116,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the new table
-     * @param {string} params.projectId Project ID of the new table
-     * @param {().Table} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Tables$Insert,
@@ -8080,7 +8194,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -8088,9 +8202,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.list
-     * @desc Lists all tables in the specified dataset. Requires the READER dataset role.
+     * Lists all tables in the specified dataset. Requires the READER dataset role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -8145,17 +8259,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the tables to list
-     * @param {integer=} params.maxResults Maximum number of results to return
-     * @param {string=} params.pageToken Page token, returned by a previous call, to request the next page of results
-     * @param {string} params.projectId Project ID of the tables to list
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tables$List,
@@ -8228,7 +8337,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableList>(parameters);
@@ -8236,9 +8345,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.patch
-     * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
+     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -8349,17 +8458,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to update
-     * @param {string} params.projectId Project ID of the table to update
-     * @param {string} params.tableId Table ID of the table to update
-     * @param {().Table} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Tables$Patch,
@@ -8432,7 +8536,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -8440,9 +8544,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -8497,15 +8601,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Tables$Setiampolicy,
@@ -8579,7 +8680,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8587,9 +8688,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -8642,15 +8743,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Tables$Testiampermissions,
@@ -8730,7 +8828,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -8738,9 +8836,9 @@ export namespace bigquery_v2 {
     }
 
     /**
-     * bigquery.tables.update
-     * @desc Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
+     * Updates information in an existing table. The update method replaces the entire table resource, whereas the patch method only replaces fields that are provided in the submitted table resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
@@ -8851,17 +8949,12 @@ export namespace bigquery_v2 {
      *   throw e;
      * });
      *
-     * @alias bigquery.tables.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset ID of the table to update
-     * @param {string} params.projectId Project ID of the table to update
-     * @param {string} params.tableId Table ID of the table to update
-     * @param {().Table} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Tables$Update,
@@ -8934,7 +9027,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);

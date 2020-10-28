@@ -104,14 +104,10 @@ export namespace docs_v1 {
    * Reads and writes Google Docs documents.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const docs = google.docs('v1');
-   *
-   * @namespace docs
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Docs
+   * ```
    */
   export class Docs {
     context: APIRequestContext;
@@ -207,7 +203,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Body {
     /**
-     * The contents of the body. The indexes for the body&#39;s content begin at zero.
+     * The contents of the body. The indexes for the body's content begin at zero.
      */
     content?: Schema$StructuralElement[];
   }
@@ -308,7 +304,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the footnote reference at a specific index in the document. The footnote reference must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). Footnote references cannot be inserted inside an equation, header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
+     * Inserts the footnote reference at a specific index in the document. The footnote reference must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). Footnote references cannot be inserted inside an equation, header, footer or footnote. Since footnote references can only be inserted in the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
   }
@@ -326,7 +322,7 @@ export namespace docs_v1 {
    */
   export interface Schema$CreateHeaderRequest {
     /**
-     * The location of the SectionBreak which begins the section this header should belong to. If `section_break_location&#39; is unset or if it refers to the first section break in the document body, the header applies to the DocumentStyle
+     * The location of the SectionBreak which begins the section this header should belong to. If `section_break_location' is unset or if it refers to the first section break in the document body, the header applies to the DocumentStyle
      */
     sectionBreakLocation?: Schema$Location;
     /**
@@ -379,7 +375,7 @@ export namespace docs_v1 {
     range?: Schema$Range;
   }
   /**
-   * The crop properties of an image. The crop rectangle is represented using fractional offsets from the original content&#39;s four edges. - If the offset is in the interval (0, 1), the corresponding edge of crop rectangle is positioned inside of the image&#39;s original bounding rectangle. - If the offset is negative or greater than 1, the corresponding edge of crop rectangle is positioned outside of the image&#39;s original bounding rectangle. - If all offsets and rotation angle are 0, the image is not cropped.
+   * The crop properties of an image. The crop rectangle is represented using fractional offsets from the original content's four edges. - If the offset is in the interval (0, 1), the corresponding edge of crop rectangle is positioned inside of the image's original bounding rectangle. - If the offset is negative or greater than 1, the corresponding edge of crop rectangle is positioned outside of the image's original bounding rectangle. - If all offsets and rotation angle are 0, the image is not cropped.
    */
   export interface Schema$CropProperties {
     /**
@@ -387,19 +383,19 @@ export namespace docs_v1 {
      */
     angle?: number | null;
     /**
-     * The offset specifies how far inwards the bottom edge of the crop rectangle is from the bottom edge of the original content as a fraction of the original content&#39;s height.
+     * The offset specifies how far inwards the bottom edge of the crop rectangle is from the bottom edge of the original content as a fraction of the original content's height.
      */
     offsetBottom?: number | null;
     /**
-     * The offset specifies how far inwards the left edge of the crop rectangle is from the left edge of the original content as a fraction of the original content&#39;s width.
+     * The offset specifies how far inwards the left edge of the crop rectangle is from the left edge of the original content as a fraction of the original content's width.
      */
     offsetLeft?: number | null;
     /**
-     * The offset specifies how far inwards the right edge of the crop rectangle is from the right edge of the original content as a fraction of the original content&#39;s width.
+     * The offset specifies how far inwards the right edge of the crop rectangle is from the right edge of the original content as a fraction of the original content's width.
      */
     offsetRight?: number | null;
     /**
-     * The offset specifies how far inwards the top edge of the crop rectangle is from the top edge of the original content as a fraction of the original content&#39;s height.
+     * The offset specifies how far inwards the top edge of the crop rectangle is from the top edge of the original content as a fraction of the original content's height.
      */
     offsetTop?: number | null;
   }
@@ -897,7 +893,7 @@ export namespace docs_v1 {
    */
   export interface Schema$EndOfSegmentLocation {
     /**
-     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.
      */
     segmentId?: string | null;
   }
@@ -919,7 +915,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footer {
     /**
-     * The contents of the footer. The indexes for a footer&#39;s content begin at zero.
+     * The contents of the footer. The indexes for a footer's content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -932,7 +928,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Footnote {
     /**
-     * The contents of the footnote. The indexes for a footnote&#39;s content begin at zero.
+     * The contents of the footnote. The indexes for a footnote's content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -976,7 +972,7 @@ export namespace docs_v1 {
    */
   export interface Schema$Header {
     /**
-     * The contents of the header. The indexes for a header&#39;s content begin at zero.
+     * The contents of the header. The indexes for a header's content begin at zero.
      */
     content?: Schema$StructuralElement[];
     /**
@@ -1020,7 +1016,7 @@ export namespace docs_v1 {
      */
     brightness?: number | null;
     /**
-     * A URI to the image with a default lifetime of 30 minutes. This URI is tagged with the account of the requester. Anyone with the URI effectively accesses the image as the original requester. Access to the image may be lost if the document&#39;s sharing settings change.
+     * A URI to the image with a default lifetime of 30 minutes. This URI is tagged with the account of the requester. Anyone with the URI effectively accesses the image as the original requester. Access to the image may be lost if the document's sharing settings change.
      */
     contentUri?: string | null;
     /**
@@ -1154,7 +1150,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the image at a specific index in the document. The image must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). Inline images cannot be inserted inside a footnote or equation.
+     * Inserts the image at a specific index in the document. The image must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). Inline images cannot be inserted inside a footnote or equation.
      */
     location?: Schema$Location;
     /**
@@ -1193,7 +1189,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the page break at a specific index in the document. The page break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). Page breaks cannot be inserted inside a table, equation, footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
+     * Inserts the page break at a specific index in the document. The page break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). Page breaks cannot be inserted inside a table, equation, footnote, header or footer. Since page breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
   }
@@ -1206,7 +1202,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts a newline and a section break at a specific index in the document. The section break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). Section breaks cannot be inserted inside a table, equation, footnote, header, or footer. Since section breaks can only be inserted inside the body, the segment ID field must be empty.
+     * Inserts a newline and a section break at a specific index in the document. The section break must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). Section breaks cannot be inserted inside a table, equation, footnote, header, or footer. Since section breaks can only be inserted inside the body, the segment ID field must be empty.
      */
     location?: Schema$Location;
     /**
@@ -1240,7 +1236,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the table at a specific model index. A newline character will be inserted before the inserted table, therefore the table start index will be at the specified location index + 1. The table must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table&#39;s start index (i.e. between an existing table and its preceding paragraph). Tables cannot be inserted inside a footnote or equation.
+     * Inserts the table at a specific model index. A newline character will be inserted before the inserted table, therefore the table start index will be at the specified location index + 1. The table must be inserted inside the bounds of an existing Paragraph. For instance, it cannot be inserted at a table's start index (i.e. between an existing table and its preceding paragraph). Tables cannot be inserted inside a footnote or equation.
      */
     location?: Schema$Location;
     /**
@@ -1270,7 +1266,7 @@ export namespace docs_v1 {
      */
     endOfSegmentLocation?: Schema$EndOfSegmentLocation;
     /**
-     * Inserts the text at a specific index in the document. Text must be inserted inside the bounds of an existing Paragraph. For instance, text cannot be inserted at a table&#39;s start index (i.e. between the table and its preceding paragraph). The text must be inserted in the preceding paragraph.
+     * Inserts the text at a specific index in the document. Text must be inserted inside the bounds of an existing Paragraph. For instance, text cannot be inserted at a table's start index (i.e. between the table and its preceding paragraph). The text must be inserted in the preceding paragraph.
      */
     location?: Schema$Location;
     /**
@@ -1314,7 +1310,7 @@ export namespace docs_v1 {
     sheetsChartReferenceSuggestionState?: Schema$SheetsChartReferenceSuggestionState;
   }
   /**
-   * A List represents the list attributes for a group of paragraphs that all belong to the same list. A paragraph that is part of a list has a reference to the list&#39;s ID in its bullet.
+   * A List represents the list attributes for a group of paragraphs that all belong to the same list. A paragraph that is part of a list has a reference to the list's ID in its bullet.
    */
   export interface Schema$List {
     /**
@@ -1363,7 +1359,7 @@ export namespace docs_v1 {
      */
     index?: number | null;
     /**
-     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote the location is in. An empty segment ID signifies the document's body.
      */
     segmentId?: string | null;
   }
@@ -1372,7 +1368,7 @@ export namespace docs_v1 {
    */
   export interface Schema$MergeTableCellsRequest {
     /**
-     * The table range specifying which cells of the table to merge. Any text in the cells being merged will be concatenated and stored in the &quot;head&quot; cell of the range. This is the upper-left cell of the range when the content direction is left to right, and the upper-right cell of the range otherwise. If the range is non-rectangular (which can occur in some cases where the range covers cells that are already merged or where the table is non-rectangular), a 400 bad request error is returned.
+     * The table range specifying which cells of the table to merge. Any text in the cells being merged will be concatenated and stored in the "head" cell of the range. This is the upper-left cell of the range when the content direction is left to right, and the upper-right cell of the range otherwise. If the range is non-rectangular (which can occur in some cases where the range covers cells that are already merged or where the table is non-rectangular), a 400 bad request error is returned.
      */
     tableRange?: Schema$TableRange;
   }
@@ -1467,7 +1463,7 @@ export namespace docs_v1 {
      */
     bulletAlignment?: string | null;
     /**
-     * The format string used by bullets at this level of nesting. The glyph format contains one or more placeholders, and these placeholder are replaced with the appropriate values depending on the glyph_type or glyph_symbol. The placeholders follow the pattern `%[nesting_level]`. Furthermore, placeholders can have prefixes and suffixes. Thus, the glyph format follows the pattern `%[nesting_level]`. Note that the prefix and suffix are optional and can be arbitrary strings. For example, the glyph format `%0.` indicates that the rendered glyph will replace the placeholder with the corresponding glyph for nesting level 0 followed by a period as the suffix. So a list with a glyph type of UPPER_ALPHA and glyph format `%0.` at nesting level 0 will result in a list with rendered glyphs `A.` `B.` `C.` The glyph format can contain placeholders for the current nesting level as well as placeholders for parent nesting levels. For example, a list can have a glyph format of `%0.` at nesting level 0 and a glyph format of `%0.%1.` at nesting level 1. Assuming both nesting levels have DECIMAL glyph types, this would result in a list with rendered glyphs `1.` `2.` ` 2.1.` ` 2.2.` `3.` For nesting levels that are ordered, the string that replaces a placeholder in the glyph format for a particular paragraph depends on the paragraph&#39;s order within the list.
+     * The format string used by bullets at this level of nesting. The glyph format contains one or more placeholders, and these placeholder are replaced with the appropriate values depending on the glyph_type or glyph_symbol. The placeholders follow the pattern `%[nesting_level]`. Furthermore, placeholders can have prefixes and suffixes. Thus, the glyph format follows the pattern `%[nesting_level]`. Note that the prefix and suffix are optional and can be arbitrary strings. For example, the glyph format `%0.` indicates that the rendered glyph will replace the placeholder with the corresponding glyph for nesting level 0 followed by a period as the suffix. So a list with a glyph type of UPPER_ALPHA and glyph format `%0.` at nesting level 0 will result in a list with rendered glyphs `A.` `B.` `C.` The glyph format can contain placeholders for the current nesting level as well as placeholders for parent nesting levels. For example, a list can have a glyph format of `%0.` at nesting level 0 and a glyph format of `%0.%1.` at nesting level 1. Assuming both nesting levels have DECIMAL glyph types, this would result in a list with rendered glyphs `1.` `2.` ` 2.1.` ` 2.2.` `3.` For nesting levels that are ordered, the string that replaces a placeholder in the glyph format for a particular paragraph depends on the paragraph's order within the list.
      */
     glyphFormat?: string | null;
     /**
@@ -1475,7 +1471,7 @@ export namespace docs_v1 {
      */
     glyphSymbol?: string | null;
     /**
-     * The type of glyph used by bullets when paragraphs at this level of nesting are ordered. The glyph type determines the type of glyph used to replace placeholders within the glyph_format when paragraphs at this level of nesting are ordered. For example, if the nesting level is 0, the glyph_format is `%0.` and the glyph type is DECIMAL, then the rendered glyph would replace the placeholder `%0` in the glyph format with a number corresponding to list item&#39;s order within the list.
+     * The type of glyph used by bullets when paragraphs at this level of nesting are ordered. The glyph type determines the type of glyph used to replace placeholders within the glyph_format when paragraphs at this level of nesting are ordered. For example, if the nesting level is 0, the glyph_format is `%0.` and the glyph type is DECIMAL, then the rendered glyph would replace the placeholder `%0` in the glyph format with a number corresponding to list item's order within the list.
      */
     glyphType?: string | null;
     /**
@@ -1483,7 +1479,7 @@ export namespace docs_v1 {
      */
     indentFirstLine?: Schema$Dimension;
     /**
-     * The amount of indentation for paragraphs at this level of nesting. Applied to the side that corresponds to the start of the text, based on the paragraph&#39;s content direction.
+     * The amount of indentation for paragraphs at this level of nesting. Applied to the side that corresponds to the start of the text, based on the paragraph's content direction.
      */
     indentStart?: Schema$Dimension;
     /**
@@ -1594,7 +1590,7 @@ export namespace docs_v1 {
      */
     positionedObjectIds?: string[] | null;
     /**
-     * The suggested changes to this paragraph&#39;s bullet.
+     * The suggested changes to this paragraph's bullet.
      */
     suggestedBulletChanges?: {[key: string]: Schema$SuggestedBullet} | null;
     /**
@@ -1677,7 +1673,7 @@ export namespace docs_v1 {
     textRun?: Schema$TextRun;
   }
   /**
-   * Styles that apply to a whole paragraph. Inherited paragraph styles are represented as unset fields in this message. A paragraph style&#39;s parent depends on where the paragraph style is defined: * The ParagraphStyle on a Paragraph inherits from the paragraph&#39;s corresponding named style type. * The ParagraphStyle on a named style inherits from the normal text named style. * The ParagraphStyle of the normal text named style inherits from the default paragraph style in the Docs editor. * The ParagraphStyle on a Paragraph element that is contained in a table may inherit its paragraph style from the table style. If the paragraph style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
+   * Styles that apply to a whole paragraph. Inherited paragraph styles are represented as unset fields in this message. A paragraph style's parent depends on where the paragraph style is defined: * The ParagraphStyle on a Paragraph inherits from the paragraph's corresponding named style type. * The ParagraphStyle on a named style inherits from the normal text named style. * The ParagraphStyle of the normal text named style inherits from the default paragraph style in the Docs editor. * The ParagraphStyle on a Paragraph element that is contained in a table may inherit its paragraph style from the table style. If the paragraph style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
    */
   export interface Schema$ParagraphStyle {
     /**
@@ -1886,11 +1882,11 @@ export namespace docs_v1 {
      */
     layout?: string | null;
     /**
-     * The offset of the left edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document&#39;s styling.
+     * The offset of the left edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document's styling.
      */
     leftOffset?: Schema$Dimension;
     /**
-     * The offset of the top edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document&#39;s styling.
+     * The offset of the top edge of the positioned object relative to the beginning of the Paragraph it is tethered to. The exact positioning of the object can depend on other content in the document and the document's styling.
      */
     topOffset?: Schema$Dimension;
   }
@@ -1946,7 +1942,7 @@ export namespace docs_v1 {
      */
     endIndex?: number | null;
     /**
-     * The ID of the header, footer or footnote that this range is contained in. An empty segment ID signifies the document&#39;s body.
+     * The ID of the header, footer or footnote that this range is contained in. An empty segment ID signifies the document's body.
      */
     segmentId?: string | null;
     /**
@@ -2211,7 +2207,7 @@ export namespace docs_v1 {
     suggestedInsertionIds?: string[] | null;
   }
   /**
-   * Properties that apply to a section&#39;s column.
+   * Properties that apply to a section's column.
    */
   export interface Schema$SectionColumnProperties {
     /**
@@ -2228,7 +2224,7 @@ export namespace docs_v1 {
    */
   export interface Schema$SectionStyle {
     /**
-     * The section&#39;s columns properties. If empty, the section contains one column with the default properties in the Docs editor. A section can be updated to have no more than three columns. When updating this property, setting a concrete value is required. Unsetting this property will result in a 400 bad request error.
+     * The section's columns properties. If empty, the section contains one column with the default properties in the Docs editor. A section can be updated to have no more than three columns. When updating this property, setting a concrete value is required. Unsetting this property will result in a 400 bad request error.
      */
     columnProperties?: Schema$SectionColumnProperties[];
     /**
@@ -2240,27 +2236,27 @@ export namespace docs_v1 {
      */
     contentDirection?: string | null;
     /**
-     * The ID of the default footer. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_footer_id. This property is read-only.
+     * The ID of the default footer. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's default_footer_id. This property is read-only.
      */
     defaultFooterId?: string | null;
     /**
-     * The ID of the default header. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s default_header_id. This property is read-only.
+     * The ID of the default header. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's default_header_id. This property is read-only.
      */
     defaultHeaderId?: string | null;
     /**
-     * The ID of the footer used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the footers on even pages in the section. If it is false, the footers on even pages uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_footer_id. This property is read-only.
+     * The ID of the footer used only for even pages. If the value of DocumentStyle's use_even_page_header_footer is true, this value is used for the footers on even pages in the section. If it is false, the footers on even pages uses the default_footer_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's even_page_footer_id. This property is read-only.
      */
     evenPageFooterId?: string | null;
     /**
-     * The ID of the header used only for even pages. If the value of DocumentStyle&#39;s use_even_page_header_footer is true, this value is used for the headers on even pages in the section. If it is false, the headers on even pages uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s even_page_header_id. This property is read-only.
+     * The ID of the header used only for even pages. If the value of DocumentStyle's use_even_page_header_footer is true, this value is used for the headers on even pages in the section. If it is false, the headers on even pages uses the default_header_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's even_page_header_id. This property is read-only.
      */
     evenPageHeaderId?: string | null;
     /**
-     * The ID of the footer used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the footer on the first page of the section. If it is false, the footer on the first page of the section uses the default_footer_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_footer_id. This property is read-only.
+     * The ID of the footer used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the footer on the first page of the section. If it is false, the footer on the first page of the section uses the default_footer_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's first_page_footer_id. This property is read-only.
      */
     firstPageFooterId?: string | null;
     /**
-     * The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it is false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak&#39;s SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle&#39;s first_page_header_id. This property is read-only.
+     * The ID of the header used only for the first page of the section. If use_first_page_header_footer is true, this value is used for the header on the first page of the section. If it is false, the header on the first page of the section uses the default_header_id. If unset, the value inherits from the previous SectionBreak's SectionStyle. If the value is unset in the first SectionBreak, it inherits from DocumentStyle's first_page_header_id. This property is read-only.
      */
     firstPageHeaderId?: string | null;
     /**
@@ -2288,7 +2284,7 @@ export namespace docs_v1 {
      */
     marginTop?: Schema$Dimension;
     /**
-     * The page number from which to start counting the number of pages for this section. If unset, page numbering continues from the previous section. If the value is unset in the first SectionBreak, refer to DocumentStyle&#39;s page_number_start. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     * The page number from which to start counting the number of pages for this section. If unset, page numbering continues from the previous section. If the value is unset in the first SectionBreak, refer to DocumentStyle's page_number_start. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     pageNumberStart?: number | null;
     /**
@@ -2296,7 +2292,7 @@ export namespace docs_v1 {
      */
     sectionType?: string | null;
     /**
-     * Indicates whether to use the first page header / footer IDs for the first page of the section. If unset, it inherits from DocumentStyle&#39;s use_first_page_header_footer for the first section. If the value is unset for subsequent sectors, it should be interpreted as false. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
+     * Indicates whether to use the first page header / footer IDs for the first page of the section. If unset, it inherits from DocumentStyle's use_first_page_header_footer for the first section. If the value is unset for subsequent sectors, it should be interpreted as false. When updating this property, setting a concrete value is required. Unsetting this property results in a 400 bad request error.
      */
     useFirstPageHeaderFooter?: boolean | null;
   }
@@ -2641,7 +2637,7 @@ export namespace docs_v1 {
     tableStartLocation?: Schema$Location;
   }
   /**
-   * The style of a TableCell. Inherited table cell styles are represented as unset fields in this message. A table cell style can inherit from the table&#39;s style.
+   * The style of a TableCell. Inherited table cell styles are represented as unset fields in this message. A table cell style can inherit from the table's style.
    */
   export interface Schema$TableCellStyle {
     /**
@@ -2751,7 +2747,7 @@ export namespace docs_v1 {
    */
   export interface Schema$TableColumnProperties {
     /**
-     * The width of the column. Set when the column&#39;s `width_type` is FIXED_WIDTH.
+     * The width of the column. Set when the column's `width_type` is FIXED_WIDTH.
      */
     width?: Schema$Dimension;
     /**
@@ -2777,7 +2773,7 @@ export namespace docs_v1 {
     suggestedInsertionIds?: string[] | null;
   }
   /**
-   * A table range represents a reference to a subset of a table. It&#39;s important to note that the cells specified by a table range do not necessarily form a rectangle. For example, let&#39;s say we have a 3 x 3 table where all the cells of the last row are merged together. The table looks like this: [ ] A table range with table cell location = (table_start_location, row = 0, column = 0), row span = 3 and column span = 2 specifies the following cells: x x [ x x x ]
+   * A table range represents a reference to a subset of a table. It's important to note that the cells specified by a table range do not necessarily form a rectangle. For example, let's say we have a 3 x 3 table where all the cells of the last row are merged together. The table looks like this: [ ] A table range with table cell location = (table_start_location, row = 0, column = 0), row span = 3 and column span = 2 specifies the following cells: x x [ x x x ]
    */
   export interface Schema$TableRange {
     /**
@@ -2833,7 +2829,7 @@ export namespace docs_v1 {
    */
   export interface Schema$TableRowStyle {
     /**
-     * The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row&#39;s cells.
+     * The minimum height of the row. The row will be rendered in the Docs editor at a height equal to or greater than this value in order to show all the content in the row's cells.
      */
     minRowHeight?: Schema$Dimension;
   }
@@ -2851,7 +2847,7 @@ export namespace docs_v1 {
    */
   export interface Schema$TableStyle {
     /**
-     * The properties of each column. Note that in Docs, tables contain rows and rows contain cells, similar to HTML. So the properties for a row can be found on the row&#39;s table_row_style.
+     * The properties of each column. Note that in Docs, tables contain rows and rows contain cells, similar to HTML. So the properties for a row can be found on the row's table_row_style.
      */
     tableColumnProperties?: Schema$TableColumnProperties[];
   }
@@ -2896,7 +2892,7 @@ export namespace docs_v1 {
     textStyle?: Schema$TextStyle;
   }
   /**
-   * Represents the styling that can be applied to text. Inherited text styles are represented as unset fields in this message. A text style&#39;s parent depends on where the text style is defined: * The TextStyle of text in a Paragraph inherits from the paragraph&#39;s corresponding named style type. * The TextStyle on a named style inherits from the normal text named style. * The TextStyle of the normal text named style inherits from the default text style in the Docs editor. * The TextStyle on a Paragraph element that is contained in a table may inherit its text style from the table style. If the text style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
+   * Represents the styling that can be applied to text. Inherited text styles are represented as unset fields in this message. A text style's parent depends on where the text style is defined: * The TextStyle of text in a Paragraph inherits from the paragraph's corresponding named style type. * The TextStyle on a named style inherits from the normal text named style. * The TextStyle of the normal text named style inherits from the default text style in the Docs editor. * The TextStyle on a Paragraph element that is contained in a table may inherit its text style from the table style. If the text style does not inherit from a parent, unsetting fields will revert the style to a value matching the defaults in the Docs editor.
    */
   export interface Schema$TextStyle {
     /**
@@ -2904,7 +2900,7 @@ export namespace docs_v1 {
      */
     backgroundColor?: Schema$OptionalColor;
     /**
-     * The text&#39;s vertical offset from its normal position. Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.
+     * The text's vertical offset from its normal position. Text with `SUPERSCRIPT` or `SUBSCRIPT` baseline offsets is automatically rendered in a smaller font size, computed based on the `font_size` field. The `font_size` itself is not affected by changes in this field.
      */
     baselineOffset?: string | null;
     /**
@@ -2912,7 +2908,7 @@ export namespace docs_v1 {
      */
     bold?: boolean | null;
     /**
-     * The size of the text&#39;s font.
+     * The size of the text's font.
      */
     fontSize?: Schema$Dimension;
     /**
@@ -2924,7 +2920,7 @@ export namespace docs_v1 {
      */
     italic?: boolean | null;
     /**
-     * The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text. Changing the link in an update request causes some other changes to the text style of the range: * When setting a link, the text foreground color will be updated to the default link color and the text will be underlined. If these fields are modified in the same request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link on a text range that crosses a paragraph boundary, such as `&quot;ABCx/123&quot;`, will separate the newline character(s) into their own text runs. The link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the style of the preceding text (or the default text styles if the preceding text is another link) unless different styles are being set in the same request.
+     * The hyperlink destination of the text. If unset, there is no link. Links are not inherited from parent text. Changing the link in an update request causes some other changes to the text style of the range: * When setting a link, the text foreground color will be updated to the default link color and the text will be underlined. If these fields are modified in the same request, those values will be used instead of the link defaults. * Setting a link on a text range that overlaps with an existing link will also update the existing link to point to the new URL. * Links are not settable on newline characters. As a result, setting a link on a text range that crosses a paragraph boundary, such as `"ABC\n123"`, will separate the newline character(s) into their own text runs. The link will be applied separately to the runs before and after the newline. * Removing a link will update the text style of the range to match the style of the preceding text (or the default text styles if the preceding text is another link) unless different styles are being set in the same request.
      */
     link?: Schema$Link;
     /**
@@ -2998,7 +2994,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UnmergeTableCellsRequest {
     /**
-     * The table range specifying which cells of the table to unmerge. All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing. If there is text in any of the merged cells, the text will remain in the &quot;head&quot; cell of the resulting block of unmerged cells. The &quot;head&quot; cell is the upper-left cell when the content direction is from left to right, and the upper-right otherwise.
+     * The table range specifying which cells of the table to unmerge. All merged cells in this range will be unmerged, and cells that are already unmerged will not be affected. If the range has no merged cells, the request will do nothing. If there is text in any of the merged cells, the text will remain in the "head" cell of the resulting block of unmerged cells. The "head" cell is the upper-left cell when the content direction is from left to right, and the upper-right otherwise.
      */
     tableRange?: Schema$TableRange;
   }
@@ -3011,7 +3007,7 @@ export namespace docs_v1 {
      */
     documentStyle?: Schema$DocumentStyle;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `document_style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the background, set `fields` to `&quot;background&quot;`.
+     * The fields that should be updated. At least one field must be specified. The root `document_style` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the background, set `fields` to `"background"`.
      */
     fields?: string | null;
   }
@@ -3020,7 +3016,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateParagraphStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style&#39;s alignment property, set `fields` to `&quot;alignment&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `paragraph_style` is implied and should not be specified. For example, to update the paragraph style's alignment property, set `fields` to `"alignment"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -3037,7 +3033,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateSectionStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `section_style` is implied and must not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the left margin, set `fields` to `&quot;margin_left&quot;`.
+     * The fields that should be updated. At least one field must be specified. The root `section_style` is implied and must not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the left margin, set `fields` to `"margin_left"`.
      */
     fields?: string | null;
     /**
@@ -3054,7 +3050,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateTableCellStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `tableCellStyle` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the table cell background color, set `fields` to `&quot;backgroundColor&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `tableCellStyle` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the table cell background color, set `fields` to `"backgroundColor"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
@@ -3079,7 +3075,7 @@ export namespace docs_v1 {
      */
     columnIndices?: number[] | null;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `tableColumnProperties` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the column width, set `fields` to `&quot;width&quot;`.
+     * The fields that should be updated. At least one field must be specified. The root `tableColumnProperties` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the column width, set `fields` to `"width"`.
      */
     fields?: string | null;
     /**
@@ -3096,7 +3092,7 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateTableRowStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `tableRowStyle` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example to update the minimum row height, set `fields` to `&quot;min_row_height&quot;`.
+     * The fields that should be updated. At least one field must be specified. The root `tableRowStyle` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example to update the minimum row height, set `fields` to `"min_row_height"`.
      */
     fields?: string | null;
     /**
@@ -3117,11 +3113,11 @@ export namespace docs_v1 {
    */
   export interface Schema$UpdateTextStyleRequest {
     /**
-     * The fields that should be updated. At least one field must be specified. The root `text_style` is implied and should not be specified. A single `&quot;*&quot;` can be used as short-hand for listing every field. For example, to update the text style to bold, set `fields` to `&quot;bold&quot;`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
+     * The fields that should be updated. At least one field must be specified. The root `text_style` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field. For example, to update the text style to bold, set `fields` to `"bold"`. To reset a property to its default value, include its field name in the field mask but leave the field itself unset.
      */
     fields?: string | null;
     /**
-     * The range of text to style. The range may be extended to include adjacent newlines. If the range fully contains a paragraph belonging to a list, the paragraph&#39;s bullet is also updated with the matching text style. Ranges cannot be inserted inside a relative UpdateTextStyleRequest.
+     * The range of text to style. The range may be extended to include adjacent newlines. If the range fully contains a paragraph belonging to a list, the paragraph's bullet is also updated with the matching text style. Ranges cannot be inserted inside a relative UpdateTextStyleRequest.
      */
     range?: Schema$Range;
     /**
@@ -3138,7 +3134,7 @@ export namespace docs_v1 {
      */
     fontFamily?: string | null;
     /**
-     * The weight of the font. This field can have any value that is a multiple of `100` between `100` and `900`, inclusive. This range corresponds to the numerical values described in the CSS 2.1 Specification, [section 15.6](https://www.w3.org/TR/CSS21/fonts.html#font-boldness), with non-numerical values disallowed. The default value is `400` (&quot;normal&quot;). The font weight makes up just one component of the rendered font weight. The rendered weight is determined by a combination of the `weight` and the text style&#39;s resolved `bold` value, after accounting for inheritance: * If the text is bold and the weight is less than `400`, the rendered weight is 400. * If the text is bold and the weight is greater than or equal to `400` but is less than `700`, the rendered weight is `700`. * If the weight is greater than or equal to `700`, the rendered weight is equal to the weight. * If the text is not bold, the rendered weight is equal to the weight.
+     * The weight of the font. This field can have any value that is a multiple of `100` between `100` and `900`, inclusive. This range corresponds to the numerical values described in the CSS 2.1 Specification, [section 15.6](https://www.w3.org/TR/CSS21/fonts.html#font-boldness), with non-numerical values disallowed. The default value is `400` ("normal"). The font weight makes up just one component of the rendered font weight. The rendered weight is determined by a combination of the `weight` and the text style's resolved `bold` value, after accounting for inheritance: * If the text is bold and the weight is less than `400`, the rendered weight is 400. * If the text is bold and the weight is greater than or equal to `400` but is less than `700`, the rendered weight is `700`. * If the weight is greater than or equal to `700`, the rendered weight is equal to the weight. * If the text is not bold, the rendered weight is equal to the weight.
      */
     weight?: number | null;
   }
@@ -3163,9 +3159,9 @@ export namespace docs_v1 {
     }
 
     /**
-     * docs.documents.batchUpdate
-     * @desc Applies one or more updates to the document. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order. Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
+     * Applies one or more updates to the document. Each request is validated before being applied. If any request is not valid, then the entire request will fail and nothing will be applied. Some requests have replies to give you some information about how they are applied. Other requests do not need to return information; these each return an empty reply. The order of replies matches that of the requests. For example, suppose you call batchUpdate with four updates, and only the third one returns information. The response would have two empty replies, the reply to the third request, and another empty reply, in that order. Because other users may be editing the document, the document might not exactly reflect your changes: your changes may be altered with respect to collaborator changes. If there are no collaborators, the document should reflect your changes. In any case, the updates in your request are guaranteed to be applied together atomically.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/docs.googleapis.com
@@ -3220,15 +3216,12 @@ export namespace docs_v1 {
      *   throw e;
      * });
      *
-     * @alias docs.documents.batchUpdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.documentId The ID of the document to update.
-     * @param {().BatchUpdateDocumentRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchUpdate(
       params: Params$Resource$Documents$Batchupdate,
@@ -3309,7 +3302,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateDocumentResponse>(parameters);
@@ -3317,9 +3310,9 @@ export namespace docs_v1 {
     }
 
     /**
-     * docs.documents.create
-     * @desc Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored. Returns the created document.
+     * Creates a blank document using the title given in the request. Other fields in the request, including any provided content, are ignored. Returns the created document.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/docs.googleapis.com
@@ -3398,14 +3391,12 @@ export namespace docs_v1 {
      *   throw e;
      * });
      *
-     * @alias docs.documents.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().Document} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Documents$Create,
@@ -3475,7 +3466,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
@@ -3483,9 +3474,9 @@ export namespace docs_v1 {
     }
 
     /**
-     * docs.documents.get
-     * @desc Gets the latest version of the specified document.
+     * Gets the latest version of the specified document.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/docs.googleapis.com
@@ -3548,15 +3539,12 @@ export namespace docs_v1 {
      *   throw e;
      * });
      *
-     * @alias docs.documents.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.documentId The ID of the document to retrieve.
-     * @param {string=} params.suggestionsViewMode The suggestions view mode to apply to the document. This allows viewing the document with all suggestions inline, accepted or rejected. If one is not specified, DEFAULT_FOR_CURRENT_ACCESS is used.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Documents$Get,
@@ -3629,7 +3617,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);

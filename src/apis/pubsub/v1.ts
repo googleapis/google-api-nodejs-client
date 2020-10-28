@@ -104,14 +104,10 @@ export namespace pubsub_v1 {
    * Provides reliable, many-to-many, asynchronous messaging between applications.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const pubsub = google.pubsub('v1');
-   *
-   * @namespace pubsub
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Pubsub
+   * ```
    */
   export class Pubsub {
     context: APIRequestContext;
@@ -149,7 +145,7 @@ export namespace pubsub_v1 {
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid}?uid={uniqueid}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid}` and the recovered group retains the role in the binding. * `domain:{domain}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -166,7 +162,7 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription&#39;s backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription&#39;s topic following the successful completion of the CreateSnapshot request. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription whose backlog the snapshot retains. Specifically, the created snapshot is guaranteed to retain: (a) The existing backlog on the subscription. More precisely, this is defined as the messages in the subscription's backlog that are unacknowledged upon the successful completion of the `CreateSnapshot` request; as well as: (b) Any messages published to the subscription's topic following the successful completion of the CreateSnapshot request. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string | null;
   }
@@ -175,7 +171,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$DeadLetterPolicy {
     /**
-     * The name of the topic to which dead letter messages should be published. Format is `projects/{project}/topics/{topic}`.The Cloud Pub/Sub service account associated with the enclosing subscription&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
+     * The name of the topic to which dead letter messages should be published. Format is `projects/{project\}/topics/{topic\}`.The Cloud Pub/Sub service account associated with the enclosing subscription's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Publish() to this topic. The operation will fail if the topic does not exist. Users should ensure that there is a subscription attached to this topic since messages published to a topic with no subscriptions are lost.
      */
     deadLetterTopic?: string | null;
     /**
@@ -188,7 +184,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$DetachSubscriptionResponse {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -196,12 +192,12 @@ export namespace pubsub_v1 {
    */
   export interface Schema$ExpirationPolicy {
     /**
-     * Specifies the &quot;time-to-live&quot; duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of &quot;activity&quot; depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.
+     * Specifies the "time-to-live" duration for an associated resource. The resource expires if it is not active for a period of `ttl`. The definition of "activity" depends on the type of the associated resource. The minimum and maximum allowed values for `ttl` depend on the type of the associated resource, as well. If `ttl` is not set, the associated resource never expires.
      */
     ttl?: string | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: &quot;Summary size limit&quot; description: &quot;Determines if a summary is less than 100 chars&quot; expression: &quot;document.summary.size() &lt; 100&quot; Example (Equality): title: &quot;Requestor is owner&quot; description: &quot;Determines if requestor is the document owner&quot; expression: &quot;document.owner == request.auth.claims.email&quot; Example (Logic): title: &quot;Public documents&quot; description: &quot;Determine whether the document should be publicly visible&quot; expression: &quot;document.type != &#39;private&#39; &amp;&amp; document.type != &#39;internal&#39;&quot; Example (Data Manipulation): title: &quot;Notification string&quot; description: &quot;Create a notification string with a timestamp.&quot; expression: &quot;&#39;New message received at &#39; + string(document.create_time)&quot; The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -331,7 +327,7 @@ export namespace pubsub_v1 {
     serviceAccountEmail?: string | null;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { &quot;bindings&quot;: [ { &quot;role&quot;: &quot;roles/resourcemanager.organizationAdmin&quot;, &quot;members&quot;: [ &quot;user:mike@example.com&quot;, &quot;group:admins@example.com&quot;, &quot;domain:google.com&quot;, &quot;serviceAccount:my-project-id@appspot.gserviceaccount.com&quot; ] }, { &quot;role&quot;: &quot;roles/resourcemanager.organizationViewer&quot;, &quot;members&quot;: [ &quot;user:eve@example.com&quot; ], &quot;condition&quot;: { &quot;title&quot;: &quot;expirable access&quot;, &quot;description&quot;: &quot;Does not grant access after Sep 2020&quot;, &quot;expression&quot;: &quot;request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;)&quot;, } } ], &quot;etag&quot;: &quot;BwWWja0YfJA=&quot;, &quot;version&quot;: 3 } **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time &lt; timestamp(&#39;2020-10-01T00:00:00.000Z&#39;) - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -417,7 +413,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$PushConfig {
     /**
-     * Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: attributes { &quot;x-goog-version&quot;: &quot;v1&quot; }
+     * Endpoint configuration attributes that can be used to control different aspects of the message delivery. The only currently supported attribute is `x-goog-version`, which you can use to change the format of the pushed message. This attribute indicates the version of the data expected by the endpoint. This controls the shape of the pushed message (i.e., its fields and metadata). If not present during the `CreateSubscription` call, it will default to the version of the Pub/Sub API used to make such call. If not present in a `ModifyPushConfig` call, its value will not be changed. `GetSubscription` calls will always return a valid version, even if the subscription was created without this attribute. The only supported values for the `x-goog-version` attribute are: * `v1beta1`: uses the push format defined in the v1beta1 Pub/Sub API. * `v1` or `v1beta2`: uses the push format defined in the v1 Pub/Sub API. For example: attributes { "x-goog-version": "v1" \}
      */
     attributes?: {[key: string]: string} | null;
     /**
@@ -464,11 +460,11 @@ export namespace pubsub_v1 {
    */
   export interface Schema$SeekRequest {
     /**
-     * The snapshot to seek to. The snapshot&#39;s topic must be the same as that of the provided subscription. Format is `projects/{project}/snapshots/{snap}`.
+     * The snapshot to seek to. The snapshot's topic must be the same as that of the provided subscription. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string | null;
     /**
-     * The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system&#39;s notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.
+     * The time to seek to. Messages retained in the subscription that were published before this time are marked as acknowledged, and messages retained in the subscription that were published after this time are marked as unacknowledged. Note that this operation affects only those messages retained in the subscription (configured by the combination of `message_retention_duration` and `retain_acked_messages`). For example, if `time` corresponds to a point before the message retention window (or to a point before the system's notion of the subscription creation time), only retained messages will be marked as unacknowledged, and already-expunged messages will not be restored.
      */
     time?: string | null;
   }
@@ -515,11 +511,11 @@ export namespace pubsub_v1 {
      */
     ackDeadlineSeconds?: number | null;
     /**
-     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions&#39;s parent project (i.e., service-{project_number}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
+     * A policy that specifies the conditions for dead lettering messages in this subscription. If dead_letter_policy is not set, dead lettering is disabled. The Cloud Pub/Sub service account associated with this subscriptions's parent project (i.e., service-{project_number\}@gcp-sa-pubsub.iam.gserviceaccount.com) must have permission to Acknowledge() messages on this subscription.
      */
     deadLetterPolicy?: Schema$DeadLetterPolicy;
     /**
-     * Indicates whether the subscription is detached from its topic. Detached subscriptions don&#39;t receive messages from their topic and don&#39;t retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.
+     * Indicates whether the subscription is detached from its topic. Detached subscriptions don't receive messages from their topic and don't retain any backlog. `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will not be made.
      */
     detached?: boolean | null;
     /**
@@ -527,7 +523,7 @@ export namespace pubsub_v1 {
      */
     enableMessageOrdering?: boolean | null;
     /**
-     * A policy that specifies the conditions for this subscription&#39;s expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day.
+     * A policy that specifies the conditions for this subscription's expiration. A subscription is considered active as long as any connected subscriber is successfully consuming messages from the subscription or is issuing operations on the subscription. If `expiration_policy` is not set, a *default policy* with `ttl` of 31 days will be used. The minimum allowed value for `expiration_policy.ttl` is 1 day.
      */
     expirationPolicy?: Schema$ExpirationPolicy;
     /**
@@ -539,11 +535,11 @@ export namespace pubsub_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * How long to retain unacknowledged messages in the subscription&#39;s backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
+     * How long to retain unacknowledged messages in the subscription's backlog, from the moment a message is published. If `retain_acked_messages` is true, then this also configures the retention of acknowledged messages, and thus configures how far back in time a `Seek` can be done. Defaults to 7 days. Cannot be more than 7 days or less than 10 minutes.
      */
     messageRetentionDuration?: string | null;
     /**
-     * Required. The name of the subscription. It must have the format `&quot;projects/{project}/subscriptions/{subscription}&quot;`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
     /**
@@ -551,7 +547,7 @@ export namespace pubsub_v1 {
      */
     pushConfig?: Schema$PushConfig;
     /**
-     * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription&#39;s backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [Seek to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
+     * Indicates whether to retain acknowledged messages. If true, then messages are not expunged from the subscription's backlog, even if they are acknowledged, until they fall out of the `message_retention_duration` window. This must be true if you would like to [Seek to a timestamp] (https://cloud.google.com/pubsub/docs/replay-overview#seek_to_a_time).
      */
     retainAckedMessages?: boolean | null;
     /**
@@ -559,7 +555,7 @@ export namespace pubsub_v1 {
      */
     retryPolicy?: Schema$RetryPolicy;
     /**
-     * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project}/topics/{topic}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
+     * Required. The name of the topic from which this subscription is receiving messages. Format is `projects/{project\}/topics/{topic\}`. The value of this field will be `_deleted-topic_` if the topic has been deleted.
      */
     topic?: string | null;
   }
@@ -568,7 +564,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$TestIamPermissionsRequest {
     /**
-     * The set of permissions to check for the `resource`. Permissions with wildcards (such as &#39;*&#39; or &#39;storage.*&#39;) are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
+     * The set of permissions to check for the `resource`. Permissions with wildcards (such as '*' or 'storage.*') are not allowed. For more information see [IAM Overview](https://cloud.google.com/iam/docs/overview#permissions).
      */
     permissions?: string[] | null;
   }
@@ -586,7 +582,7 @@ export namespace pubsub_v1 {
    */
   export interface Schema$Topic {
     /**
-     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     * The resource name of the Cloud KMS CryptoKey to be used to protect access to messages published on this topic. The expected format is `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     kmsKeyName?: string | null;
     /**
@@ -598,7 +594,7 @@ export namespace pubsub_v1 {
      */
     messageStoragePolicy?: Schema$MessageStoragePolicy;
     /**
-     * Required. The name of the topic. It must have the format `&quot;projects/{project}/topics/{topic}&quot;`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `&quot;goog&quot;`.
+     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string | null;
   }
@@ -637,7 +633,7 @@ export namespace pubsub_v1 {
      */
     topic?: Schema$Topic;
     /**
-     * Required. Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains &quot;message_storage_policy&quot; but the `message_storage_policy` is not set in the `topic` provided above, then the updated value is determined by the policy configured at the project or organization level.
+     * Required. Indicates which fields in the provided topic to update. Must be specified and non-empty. Note that if `update_mask` contains "message_storage_policy" but the `message_storage_policy` is not set in the `topic` provided above, then the updated value is determined by the policy configured at the project or organization level.
      */
     updateMask?: string | null;
   }
@@ -662,9 +658,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.create
-     * @desc Creates a snapshot from the requested subscription. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
+     * Creates a snapshot from the requested subscription. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. If the snapshot already exists, returns `ALREADY_EXISTS`. If the requested subscription doesn't exist, returns `NOT_FOUND`. If the backlog in the subscription is too old -- and the resulting snapshot would expire in less than 1 hour -- then `FAILED_PRECONDITION` is returned. See also the `Snapshot.expire_time` field. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Snapshot object. Note that for REST API requests, you must specify a name in the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -691,7 +687,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.create({
-     *     // Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project\}/snapshots/{snap\}`.
      *     name: 'projects/my-project/snapshots/my-snapshot',
      *
      *     // Request body metadata
@@ -719,15 +715,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
-     * @param {().CreateSnapshotRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Snapshots$Create,
@@ -798,7 +791,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -806,9 +799,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.delete
-     * @desc Removes an existing snapshot. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
+     * Removes an existing snapshot. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. When the snapshot is deleted, all messages retained in the snapshot are immediately dropped. After a snapshot is deleted, a new one may be created with the same name, but the new one has no association with the old snapshot or its subscription, unless the same subscription is specified.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -835,7 +828,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.delete({
-     *     // Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -849,14 +842,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.snapshot Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Snapshots$Delete,
@@ -927,7 +918,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -935,9 +926,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.get
-     * @desc Gets the configuration details of a snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * Gets the configuration details of a snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -964,7 +955,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.snapshots.get({
-     *     // Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
+     *     // Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      *     snapshot: 'projects/my-project/snapshots/my-snapshot',
      *   });
      *   console.log(res.data);
@@ -983,14 +974,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.snapshot Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Snapshots$Get,
@@ -1061,7 +1050,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -1069,9 +1058,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1118,15 +1107,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Snapshots$Getiampolicy,
@@ -1200,7 +1186,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1208,9 +1194,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.list
-     * @desc Lists the existing snapshots. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * Lists the existing snapshots. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1241,7 +1227,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1258,16 +1244,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of snapshots to return.
-     * @param {string=} params.pageToken The value returned by the last `ListSnapshotsResponse`; indicates that this is a continuation of a prior `ListSnapshots` call, and that the system should return the next page of data.
-     * @param {string} params.project Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Snapshots$List,
@@ -1346,7 +1328,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSnapshotsResponse>(parameters);
@@ -1354,9 +1336,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.patch
-     * @desc Updates an existing snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * Updates an existing snapshot. Snapshots are used in Seek operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1411,15 +1393,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the snapshot.
-     * @param {().UpdateSnapshotRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Snapshots$Patch,
@@ -1490,7 +1469,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Snapshot>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Snapshot>(parameters);
@@ -1498,9 +1477,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1553,15 +1532,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Snapshots$Setiampolicy,
@@ -1635,7 +1611,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1643,9 +1619,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.snapshots.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1696,15 +1672,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.snapshots.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Snapshots$Testiampermissions,
@@ -1785,7 +1758,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1796,7 +1769,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Create
     extends StandardParameters {
     /**
-     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. User-provided name for this snapshot. If the name is not provided in the request, the server will assign a random name for this snapshot on the same project as the subscription. Note that for REST API requests, you must specify a name. See the resource name rules. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     name?: string;
 
@@ -1808,14 +1781,14 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Snapshots$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the snapshot to delete. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. The name of the snapshot to delete. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
   export interface Params$Resource$Projects$Snapshots$Get
     extends StandardParameters {
     /**
-     * Required. The name of the snapshot to get. Format is `projects/{project}/snapshots/{snap}`.
+     * Required. The name of the snapshot to get. Format is `projects/{project\}/snapshots/{snap\}`.
      */
     snapshot?: string;
   }
@@ -1841,7 +1814,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list snapshots. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list snapshots. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
@@ -1889,9 +1862,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.acknowledge
-     * @desc Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
+     * Acknowledges the messages associated with the `ack_ids` in the `AcknowledgeRequest`. The Pub/Sub system can remove the relevant messages from the subscription. Acknowledging a message whose ack deadline has expired may succeed, but such a message may be redelivered later. Acknowledging a message more than once will not result in an error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -1918,7 +1891,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.acknowledge({
-     *     // Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription whose message is being acknowledged. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -1940,15 +1913,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.acknowledge
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {().AcknowledgeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     acknowledge(
       params: Params$Resource$Projects$Subscriptions$Acknowledge,
@@ -2022,7 +1992,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2030,9 +2000,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.create
-     * @desc Creates a subscription to a given topic. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
+     * Creates a subscription to a given topic. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names). If the subscription already exists, returns `ALREADY_EXISTS`. If the corresponding topic doesn't exist, returns `NOT_FOUND`. If the name is not provided in the request, the server will assign a random name for this subscription on the same project as the topic, conforming to the [resource name format] (https://cloud.google.com/pubsub/docs/admin#resource_names). The generated name is populated in the returned Subscription object. Note that for REST API requests, you must specify a name in the request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2059,7 +2029,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.create({
-     *     // Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -2107,15 +2077,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-     * @param {().Subscription} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Subscriptions$Create,
@@ -2186,7 +2153,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2194,9 +2161,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.delete
-     * @desc Deletes an existing subscription. All messages retained in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription or its topic unless the same topic is specified.
+     * Deletes an existing subscription. All messages retained in the subscription are immediately dropped. Calls to `Pull` after deletion will return `NOT_FOUND`. After a subscription is deleted, a new one may be created with the same name, but the new one has no association with the old subscription or its topic unless the same topic is specified.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2223,7 +2190,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.delete({
-     *     // Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2237,14 +2204,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Subscriptions$Delete,
@@ -2318,7 +2283,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2326,9 +2291,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.detach
-     * @desc Detaches a subscription from this topic. All messages retained in the subscription are dropped. Subsequent `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will stop.
+     * Detaches a subscription from this topic. All messages retained in the subscription are dropped. Subsequent `Pull` and `StreamingPull` requests will return FAILED_PRECONDITION. If the subscription is a push subscription, pushes to the endpoint will stop.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2355,7 +2320,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.detach({
-     *     // Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
+     *     // Required. The subscription to detach. Format is `projects/{project\}/subscriptions/{subscription\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2369,14 +2334,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.detach
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     detach(
       params: Params$Resource$Projects$Subscriptions$Detach,
@@ -2457,7 +2420,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$DetachSubscriptionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DetachSubscriptionResponse>(parameters);
@@ -2465,9 +2428,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.get
-     * @desc Gets the configuration details of a subscription.
+     * Gets the configuration details of a subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2494,7 +2457,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.get({
-     *     // Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *   });
      *   console.log(res.data);
@@ -2522,14 +2485,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Subscriptions$Get,
@@ -2603,7 +2564,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2611,9 +2572,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2660,15 +2621,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Subscriptions$Getiampolicy,
@@ -2742,7 +2700,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2750,9 +2708,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.list
-     * @desc Lists matching subscriptions.
+     * Lists matching subscriptions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2783,7 +2741,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -2800,16 +2758,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of subscriptions to return.
-     * @param {string=} params.pageToken The value returned by the last `ListSubscriptionsResponse`; indicates that this is a continuation of a prior `ListSubscriptions` call, and that the system should return the next page of data.
-     * @param {string} params.project Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Subscriptions$List,
@@ -2890,7 +2844,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSubscriptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSubscriptionsResponse>(parameters);
@@ -2898,9 +2852,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.modifyAckDeadline
-     * @desc Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
+     * Modifies the ack deadline for a specific message. This method is useful to indicate that more time is needed to process a message by the subscriber, or to make the message available for redelivery if the processing was interrupted. Note that this does not modify the subscription-level `ackDeadlineSeconds` used for subsequent messages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -2927,7 +2881,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyAckDeadline({
-     *     // Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -2950,15 +2904,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.modifyAckDeadline
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {().ModifyAckDeadlineRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyAckDeadline(
       params: Params$Resource$Projects$Subscriptions$Modifyackdeadline,
@@ -3032,7 +2983,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3040,9 +2991,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.modifyPushConfig
-     * @desc Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
+     * Modifies the `PushConfig` for a specified subscription. This may be used to change a push subscription to a pull one (signified by an empty `PushConfig`) or vice versa, or change the endpoint URL and other attributes of a push subscription. Messages will accumulate for delivery continuously through the call regardless of changes to the `PushConfig`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3069,7 +3020,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.modifyPushConfig({
-     *     // Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3091,15 +3042,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.modifyPushConfig
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {().ModifyPushConfigRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     modifyPushConfig(
       params: Params$Resource$Projects$Subscriptions$Modifypushconfig,
@@ -3173,7 +3121,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3181,9 +3129,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.patch
-     * @desc Updates an existing subscription. Note that certain properties of a subscription, such as its topic, are not modifiable.
+     * Updates an existing subscription. Note that certain properties of a subscription, such as its topic, are not modifiable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3210,7 +3158,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.patch({
-     *     // Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3247,15 +3195,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-     * @param {().UpdateSubscriptionRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Subscriptions$Patch,
@@ -3326,7 +3271,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -3334,9 +3279,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.pull
-     * @desc Pulls messages from the server. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
+     * Pulls messages from the server. The server may return `UNAVAILABLE` if there are too many concurrent pull requests pending for the given subscription.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3363,7 +3308,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.subscriptions.pull({
-     *     // Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
+     *     // Required. The subscription from which messages should be pulled. Format is `projects/{project\}/subscriptions/{sub\}`.
      *     subscription: 'projects/my-project/subscriptions/my-subscription',
      *
      *     // Request body metadata
@@ -3388,15 +3333,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.pull
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
-     * @param {().PullRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     pull(
       params: Params$Resource$Projects$Subscriptions$Pull,
@@ -3470,7 +3412,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$PullResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PullResponse>(parameters);
@@ -3478,9 +3420,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.seek
-     * @desc Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek]( https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
+     * Seeks an existing subscription to a point in time or to a given snapshot, whichever is provided in the request. Snapshots are used in [Seek] (https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot. Note that both the subscription and the snapshot must be on the same topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3530,15 +3472,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.seek
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.subscription Required. The subscription to affect.
-     * @param {().SeekRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     seek(
       params: Params$Resource$Projects$Subscriptions$Seek,
@@ -3612,7 +3551,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$SeekResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SeekResponse>(parameters);
@@ -3620,9 +3559,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3675,15 +3614,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Subscriptions$Setiampolicy,
@@ -3757,7 +3693,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3765,9 +3701,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.subscriptions.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -3818,15 +3754,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.subscriptions.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Subscriptions$Testiampermissions,
@@ -3907,7 +3840,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3918,7 +3851,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Acknowledge
     extends StandardParameters {
     /**
-     * Required. The subscription whose message is being acknowledged. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription whose message is being acknowledged. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
 
@@ -3930,7 +3863,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Create
     extends StandardParameters {
     /**
-     * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -3942,21 +3875,21 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Required. The subscription to delete. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription to delete. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Detach
     extends StandardParameters {
     /**
-     * Required. The subscription to detach. Format is `projects/{project}/subscriptions/{subscription}`.
+     * Required. The subscription to detach. Format is `projects/{project\}/subscriptions/{subscription\}`.
      */
     subscription?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Required. The name of the subscription to get. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription to get. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
   }
@@ -3982,14 +3915,14 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list subscriptions. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list subscriptions. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
   export interface Params$Resource$Projects$Subscriptions$Modifyackdeadline
     extends StandardParameters {
     /**
-     * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
 
@@ -4001,7 +3934,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Modifypushconfig
     extends StandardParameters {
     /**
-     * Required. The name of the subscription. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The name of the subscription. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
 
@@ -4013,7 +3946,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Patch
     extends StandardParameters {
     /**
-     * Required. The name of the subscription. It must have the format `"projects/{project}/subscriptions/{subscription}"`. `{subscription}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the subscription. It must have the format `"projects/{project\}/subscriptions/{subscription\}"`. `{subscription\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -4025,7 +3958,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Subscriptions$Pull
     extends StandardParameters {
     /**
-     * Required. The subscription from which messages should be pulled. Format is `projects/{project}/subscriptions/{sub}`.
+     * Required. The subscription from which messages should be pulled. Format is `projects/{project\}/subscriptions/{sub\}`.
      */
     subscription?: string;
 
@@ -4084,9 +4017,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.create
-     * @desc Creates the given topic with the given name. See the [resource name rules]( https://cloud.google.com/pubsub/docs/admin#resource_names).
+     * Creates the given topic with the given name. See the [resource name rules] (https://cloud.google.com/pubsub/docs/admin#resource_names).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4113,7 +4046,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.create({
-     *     // Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -4143,15 +4076,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-     * @param {().Topic} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Topics$Create,
@@ -4222,7 +4152,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -4230,9 +4160,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.delete
-     * @desc Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
+     * Deletes the topic with the given name. Returns `NOT_FOUND` if the topic does not exist. After a topic is deleted, a new topic may be created with the same name; this is an entirely new topic with none of the old configuration or subscriptions. Existing subscriptions to this topic are not deleted, but their `topic` field is set to `_deleted-topic_`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4259,7 +4189,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.delete({
-     *     // Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
+     *     // Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -4273,14 +4203,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Topics$Delete,
@@ -4351,7 +4279,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4359,9 +4287,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.get
-     * @desc Gets the configuration of a topic.
+     * Gets the configuration of a topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4388,7 +4316,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.get({
-     *     // Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -4407,14 +4335,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Topics$Get,
@@ -4485,7 +4411,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -4493,9 +4419,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.getIamPolicy
-     * @desc Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4542,15 +4468,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.getIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.options.requestedPolicyVersion Optional. The policy format version to be returned. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional bindings must specify version 3. Policies without any conditional bindings may specify any valid value or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getIamPolicy(
       params: Params$Resource$Projects$Topics$Getiampolicy,
@@ -4624,7 +4547,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4632,9 +4555,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.list
-     * @desc Lists matching topics.
+     * Lists matching topics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4665,7 +4588,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
+     *     // Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      *     project: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -4682,16 +4605,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of topics to return.
-     * @param {string=} params.pageToken The value returned by the last `ListTopicsResponse`; indicates that this is a continuation of a prior `ListTopics` call, and that the system should return the next page of data.
-     * @param {string} params.project Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Topics$List,
@@ -4768,7 +4687,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTopicsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicsResponse>(parameters);
@@ -4776,9 +4695,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.patch
-     * @desc Updates an existing topic. Note that certain properties of a topic are not modifiable.
+     * Updates an existing topic. Note that certain properties of a topic are not modifiable.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4805,7 +4724,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.patch({
-     *     // Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     *     // Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      *     name: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -4833,15 +4752,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
-     * @param {().UpdateTopicRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Topics$Patch,
@@ -4912,7 +4828,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Topic>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Topic>(parameters);
@@ -4920,9 +4836,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.publish
-     * @desc Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist.
+     * Adds one or more messages to the topic. Returns `NOT_FOUND` if the topic does not exist.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -4949,7 +4865,7 @@ export namespace pubsub_v1 {
      *
      *   // Do the magic
      *   const res = await pubsub.projects.topics.publish({
-     *     // Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *
      *     // Request body metadata
@@ -4973,15 +4889,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.topic Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
-     * @param {().PublishRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Projects$Topics$Publish,
@@ -5055,7 +4968,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$PublishResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublishResponse>(parameters);
@@ -5063,9 +4976,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.setIamPolicy
-     * @desc Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -5118,15 +5031,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.setIamPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy is being specified. See the operation documentation for the appropriate value for this field.
-     * @param {().SetIamPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     setIamPolicy(
       params: Params$Resource$Projects$Topics$Setiampolicy,
@@ -5200,7 +5110,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5208,9 +5118,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.testIamPermissions
-     * @desc Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -5261,15 +5171,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.testIamPermissions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.resource_ REQUIRED: The resource for which the policy detail is being requested. See the operation documentation for the appropriate value for this field.
-     * @param {().TestIamPermissionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     testIamPermissions(
       params: Params$Resource$Projects$Topics$Testiampermissions,
@@ -5350,7 +5257,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -5361,7 +5268,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Create
     extends StandardParameters {
     /**
-     * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -5373,14 +5280,14 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Delete
     extends StandardParameters {
     /**
-     * Required. Name of the topic to delete. Format is `projects/{project}/topics/{topic}`.
+     * Required. Name of the topic to delete. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
   export interface Params$Resource$Projects$Topics$Get
     extends StandardParameters {
     /**
-     * Required. The name of the topic to get. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic to get. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
@@ -5406,14 +5313,14 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the project in which to list topics. Format is `projects/{project-id}`.
+     * Required. The name of the project in which to list topics. Format is `projects/{project-id\}`.
      */
     project?: string;
   }
   export interface Params$Resource$Projects$Topics$Patch
     extends StandardParameters {
     /**
-     * Required. The name of the topic. It must have the format `"projects/{project}/topics/{topic}"`. `{topic}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
+     * Required. The name of the topic. It must have the format `"projects/{project\}/topics/{topic\}"`. `{topic\}` must start with a letter, and contain only letters (`[A-Za-z]`), numbers (`[0-9]`), dashes (`-`), underscores (`_`), periods (`.`), tildes (`~`), plus (`+`) or percent signs (`%`). It must be between 3 and 255 characters in length, and it must not start with `"goog"`.
      */
     name?: string;
 
@@ -5425,7 +5332,7 @@ export namespace pubsub_v1 {
   export interface Params$Resource$Projects$Topics$Publish
     extends StandardParameters {
     /**
-     * Required. The messages in the request will be published on this topic. Format is `projects/{project}/topics/{topic}`.
+     * Required. The messages in the request will be published on this topic. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
 
@@ -5466,9 +5373,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.snapshots.list
-     * @desc Lists the names of the snapshots on this topic. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
+     * Lists the names of the snapshots on this topic. Snapshots are used in [Seek](https://cloud.google.com/pubsub/docs/replay-overview) operations, which allow you to manage message acknowledgments in bulk. That is, you can set the acknowledgment state of messages in an existing subscription to the state captured by a snapshot.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -5499,7 +5406,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic that snapshots are attached to. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -5516,16 +5423,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.snapshots.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of snapshot names to return.
-     * @param {string=} params.pageToken The value returned by the last `ListTopicSnapshotsResponse`; indicates that this is a continuation of a prior `ListTopicSnapshots` call, and that the system should return the next page of data.
-     * @param {string} params.topic Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Topics$Snapshots$List,
@@ -5606,7 +5509,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTopicSnapshotsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicSnapshotsResponse>(parameters);
@@ -5625,7 +5528,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the topic that snapshots are attached to. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic that snapshots are attached to. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }
@@ -5637,9 +5540,9 @@ export namespace pubsub_v1 {
     }
 
     /**
-     * pubsub.projects.topics.subscriptions.list
-     * @desc Lists the names of the attached subscriptions on this topic.
+     * Lists the names of the attached subscriptions on this topic.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/pubsub.googleapis.com
@@ -5670,7 +5573,7 @@ export namespace pubsub_v1 {
      *     pageSize: 'placeholder-value',
      *     // The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
      *     pageToken: 'placeholder-value',
-     *     // Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
+     *     // Required. The name of the topic that subscriptions are attached to. Format is `projects/{project\}/topics/{topic\}`.
      *     topic: 'projects/my-project/topics/my-topic',
      *   });
      *   console.log(res.data);
@@ -5687,16 +5590,12 @@ export namespace pubsub_v1 {
      *   throw e;
      * });
      *
-     * @alias pubsub.projects.topics.subscriptions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Maximum number of subscription names to return.
-     * @param {string=} params.pageToken The value returned by the last `ListTopicSubscriptionsResponse`; indicates that this is a continuation of a prior `ListTopicSubscriptions` call, and that the system should return the next page of data.
-     * @param {string} params.topic Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Topics$Subscriptions$List,
@@ -5777,7 +5676,7 @@ export namespace pubsub_v1 {
       if (callback) {
         createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTopicSubscriptionsResponse>(
@@ -5798,7 +5697,7 @@ export namespace pubsub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The name of the topic that subscriptions are attached to. Format is `projects/{project}/topics/{topic}`.
+     * Required. The name of the topic that subscriptions are attached to. Format is `projects/{project\}/topics/{topic\}`.
      */
     topic?: string;
   }

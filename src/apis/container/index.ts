@@ -45,3 +45,15 @@ export function container<
 
 const auth = new AuthPlus();
 export {auth};
+export {container_v1};
+export {container_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

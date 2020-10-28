@@ -104,14 +104,10 @@ export namespace playablelocations_v3 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const playablelocations = google.playablelocations('v3');
-   *
-   * @namespace playablelocations
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Playablelocations
+   * ```
    */
   export class Playablelocations {
     context: APIRequestContext;
@@ -166,7 +162,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse {}
   /**
-   * A request for logging your player&#39;s bad location reports.
+   * A request for logging your player's bad location reports.
    */
   export interface Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsRequest {
     /**
@@ -191,7 +187,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3PlayerReport {
     /**
-     * Language code (in BCP-47 format) indicating the language of the freeform description provided in `reason_details`. Examples are &quot;en&quot;, &quot;en-US&quot; or &quot;ja-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * Language code (in BCP-47 format) indicating the language of the freeform description provided in `reason_details`. Examples are "en", "en-US" or "ja-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
@@ -271,7 +267,7 @@ export namespace playablelocations_v3 {
      */
     plusCode?: string | null;
     /**
-     * The playable location&#39;s coordinates, snapped to the sidewalk of the nearest road, if a nearby road exists.
+     * The playable location's coordinates, snapped to the sidewalk of the nearest road, if a nearby road exists.
      */
     snappedPoint?: Schema$GoogleTypeLatLng;
     /**
@@ -289,7 +285,7 @@ export namespace playablelocations_v3 {
     locations?: Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocation[];
   }
   /**
-   *  Life of a query: - When a game starts in a new location, your game server issues a SamplePlayableLocations request. The request specifies the S2 cell, and contains one or more &quot;criteria&quot; for filtering: - Criterion 0: i locations for long-lived bases, or level 0 monsters, or... - Criterion 1: j locations for short-lived bases, or level 1 monsters, ... - Criterion 2: k locations for random objects. - etc (up to 5 criterion may be specified). `PlayableLocationList` will then contain mutually exclusive lists of `PlayableLocation` objects that satisfy each of the criteria. Think of it as a collection of real-world locations that you can then associate with your game state. Note: These points are impermanent in nature. E.g, parks can close, and places can be removed. The response specifies how long you can expect the playable locations to last. Once they expire, you should query the `samplePlayableLocations` API again to get a fresh view of the real world.
+   *  Life of a query: - When a game starts in a new location, your game server issues a SamplePlayableLocations request. The request specifies the S2 cell, and contains one or more "criteria" for filtering: - Criterion 0: i locations for long-lived bases, or level 0 monsters, or... - Criterion 1: j locations for short-lived bases, or level 1 monsters, ... - Criterion 2: k locations for random objects. - etc (up to 5 criterion may be specified). `PlayableLocationList` will then contain mutually exclusive lists of `PlayableLocation` objects that satisfy each of the criteria. Think of it as a collection of real-world locations that you can then associate with your game state. Note: These points are impermanent in nature. E.g, parks can close, and places can be removed. The response specifies how long you can expect the playable locations to last. Once they expire, you should query the `samplePlayableLocations` API again to get a fresh view of the real world.
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest {
     /**
@@ -314,7 +310,7 @@ export namespace playablelocations_v3 {
       ]: Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationList;
     } | null;
     /**
-     * Required. Specifies the &quot;time-to-live&quot; for the set of playable locations. You can use this value to determine how long to cache the set of playable locations. After this length of time, your back-end game server should issue a new SamplePlayableLocations request to get a fresh set of playable locations (because for example, they might have been removed, a park might have closed for the day, a business might have closed permanently).
+     * Required. Specifies the "time-to-live" for the set of playable locations. You can use this value to determine how long to cache the set of playable locations. After this length of time, your back-end game server should issue a new SamplePlayableLocations request to get a fresh set of playable locations (because for example, they might have been removed, a park might have closed for the day, a business might have closed permanently).
      */
     ttl?: string | null;
   }
@@ -323,7 +319,7 @@ export namespace playablelocations_v3 {
    */
   export interface Schema$GoogleMapsPlayablelocationsV3SampleSpacingOptions {
     /**
-     * Required. The minimum spacing between any two playable locations, measured in meters. The minimum value is 30. The maximum value is 1000. Inputs will be rounded up to the next 10 meter interval. The default value is 200m. Set this field to remove tight clusters of playable locations. Note: The spacing is a greedy algorithm. It optimizes for selecting the highest ranking locations first, not to maximize the number of locations selected. Consider the following scenario: * Rank: A: 2, B: 1, C: 3. * Distance: A--200m--B--200m--C If spacing=250, it will pick the highest ranked location [B], not [A, C]. Note: Spacing works within the game object type itself, as well as the previous ones. Suppose three game object types, each with the following spacing: * X: 400m, Y: undefined, Z: 200m. 1. Add locations for X, within 400m of each other. 2. Add locations for Y, without any spacing. 3. Finally, add locations for Z within 200m of each other as well X and Y. The distance diagram between those locations end up as: * From-&gt;To. * X-&gt;X: 400m * Y-&gt;X, Y-&gt;Y: unspecified. * Z-&gt;X, Z-&gt;Y, Z-&gt;Z: 200m.
+     * Required. The minimum spacing between any two playable locations, measured in meters. The minimum value is 30. The maximum value is 1000. Inputs will be rounded up to the next 10 meter interval. The default value is 200m. Set this field to remove tight clusters of playable locations. Note: The spacing is a greedy algorithm. It optimizes for selecting the highest ranking locations first, not to maximize the number of locations selected. Consider the following scenario: * Rank: A: 2, B: 1, C: 3. * Distance: A--200m--B--200m--C If spacing=250, it will pick the highest ranked location [B], not [A, C]. Note: Spacing works within the game object type itself, as well as the previous ones. Suppose three game object types, each with the following spacing: * X: 400m, Y: undefined, Z: 200m. 1. Add locations for X, within 400m of each other. 2. Add locations for Y, without any spacing. 3. Finally, add locations for Z within 200m of each other as well X and Y. The distance diagram between those locations end up as: * From-\>To. * X-\>X: 400m * Y-\>X, Y-\>Y: unspecified. * Z-\>X, Z-\>Y, Z-\>Z: 200m.
      */
     minSpacingMeters?: number | null;
     /**
@@ -344,7 +340,7 @@ export namespace playablelocations_v3 {
      */
     applicationId?: string | null;
     /**
-     * Application version number, such as &quot;1.2.3&quot;. The exact format is application-dependent.
+     * Application version number, such as "1.2.3". The exact format is application-dependent.
      */
     applicationVersion?: string | null;
     /**
@@ -352,15 +348,15 @@ export namespace playablelocations_v3 {
      */
     deviceModel?: string | null;
     /**
-     * Language code (in BCP-47 format) indicating the UI language of the client. Examples are &quot;en&quot;, &quot;en-US&quot; or &quot;ja-Latn&quot;. For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     * Language code (in BCP-47 format) indicating the UI language of the client. Examples are "en", "en-US" or "ja-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
      */
     languageCode?: string | null;
     /**
-     * Operating system name and version as reported by the OS. For example, &quot;Mac OS X 10.10.4&quot;. The exact format is platform-dependent.
+     * Operating system name and version as reported by the OS. For example, "Mac OS X 10.10.4". The exact format is platform-dependent.
      */
     operatingSystem?: string | null;
     /**
-     * Build number/version of the operating system. e.g., the contents of android.os.Build.ID in Android, or the contents of sysctl &quot;kern.osversion&quot; in iOS.
+     * Build number/version of the operating system. e.g., the contents of android.os.Build.ID in Android, or the contents of sysctl "kern.osversion" in iOS.
      */
     operatingSystemBuild?: string | null;
     /**
@@ -369,7 +365,7 @@ export namespace playablelocations_v3 {
     platform?: string | null;
   }
   /**
-   * An object representing a latitude/longitude pair. This is expressed as a pair of doubles representing degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
+   * An object that represents a latitude/longitude pair. This is expressed as a pair of doubles to represent degrees latitude and degrees longitude. Unless specified otherwise, this must conform to the WGS84 standard. Values must be within normalized ranges.
    */
   export interface Schema$GoogleTypeLatLng {
     /**
@@ -389,9 +385,9 @@ export namespace playablelocations_v3 {
     }
 
     /**
-     * playablelocations.logImpressions
-     * @desc Logs new events when playable locations are displayed, and when they are interacted with. Impressions are not partially saved; either all impressions are saved and this request succeeds, or no impressions are saved, and this request fails.
+     * Logs new events when playable locations are displayed, and when they are interacted with. Impressions are not partially saved; either all impressions are saved and this request succeeds, or no impressions are saved, and this request fails.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/playablelocations.googleapis.com
@@ -436,14 +432,12 @@ export namespace playablelocations_v3 {
      *   throw e;
      * });
      *
-     * @alias playablelocations.logImpressions
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleMapsPlayablelocationsV3LogImpressionsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     logImpressions(
       params: Params$Resource$V3$Logimpressions,
@@ -540,7 +534,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
@@ -549,9 +543,9 @@ export namespace playablelocations_v3 {
     }
 
     /**
-     * playablelocations.logPlayerReports
-     * @desc Logs bad playable location reports submitted by players. Reports are not partially saved; either all reports are saved and this request succeeds, or no reports are saved, and this request fails.
+     * Logs bad playable location reports submitted by players. Reports are not partially saved; either all reports are saved and this request succeeds, or no reports are saved, and this request fails.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/playablelocations.googleapis.com
@@ -596,14 +590,12 @@ export namespace playablelocations_v3 {
      *   throw e;
      * });
      *
-     * @alias playablelocations.logPlayerReports
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleMapsPlayablelocationsV3LogPlayerReportsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     logPlayerReports(
       params: Params$Resource$V3$Logplayerreports,
@@ -703,7 +695,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
@@ -712,9 +704,9 @@ export namespace playablelocations_v3 {
     }
 
     /**
-     * playablelocations.samplePlayableLocations
-     * @desc Returns a set of playable locations that lie within a specified area, that satisfy optional filter criteria. Note: Identical `SamplePlayableLocations` requests can return different results as the state of the world changes over time.
+     * Returns a set of playable locations that lie within a specified area, that satisfy optional filter criteria. Note: Identical `SamplePlayableLocations` requests can return different results as the state of the world changes over time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/playablelocations.googleapis.com
@@ -761,14 +753,12 @@ export namespace playablelocations_v3 {
      *   throw e;
      * });
      *
-     * @alias playablelocations.samplePlayableLocations
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().GoogleMapsPlayablelocationsV3SamplePlayableLocationsRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     samplePlayableLocations(
       params: Params$Resource$V3$Sampleplayablelocations,
@@ -868,7 +858,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse

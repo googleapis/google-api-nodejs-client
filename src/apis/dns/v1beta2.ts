@@ -104,14 +104,10 @@ export namespace dns_v1beta2 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const dns = google.dns('v1beta2');
-   *
-   * @namespace dns
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Dns
+   * ```
    */
   export class Dns {
     context: APIRequestContext;
@@ -167,7 +163,7 @@ export namespace dns_v1beta2 {
      */
     startTime?: string | null;
     /**
-     * Status of the operation (output only). A status of &quot;done&quot; means that the request to update the authoritative servers has been sent but the servers might not be updated yet.
+     * Status of the operation (output only). A status of "done" means that the request to update the authoritative servers has been sent but the servers might not be updated yet.
      */
     status?: string | null;
   }
@@ -185,7 +181,7 @@ export namespace dns_v1beta2 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a "snapshot" of collections larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -202,7 +198,7 @@ export namespace dns_v1beta2 {
      */
     creationTime?: string | null;
     /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the resource&#39;s function.
+     * A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the resource's function.
      */
     description?: string | null;
     /**
@@ -222,7 +218,7 @@ export namespace dns_v1beta2 {
      */
     keyLength?: number | null;
     /**
-     * The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone&#39;s DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B. Output only.
+     * The key tag is a non-cryptographic hash of the a DNSKEY resource record associated with this DnsKey. The key tag can be used to identify a DNSKEY more quickly (but it is not a unique identifier). In particular, the key tag is used in a parent zone's DS record to point at the DNSKEY in this child ManagedZone. The key tag is a number in the range [0, 65535] and the algorithm to calculate it is specified in RFC4034 Appendix B. Output only.
      */
     keyTag?: number | null;
     kind?: string | null;
@@ -231,7 +227,7 @@ export namespace dns_v1beta2 {
      */
     publicKey?: string | null;
     /**
-     * One of &quot;KEY_SIGNING&quot; or &quot;ZONE_SIGNING&quot;. Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.
+     * One of "KEY_SIGNING" or "ZONE_SIGNING". Keys of type KEY_SIGNING have the Secure Entry Point flag set and, when active, will be used to sign only resource record sets of type DNSKEY. Otherwise, the Secure Entry Point flag will be cleared and this key will be used to sign only resource record sets of other types. Immutable after creation time.
      */
     type?: string | null;
   }
@@ -259,7 +255,7 @@ export namespace dns_v1beta2 {
      */
     kind?: string | null;
     /**
-     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a &quot;snapshot&quot; of collections larger than the maximum page size.
+     * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a "snapshot" of collections larger than the maximum page size.
      */
     nextPageToken?: string | null;
   }
@@ -290,11 +286,11 @@ export namespace dns_v1beta2 {
      */
     creationTime?: string | null;
     /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the managed zone&#39;s function.
+     * A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the managed zone's function.
      */
     description?: string | null;
     /**
-     * The DNS name of this managed zone, for instance &quot;example.com.&quot;.
+     * The DNS name of this managed zone, for instance "example.com.".
      */
     dnsName?: string | null;
     /**
@@ -343,7 +339,7 @@ export namespace dns_v1beta2 {
      */
     serviceDirectoryConfig?: Schema$ManagedZoneServiceDirectoryConfig;
     /**
-     * The zone&#39;s visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
+     * The zone's visibility: public zones are exposed to the Internet, while private zones are visible only to Virtual Private Cloud resources.
      */
     visibility?: string | null;
   }
@@ -406,7 +402,7 @@ export namespace dns_v1beta2 {
     deactivateTime?: string | null;
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * The fully qualified URL of the VPC network to forward queries to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
      */
     networkUrl?: string | null;
   }
@@ -420,7 +416,7 @@ export namespace dns_v1beta2 {
   export interface Schema$ManagedZonePrivateVisibilityConfigNetwork {
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
      */
     networkUrl?: string | null;
   }
@@ -444,7 +440,7 @@ export namespace dns_v1beta2 {
     deletionTime?: string | null;
     kind?: string | null;
     /**
-     * The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project}/locations/{location}/namespaces/{namespace}
+     * The fully qualified URL of the namespace associated with the zone. This should be formatted like https://servicedirectory.googleapis.com/v1/projects/{project\}/locations/{location\}/namespaces/{namespace\}
      */
     namespaceUrl?: string | null;
   }
@@ -481,7 +477,7 @@ export namespace dns_v1beta2 {
      */
     startTime?: string | null;
     /**
-     * Status of the operation. Can be one of the following: &quot;PENDING&quot; or &quot;DONE&quot; (output only). A status of &quot;DONE&quot; means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
+     * Status of the operation. Can be one of the following: "PENDING" or "DONE" (output only). A status of "DONE" means that the request to update the authoritative servers has been sent, but the servers might not be updated yet.
      */
     status?: string | null;
     /**
@@ -549,7 +545,7 @@ export namespace dns_v1beta2 {
      */
     alternativeNameServerConfig?: Schema$PolicyAlternativeNameServerConfig;
     /**
-     * A mutable string of at most 1024 characters associated with this resource for the user&#39;s convenience. Has no effect on the policy&#39;s function.
+     * A mutable string of at most 1024 characters associated with this resource for the user's convenience. Has no effect on the policy's function.
      */
     description?: string | null;
     /**
@@ -595,7 +591,7 @@ export namespace dns_v1beta2 {
   export interface Schema$PolicyNetwork {
     kind?: string | null;
     /**
-     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project}/global/networks/{network}
+     * The fully qualified URL of the VPC network to bind to. This should be formatted like https://www.googleapis.com/compute/v1/projects/{project\}/global/networks/{network\}
      */
     networkUrl?: string | null;
   }
@@ -689,6 +685,10 @@ export namespace dns_v1beta2 {
      */
     name?: string | null;
     /**
+     * Configures dynamic query responses based on geo location of querying user or a weighted round robin based routing policy. A ResourceRecordSet should only have either rrdata (static) or routing_policy(dynamic). An error is returned otherwise.
+     */
+    routingPolicy?: Schema$RRSetRoutingPolicy;
+    /**
      * As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.
      */
     rrdatas?: string[] | null;
@@ -707,9 +707,6 @@ export namespace dns_v1beta2 {
   }
   export interface Schema$ResourceRecordSetsListResponse {
     header?: Schema$ResponseHeader;
-    /**
-     * Type of resource.
-     */
     kind?: string | null;
     /**
      * The presence of this field indicates that there exist more results following your last page of results in pagination order. To fetch them, make another list request using this value as your pagination token. In this way you can retrieve the complete contents of even very large collections one page at a time. However, if the contents of the collection change between the first and last paginated list request, the set of all elements returned will be an inconsistent view of the collection. There is no way to retrieve a consistent snapshot of a collection larger than the maximum page size.
@@ -729,6 +726,53 @@ export namespace dns_v1beta2 {
      */
     operationId?: string | null;
   }
+  /**
+   * A RRSetRoutingPolicy represents ResourceRecordSet data that will be returned dynamically with the response varying based on configured properties such as geolocation or by weighted random selection.
+   */
+  export interface Schema$RRSetRoutingPolicy {
+    geoPolicy?: Schema$RRSetRoutingPolicyGeoPolicy;
+    kind?: string | null;
+    wrrPolicy?: Schema$RRSetRoutingPolicyWrrPolicy;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicy {
+    /**
+     * If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won't be healthchecked - we'll return the primarily configured rrdata irrespective of whether it is healthy or not.
+     */
+    failovers?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    /**
+     * The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.
+     */
+    items?: Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyGeoPolicyGeoPolicyItem {
+    kind?: string | null;
+    /**
+     * The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g "us-east1", "southamerica-east1", "asia-east1", etc.
+     */
+    location?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above geo_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicy {
+    items?: Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem[];
+    kind?: string | null;
+  }
+  export interface Schema$RRSetRoutingPolicyWrrPolicyWrrPolicyItem {
+    kind?: string | null;
+    rrdatas?: string[] | null;
+    /**
+     * DNSSEC generated signatures for the above wrr_rrdata.
+     */
+    signatureRrdatas?: string[] | null;
+    /**
+     * The weight corresponding to this subset of rrdata. When multiple WeightedRoundRobinPolicyItems are configured, the probability of returning an rrset is proportional to its weight relative to the sum of weights configured for all items. This weight should be a decimal in the range [0,1].
+     */
+    weight?: number | null;
+  }
 
   export class Resource$Changes {
     context: APIRequestContext;
@@ -737,9 +781,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.changes.create
-     * @desc Atomically update the ResourceRecordSet collection.
+     * Atomically update the ResourceRecordSet collection.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -768,7 +812,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.changes.create({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -806,17 +850,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.changes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Change} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Changes$Create,
@@ -889,7 +928,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Change>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
@@ -897,9 +936,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.changes.get
-     * @desc Fetch the representation of an existing Change.
+     * Fetch the representation of an existing Change.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -932,7 +971,7 @@ export namespace dns_v1beta2 {
      *     changeId: 'placeholder-value',
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -956,17 +995,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.changes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.changeId The identifier of the requested change, from a previous ResourceRecordSetsChangeResponse.
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Changes$Get,
@@ -1039,7 +1073,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Change>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Change>(parameters);
@@ -1047,9 +1081,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.changes.list
-     * @desc Enumerate Changes to a ResourceRecordSet collection.
+     * Enumerate Changes to a ResourceRecordSet collection.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -1078,7 +1112,7 @@ export namespace dns_v1beta2 {
      *
      *   // Do the magic
      *   const res = await dns.changes.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -1107,19 +1141,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.changes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported value is change sequence.
-     * @param {string=} params.sortOrder Sorting order direction: 'ascending' or 'descending'.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Changes$List,
@@ -1195,7 +1222,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ChangesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangesListResponse>(parameters);
@@ -1209,7 +1236,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1232,7 +1259,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1242,7 +1269,7 @@ export namespace dns_v1beta2 {
   }
   export interface Params$Resource$Changes$List extends StandardParameters {
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1274,9 +1301,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.dnsKeys.get
-     * @desc Fetch the representation of an existing DnsKey.
+     * Fetch the representation of an existing DnsKey.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -1311,7 +1338,7 @@ export namespace dns_v1beta2 {
      *     digestType: 'placeholder-value',
      *     // The identifier of the requested DnsKey.
      *     dnsKeyId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -1339,18 +1366,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.dnsKeys.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-     * @param {string} params.dnsKeyId The identifier of the requested DnsKey.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Dnskeys$Get,
@@ -1423,7 +1444,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$DnsKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DnsKey>(parameters);
@@ -1431,9 +1452,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.dnsKeys.list
-     * @desc Enumerate DnsKeys to a ResourceRecordSet collection.
+     * Enumerate DnsKeys to a ResourceRecordSet collection.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -1464,7 +1485,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.dnsKeys.list({
      *     // An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
      *     digestType: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -1489,18 +1510,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.dnsKeys.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.digestType An optional comma-separated list of digest types to compute and display for key signing keys. If omitted, the recommended digest type will be computed and displayed.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Dnskeys$List,
@@ -1576,7 +1591,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$DnsKeysListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DnsKeysListResponse>(parameters);
@@ -1598,7 +1613,7 @@ export namespace dns_v1beta2 {
      */
     dnsKeyId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1612,7 +1627,7 @@ export namespace dns_v1beta2 {
      */
     digestType?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -1636,9 +1651,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZoneOperations.get
-     * @desc Fetch the representation of an existing Operation.
+     * Fetch the representation of an existing Operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -1696,17 +1711,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZoneOperations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-     * @param {string} params.operation Identifies the operation addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Managedzoneoperations$Get,
@@ -1780,7 +1790,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1788,9 +1798,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZoneOperations.list
-     * @desc Enumerate Operations for the given ManagedZone.
+     * Enumerate Operations for the given ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -1846,18 +1856,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZoneOperations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.sortBy Sorting criterion. The only supported values are START_TIME and ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Managedzoneoperations$List,
@@ -1938,7 +1942,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZoneOperationsListResponse>(
@@ -1998,9 +2002,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.create
-     * @desc Create a new ManagedZone.
+     * Create a new ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2083,16 +2087,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Managedzones$Create,
@@ -2165,7 +2165,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
@@ -2173,9 +2173,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.delete
-     * @desc Delete a previously created ManagedZone.
+     * Delete a previously created ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2204,7 +2204,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.managedZones.delete({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2217,16 +2217,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Managedzones$Delete,
@@ -2298,7 +2294,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2306,9 +2302,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.get
-     * @desc Fetch the representation of an existing ManagedZone.
+     * Fetch the representation of an existing ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2339,7 +2335,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.managedZones.get({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2372,16 +2368,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Managedzones$Get,
@@ -2454,7 +2446,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ManagedZone>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZone>(parameters);
@@ -2462,9 +2454,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.list
-     * @desc Enumerate ManagedZones that have been created but not yet deleted.
+     * Enumerate ManagedZones that have been created but not yet deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2518,17 +2510,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dnsName Restricts the list to return only zones with this domain name.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Managedzones$List,
@@ -2606,7 +2593,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ManagedZonesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedZonesListResponse>(parameters);
@@ -2614,9 +2601,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.patch
-     * @desc Apply a partial update to an existing ManagedZone.
+     * Apply a partial update to an existing ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2645,7 +2632,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.managedZones.patch({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2693,17 +2680,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Managedzones$Patch,
@@ -2777,7 +2759,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2785,9 +2767,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.managedZones.update
-     * @desc Update an existing ManagedZone.
+     * Update an existing ManagedZone.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -2816,7 +2798,7 @@ export namespace dns_v1beta2 {
      *   const res = await dns.managedZones.update({
      *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
      *     clientOperationId: 'placeholder-value',
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Identifies the project addressed by this request.
      *     project: 'placeholder-value',
@@ -2864,17 +2846,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.managedZones.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().ManagedZone} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Managedzones$Update,
@@ -2948,7 +2925,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2979,7 +2956,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -2993,7 +2970,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -3027,7 +3004,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -3047,7 +3024,7 @@ export namespace dns_v1beta2 {
      */
     clientOperationId?: string;
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**
@@ -3068,9 +3045,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.create
-     * @desc Create a new Policy
+     * Create a new Policy
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3137,16 +3114,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Policies$Create,
@@ -3219,7 +3192,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3227,9 +3200,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.delete
-     * @desc Delete a previously created Policy. Will fail if the policy is still being referenced by a network.
+     * Delete a previously created Policy. Will fail if the policy is still being referenced by a network.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3271,16 +3244,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Policies$Delete,
@@ -3350,7 +3319,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3358,9 +3327,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.get
-     * @desc Fetch the representation of an existing Policy.
+     * Fetch the representation of an existing Policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3416,16 +3385,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Policies$Get,
@@ -3497,7 +3462,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3505,9 +3470,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.list
-     * @desc Enumerate all Policies associated with a project.
+     * Enumerate all Policies associated with a project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3559,16 +3524,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Policies$List,
@@ -3646,7 +3607,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$PoliciesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesListResponse>(parameters);
@@ -3654,9 +3615,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.patch
-     * @desc Apply a partial update to an existing Policy.
+     * Apply a partial update to an existing Policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3719,17 +3680,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Policies$Patch,
@@ -3806,7 +3762,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$PoliciesPatchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesPatchResponse>(parameters);
@@ -3814,9 +3770,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.policies.update
-     * @desc Update an existing Policy.
+     * Update an existing Policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -3879,17 +3835,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.policies.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.policy User given friendly name of the policy addressed by this request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {().Policy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Policies$Update,
@@ -3966,7 +3917,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$PoliciesUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PoliciesUpdateResponse>(parameters);
@@ -4077,9 +4028,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.projects.get
-     * @desc Fetch the representation of an existing Project.
+     * Fetch the representation of an existing Project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -4129,15 +4080,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.projects.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientOperationId For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Get,
@@ -4210,7 +4158,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -4236,9 +4184,9 @@ export namespace dns_v1beta2 {
     }
 
     /**
-     * dns.resourceRecordSets.list
-     * @desc Enumerate ResourceRecordSets that have been created but not yet deleted.
+     * Enumerate ResourceRecordSets that have been created but not yet deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dns.googleapis.com
@@ -4267,7 +4215,7 @@ export namespace dns_v1beta2 {
      *
      *   // Do the magic
      *   const res = await dns.resourceRecordSets.list({
-     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      *     managedZone: 'placeholder-value',
      *     // Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
      *     maxResults: 'placeholder-value',
@@ -4296,19 +4244,12 @@ export namespace dns_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias dns.resourceRecordSets.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.managedZone Identifies the managed zone addressed by this request. Can be the managed zone name or id.
-     * @param {integer=} params.maxResults Optional. Maximum number of results to be returned. If unspecified, the server will decide how many results to return.
-     * @param {string=} params.name Restricts the list to return only records with this fully qualified domain name.
-     * @param {string=} params.pageToken Optional. A tag returned by a previous list request that was truncated. Use this parameter to continue a previous list request.
-     * @param {string} params.project Identifies the project addressed by this request.
-     * @param {string=} params.type Restricts the list to return only records of this type. If present, the "name" parameter must also be present.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Resourcerecordsets$List,
@@ -4389,7 +4330,7 @@ export namespace dns_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ResourceRecordSetsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResourceRecordSetsListResponse>(
@@ -4402,7 +4343,7 @@ export namespace dns_v1beta2 {
   export interface Params$Resource$Resourcerecordsets$List
     extends StandardParameters {
     /**
-     * Identifies the managed zone addressed by this request. Can be the managed zone name or id.
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
      */
     managedZone?: string;
     /**

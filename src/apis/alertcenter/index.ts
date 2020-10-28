@@ -35,3 +35,14 @@ export function alertcenter<T = alertcenter_v1beta1.Alertcenter>(
 
 const auth = new AuthPlus();
 export {auth};
+export {alertcenter_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

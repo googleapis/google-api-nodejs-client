@@ -104,14 +104,10 @@ export namespace datastore_v1beta1 {
    * Accesses the schemaless NoSQL database to provide fully managed, robust, scalable storage for your application.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const datastore = google.datastore('v1beta1');
-   *
-   * @namespace datastore
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Datastore
+   * ```
    */
   export class Datastore {
     context: APIRequestContext;
@@ -153,7 +149,7 @@ export namespace datastore_v1beta1 {
     state?: string | null;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;] Kinds Foo and Bar in both the default and Baz namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;] The entire Baz namespace: kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=['Foo', 'Bar'], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=['Foo', 'Bar'], namespace_ids=[''] Kinds Foo and Bar in both the default and Baz namespaces: kinds=['Foo', 'Bar'], namespace_ids=['', 'Baz'] The entire Baz namespace: kinds=[], namespace_ids=['Baz']
    */
   export interface Schema$GoogleDatastoreAdminV1beta1EntityFilter {
     /**
@@ -161,7 +157,7 @@ export namespace datastore_v1beta1 {
      */
     kinds?: string[] | null;
     /**
-     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don't use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[] | null;
   }
@@ -297,7 +293,7 @@ export namespace datastore_v1beta1 {
     state?: string | null;
   }
   /**
-   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;] Kinds Foo and Bar in both the default and Baz namespaces: kinds=[&#39;Foo&#39;, &#39;Bar&#39;], namespace_ids=[&#39;&#39;, &#39;Baz&#39;] The entire Baz namespace: kinds=[], namespace_ids=[&#39;Baz&#39;]
+   * Identifies a subset of entities in a project. This is specified as combinations of kinds and namespaces (either or both of which may be all, as described in the following examples). Example usage: Entire project: kinds=[], namespace_ids=[] Kinds Foo and Bar in all namespaces: kinds=['Foo', 'Bar'], namespace_ids=[] Kinds Foo and Bar only in the default namespace: kinds=['Foo', 'Bar'], namespace_ids=[''] Kinds Foo and Bar in both the default and Baz namespaces: kinds=['Foo', 'Bar'], namespace_ids=['', 'Baz'] The entire Baz namespace: kinds=[], namespace_ids=['Baz']
    */
   export interface Schema$GoogleDatastoreAdminV1EntityFilter {
     /**
@@ -305,7 +301,7 @@ export namespace datastore_v1beta1 {
      */
     kinds?: string[] | null;
     /**
-     * An empty list represents all namespaces. This is the preferred usage for projects that don&#39;t use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn&#39;t want to include them. Each namespace in this list must be unique.
+     * An empty list represents all namespaces. This is the preferred usage for projects that don't use namespaces. An empty string element represents the default namespace. This should be used if the project has data in non-default namespaces, but doesn't want to include them. Each namespace in this list must be unique.
      */
     namespaceIds?: string[] | null;
   }
@@ -415,7 +411,7 @@ export namespace datastore_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -448,9 +444,9 @@ export namespace datastore_v1beta1 {
     }
 
     /**
-     * datastore.projects.export
-     * @desc Exports a copy of all or a subset of entities from Google Cloud Datastore to another storage system, such as Google Cloud Storage. Recent updates to entities may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
+     * Exports a copy of all or a subset of entities from Google Cloud Datastore to another storage system, such as Google Cloud Storage. Recent updates to entities may not be reflected in the export. The export occurs in the background and its progress can be monitored and managed via the Operation resource that is created. The output of an export may only be used once the associated operation is done. If an export operation is cancelled before completion it may leave partial data behind in Google Cloud Storage.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
@@ -507,15 +503,12 @@ export namespace datastore_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias datastore.projects.export
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ExportEntitiesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     export(
       params: Params$Resource$Projects$Export,
@@ -595,7 +588,7 @@ export namespace datastore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -603,9 +596,9 @@ export namespace datastore_v1beta1 {
     }
 
     /**
-     * datastore.projects.import
-     * @desc Imports entities into Google Cloud Datastore. Existing entities with the same key are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportEntities operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Datastore.
+     * Imports entities into Google Cloud Datastore. Existing entities with the same key are overwritten. The import occurs in the background and its progress can be monitored and managed via the Operation resource that is created. If an ImportEntities operation is cancelled, it is possible that a subset of the data has already been imported to Cloud Datastore.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/datastore.googleapis.com
@@ -662,15 +655,12 @@ export namespace datastore_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias datastore.projects.import
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Project ID against which to make the request.
-     * @param {().GoogleDatastoreAdminV1beta1ImportEntitiesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     import(
       params: Params$Resource$Projects$Import,
@@ -750,7 +740,7 @@ export namespace datastore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);

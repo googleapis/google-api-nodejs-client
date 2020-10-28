@@ -104,14 +104,10 @@ export namespace adexperiencereport_v1 {
    * Views Ad Experience Report data, and gets a list of sites that have a significant number of annoying ads.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const adexperiencereport = google.adexperiencereport('v1');
-   *
-   * @namespace adexperiencereport
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Adexperiencereport
+   * ```
    */
   export class Adexperiencereport {
     context: APIRequestContext;
@@ -130,11 +126,11 @@ export namespace adexperiencereport_v1 {
   }
 
   /**
-   * A site&#39;s Ad Experience Report summary on a single platform.
+   * A site's Ad Experience Report summary on a single platform.
    */
   export interface Schema$PlatformSummary {
     /**
-     * The site&#39;s Ad Experience Report status on this platform.
+     * The site's Ad Experience Report status on this platform.
      */
     betterAdsStatus?: string | null;
     /**
@@ -142,15 +138,15 @@ export namespace adexperiencereport_v1 {
      */
     enforcementTime?: string | null;
     /**
-     * The site&#39;s [enforcement status](https://support.google.com/webtools/answer/7308033) on this platform.
+     * The site's [enforcement status](https://support.google.com/webtools/answer/7308033) on this platform.
      */
     filterStatus?: string | null;
     /**
-     * The time at which the site&#39;s status last changed on this platform.
+     * The time at which the site's status last changed on this platform.
      */
     lastChangeTime?: string | null;
     /**
-     * The site&#39;s regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions.
+     * The site's regions on this platform. No longer populated, because there is no longer any semantic difference between sites in different regions.
      */
     region?: string[] | null;
     /**
@@ -167,11 +163,11 @@ export namespace adexperiencereport_v1 {
    */
   export interface Schema$SiteSummaryResponse {
     /**
-     * The site&#39;s Ad Experience Report summary on desktop.
+     * The site's Ad Experience Report summary on desktop.
      */
     desktopSummary?: Schema$PlatformSummary;
     /**
-     * The site&#39;s Ad Experience Report summary on mobile.
+     * The site's Ad Experience Report summary on mobile.
      */
     mobileSummary?: Schema$PlatformSummary;
     /**
@@ -196,9 +192,9 @@ export namespace adexperiencereport_v1 {
     }
 
     /**
-     * adexperiencereport.sites.get
-     * @desc Gets a site's Ad Experience Report summary.
+     * Gets a site's Ad Experience Report summary.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexperiencereport.googleapis.com
@@ -222,7 +218,7 @@ export namespace adexperiencereport_v1 {
      *
      *   // Do the magic
      *   const res = await adexperiencereport.sites.get({
-     *     // Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
+     *     // Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site\}`
      *     name: 'sites/my-site',
      *   });
      *   console.log(res.data);
@@ -240,14 +236,12 @@ export namespace adexperiencereport_v1 {
      *   throw e;
      * });
      *
-     * @alias adexperiencereport.sites.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sites$Get,
@@ -321,7 +315,7 @@ export namespace adexperiencereport_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteSummaryResponse>(parameters);
@@ -331,7 +325,7 @@ export namespace adexperiencereport_v1 {
 
   export interface Params$Resource$Sites$Get extends StandardParameters {
     /**
-     * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site}`
+     * Required. The name of the site whose summary to get, e.g. `sites/http%3A%2F%2Fwww.google.com%2F`. Format: `sites/{site\}`
      */
     name?: string;
   }
@@ -343,9 +337,9 @@ export namespace adexperiencereport_v1 {
     }
 
     /**
-     * adexperiencereport.violatingSites.list
-     * @desc Lists sites that are failing in the Ad Experience Report on at least one platform.
+     * Lists sites that are failing in the Ad Experience Report on at least one platform.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adexperiencereport.googleapis.com
@@ -382,13 +376,12 @@ export namespace adexperiencereport_v1 {
      *   throw e;
      * });
      *
-     * @alias adexperiencereport.violatingSites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Violatingsites$List,
@@ -465,7 +458,7 @@ export namespace adexperiencereport_v1 {
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);

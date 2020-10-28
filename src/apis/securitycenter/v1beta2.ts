@@ -104,14 +104,10 @@ export namespace securitycenter_v1beta2 {
    * Security Command Center API provides access to temporal views of assets and findings within an organization.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const securitycenter = google.securitycenter('v1beta2');
-   *
-   * @namespace securitycenter
-   * @type {Function}
-   * @version v1beta2
-   * @variation v1beta2
-   * @param {object=} options Options for Securitycenter
+   * ```
    */
   export class Securitycenter {
     context: APIRequestContext;
@@ -149,11 +145,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$ContainerThreatDetectionSettings {
     /**
-     * The configurations including the state of enablement for the service&#39;s different modules. The absence of a module in the map implies its configuration is inherited from its parent&#39;s.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string | null;
     /**
@@ -191,11 +187,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$EventThreatDetectionSettings {
     /**
-     * The configurations including the state of enablement for the service&#39;s different modules. The absence of a module in the map implies its configuration is inherited from its parent&#39;s.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string | null;
     /**
@@ -212,7 +208,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$Finding {
     /**
-     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
     /**
@@ -228,11 +224,11 @@ export namespace securitycenter_v1beta2 {
      */
     externalUri?: string | null;
     /**
-     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
     /**
-     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
     /**
@@ -266,11 +262,11 @@ export namespace securitycenter_v1beta2 {
     state?: string | null;
   }
   /**
-   * Cloud SCC&#39;s Notification
+   * Cloud SCC's Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV1NotificationMessage {
     /**
-     * If it&#39;s a Finding based notification config, this field will be populated.
+     * If it's a Finding based notification config, this field will be populated.
      */
     finding?: Schema$Finding;
     /**
@@ -278,7 +274,7 @@ export namespace securitycenter_v1beta2 {
      */
     notificationConfigName?: string | null;
     /**
-     * The Cloud resource tied to this notification&#39;s Finding.
+     * The Cloud resource tied to this notification's Finding.
      */
     resource?: Schema$GoogleCloudSecuritycenterV1Resource;
   }
@@ -287,7 +283,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Finding {
     /**
-     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: &quot;XSS_FLASH_INJECTION&quot;
+     * The additional taxonomy group within findings from a given source. This field is immutable after creation time. Example: "XSS_FLASH_INJECTION"
      */
     category?: string | null;
     /**
@@ -303,11 +299,11 @@ export namespace securitycenter_v1beta2 {
      */
     externalUri?: string | null;
     /**
-     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}&quot;
+     * The relative resource name of this finding. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Example: "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}"
      */
     name?: string | null;
     /**
-     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: &quot;organizations/{organization_id}/sources/{source_id}&quot;
+     * The relative resource name of the source the finding belongs to. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name This field is immutable after creation time. For example: "organizations/{organization_id\}/sources/{source_id\}"
      */
     parent?: string | null;
     /**
@@ -332,11 +328,11 @@ export namespace securitycenter_v1beta2 {
     state?: string | null;
   }
   /**
-   * Security Command Center&#39;s Notification
+   * Security Command Center's Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
     /**
-     * If it&#39;s a Finding based notification config, this field will be populated.
+     * If it's a Finding based notification config, this field will be populated.
      */
     finding?: Schema$GoogleCloudSecuritycenterV1p1beta1Finding;
     /**
@@ -357,11 +353,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * The full resource name of resource&#39;s parent.
+     * The full resource name of resource's parent.
      */
     parent?: string | null;
     /**
-     * The human readable name of resource&#39;s parent.
+     * The human readable name of resource's parent.
      */
     parentDisplayName?: string | null;
     /**
@@ -395,7 +391,7 @@ export namespace securitycenter_v1beta2 {
      */
     marks?: {[key: string]: string} | null;
     /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
   }
@@ -408,11 +404,11 @@ export namespace securitycenter_v1beta2 {
      */
     name?: string | null;
     /**
-     * The full resource name of resource&#39;s parent.
+     * The full resource name of resource's parent.
      */
     parent?: string | null;
     /**
-     * The human readable name of resource&#39;s parent.
+     * The human readable name of resource's parent.
      */
     parentDisplayName?: string | null;
     /**
@@ -442,11 +438,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityCenterSettings {
     /**
-     * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services.
+     * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id\}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services.
      */
     logSinkProject?: string | null;
     /**
-     * The resource name of the SecurityCenterSettings. Format: organizations/{organization}/securityCenterSettings
+     * The resource name of the SecurityCenterSettings. Format: organizations/{organization\}/securityCenterSettings
      */
     name?: string | null;
     /**
@@ -459,11 +455,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityHealthAnalyticsSettings {
     /**
-     * The configurations including the state of enablement for the service&#39;s different modules. The absence of a module in the map implies its configuration is inherited from its parent&#39;s.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string | null;
     /**
@@ -488,12 +484,12 @@ export namespace securitycenter_v1beta2 {
      */
     marks?: {[key: string]: string} | null;
     /**
-     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: &quot;organizations/{organization_id}/assets/{asset_id}/securityMarks&quot; &quot;organizations/{organization_id}/sources/{source_id}/findings/{finding_id}/securityMarks&quot;.
+     * The relative resource name of the SecurityMarks. See: https://cloud.google.com/apis/design/resource_names#relative_resource_name Examples: "organizations/{organization_id\}/assets/{asset_id\}/securityMarks" "organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}/securityMarks".
      */
     name?: string | null;
   }
   /**
-   * Resource capturing the state of an organization&#39;s subscription.
+   * Resource capturing the state of an organization's subscription.
    */
   export interface Schema$Subscription {
     /**
@@ -501,7 +497,7 @@ export namespace securitycenter_v1beta2 {
      */
     details?: Schema$Details;
     /**
-     * The resource name of the subscription. Format: organizations/{organization}/subscription
+     * The resource name of the subscription. Format: organizations/{organization\}/subscription
      */
     name?: string | null;
     /**
@@ -514,11 +510,11 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$WebSecurityScannerSettings {
     /**
-     * The configurations including the state of enablement for the service&#39;s different modules. The absence of a module in the map implies its configuration is inherited from its parent&#39;s.
+     * The configurations including the state of enablement for the service's different modules. The absence of a module in the map implies its configuration is inherited from its parent's.
      */
     modules?: {[key: string]: Schema$Config} | null;
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string | null;
     /**
@@ -554,9 +550,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.getContainerThreatDetectionSettings
-     * @desc Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -580,7 +576,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.getContainerThreatDetectionSettings({
-     *     // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *     // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *     name: 'folders/my-folder/containerThreatDetectionSettings',
      *   });
      *   console.log(res.data);
@@ -600,14 +596,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.getContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Getcontainerthreatdetectionsettings,
@@ -686,7 +680,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -696,9 +690,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.getEventThreatDetectionSettings
-     * @desc Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -722,7 +716,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.getEventThreatDetectionSettings({
-     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *     name: 'folders/my-folder/eventThreatDetectionSettings',
      *   });
      *   console.log(res.data);
@@ -741,14 +735,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.getEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getEventThreatDetectionSettings(
       params: Params$Resource$Folders$Geteventthreatdetectionsettings,
@@ -827,7 +819,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -837,9 +829,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.getSecurityHealthAnalyticsSettings
-     * @desc Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -863,7 +855,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.getSecurityHealthAnalyticsSettings({
-     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *     name: 'folders/my-folder/securityHealthAnalyticsSettings',
      *   });
      *   console.log(res.data);
@@ -883,14 +875,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.getSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Getsecurityhealthanalyticssettings,
@@ -969,7 +959,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -979,9 +969,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.getWebSecurityScannerSettings
-     * @desc Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1005,7 +995,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *     name: 'folders/my-folder/webSecurityScannerSettings',
      *   });
      *   console.log(res.data);
@@ -1024,14 +1014,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.getWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getWebSecurityScannerSettings(
       params: Params$Resource$Folders$Getwebsecurityscannersettings,
@@ -1110,7 +1098,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -1118,9 +1106,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.updateContainerThreatDetectionSettings
-     * @desc Update the ContainerThreatDetectionSettings resource.
+     * Update the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1145,7 +1133,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.updateContainerThreatDetectionSettings(
      *     {
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'folders/my-folder/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -1180,16 +1168,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.updateContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().ContainerThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Folders$Updatecontainerthreatdetectionsettings,
@@ -1268,7 +1252,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -1278,9 +1262,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.updateEventThreatDetectionSettings
-     * @desc Update the EventThreatDetectionSettings resource.
+     * Update the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1304,7 +1288,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.updateEventThreatDetectionSettings({
-     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *     name: 'folders/my-folder/eventThreatDetectionSettings',
      *     // The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -1336,16 +1320,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.updateEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().EventThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateEventThreatDetectionSettings(
       params: Params$Resource$Folders$Updateeventthreatdetectionsettings,
@@ -1424,7 +1404,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -1434,9 +1414,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.updateSecurityHealthAnalyticsSettings
-     * @desc Update the SecurityHealthAnalyticsSettings resource.
+     * Update the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1461,7 +1441,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.updateSecurityHealthAnalyticsSettings(
      *     {
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -1496,16 +1476,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.updateSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().SecurityHealthAnalyticsSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Folders$Updatesecurityhealthanalyticssettings,
@@ -1584,7 +1560,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -1594,9 +1570,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.updateWebSecurityScannerSettings
-     * @desc Update the WebSecurityScannerSettings resource.
+     * Update the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1620,7 +1596,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.folders.updateWebSecurityScannerSettings({
-     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *     name: 'folders/my-folder/webSecurityScannerSettings',
      *     // The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -1652,16 +1628,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.updateWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().WebSecurityScannerSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateWebSecurityScannerSettings(
       params: Params$Resource$Folders$Updatewebsecurityscannersettings,
@@ -1740,7 +1712,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -1751,35 +1723,35 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Getcontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Geteventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Getsecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -1795,7 +1767,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -1811,7 +1783,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -1827,7 +1799,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -1848,9 +1820,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.containerThreatDetectionSettings.calculate
-     * @desc Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -1875,7 +1847,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.containerThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'folders/my-folder/containerThreatDetectionSettings',
      *     }
      *   );
@@ -1896,14 +1868,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.containerThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Folders$Containerthreatdetectionsettings$Calculate,
@@ -1985,7 +1955,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -1998,7 +1968,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Containerthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
@@ -2010,9 +1980,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.eventThreatDetectionSettings.calculate
-     * @desc Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2037,7 +2007,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.eventThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'folders/my-folder/eventThreatDetectionSettings',
      *     }
      *   );
@@ -2057,14 +2027,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.eventThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Folders$Eventthreatdetectionsettings$Calculate,
@@ -2146,7 +2114,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -2159,7 +2127,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Eventthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
@@ -2171,9 +2139,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.securityHealthAnalyticsSettings.calculate
-     * @desc Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2198,7 +2166,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.securityHealthAnalyticsSettings.calculate(
      *     {
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'folders/my-folder/securityHealthAnalyticsSettings',
      *     }
      *   );
@@ -2219,14 +2187,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.securityHealthAnalyticsSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Folders$Securityhealthanalyticssettings$Calculate,
@@ -2308,7 +2274,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -2321,7 +2287,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Securityhealthanalyticssettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
@@ -2333,9 +2299,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.folders.webSecurityScannerSettings.calculate
-     * @desc Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2360,7 +2326,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.folders.webSecurityScannerSettings.calculate(
      *     {
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'folders/my-folder/webSecurityScannerSettings',
      *     }
      *   );
@@ -2380,14 +2346,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.folders.webSecurityScannerSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Folders$Websecurityscannersettings$Calculate,
@@ -2469,7 +2433,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -2480,7 +2444,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Folders$Websecurityscannersettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
@@ -2508,9 +2472,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getContainerThreatDetectionSettings
-     * @desc Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2535,7 +2499,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.getContainerThreatDetectionSettings(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'organizations/my-organization/containerThreatDetectionSettings',
      *     }
      *   );
@@ -2556,14 +2520,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Getcontainerthreatdetectionsettings,
@@ -2642,7 +2604,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -2652,9 +2614,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getEventThreatDetectionSettings
-     * @desc Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2679,7 +2641,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.getEventThreatDetectionSettings(
      *     {
-     *       // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *       // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
      *     }
      *   );
@@ -2699,14 +2661,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Geteventthreatdetectionsettings,
@@ -2785,7 +2745,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -2795,9 +2755,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getSecurityCenterSettings
-     * @desc Get the SecurityCenterSettings resource.
+     * Get the SecurityCenterSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2821,7 +2781,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getSecurityCenterSettings({
-     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization}/securityCenterSettings
+     *     // Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings
      *     name: 'organizations/my-organization/securityCenterSettings',
      *   });
      *   console.log(res.data);
@@ -2839,14 +2799,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getSecurityCenterSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization}/securityCenterSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSecurityCenterSettings(
       params: Params$Resource$Organizations$Getsecuritycentersettings,
@@ -2925,7 +2883,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityCenterSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityCenterSettings>(parameters);
@@ -2933,9 +2891,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getSecurityHealthAnalyticsSettings
-     * @desc Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -2960,7 +2918,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.getSecurityHealthAnalyticsSettings(
      *     {
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
      *     }
      *   );
@@ -2981,14 +2939,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Getsecurityhealthanalyticssettings,
@@ -3067,7 +3023,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -3077,9 +3033,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getSubscription
-     * @desc Get the Subscription resource.
+     * Get the Subscription resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3103,7 +3059,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getSubscription({
-     *     // Required. The name of the subscription to retrieve. Format: organizations/{organization}/subscription
+     *     // Required. The name of the subscription to retrieve. Format: organizations/{organization\}/subscription
      *     name: 'organizations/my-organization/subscription',
      *   });
      *   console.log(res.data);
@@ -3121,14 +3077,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getSubscription
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the subscription to retrieve. Format: organizations/{organization}/subscription
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSubscription(
       params: Params$Resource$Organizations$Getsubscription,
@@ -3200,7 +3154,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -3208,9 +3162,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.getWebSecurityScannerSettings
-     * @desc Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3234,7 +3188,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.organizations.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *     name: 'organizations/my-organization/webSecurityScannerSettings',
      *   });
      *   console.log(res.data);
@@ -3253,14 +3207,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.getWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Getwebsecurityscannersettings,
@@ -3339,7 +3291,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -3347,9 +3299,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.updateContainerThreatDetectionSettings
-     * @desc Update the ContainerThreatDetectionSettings resource.
+     * Update the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3374,7 +3326,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateContainerThreatDetectionSettings(
      *     {
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'organizations/my-organization/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -3409,16 +3361,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.updateContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().ContainerThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Organizations$Updatecontainerthreatdetectionsettings,
@@ -3497,7 +3445,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -3507,9 +3455,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.updateEventThreatDetectionSettings
-     * @desc Update the EventThreatDetectionSettings resource.
+     * Update the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3534,7 +3482,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateEventThreatDetectionSettings(
      *     {
-     *       // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *       // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -3567,16 +3515,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.updateEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().EventThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateEventThreatDetectionSettings(
       params: Params$Resource$Organizations$Updateeventthreatdetectionsettings,
@@ -3655,7 +3599,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -3665,9 +3609,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.updateSecurityHealthAnalyticsSettings
-     * @desc Update the SecurityHealthAnalyticsSettings resource.
+     * Update the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3692,7 +3636,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateSecurityHealthAnalyticsSettings(
      *     {
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -3727,16 +3671,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.updateSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().SecurityHealthAnalyticsSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Organizations$Updatesecurityhealthanalyticssettings,
@@ -3815,7 +3755,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -3825,9 +3765,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.updateWebSecurityScannerSettings
-     * @desc Update the WebSecurityScannerSettings resource.
+     * Update the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -3852,7 +3792,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.updateWebSecurityScannerSettings(
      *     {
-     *       // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *       // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'organizations/my-organization/webSecurityScannerSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -3885,16 +3825,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.updateWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().WebSecurityScannerSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateWebSecurityScannerSettings(
       params: Params$Resource$Organizations$Updatewebsecurityscannersettings,
@@ -3973,7 +3909,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -3984,49 +3920,49 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Getcontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Geteventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Getsecuritycentersettings
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization}/securityCenterSettings
+     * Required. The name of the SecurityCenterSettings to retrieve. Format: organizations/{organization\}/securityCenterSettings
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Getsecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Getsubscription
     extends StandardParameters {
     /**
-     * Required. The name of the subscription to retrieve. Format: organizations/{organization}/subscription
+     * Required. The name of the subscription to retrieve. Format: organizations/{organization\}/subscription
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -4042,7 +3978,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -4058,7 +3994,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -4074,7 +4010,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -4095,9 +4031,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.containerThreatDetectionSettings.calculate
-     * @desc Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4122,7 +4058,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.containerThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'organizations/my-organization/containerThreatDetectionSettings',
      *     }
      *   );
@@ -4143,14 +4079,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.containerThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate,
@@ -4232,7 +4166,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -4245,7 +4179,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Containerthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
@@ -4257,9 +4191,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.eventThreatDetectionSettings.calculate
-     * @desc Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4284,7 +4218,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.eventThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'organizations/my-organization/eventThreatDetectionSettings',
      *     }
      *   );
@@ -4304,14 +4238,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.eventThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate,
@@ -4393,7 +4325,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -4406,7 +4338,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Eventthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
@@ -4418,9 +4350,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.securityHealthAnalyticsSettings.calculate
-     * @desc Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4445,7 +4377,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.securityHealthAnalyticsSettings.calculate(
      *     {
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'organizations/my-organization/securityHealthAnalyticsSettings',
      *     }
      *   );
@@ -4466,14 +4398,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.securityHealthAnalyticsSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate,
@@ -4555,7 +4485,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -4568,7 +4498,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Securityhealthanalyticssettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
@@ -4580,9 +4510,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.organizations.webSecurityScannerSettings.calculate
-     * @desc Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4607,7 +4537,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.organizations.webSecurityScannerSettings.calculate(
      *     {
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'organizations/my-organization/webSecurityScannerSettings',
      *     }
      *   );
@@ -4627,14 +4557,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.organizations.webSecurityScannerSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Organizations$Websecurityscannersettings$Calculate,
@@ -4716,7 +4644,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -4727,7 +4655,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Organizations$Websecurityscannersettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
@@ -4757,9 +4685,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.getContainerThreatDetectionSettings
-     * @desc Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4784,7 +4712,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.getContainerThreatDetectionSettings(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'projects/my-project/containerThreatDetectionSettings',
      *     }
      *   );
@@ -4805,14 +4733,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.getContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Getcontainerthreatdetectionsettings,
@@ -4891,7 +4817,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -4901,9 +4827,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.getEventThreatDetectionSettings
-     * @desc Get the EventThreatDetectionSettings resource.
+     * Get the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -4927,7 +4853,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.getEventThreatDetectionSettings({
-     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *     // Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *     name: 'projects/my-project/eventThreatDetectionSettings',
      *   });
      *   console.log(res.data);
@@ -4946,14 +4872,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.getEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getEventThreatDetectionSettings(
       params: Params$Resource$Projects$Geteventthreatdetectionsettings,
@@ -5032,7 +4956,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -5042,9 +4966,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.getSecurityHealthAnalyticsSettings
-     * @desc Get the SecurityHealthAnalyticsSettings resource.
+     * Get the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5068,7 +4992,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.getSecurityHealthAnalyticsSettings({
-     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *     // Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *     name: 'projects/my-project/securityHealthAnalyticsSettings',
      *   });
      *   console.log(res.data);
@@ -5088,14 +5012,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.getSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Getsecurityhealthanalyticssettings,
@@ -5174,7 +5096,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -5184,9 +5106,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.getWebSecurityScannerSettings
-     * @desc Get the WebSecurityScannerSettings resource.
+     * Get the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5210,7 +5132,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.getWebSecurityScannerSettings({
-     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *     // Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *     name: 'projects/my-project/webSecurityScannerSettings',
      *   });
      *   console.log(res.data);
@@ -5229,14 +5151,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.getWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getWebSecurityScannerSettings(
       params: Params$Resource$Projects$Getwebsecurityscannersettings,
@@ -5315,7 +5235,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -5323,9 +5243,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.updateContainerThreatDetectionSettings
-     * @desc Update the ContainerThreatDetectionSettings resource.
+     * Update the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5350,7 +5270,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.updateContainerThreatDetectionSettings(
      *     {
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'projects/my-project/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -5385,16 +5305,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.updateContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().ContainerThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Updatecontainerthreatdetectionsettings,
@@ -5473,7 +5389,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -5483,9 +5399,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.updateEventThreatDetectionSettings
-     * @desc Update the EventThreatDetectionSettings resource.
+     * Update the EventThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5509,7 +5425,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.updateEventThreatDetectionSettings({
-     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *     // The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *     name: 'projects/my-project/eventThreatDetectionSettings',
      *     // The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5541,16 +5457,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.updateEventThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().EventThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateEventThreatDetectionSettings(
       params: Params$Resource$Projects$Updateeventthreatdetectionsettings,
@@ -5629,7 +5541,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -5639,9 +5551,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.updateSecurityHealthAnalyticsSettings
-     * @desc Update the SecurityHealthAnalyticsSettings resource.
+     * Update the SecurityHealthAnalyticsSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5666,7 +5578,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.updateSecurityHealthAnalyticsSettings(
      *     {
-     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'projects/my-project/securityHealthAnalyticsSettings',
      *       // The list of fields to be updated.
      *       updateMask: 'placeholder-value',
@@ -5701,16 +5613,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.updateSecurityHealthAnalyticsSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().SecurityHealthAnalyticsSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateSecurityHealthAnalyticsSettings(
       params: Params$Resource$Projects$Updatesecurityhealthanalyticssettings,
@@ -5789,7 +5697,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -5799,9 +5707,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.updateWebSecurityScannerSettings
-     * @desc Update the WebSecurityScannerSettings resource.
+     * Update the WebSecurityScannerSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -5825,7 +5733,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Do the magic
      *   const res = await securitycenter.projects.updateWebSecurityScannerSettings({
-     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *     // The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *     name: 'projects/my-project/webSecurityScannerSettings',
      *     // The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -5857,16 +5765,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.updateWebSecurityScannerSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().WebSecurityScannerSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateWebSecurityScannerSettings(
       params: Params$Resource$Projects$Updatewebsecurityscannersettings,
@@ -5945,7 +5849,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -5956,35 +5860,35 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Getcontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Geteventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getsecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to retrieve. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Getwebsecurityscannersettings
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to retrieve. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -6000,7 +5904,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updateeventthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * The resource name of the EventThreatDetectionSettings. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
     /**
@@ -6016,7 +5920,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatesecurityhealthanalyticssettings
     extends StandardParameters {
     /**
-     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * The resource name of the SecurityHealthAnalyticsSettings. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
     /**
@@ -6032,7 +5936,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Updatewebsecurityscannersettings
     extends StandardParameters {
     /**
-     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * The resource name of the WebSecurityScannerSettings. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
     /**
@@ -6053,9 +5957,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.containerThreatDetectionSettings.calculate
-     * @desc Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6080,7 +5984,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.containerThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name: 'projects/my-project/containerThreatDetectionSettings',
      *     }
      *   );
@@ -6101,14 +6005,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.containerThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Projects$Containerthreatdetectionsettings$Calculate,
@@ -6190,7 +6092,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6203,7 +6105,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Containerthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
@@ -6215,9 +6117,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.eventThreatDetectionSettings.calculate
-     * @desc Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective EventThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6242,7 +6144,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.eventThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     *       // Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      *       name: 'projects/my-project/eventThreatDetectionSettings',
      *     }
      *   );
@@ -6262,14 +6164,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.eventThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Projects$Eventthreatdetectionsettings$Calculate,
@@ -6351,7 +6251,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$EventThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventThreatDetectionSettings>(
@@ -6364,7 +6264,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Eventthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization}/eventThreatDetectionSettings * folders/{folder}/eventThreatDetectionSettings * projects/{project}/eventThreatDetectionSettings
+     * Required. The name of the EventThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/eventThreatDetectionSettings * folders/{folder\}/eventThreatDetectionSettings * projects/{project\}/eventThreatDetectionSettings
      */
     name?: string;
   }
@@ -6389,9 +6289,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings
-     * @desc Get the ContainerThreatDetectionSettings resource.
+     * Get the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6416,7 +6316,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name:
      *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
      *     }
@@ -6438,14 +6338,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.locations.clusters.getContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings,
@@ -6524,7 +6422,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6534,9 +6432,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings
-     * @desc Update the ContainerThreatDetectionSettings resource.
+     * Update the ContainerThreatDetectionSettings resource.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6561,7 +6459,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings(
      *     {
-     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name:
      *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
      *       // The list of fields to be updated.
@@ -6597,16 +6495,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.locations.clusters.updateContainerThreatDetectionSettings
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {string=} params.updateMask The list of fields to be updated.
-     * @param {().ContainerThreatDetectionSettings} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     updateContainerThreatDetectionSettings(
       params: Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings,
@@ -6685,7 +6579,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6698,14 +6592,14 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Locations$Clusters$Getcontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to retrieve. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Clusters$Updatecontainerthreatdetectionsettings
     extends StandardParameters {
     /**
-     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * The resource name of the ContainerThreatDetectionSettings. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
     /**
@@ -6726,9 +6620,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate
-     * @desc Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective ContainerThreatDetectionSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6753,7 +6647,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate(
      *     {
-     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     *       // Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      *       name:
      *         'projects/my-project/locations/my-location/clusters/my-cluster/containerThreatDetectionSettings',
      *     }
@@ -6775,14 +6669,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.locations.clusters.containerThreatDetectionSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate,
@@ -6864,7 +6756,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ContainerThreatDetectionSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContainerThreatDetectionSettings>(
@@ -6877,7 +6769,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Locations$Clusters$Containerthreatdetectionsettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization}/containerThreatDetectionSettings * folders/{folder}/containerThreatDetectionSettings * projects/{project}/containerThreatDetectionSettings * projects/{project}/locations/{location}/clusters/{cluster}/containerThreatDetectionSettings
+     * Required. The name of the ContainerThreatDetectionSettings to calculate. Formats: * organizations/{organization\}/containerThreatDetectionSettings * folders/{folder\}/containerThreatDetectionSettings * projects/{project\}/containerThreatDetectionSettings * projects/{project\}/locations/{location\}/clusters/{cluster\}/containerThreatDetectionSettings
      */
     name?: string;
   }
@@ -6889,9 +6781,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.securityHealthAnalyticsSettings.calculate
-     * @desc Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective SecurityHealthAnalyticsSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -6916,7 +6808,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.securityHealthAnalyticsSettings.calculate(
      *     {
-     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     *       // Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      *       name: 'projects/my-project/securityHealthAnalyticsSettings',
      *     }
      *   );
@@ -6937,14 +6829,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.securityHealthAnalyticsSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Projects$Securityhealthanalyticssettings$Calculate,
@@ -7026,7 +6916,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecurityHealthAnalyticsSettings>(
@@ -7039,7 +6929,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Securityhealthanalyticssettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization}/securityHealthAnalyticsSettings * folders/{folder}/securityHealthAnalyticsSettings * projects/{project}/securityHealthAnalyticsSettings
+     * Required. The name of the SecurityHealthAnalyticsSettings to calculate. Formats: * organizations/{organization\}/securityHealthAnalyticsSettings * folders/{folder\}/securityHealthAnalyticsSettings * projects/{project\}/securityHealthAnalyticsSettings
      */
     name?: string;
   }
@@ -7051,9 +6941,9 @@ export namespace securitycenter_v1beta2 {
     }
 
     /**
-     * securitycenter.projects.webSecurityScannerSettings.calculate
-     * @desc Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
+     * Calculates the effective WebSecurityScannerSettings based on its level in the resource hierarchy and its settings.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/securitycenter.googleapis.com
@@ -7078,7 +6968,7 @@ export namespace securitycenter_v1beta2 {
      *   // Do the magic
      *   const res = await securitycenter.projects.webSecurityScannerSettings.calculate(
      *     {
-     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     *       // Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      *       name: 'projects/my-project/webSecurityScannerSettings',
      *     }
      *   );
@@ -7098,14 +6988,12 @@ export namespace securitycenter_v1beta2 {
      *   throw e;
      * });
      *
-     * @alias securitycenter.projects.webSecurityScannerSettings.calculate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     calculate(
       params: Params$Resource$Projects$Websecurityscannersettings$Calculate,
@@ -7187,7 +7075,7 @@ export namespace securitycenter_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$WebSecurityScannerSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebSecurityScannerSettings>(parameters);
@@ -7198,7 +7086,7 @@ export namespace securitycenter_v1beta2 {
   export interface Params$Resource$Projects$Websecurityscannersettings$Calculate
     extends StandardParameters {
     /**
-     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization}/webSecurityScannerSettings * folders/{folder}/webSecurityScannerSettings * projects/{project}/webSecurityScannerSettings
+     * Required. The name of the WebSecurityScannerSettings to calculate. Formats: * organizations/{organization\}/webSecurityScannerSettings * folders/{folder\}/webSecurityScannerSettings * projects/{project\}/webSecurityScannerSettings
      */
     name?: string;
   }

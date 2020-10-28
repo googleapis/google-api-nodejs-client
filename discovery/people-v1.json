@@ -437,7 +437,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -514,7 +514,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -569,7 +569,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.PROFILE and ReadSourceType.CONTACT if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_PROFILE and READ_SOURCE_TYPE_CONTACT if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -631,7 +631,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -831,7 +831,7 @@
               "type": "string"
             },
             "sources": {
-              "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+              "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
               "enum": [
                 "READ_SOURCE_TYPE_UNSPECIFIED",
                 "READ_SOURCE_TYPE_PROFILE",
@@ -960,7 +960,7 @@
                   "type": "string"
                 },
                 "sources": {
-                  "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+                  "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
                   "enum": [
                     "READ_SOURCE_TYPE_UNSPECIFIED",
                     "READ_SOURCE_TYPE_PROFILE",
@@ -997,7 +997,7 @@
       }
     }
   },
-  "revision": "20201004",
+  "revision": "20201026",
   "rootUrl": "https://people.googleapis.com/",
   "schemas": {
     "Address": {
@@ -1329,7 +1329,7 @@
           "type": "string"
         },
         "sources": {
-          "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+          "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -1381,21 +1381,21 @@
       "type": "object"
     },
     "Date": {
-      "description": "Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
       "id": "Date",
       "properties": {
         "day": {
-          "description": "Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.",
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
           "format": "int32",
           "type": "integer"
         },
         "month": {
-          "description": "Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.",
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
           "format": "int32",
           "type": "integer"
         },
         "year": {
-          "description": "Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.",
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
         }
@@ -2391,7 +2391,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Google+ Page.](http://www.google.com/+/brands/)"
+            "[Currents Page.](https://gsuite.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2500,7 +2500,7 @@
           "enumDescriptions": [
             "Unspecified.",
             "Person.",
-            "[Google+ Page.](http://www.google.com/+/brands/)"
+            "[Currents Page.](https://gsuite.google.com/products/currents/)"
           ],
           "readOnly": true,
           "type": "string"
@@ -2517,7 +2517,7 @@
             "enumDescriptions": [
               "The user type is not known.",
               "The user is a Google user.",
-              "The user is a Google+ user.",
+              "The user is a Currents user.",
               "The user is a G Suite user."
             ],
             "type": "string"
@@ -2789,7 +2789,7 @@
           "type": "string"
         },
         "sources": {
-          "description": "Optional. A mask of what source types to return. Defaults to ReadSourceType.CONTACT and ReadSourceType.PROFILE if not set.",
+          "description": "Optional. A mask of what source types to return. Defaults to READ_SOURCE_TYPE_CONTACT and READ_SOURCE_TYPE_PROFILE if not set.",
           "items": {
             "enum": [
               "READ_SOURCE_TYPE_UNSPECIFIED",
@@ -2835,7 +2835,7 @@
           "description": "Metadata about the URL."
         },
         "type": {
-          "description": "The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Google+ application. * `other`",
+          "description": "The type of the URL. The type can be custom or one of these predefined values: * `home` * `work` * `blog` * `profile` * `homePage` * `ftp` * `reservations` * `appInstallPage`: website for a Currents application. * `other`",
           "type": "string"
         },
         "value": {

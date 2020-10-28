@@ -45,3 +45,16 @@ export function run<T = run_v1.Run | run_v1alpha1.Run | run_v1beta1.Run>(
 
 const auth = new AuthPlus();
 export {auth};
+export {run_v1};
+export {run_v1alpha1};
+export {run_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

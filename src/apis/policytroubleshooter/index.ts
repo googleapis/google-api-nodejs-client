@@ -51,3 +51,15 @@ export function policytroubleshooter<
 
 const auth = new AuthPlus();
 export {auth};
+export {policytroubleshooter_v1};
+export {policytroubleshooter_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

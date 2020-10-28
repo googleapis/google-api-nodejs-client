@@ -47,3 +47,15 @@ export function cloudscheduler<
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudscheduler_v1};
+export {cloudscheduler_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

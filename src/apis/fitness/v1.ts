@@ -104,14 +104,10 @@ export namespace fitness_v1 {
    * The Fitness API for managing users&#39; fitness tracking data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const fitness = google.fitness('v1');
-   *
-   * @namespace fitness
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Fitness
+   * ```
    */
   export class Fitness {
     context: APIRequestContext;
@@ -291,7 +287,7 @@ export namespace fitness_v1 {
      */
     startTimeNanos?: string | null;
     /**
-     * Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source. Only one of integer and floating point fields will be populated, depending on the format enum value within data source&#39;s type field.
+     * Values of each data type field for the data point. It is expected that each value corresponding to a data type field will occur in the same order that the field is listed with in the data type specified in a data source. Only one of integer and floating point fields will be populated, depending on the format enum value within data source's type field.
      */
     value?: Schema$Value[];
   }
@@ -333,7 +329,7 @@ export namespace fitness_v1 {
      */
     dataQualityStandard?: string[] | null;
     /**
-     * A unique identifier for the data stream produced by this data source. The identifier includes: - The physical device&#39;s manufacturer, model, and serial number (UID). - The application&#39;s package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client. - The data source&#39;s type. - The data source&#39;s stream name. Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn&#39;t used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they&#39;re not equal. The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number Finally, the developer project number and device UID are obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form. This means a client will see a different set of data_stream_ids than another client with different credentials.
+     * A unique identifier for the data stream produced by this data source. The identifier includes: - The physical device's manufacturer, model, and serial number (UID). - The application's package name or name. Package name is used when the data source was created by an Android application. The developer project number is used when the data source was created by a REST client. - The data source's type. - The data source's stream name. Note that not all attributes of the data source are used as part of the stream identifier. In particular, the version of the hardware/the application isn't used. This allows us to preserve the same stream through version updates. This also means that two DataSource objects may represent the same data stream even if they're not equal. The exact format of the data stream ID created by an Android application is: type:dataType.name:application.packageName:device.manufacturer:device.model:device.uid:dataStreamName The exact format of the data stream ID created by a REST client is: type:dataType.name:developer project number:device.manufacturer:device.model:device.uid:dataStreamName When any of the optional fields that make up the data stream ID are absent, they will be omitted from the data stream ID. The minimum viable data stream ID would be: type:dataType.name:developer project number Finally, the developer project number and device UID are obfuscated when read by any REST or Android client that did not create the data source. Only the data source creator will see the developer project number in clear and normal form. This means a client will see a different set of data_stream_ids than another client with different credentials.
      */
     dataStreamId?: string | null;
     /**
@@ -544,9 +540,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataset.aggregate
-     * @desc Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggregated into exactly one bucket type per request.
+     * Aggregates data of a certain type or stream into buckets divided by a given type of boundary. Multiple data sets of multiple types and from multiple sources can be aggregated into exactly one bucket type per request.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -572,6 +568,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -580,6 +578,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -620,15 +620,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataset.aggregate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Aggregate data for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().AggregateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     aggregate(
       params: Params$Resource$Users$Dataset$Aggregate,
@@ -704,7 +701,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$AggregateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AggregateResponse>(parameters);
@@ -738,9 +735,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.create
-     * @desc Creates a new data source that is unique across all data sources belonging to this user. A data source is a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point in every dataset inserted into or read from the Fitness API has an associated data source. Each data source produces a unique stream of dataset updates, with a unique data source identifier. Not all changes to data source affect the data stream ID, so that data collected by updated versions of the same application/device can still be considered to belong to the same data source. Data sources are identified using a string generated by the server, based on the contents of the source being created. The dataStreamId field should not be set when invoking this method. It will be automatically generated by the server with the correct format. If a dataStreamId is set, it must match the format that the server would generate. This format is a combination of some fields from the data source, and has a specific order. If it doesn't match, the request will fail with an error. Specifying a DataType which is not a known type (beginning with "com.google.") will create a DataSource with a *custom data type*. Custom data types are only readable by the application that created them. Custom data types are *deprecated*; use standard data types instead. In addition to the data source fields included in the data source ID, the developer project number that is authenticated when creating the data source is included. This developer project number is obfuscated when read by any other developer reading public data types.
+     * Creates a new data source that is unique across all data sources belonging to this user. A data source is a unique source of sensor data. Data sources can expose raw data coming from hardware sensors on local or companion devices. They can also expose derived data, created by transforming or merging other data sources. Multiple data sources can exist for the same data type. Every data point in every dataset inserted into or read from the Fitness API has an associated data source. Each data source produces a unique stream of dataset updates, with a unique data source identifier. Not all changes to data source affect the data stream ID, so that data collected by updated versions of the same application/device can still be considered to belong to the same data source. Data sources are identified using a string generated by the server, based on the contents of the source being created. The dataStreamId field should not be set when invoking this method. It will be automatically generated by the server with the correct format. If a dataStreamId is set, it must match the format that the server would generate. This format is a combination of some fields from the data source, and has a specific order. If it doesn't match, the request will fail with an error. Specifying a DataType which is not a known type (beginning with "com.google.") will create a DataSource with a *custom data type*. Custom data types are only readable by the application that created them. Custom data types are *deprecated*; use standard data types instead. In addition to the data source fields included in the data source ID, the developer project number that is authenticated when creating the data source is included. This developer project number is obfuscated when read by any other developer reading public data types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -761,10 +758,12 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.write',
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -812,15 +811,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId Create the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Users$Datasources$Create,
@@ -894,7 +890,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -902,9 +898,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.delete
-     * @desc Deletes the specified data source. The request will fail if the data source contains any data points.
+     * Deletes the specified data source. The request will fail if the data source contains any data points.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -925,10 +921,12 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.write',
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -963,15 +961,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source to delete.
-     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Datasources$Delete,
@@ -1044,7 +1039,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1052,9 +1047,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.get
-     * @desc Returns the specified data source.
+     * Returns the specified data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1080,6 +1075,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -1088,6 +1085,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1122,15 +1121,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source to retrieve.
-     * @param {string} params.userId Retrieve a data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Datasources$Get,
@@ -1203,7 +1199,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1211,9 +1207,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.list
-     * @desc Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive; the user may have private data sources that are only visible to other developers, or calls using other scopes.
+     * Lists all data sources that are visible to the developer, using the OAuth scopes provided. The list is not exhaustive; the user may have private data sources that are only visible to other developers, or calls using other scopes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1239,6 +1235,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -1247,6 +1245,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1274,15 +1274,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dataTypeName The names of data types to include in the list. If not specified, all data sources will be returned.
-     * @param {string} params.userId List data sources for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Datasources$List,
@@ -1361,7 +1358,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourcesResponse>(parameters);
@@ -1369,9 +1366,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.update
-     * @desc Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified. Data sources are identified by their dataStreamId.
+     * Updates the specified data source. The dataStreamId, dataType, type, dataStreamName, and device properties with the exception of version, cannot be modified. Data sources are identified by their dataStreamId.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1392,10 +1389,12 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.write',
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1445,16 +1444,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source to update.
-     * @param {string} params.userId Update the data source for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().DataSource} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Datasources$Update,
@@ -1527,7 +1522,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -1604,9 +1599,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.dataPointChanges.list
-     * @desc Queries for user's data point changes for a particular data source.
+     * Queries for user's data point changes for a particular data source.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1632,6 +1627,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -1640,6 +1637,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1674,17 +1673,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.dataPointChanges.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-     * @param {integer=} params.limit If specified, no more than this many data point changes will be included in the response.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large result sets. To get the next page of results, set this parameter to the value of nextPageToken from the previous response.
-     * @param {string} params.userId List data points for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Datasources$Datapointchanges$List,
@@ -1765,7 +1759,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataPointChangesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataPointChangesResponse>(
@@ -1802,9 +1796,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.datasets.delete
-     * @desc Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID. For most data types, the entire data point will be deleted. For data types where the time span represents a consistent value (such as com.google.activity.segment), and a data point straddles either end point of the dataset, only the overlapping portion of the data point will be deleted.
+     * Performs an inclusive delete of all data points whose start and end times have any overlap with the time range specified by the dataset ID. For most data types, the entire data point will be deleted. For data types where the time span represents a consistent value (such as com.google.activity.segment), and a data point straddles either end point of the dataset, only the overlapping portion of the data point will be deleted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1825,10 +1819,12 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.write',
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1857,18 +1853,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.datasets.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-     * @param {string=} params.modifiedTimeMillis When the operation was performed on the client.
-     * @param {string} params.userId Delete a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Datasources$Datasets$Delete,
@@ -1940,7 +1930,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1948,9 +1938,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.datasets.get
-     * @desc Returns a dataset containing all data points whose start and end times overlap with the specified range of the dataset minimum start time and maximum end time. Specifically, any data point whose start time is less than or equal to the dataset end time and whose end time is greater than or equal to the dataset start time.
+     * Returns a dataset containing all data points whose start and end times overlap with the specified range of the dataset minimum start time and maximum end time. Specifically, any data point whose start time is less than or equal to the dataset end time and whose end time is greater than or equal to the dataset start time.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -1976,6 +1966,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -1984,6 +1976,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -1997,7 +1991,7 @@ export namespace fitness_v1 {
      *     datasetId: 'placeholder-value',
      *     // The data stream ID of the data source that created the dataset.
      *     dataSourceId: 'placeholder-value',
-     *     // If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
+     *     // If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response. The limit is applied from the end of the time range. That is, if pageToken is absent, the limit most recent data points will be returned.
      *     limit: 'placeholder-value',
      *     // The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
      *     pageToken: 'placeholder-value',
@@ -2021,18 +2015,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.datasets.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-     * @param {integer=} params.limit If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
-     * @param {string=} params.pageToken The continuation token, which is used to page through large datasets. To get the next page of a dataset, set this parameter to the value of nextPageToken from the previous response. Each subsequent call will yield a partial dataset with data point end timestamps that are strictly smaller than those in the previous partial response.
-     * @param {string} params.userId Retrieve a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Datasources$Datasets$Get,
@@ -2106,7 +2094,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -2114,9 +2102,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.dataSources.datasets.patch
-     * @desc Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics.
+     * Adds data points to a dataset. The dataset need not be previously created. All points within the given dataset will be returned with subsquent calls to retrieve this dataset. Data points can belong to more than one dataset. This method does not use patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -2137,10 +2125,12 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.blood_pressure.write',
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.write',
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -2188,18 +2178,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.dataSources.datasets.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch. Note that the minStartTimeNs and maxEndTimeNs properties in the request body are in nanoseconds instead of milliseconds.
-     * @param {string} params.datasetId Dataset identifier that is a composite of the minimum data point start time and maximum data point end time represented as nanoseconds from the epoch. The ID is formatted like: "startTime-endTime" where startTime and endTime are 64 bit integers.
-     * @param {string} params.dataSourceId The data stream ID of the data source that created the dataset.
-     * @param {string} params.userId Patch a dataset for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Dataset} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Users$Datasources$Datasets$Patch,
@@ -2273,7 +2257,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -2315,7 +2299,7 @@ export namespace fitness_v1 {
      */
     dataSourceId?: string;
     /**
-     * If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response.
+     * If specified, no more than this many data points will be included in the dataset. If there are more data points in the dataset, nextPageToken will be set in the dataset response. The limit is applied from the end of the time range. That is, if pageToken is absent, the limit most recent data points will be returned.
      */
     limit?: number;
     /**
@@ -2359,9 +2343,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.sessions.delete
-     * @desc Deletes a session specified by the given session ID.
+     * Deletes a session specified by the given session ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -2376,7 +2360,10 @@ export namespace fitness_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/fitness.activity.write'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2400,16 +2387,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.sessions.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
-     * @param {string} params.sessionId The ID of the session to be deleted.
-     * @param {string} params.userId Delete a session for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Users$Sessions$Delete,
@@ -2480,7 +2463,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2488,9 +2471,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.sessions.list
-     * @desc Lists sessions previously created.
+     * Lists sessions previously created.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -2516,6 +2499,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.body.write',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.read',
      *       'https://www.googleapis.com/auth/fitness.body_temperature.write',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.read',
+     *       'https://www.googleapis.com/auth/fitness.heart_rate.write',
      *       'https://www.googleapis.com/auth/fitness.location.read',
      *       'https://www.googleapis.com/auth/fitness.location.write',
      *       'https://www.googleapis.com/auth/fitness.nutrition.read',
@@ -2524,6 +2509,8 @@ export namespace fitness_v1 {
      *       'https://www.googleapis.com/auth/fitness.oxygen_saturation.write',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.read',
      *       'https://www.googleapis.com/auth/fitness.reproductive_health.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.read',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
      *     ],
      *   });
      *
@@ -2562,19 +2549,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.sessions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.activityType If non-empty, only sessions with these activity types should be returned.
-     * @param {string=} params.endTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but startTime is specified, all sessions from startTime to the end of time will be returned.
-     * @param {boolean=} params.includeDeleted If true, and if both startTime and endTime are omitted, session deletions will be returned.
-     * @param {string=} params.pageToken The continuation token, which is used for incremental syncing. To get the next batch of changes, set this parameter to the value of nextPageToken from the previous response. The page token is ignored if either start or end time is specified. If none of start time, end time, and the page token is specified, sessions modified in the last 30 days are returned.
-     * @param {string=} params.startTime An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but endTime is specified, all sessions from the start of time up to endTime will be returned.
-     * @param {string} params.userId List sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Users$Sessions$List,
@@ -2653,7 +2633,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSessionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSessionsResponse>(parameters);
@@ -2661,9 +2641,9 @@ export namespace fitness_v1 {
     }
 
     /**
-     * fitness.users.sessions.update
-     * @desc Updates or insert a given session.
+     * Updates or insert a given session.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/fitness.googleapis.com
@@ -2678,7 +2658,10 @@ export namespace fitness_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/fitness.activity.write'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/fitness.activity.write',
+     *       'https://www.googleapis.com/auth/fitness.sleep.write',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -2731,17 +2714,12 @@ export namespace fitness_v1 {
      *   throw e;
      * });
      *
-     * @alias fitness.users.sessions.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.currentTimeMillis The client's current time in milliseconds since epoch.
-     * @param {string} params.sessionId The ID of the session to be created.
-     * @param {string} params.userId Create sessions for the person identified. Use me to indicate the authenticated user. Only me is supported at this time.
-     * @param {().Session} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Users$Sessions$Update,
@@ -2814,7 +2792,7 @@ export namespace fitness_v1 {
       if (callback) {
         createAPIRequest<Schema$Session>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Session>(parameters);

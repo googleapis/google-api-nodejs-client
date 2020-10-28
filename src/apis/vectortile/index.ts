@@ -33,3 +33,14 @@ export function vectortile<T = vectortile_v1.Vectortile>(
 
 const auth = new AuthPlus();
 export {auth};
+export {vectortile_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

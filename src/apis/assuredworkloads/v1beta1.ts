@@ -104,14 +104,10 @@ export namespace assuredworkloads_v1beta1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const assuredworkloads = google.assuredworkloads('v1beta1');
-   *
-   * @namespace assuredworkloads
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for Assuredworkloads
+   * ```
    */
   export class Assuredworkloads {
     context: APIRequestContext;
@@ -166,7 +162,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1beta1Workload {
     /**
-     * Required. Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     billingAccount?: string | null;
     /**
@@ -186,7 +182,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update &amp; Delete operations.
+     * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
      */
     etag?: string | null;
     /**
@@ -206,7 +202,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string | null;
     /**
@@ -302,7 +298,7 @@ export namespace assuredworkloads_v1beta1 {
    */
   export interface Schema$GoogleCloudAssuredworkloadsV1Workload {
     /**
-     * Required. Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id}`. For example, `billingAccounts/012345-567890-ABCDEF`.
+     * Required. Input only. The billing account used for the resources which are direct children of workload. This billing account is initially associated with the resources created as part of Workload creation. After the initial creation of these resources, the customer can change the assigned billing account. The resource name has the form `billingAccounts/{billing_account_id\}`. For example, `billingAccounts/012345-567890-ABCDEF`.
      */
     billingAccount?: string | null;
     /**
@@ -322,7 +318,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     displayName?: string | null;
     /**
-     * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update &amp; Delete operations.
+     * Optional. ETag of the workload, it is calculated on the basis of the Workload contents. It will be used in Update & Delete operations.
      */
     etag?: string | null;
     /**
@@ -342,7 +338,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string | null;
     /**
@@ -442,7 +438,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -451,7 +447,7 @@ export namespace assuredworkloads_v1beta1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$GoogleProtobufEmpty {}
   /**
@@ -503,9 +499,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -550,14 +546,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Organizations$Locations$Operations$Get,
@@ -636,7 +630,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -644,9 +638,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -693,17 +687,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Organizations$Locations$Operations$List,
@@ -791,7 +780,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -835,9 +824,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.workloads.create
-     * @desc Creates Assured Workload.
+     * Creates Assured Workload.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -863,7 +852,7 @@ export namespace assuredworkloads_v1beta1 {
      *   const res = await assuredworkloads.organizations.locations.workloads.create({
      *     // Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.
      *     externalId: 'placeholder-value',
-     *     // Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id}/locations/{location_id}`.
+     *     // Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id\}/locations/{location_id\}`.
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -902,16 +891,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.workloads.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.externalId Optional. A identifier associated with the workload and underlying projects which allows for the break down of billing costs for a workload. The value provided for the identifier will add a label to the workload and contained projects with the identifier as the value.
-     * @param {string} params.parent Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id}/locations/{location_id}`.
-     * @param {().GoogleCloudAssuredworkloadsV1beta1Workload} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Organizations$Locations$Workloads$Create,
@@ -993,7 +978,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1001,9 +986,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.workloads.delete
-     * @desc Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.
+     * Deletes the workload. Make sure that workload's direct children are already in a deleted state, otherwise the request will fail with a FAILED_PRECONDITION error.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -1029,7 +1014,7 @@ export namespace assuredworkloads_v1beta1 {
      *   const res = await assuredworkloads.organizations.locations.workloads.delete({
      *     // Optional. The etag of the workload. If this is provided, it must match the server's etag.
      *     etag: 'placeholder-value',
-     *     // Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+     *     // Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      *     name:
      *       'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
@@ -1044,15 +1029,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.workloads.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.etag Optional. The etag of the workload. If this is provided, it must match the server's etag.
-     * @param {string} params.name Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Organizations$Locations$Workloads$Delete,
@@ -1127,7 +1109,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1135,9 +1117,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.workloads.get
-     * @desc Gets Assured Workload associated with a CRM Node
+     * Gets Assured Workload associated with a CRM Node
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -1161,7 +1143,7 @@ export namespace assuredworkloads_v1beta1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.get({
-     *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     *     // Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      *     name:
      *       'organizations/my-organization/locations/my-location/workloads/my-workload',
      *   });
@@ -1189,14 +1171,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.workloads.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Organizations$Locations$Workloads$Get,
@@ -1289,7 +1269,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1299,9 +1279,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.workloads.list
-     * @desc Lists Assured Workloads under a CRM Node.
+     * Lists Assured Workloads under a CRM Node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -1331,7 +1311,7 @@ export namespace assuredworkloads_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
      *     pageToken: 'placeholder-value',
-     *     // Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id}/locations/{location}`.
+     *     // Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
      *     parent: 'organizations/my-organization/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1348,17 +1328,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.workloads.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A custom filter for filtering by properties of a workload. At this time, only filtering by labels is supported.
-     * @param {integer=} params.pageSize Page size.
-     * @param {string=} params.pageToken Page token returned from previous request. Page token contains context from previous request. Page token needs to be passed in the second and following requests.
-     * @param {string} params.parent Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id}/locations/{location}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Organizations$Locations$Workloads$List,
@@ -1458,7 +1433,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse
@@ -1467,9 +1442,9 @@ export namespace assuredworkloads_v1beta1 {
     }
 
     /**
-     * assuredworkloads.organizations.locations.workloads.patch
-     * @desc Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
+     * Updates an existing workload. Currently allows updating of workload display_name and labels. For force updates don't set etag field in the Workload. Only one update operation per workload can be in progress.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/assuredworkloads.googleapis.com
@@ -1493,7 +1468,7 @@ export namespace assuredworkloads_v1beta1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.patch({
-     *     // Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.
+     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      *     name:
      *       'organizations/my-organization/locations/my-location/workloads/my-workload',
      *     // Required. The list of fields to be updated.
@@ -1542,16 +1517,12 @@ export namespace assuredworkloads_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias assuredworkloads.organizations.locations.workloads.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.
-     * @param {string=} params.updateMask Required. The list of fields to be updated.
-     * @param {().GoogleCloudAssuredworkloadsV1beta1Workload} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Organizations$Locations$Workloads$Patch,
@@ -1644,7 +1615,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1661,7 +1632,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     externalId?: string;
     /**
-     * Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id}/locations/{location_id}`.
+     * Required. The resource name of the new Workload's parent. Must be of the form `organizations/{org_id\}/locations/{location_id\}`.
      */
     parent?: string;
 
@@ -1677,14 +1648,14 @@ export namespace assuredworkloads_v1beta1 {
      */
     etag?: string;
     /**
-     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id}/locations/{location_id}/workloads/{workload_id}
+     * Required. The `name` field is used to identify the workload. Format: organizations/{org_id\}/locations/{location_id\}/workloads/{workload_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id}/locations/{location_id}/workloads/{workload_id}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
+     * Required. The resource name of the Workload to fetch. This is the workloads's relative path in the API, formatted as "organizations/{organization_id\}/locations/{location_id\}/workloads/{workload_id\}". For example, "organizations/123/locations/us-east1/workloads/assured-workload-1".
      */
     name?: string;
   }
@@ -1703,14 +1674,14 @@ export namespace assuredworkloads_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id}/locations/{location}`.
+     * Required. Parent Resource to list workloads from. Must be of the form `organizations/{org_id\}/locations/{location\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Workloads$Patch
     extends StandardParameters {
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization}/locations/{location}/workloads/{workload} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string;
     /**

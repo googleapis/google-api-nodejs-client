@@ -33,3 +33,14 @@ export function iamcredentials<T = iamcredentials_v1.Iamcredentials>(
 
 const auth = new AuthPlus();
 export {auth};
+export {iamcredentials_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

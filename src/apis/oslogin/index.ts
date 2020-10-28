@@ -51,3 +51,16 @@ export function oslogin<
 
 const auth = new AuthPlus();
 export {auth};
+export {oslogin_v1};
+export {oslogin_v1alpha};
+export {oslogin_v1beta};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

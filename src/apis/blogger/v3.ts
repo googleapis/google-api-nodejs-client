@@ -104,14 +104,10 @@ export namespace blogger_v3 {
    * The Blogger API provides access to posts, comments and pages of a Blogger blog.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const blogger = google.blogger('v3');
-   *
-   * @namespace blogger
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Blogger
+   * ```
    */
   export class Blogger {
     context: APIRequestContext;
@@ -493,7 +489,7 @@ export namespace blogger_v3 {
      */
     title?: string | null;
     /**
-     * The title link URL, similar to atom&#39;s related link.
+     * The title link URL, similar to atom's related link.
      */
     titleLink?: string | null;
     /**
@@ -603,7 +599,7 @@ export namespace blogger_v3 {
      */
     kind?: string | null;
     /**
-     * This user&#39;s locale
+     * This user's locale
      */
     locale?: {country?: string; language?: string; variant?: string} | null;
     /**
@@ -611,7 +607,7 @@ export namespace blogger_v3 {
      */
     selfLink?: string | null;
     /**
-     * The user&#39;s profile page.
+     * The user's profile page.
      */
     url?: string | null;
   }
@@ -623,9 +619,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.blogs.get
-     * @desc Gets a blog by id.
+     * Gets a blog by id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -683,16 +679,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.blogs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {integer=} params.maxPosts
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Blogs$Get,
@@ -762,7 +754,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Blog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
@@ -770,9 +762,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.blogs.getByUrl
-     * @desc Gets a blog by url.
+     * Gets a blog by url.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -828,15 +820,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.blogs.getByUrl
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.url
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getByUrl(
       params: Params$Resource$Blogs$Getbyurl,
@@ -906,7 +895,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Blog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Blog>(parameters);
@@ -914,9 +903,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.blogs.listByUser
-     * @desc Lists blogs by user.
+     * Lists blogs by user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -968,18 +957,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.blogs.listByUser
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.fetchUserInfo
-     * @param {string=} params.role
-     * @param {string=} params.status Default value of status is LIVE.
-     * @param {string} params.userId
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listByUser(
       params: Params$Resource$Blogs$Listbyuser,
@@ -1052,7 +1035,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$BlogList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BlogList>(parameters);
@@ -1114,9 +1097,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.blogUserInfos.get
-     * @desc Gets one blog and user info pair by blog id and user id.
+     * Gets one blog and user info pair by blog id and user id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1164,16 +1147,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.blogUserInfos.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {integer=} params.maxPosts
-     * @param {string} params.userId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Bloguserinfos$Get,
@@ -1247,7 +1226,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$BlogUserInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BlogUserInfo>(parameters);
@@ -1278,9 +1257,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.approve
-     * @desc Marks a comment as not spam by blog id, post id and comment id.
+     * Marks a comment as not spam by blog id, post id and comment id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1333,16 +1312,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.approve
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.commentId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     approve(
       params: Params$Resource$Comments$Approve,
@@ -1415,7 +1390,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -1423,9 +1398,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.delete
-     * @desc Deletes a comment by blog id, post id and comment id.
+     * Deletes a comment by blog id, post id and comment id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1463,16 +1438,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.commentId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Comments$Delete,
@@ -1542,7 +1513,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1550,9 +1521,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.get
-     * @desc Gets a comment by id.
+     * Gets a comment by id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1610,17 +1581,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.commentId
-     * @param {string} params.postId
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Comments$Get,
@@ -1692,7 +1658,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -1700,9 +1666,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.list
-     * @desc Lists comments.
+     * Lists comments.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1764,22 +1730,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string=} params.endDate
-     * @param {boolean=} params.fetchBodies
-     * @param {integer=} params.maxResults
-     * @param {string=} params.pageToken
-     * @param {string} params.postId
-     * @param {string=} params.startDate
-     * @param {string=} params.status
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Comments$List,
@@ -1851,7 +1807,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$CommentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
@@ -1859,9 +1815,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.listByBlog
-     * @desc Lists comments by blog.
+     * Lists comments by blog.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -1919,20 +1875,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.listByBlog
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string=} params.endDate
-     * @param {boolean=} params.fetchBodies
-     * @param {integer=} params.maxResults
-     * @param {string=} params.pageToken
-     * @param {string=} params.startDate
-     * @param {string=} params.status
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listByBlog(
       params: Params$Resource$Comments$Listbyblog,
@@ -2006,7 +1954,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$CommentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommentList>(parameters);
@@ -2014,9 +1962,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.markAsSpam
-     * @desc Marks a comment as spam by blog id, post id and comment id.
+     * Marks a comment as spam by blog id, post id and comment id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2069,16 +2017,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.markAsSpam
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.commentId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     markAsSpam(
       params: Params$Resource$Comments$Markasspam,
@@ -2152,7 +2096,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2160,9 +2104,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.comments.removeContent
-     * @desc Removes the content of a comment by blog id, post id and comment id.
+     * Removes the content of a comment by blog id, post id and comment id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2215,16 +2159,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.comments.removeContent
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.commentId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     removeContent(
       params: Params$Resource$Comments$Removecontent,
@@ -2298,7 +2238,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Comment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Comment>(parameters);
@@ -2459,9 +2399,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.delete
-     * @desc Deletes a page by blog id and page id.
+     * Deletes a page by blog id and page id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2497,15 +2437,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Pages$Delete,
@@ -2576,7 +2513,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2584,9 +2521,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.get
-     * @desc Gets a page by blog id and page id.
+     * Gets a page by blog id and page id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2643,16 +2580,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pages$Get,
@@ -2725,7 +2658,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -2733,9 +2666,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.insert
-     * @desc Inserts a page.
+     * Inserts a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2806,16 +2739,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.isDraft
-     * @param {().Page} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Pages$Insert,
@@ -2888,7 +2817,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -2896,9 +2825,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.list
-     * @desc Lists pages.
+     * Lists pages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -2953,19 +2882,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBodies
-     * @param {integer=} params.maxResults
-     * @param {string=} params.pageToken
-     * @param {string=} params.status
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Pages$List,
@@ -3038,7 +2960,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PageList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PageList>(parameters);
@@ -3046,9 +2968,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.patch
-     * @desc Patches a page.
+     * Patches a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3123,18 +3045,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {boolean=} params.publish
-     * @param {boolean=} params.revert
-     * @param {().Page} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Pages$Patch,
@@ -3207,7 +3123,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3215,9 +3131,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.publish
-     * @desc Publishes a page.
+     * Publishes a page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3269,15 +3185,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Pages$Publish,
@@ -3349,7 +3262,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3357,9 +3270,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.revert
-     * @desc Reverts a published or scheduled page to draft state.
+     * Reverts a published or scheduled page to draft state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3411,15 +3324,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.revert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     revert(
       params: Params$Resource$Pages$Revert,
@@ -3492,7 +3402,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3500,9 +3410,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pages.update
-     * @desc Updates a page by blog id and page id.
+     * Updates a page by blog id and page id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3577,18 +3487,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pages.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.pageId
-     * @param {boolean=} params.publish
-     * @param {boolean=} params.revert
-     * @param {().Page} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Pages$Update,
@@ -3661,7 +3565,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3808,9 +3712,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.pageViews.get
-     * @desc Gets page views by blog id.
+     * Gets page views by blog id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3853,15 +3757,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.pageViews.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string=} params.range
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Pageviews$Get,
@@ -3934,7 +3835,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Pageviews>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Pageviews>(parameters);
@@ -3960,9 +3861,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.delete
-     * @desc Deletes a post by blog id and post id.
+     * Deletes a post by blog id and post id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -3998,15 +3899,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Posts$Delete,
@@ -4077,7 +3975,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4085,9 +3983,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.get
-     * @desc Gets a post by blog id and post id
+     * Gets a post by blog id and post id
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -4157,19 +4055,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBody
-     * @param {boolean=} params.fetchImages
-     * @param {integer=} params.maxComments
-     * @param {string} params.postId
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Posts$Get,
@@ -4242,7 +4133,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4250,9 +4141,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.getByPath
-     * @desc Gets a post by path.
+     * Gets a post by path.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -4318,17 +4209,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.getByPath
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {integer=} params.maxComments
-     * @param {string} params.path
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getByPath(
       params: Params$Resource$Posts$Getbypath,
@@ -4401,7 +4287,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4409,9 +4295,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.insert
-     * @desc Inserts a post.
+     * Inserts a post.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -4500,18 +4386,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBody
-     * @param {boolean=} params.fetchImages
-     * @param {boolean=} params.isDraft
-     * @param {().Post} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Posts$Insert,
@@ -4584,7 +4464,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4592,9 +4472,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.list
-     * @desc Lists posts.
+     * Lists posts.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -4660,24 +4540,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string=} params.endDate
-     * @param {boolean=} params.fetchBodies
-     * @param {boolean=} params.fetchImages
-     * @param {string=} params.labels
-     * @param {integer=} params.maxResults
-     * @param {string=} params.orderBy
-     * @param {string=} params.pageToken
-     * @param {string=} params.startDate
-     * @param {string=} params.status
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Posts$List,
@@ -4750,7 +4618,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
@@ -4758,9 +4626,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.patch
-     * @desc Patches a post.
+     * Patches a post.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -4855,21 +4723,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBody
-     * @param {boolean=} params.fetchImages
-     * @param {integer=} params.maxComments
-     * @param {string} params.postId
-     * @param {boolean=} params.publish
-     * @param {boolean=} params.revert
-     * @param {().Post} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Posts$Patch,
@@ -4942,7 +4801,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -4950,9 +4809,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.publish
-     * @desc Publishes a post.
+     * Publishes a post.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -5013,16 +4872,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.publish
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.postId
-     * @param {string=} params.publishDate
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     publish(
       params: Params$Resource$Posts$Publish,
@@ -5094,7 +4949,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5102,9 +4957,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.revert
-     * @desc Reverts a published or scheduled post to draft state.
+     * Reverts a published or scheduled post to draft state.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -5163,15 +5018,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.revert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string} params.postId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     revert(
       params: Params$Resource$Posts$Revert,
@@ -5244,7 +5096,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5252,9 +5104,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.search
-     * @desc Searches for posts matching given query terms in the specified blog.
+     * Searches for posts matching given query terms in the specified blog.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -5306,17 +5158,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.search
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBodies
-     * @param {string=} params.orderBy
-     * @param {string} params.q
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     search(
       params: Params$Resource$Posts$Search,
@@ -5389,7 +5236,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostList>(parameters);
@@ -5397,9 +5244,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.posts.update
-     * @desc Updates a post by blog id and post id.
+     * Updates a post by blog id and post id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -5494,21 +5341,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.posts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {boolean=} params.fetchBody
-     * @param {boolean=} params.fetchImages
-     * @param {integer=} params.maxComments
-     * @param {string} params.postId
-     * @param {boolean=} params.publish
-     * @param {boolean=} params.revert
-     * @param {().Post} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Posts$Update,
@@ -5581,7 +5419,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$Post>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Post>(parameters);
@@ -5832,9 +5670,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.postUserInfos.get
-     * @desc Gets one post and user info pair, by post_id and user_id.
+     * Gets one post and user info pair, by post_id and user_id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -5884,17 +5722,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.postUserInfos.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {integer=} params.maxComments
-     * @param {string} params.postId
-     * @param {string} params.userId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Postuserinfos$Get,
@@ -5967,7 +5800,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostUserInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostUserInfo>(parameters);
@@ -5975,9 +5808,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.postUserInfos.list
-     * @desc Lists post and user info pairs.
+     * Lists post and user info pairs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -6041,24 +5874,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.postUserInfos.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.blogId
-     * @param {string=} params.endDate
-     * @param {boolean=} params.fetchBodies
-     * @param {string=} params.labels
-     * @param {integer=} params.maxResults
-     * @param {string=} params.orderBy
-     * @param {string=} params.pageToken
-     * @param {string=} params.startDate
-     * @param {string=} params.status
-     * @param {string} params.userId
-     * @param {string=} params.view
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Postuserinfos$List,
@@ -6135,7 +5956,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$PostUserInfosList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostUserInfosList>(parameters);
@@ -6217,9 +6038,9 @@ export namespace blogger_v3 {
     }
 
     /**
-     * blogger.users.get
-     * @desc Gets one user by user_id.
+     * Gets one user by user_id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/blogger.googleapis.com
@@ -6269,14 +6090,12 @@ export namespace blogger_v3 {
      *   throw e;
      * });
      *
-     * @alias blogger.users.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.userId
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Users$Get,
@@ -6346,7 +6165,7 @@ export namespace blogger_v3 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);

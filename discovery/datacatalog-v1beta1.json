@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20200905",
+  "revision": "20201003",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -2465,7 +2465,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.include_locations`.",
+          "description": "Unreachable locations. Search result does not include data from those locations. Users can get additional information on the error by repeating the search request with a more restrictive parameter -- setting the value for `SearchDataCatalogRequest.scope.restricted_locations`.",
           "items": {
             "type": "string"
           },

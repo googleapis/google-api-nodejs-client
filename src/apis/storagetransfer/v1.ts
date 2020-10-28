@@ -104,14 +104,10 @@ export namespace storagetransfer_v1 {
    * Transfers data from external data sources to a Google Cloud Storage bucket or between Google Cloud Storage buckets.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const storagetransfer = google.storagetransfer('v1');
-   *
-   * @namespace storagetransfer
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Storagetransfer
+   * ```
    */
   export class Storagetransfer {
     context: APIRequestContext;
@@ -147,11 +143,11 @@ export namespace storagetransfer_v1 {
     secretAccessKey?: string | null;
   }
   /**
-   * An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object&#39;s name is the S3 object&#39;s key name.
+   * An AwsS3Data resource can be a data source, but not a data sink. In an AwsS3Data resource, an object's name is the S3 object's key name.
    */
   export interface Schema$AwsS3Data {
     /**
-     * Required. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
+     * Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
      */
     awsAccessKey?: Schema$AwsAccessKey;
     /**
@@ -160,11 +156,11 @@ export namespace storagetransfer_v1 {
     bucketName?: string | null;
   }
   /**
-   * An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs&#39;s name is the [Azure Blob Storage blob&#39;s key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names).
+   * An AzureBlobStorageData resource can be a data source, but not a data sink. An AzureBlobStorageData resource represents one Azure container. The storage account determines the [Azure endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-create-storage-account#storage-account-endpoints). In an AzureBlobStorageData resource, a blobs's name is the [Azure Blob Storage blob's key name](https://docs.microsoft.com/en-us/rest/api/storageservices/naming-and-referencing-containers--blobs--and-metadata#blob-names).
    */
   export interface Schema$AzureBlobStorageData {
     /**
-     * Required. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure.
      */
     azureCredentials?: Schema$AzureCredentials;
     /**
@@ -186,24 +182,28 @@ export namespace storagetransfer_v1 {
     sasToken?: string | null;
   }
   /**
-   * Represents a whole or partial calendar date, e.g. a birthday. The time of day and time zone are either specified elsewhere or are not significant. The date is relative to the Proleptic Gregorian Calendar. This can represent: * A full date, with non-zero year, month and day values * A month and day value, with a zero year, e.g. an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, e.g. a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   * The request message for Operations.CancelOperation.
+   */
+  export interface Schema$CancelOperationRequest {}
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
    */
   export interface Schema$Date {
     /**
-     * Day of month. Must be from 1 to 31 and valid for the year and month, or 0 if specifying a year by itself or a year and month where the day is not significant.
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
      */
     day?: number | null;
     /**
-     * Month of year. Must be from 1 to 12, or 0 if specifying a year without a month and day.
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
      */
     month?: number | null;
     /**
-     * Year of date. Must be from 1 to 9999, or 0 if specifying a date without a year.
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -237,7 +237,7 @@ export namespace storagetransfer_v1 {
     errorLogEntries?: Schema$ErrorLogEntry[];
   }
   /**
-   * In a GcsData resource, an object&#39;s name is the Cloud Storage object&#39;s name and its &quot;last modification time&quot; refers to the object&#39;s `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
+   * In a GcsData resource, an object's name is the Cloud Storage object's name and its "last modification time" refers to the object's `updated` property of Cloud Storage objects, which changes when the content or the metadata of the object is updated.
    */
   export interface Schema$GcsData {
     /**
@@ -255,7 +255,7 @@ export namespace storagetransfer_v1 {
     accountEmail?: string | null;
   }
   /**
-   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `&quot;TsvHttpData-1.0&quot;`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage-transfer/docs/create-url-list#md5) * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer.
+   * An HttpData resource specifies a list of objects on the web to be transferred over HTTP. The information of the objects to be transferred is contained in a file referenced by a URL. The first line in the file must be `"TsvHttpData-1.0"`, which specifies the format of the file. Subsequent lines specify the information of the list of objects, one object per list entry. Each entry has the following tab-delimited fields: * **HTTP URL** — The location of the object. * **Length** — The size of the object in bytes. * **MD5** — The base64-encoded MD5 hash of the object. For an example of a valid TSV file, see [Transferring data from URLs](https://cloud.google.com/storage-transfer/docs/create-url-list). When transferring data based on a URL list, keep the following in mind: * When an object located at `http(s)://hostname:port/` is transferred to a data sink, the name of the object at the data sink is `/`. * If the specified size of an object does not match the actual size of the object fetched, the object will not be transferred. * If the specified MD5 does not match the MD5 computed from the transferred bytes, the object transfer will fail. For more information, see [Generating MD5 hashes](https://cloud.google.com/storage-transfer/docs/create-url-list#md5) * Ensure that each URL you specify is publicly accessible. For example, in Cloud Storage you can [share an object publicly] (https://cloud.google.com/storage/docs/cloud-console#_sharingdata) and get a link to it. * Storage Transfer Service obeys `robots.txt` rules and requires the source HTTP server to support `Range` requests and to return a `Content-Length` header in each response. * ObjectConditions have no effect when filtering objects to transfer.
    */
   export interface Schema$HttpData {
     /**
@@ -290,7 +290,7 @@ export namespace storagetransfer_v1 {
     transferJobs?: Schema$TransferJob[];
   }
   /**
-   * Specification to configure notifications published to Cloud Pub/Sub. Notifications will be published to the customer-provided topic using the following `PubsubMessage.attributes`: * `&quot;eventType&quot;`: one of the EventType values * `&quot;payloadFormat&quot;`: one of the PayloadFormat values * `&quot;projectId&quot;`: the project_id of the `TransferOperation` * `&quot;transferJobName&quot;`: the transfer_job_name of the `TransferOperation` * `&quot;transferOperationName&quot;`: the name of the `TransferOperation` The `PubsubMessage.data` will contain a TransferOperation resource formatted according to the specified `PayloadFormat`.
+   * Specification to configure notifications published to Cloud Pub/Sub. Notifications will be published to the customer-provided topic using the following `PubsubMessage.attributes`: * `"eventType"`: one of the EventType values * `"payloadFormat"`: one of the PayloadFormat values * `"projectId"`: the project_id of the `TransferOperation` * `"transferJobName"`: the transfer_job_name of the `TransferOperation` * `"transferOperationName"`: the name of the `TransferOperation` The `PubsubMessage.data` will contain a TransferOperation resource formatted according to the specified `PayloadFormat`.
    */
   export interface Schema$NotificationConfig {
     /**
@@ -302,12 +302,12 @@ export namespace storagetransfer_v1 {
      */
     payloadFormat?: string | null;
     /**
-     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish notifications. Must be of the format: `projects/{project}/topics/{topic}`. Not matching this format will result in an INVALID_ARGUMENT error.
+     * Required. The `Topic.name` of the Cloud Pub/Sub topic to which to publish notifications. Must be of the format: `projects/{project\}/topics/{topic\}`. Not matching this format will result in an INVALID_ARGUMENT error.
      */
     pubsubTopic?: string | null;
   }
   /**
-   * Conditions that determine which objects will be transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The &quot;last modification time&quot; refers to the time of the last change to the object&#39;s content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs.
+   * Conditions that determine which objects will be transferred. Applies only to Cloud Data Sources such as S3, Azure, and Cloud Storage. The "last modification time" refers to the time of the last change to the object's content or metadata — specifically, this is the `updated` property of Cloud Storage objects, the `LastModified` field of S3 objects, and the `Last-Modified` header of Azure blobs.
    */
   export interface Schema$ObjectConditions {
     /**
@@ -319,19 +319,19 @@ export namespace storagetransfer_v1 {
      */
     includePrefixes?: string[] | null;
     /**
-     * If specified, only objects with a &quot;last modification time&quot; before this timestamp and objects that don&#39;t have a &quot;last modification time&quot; will be transferred.
+     * If specified, only objects with a "last modification time" before this timestamp and objects that don't have a "last modification time" will be transferred.
      */
     lastModifiedBefore?: string | null;
     /**
-     * If specified, only objects with a &quot;last modification time&quot; on or after this timestamp and objects that don&#39;t have a &quot;last modification time&quot; are transferred. The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day&#39;s worth of data at a time. For that you&#39;d set each of the fields as follows: * `last_modified_since` to the start of the day * `last_modified_before` to the end of the day
+     * If specified, only objects with a "last modification time" on or after this timestamp and objects that don't have a "last modification time" are transferred. The `last_modified_since` and `last_modified_before` fields can be used together for chunked data processing. For example, consider a script that processes each day's worth of data at a time. For that you'd set each of the fields as follows: * `last_modified_since` to the start of the day * `last_modified_before` to the end of the day
      */
     lastModifiedSince?: string | null;
     /**
-     * If specified, only objects with a &quot;last modification time&quot; on or after `NOW` - `max_time_elapsed_since_last_modification` and objects that don&#39;t have a &quot;last modification time&quot; are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
+     * If specified, only objects with a "last modification time" on or after `NOW` - `max_time_elapsed_since_last_modification` and objects that don't have a "last modification time" are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
      */
     maxTimeElapsedSinceLastModification?: string | null;
     /**
-     * If specified, only objects with a &quot;last modification time&quot; before `NOW` - `min_time_elapsed_since_last_modification` and objects that don&#39;t have a &quot;last modification time&quot; are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
+     * If specified, only objects with a "last modification time" before `NOW` - `min_time_elapsed_since_last_modification` and objects that don't have a "last modification time" are transferred. For each TransferOperation started by this TransferJob, `NOW` refers to the start_time of the `TransferOperation`.
      */
     minTimeElapsedSinceLastModification?: string | null;
   }
@@ -377,7 +377,7 @@ export namespace storagetransfer_v1 {
      */
     scheduleEndDate?: Schema$Date;
     /**
-     * Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job&#39;s creation time, the transfer starts the day after you schedule the transfer request. **Note:** When starting jobs at or near midnight UTC it is possible that a job will start later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it will create a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation will take place on June 3 at midnight UTC.
+     * Required. The start date of a transfer. Date boundaries are determined relative to UTC time. If `schedule_start_date` and start_time_of_day are in the past relative to the job's creation time, the transfer starts the day after you schedule the transfer request. **Note:** When starting jobs at or near midnight UTC it is possible that a job will start later than expected. For example, if you send an outbound request on June 1 one millisecond prior to midnight UTC and the Storage Transfer Service server receives the request on June 2, then it will create a TransferJob with `schedule_start_date` set to June 2 and a `start_time_of_day` set to midnight UTC. The first scheduled TransferOperation will take place on June 3 at midnight UTC.
      */
     scheduleStartDate?: Schema$Date;
     /**
@@ -407,7 +407,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
@@ -513,7 +513,11 @@ export namespace storagetransfer_v1 {
      */
     lastModificationTime?: string | null;
     /**
-     * A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `&quot;transferJobs/&quot;` prefix and end with a letter or a number, and should be no more than 128 characters. Example: `&quot;transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$&quot;` Invalid job names will fail with an INVALID_ARGUMENT error.
+     * The name of the most recently started TransferOperation of this JobConfig. Present if and only if at least one TransferOperation has been created for this JobConfig.
+     */
+    latestOperationName?: string | null;
+    /**
+     * A unique name (within the transfer project) assigned when the job is created. If this field is empty in a CreateTransferJobRequest, Storage Transfer Service will assign a unique name. Otherwise, the specified name is used as the unique name for this job. If the specified name is in use by a job, the creation request fails with an ALREADY_EXISTS error. This name must start with `"transferJobs/"` prefix and end with a letter or a number, and should be no more than 128 characters. Example: `"transferJobs/[A-Za-z0-9-._~]*[A-Za-z0-9]$"` Invalid job names will fail with an INVALID_ARGUMENT error.
      */
     name?: string | null;
     /**
@@ -624,11 +628,11 @@ export namespace storagetransfer_v1 {
      */
     httpDataSource?: Schema$HttpData;
     /**
-     * Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects&#39; &quot;last modification time&quot; do not exclude objects in a data sink.
+     * Only objects that satisfy these object conditions are included in the set of data source and data sink objects. Object conditions based on objects' "last modification time" do not exclude objects in a data sink.
      */
     objectConditions?: Schema$ObjectConditions;
     /**
-     * If the option delete_objects_unique_in_sink is `true`, object conditions based on objects&#39; &quot;last modification time&quot; are ignored and do not exclude objects in a data source or a data sink.
+     * If the option delete_objects_unique_in_sink is `true` and time-based object conditions such as 'last modification time' are specified, the request fails with an INVALID_ARGUMENT error.
      */
     transferOptions?: Schema$TransferOptions;
   }
@@ -657,9 +661,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.googleServiceAccounts.get
-     * @desc Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud Platform Console project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.
+     * Returns the Google service account that is used by Storage Transfer Service to access buckets in the project where transfers run or in other projects. Each Google service account is associated with one Google Cloud Platform Console project. Users should add this service account to the Google Cloud Storage bucket ACLs to grant access to Storage Transfer Service. This service account is created and owned by Storage Transfer Service and can only be used by Storage Transfer Service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -699,14 +703,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.googleServiceAccounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.projectId Required. The ID of the Google Cloud Platform Console project that the Google service account is associated with.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Googleserviceaccounts$Get,
@@ -786,7 +788,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleServiceAccount>(parameters);
@@ -809,9 +811,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferJobs.create
-     * @desc Creates a transfer job that runs periodically.
+     * Creates a transfer job that runs periodically.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -843,6 +845,7 @@ export namespace storagetransfer_v1 {
      *       //   "deletionTime": "my_deletionTime",
      *       //   "description": "my_description",
      *       //   "lastModificationTime": "my_lastModificationTime",
+     *       //   "latestOperationName": "my_latestOperationName",
      *       //   "name": "my_name",
      *       //   "notificationConfig": {},
      *       //   "projectId": "my_projectId",
@@ -860,6 +863,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -874,14 +878,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferJobs.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().TransferJob} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Transferjobs$Create,
@@ -953,7 +955,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
@@ -961,9 +963,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferJobs.get
-     * @desc Gets a transfer job.
+     * Gets a transfer job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -987,7 +989,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.get({
-     *     // " Required. The job to get.
+     *     // Required. " The job to get.
      *     jobName: 'transferJobs/.*',
      *     // Required. The ID of the Google Cloud Platform Console project that owns the job.
      *     projectId: 'placeholder-value',
@@ -1000,6 +1002,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1014,15 +1017,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferJobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobName " Required. The job to get.
-     * @param {string=} params.projectId Required. The ID of the Google Cloud Platform Console project that owns the job.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Transferjobs$Get,
@@ -1086,14 +1086,14 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: ['jobName'],
+        requiredParams: ['jobName', 'projectId'],
         pathParams: ['jobName'],
         context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$TransferJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
@@ -1101,9 +1101,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferJobs.list
-     * @desc Lists transfer jobs.
+     * Lists transfer jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1127,7 +1127,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferJobs.list({
-     *     // Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     *     // Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]\}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      *     filter: 'placeholder-value',
      *     // The list page size. The max allowed value is 256.
      *     pageSize: 'placeholder-value',
@@ -1148,16 +1148,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferJobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
-     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
-     * @param {string=} params.pageToken The list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Transferjobs$List,
@@ -1227,14 +1223,14 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: [],
+        requiredParams: ['filter'],
         pathParams: [],
         context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListTransferJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTransferJobsResponse>(parameters);
@@ -1242,9 +1238,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferJobs.patch
-     * @desc Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating a job's schedule is not allowed. **Note:** The job's status field can be modified using this RPC (for example, to set a job's status to DELETED, DISABLED, or ENABLED).
+     * Updates a transfer job. Updating a job's transfer spec does not affect transfer operations that are running already. Updating a job's schedule is not allowed. **Note:** The job's status field can be modified using this RPC (for example, to set a job's status to DELETED, DISABLED, or ENABLED).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1289,6 +1285,7 @@ export namespace storagetransfer_v1 {
      *   //   "deletionTime": "my_deletionTime",
      *   //   "description": "my_description",
      *   //   "lastModificationTime": "my_lastModificationTime",
+     *   //   "latestOperationName": "my_latestOperationName",
      *   //   "name": "my_name",
      *   //   "notificationConfig": {},
      *   //   "projectId": "my_projectId",
@@ -1303,15 +1300,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferJobs.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.jobName Required. The name of job to update.
-     * @param {().UpdateTransferJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Transferjobs$Patch,
@@ -1383,7 +1377,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$TransferJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TransferJob>(parameters);
@@ -1400,7 +1394,7 @@ export namespace storagetransfer_v1 {
   }
   export interface Params$Resource$Transferjobs$Get extends StandardParameters {
     /**
-     * " Required. The job to get.
+     * Required. " The job to get.
      */
     jobName?: string;
     /**
@@ -1411,7 +1405,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferjobs$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "job_statuses":["status1","status2",...]}. Since `job_names` and `job_statuses` support multiple values, their values must be specified with array notation. `project``_``id` is required. `job_names` and `job_statuses` are optional. The valid values for `job_statuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
+     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "jobStatuses":["status1","status2",...]\}` Since `jobNames` and `jobStatuses` support multiple values, their values must be specified with array notation. `projectId` is required. `jobNames` and `jobStatuses` are optional. The valid values for `jobStatuses` are case-insensitive: ENABLED, DISABLED, and DELETED.
      */
     filter?: string;
     /**
@@ -1443,9 +1437,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferOperations.cancel
-     * @desc Cancels a transfer. Use the transferOperations.get method to check if the cancellation succeeded or if the operation completed despite the `cancel` request. When you cancel an operation, the currently running transfer is interrupted. For recurring transfer jobs, the next instance of the transfer job will still run. For example, if your job is configured to run every day at 1pm and you cancel Monday's operation at 1:05pm, Monday's transfer will stop. However, a transfer job will still be attempted on Tuesday. This applies only to currently running operations. If an operation is not currently running, `cancel` does nothing. *Caution:* Canceling a transfer job can leave your data in an unknown state. We recommend that you restore the state at both the destination and the source after the `cancel` request completes so that your data is in a consistent state. When you cancel a job, the next job computes a delta of files and may repair any inconsistent state. For instance, if you run a job every day, and today's job found 10 new files and transferred five files before you canceled the job, tomorrow's transfer operation will compute a new delta with the five files that were not copied today plus any new files discovered tomorrow.
+     * Cancels a transfer. Use the transferOperations.get method to check if the cancellation succeeded or if the operation completed despite the `cancel` request. When you cancel an operation, the currently running transfer is interrupted. For recurring transfer jobs, the next instance of the transfer job will still run. For example, if your job is configured to run every day at 1pm and you cancel Monday's operation at 1:05pm, Monday's transfer will stop. However, a transfer job will still be attempted on Tuesday. This applies only to currently running operations. If an operation is not currently running, `cancel` does nothing. *Caution:* Canceling a transfer job can leave your data in an unknown state. We recommend that you restore the state at both the destination and the source after the `cancel` request completes so that your data is in a consistent state. When you cancel a job, the next job computes a delta of files and may repair any inconsistent state. For instance, if you run a job every day, and today's job found 10 new files and transferred five files before you canceled the job, tomorrow's transfer operation will compute a new delta with the five files that were not copied today plus any new files discovered tomorrow.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1471,6 +1465,12 @@ export namespace storagetransfer_v1 {
      *   const res = await storagetransfer.transferOperations.cancel({
      *     // The name of the operation resource to be cancelled.
      *     name: 'transferOperations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
      *   });
      *   console.log(res.data);
      *
@@ -1483,14 +1483,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferOperations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Transferoperations$Cancel,
@@ -1562,7 +1560,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1570,9 +1568,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferOperations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1616,14 +1614,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferOperations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Transferoperations$Get,
@@ -1695,7 +1691,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1703,9 +1699,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferOperations.list
-     * @desc Lists transfer operations.
+     * Lists transfer operations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1729,7 +1725,7 @@ export namespace storagetransfer_v1 {
      *
      *   // Do the magic
      *   const res = await storagetransfer.transferOperations.list({
-     *     // Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     *     // Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]\}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      *     filter: 'placeholder-value',
      *     // Required. The value `transferOperations`.
      *     name: 'transferOperations',
@@ -1752,17 +1748,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferOperations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
-     * @param {string} params.name Required. The value `transferOperations`.
-     * @param {integer=} params.pageSize The list page size. The max allowed value is 256.
-     * @param {string=} params.pageToken The list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Transferoperations$List,
@@ -1832,14 +1823,14 @@ export namespace storagetransfer_v1 {
           options
         ),
         params,
-        requiredParams: ['name'],
+        requiredParams: ['name', 'filter'],
         pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1847,9 +1838,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferOperations.pause
-     * @desc Pauses a transfer operation.
+     * Pauses a transfer operation.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -1893,15 +1884,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferOperations.pause
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the transfer operation.
-     * @param {().PauseTransferOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     pause(
       params: Params$Resource$Transferoperations$Pause,
@@ -1973,7 +1961,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1981,9 +1969,9 @@ export namespace storagetransfer_v1 {
     }
 
     /**
-     * storagetransfer.transferOperations.resume
-     * @desc Resumes a transfer operation that is paused.
+     * Resumes a transfer operation that is paused.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/storagetransfer.googleapis.com
@@ -2027,15 +2015,12 @@ export namespace storagetransfer_v1 {
      *   throw e;
      * });
      *
-     * @alias storagetransfer.transferOperations.resume
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the transfer operation.
-     * @param {().ResumeTransferOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resume(
       params: Params$Resource$Transferoperations$Resume,
@@ -2107,7 +2092,7 @@ export namespace storagetransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2121,6 +2106,11 @@ export namespace storagetransfer_v1 {
      * The name of the operation resource to be cancelled.
      */
     name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
   }
   export interface Params$Resource$Transferoperations$Get
     extends StandardParameters {
@@ -2132,7 +2122,7 @@ export namespace storagetransfer_v1 {
   export interface Params$Resource$Transferoperations$List
     extends StandardParameters {
     /**
-     * Required. A list of query parameters specified as JSON text in the form of: {"project_id":"my_project_id", "job_names":["jobid1","jobid2",...], "operation_names":["opid1","opid2",...], "transfer_statuses":["status1","status2",...]}. Since `job_names`, `operation_names`, and `transfer_statuses` support multiple values, they must be specified with array notation. `project``_``id` is required. `job_names`, `operation_names`, and `transfer_statuses` are optional. The valid values for `transfer_statuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
+     * Required. A list of query parameters specified as JSON text in the form of: `{"projectId":"my_project_id", "jobNames":["jobid1","jobid2",...], "operationNames":["opid1","opid2",...], "transferStatuses":["status1","status2",...]\}` Since `jobNames`, `operationNames`, and `transferStatuses` support multiple values, they must be specified with array notation. `projectId` is required. `jobNames`, `operationNames`, and `transferStatuses` are optional. The valid values for `transferStatuses` are case-insensitive: IN_PROGRESS, PAUSED, SUCCESS, FAILED, and ABORTED.
      */
     filter?: string;
     /**

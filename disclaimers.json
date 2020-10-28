@@ -148,6 +148,18 @@
     "package": "@google-cloud/container"
   },
   {
+    "api": "logging",
+    "package": "@google-cloud/logging"
+  },
+  {
+    "api": "logging",
+    "package": "@google-cloud/logging-bunyan"
+  },
+  {
+    "api": "logging",
+    "package": "@google-cloud/logging-winston"
+  },
+  {
     "api": "mediatranslation",
     "package": "@google-cloud/media-translation"
   },
@@ -234,18 +246,6 @@
   {
     "api": "clouderrorreporting",
     "package": "@google-cloud/error-reporting"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging-bunyan"
-  },
-  {
-    "api": "logging",
-    "package": "@google-cloud/logging-winston"
   },
   {
     "api": "monitoring",

@@ -104,14 +104,10 @@ export namespace gamesManagement_v1management {
    * The Google Play Game Management API allows developers to manage resources from the Google Play Game service.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const gamesManagement = google.gamesManagement('v1management');
-   *
-   * @namespace gamesManagement
-   * @type {Function}
-   * @version v1management
-   * @variation v1management
-   * @param {object=} options Options for Gamesmanagement
+   * ```
    */
   export class Gamesmanagement {
     context: APIRequestContext;
@@ -163,7 +159,7 @@ export namespace gamesManagement_v1management {
    */
   export interface Schema$AchievementResetResponse {
     /**
-     * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are: - &quot;`HIDDEN`&quot;- Achievement is hidden. - &quot;`REVEALED`&quot; - Achievement is revealed. - &quot;`UNLOCKED`&quot; - Achievement is unlocked.
+     * The current state of the achievement. This is the same as the initial state of the achievement. Possible values are: - "`HIDDEN`"- Achievement is hidden. - "`REVEALED`" - Achievement is revealed. - "`UNLOCKED`" - Achievement is unlocked.
      */
     currentState?: string | null;
     /**
@@ -193,7 +189,7 @@ export namespace gamesManagement_v1management {
     kind?: string | null;
   }
   /**
-   * 1P/3P metadata about the player&#39;s experience.
+   * 1P/3P metadata about the player's experience.
    */
   export interface Schema$GamesPlayerExperienceInfoResource {
     /**
@@ -214,7 +210,7 @@ export namespace gamesManagement_v1management {
     nextLevel?: Schema$GamesPlayerLevelResource;
   }
   /**
-   * 1P/3P metadata about a user&#39;s level.
+   * 1P/3P metadata about a user's level.
    */
   export interface Schema$GamesPlayerLevelResource {
     /**
@@ -293,7 +289,7 @@ export namespace gamesManagement_v1management {
      */
     kind?: string | null;
     /**
-     * An object representation of the individual components of the player&#39;s name. For some players, these fields may not be present.
+     * An object representation of the individual components of the player's name. For some players, these fields may not be present.
      */
     name?: {familyName?: string; givenName?: string} | null;
     /**
@@ -305,11 +301,11 @@ export namespace gamesManagement_v1management {
      */
     playerId?: string | null;
     /**
-     * The player&#39;s profile settings. Controls whether or not the player&#39;s profile is visible to other players.
+     * The player's profile settings. Controls whether or not the player's profile is visible to other players.
      */
     profileSettings?: Schema$ProfileSettings;
     /**
-     * The player&#39;s title rewarded for their game activities.
+     * The player's title rewarded for their game activities.
      */
     title?: string | null;
   }
@@ -339,7 +335,7 @@ export namespace gamesManagement_v1management {
      */
     kind?: string | null;
     /**
-     * The time spans of the updated score. Possible values are: - &quot;`ALL_TIME`&quot; - The score is an all-time score. - &quot;`WEEKLY`&quot; - The score is a weekly score. - &quot;`DAILY`&quot; - The score is a daily score.
+     * The time spans of the updated score. Possible values are: - "`ALL_TIME`" - The score is an all-time score. - "`WEEKLY`" - The score is a weekly score. - "`DAILY`" - The score is a daily score.
      */
     resetScoreTimeSpans?: string[] | null;
   }
@@ -371,9 +367,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.achievements.reset
-     * @desc Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets the achievement with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -416,14 +412,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.achievements.reset
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reset(
       params: Params$Resource$Achievements$Reset,
@@ -504,7 +498,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$AchievementResetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementResetResponse>(parameters);
@@ -512,9 +506,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.achievements.resetAll
-     * @desc Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets all achievements for the currently authenticated player for your application. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -552,13 +546,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.achievements.resetAll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAll(
       params: Params$Resource$Achievements$Resetall,
@@ -640,7 +633,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$AchievementResetAllResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementResetAllResponse>(parameters);
@@ -648,9 +641,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.achievements.resetAllForAllPlayers
-     * @desc Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
+     * Resets all draft achievements for all players. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -682,13 +675,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.achievements.resetAllForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAllForAllPlayers(
       params: Params$Resource$Achievements$Resetallforallplayers,
@@ -760,7 +752,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -768,9 +760,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.achievements.resetForAllPlayers
-     * @desc Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
+     * Resets the achievement with the given ID for all players. This method is only available to user accounts for your developer console. Only draft achievements can be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -805,14 +797,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.achievements.resetForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.achievementId The ID of the achievement used by this method.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetForAllPlayers(
       params: Params$Resource$Achievements$Resetforallplayers,
@@ -885,7 +875,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -893,9 +883,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.achievements.resetMultipleForAllPlayers
-     * @desc Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
+     * Resets achievements with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft achievements may be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -936,14 +926,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.achievements.resetMultipleForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().AchievementResetMultipleForAllRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetMultipleForAllPlayers(
       params: Params$Resource$Achievements$Resetmultipleforallplayers,
@@ -1016,7 +1004,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1057,9 +1045,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.applications.listHidden
-     * @desc Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.
+     * Get the list of players hidden from the given application. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1105,16 +1093,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.applications.listHidden
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {integer=} params.maxResults The maximum number of player resources to return in the response, used for paging. For any response, the actual number of player resources returned may be less than the specified `maxResults`.
-     * @param {string=} params.pageToken The token returned by the previous request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     listHidden(
       params: Params$Resource$Applications$Listhidden,
@@ -1189,7 +1173,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$HiddenPlayerList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HiddenPlayerList>(parameters);
@@ -1220,9 +1204,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.events.reset
-     * @desc Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets all player progress on the event with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1257,14 +1241,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.events.reset
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.eventId The ID of the event.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reset(
       params: Params$Resource$Events$Reset,
@@ -1335,7 +1317,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1343,9 +1325,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.events.resetAll
-     * @desc Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets all player progress on all events for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1377,13 +1359,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.events.resetAll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAll(
       params: Params$Resource$Events$Resetall,
@@ -1455,7 +1436,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1463,9 +1444,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.events.resetAllForAllPlayers
-     * @desc Resets all draft events for all players. This method is only available to user accounts for your developer console.
+     * Resets all draft events for all players. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1497,13 +1478,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.events.resetAllForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAllForAllPlayers(
       params: Params$Resource$Events$Resetallforallplayers,
@@ -1575,7 +1555,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1583,9 +1563,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.events.resetForAllPlayers
-     * @desc Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.
+     * Resets the event with the given ID for all players. This method is only available to user accounts for your developer console. Only draft events can be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1620,14 +1600,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.events.resetForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.eventId The ID of the event.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetForAllPlayers(
       params: Params$Resource$Events$Resetforallplayers,
@@ -1700,7 +1678,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1708,9 +1686,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.events.resetMultipleForAllPlayers
-     * @desc Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.
+     * Resets events with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft events may be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1751,14 +1729,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.events.resetMultipleForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().EventsResetMultipleForAllRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetMultipleForAllPlayers(
       params: Params$Resource$Events$Resetmultipleforallplayers,
@@ -1830,7 +1806,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1869,9 +1845,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.players.hide
-     * @desc Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * Hide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -1908,15 +1884,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.players.hide
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     hide(
       params: Params$Resource$Players$Hide,
@@ -1988,7 +1961,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1996,9 +1969,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.players.unhide
-     * @desc Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
+     * Unhide the given player's leaderboard scores from the given application. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2035,15 +2008,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.players.unhide
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.applicationId The application ID from the Google Play developer console.
-     * @param {string} params.playerId A player ID. A value of `me` may be used in place of the authenticated player's ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     unhide(
       params: Params$Resource$Players$Unhide,
@@ -2115,7 +2085,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2151,9 +2121,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.scores.reset
-     * @desc Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets scores for the leaderboard with the given ID for the currently authenticated player. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2195,14 +2165,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.scores.reset
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reset(
       params: Params$Resource$Scores$Reset,
@@ -2283,7 +2251,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerScoreResetResponse>(parameters);
@@ -2291,9 +2259,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.scores.resetAll
-     * @desc Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.
+     * Resets all scores for all leaderboards for the currently authenticated players. This method is only accessible to whitelisted tester accounts for your application.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2331,13 +2299,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.scores.resetAll
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAll(
       params: Params$Resource$Scores$Resetall,
@@ -2418,7 +2385,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<Schema$PlayerScoreResetAllResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlayerScoreResetAllResponse>(parameters);
@@ -2426,9 +2393,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.scores.resetAllForAllPlayers
-     * @desc Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.
+     * Resets scores for all draft leaderboards for all players. This method is only available to user accounts for your developer console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2460,13 +2427,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.scores.resetAllForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetAllForAllPlayers(
       params: Params$Resource$Scores$Resetallforallplayers,
@@ -2538,7 +2504,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2546,9 +2512,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.scores.resetForAllPlayers
-     * @desc Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.
+     * Resets scores for the leaderboard with the given ID for all players. This method is only available to user accounts for your developer console. Only draft leaderboards can be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2583,14 +2549,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.scores.resetForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.leaderboardId The ID of the leaderboard.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetForAllPlayers(
       params: Params$Resource$Scores$Resetforallplayers,
@@ -2663,7 +2627,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2671,9 +2635,9 @@ export namespace gamesManagement_v1management {
     }
 
     /**
-     * gamesManagement.scores.resetMultipleForAllPlayers
-     * @desc Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.
+     * Resets scores for the leaderboards with the given IDs for all players. This method is only available to user accounts for your developer console. Only draft leaderboards may be reset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/gamesManagement.googleapis.com
@@ -2714,14 +2678,12 @@ export namespace gamesManagement_v1management {
      *   throw e;
      * });
      *
-     * @alias gamesManagement.scores.resetMultipleForAllPlayers
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ScoresResetMultipleForAllRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     resetMultipleForAllPlayers(
       params: Params$Resource$Scores$Resetmultipleforallplayers,
@@ -2793,7 +2755,7 @@ export namespace gamesManagement_v1management {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);

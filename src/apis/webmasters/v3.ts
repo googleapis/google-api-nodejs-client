@@ -88,14 +88,10 @@ export namespace webmasters_v3 {
    * View Google Search Console data for your verified sites.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const webmasters = google.webmasters('v3');
-   *
-   * @namespace webmasters
-   * @type {Function}
-   * @version v3
-   * @variation v3
-   * @param {object=} options Options for Webmasters
+   * ```
    */
   export class Webmasters {
     context: APIRequestContext;
@@ -133,11 +129,15 @@ export namespace webmasters_v3 {
   }
   export interface Schema$SearchAnalyticsQueryRequest {
     /**
-     * [Optional; Default is &quot;auto&quot;] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.  Note: If you group or filter by page, you cannot aggregate by property.  If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
+     * [Optional; Default is "auto"] How data is aggregated. If aggregated by property, all data for the same property is aggregated; if aggregated by page, all data is aggregated by canonical URI. If you filter or group by page, choose AUTO; otherwise you can aggregate either by property or by page, depending on how you want your data calculated; see  the help documentation to learn how data is calculated differently by site versus by page.
+     *
+     * Note: If you group or filter by page, you cannot aggregate by property.
+     *
+     * If you specify any value other than AUTO, the aggregation type in the result will match the requested type, or if you request an invalid type, you will get an error. The API will never change your aggregation type if the requested type is invalid.
      */
     aggregationType?: string | null;
     /**
-     * [Optional] Zero or more filters to apply to the dimension grouping values; for example, &#39;query contains &quot;buy&quot;&#39; to see only data where the query string contains the substring &quot;buy&quot; (not case-sensitive). You can filter by a dimension without grouping by it.
+     * [Optional] Zero or more filters to apply to the dimension grouping values; for example, 'query contains "buy"' to see only data where the query string contains the substring "buy" (not case-sensitive). You can filter by a dimension without grouping by it.
      */
     dimensionFilterGroups?: Schema$ApiDimensionFilterGroup[];
     /**
@@ -153,7 +153,7 @@ export namespace webmasters_v3 {
      */
     rowLimit?: number | null;
     /**
-     * [Optional; Default is &quot;web&quot;] The search type to filter for.
+     * [Optional; Default is "web"] The search type to filter for.
      */
     searchType?: string | null;
     /**
@@ -201,7 +201,7 @@ export namespace webmasters_v3 {
    */
   export interface Schema$WmxSite {
     /**
-     * The user&#39;s permission level for the site.
+     * The user's permission level for the site.
      */
     permissionLevel?: string | null;
     /**
@@ -230,11 +230,11 @@ export namespace webmasters_v3 {
      */
     isSitemapsIndex?: boolean | null;
     /**
-     * Date &amp; time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd).
+     * Date & time in which this sitemap was last downloaded. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
     lastDownloaded?: string | null;
     /**
-     * Date &amp; time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd).
+     * Date & time in which this sitemap was submitted. Date format is in RFC 3339 format (yyyy-mm-dd).
      */
     lastSubmitted?: string | null;
     /**
@@ -275,9 +275,11 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.searchanalytics.query
-     * @desc Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days.  When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned.
+     * Query your data with filters and parameters that you define. Returns zero or more rows grouped by the row keys that you define. You must define a date range of one or more days.
+     *
+     * When date is one of the group by values, any days without data are omitted from the result list. If you need to know which days have data, issue a broad date range query grouped by date for any metric, and see which day rows are returned.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -336,15 +338,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.searchanalytics.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {().SearchAnalyticsQueryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Searchanalytics$Query,
@@ -424,7 +423,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchAnalyticsQueryResponse>(
@@ -454,9 +453,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sitemaps.delete
-     * @desc Deletes a sitemap from this site.
+     * Deletes a sitemap from this site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -493,15 +492,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sitemaps.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sitemaps$Delete,
@@ -571,7 +567,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -579,9 +575,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sitemaps.get
-     * @desc Retrieves information about a specific sitemap.
+     * Retrieves information about a specific sitemap.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -634,15 +630,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sitemaps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.feedpath The URL of the actual sitemap. For example: http://www.example.com/sitemap.xml
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sitemaps$Get,
@@ -714,7 +707,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$WmxSitemap>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WmxSitemap>(parameters);
@@ -722,9 +715,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sitemaps.list
-     * @desc Lists the sitemaps-entries submitted for this site, or included in the sitemap index file (if sitemapIndex is specified in the request).
+     * Lists the sitemaps-entries submitted for this site, or included in the sitemap index file (if sitemapIndex is specified in the request).
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -769,15 +762,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sitemaps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.sitemapIndex A URL of a site's sitemap index. For example: http://www.example.com/sitemapindex.xml
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sitemaps$List,
@@ -855,7 +845,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$SitemapsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitemapsListResponse>(parameters);
@@ -863,9 +853,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sitemaps.submit
-     * @desc Submits a sitemap for a site.
+     * Submits a sitemap for a site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -902,15 +892,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sitemaps.submit
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.feedpath The URL of the sitemap to add. For example: http://www.example.com/sitemap.xml
-     * @param {string} params.siteUrl The site's URL, including protocol. For example: http://www.example.com/
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     submit(
       params: Params$Resource$Sitemaps$Submit,
@@ -980,7 +967,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1036,9 +1023,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sites.add
-     * @desc Adds a site to the set of the user's sites in Search Console.
+     * Adds a site to the set of the user's sites in Search Console.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -1073,14 +1060,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sites.add
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.siteUrl The URL of the site to add.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     add(
       params: Params$Resource$Sites$Add,
@@ -1151,7 +1136,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1159,9 +1144,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sites.delete
-     * @desc Removes a site from the set of the user's Search Console sites.
+     * Removes a site from the set of the user's Search Console sites.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -1196,14 +1181,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sites.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Sites$Delete,
@@ -1274,7 +1257,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1282,9 +1265,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sites.get
-     * @desc Retrieves information about specific site.
+     * Retrieves information about specific site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -1328,14 +1311,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sites.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.siteUrl The URI of the property as defined in Search Console. Examples: http://www.example.com/ or android-app://com.example/ Note: for property-sets, use the URI that starts with sc-set: which is used in Search Console URLs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sites$Get,
@@ -1408,7 +1389,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$WmxSite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WmxSite>(parameters);
@@ -1416,9 +1397,9 @@ export namespace webmasters_v3 {
     }
 
     /**
-     * webmasters.sites.list
-     * @desc Lists the user's Search Console sites.
+     * Lists the user's Search Console sites.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/webmasters.googleapis.com
@@ -1458,13 +1439,12 @@ export namespace webmasters_v3 {
      *   throw e;
      * });
      *
-     * @alias webmasters.sites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$List,
@@ -1540,7 +1520,7 @@ export namespace webmasters_v3 {
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);

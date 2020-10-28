@@ -73,3 +73,17 @@ export function androidpublisher<
 
 const auth = new AuthPlus();
 export {auth};
+export {androidpublisher_v1_1};
+export {androidpublisher_v1};
+export {androidpublisher_v2};
+export {androidpublisher_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

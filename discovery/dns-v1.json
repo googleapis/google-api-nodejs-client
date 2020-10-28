@@ -23,7 +23,7 @@
   "canonicalName": "Dns",
   "description": "",
   "discoveryVersion": "v1",
-  "documentationLink": "http://developers.google.com/cloud-dns",
+  "documentationLink": "https://cloud.google.com/dns/docs",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -132,7 +132,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -179,7 +179,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -213,7 +213,7 @@
           ],
           "parameters": {
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -296,7 +296,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -335,7 +335,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -531,7 +531,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -565,7 +565,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -647,7 +647,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -687,7 +687,7 @@
               "type": "string"
             },
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -990,7 +990,7 @@
           ],
           "parameters": {
             "managedZone": {
-              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or id.",
+              "description": "Identifies the managed zone addressed by this request. Can be the managed zone name or ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1037,7 +1037,7 @@
       }
     }
   },
-  "revision": "20200806",
+  "revision": "20201013",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1910,6 +1910,118 @@
       },
       "type": "object"
     },
+    "RRSetRoutingPolicy": {
+      "description": "A RRSetRoutingPolicy represents ResourceRecordSet data that will be returned dynamically with the response varying based on configured properties such as geolocation or by weighted random selection.",
+      "id": "RRSetRoutingPolicy",
+      "properties": {
+        "geoPolicy": {
+          "$ref": "RRSetRoutingPolicyGeoPolicy"
+        },
+        "kind": {
+          "default": "dns#rRSetRoutingPolicy",
+          "type": "string"
+        },
+        "wrrPolicy": {
+          "$ref": "RRSetRoutingPolicyWrrPolicy"
+        }
+      },
+      "type": "object"
+    },
+    "RRSetRoutingPolicyGeoPolicy": {
+      "id": "RRSetRoutingPolicyGeoPolicy",
+      "properties": {
+        "failovers": {
+          "description": "If the health check for the primary target for a geo location returns an unhealthy status, the failover target is returned instead. This failover configuration is not mandatory. If a failover is not provided, the primary target won't be healthchecked - we'll return the primarily configured rrdata irrespective of whether it is healthy or not.",
+          "items": {
+            "$ref": "RRSetRoutingPolicyGeoPolicyGeoPolicyItem"
+          },
+          "type": "array"
+        },
+        "items": {
+          "description": "The primary geo routing configuration. If there are multiple items with the same location, an error is returned instead.",
+          "items": {
+            "$ref": "RRSetRoutingPolicyGeoPolicyGeoPolicyItem"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dns#rRSetRoutingPolicyGeoPolicy",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RRSetRoutingPolicyGeoPolicyGeoPolicyItem": {
+      "id": "RRSetRoutingPolicyGeoPolicyGeoPolicyItem",
+      "properties": {
+        "kind": {
+          "default": "dns#rRSetRoutingPolicyGeoPolicyGeoPolicyItem",
+          "type": "string"
+        },
+        "location": {
+          "description": "The geo-location granularity is a GCP region. This location string should correspond to a GCP region. e.g \"us-east1\", \"southamerica-east1\", \"asia-east1\", etc.",
+          "type": "string"
+        },
+        "rrdatas": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "signatureRrdatas": {
+          "description": "DNSSEC generated signatures for the above geo_rrdata.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RRSetRoutingPolicyWrrPolicy": {
+      "id": "RRSetRoutingPolicyWrrPolicy",
+      "properties": {
+        "items": {
+          "items": {
+            "$ref": "RRSetRoutingPolicyWrrPolicyWrrPolicyItem"
+          },
+          "type": "array"
+        },
+        "kind": {
+          "default": "dns#rRSetRoutingPolicyWrrPolicy",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RRSetRoutingPolicyWrrPolicyWrrPolicyItem": {
+      "id": "RRSetRoutingPolicyWrrPolicyWrrPolicyItem",
+      "properties": {
+        "kind": {
+          "default": "dns#rRSetRoutingPolicyWrrPolicyWrrPolicyItem",
+          "type": "string"
+        },
+        "rrdatas": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "signatureRrdatas": {
+          "description": "DNSSEC generated signatures for the above wrr_rrdata.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "weight": {
+          "description": "The weight corresponding to this subset of rrdata. When multiple WeightedRoundRobinPolicyItems are configured, the probability of returning an rrset is proportional to its weight relative to the sum of weights configured for all items. This weight should be a decimal in the range [0,1].",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ResourceRecordSet": {
       "description": "A unit of data that will be returned by the DNS servers.",
       "id": "ResourceRecordSet",
@@ -1921,6 +2033,10 @@
         "name": {
           "description": "For example, www.example.com.",
           "type": "string"
+        },
+        "routingPolicy": {
+          "$ref": "RRSetRoutingPolicy",
+          "description": "Configures dynamic query responses based on geo location of querying user or a weighted round robin based routing policy. A ResourceRecordSet should only have either rrdata (static) or routing_policy(dynamic). An error is returned otherwise."
         },
         "rrdatas": {
           "description": "As defined in RFC 1035 (section 5) and RFC 1034 (section 3.6.1) -- see examples.",

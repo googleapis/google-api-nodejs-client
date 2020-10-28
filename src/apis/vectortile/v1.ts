@@ -104,14 +104,10 @@ export namespace vectortile_v1 {
    * Serves vector tiles containing geospatial data.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const vectortile = google.vectortile('v1');
-   *
-   * @namespace vectortile
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Vectortile
+   * ```
    */
   export class Vectortile {
     context: APIRequestContext;
@@ -221,7 +217,7 @@ export namespace vectortile_v1 {
      */
     features?: Schema$Feature[];
     /**
-     * Resource name of the tile. The tile resource name is prefixed by its collection ID `tiles/` followed by the resource ID, which encodes the tile&#39;s global x and y coordinates and zoom level as `@,,z`. For example, `tiles/@1,2,3z`.
+     * Resource name of the tile. The tile resource name is prefixed by its collection ID `tiles/` followed by the resource ID, which encodes the tile's global x and y coordinates and zoom level as `@,,z`. For example, `tiles/@1,2,3z`.
      */
     name?: string | null;
     /**
@@ -238,7 +234,7 @@ export namespace vectortile_v1 {
     versionId?: string | null;
   }
   /**
-   * A packed representation of a 2D grid of uniformly spaced points containing elevation data. Each point within the grid represents the altitude in meters above average sea level at that location within the tile. Elevations provided are (generally) relative to the EGM96 geoid, however some areas will be relative to NAVD88. EGM96 and NAVD88 are off by no more than 2 meters. The grid is oriented north-west to south-east, as illustrated: rows[0].a[0] rows[0].a[m] +-----------------+ | | | N | | ^ | | | | | W &lt;-----&gt; E | | | | | v | | S | | | +-----------------+ rows[n].a[0] rows[n].a[m] Rather than storing the altitudes directly, we store the diffs between them as integers at some requested level of precision to take advantage of integer packing. The actual altitude values a[] can be reconstructed using the scale and each row&#39;s first_altitude and altitude_diff fields.
+   * A packed representation of a 2D grid of uniformly spaced points containing elevation data. Each point within the grid represents the altitude in meters above average sea level at that location within the tile. Elevations provided are (generally) relative to the EGM96 geoid, however some areas will be relative to NAVD88. EGM96 and NAVD88 are off by no more than 2 meters. The grid is oriented north-west to south-east, as illustrated: rows[0].a[0] rows[0].a[m] +-----------------+ | | | N | | ^ | | | | | W <-----\> E | | | | | v | | S | | | +-----------------+ rows[n].a[0] rows[n].a[m] Rather than storing the altitudes directly, we store the diffs between them as integers at some requested level of precision to take advantage of integer packing. The actual altitude values a[] can be reconstructed using the scale and each row's first_altitude and altitude_diff fields.
    */
   export interface Schema$FirstDerivativeElevationGrid {
     /**
@@ -324,7 +320,7 @@ export namespace vectortile_v1 {
    */
   export interface Schema$RoadInfo {
     /**
-     * Road has signage discouraging or prohibiting use by the general public. E.g., roads with signs that say &quot;Private&quot;, or &quot;No trespassing.&quot;
+     * Road has signage discouraging or prohibiting use by the general public. E.g., roads with signs that say "Private", or "No trespassing."
      */
     isPrivate?: boolean | null;
   }
@@ -333,12 +329,12 @@ export namespace vectortile_v1 {
    */
   export interface Schema$Row {
     /**
-     * The difference between each successive pair of altitudes, from west to east. The first, westmost point, is just the altitude rather than a diff. The units are specified by the altitude_multiplier parameter above; the value in meters is given by altitude_multiplier * altitude_diffs[n]. The altitude row (in metres above sea level) can be reconstructed with: a[0] = altitude_diffs[0] * altitude_multiplier when n &gt; 0, a[n] = a[n-1] + altitude_diffs[n-1] * altitude_multiplier.
+     * The difference between each successive pair of altitudes, from west to east. The first, westmost point, is just the altitude rather than a diff. The units are specified by the altitude_multiplier parameter above; the value in meters is given by altitude_multiplier * altitude_diffs[n]. The altitude row (in metres above sea level) can be reconstructed with: a[0] = altitude_diffs[0] * altitude_multiplier when n \> 0, a[n] = a[n-1] + altitude_diffs[n-1] * altitude_multiplier.
      */
     altitudeDiffs?: number[] | null;
   }
   /**
-   * A packed representation of a 2D grid of uniformly spaced points containing elevation data. Each point within the grid represents the altitude in meters above average sea level at that location within the tile. Elevations provided are (generally) relative to the EGM96 geoid, however some areas will be relative to NAVD88. EGM96 and NAVD88 are off by no more than 2 meters. The grid is oriented north-west to south-east, as illustrated: rows[0].a[0] rows[0].a[m] +-----------------+ | | | N | | ^ | | | | | W &lt;-----&gt; E | | | | | v | | S | | | +-----------------+ rows[n].a[0] rows[n].a[m] Rather than storing the altitudes directly, we store the diffs of the diffs between them as integers at some requested level of precision to take advantage of integer packing. Note that the data is packed in such a way that is fast to decode in Unity and that further optimizes wire size.
+   * A packed representation of a 2D grid of uniformly spaced points containing elevation data. Each point within the grid represents the altitude in meters above average sea level at that location within the tile. Elevations provided are (generally) relative to the EGM96 geoid, however some areas will be relative to NAVD88. EGM96 and NAVD88 are off by no more than 2 meters. The grid is oriented north-west to south-east, as illustrated: rows[0].a[0] rows[0].a[m] +-----------------+ | | | N | | ^ | | | | | W <-----\> E | | | | | v | | S | | | +-----------------+ rows[n].a[0] rows[n].a[m] Rather than storing the altitudes directly, we store the diffs of the diffs between them as integers at some requested level of precision to take advantage of integer packing. Note that the data is packed in such a way that is fast to decode in Unity and that further optimizes wire size.
    */
   export interface Schema$SecondDerivativeElevationGrid {
     /**
@@ -380,7 +376,7 @@ export namespace vectortile_v1 {
      */
     firstDerivative?: Schema$FirstDerivativeElevationGrid;
     /**
-     * Resource name of the tile. The tile resource name is prefixed by its collection ID `terrain/` followed by the resource ID, which encodes the tile&#39;s global x and y coordinates and zoom level as `@,,z`. For example, `terrain/@1,2,3z`.
+     * Resource name of the tile. The tile resource name is prefixed by its collection ID `terrain/` followed by the resource ID, which encodes the tile's global x and y coordinates and zoom level as `@,,z`. For example, `terrain/@1,2,3z`.
      */
     name?: string | null;
     /**
@@ -452,9 +448,9 @@ export namespace vectortile_v1 {
     }
 
     /**
-     * vectortile.featuretiles.get
-     * @desc Gets a feature tile by its tile resource name.
+     * Gets a feature tile by its tile resource name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vectortile.googleapis.com
@@ -531,30 +527,12 @@ export namespace vectortile_v1 {
      *   throw e;
      * });
      *
-     * @alias vectortile.featuretiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.clientInfo.apiClient API client name and version. For example, the SDK calling the API. The exact format is up to the client.
-     * @param {string=} params.clientInfo.applicationId Application ID, such as the package name on Android and the bundle identifier on iOS platforms.
-     * @param {string=} params.clientInfo.applicationVersion Application version number, such as "1.2.3". The exact format is application-dependent.
-     * @param {string=} params.clientInfo.deviceModel Device model as reported by the device. The exact format is platform-dependent.
-     * @param {string=} params.clientInfo.operatingSystem Operating system name and version as reported by the OS. For example, "Mac OS X 10.10.4". The exact format is platform-dependent.
-     * @param {string=} params.clientInfo.platform Platform where the application is running.
-     * @param {string=} params.clientInfo.userId Required. A client-generated user ID. The ID should be generated and persisted during the first user session or whenever a pre-existing ID is not found. The exact format is up to the client. This must be non-empty in a GetFeatureTileRequest (whether via the header or GetFeatureTileRequest.client_info).
-     * @param {string=} params.clientTileVersionId Optional version id identifying the tile that is already in the client's cache. This field should be populated with the most recent version_id value returned by the API for the requested tile. If the version id is empty the server always returns a newly rendered tile. If it is provided the server checks if the tile contents would be identical to one that's already on the client, and if so, returns a stripped-down response tile with STATUS_OK_DATA_UNCHANGED instead.
-     * @param {boolean=} params.enableDetailedHighwayTypes Flag indicating whether detailed highway types should be returned. If this is set, the CONTROLLED_ACCESS_HIGHWAY type may be returned. If not, then these highways will have the generic HIGHWAY type. This exists for backwards compatibility reasons.
-     * @param {boolean=} params.enableFeatureNames Flag indicating whether human-readable names should be returned for features. If this is set, the display_name field on the feature will be filled out.
-     * @param {boolean=} params.enableModeledVolumes Flag indicating whether 3D building models should be enabled. If this is set structures will be returned as 3D modeled volumes rather than 2.5D extruded areas where possible.
-     * @param {boolean=} params.enablePoliticalFeatures Flag indicating whether political features should be returned.
-     * @param {boolean=} params.enablePrivateRoads Flag indicating whether the returned tile will contain road features that are marked private. Private roads are indicated by the Feature.segment_info.road_info.is_private field.
-     * @param {boolean=} params.enableUnclippedBuildings Flag indicating whether unclipped buildings should be returned. If this is set, building render ops will extend beyond the tile boundary. Buildings will only be returned on the tile that contains their centroid.
-     * @param {string=} params.languageCode Required. The BCP-47 language code corresponding to the language in which the name was requested, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     * @param {string} params.name Required. Resource name of the tile. The tile resource name is prefixed by its collection ID `tiles/` followed by the resource ID, which encodes the tile's global x and y coordinates and zoom level as `@,,z`. For example, `tiles/@1,2,3z`.
-     * @param {string=} params.regionCode Required. The Unicode country/region code (CLDR) of the location from which the request is coming from, such as "US" and "419". For more information, see http://www.unicode.org/reports/tr35/#unicode_region_subtag.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Featuretiles$Get,
@@ -624,7 +602,7 @@ export namespace vectortile_v1 {
       if (callback) {
         createAPIRequest<Schema$FeatureTile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FeatureTile>(parameters);
@@ -710,9 +688,9 @@ export namespace vectortile_v1 {
     }
 
     /**
-     * vectortile.terraintiles.get
-     * @desc Gets a terrain tile by its tile resource name.
+     * Gets a terrain tile by its tile resource name.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/vectortile.googleapis.com
@@ -777,25 +755,12 @@ export namespace vectortile_v1 {
      *   throw e;
      * });
      *
-     * @alias vectortile.terraintiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.altitudePrecisionCentimeters The precision of terrain altitudes in centimeters. Possible values: between 1 (cm level precision) and 1,000,000 (10-kilometer level precision).
-     * @param {string=} params.clientInfo.apiClient API client name and version. For example, the SDK calling the API. The exact format is up to the client.
-     * @param {string=} params.clientInfo.applicationId Application ID, such as the package name on Android and the bundle identifier on iOS platforms.
-     * @param {string=} params.clientInfo.applicationVersion Application version number, such as "1.2.3". The exact format is application-dependent.
-     * @param {string=} params.clientInfo.deviceModel Device model as reported by the device. The exact format is platform-dependent.
-     * @param {string=} params.clientInfo.operatingSystem Operating system name and version as reported by the OS. For example, "Mac OS X 10.10.4". The exact format is platform-dependent.
-     * @param {string=} params.clientInfo.platform Platform where the application is running.
-     * @param {string=} params.clientInfo.userId Required. A client-generated user ID. The ID should be generated and persisted during the first user session or whenever a pre-existing ID is not found. The exact format is up to the client. This must be non-empty in a GetFeatureTileRequest (whether via the header or GetFeatureTileRequest.client_info).
-     * @param {integer=} params.maxElevationResolutionCells The maximum allowed resolution for the returned elevation heightmap. Possible values: between 1 and 1024 (and not less than min_elevation_resolution_cells). Over-sized heightmaps will be non-uniformly down-sampled such that each edge is no longer than this value. Non-uniformity is chosen to maximise the amount of preserved data. For example: Original resolution: 100px (width) * 30px (height) max_elevation_resolution: 30 New resolution: 30px (width) * 30px (height)
-     * @param {integer=} params.minElevationResolutionCells The minimum allowed resolution for the returned elevation heightmap. Possible values: between 0 and 1024 (and not more than max_elevation_resolution_cells). Zero is supported for backward compatibility. Under-sized heightmaps will be non-uniformly up-sampled such that each edge is no shorter than this value. Non-uniformity is chosen to maximise the amount of preserved data. For example: Original resolution: 30px (width) * 10px (height) min_elevation_resolution: 30 New resolution: 30px (width) * 30px (height)
-     * @param {string} params.name Required. Resource name of the tile. The tile resource name is prefixed by its collection ID `terraintiles/` followed by the resource ID, which encodes the tile's global x and y coordinates and zoom level as `@,,z`. For example, `terraintiles/@1,2,3z`.
-     * @param {string=} params.terrainFormats Terrain formats that the client understands.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Terraintiles$Get,
@@ -865,7 +830,7 @@ export namespace vectortile_v1 {
       if (callback) {
         createAPIRequest<Schema$TerrainTile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TerrainTile>(parameters);

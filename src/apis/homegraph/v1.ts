@@ -104,14 +104,10 @@ export namespace homegraph_v1 {
    *
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const homegraph = google.homegraph('v1');
-   *
-   * @namespace homegraph
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Homegraph
+   * ```
    */
   export class Homegraph {
     context: APIRequestContext;
@@ -243,7 +239,7 @@ export namespace homegraph_v1 {
     nicknames?: string[] | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -282,7 +278,7 @@ export namespace homegraph_v1 {
     devices?: Schema$AgentDeviceId[];
   }
   /**
-   * Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.google.com/assistant/smarthome/reference/intent/query). # Example ```json { &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;, &quot;payload&quot;: { &quot;devices&quot;: { &quot;123&quot;: { &quot;on&quot;: true, &quot;online&quot;: true }, &quot;456&quot;: { &quot;on&quot;: true, &quot;online&quot;: true, &quot;brightness&quot;: 80, &quot;color&quot;: { &quot;name&quot;: &quot;cerulean&quot;, &quot;spectrumRGB&quot;: 31655 } } } } } ```
+   * Response type for the [`Query`](#google.home.graph.v1.HomeGraphApiService.Query) call. This should follow the same format as the Google smart home `action.devices.QUERY` [response](https://developers.google.com/assistant/smarthome/reference/intent/query). # Example ```json { "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf", "payload": { "devices": { "123": { "on": true, "online": true \}, "456": { "on": true, "online": true, "brightness": 80, "color": { "name": "cerulean", "spectrumRGB": 31655 \} \} \} \} \} ```
    */
   export interface Schema$QueryResponse {
     /**
@@ -317,7 +313,7 @@ export namespace homegraph_v1 {
     states?: {[key: string]: any} | null;
   }
   /**
-   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, &quot;123&quot; and &quot;456&quot; in the following example). # Example ```json { &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;, &quot;agentUserId&quot;: &quot;1234&quot;, &quot;payload&quot;: { &quot;devices&quot;: { &quot;states&quot;: { &quot;123&quot;: { &quot;on&quot;: true }, &quot;456&quot;: { &quot;on&quot;: true, &quot;brightness&quot;: 10 } }, } } } ```
+   * Request type for the [`ReportStateAndNotification`](#google.home.graph.v1.HomeGraphApiService.ReportStateAndNotification) call. It may include states, notifications, or both. States and notifications are defined per `device_id` (for example, "123" and "456" in the following example). # Example ```json { "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf", "agentUserId": "1234", "payload": { "devices": { "states": { "123": { "on": true \}, "456": { "on": true, "brightness": 10 \} \}, \} \} \} ```
    */
   export interface Schema$ReportStateAndNotificationRequest {
     /**
@@ -390,7 +386,7 @@ export namespace homegraph_v1 {
     requestId?: string | null;
   }
   /**
-   * Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.google.com/assistant/smarthome/reference/intent/sync). # Example ```json { &quot;requestId&quot;: &quot;ff36a3cc-ec34-11e6-b1a0-64510650abcf&quot;, &quot;payload&quot;: { &quot;agentUserId&quot;: &quot;1836.15267389&quot;, &quot;devices&quot;: [{ &quot;id&quot;: &quot;123&quot;, &quot;type&quot;: &quot;action.devices.types.OUTLET&quot;, &quot;traits&quot;: [ &quot;action.devices.traits.OnOff&quot; ], &quot;name&quot;: { &quot;defaultNames&quot;: [&quot;My Outlet 1234&quot;], &quot;name&quot;: &quot;Night light&quot;, &quot;nicknames&quot;: [&quot;wall plug&quot;] }, &quot;willReportState&quot;: false, &quot;deviceInfo&quot;: { &quot;manufacturer&quot;: &quot;lights-out-inc&quot;, &quot;model&quot;: &quot;hs1234&quot;, &quot;hwVersion&quot;: &quot;3.2&quot;, &quot;swVersion&quot;: &quot;11.4&quot; }, &quot;customData&quot;: { &quot;fooValue&quot;: 74, &quot;barValue&quot;: true, &quot;bazValue&quot;: &quot;foo&quot; } }] } } ```
+   * Response type for the [`Sync`](#google.home.graph.v1.HomeGraphApiService.Sync) call. This should follow the same format as the Google smart home `action.devices.SYNC` [response](https://developers.google.com/assistant/smarthome/reference/intent/sync). # Example ```json { "requestId": "ff36a3cc-ec34-11e6-b1a0-64510650abcf", "payload": { "agentUserId": "1836.15267389", "devices": [{ "id": "123", "type": "action.devices.types.OUTLET", "traits": [ "action.devices.traits.OnOff" ], "name": { "defaultNames": ["My Outlet 1234"], "name": "Night light", "nicknames": ["wall plug"] \}, "willReportState": false, "deviceInfo": { "manufacturer": "lights-out-inc", "model": "hs1234", "hwVersion": "3.2", "swVersion": "11.4" \}, "customData": { "fooValue": 74, "barValue": true, "bazValue": "foo" \} \}] \} \} ```
    */
   export interface Schema$SyncResponse {
     /**
@@ -423,9 +419,9 @@ export namespace homegraph_v1 {
     }
 
     /**
-     * homegraph.agentUsers.delete
-     * @desc Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted. For more details on how users link their accounts, see [fulfillment and authentication](https://developers.google.com/assistant/smarthome/concepts/fulfillment-authentication). The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project.
+     * Unlinks the given third-party user from your smart home Action. All data related to this user will be deleted. For more details on how users link their accounts, see [fulfillment and authentication](https://developers.google.com/assistant/smarthome/concepts/fulfillment-authentication). The third-party user's identity is passed in via the `agent_user_id` (see DeleteAgentUserRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
@@ -465,15 +461,12 @@ export namespace homegraph_v1 {
      *   throw e;
      * });
      *
-     * @alias homegraph.agentUsers.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.agentUserId Required. Third-party user ID.
-     * @param {string=} params.requestId Request ID used for debugging.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Agentusers$Delete,
@@ -544,7 +537,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -571,9 +564,9 @@ export namespace homegraph_v1 {
     }
 
     /**
-     * homegraph.devices.query
-     * @desc Gets the current states in Home Graph for the given set of the third-party user's devices. The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project.
+     * Gets the current states in Home Graph for the given set of the third-party user's devices. The third-party user's identity is passed in via the `agent_user_id` (see QueryRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
@@ -621,14 +614,12 @@ export namespace homegraph_v1 {
      *   throw e;
      * });
      *
-     * @alias homegraph.devices.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().QueryRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Devices$Query,
@@ -698,7 +689,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
@@ -706,9 +697,9 @@ export namespace homegraph_v1 {
     }
 
     /**
-     * homegraph.devices.reportStateAndNotification
-     * @desc Reports device state and optionally sends device notifications. Called by your smart home Action when the state of a third-party device changes or you need to send a notification about the device. See [Implement Report State](https://developers.google.com/assistant/smarthome/develop/report-state) for more information. This method updates the device state according to its declared [traits](https://developers.google.com/assistant/smarthome/concepts/devices-traits). Publishing a new state value outside of these traits will result in an `INVALID_ARGUMENT` error response. The third-party user's identity is passed in via the `agent_user_id` (see ReportStateAndNotificationRequest). This request must be authorized using service account credentials from your Actions console project.
+     * Reports device state and optionally sends device notifications. Called by your smart home Action when the state of a third-party device changes or you need to send a notification about the device. See [Implement Report State](https://developers.google.com/assistant/smarthome/develop/report-state) for more information. This method updates the device state according to its declared [traits](https://developers.google.com/assistant/smarthome/concepts/devices-traits). Publishing a new state value outside of these traits will result in an `INVALID_ARGUMENT` error response. The third-party user's identity is passed in via the `agent_user_id` (see ReportStateAndNotificationRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
@@ -757,14 +748,12 @@ export namespace homegraph_v1 {
      *   throw e;
      * });
      *
-     * @alias homegraph.devices.reportStateAndNotification
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().ReportStateAndNotificationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reportStateAndNotification(
       params: Params$Resource$Devices$Reportstateandnotification,
@@ -845,7 +834,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$ReportStateAndNotificationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportStateAndNotificationResponse>(
@@ -855,9 +844,9 @@ export namespace homegraph_v1 {
     }
 
     /**
-     * homegraph.devices.requestSync
-     * @desc Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.
+     * Requests Google to send an `action.devices.SYNC` [intent](https://developers.google.com/assistant/smarthome/reference/intent/sync) to your smart home Action to update device metadata for the given user. The third-party user's identity is passed via the `agent_user_id` (see RequestSyncDevicesRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
@@ -901,14 +890,12 @@ export namespace homegraph_v1 {
      *   throw e;
      * });
      *
-     * @alias homegraph.devices.requestSync
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().RequestSyncDevicesRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     requestSync(
       params: Params$Resource$Devices$Requestsync,
@@ -989,7 +976,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$RequestSyncDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RequestSyncDevicesResponse>(parameters);
@@ -997,9 +984,9 @@ export namespace homegraph_v1 {
     }
 
     /**
-     * homegraph.devices.sync
-     * @desc Gets all the devices associated with the given third-party user. The third-party user's identity is passed in via the `agent_user_id` (see SyncRequest). This request must be authorized using service account credentials from your Actions console project.
+     * Gets all the devices associated with the given third-party user. The third-party user's identity is passed in via the `agent_user_id` (see SyncRequest). This request must be authorized using service account credentials from your Actions console project.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/homegraph.googleapis.com
@@ -1046,14 +1033,12 @@ export namespace homegraph_v1 {
      *   throw e;
      * });
      *
-     * @alias homegraph.devices.sync
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().SyncRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     sync(
       params: Params$Resource$Devices$Sync,
@@ -1123,7 +1108,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$SyncResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SyncResponse>(parameters);

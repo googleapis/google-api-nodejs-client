@@ -33,3 +33,14 @@ export function dataflow<T = dataflow_v1b3.Dataflow>(
 
 const auth = new AuthPlus();
 export {auth};
+export {dataflow_v1b3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

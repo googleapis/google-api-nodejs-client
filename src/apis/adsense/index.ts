@@ -31,3 +31,14 @@ export function adsense<T = adsense_v1_4.Adsense>(
 
 const auth = new AuthPlus();
 export {auth};
+export {adsense_v1_4};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace dfareporting_v3_4 {
    * Manage your DoubleClick Campaign Manager ad campaigns and reports.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const dfareporting = google.dfareporting('v3.4');
-   *
-   * @namespace dfareporting
-   * @type {Function}
-   * @version v3.4
-   * @variation v3.4
-   * @param {object=} options Options for Dfareporting
+   * ```
    */
   export class Dfareporting {
     context: APIRequestContext;
@@ -304,7 +300,7 @@ export namespace dfareporting_v3_4 {
      */
     countryId?: string | null;
     /**
-     * ID of currency associated with this account. This is a required field. Acceptable values are: - &quot;1&quot; for USD - &quot;2&quot; for GBP - &quot;3&quot; for ESP - &quot;4&quot; for SEK - &quot;5&quot; for CAD - &quot;6&quot; for JPY - &quot;7&quot; for DEM - &quot;8&quot; for AUD - &quot;9&quot; for FRF - &quot;10&quot; for ITL - &quot;11&quot; for DKK - &quot;12&quot; for NOK - &quot;13&quot; for FIM - &quot;14&quot; for ZAR - &quot;15&quot; for IEP - &quot;16&quot; for NLG - &quot;17&quot; for EUR - &quot;18&quot; for KRW - &quot;19&quot; for TWD - &quot;20&quot; for SGD - &quot;21&quot; for CNY - &quot;22&quot; for HKD - &quot;23&quot; for NZD - &quot;24&quot; for MYR - &quot;25&quot; for BRL - &quot;26&quot; for PTE - &quot;28&quot; for CLP - &quot;29&quot; for TRY - &quot;30&quot; for ARS - &quot;31&quot; for PEN - &quot;32&quot; for ILS - &quot;33&quot; for CHF - &quot;34&quot; for VEF - &quot;35&quot; for COP - &quot;36&quot; for GTQ - &quot;37&quot; for PLN - &quot;39&quot; for INR - &quot;40&quot; for THB - &quot;41&quot; for IDR - &quot;42&quot; for CZK - &quot;43&quot; for RON - &quot;44&quot; for HUF - &quot;45&quot; for RUB - &quot;46&quot; for AED - &quot;47&quot; for BGN - &quot;48&quot; for HRK - &quot;49&quot; for MXN - &quot;50&quot; for NGN - &quot;51&quot; for EGP
+     * ID of currency associated with this account. This is a required field. Acceptable values are: - "1" for USD - "2" for GBP - "3" for ESP - "4" for SEK - "5" for CAD - "6" for JPY - "7" for DEM - "8" for AUD - "9" for FRF - "10" for ITL - "11" for DKK - "12" for NOK - "13" for FIM - "14" for ZAR - "15" for IEP - "16" for NLG - "17" for EUR - "18" for KRW - "19" for TWD - "20" for SGD - "21" for CNY - "22" for HKD - "23" for NZD - "24" for MYR - "25" for BRL - "26" for PTE - "28" for CLP - "29" for TRY - "30" for ARS - "31" for PEN - "32" for ILS - "33" for CHF - "34" for VEF - "35" for COP - "36" for GTQ - "37" for PLN - "39" for INR - "40" for THB - "41" for IDR - "42" for CZK - "43" for RON - "44" for HUF - "45" for RUB - "46" for AED - "47" for BGN - "48" for HRK - "49" for MXN - "50" for NGN - "51" for EGP
      */
     currencyId?: string | null;
     /**
@@ -320,11 +316,11 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#account&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#account".
      */
     kind?: string | null;
     /**
-     * Locale of this account. Acceptable values are: - &quot;cs&quot; (Czech) - &quot;de&quot; (German) - &quot;en&quot; (English) - &quot;en-GB&quot; (English United Kingdom) - &quot;es&quot; (Spanish) - &quot;fr&quot; (French) - &quot;it&quot; (Italian) - &quot;ja&quot; (Japanese) - &quot;ko&quot; (Korean) - &quot;pl&quot; (Polish) - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian) - &quot;sv&quot; (Swedish) - &quot;tr&quot; (Turkish) - &quot;zh-CN&quot; (Chinese Simplified) - &quot;zh-TW&quot; (Chinese Traditional)
+     * Locale of this account. Acceptable values are: - "cs" (Czech) - "de" (German) - "en" (English) - "en-GB" (English United Kingdom) - "es" (Spanish) - "fr" (French) - "it" (Italian) - "ja" (Japanese) - "ko" (Korean) - "pl" (Polish) - "pt-BR" (Portuguese Brazil) - "ru" (Russian) - "sv" (Swedish) - "tr" (Turkish) - "zh-CN" (Chinese Simplified) - "zh-TW" (Chinese Traditional)
      */
     locale?: string | null;
     /**
@@ -373,7 +369,7 @@ export namespace dfareporting_v3_4 {
      */
     availableAds?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountActiveAdSummary&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountActiveAdSummary".
      */
     kind?: string | null;
   }
@@ -382,7 +378,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$AccountPermission {
     /**
-     * Account profiles associated with this account permission. Possible values are: - &quot;ACCOUNT_PROFILE_BASIC&quot; - &quot;ACCOUNT_PROFILE_STANDARD&quot;
+     * Account profiles associated with this account permission. Possible values are: - "ACCOUNT_PROFILE_BASIC" - "ACCOUNT_PROFILE_STANDARD"
      */
     accountProfiles?: string[] | null;
     /**
@@ -390,7 +386,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermission&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermission".
      */
     kind?: string | null;
     /**
@@ -415,7 +411,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermissionGroup".
      */
     kind?: string | null;
     /**
@@ -432,7 +428,7 @@ export namespace dfareporting_v3_4 {
      */
     accountPermissionGroups?: Schema$AccountPermissionGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermissionGroupsListResponse".
      */
     kind?: string | null;
   }
@@ -445,7 +441,7 @@ export namespace dfareporting_v3_4 {
      */
     accountPermissions?: Schema$AccountPermission[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountPermissionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountPermissionsListResponse".
      */
     kind?: string | null;
   }
@@ -458,7 +454,7 @@ export namespace dfareporting_v3_4 {
      */
     accounts?: Schema$Account[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountsListResponse".
      */
     kind?: string | null;
     /**
@@ -499,15 +495,15 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfile&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountUserProfile".
      */
     kind?: string | null;
     /**
-     * Locale of the user profile. This is a required field. Acceptable values are: - &quot;cs&quot; (Czech) - &quot;de&quot; (German) - &quot;en&quot; (English) - &quot;en-GB&quot; (English United Kingdom) - &quot;es&quot; (Spanish) - &quot;fr&quot; (French) - &quot;it&quot; (Italian) - &quot;ja&quot; (Japanese) - &quot;ko&quot; (Korean) - &quot;pl&quot; (Polish) - &quot;pt-BR&quot; (Portuguese Brazil) - &quot;ru&quot; (Russian) - &quot;sv&quot; (Swedish) - &quot;tr&quot; (Turkish) - &quot;zh-CN&quot; (Chinese Simplified) - &quot;zh-TW&quot; (Chinese Traditional)
+     * Locale of the user profile. This is a required field. Acceptable values are: - "cs" (Czech) - "de" (German) - "en" (English) - "en-GB" (English United Kingdom) - "es" (Spanish) - "fr" (French) - "it" (Italian) - "ja" (Japanese) - "ko" (Korean) - "pl" (Polish) - "pt-BR" (Portuguese Brazil) - "ru" (Russian) - "sv" (Swedish) - "tr" (Turkish) - "zh-CN" (Chinese Simplified) - "zh-TW" (Chinese Traditional)
      */
     locale?: string | null;
     /**
-     * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: &quot;&amp;;&lt;&gt;&quot;#%,&quot;.
+     * Name of the user profile. This is a required field. Must be less than 64 characters long, must be globally unique, and cannot contain whitespace or any of the following characters: "&;<\>"#%,".
      */
     name?: string | null;
     /**
@@ -544,7 +540,7 @@ export namespace dfareporting_v3_4 {
      */
     accountUserProfiles?: Schema$AccountUserProfile[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#accountUserProfilesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#accountUserProfilesListResponse".
      */
     kind?: string | null;
     /**
@@ -557,7 +553,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$Activities {
     /**
-     * List of activity filters. The dimension values need to be all either of type &quot;dfa:activity&quot; or &quot;dfa:activityGroup&quot;.
+     * List of activity filters. The dimension values need to be all either of type "dfa:activity" or "dfa:activityGroup".
      */
     filters?: Schema$DimensionValue[];
     /**
@@ -671,7 +667,7 @@ export namespace dfareporting_v3_4 {
      */
     keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ad&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#ad".
      */
     kind?: string | null;
     /**
@@ -741,7 +737,7 @@ export namespace dfareporting_v3_4 {
      */
     enabled?: boolean | null;
     /**
-     * Whether the brand-neutral ad&#39;s click-through URL comes from the campaign&#39;s creative bundle or the override URL. Must be set to true if ad blocking is enabled and no creative bundle is configured.
+     * Whether the brand-neutral ad's click-through URL comes from the campaign's creative bundle or the override URL. Must be set to true if ad blocking is enabled and no creative bundle is configured.
      */
     overrideClickThroughUrl?: boolean | null;
   }
@@ -754,7 +750,7 @@ export namespace dfareporting_v3_4 {
      */
     ads?: Schema$Ad[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#adsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#adsListResponse".
      */
     kind?: string | null;
     /**
@@ -816,7 +812,7 @@ export namespace dfareporting_v3_4 {
      */
     clickThroughUrlSuffix?: string | null;
     /**
-     * ID of the click-through event tag to apply by default to the landing pages of this advertiser&#39;s campaigns.
+     * ID of the click-through event tag to apply by default to the landing pages of this advertiser's campaigns.
      */
     defaultClickThroughEventTagId?: string | null;
     /**
@@ -824,7 +820,7 @@ export namespace dfareporting_v3_4 {
      */
     defaultEmail?: string | null;
     /**
-     * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser&#39;s floodlight configuration ID in order to share that advertiser&#39;s floodlight configuration with this advertiser, so long as: - This advertiser&#39;s original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser&#39;s original floodlight configuration is not already shared with another advertiser.
+     * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: - This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser's original floodlight configuration is not already shared with another advertiser.
      */
     floodlightConfigurationId?: string | null;
     /**
@@ -840,7 +836,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiser&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertiser".
      */
     kind?: string | null;
     /**
@@ -848,7 +844,7 @@ export namespace dfareporting_v3_4 {
      */
     name?: string | null;
     /**
-     * Original floodlight configuration before any sharing occurred. Set the floodlightConfigurationId of this advertiser to originalFloodlightConfigurationId to unshare the advertiser&#39;s current floodlight configuration. You cannot unshare an advertiser&#39;s floodlight configuration if the shared configuration has activities associated with any campaign or placement.
+     * Original floodlight configuration before any sharing occurred. Set the floodlightConfigurationId of this advertiser to originalFloodlightConfigurationId to unshare the advertiser's current floodlight configuration. You cannot unshare an advertiser's floodlight configuration if the shared configuration has activities associated with any campaign or placement.
      */
     originalFloodlightConfigurationId?: string | null;
     /**
@@ -877,7 +873,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertiserGroup".
      */
     kind?: string | null;
     /**
@@ -894,7 +890,7 @@ export namespace dfareporting_v3_4 {
      */
     advertiserGroups?: Schema$AdvertiserGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertiserGroupsListResponse".
      */
     kind?: string | null;
     /**
@@ -907,7 +903,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$AdvertiserLandingPagesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertiserLandingPagesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertiserLandingPagesListResponse".
      */
     kind?: string | null;
     /**
@@ -928,7 +924,7 @@ export namespace dfareporting_v3_4 {
      */
     advertisers?: Schema$Advertiser[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#advertisersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#advertisersListResponse".
      */
     kind?: string | null;
     /**
@@ -983,15 +979,15 @@ export namespace dfareporting_v3_4 {
      */
     dartId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browser&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#browser".
      */
     kind?: string | null;
     /**
-     * Major version number (leftmost number) of this browser. For example, for Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
+     * Major version number (leftmost number) of this browser. For example, for Chrome 5.0.376.86 beta, this field should be set to 5. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can't tell which version it is.
      */
     majorVersion?: string | null;
     /**
-     * Minor version number (number after first dot on left) of this browser. For example, for Chrome 5.0.375.86 beta, this field should be set to 0. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can&#39;t tell which version it is.
+     * Minor version number (number after first dot on left) of this browser. For example, for Chrome 5.0.375.86 beta, this field should be set to 0. An asterisk (*) may be used to target any version number, and a question mark (?) may be used to target cases where the version number cannot be identified. For example, Chrome *.* targets any version of Chrome: 1.2, 2.5, 3.5, and so on. Chrome 3.* targets Chrome 3.1, 3.5, but not 4.0. Firefox ?.? targets cases where the ad server knows the browser is Firefox but can't tell which version it is.
      */
     minorVersion?: string | null;
     /**
@@ -1008,7 +1004,7 @@ export namespace dfareporting_v3_4 {
      */
     browsers?: Schema$Browser[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#browsersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#browsersListResponse".
      */
     kind?: string | null;
   }
@@ -1098,7 +1094,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaign&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#campaign".
      */
     kind?: string | null;
     /**
@@ -1132,7 +1128,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociation&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#campaignCreativeAssociation".
      */
     kind?: string | null;
   }
@@ -1145,7 +1141,7 @@ export namespace dfareporting_v3_4 {
      */
     campaignCreativeAssociations?: Schema$CampaignCreativeAssociation[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignCreativeAssociationsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#campaignCreativeAssociationsListResponse".
      */
     kind?: string | null;
     /**
@@ -1170,7 +1166,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignManagerIds&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#campaignManagerIds".
      */
     kind?: string | null;
     /**
@@ -1191,7 +1187,7 @@ export namespace dfareporting_v3_4 {
      */
     campaigns?: Schema$Campaign[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#campaignsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#campaignsListResponse".
      */
     kind?: string | null;
     /**
@@ -1221,7 +1217,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLog&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#changeLog".
      */
     kind?: string | null;
     /**
@@ -1266,7 +1262,7 @@ export namespace dfareporting_v3_4 {
      */
     changeLogs?: Schema$ChangeLog[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#changeLogsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#changeLogsListResponse".
      */
     kind?: string | null;
     /**
@@ -1321,7 +1317,7 @@ export namespace dfareporting_v3_4 {
      */
     cities?: Schema$City[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#citiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#citiesListResponse".
      */
     kind?: string | null;
   }
@@ -1342,7 +1338,7 @@ export namespace dfareporting_v3_4 {
      */
     dartId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#city&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#city".
      */
     kind?: string | null;
     /**
@@ -1379,7 +1375,7 @@ export namespace dfareporting_v3_4 {
      */
     eventName?: string | null;
     /**
-     * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset&#39;s creativeAssetId.name field.
+     * Parameter name for the specified click tag. For DISPLAY_IMAGE_GALLERY creative assets, this field must match the value of the creative asset's creativeAssetId.name field.
      */
     name?: string | null;
   }
@@ -1388,7 +1384,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$ClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If defaultLandingPage is enabled then the campaign&#39;s default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page&#39;s URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If defaultLandingPage is enabled then the campaign's default landing page URL is assigned to this field. - If defaultLandingPage is not enabled and a landingPageId is specified then that landing page's URL is assigned to this field. - If neither of the above cases apply, then the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string | null;
     /**
@@ -1409,7 +1405,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$ClickThroughUrlSuffixProperties {
     /**
-     * Click-through URL suffix to apply to all ads in this entity&#39;s scope. Must be less than 128 characters long.
+     * Click-through URL suffix to apply to all ads in this entity's scope. Must be less than 128 characters long.
      */
     clickThroughUrlSuffix?: string | null;
     /**
@@ -1447,7 +1443,7 @@ export namespace dfareporting_v3_4 {
      */
     imageOnly?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#companionSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#companionSetting".
      */
     kind?: string | null;
   }
@@ -1456,11 +1452,11 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CompatibleFields {
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
+     * Contains items that are compatible to be selected for a report of type "CROSS_DIMENSION_REACH".
      */
     crossDimensionReachReportCompatibleFields?: Schema$CrossDimensionReachReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;FLOODLIGHT&quot;.
+     * Contains items that are compatible to be selected for a report of type "FLOODLIGHT".
      */
     floodlightReportCompatibleFields?: Schema$FloodlightReportCompatibleFields;
     /**
@@ -1468,23 +1464,23 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;PATH_ATTRIBUTION&quot;.
+     * Contains items that are compatible to be selected for a report of type "PATH_ATTRIBUTION".
      */
     pathAttributionReportCompatibleFields?: Schema$PathReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;PATH&quot;.
+     * Contains items that are compatible to be selected for a report of type "PATH".
      */
     pathReportCompatibleFields?: Schema$PathReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
+     * Contains items that are compatible to be selected for a report of type "PATH_TO_CONVERSION".
      */
     pathToConversionReportCompatibleFields?: Schema$PathToConversionReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;REACH&quot;.
+     * Contains items that are compatible to be selected for a report of type "REACH".
      */
     reachReportCompatibleFields?: Schema$ReachReportCompatibleFields;
     /**
-     * Contains items that are compatible to be selected for a report of type &quot;STANDARD&quot;.
+     * Contains items that are compatible to be selected for a report of type "STANDARD".
      */
     reportCompatibleFields?: Schema$ReportCompatibleFields;
   }
@@ -1497,7 +1493,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionType&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#connectionType".
      */
     kind?: string | null;
     /**
@@ -1514,7 +1510,7 @@ export namespace dfareporting_v3_4 {
      */
     connectionTypes?: Schema$ConnectionType[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#connectionTypesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#connectionTypesListResponse".
      */
     kind?: string | null;
   }
@@ -1527,7 +1523,7 @@ export namespace dfareporting_v3_4 {
      */
     contentCategories?: Schema$ContentCategory[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategoriesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#contentCategoriesListResponse".
      */
     kind?: string | null;
     /**
@@ -1548,7 +1544,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#contentCategory&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#contentCategory".
      */
     kind?: string | null;
     /**
@@ -1593,7 +1589,7 @@ export namespace dfareporting_v3_4 {
      */
     gclid?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversion&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversion".
      */
     kind?: string | null;
     /**
@@ -1625,7 +1621,7 @@ export namespace dfareporting_v3_4 {
      */
     timestampMicros?: string | null;
     /**
-     * Whether this particular request may come from a user under the age of 16 (may differ by country), under compliance with the European Union&#39;s General Data Protection Regulation (GDPR).
+     * Whether this particular request may come from a user under the age of 16 (may differ by country), under compliance with the European Union's General Data Protection Regulation (GDPR).
      */
     treatmentForUnderage?: boolean | null;
     /**
@@ -1642,7 +1638,7 @@ export namespace dfareporting_v3_4 {
      */
     code?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionError&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionError".
      */
     kind?: string | null;
     /**
@@ -1663,7 +1659,7 @@ export namespace dfareporting_v3_4 {
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertRequest&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionsBatchInsertRequest".
      */
     kind?: string | null;
   }
@@ -1676,7 +1672,7 @@ export namespace dfareporting_v3_4 {
      */
     hasFailures?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchInsertResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionsBatchInsertResponse".
      */
     kind?: string | null;
     /**
@@ -1697,7 +1693,7 @@ export namespace dfareporting_v3_4 {
      */
     encryptionInfo?: Schema$EncryptionInfo;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateRequest&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionsBatchUpdateRequest".
      */
     kind?: string | null;
   }
@@ -1710,7 +1706,7 @@ export namespace dfareporting_v3_4 {
      */
     hasFailures?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionsBatchUpdateResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionsBatchUpdateResponse".
      */
     kind?: string | null;
     /**
@@ -1731,7 +1727,7 @@ export namespace dfareporting_v3_4 {
      */
     errors?: Schema$ConversionError[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#conversionStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#conversionStatus".
      */
     kind?: string | null;
   }
@@ -1744,7 +1740,7 @@ export namespace dfareporting_v3_4 {
      */
     countries?: Schema$Country[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#countriesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#countriesListResponse".
      */
     kind?: string | null;
   }
@@ -1761,7 +1757,7 @@ export namespace dfareporting_v3_4 {
      */
     dartId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#country&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#country".
      */
     kind?: string | null;
     /**
@@ -1834,7 +1830,7 @@ export namespace dfareporting_v3_4 {
      */
     backupImageClickThroughUrl?: Schema$CreativeClickThroughUrl;
     /**
-     * List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by Campaign Manager for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets&#39; detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * List of feature dependencies that will cause a backup image to be served if the browser that serves the ad does not support them. Feature dependencies are features that a browser must be able to support in order to render your HTML5 creative asset correctly. This field is initially auto-generated to contain all features detected by Campaign Manager for all the assets of this creative and can then be modified by the client. To reset this field, copy over all the creativeAssets' detected features. Applicable to the following creative types: HTML5_BANNER. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     backupImageFeatures?: string[] | null;
     /**
@@ -1858,11 +1854,11 @@ export namespace dfareporting_v3_4 {
      */
     companionCreatives?: string[] | null;
     /**
-     * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types. Acceptable values are: - &quot;APP&quot; - &quot;APP_INTERSTITIAL&quot; - &quot;IN_STREAM_VIDEO&quot; - &quot;IN_STREAM_AUDIO&quot; - &quot;DISPLAY&quot; - &quot;DISPLAY_INTERSTITIAL&quot;
+     * Compatibilities associated with this creative. This is a read-only field. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices or in mobile apps for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. Only pre-existing creatives may have these compatibilities since new creatives will either be assigned DISPLAY or DISPLAY_INTERSTITIAL instead. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard. IN_STREAM_AUDIO refers to rendering in in-stream audio ads developed with the VAST standard. Applicable to all creative types. Acceptable values are: - "APP" - "APP_INTERSTITIAL" - "IN_STREAM_VIDEO" - "IN_STREAM_AUDIO" - "DISPLAY" - "DISPLAY_INTERSTITIAL"
      */
     compatibility?: string[] | null;
     /**
-     * Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don&#39;t want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
+     * Whether Flash assets associated with the creative need to be automatically converted to HTML5. This flag is enabled by default and users can choose to disable it if they don't want the system to generate and use HTML5 asset for this creative. Applicable to the following creative type: FLASH_INPAGE. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
     convertFlashToHtml5?: boolean | null;
     /**
@@ -1914,7 +1910,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creative&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creative".
      */
     kind?: string | null;
     /**
@@ -1986,7 +1982,7 @@ export namespace dfareporting_v3_4 {
      */
     sslCompliant?: boolean | null;
     /**
-     * Whether creative should be treated as SSL compliant even if the system scan shows it&#39;s not. Applicable to all creative types.
+     * Whether creative should be treated as SSL compliant even if the system scan shows it's not. Applicable to all creative types.
      */
     sslOverride?: boolean | null;
     /**
@@ -2248,7 +2244,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CreativeAssetId {
     /**
-     * Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: &quot;.-_ &quot;. Spaces are allowed.
+     * Name of the creative asset. This is a required field while inserting an asset. After insertion, this assetIdentifier is used to identify the uploaded asset. Characters in the name must be alphanumeric or one of the following: ".-_ ". Spaces are allowed.
      */
     name?: string | null;
     /**
@@ -2289,7 +2285,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeAssetMetadata&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeAssetMetadata".
      */
     kind?: string | null;
     /**
@@ -2301,7 +2297,7 @@ export namespace dfareporting_v3_4 {
      */
     timerCustomEvents?: Schema$CreativeCustomEvent[];
     /**
-     * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field. Possible values are: - &quot;ADMOB_REFERENCED&quot; - &quot;ASSET_FORMAT_UNSUPPORTED_DCM&quot; - &quot;ASSET_INVALID&quot; - &quot;CLICK_TAG_HARD_CODED&quot; - &quot;CLICK_TAG_INVALID&quot; - &quot;CLICK_TAG_IN_GWD&quot; - &quot;CLICK_TAG_MISSING&quot; - &quot;CLICK_TAG_MORE_THAN_ONE&quot; - &quot;CLICK_TAG_NON_TOP_LEVEL&quot; - &quot;COMPONENT_UNSUPPORTED_DCM&quot; - &quot;ENABLER_UNSUPPORTED_METHOD_DCM&quot; - &quot;EXTERNAL_FILE_REFERENCED&quot; - &quot;FILE_DETAIL_EMPTY&quot; - &quot;FILE_TYPE_INVALID&quot; - &quot;GWD_PROPERTIES_INVALID&quot; - &quot;HTML5_FEATURE_UNSUPPORTED&quot; - &quot;LINKED_FILE_NOT_FOUND&quot; - &quot;MAX_FLASH_VERSION_11&quot; - &quot;MRAID_REFERENCED&quot; - &quot;NOT_SSL_COMPLIANT&quot; - &quot;ORPHANED_ASSET&quot; - &quot;PRIMARY_HTML_MISSING&quot; - &quot;SVG_INVALID&quot; - &quot;ZIP_INVALID&quot;
+     * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field. Possible values are: - "ADMOB_REFERENCED" - "ASSET_FORMAT_UNSUPPORTED_DCM" - "ASSET_INVALID" - "CLICK_TAG_HARD_CODED" - "CLICK_TAG_INVALID" - "CLICK_TAG_IN_GWD" - "CLICK_TAG_MISSING" - "CLICK_TAG_MORE_THAN_ONE" - "CLICK_TAG_NON_TOP_LEVEL" - "COMPONENT_UNSUPPORTED_DCM" - "ENABLER_UNSUPPORTED_METHOD_DCM" - "EXTERNAL_FILE_REFERENCED" - "FILE_DETAIL_EMPTY" - "FILE_TYPE_INVALID" - "GWD_PROPERTIES_INVALID" - "HTML5_FEATURE_UNSUPPORTED" - "LINKED_FILE_NOT_FOUND" - "MAX_FLASH_VERSION_11" - "MRAID_REFERENCED" - "NOT_SSL_COMPLIANT" - "ORPHANED_ASSET" - "PRIMARY_HTML_MISSING" - "SVG_INVALID" - "ZIP_INVALID"
      */
     warnedValidationRules?: string[] | null;
   }
@@ -2323,7 +2319,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CreativeAssignment {
     /**
-     * Whether this creative assignment is active. When true, the creative will be included in the ad&#39;s rotation.
+     * Whether this creative assignment is active. When true, the creative will be included in the ad's rotation.
      */
     active?: boolean | null;
     /**
@@ -2374,7 +2370,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CreativeClickThroughUrl {
     /**
-     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If landingPageId is specified then that landing page&#39;s URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
+     * Read-only convenience field representing the actual URL that will be used for this click-through. The URL is computed as follows: - If landingPageId is specified then that landing page's URL is assigned to this field. - Otherwise, the customClickThroughUrl is assigned to this field.
      */
     computedClickThroughUrl?: string | null;
     /**
@@ -2452,7 +2448,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeField&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeField".
      */
     kind?: string | null;
     /**
@@ -2486,7 +2482,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeFields?: Schema$CreativeField[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeFieldsListResponse".
      */
     kind?: string | null;
     /**
@@ -2503,7 +2499,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValue&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeFieldValue".
      */
     kind?: string | null;
     /**
@@ -2520,7 +2516,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeFieldValues?: Schema$CreativeFieldValue[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeFieldValuesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeFieldValuesListResponse".
      */
     kind?: string | null;
     /**
@@ -2553,7 +2549,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeGroup".
      */
     kind?: string | null;
     /**
@@ -2587,7 +2583,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeGroups?: Schema$CreativeGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativeGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativeGroupsListResponse".
      */
     kind?: string | null;
     /**
@@ -2625,7 +2621,7 @@ export namespace dfareporting_v3_4 {
      */
     creativeAssignments?: Schema$CreativeAssignment[];
     /**
-     * Creative optimization configuration that is used by this ad. It should refer to one of the existing optimization configurations in the ad&#39;s campaign. If it is unset or set to 0, then the campaign&#39;s default optimization configuration will be used for this ad.
+     * Creative optimization configuration that is used by this ad. It should refer to one of the existing optimization configurations in the ad's campaign. If it is unset or set to 0, then the campaign's default optimization configuration will be used for this ad.
      */
     creativeOptimizationConfigurationId?: string | null;
     /**
@@ -2646,7 +2642,7 @@ export namespace dfareporting_v3_4 {
      */
     creatives?: Schema$Creative[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#creativesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#creativesListResponse".
      */
     kind?: string | null;
     /**
@@ -2655,15 +2651,15 @@ export namespace dfareporting_v3_4 {
     nextPageToken?: string | null;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
+   * Represents fields that are compatible to be selected for a report of type "CROSS_DIMENSION_REACH".
    */
   export interface Schema$CrossDimensionReachReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the &quot;breakdown&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "breakdown" section of the report.
      */
     breakdown?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensionFilters" section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
@@ -2671,11 +2667,11 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected in the &quot;overlapMetricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "overlapMetricNames" section of the report.
      */
     overlapMetrics?: Schema$Metric[];
   }
@@ -2708,7 +2704,7 @@ export namespace dfareporting_v3_4 {
      */
     insertEvent?: Schema$CustomEventInsert;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEvent&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEvent".
      */
     kind?: string | null;
     /**
@@ -2729,7 +2725,7 @@ export namespace dfareporting_v3_4 {
      */
     gclid?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventClickAnnotation&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventClickAnnotation".
      */
     kind?: string | null;
   }
@@ -2742,7 +2738,7 @@ export namespace dfareporting_v3_4 {
      */
     code?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventError&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventError".
      */
     kind?: string | null;
     /**
@@ -2755,7 +2751,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CustomEventImpressionAnnotation {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventImpressionAnnotation&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventImpressionAnnotation".
      */
     kind?: string | null;
     /**
@@ -2780,7 +2776,7 @@ export namespace dfareporting_v3_4 {
      */
     insertEventType?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventInsert&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventInsert".
      */
     kind?: string | null;
     /**
@@ -2801,7 +2797,7 @@ export namespace dfareporting_v3_4 {
      */
     customEvents?: Schema$CustomEvent[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventsBatchInsertRequest&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventsBatchInsertRequest".
      */
     kind?: string | null;
   }
@@ -2814,7 +2810,7 @@ export namespace dfareporting_v3_4 {
      */
     hasFailures?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventsBatchInsertResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventsBatchInsertResponse".
      */
     kind?: string | null;
     /**
@@ -2835,7 +2831,7 @@ export namespace dfareporting_v3_4 {
      */
     errors?: Schema$CustomEventError[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customEventStatus&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customEventStatus".
      */
     kind?: string | null;
   }
@@ -2844,11 +2840,11 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$CustomFloodlightVariable {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customFloodlightVariable&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customFloodlightVariable".
      */
     kind?: string | null;
     /**
-     * The type of custom floodlight variable to supply a value for. These map to the &quot;u[1-20]=&quot; in the tags.
+     * The type of custom floodlight variable to supply a value for. These map to the "u[1-20]=" in the tags.
      */
     type?: string | null;
     /**
@@ -2878,7 +2874,7 @@ export namespace dfareporting_v3_4 {
      */
     index?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#customVariable&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#customVariable".
      */
     kind?: string | null;
     /**
@@ -2944,7 +2940,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$DayPartTargeting {
     /**
-     * Days of the week when the ad will serve. Acceptable values are: - &quot;SUNDAY&quot; - &quot;MONDAY&quot; - &quot;TUESDAY&quot; - &quot;WEDNESDAY&quot; - &quot;THURSDAY&quot; - &quot;FRIDAY&quot; - &quot;SATURDAY&quot;
+     * Days of the week when the ad will serve. Acceptable values are: - "SUNDAY" - "MONDAY" - "TUESDAY" - "WEDNESDAY" - "THURSDAY" - "FRIDAY" - "SATURDAY"
      */
     daysOfWeek?: string[] | null;
     /**
@@ -2952,7 +2948,7 @@ export namespace dfareporting_v3_4 {
      */
     hoursOfDay?: number[] | null;
     /**
-     * Whether or not to use the user&#39;s local time. If false, the America/New York time zone applies.
+     * Whether or not to use the user's local time. If false, the America/New York time zone applies.
      */
     userLocalTime?: boolean | null;
   }
@@ -2969,7 +2965,7 @@ export namespace dfareporting_v3_4 {
      */
     fallbackUrl?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#deepLink&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#deepLink".
      */
     kind?: string | null;
     /**
@@ -2982,11 +2978,11 @@ export namespace dfareporting_v3_4 {
     remarketingListIds?: string[] | null;
   }
   /**
-   * Properties of inheriting and overriding the default click-through event tag. A campaign may override the event tag defined at the advertiser level, and an ad may also override the campaign&#39;s setting further.
+   * Properties of inheriting and overriding the default click-through event tag. A campaign may override the event tag defined at the advertiser level, and an ad may also override the campaign's setting further.
    */
   export interface Schema$DefaultClickThroughEventTagProperties {
     /**
-     * ID of the click-through event tag to apply to all ads in this entity&#39;s scope.
+     * ID of the click-through event tag to apply to all ads in this entity's scope.
      */
     defaultClickThroughEventTagId?: string | null;
     /**
@@ -3091,7 +3087,7 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
+     * Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.
      */
     matchType?: string | null;
     /**
@@ -3116,7 +3112,7 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through dimension values. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
+     * Continuation token used to page through dimension values. To retrieve the next page of results, set the next request's "pageToken" to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string | null;
   }
@@ -3152,15 +3148,15 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Tag types for regular placements. Acceptable values are: - &quot;STANDARD&quot; - &quot;IFRAME_JAVASCRIPT_INPAGE&quot; - &quot;INTERNAL_REDIRECT_INPAGE&quot; - &quot;JAVASCRIPT_INPAGE&quot;
+     * Tag types for regular placements. Acceptable values are: - "STANDARD" - "IFRAME_JAVASCRIPT_INPAGE" - "INTERNAL_REDIRECT_INPAGE" - "JAVASCRIPT_INPAGE"
      */
     inpageTagFormats?: string[] | null;
     /**
-     * Tag types for interstitial placements. Acceptable values are: - &quot;IFRAME_JAVASCRIPT_INTERSTITIAL&quot; - &quot;INTERNAL_REDIRECT_INTERSTITIAL&quot; - &quot;JAVASCRIPT_INTERSTITIAL&quot;
+     * Tag types for interstitial placements. Acceptable values are: - "IFRAME_JAVASCRIPT_INTERSTITIAL" - "INTERNAL_REDIRECT_INTERSTITIAL" - "JAVASCRIPT_INTERSTITIAL"
      */
     interstitialTagFormats?: string[] | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySite&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#directorySite".
      */
     kind?: string | null;
     /**
@@ -3206,7 +3202,7 @@ export namespace dfareporting_v3_4 {
      */
     directorySites?: Schema$DirectorySite[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#directorySitesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#directorySitesListResponse".
      */
     kind?: string | null;
     /**
@@ -3252,7 +3248,7 @@ export namespace dfareporting_v3_4 {
      */
     dvSiteId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dV3Ids&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#dV3Ids".
      */
     kind?: string | null;
   }
@@ -3261,7 +3257,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$DynamicTargetingKey {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKey&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#dynamicTargetingKey".
      */
     kind?: string | null;
     /**
@@ -3286,7 +3282,7 @@ export namespace dfareporting_v3_4 {
      */
     dynamicTargetingKeys?: Schema$DynamicTargetingKey[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#dynamicTargetingKeysListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#dynamicTargetingKeysListResponse".
      */
     kind?: string | null;
   }
@@ -3307,7 +3303,7 @@ export namespace dfareporting_v3_4 {
      */
     encryptionSource?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#encryptionInfo&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#encryptionInfo".
      */
     kind?: string | null;
   }
@@ -3349,11 +3345,11 @@ export namespace dfareporting_v3_4 {
      */
     campaignIdDimensionValue?: Schema$DimensionValue;
     /**
-     * Whether this event tag should be automatically enabled for all of the advertiser&#39;s campaigns and ads.
+     * Whether this event tag should be automatically enabled for all of the advertiser's campaigns and ads.
      */
     enabledByDefault?: boolean | null;
     /**
-     * Whether to remove this event tag from ads that are trafficked through Display &amp; Video 360 to Ad Exchange. This may be useful if the event tag uses a pixel that is unapproved for Ad Exchange bids on one or more networks, such as the Google Display Network.
+     * Whether to remove this event tag from ads that are trafficked through Display & Video 360 to Ad Exchange. This may be useful if the event tag uses a pixel that is unapproved for Ad Exchange bids on one or more networks, such as the Google Display Network.
      */
     excludeFromAdxRequests?: boolean | null;
     /**
@@ -3361,7 +3357,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTag&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#eventTag".
      */
     kind?: string | null;
     /**
@@ -3423,12 +3419,12 @@ export namespace dfareporting_v3_4 {
      */
     eventTags?: Schema$EventTag[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#eventTagsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#eventTagsListResponse".
      */
     kind?: string | null;
   }
   /**
-   * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is &quot;REPORT_AVAILABLE&quot;.
+   * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is "REPORT_AVAILABLE".
    */
   export interface Schema$File {
     /**
@@ -3452,7 +3448,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#file&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#file".
      */
     kind?: string | null;
     /**
@@ -3485,11 +3481,11 @@ export namespace dfareporting_v3_4 {
      */
     items?: Schema$File[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#fileList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#fileList".
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through files. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
+     * Continuation token used to page through files. To retrieve the next page of results, set the next request's "pageToken" to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string | null;
   }
@@ -3521,7 +3517,7 @@ export namespace dfareporting_v3_4 {
      */
     globalSiteTagGlobalSnippet?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesGenerateTagResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightActivitiesGenerateTagResponse".
      */
     kind?: string | null;
   }
@@ -3534,7 +3530,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightActivities?: Schema$FloodlightActivity[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivitiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightActivitiesListResponse".
      */
     kind?: string | null;
     /**
@@ -3551,7 +3547,7 @@ export namespace dfareporting_v3_4 {
      */
     accountId?: string | null;
     /**
-     * Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s advertiser or the existing activity&#39;s advertiser.
+     * Advertiser ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group's advertiser or the existing activity's advertiser.
      */
     advertiserId?: string | null;
     /**
@@ -3595,7 +3591,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightActivityGroupType?: string | null;
     /**
-     * Floodlight configuration ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group&#39;s floodlight configuration or from the existing activity&#39;s floodlight configuration.
+     * Floodlight configuration ID of this floodlight activity. If this field is left blank, the value will be copied over either from the activity group's floodlight configuration or from the existing activity's floodlight configuration.
      */
     floodlightConfigurationId?: string | null;
     /**
@@ -3615,7 +3611,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivity&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightActivity".
      */
     kind?: string | null;
     /**
@@ -3659,7 +3655,7 @@ export namespace dfareporting_v3_4 {
      */
     tagString?: string | null;
     /**
-     * List of the user-defined variables used by this conversion tag. These map to the &quot;u[1-100]=&quot; in the tags. Each of these can have a user defined type. Acceptable values are U1 to U100, inclusive.
+     * List of the user-defined variables used by this conversion tag. These map to the "u[1-100]=" in the tags. Each of these can have a user defined type. Acceptable values are U1 to U100, inclusive.
      */
     userDefinedVariableTypes?: string[] | null;
   }
@@ -3689,7 +3685,7 @@ export namespace dfareporting_v3_4 {
      */
     accountId?: string | null;
     /**
-     * Advertiser ID of this floodlight activity group. If this field is left blank, the value will be copied over either from the floodlight configuration&#39;s advertiser or from the existing activity group&#39;s advertiser.
+     * Advertiser ID of this floodlight activity group. If this field is left blank, the value will be copied over either from the floodlight configuration's advertiser or from the existing activity group's advertiser.
      */
     advertiserId?: string | null;
     /**
@@ -3713,7 +3709,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightActivityGroup".
      */
     kind?: string | null;
     /**
@@ -3742,7 +3738,7 @@ export namespace dfareporting_v3_4 {
      */
     floodlightActivityGroups?: Schema$FloodlightActivityGroup[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightActivityGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightActivityGroupsListResponse".
      */
     kind?: string | null;
     /**
@@ -3824,7 +3820,7 @@ export namespace dfareporting_v3_4 {
      */
     inAppAttributionTrackingEnabled?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfiguration&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightConfiguration".
      */
     kind?: string | null;
     /**
@@ -3865,20 +3861,20 @@ export namespace dfareporting_v3_4 {
      */
     floodlightConfigurations?: Schema$FloodlightConfiguration[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#floodlightConfigurationsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#floodlightConfigurationsListResponse".
      */
     kind?: string | null;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;FlOODLIGHT&quot;.
+   * Represents fields that are compatible to be selected for a report of type "FlOODLIGHT".
    */
   export interface Schema$FloodlightReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensionFilters" section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
@@ -3886,7 +3882,7 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
   }
@@ -3994,7 +3990,7 @@ export namespace dfareporting_v3_4 {
      */
     inPlan?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItem&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#inventoryItem".
      */
     kind?: string | null;
     /**
@@ -4051,7 +4047,7 @@ export namespace dfareporting_v3_4 {
      */
     inventoryItems?: Schema$InventoryItem[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#inventoryItemsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#inventoryItemsListResponse".
      */
     kind?: string | null;
     /**
@@ -4069,7 +4065,7 @@ export namespace dfareporting_v3_4 {
     expression?: string | null;
   }
   /**
-   * Contains information about where a user&#39;s browser is taken after the user clicks an ad.
+   * Contains information about where a user's browser is taken after the user clicks an ad.
    */
   export interface Schema$LandingPage {
     /**
@@ -4089,7 +4085,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#landingPage&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#landingPage".
      */
     kind?: string | null;
     /**
@@ -4110,11 +4106,11 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#language&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#language".
      */
     kind?: string | null;
     /**
-     * Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are &quot;en&quot; for English or &quot;zh_CN&quot; for Simplified Chinese.
+     * Format of language code is an ISO 639 two-letter language code optionally followed by an underscore followed by an ISO 3166 code. Examples are "en" for English or "zh_CN" for Simplified Chinese.
      */
     languageCode?: string | null;
     /**
@@ -4127,7 +4123,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$LanguagesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#languagesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#languagesListResponse".
      */
     kind?: string | null;
     /**
@@ -4208,7 +4204,7 @@ export namespace dfareporting_v3_4 {
      */
     value?: string | null;
     /**
-     * Friendly name of this term&#39;s variable. This is a read-only, auto-generated field. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM.
+     * Friendly name of this term's variable. This is a read-only, auto-generated field. This field is only relevant when type is left unset or set to CUSTOM_VARIABLE_TERM.
      */
     variableFriendlyName?: string | null;
     /**
@@ -4272,7 +4268,7 @@ export namespace dfareporting_v3_4 {
      */
     dmaId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metro&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#metro".
      */
     kind?: string | null;
     /**
@@ -4289,7 +4285,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$MetrosListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#metrosListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#metrosListResponse".
      */
     kind?: string | null;
     /**
@@ -4310,7 +4306,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileApp&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#mobileApp".
      */
     kind?: string | null;
     /**
@@ -4327,7 +4323,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$MobileAppsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileAppsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#mobileAppsListResponse".
      */
     kind?: string | null;
     /**
@@ -4356,7 +4352,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarrier&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#mobileCarrier".
      */
     kind?: string | null;
     /**
@@ -4369,7 +4365,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$MobileCarriersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#mobileCarriersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#mobileCarriersListResponse".
      */
     kind?: string | null;
     /**
@@ -4419,7 +4415,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$ObjectFilter {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#objectFilter&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#objectFilter".
      */
     kind?: string | null;
     /**
@@ -4453,7 +4449,7 @@ export namespace dfareporting_v3_4 {
      */
     omnitureCostDataEnabled?: boolean | null;
     /**
-     * Whether Omniture integration is enabled. This property can be enabled only when the &quot;Advanced Ad Serving&quot; account setting is enabled.
+     * Whether Omniture integration is enabled. This property can be enabled only when the "Advanced Ad Serving" account setting is enabled.
      */
     omnitureIntegrationEnabled?: boolean | null;
   }
@@ -4470,7 +4466,7 @@ export namespace dfareporting_v3_4 {
      */
     desktop?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystem&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#operatingSystem".
      */
     kind?: string | null;
     /**
@@ -4487,7 +4483,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$OperatingSystemsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#operatingSystemsListResponse".
      */
     kind?: string | null;
     /**
@@ -4504,7 +4500,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersion&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#operatingSystemVersion".
      */
     kind?: string | null;
     /**
@@ -4529,7 +4525,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$OperatingSystemVersionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#operatingSystemVersionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#operatingSystemVersionsListResponse".
      */
     kind?: string | null;
     /**
@@ -4591,7 +4587,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#order&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#order".
      */
     kind?: string | null;
     /**
@@ -4698,7 +4694,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocument&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#orderDocument".
      */
     kind?: string | null;
     /**
@@ -4736,7 +4732,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$OrderDocumentsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#orderDocumentsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#orderDocumentsListResponse".
      */
     kind?: string | null;
     /**
@@ -4753,7 +4749,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$OrdersListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#ordersListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#ordersListResponse".
      */
     kind?: string | null;
     /**
@@ -4778,20 +4774,20 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
+     * Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.
      */
     pathMatchPosition?: string | null;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;PATH&quot;.
+   * Represents fields that are compatible to be selected for a report of type "PATH".
    */
   export interface Schema$PathReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the &quot;channelGroupings&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "channelGroupings" section of the report.
      */
     channelGroupings?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
@@ -4799,11 +4795,11 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;pathFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "pathFilters" section of the report.
      */
     pathFilters?: Schema$Dimension[];
   }
@@ -4816,7 +4812,7 @@ export namespace dfareporting_v3_4 {
      */
     dimensionName?: string | null;
     /**
-     * The possible ID&#39;s associated with the value if available.
+     * The possible ID's associated with the value if available.
      */
     ids?: string[] | null;
     /**
@@ -4824,7 +4820,7 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Determines how the &#39;value&#39; field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, &#39;*&#39; is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions (&#39;dfa:paidSearch*&#39;) allow a matchType other than EXACT.
+     * Determines how the 'value' field is matched when filtering. If not specified, defaults to EXACT. If set to WILDCARD_EXPRESSION, '*' is allowed as a placeholder for variable length character sequences, and it can be escaped with a backslash. Note, only paid search dimensions ('dfa:paidSearch*') allow a matchType other than EXACT.
      */
     matchType?: string | null;
     /**
@@ -4833,15 +4829,15 @@ export namespace dfareporting_v3_4 {
     values?: string[] | null;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;PATH_TO_CONVERSION&quot;.
+   * Represents fields that are compatible to be selected for a report of type "PATH_TO_CONVERSION".
    */
   export interface Schema$PathToConversionReportCompatibleFields {
     /**
-     * Conversion dimensions which are compatible to be selected in the &quot;conversionDimensions&quot; section of the report.
+     * Conversion dimensions which are compatible to be selected in the "conversionDimensions" section of the report.
      */
     conversionDimensions?: Schema$Dimension[];
     /**
-     * Custom floodlight variables which are compatible to be selected in the &quot;customFloodlightVariables&quot; section of the report.
+     * Custom floodlight variables which are compatible to be selected in the "customFloodlightVariables" section of the report.
      */
     customFloodlightVariables?: Schema$Dimension[];
     /**
@@ -4849,11 +4845,11 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Per-interaction dimensions which are compatible to be selected in the &quot;perInteractionDimensions&quot; section of the report.
+     * Per-interaction dimensions which are compatible to be selected in the "perInteractionDimensions" section of the report.
      */
     perInteractionDimensions?: Schema$Dimension[];
   }
@@ -4934,7 +4930,7 @@ export namespace dfareporting_v3_4 {
      */
     keyName?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placement&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placement".
      */
     kind?: string | null;
     /**
@@ -4958,7 +4954,7 @@ export namespace dfareporting_v3_4 {
      */
     paymentSource?: string | null;
     /**
-     * ID of this placement&#39;s group, if applicable.
+     * ID of this placement's group, if applicable.
      */
     placementGroupId?: string | null;
     /**
@@ -4974,7 +4970,7 @@ export namespace dfareporting_v3_4 {
      */
     pricingSchedule?: Schema$PricingSchedule;
     /**
-     * Whether this placement is the primary placement of a roadblock (placement group). You cannot change this field from true to false. Setting this field to true will automatically set the primary field on the original primary placement of the roadblock to false, and it will automatically set the roadblock&#39;s primaryPlacementId field to the ID of this placement.
+     * Whether this placement is the primary placement of a roadblock (placement group). You cannot change this field from true to false. Setting this field to true will automatically set the primary field on the original primary placement of the roadblock to false, and it will automatically set the roadblock's primaryPlacementId field to the ID of this placement.
      */
     primary?: boolean | null;
     /**
@@ -5006,7 +5002,7 @@ export namespace dfareporting_v3_4 {
      */
     subaccountId?: string | null;
     /**
-     * Tag formats to generate for this placement. This field is required on insertion. Acceptable values are: - &quot;PLACEMENT_TAG_STANDARD&quot; - &quot;PLACEMENT_TAG_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_IFRAME_ILAYER&quot; - &quot;PLACEMENT_TAG_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT&quot; - &quot;PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT&quot; - &quot;PLACEMENT_TAG_CLICK_COMMANDS&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3&quot; - &quot;PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4&quot; - &quot;PLACEMENT_TAG_TRACKING&quot; - &quot;PLACEMENT_TAG_TRACKING_IFRAME&quot; - &quot;PLACEMENT_TAG_TRACKING_JAVASCRIPT&quot;
+     * Tag formats to generate for this placement. This field is required on insertion. Acceptable values are: - "PLACEMENT_TAG_STANDARD" - "PLACEMENT_TAG_IFRAME_JAVASCRIPT" - "PLACEMENT_TAG_IFRAME_ILAYER" - "PLACEMENT_TAG_INTERNAL_REDIRECT" - "PLACEMENT_TAG_JAVASCRIPT" - "PLACEMENT_TAG_INTERSTITIAL_IFRAME_JAVASCRIPT" - "PLACEMENT_TAG_INTERSTITIAL_INTERNAL_REDIRECT" - "PLACEMENT_TAG_INTERSTITIAL_JAVASCRIPT" - "PLACEMENT_TAG_CLICK_COMMANDS" - "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH" - "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_3" - "PLACEMENT_TAG_INSTREAM_VIDEO_PREFETCH_VAST_4" - "PLACEMENT_TAG_TRACKING" - "PLACEMENT_TAG_TRACKING_IFRAME" - "PLACEMENT_TAG_TRACKING_JAVASCRIPT"
      */
     tagFormats?: string[] | null;
     /**
@@ -5031,7 +5027,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlacementAssignment {
     /**
-     * Whether this placement assignment is active. When true, the placement will be included in the ad&#39;s rotation.
+     * Whether this placement assignment is active. When true, the placement will be included in the ad's rotation.
      */
     active?: boolean | null;
     /**
@@ -5112,7 +5108,7 @@ export namespace dfareporting_v3_4 {
      */
     idDimensionValue?: Schema$DimensionValue;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementGroup".
      */
     kind?: string | null;
     /**
@@ -5161,7 +5157,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlacementGroupsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementGroupsListResponse".
      */
     kind?: string | null;
     /**
@@ -5178,7 +5174,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlacementsGenerateTagsResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsGenerateTagsResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementsGenerateTagsResponse".
      */
     kind?: string | null;
     /**
@@ -5191,7 +5187,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlacementsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementsListResponse".
      */
     kind?: string | null;
     /**
@@ -5208,7 +5204,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlacementStrategiesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategiesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementStrategiesListResponse".
      */
     kind?: string | null;
     /**
@@ -5233,7 +5229,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#placementStrategy&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#placementStrategy".
      */
     kind?: string | null;
     /**
@@ -5263,7 +5259,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformType&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#platformType".
      */
     kind?: string | null;
     /**
@@ -5276,7 +5272,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PlatformTypesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#platformTypesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#platformTypesListResponse".
      */
     kind?: string | null;
     /**
@@ -5346,7 +5342,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCode&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#postalCode".
      */
     kind?: string | null;
   }
@@ -5355,7 +5351,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$PostalCodesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#postalCodesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#postalCodesListResponse".
      */
     kind?: string | null;
     /**
@@ -5471,7 +5467,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#project&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#project".
      */
     kind?: string | null;
     /**
@@ -5525,7 +5521,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$ProjectsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#projectsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#projectsListResponse".
      */
     kind?: string | null;
     /**
@@ -5538,15 +5534,15 @@ export namespace dfareporting_v3_4 {
     projects?: Schema$Project[];
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;REACH&quot;.
+   * Represents fields that are compatible to be selected for a report of type "REACH".
    */
   export interface Schema$ReachReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensionFilters" section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
@@ -5554,15 +5550,15 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
+     * Metrics which are compatible to be selected as activity metrics to pivot on in the "activities" section of the report.
      */
     pivotedActivityMetrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected in the &quot;reachByFrequencyMetricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "reachByFrequencyMetricNames" section of the report.
      */
     reachByFrequencyMetrics?: Schema$Metric[];
   }
@@ -5600,7 +5596,7 @@ export namespace dfareporting_v3_4 {
      */
     dartId?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#region&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#region".
      */
     kind?: string | null;
     /**
@@ -5617,7 +5613,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$RegionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#regionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#regionsListResponse".
      */
     kind?: string | null;
     /**
@@ -5654,7 +5650,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#remarketingList".
      */
     kind?: string | null;
     /**
@@ -5683,11 +5679,11 @@ export namespace dfareporting_v3_4 {
     subaccountId?: string | null;
   }
   /**
-   * Contains properties of a remarketing list&#39;s sharing information. Sharing allows other accounts or advertisers to target to your remarketing lists. This resource can be used to manage remarketing list sharing to other accounts and advertisers.
+   * Contains properties of a remarketing list's sharing information. Sharing allows other accounts or advertisers to target to your remarketing lists. This resource can be used to manage remarketing list sharing to other accounts and advertisers.
    */
   export interface Schema$RemarketingListShare {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListShare&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#remarketingListShare".
      */
     kind?: string | null;
     /**
@@ -5708,7 +5704,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$RemarketingListsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#remarketingListsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#remarketingListsListResponse".
      */
     kind?: string | null;
     /**
@@ -5729,7 +5725,7 @@ export namespace dfareporting_v3_4 {
      */
     accountId?: string | null;
     /**
-     * The report criteria for a report of type &quot;STANDARD&quot;.
+     * The report criteria for a report of type "STANDARD".
      */
     criteria?: {
       activities?: Schema$Activities;
@@ -5740,7 +5736,7 @@ export namespace dfareporting_v3_4 {
       metricNames?: string[];
     } | null;
     /**
-     * The report criteria for a report of type &quot;CROSS_DIMENSION_REACH&quot;.
+     * The report criteria for a report of type "CROSS_DIMENSION_REACH".
      */
     crossDimensionReachCriteria?: {
       breakdown?: Schema$SortedDimension[];
@@ -5752,7 +5748,7 @@ export namespace dfareporting_v3_4 {
       pivoted?: boolean;
     } | null;
     /**
-     * The report&#39;s email delivery settings.
+     * The report's email delivery settings.
      */
     delivery?: {
       emailOwner?: boolean;
@@ -5769,7 +5765,7 @@ export namespace dfareporting_v3_4 {
      */
     fileName?: string | null;
     /**
-     * The report criteria for a report of type &quot;FLOODLIGHT&quot;.
+     * The report criteria for a report of type "FLOODLIGHT".
      */
     floodlightCriteria?: {
       customRichMediaEvents?: Schema$DimensionValue[];
@@ -5785,7 +5781,7 @@ export namespace dfareporting_v3_4 {
       };
     } | null;
     /**
-     * The output format of the report. If not specified, default format is &quot;CSV&quot;. Note that the actual format in the completed report file might differ if for instance the report&#39;s size exceeds the format&#39;s capabilities. &quot;CSV&quot; will then be the fallback format.
+     * The output format of the report. If not specified, default format is "CSV". Note that the actual format in the completed report file might differ if for instance the report's size exceeds the format's capabilities. "CSV" will then be the fallback format.
      */
     format?: string | null;
     /**
@@ -5809,7 +5805,7 @@ export namespace dfareporting_v3_4 {
      */
     ownerProfileId?: string | null;
     /**
-     * The report criteria for a report of type &quot;PATH_ATTRIBUTION&quot;.
+     * The report criteria for a report of type "PATH_ATTRIBUTION".
      */
     pathAttributionCriteria?: {
       activityFilters?: Schema$DimensionValue[];
@@ -5821,7 +5817,7 @@ export namespace dfareporting_v3_4 {
       pathFilters?: Schema$PathFilter[];
     } | null;
     /**
-     * The report criteria for a report of type &quot;PATH&quot;.
+     * The report criteria for a report of type "PATH".
      */
     pathCriteria?: {
       activityFilters?: Schema$DimensionValue[];
@@ -5833,7 +5829,7 @@ export namespace dfareporting_v3_4 {
       pathFilters?: Schema$PathFilter[];
     } | null;
     /**
-     * The report criteria for a report of type &quot;PATH_TO_CONVERSION&quot;.
+     * The report criteria for a report of type "PATH_TO_CONVERSION".
      */
     pathToConversionCriteria?: {
       activityFilters?: Schema$DimensionValue[];
@@ -5857,7 +5853,7 @@ export namespace dfareporting_v3_4 {
       };
     } | null;
     /**
-     * The report criteria for a report of type &quot;REACH&quot;.
+     * The report criteria for a report of type "REACH".
      */
     reachCriteria?: {
       activities?: Schema$Activities;
@@ -5870,7 +5866,7 @@ export namespace dfareporting_v3_4 {
       reachByFrequencyMetricNames?: string[];
     } | null;
     /**
-     * The report&#39;s schedule. Can only be set if the report&#39;s &#39;dateRange&#39; is a relative date range and the relative date range is not &quot;TODAY&quot;.
+     * The report's schedule. Can only be set if the report's 'dateRange' is a relative date range and the relative date range is not "TODAY".
      */
     schedule?: {
       active?: boolean;
@@ -5891,15 +5887,15 @@ export namespace dfareporting_v3_4 {
     type?: string | null;
   }
   /**
-   * Represents fields that are compatible to be selected for a report of type &quot;STANDARD&quot;.
+   * Represents fields that are compatible to be selected for a report of type "STANDARD".
    */
   export interface Schema$ReportCompatibleFields {
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensionFilters&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensionFilters" section of the report.
      */
     dimensionFilters?: Schema$Dimension[];
     /**
-     * Dimensions which are compatible to be selected in the &quot;dimensions&quot; section of the report.
+     * Dimensions which are compatible to be selected in the "dimensions" section of the report.
      */
     dimensions?: Schema$Dimension[];
     /**
@@ -5907,11 +5903,11 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Metrics which are compatible to be selected in the &quot;metricNames&quot; section of the report.
+     * Metrics which are compatible to be selected in the "metricNames" section of the report.
      */
     metrics?: Schema$Metric[];
     /**
-     * Metrics which are compatible to be selected as activity metrics to pivot on in the &quot;activities&quot; section of the report.
+     * Metrics which are compatible to be selected as activity metrics to pivot on in the "activities" section of the report.
      */
     pivotedActivityMetrics?: Schema$Metric[];
   }
@@ -5932,7 +5928,7 @@ export namespace dfareporting_v3_4 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through reports. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
+     * Continuation token used to page through reports. To retrieve the next page of results, set the next request's "pageToken" to the value of this field. The page token is only valid for a limited amount of time and should not be persisted.
      */
     nextPageToken?: string | null;
   }
@@ -5949,7 +5945,7 @@ export namespace dfareporting_v3_4 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are: - &quot;1&quot; for &quot;America/New_York&quot; - &quot;2&quot; for &quot;Europe/London&quot; - &quot;3&quot; for &quot;Europe/Paris&quot; - &quot;4&quot; for &quot;Africa/Johannesburg&quot; - &quot;5&quot; for &quot;Asia/Jerusalem&quot; - &quot;6&quot; for &quot;Asia/Shanghai&quot; - &quot;7&quot; for &quot;Asia/Hong_Kong&quot; - &quot;8&quot; for &quot;Asia/Tokyo&quot; - &quot;9&quot; for &quot;Australia/Sydney&quot; - &quot;10&quot; for &quot;Asia/Dubai&quot; - &quot;11&quot; for &quot;America/Los_Angeles&quot; - &quot;12&quot; for &quot;Pacific/Auckland&quot; - &quot;13&quot; for &quot;America/Sao_Paulo&quot; - &quot;16&quot; for &quot;America/Asuncion&quot; - &quot;17&quot; for &quot;America/Chicago&quot; - &quot;18&quot; for &quot;America/Denver&quot; - &quot;19&quot; for &quot;America/St_Johns&quot; - &quot;20&quot; for &quot;Asia/Dhaka&quot; - &quot;21&quot; for &quot;Asia/Jakarta&quot; - &quot;22&quot; for &quot;Asia/Kabul&quot; - &quot;23&quot; for &quot;Asia/Karachi&quot; - &quot;24&quot; for &quot;Asia/Calcutta&quot; - &quot;25&quot; for &quot;Asia/Pyongyang&quot; - &quot;26&quot; for &quot;Asia/Rangoon&quot; - &quot;27&quot; for &quot;Atlantic/Cape_Verde&quot; - &quot;28&quot; for &quot;Atlantic/South_Georgia&quot; - &quot;29&quot; for &quot;Australia/Adelaide&quot; - &quot;30&quot; for &quot;Australia/Lord_Howe&quot; - &quot;31&quot; for &quot;Europe/Moscow&quot; - &quot;32&quot; for &quot;Pacific/Kiritimati&quot; - &quot;35&quot; for &quot;Pacific/Norfolk&quot; - &quot;36&quot; for &quot;Pacific/Tongatapu&quot;
+     * Report generation time zone ID of this account. This is a required field that can only be changed by a superuser. Acceptable values are: - "1" for "America/New_York" - "2" for "Europe/London" - "3" for "Europe/Paris" - "4" for "Africa/Johannesburg" - "5" for "Asia/Jerusalem" - "6" for "Asia/Shanghai" - "7" for "Asia/Hong_Kong" - "8" for "Asia/Tokyo" - "9" for "Australia/Sydney" - "10" for "Asia/Dubai" - "11" for "America/Los_Angeles" - "12" for "Pacific/Auckland" - "13" for "America/Sao_Paulo" - "16" for "America/Asuncion" - "17" for "America/Chicago" - "18" for "America/Denver" - "19" for "America/St_Johns" - "20" for "Asia/Dhaka" - "21" for "Asia/Jakarta" - "22" for "Asia/Kabul" - "23" for "Asia/Karachi" - "24" for "Asia/Calcutta" - "25" for "Asia/Pyongyang" - "26" for "Asia/Rangoon" - "27" for "Atlantic/Cape_Verde" - "28" for "Atlantic/South_Georgia" - "29" for "Australia/Adelaide" - "30" for "Australia/Lord_Howe" - "31" for "Europe/Moscow" - "32" for "Pacific/Kiritimati" - "35" for "Pacific/Norfolk" - "36" for "Pacific/Tongatapu"
      */
     reportGenerationTimeZoneId?: string | null;
   }
@@ -6020,7 +6016,7 @@ export namespace dfareporting_v3_4 {
      */
     keyName?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#site&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#site".
      */
     kind?: string | null;
     /**
@@ -6061,7 +6057,7 @@ export namespace dfareporting_v3_4 {
      */
     imageOnly?: boolean | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#siteCompanionSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#siteCompanionSetting".
      */
     kind?: string | null;
   }
@@ -6127,7 +6123,7 @@ export namespace dfareporting_v3_4 {
      */
     videoActiveViewOptOutTemplate?: boolean | null;
     /**
-     * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher&#39;s specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter). *Note:* Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
+     * Default VPAID adapter setting for new placements created under this site. This value will be used to populate the placements.vpaidAdapterChoice field, when no value is specified for the new placement. Controls which VPAID format the measurement adapter will use for in-stream video creatives assigned to the placement. The publisher's specifications will typically determine this setting. For VPAID creatives, the adapter format will match the VPAID format (HTML5 VPAID creatives use the HTML5 adapter). *Note:* Flash is no longer supported. This field now defaults to HTML5 when the following values are provided: FLASH, BOTH.
      */
     vpaidAdapterChoiceTemplate?: string | null;
   }
@@ -6136,7 +6132,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$SiteSkippableSetting {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#siteSkippableSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#siteSkippableSetting".
      */
     kind?: string | null;
     /**
@@ -6157,7 +6153,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$SitesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sitesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#sitesListResponse".
      */
     kind?: string | null;
     /**
@@ -6178,7 +6174,7 @@ export namespace dfareporting_v3_4 {
      */
     enabledVideoFormats?: number[] | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#siteTranscodeSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#siteTranscodeSetting".
      */
     kind?: string | null;
   }
@@ -6191,7 +6187,7 @@ export namespace dfareporting_v3_4 {
      */
     companionSettings?: Schema$SiteCompanionSetting;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#siteVideoSettings&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#siteVideoSettings".
      */
     kind?: string | null;
     /**
@@ -6232,7 +6228,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#size&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#size".
      */
     kind?: string | null;
     /**
@@ -6245,7 +6241,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$SizesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#sizesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#sizesListResponse".
      */
     kind?: string | null;
     /**
@@ -6258,7 +6254,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$SkippableSetting {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#skippableSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#skippableSetting".
      */
     kind?: string | null;
     /**
@@ -6308,7 +6304,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccount&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#subaccount".
      */
     kind?: string | null;
     /**
@@ -6321,7 +6317,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$SubaccountsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#subaccountsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#subaccountsListResponse".
      */
     kind?: string | null;
     /**
@@ -6421,7 +6417,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#targetableRemarketingList".
      */
     kind?: string | null;
     /**
@@ -6450,7 +6446,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$TargetableRemarketingListsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetableRemarketingListsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#targetableRemarketingListsListResponse".
      */
     kind?: string | null;
     /**
@@ -6495,7 +6491,7 @@ export namespace dfareporting_v3_4 {
      */
     keyValueTargetingExpression?: Schema$KeyValueTargetingExpression;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplate&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#targetingTemplate".
      */
     kind?: string | null;
     /**
@@ -6524,7 +6520,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$TargetingTemplatesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#targetingTemplatesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#targetingTemplatesListResponse".
      */
     kind?: string | null;
     /**
@@ -6613,7 +6609,7 @@ export namespace dfareporting_v3_4 {
      */
     enabledVideoFormats?: number[] | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#transcodeSetting&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#transcodeSetting".
      */
     kind?: string | null;
   }
@@ -6626,7 +6622,7 @@ export namespace dfareporting_v3_4 {
      */
     registry?: string | null;
     /**
-     * ID value for this creative. Only alphanumeric characters and the following symbols are valid: &quot;_/\-&quot;. Maximum length is 64 characters. Read only when registry is DCM.
+     * ID value for this creative. Only alphanumeric characters and the following symbols are valid: "_/\-". Maximum length is 64 characters. Read only when registry is DCM.
      */
     value?: string | null;
   }
@@ -6639,7 +6635,7 @@ export namespace dfareporting_v3_4 {
      */
     dataType?: string | null;
     /**
-     * User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: &quot;&quot;&lt;&gt;&quot;.
+     * User-friendly name for the variable which will appear in reports. This is a required field, must be less than 64 characters long, and cannot contain the following characters: ""<\>".
      */
     reportName?: string | null;
     /**
@@ -6664,7 +6660,7 @@ export namespace dfareporting_v3_4 {
      */
     etag?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfile&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userProfile".
      */
     kind?: string | null;
     /**
@@ -6697,7 +6693,7 @@ export namespace dfareporting_v3_4 {
      */
     items?: Schema$UserProfile[];
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userProfileList&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userProfileList".
      */
     kind?: string | null;
   }
@@ -6718,7 +6714,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRole&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRole".
      */
     kind?: string | null;
     /**
@@ -6751,7 +6747,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermission&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRolePermission".
      */
     kind?: string | null;
     /**
@@ -6772,7 +6768,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: string | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroup&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRolePermissionGroup".
      */
     kind?: string | null;
     /**
@@ -6785,7 +6781,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$UserRolePermissionGroupsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionGroupsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRolePermissionGroupsListResponse".
      */
     kind?: string | null;
     /**
@@ -6798,7 +6794,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$UserRolePermissionsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolePermissionsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRolePermissionsListResponse".
      */
     kind?: string | null;
     /**
@@ -6811,7 +6807,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$UserRolesListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#userRolesListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#userRolesListResponse".
      */
     kind?: string | null;
     /**
@@ -6836,7 +6832,7 @@ export namespace dfareporting_v3_4 {
      */
     id?: number | null;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormat&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#videoFormat".
      */
     kind?: string | null;
     /**
@@ -6853,7 +6849,7 @@ export namespace dfareporting_v3_4 {
    */
   export interface Schema$VideoFormatsListResponse {
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoFormatsListResponse&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#videoFormatsListResponse".
      */
     kind?: string | null;
     /**
@@ -6883,7 +6879,7 @@ export namespace dfareporting_v3_4 {
      */
     companionSettings?: Schema$CompanionSetting;
     /**
-     * Identifies what kind of resource this is. Value: the fixed string &quot;dfareporting#videoSettings&quot;.
+     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#videoSettings".
      */
     kind?: string | null;
     /**
@@ -6915,9 +6911,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountActiveAdSummaries.get
-     * @desc Gets the account's active ad summary by account ID.
+     * Gets the account's active ad summary by account ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -6963,15 +6959,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountActiveAdSummaries.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.summaryAccountId Account ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accountactiveadsummaries$Get,
@@ -7050,7 +7043,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountActiveAdSummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountActiveAdSummary>(parameters);
@@ -7077,9 +7070,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountPermissionGroups.get
-     * @desc Gets one account permission group by ID.
+     * Gets one account permission group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7123,15 +7116,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountPermissionGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Account permission group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accountpermissiongroups$Get,
@@ -7210,7 +7200,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionGroup>(parameters);
@@ -7218,9 +7208,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountPermissionGroups.list
-     * @desc Retrieves the list of account permission groups.
+     * Retrieves the list of account permission groups.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7261,14 +7251,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountPermissionGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accountpermissiongroups$List,
@@ -7349,7 +7337,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
@@ -7385,9 +7373,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountPermissions.get
-     * @desc Gets one account permission by ID.
+     * Gets one account permission by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7434,15 +7422,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountPermissions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Account permission ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accountpermissions$Get,
@@ -7519,7 +7504,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermission>(parameters);
@@ -7527,9 +7512,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountPermissions.list
-     * @desc Retrieves the list of account permissions.
+     * Retrieves the list of account permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7570,14 +7555,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountPermissions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accountpermissions$List,
@@ -7658,7 +7641,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionsListResponse>(
@@ -7694,9 +7677,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accounts.get
-     * @desc Gets one account by ID.
+     * Gets one account by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7756,15 +7739,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Account ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -7837,7 +7817,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -7845,9 +7825,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accounts.list
-     * @desc Retrieves the list of accounts, possibly filtered. This method supports paging.
+     * Retrieves the list of accounts, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -7903,21 +7883,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active accounts. Don't set this field to select both active and non-active accounts.
-     * @param {string=} params.ids Select only accounts with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "account*2015" will return objects with names like "account June 2015", "account April 2015", or simply "account 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "account" will match objects with name "my account", "account 2015", or simply "account".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -7994,7 +7965,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
@@ -8002,9 +7973,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accounts.patch
-     * @desc Updates an existing account. This method supports patch semantics.
+     * Updates an existing account. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -8090,16 +8061,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accounts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Account ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Patch,
@@ -8171,7 +8138,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -8179,9 +8146,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accounts.update
-     * @desc Updates an existing account.
+     * Updates an existing account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -8265,15 +8232,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Account} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Update,
@@ -8345,7 +8309,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -8431,9 +8395,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountUserProfiles.get
-     * @desc Gets one account user profile by ID.
+     * Gets one account user profile by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -8490,15 +8454,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountUserProfiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id User profile ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accountuserprofiles$Get,
@@ -8575,7 +8536,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -8583,9 +8544,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountUserProfiles.insert
-     * @desc Inserts a new account user profile.
+     * Inserts a new account user profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -8663,15 +8624,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountUserProfiles.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Accountuserprofiles$Insert,
@@ -8748,7 +8706,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -8756,9 +8714,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountUserProfiles.list
-     * @desc Retrieves a list of account user profiles, possibly filtered. This method supports paging.
+     * Retrieves a list of account user profiles, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -8818,23 +8776,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountUserProfiles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active user profiles.
-     * @param {string=} params.ids Select only user profiles with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name, ID or email. Wildcards (*) are allowed. For example, "user profile*2015" will return objects with names like "user profile June 2015", "user profile April 2015", or simply "user profile 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "user profile" will match objects with name "my user profile", "user profile 2015", or simply "user profile".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only user profiles with the specified subaccount ID.
-     * @param {string=} params.userRoleId Select only user profiles with the specified user role ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accountuserprofiles$List,
@@ -8915,7 +8862,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfilesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfilesListResponse>(
@@ -8925,9 +8872,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountUserProfiles.patch
-     * @desc Updates an existing account user profile. This method supports patch semantics.
+     * Updates an existing account user profile. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -9007,16 +8954,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountUserProfiles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id AccountUserProfile ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accountuserprofiles$Patch,
@@ -9093,7 +9036,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -9101,9 +9044,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.accountUserProfiles.update
-     * @desc Updates an existing account user profile.
+     * Updates an existing account user profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -9181,15 +9124,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.accountUserProfiles.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AccountUserProfile} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accountuserprofiles$Update,
@@ -9266,7 +9206,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -9376,9 +9316,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.ads.get
-     * @desc Gets one ad by ID.
+     * Gets one ad by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -9458,15 +9398,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.ads.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Ad ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Ads$Get,
@@ -9538,7 +9475,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -9546,9 +9483,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.ads.insert
-     * @desc Inserts a new ad.
+     * Inserts a new ad.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -9672,15 +9609,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.ads.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Ads$Insert,
@@ -9752,7 +9686,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -9760,9 +9694,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.ads.list
-     * @desc Retrieves a list of ads, possibly filtered. This method supports paging.
+     * Retrieves a list of ads, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -9850,37 +9784,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.ads.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active ads.
-     * @param {string=} params.advertiserId Select only ads with this advertiser ID.
-     * @param {boolean=} params.archived Select only archived ads.
-     * @param {string=} params.audienceSegmentIds Select only ads with these audience segment IDs.
-     * @param {string=} params.campaignIds Select only ads with these campaign IDs.
-     * @param {string=} params.compatibility Select default ads with the specified compatibility. Applicable when type is AD_SERVING_DEFAULT_AD. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads, respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering an in-stream video ads developed with the VAST standard.
-     * @param {string=} params.creativeIds Select only ads with these creative IDs assigned.
-     * @param {string=} params.creativeOptimizationConfigurationIds Select only ads with these creative optimization configuration IDs.
-     * @param {boolean=} params.dynamicClickTracker Select only dynamic click trackers. Applicable when type is AD_SERVING_CLICK_TRACKER. If true, select dynamic click trackers. If false, select static click trackers. Leave unset to select both.
-     * @param {string=} params.ids Select only ads with these IDs.
-     * @param {string=} params.landingPageIds Select only ads with these landing page IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.overriddenEventTagId Select only ads with this event tag override ID.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string=} params.placementIds Select only ads with these placement IDs assigned.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.remarketingListIds Select only ads whose list targeting expression use these remarketing list IDs.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "ad*2015" will return objects with names like "ad June 2015", "ad April 2015", or simply "ad 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "ad" will match objects with name "my ad", "ad 2015", or simply "ad".
-     * @param {string=} params.sizeIds Select only ads with these size IDs.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {boolean=} params.sslCompliant Select only ads that are SSL-compliant.
-     * @param {boolean=} params.sslRequired Select only ads that require SSL.
-     * @param {string=} params.type Select only ads with these types.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Ads$List,
@@ -9952,7 +9861,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsListResponse>(parameters);
@@ -9960,9 +9869,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.ads.patch
-     * @desc Updates an existing ad. This method supports patch semantics.
+     * Updates an existing ad. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -10088,16 +9997,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.ads.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Ad ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Ads$Patch,
@@ -10169,7 +10074,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -10177,9 +10082,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.ads.update
-     * @desc Updates an existing ad.
+     * Updates an existing ad.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -10303,15 +10208,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.ads.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Ad} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Ads$Update,
@@ -10383,7 +10285,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -10544,9 +10446,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.delete
-     * @desc Deletes an existing advertiser group.
+     * Deletes an existing advertiser group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -10583,15 +10485,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Advertisergroups$Delete,
@@ -10663,7 +10562,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10671,9 +10570,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.get
-     * @desc Gets one advertiser group by ID.
+     * Gets one advertiser group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -10718,15 +10617,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisergroups$Get,
@@ -10800,7 +10696,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -10808,9 +10704,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.insert
-     * @desc Inserts a new advertiser group.
+     * Inserts a new advertiser group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -10864,15 +10760,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Advertisergroups$Insert,
@@ -10946,7 +10839,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -10954,9 +10847,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.list
-     * @desc Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
+     * Retrieves a list of advertiser groups, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11010,20 +10903,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only advertiser groups with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser group June 2015", "advertiser group April 2015", or simply "advertiser group 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertisergroup" will match objects with name "my advertisergroup", "advertisergroup 2015", or simply "advertisergroup".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisergroups$List,
@@ -11104,7 +10989,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroupsListResponse>(
@@ -11114,9 +10999,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.patch
-     * @desc Updates an existing advertiser group. This method supports patch semantics.
+     * Updates an existing advertiser group. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11172,16 +11057,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id AdvertiserGroup ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisergroups$Patch,
@@ -11255,7 +11136,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -11263,9 +11144,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserGroups.update
-     * @desc Updates an existing advertiser group.
+     * Updates an existing advertiser group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11319,15 +11200,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserGroups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().AdvertiserGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Advertisergroups$Update,
@@ -11401,7 +11279,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -11510,9 +11388,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserLandingPages.get
-     * @desc Gets one landing page by ID.
+     * Gets one landing page by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11560,15 +11438,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserLandingPages.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Landing page ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertiserlandingpages$Get,
@@ -11642,7 +11517,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -11650,9 +11525,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserLandingPages.insert
-     * @desc Inserts a new landing page.
+     * Inserts a new landing page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11712,15 +11587,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserLandingPages.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Advertiserlandingpages$Insert,
@@ -11794,7 +11666,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -11802,9 +11674,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserLandingPages.list
-     * @desc Retrieves a list of landing pages.
+     * Retrieves a list of landing pages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -11866,24 +11738,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserLandingPages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only landing pages that belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived landing pages. Don't set this field to select both archived and non-archived landing pages.
-     * @param {string=} params.campaignIds Select only landing pages that are associated with these campaigns.
-     * @param {string=} params.ids Select only landing pages with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for landing pages by name or ID. Wildcards (*) are allowed. For example, "landingpage*2017" will return landing pages with names like "landingpage July 2017", "landingpage March 2017", or simply "landingpage 2017". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "landingpage" will match campaigns with name "my landingpage", "landingpage 2015", or simply "landingpage".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only landing pages that belong to this subaccount.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertiserlandingpages$List,
@@ -11964,7 +11824,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
@@ -11974,9 +11834,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserLandingPages.patch
-     * @desc Updates an existing advertiser landing page. This method supports patch semantics.
+     * Updates an existing advertiser landing page. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12038,16 +11898,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserLandingPages.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id LandingPage ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertiserlandingpages$Patch,
@@ -12121,7 +11977,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -12129,9 +11985,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertiserLandingPages.update
-     * @desc Updates an existing landing page.
+     * Updates an existing landing page.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12191,15 +12047,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertiserLandingPages.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().LandingPage} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Advertiserlandingpages$Update,
@@ -12273,7 +12126,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -12387,9 +12240,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertisers.get
-     * @desc Gets one advertiser by ID.
+     * Gets one advertiser by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12445,15 +12298,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertisers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Advertisers$Get,
@@ -12526,7 +12376,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12534,9 +12384,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertisers.insert
-     * @desc Inserts a new advertiser.
+     * Inserts a new advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12612,15 +12462,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertisers.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Advertisers$Insert,
@@ -12694,7 +12541,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12702,9 +12549,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertisers.list
-     * @desc Retrieves a list of advertisers, possibly filtered. This method supports paging.
+     * Retrieves a list of advertisers, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12770,26 +12617,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertisers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserGroupIds Select only advertisers with these advertiser group IDs.
-     * @param {string=} params.floodlightConfigurationIds Select only advertisers with these floodlight configuration IDs.
-     * @param {string=} params.ids Select only advertisers with these IDs.
-     * @param {boolean=} params.includeAdvertisersWithoutGroupsOnly Select only advertisers which do not belong to any advertiser group.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {boolean=} params.onlyParent Select only advertisers which use another advertiser's floodlight configuration.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "advertiser*2015" will return objects with names like "advertiser June 2015", "advertiser April 2015", or simply "advertiser 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "advertiser" will match objects with name "my advertiser", "advertiser 2015", or simply "advertiser" .
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.status Select only advertisers with the specified status.
-     * @param {string=} params.subaccountId Select only advertisers with these subaccount IDs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Advertisers$List,
@@ -12867,7 +12700,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$AdvertisersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertisersListResponse>(parameters);
@@ -12875,9 +12708,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertisers.patch
-     * @desc Updates an existing advertiser. This method supports patch semantics.
+     * Updates an existing advertiser. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -12955,16 +12788,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertisers.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Advertiser ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Advertisers$Patch,
@@ -13038,7 +12867,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -13046,9 +12875,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.advertisers.update
-     * @desc Updates an existing advertiser.
+     * Updates an existing advertiser.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -13124,15 +12953,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.advertisers.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Advertiser} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Advertisers$Update,
@@ -13206,7 +13032,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -13326,9 +13152,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.browsers.list
-     * @desc Retrieves a list of browsers.
+     * Retrieves a list of browsers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -13369,14 +13195,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.browsers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Browsers$List,
@@ -13453,7 +13277,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$BrowsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BrowsersListResponse>(parameters);
@@ -13475,9 +13299,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaignCreativeAssociations.insert
-     * @desc Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
+     * Associates a creative with the specified campaign. This method creates a default ad with dimensions matching the creative in the campaign if such a default ad does not exist already.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -13529,16 +13353,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaignCreativeAssociations.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Campaign ID in this association.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CampaignCreativeAssociation} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Campaigncreativeassociations$Insert,
@@ -13619,7 +13439,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CampaignCreativeAssociation>(parameters);
@@ -13627,9 +13447,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaignCreativeAssociations.list
-     * @desc Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
+     * Retrieves the list of creative IDs associated with the specified campaign. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -13679,18 +13499,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaignCreativeAssociations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.campaignId Campaign ID in this association.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Campaigncreativeassociations$List,
@@ -13777,7 +13591,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13834,9 +13648,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaigns.get
-     * @desc Gets one campaign by ID.
+     * Gets one campaign by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -13905,15 +13719,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaigns.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Campaign ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Campaigns$Get,
@@ -13986,7 +13797,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -13994,9 +13805,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaigns.insert
-     * @desc Inserts a new campaign.
+     * Inserts a new campaign.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -14098,15 +13909,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaigns.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Campaigns$Insert,
@@ -14178,7 +13986,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -14186,9 +13994,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaigns.list
-     * @desc Retrieves a list of campaigns, possibly filtered. This method supports paging.
+     * Retrieves a list of campaigns, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -14256,27 +14064,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaigns.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserGroupIds Select only campaigns whose advertisers belong to these advertiser groups.
-     * @param {string=} params.advertiserIds Select only campaigns that belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived campaigns. Don't set this field to select both archived and non-archived campaigns.
-     * @param {boolean=} params.atLeastOneOptimizationActivity Select only campaigns that have at least one optimization activity.
-     * @param {string=} params.excludedIds Exclude campaigns with these IDs.
-     * @param {string=} params.ids Select only campaigns with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.overriddenEventTagId Select only campaigns that have overridden this event tag ID.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for campaigns by name or ID. Wildcards (*) are allowed. For example, "campaign*2015" will return campaigns with names like "campaign June 2015", "campaign April 2015", or simply "campaign 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "campaign" will match campaigns with name "my campaign", "campaign 2015", or simply "campaign".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only campaigns that belong to this subaccount.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Campaigns$List,
@@ -14353,7 +14146,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CampaignsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CampaignsListResponse>(parameters);
@@ -14361,9 +14154,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaigns.patch
-     * @desc Updates an existing campaign. This method supports patch semantics.
+     * Updates an existing campaign. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -14467,16 +14260,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaigns.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Campaign ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Campaigns$Patch,
@@ -14548,7 +14337,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -14556,9 +14345,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.campaigns.update
-     * @desc Updates an existing campaign.
+     * Updates an existing campaign.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -14660,15 +14449,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.campaigns.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Campaign} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Campaigns$Update,
@@ -14740,7 +14526,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -14861,9 +14647,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.changeLogs.get
-     * @desc Gets one change log by ID.
+     * Gets one change log by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -14918,15 +14704,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.changeLogs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Change log ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Changelogs$Get,
@@ -14999,7 +14782,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ChangeLog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangeLog>(parameters);
@@ -15007,9 +14790,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.changeLogs.list
-     * @desc Retrieves a list of change logs. This method supports paging.
+     * Retrieves a list of change logs. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15071,24 +14854,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.changeLogs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.action Select only change logs with the specified action.
-     * @param {string=} params.ids Select only change logs with these IDs.
-     * @param {string=} params.maxChangeTime Select only change logs whose change time is before the specified maxChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.minChangeTime Select only change logs whose change time is after the specified minChangeTime.The time should be formatted as an RFC3339 date/time string. For example, for 10:54 PM on July 18th, 2015, in the America/New York time zone, the format is "2015-07-18T22:54:00-04:00". In other words, the year, month, day, the letter T, the hour (24-hour clock system), minute, second, and then the time zone offset.
-     * @param {string=} params.objectIds Select only change logs with these object IDs.
-     * @param {string=} params.objectType Select only change logs with the specified object type.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Select only change logs whose object ID, user name, old or new values match the search string.
-     * @param {string=} params.userProfileIds Select only change logs with these user profile IDs.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Changelogs$List,
@@ -15165,7 +14936,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ChangeLogsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangeLogsListResponse>(parameters);
@@ -15237,9 +15008,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.cities.list
-     * @desc Retrieves a list of cities, possibly filtered.
+     * Retrieves a list of cities, possibly filtered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15288,18 +15059,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.cities.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.countryDartIds Select only cities from these countries.
-     * @param {string=} params.dartIds Select only cities with these DART IDs.
-     * @param {string=} params.namePrefix Select only cities with names starting with this prefix.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.regionDartIds Select only cities from these regions.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Cities$List,
@@ -15374,7 +15139,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CitiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CitiesListResponse>(parameters);
@@ -15412,9 +15177,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.connectionTypes.get
-     * @desc Gets one connection type by ID.
+     * Gets one connection type by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15458,15 +15223,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.connectionTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Connection type ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Connectiontypes$Get,
@@ -15540,7 +15302,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ConnectionType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConnectionType>(parameters);
@@ -15548,9 +15310,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.connectionTypes.list
-     * @desc Retrieves a list of connection types.
+     * Retrieves a list of connection types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15591,14 +15353,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.connectionTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Connectiontypes$List,
@@ -15679,7 +15439,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ConnectionTypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConnectionTypesListResponse>(parameters);
@@ -15713,9 +15473,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.delete
-     * @desc Deletes an existing content category.
+     * Deletes an existing content category.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15752,15 +15512,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Content category ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Contentcategories$Delete,
@@ -15832,7 +15589,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -15840,9 +15597,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.get
-     * @desc Gets one content category by ID.
+     * Gets one content category by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -15887,15 +15644,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Content category ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Contentcategories$Get,
@@ -15969,7 +15723,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -15977,9 +15731,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.insert
-     * @desc Inserts a new content category.
+     * Inserts a new content category.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16033,15 +15787,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Contentcategories$Insert,
@@ -16115,7 +15866,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -16123,9 +15874,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.list
-     * @desc Retrieves a list of content categories, possibly filtered. This method supports paging.
+     * Retrieves a list of content categories, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16179,20 +15930,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only content categories with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "contentcategory*2015" will return objects with names like "contentcategory June 2015", "contentcategory April 2015", or simply "contentcategory 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "contentcategory" will match objects with name "my contentcategory", "contentcategory 2015", or simply "contentcategory".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Contentcategories$List,
@@ -16273,7 +16016,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ContentCategoriesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategoriesListResponse>(
@@ -16283,9 +16026,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.patch
-     * @desc Updates an existing content category. This method supports patch semantics.
+     * Updates an existing content category. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16341,16 +16084,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id ContentCategory ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Contentcategories$Patch,
@@ -16424,7 +16163,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -16432,9 +16171,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.contentCategories.update
-     * @desc Updates an existing content category.
+     * Updates an existing content category.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16488,15 +16227,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.contentCategories.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ContentCategory} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Contentcategories$Update,
@@ -16570,7 +16306,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -16679,9 +16415,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.conversions.batchinsert
-     * @desc Inserts conversions.
+     * Inserts conversions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16733,15 +16469,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.conversions.batchinsert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ConversionsBatchInsertRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchinsert(
       params: Params$Resource$Conversions$Batchinsert,
@@ -16822,7 +16555,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchInsertResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionsBatchInsertResponse>(
@@ -16832,9 +16565,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.conversions.batchupdate
-     * @desc Updates existing conversions.
+     * Updates existing conversions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -16886,15 +16619,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.conversions.batchupdate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().ConversionsBatchUpdateRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchupdate(
       params: Params$Resource$Conversions$Batchupdate,
@@ -16975,7 +16705,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
@@ -17017,9 +16747,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.countries.get
-     * @desc Gets one country by ID.
+     * Gets one country by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17065,15 +16795,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.countries.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dartId Country DART ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Countries$Get,
@@ -17146,7 +16873,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Country>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Country>(parameters);
@@ -17154,9 +16881,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.countries.list
-     * @desc Retrieves a list of countries.
+     * Retrieves a list of countries.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17197,14 +16924,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.countries.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Countries$List,
@@ -17281,7 +17006,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CountriesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CountriesListResponse>(parameters);
@@ -17313,9 +17038,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeAssets.insert
-     * @desc Inserts a new creative asset.
+     * Inserts a new creative asset.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17389,19 +17114,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeAssets.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.advertiserId Advertiser ID of this creative. This is a required field.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param  {object} params.requestBody Media resource metadata
-     * @param {object} params.media Media object
-     * @param {string} params.media.mimeType Media mime-type
-     * @param {string|object} params.media.body Media body contents
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creativeassets$Insert,
@@ -17484,7 +17202,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeAssetMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeAssetMetadata>(parameters);
@@ -17531,9 +17249,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.delete
-     * @desc Deletes an existing creative field.
+     * Deletes an existing creative field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17570,15 +17288,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Creative Field ID
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Creativefields$Delete,
@@ -17650,7 +17365,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17658,9 +17373,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.get
-     * @desc Gets one creative field by ID.
+     * Gets one creative field by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17708,15 +17423,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Creative Field ID
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creativefields$Get,
@@ -17790,7 +17502,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -17798,9 +17510,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.insert
-     * @desc Inserts a new creative field.
+     * Inserts a new creative field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -17860,15 +17572,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creativefields$Insert,
@@ -17942,7 +17651,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -17950,9 +17659,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.list
-     * @desc Retrieves a list of creative fields, possibly filtered. This method supports paging.
+     * Retrieves a list of creative fields, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18008,21 +17717,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only creative fields that belong to these advertisers.
-     * @param {string=} params.ids Select only creative fields with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for creative fields by name or ID. Wildcards (*) are allowed. For example, "creativefield*2015" will return creative fields with names like "creativefield June 2015", "creativefield April 2015", or simply "creativefield 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativefield" will match creative fields with the name "my creativefield", "creativefield 2015", or simply "creativefield".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creativefields$List,
@@ -18103,7 +17803,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldsListResponse>(parameters);
@@ -18111,9 +17811,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.patch
-     * @desc Updates an existing creative field. This method supports patch semantics.
+     * Updates an existing creative field. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18175,16 +17875,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id CreativeField ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Creativefields$Patch,
@@ -18258,7 +17954,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -18266,9 +17962,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFields.update
-     * @desc Updates an existing creative field.
+     * Updates an existing creative field.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18328,15 +18024,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFields.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeField} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Creativefields$Update,
@@ -18410,7 +18103,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -18523,9 +18216,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.delete
-     * @desc Deletes an existing creative field value.
+     * Deletes an existing creative field value.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18564,16 +18257,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string} params.id Creative Field Value ID
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Creativefieldvalues$Delete,
@@ -18645,7 +18334,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18653,9 +18342,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.get
-     * @desc Gets one creative field value by ID.
+     * Gets one creative field value by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18701,16 +18390,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string} params.id Creative Field Value ID
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creativefieldvalues$Get,
@@ -18787,7 +18472,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -18795,9 +18480,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.insert
-     * @desc Inserts a new creative field value.
+     * Inserts a new creative field value.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -18851,16 +18536,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creativefieldvalues$Insert,
@@ -18937,7 +18618,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -18945,9 +18626,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.list
-     * @desc Retrieves a list of creative field values, possibly filtered. This method supports paging.
+     * Retrieves a list of creative field values, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19003,21 +18684,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string=} params.ids Select only creative field values with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for creative field values by their values. Wildcards (e.g. *) are not allowed.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creativefieldvalues$List,
@@ -19098,7 +18770,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValuesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValuesListResponse>(
@@ -19108,9 +18780,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.patch
-     * @desc Updates an existing creative field value. This method supports patch semantics.
+     * Updates an existing creative field value. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19166,17 +18838,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId CreativeField ID.
-     * @param {string} params.id CreativeFieldValue ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Creativefieldvalues$Patch,
@@ -19253,7 +18920,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -19261,9 +18928,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeFieldValues.update
-     * @desc Updates an existing creative field value.
+     * Updates an existing creative field value.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19317,16 +18984,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeFieldValues.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.creativeFieldId Creative field ID for this creative field value.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeFieldValue} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Creativefieldvalues$Update,
@@ -19403,7 +19066,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -19536,9 +19199,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeGroups.get
-     * @desc Gets one creative group by ID.
+     * Gets one creative group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19587,15 +19250,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Creative group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creativegroups$Get,
@@ -19669,7 +19329,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -19677,9 +19337,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeGroups.insert
-     * @desc Inserts a new creative group.
+     * Inserts a new creative group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19741,15 +19401,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeGroups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creativegroups$Insert,
@@ -19823,7 +19480,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -19831,9 +19488,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeGroups.list
-     * @desc Retrieves a list of creative groups, possibly filtered. This method supports paging.
+     * Retrieves a list of creative groups, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -19891,22 +19548,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only creative groups that belong to these advertisers.
-     * @param {integer=} params.groupNumber Select only creative groups that belong to this subgroup.
-     * @param {string=} params.ids Select only creative groups with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for creative groups by name or ID. Wildcards (*) are allowed. For example, "creativegroup*2015" will return creative groups with names like "creativegroup June 2015", "creativegroup April 2015", or simply "creativegroup 2015". Most of the searches also add wild-cards implicitly at the start and the end of the search string. For example, a search string of "creativegroup" will match creative groups with the name "my creativegroup", "creativegroup 2015", or simply "creativegroup".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creativegroups$List,
@@ -19987,7 +19634,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroupsListResponse>(parameters);
@@ -19995,9 +19642,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeGroups.patch
-     * @desc Updates an existing creative group. This method supports patch semantics.
+     * Updates an existing creative group. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -20061,16 +19708,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id CreativeGroup ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Creativegroups$Patch,
@@ -20144,7 +19787,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -20152,9 +19795,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creativeGroups.update
-     * @desc Updates an existing creative group.
+     * Updates an existing creative group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -20216,15 +19859,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creativeGroups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CreativeGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Creativegroups$Update,
@@ -20298,7 +19938,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -20404,9 +20044,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creatives.get
-     * @desc Gets one creative by ID.
+     * Gets one creative by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -20512,15 +20152,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creatives.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Creative ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Creatives$Get,
@@ -20593,7 +20230,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -20601,9 +20238,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creatives.insert
-     * @desc Inserts a new creative.
+     * Inserts a new creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -20779,15 +20416,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creatives.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Creatives$Insert,
@@ -20859,7 +20493,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -20867,9 +20501,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creatives.list
-     * @desc Retrieves a list of creatives, possibly filtered. This method supports paging.
+     * Retrieves a list of creatives, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -20943,30 +20577,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creatives.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active creatives. Leave blank to select active and inactive creatives.
-     * @param {string=} params.advertiserId Select only creatives with this advertiser ID.
-     * @param {boolean=} params.archived Select only archived creatives. Leave blank to select archived and unarchived creatives.
-     * @param {string=} params.campaignId Select only creatives with this campaign ID.
-     * @param {string=} params.companionCreativeIds Select only in-stream video creatives with these companion IDs.
-     * @param {string=} params.creativeFieldIds Select only creatives with these creative field IDs.
-     * @param {string=} params.ids Select only creatives with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.renderingIds Select only creatives with these rendering IDs.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "creative*2015" will return objects with names like "creative June 2015", "creative April 2015", or simply "creative 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "creative" will match objects with name "my creative", "creative 2015", or simply "creative".
-     * @param {string=} params.sizeIds Select only creatives with these size IDs.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.studioCreativeId Select only creatives corresponding to this Studio creative ID.
-     * @param {string=} params.types Select only creatives with these creative types.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Creatives$List,
@@ -21043,7 +20659,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CreativesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativesListResponse>(parameters);
@@ -21051,9 +20667,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creatives.patch
-     * @desc Updates an existing creative. This method supports patch semantics.
+     * Updates an existing creative. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -21231,16 +20847,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creatives.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Creative ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Creatives$Patch,
@@ -21312,7 +20924,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -21320,9 +20932,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.creatives.update
-     * @desc Updates an existing creative.
+     * Updates an existing creative.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -21498,15 +21110,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.creatives.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Creative} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Creatives$Update,
@@ -21578,7 +21187,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -21711,9 +21320,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.customEvents.batchinsert
-     * @desc Inserts custom events.
+     * Inserts custom events.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -21764,15 +21373,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.customEvents.batchinsert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().CustomEventsBatchInsertRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchinsert(
       params: Params$Resource$Customevents$Batchinsert,
@@ -21853,7 +21459,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CustomEventsBatchInsertResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomEventsBatchInsertResponse>(
@@ -21883,9 +21489,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.dimensionValues.query
-     * @desc Retrieves list of report dimension values for a list of filters.
+     * Retrieves list of report dimension values for a list of filters.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -21944,17 +21550,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.dimensionValues.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {().DimensionValueRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Dimensionvalues$Query,
@@ -22031,7 +21632,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DimensionValueList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DimensionValueList>(parameters);
@@ -22067,9 +21668,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.directorySites.get
-     * @desc Gets one directory site by ID.
+     * Gets one directory site by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22118,15 +21719,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.directorySites.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Directory site ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Directorysites$Get,
@@ -22200,7 +21798,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySite>(parameters);
@@ -22208,9 +21806,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.directorySites.insert
-     * @desc Inserts a new directory site.
+     * Inserts a new directory site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22272,15 +21870,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.directorySites.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().DirectorySite} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Directorysites$Insert,
@@ -22354,7 +21949,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySite>(parameters);
@@ -22362,9 +21957,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.directorySites.list
-     * @desc Retrieves a list of directory sites, possibly filtered. This method supports paging.
+     * Retrieves a list of directory sites, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22428,25 +22023,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.directorySites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
-     * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
-     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only directory sites that accept publisher paid placements. This field can be left blank.
-     * @param {boolean=} params.active Select only active directory sites. Leave blank to retrieve both active and inactive directory sites.
-     * @param {string=} params.dfpNetworkCode Select only directory sites with this Ad Manager network code.
-     * @param {string=} params.ids Select only directory sites with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name, ID or URL. Wildcards (*) are allowed. For example, "directory site*2015" will return objects with names like "directory site June 2015", "directory site April 2015", or simply "directory site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "directory site" will match objects with name "my directory site", "directory site 2015" or simply, "directory site".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Directorysites$List,
@@ -22527,7 +22109,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DirectorySitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySitesListResponse>(parameters);
@@ -22617,9 +22199,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.dynamicTargetingKeys.delete
-     * @desc Deletes an existing dynamic targeting key.
+     * Deletes an existing dynamic targeting key.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22660,17 +22242,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.dynamicTargetingKeys.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Name of this dynamic targeting key. This is a required field. Must be less than 256 characters long and cannot contain commas. All characters are converted to lowercase.
-     * @param {string} params.objectId ID of the object of this dynamic targeting key. This is a required field.
-     * @param {string} params.objectType Type of the object of this dynamic targeting key. This is a required field.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Dynamictargetingkeys$Delete,
@@ -22742,7 +22319,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -22750,9 +22327,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.dynamicTargetingKeys.insert
-     * @desc Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
+     * Inserts a new dynamic targeting key. Keys must be created at the advertiser level before being assigned to the advertiser's ads, creatives, or placements. There is a maximum of 1000 keys per advertiser, out of which a maximum of 20 keys can be assigned per ad, creative, or placement.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22806,15 +22383,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.dynamicTargetingKeys.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().DynamicTargetingKey} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Dynamictargetingkeys$Insert,
@@ -22891,7 +22465,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DynamicTargetingKey>(parameters);
@@ -22899,9 +22473,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.dynamicTargetingKeys.list
-     * @desc Retrieves a list of dynamic targeting keys.
+     * Retrieves a list of dynamic targeting keys.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -22950,18 +22524,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.dynamicTargetingKeys.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only dynamic targeting keys whose object has this advertiser ID.
-     * @param {string=} params.names Select only dynamic targeting keys exactly matching these names.
-     * @param {string=} params.objectId Select only dynamic targeting keys with this object ID.
-     * @param {string=} params.objectType Select only dynamic targeting keys with this object type.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Dynamictargetingkeys$List,
@@ -23042,7 +22610,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
@@ -23114,9 +22682,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.delete
-     * @desc Deletes an existing event tag.
+     * Deletes an existing event tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23153,15 +22721,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Event tag ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Eventtags$Delete,
@@ -23232,7 +22797,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -23240,9 +22805,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.get
-     * @desc Gets one event tag by ID.
+     * Gets one event tag by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23301,15 +22866,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Event tag ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Eventtags$Get,
@@ -23382,7 +22944,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23390,9 +22952,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.insert
-     * @desc Inserts a new event tag.
+     * Inserts a new event tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23474,15 +23036,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Eventtags$Insert,
@@ -23554,7 +23113,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23562,9 +23121,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.list
-     * @desc Retrieves a list of event tags, possibly filtered.
+     * Retrieves a list of event tags, possibly filtered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23625,24 +23184,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.adId Select only event tags that belong to this ad.
-     * @param {string=} params.advertiserId Select only event tags that belong to this advertiser.
-     * @param {string=} params.campaignId Select only event tags that belong to this campaign.
-     * @param {boolean=} params.definitionsOnly Examine only the specified campaign or advertiser's event tags for matching selector criteria. When set to false, the parent advertiser and parent campaign of the specified ad or campaign is examined as well. In addition, when set to false, the status field is examined as well, along with the enabledByDefault field. This parameter can not be set to true when adId is specified as ads do not define their own even tags.
-     * @param {boolean=} params.enabled Select only enabled event tags. What is considered enabled or disabled depends on the definitionsOnly parameter. When definitionsOnly is set to true, only the specified advertiser or campaign's event tags' enabledByDefault field is examined. When definitionsOnly is set to false, the specified ad or specified campaign's parent advertiser's or parent campaign's event tags' enabledByDefault and status fields are examined as well.
-     * @param {string=} params.eventTagTypes Select only event tags with the specified event tag types. Event tag types can be used to specify whether to use a third-party pixel, a third-party JavaScript URL, or a third-party click-through URL for either impression or click tracking.
-     * @param {string=} params.ids Select only event tags with these IDs.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "eventtag*2015" will return objects with names like "eventtag June 2015", "eventtag April 2015", or simply "eventtag 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "eventtag" will match objects with name "my eventtag", "eventtag 2015", or simply "eventtag".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Eventtags$List,
@@ -23719,7 +23266,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$EventTagsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTagsListResponse>(parameters);
@@ -23727,9 +23274,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.patch
-     * @desc Updates an existing event tag. This method supports patch semantics.
+     * Updates an existing event tag. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23813,16 +23360,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id EventTag ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Eventtags$Patch,
@@ -23894,7 +23437,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23902,9 +23445,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.eventTags.update
-     * @desc Updates an existing event tag.
+     * Updates an existing event tag.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -23986,15 +23529,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.eventTags.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().EventTag} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Eventtags$Update,
@@ -24066,7 +23606,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -24185,9 +23725,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.files.get
-     * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
+     * Retrieves a report file by its report ID and file ID. This method supports media download.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -24238,15 +23778,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.files.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the report file.
-     * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Files$Get,
@@ -24318,7 +23855,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -24326,9 +23863,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.files.list
-     * @desc Lists files for a user profile.
+     * Lists files for a user profile.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -24381,19 +23918,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA profile ID.
-     * @param {string=} params.scope The scope that defines which results are returned.
-     * @param {string=} params.sortField The field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Files$List,
@@ -24465,7 +23995,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
@@ -24517,9 +24047,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.delete
-     * @desc Deletes an existing floodlight activity.
+     * Deletes an existing floodlight activity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -24556,15 +24086,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight activity ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Floodlightactivities$Delete,
@@ -24636,7 +24163,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -24644,9 +24171,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.generatetag
-     * @desc Generates a tag for a floodlight activity.
+     * Generates a tag for a floodlight activity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -24690,15 +24217,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.generatetag
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.floodlightActivityId Floodlight activity ID for which we want to generate a tag.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generatetag(
       params: Params$Resource$Floodlightactivities$Generatetag,
@@ -24785,7 +24309,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
@@ -24795,9 +24319,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.get
-     * @desc Gets one floodlight activity by ID.
+     * Gets one floodlight activity by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -24867,15 +24391,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight activity ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Floodlightactivities$Get,
@@ -24952,7 +24473,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -24960,9 +24481,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.insert
-     * @desc Inserts a new floodlight activity.
+     * Inserts a new floodlight activity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -25066,15 +24587,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Floodlightactivities$Insert,
@@ -25151,7 +24669,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -25159,9 +24677,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.list
-     * @desc Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
+     * Retrieves a list of floodlight activities, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -25229,27 +24747,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only floodlight activities for the specified advertiser ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.floodlightActivityGroupIds Select only floodlight activities with the specified floodlight activity group IDs.
-     * @param {string=} params.floodlightActivityGroupName Select only floodlight activities with the specified floodlight activity group name.
-     * @param {string=} params.floodlightActivityGroupTagString Select only floodlight activities with the specified floodlight activity group tag string.
-     * @param {string=} params.floodlightActivityGroupType Select only floodlight activities with the specified floodlight activity group type.
-     * @param {string=} params.floodlightConfigurationId Select only floodlight activities for the specified floodlight configuration ID. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.ids Select only floodlight activities with the specified IDs. Must specify either ids, advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivity*2015" will return objects with names like "floodlightactivity June 2015", "floodlightactivity April 2015", or simply "floodlightactivity 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivity" will match objects with name "my floodlightactivity activity", "floodlightactivity 2015", or simply "floodlightactivity".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.tagString Select only floodlight activities with the specified tag string.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Floodlightactivities$List,
@@ -25330,7 +24833,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesListResponse>(
@@ -25340,9 +24843,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.patch
-     * @desc Updates an existing floodlight activity. This method supports patch semantics.
+     * Updates an existing floodlight activity. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -25448,16 +24951,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id FloodlightActivity ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Floodlightactivities$Patch,
@@ -25534,7 +25033,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -25542,9 +25041,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivities.update
-     * @desc Updates an existing floodlight activity.
+     * Updates an existing floodlight activity.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -25648,15 +25147,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivities.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivity} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Floodlightactivities$Update,
@@ -25733,7 +25229,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -25881,9 +25377,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivityGroups.get
-     * @desc Gets one floodlight activity group by ID.
+     * Gets one floodlight activity group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -25936,15 +25432,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivityGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight activity Group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Floodlightactivitygroups$Get,
@@ -26023,7 +25516,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26031,9 +25524,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivityGroups.insert
-     * @desc Inserts a new floodlight activity group.
+     * Inserts a new floodlight activity group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -26103,15 +25596,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivityGroups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Floodlightactivitygroups$Insert,
@@ -26192,7 +25682,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26200,9 +25690,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivityGroups.list
-     * @desc Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
+     * Retrieves a list of floodlight activity groups, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -26262,23 +25752,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivityGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only floodlight activity groups with the specified advertiser ID. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.floodlightConfigurationId Select only floodlight activity groups with the specified floodlight configuration ID. Must specify either advertiserId, or floodlightConfigurationId for a non-empty result.
-     * @param {string=} params.ids Select only floodlight activity groups with the specified IDs. Must specify either advertiserId or floodlightConfigurationId for a non-empty result.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "floodlightactivitygroup*2015" will return objects with names like "floodlightactivitygroup June 2015", "floodlightactivitygroup April 2015", or simply "floodlightactivitygroup 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "floodlightactivitygroup" will match objects with name "my floodlightactivitygroup activity", "floodlightactivitygroup 2015", or simply "floodlightactivitygroup".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.type Select only floodlight activity groups with the specified floodlight activity group type.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Floodlightactivitygroups$List,
@@ -26365,7 +25844,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
@@ -26375,9 +25854,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivityGroups.patch
-     * @desc Updates an existing floodlight activity group. This method supports patch semantics.
+     * Updates an existing floodlight activity group. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -26449,16 +25928,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivityGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id FloodlightActivityGroup ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Floodlightactivitygroups$Patch,
@@ -26537,7 +26012,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26545,9 +26020,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightActivityGroups.update
-     * @desc Updates an existing floodlight activity group.
+     * Updates an existing floodlight activity group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -26617,15 +26092,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightActivityGroups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightActivityGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Floodlightactivitygroups$Update,
@@ -26706,7 +26178,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26816,9 +26288,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightConfigurations.get
-     * @desc Gets one floodlight configuration by ID.
+     * Gets one floodlight configuration by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -26877,15 +26349,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightConfigurations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Floodlight configuration ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Floodlightconfigurations$Get,
@@ -26964,7 +26433,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -26972,9 +26441,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightConfigurations.list
-     * @desc Retrieves a list of floodlight configurations, possibly filtered.
+     * Retrieves a list of floodlight configurations, possibly filtered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27017,15 +26486,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightConfigurations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Set of IDs of floodlight configurations to retrieve. Required field; otherwise an empty list will be returned.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Floodlightconfigurations$List,
@@ -27112,7 +26578,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
@@ -27122,9 +26588,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightConfigurations.patch
-     * @desc Updates an existing floodlight configuration. This method supports patch semantics.
+     * Updates an existing floodlight configuration. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27208,16 +26674,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightConfigurations.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id FloodlightConfiguration ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Floodlightconfigurations$Patch,
@@ -27296,7 +26758,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -27304,9 +26766,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.floodlightConfigurations.update
-     * @desc Updates an existing floodlight configuration.
+     * Updates an existing floodlight configuration.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27388,15 +26850,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.floodlightConfigurations.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().FloodlightConfiguration} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Floodlightconfigurations$Update,
@@ -27477,7 +26936,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -27543,9 +27002,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.inventoryItems.get
-     * @desc Gets one inventory item by ID.
+     * Gets one inventory item by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27608,16 +27067,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.inventoryItems.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Inventory item ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for order documents.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Inventoryitems$Get,
@@ -27691,7 +27146,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$InventoryItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventoryItem>(parameters);
@@ -27699,9 +27154,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.inventoryItems.list
-     * @desc Retrieves a list of inventory items, possibly filtered. This method supports paging.
+     * Retrieves a list of inventory items, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27763,24 +27218,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.inventoryItems.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only inventory items with these IDs.
-     * @param {boolean=} params.inPlan Select only inventory items that are in plan.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderId Select only inventory items that belong to specified orders.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for order documents.
-     * @param {string=} params.siteId Select only inventory items that are associated with these sites.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.type Select only inventory items with this type.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Inventoryitems$List,
@@ -27861,7 +27304,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$InventoryItemsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventoryItemsListResponse>(parameters);
@@ -27939,9 +27382,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.languages.list
-     * @desc Retrieves a list of languages.
+     * Retrieves a list of languages.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -27982,14 +27425,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.languages.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Languages$List,
@@ -28066,7 +27507,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LanguagesListResponse>(parameters);
@@ -28088,9 +27529,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.metros.list
-     * @desc Retrieves a list of metros.
+     * Retrieves a list of metros.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28131,14 +27572,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.metros.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Metros$List,
@@ -28213,7 +27652,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$MetrosListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetrosListResponse>(parameters);
@@ -28235,9 +27674,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.mobileApps.get
-     * @desc Gets one mobile app by ID.
+     * Gets one mobile app by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28283,15 +27722,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.mobileApps.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Mobile app ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Mobileapps$Get,
@@ -28364,7 +27800,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$MobileApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileApp>(parameters);
@@ -28372,9 +27808,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.mobileApps.list
-     * @desc Retrieves list of available mobile apps.
+     * Retrieves list of available mobile apps.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28426,19 +27862,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.mobileApps.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.directories Select only apps from these directories.
-     * @param {string=} params.ids Select only apps with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "app*2015" will return objects with names like "app Jan 2018", "app Jan 2018", or simply "app 2018". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "app" will match objects with name "my app", "app 2018", or simply "app".
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mobileapps$List,
@@ -28515,7 +27944,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$MobileAppsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileAppsListResponse>(parameters);
@@ -28567,9 +27996,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.mobileCarriers.get
-     * @desc Gets one mobile carrier by ID.
+     * Gets one mobile carrier by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28615,15 +28044,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.mobileCarriers.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Mobile carrier ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Mobilecarriers$Get,
@@ -28697,7 +28123,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$MobileCarrier>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileCarrier>(parameters);
@@ -28705,9 +28131,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.mobileCarriers.list
-     * @desc Retrieves a list of mobile carriers.
+     * Retrieves a list of mobile carriers.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28748,14 +28174,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.mobileCarriers.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Mobilecarriers$List,
@@ -28836,7 +28260,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$MobileCarriersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileCarriersListResponse>(parameters);
@@ -28870,9 +28294,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.operatingSystems.get
-     * @desc Gets one operating system by DART ID.
+     * Gets one operating system by DART ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -28918,15 +28342,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.operatingSystems.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.dartId Operating system DART ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operatingsystems$Get,
@@ -29000,7 +28421,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystem>(parameters);
@@ -29008,9 +28429,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.operatingSystems.list
-     * @desc Retrieves a list of operating systems.
+     * Retrieves a list of operating systems.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29051,14 +28472,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.operatingSystems.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operatingsystems$List,
@@ -29139,7 +28558,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemsListResponse>(
@@ -29175,9 +28594,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.operatingSystemVersions.get
-     * @desc Gets one operating system version by ID.
+     * Gets one operating system version by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29224,15 +28643,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.operatingSystemVersions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Operating system version ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Operatingsystemversions$Get,
@@ -29311,7 +28727,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemVersion>(parameters);
@@ -29319,9 +28735,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.operatingSystemVersions.list
-     * @desc Retrieves a list of operating system versions.
+     * Retrieves a list of operating system versions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29362,14 +28778,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.operatingSystemVersions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Operatingsystemversions$List,
@@ -29450,7 +28864,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
@@ -29486,9 +28900,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.orderDocuments.get
-     * @desc Gets one order document by ID.
+     * Gets one order document by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29548,16 +28962,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.orderDocuments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Order document ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for order documents.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Orderdocuments$Get,
@@ -29631,7 +29041,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OrderDocument>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderDocument>(parameters);
@@ -29639,9 +29049,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.orderDocuments.list
-     * @desc Retrieves a list of order documents, possibly filtered. This method supports paging.
+     * Retrieves a list of order documents, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29703,24 +29113,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.orderDocuments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.approved Select only order documents that have been approved by at least one user.
-     * @param {string=} params.ids Select only order documents with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.orderId Select only order documents for specified orders.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for order documents.
-     * @param {string=} params.searchString Allows searching for order documents by name or ID. Wildcards (*) are allowed. For example, "orderdocument*2015" will return order documents with names like "orderdocument June 2015", "orderdocument April 2015", or simply "orderdocument 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "orderdocument" will match order documents with name "my orderdocument", "orderdocument 2015", or simply "orderdocument".
-     * @param {string=} params.siteId Select only order documents that are associated with these sites.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Orderdocuments$List,
@@ -29801,7 +29199,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OrderDocumentsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderDocumentsListResponse>(parameters);
@@ -29879,9 +29277,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.orders.get
-     * @desc Gets one order by ID.
+     * Gets one order by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -29944,16 +29342,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.orders.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Order ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for orders.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Orders$Get,
@@ -30026,7 +29420,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Order>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Order>(parameters);
@@ -30034,9 +29428,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.orders.list
-     * @desc Retrieves a list of orders, possibly filtered. This method supports paging.
+     * Retrieves a list of orders, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -30094,22 +29488,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.orders.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only orders with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.projectId Project ID for orders.
-     * @param {string=} params.searchString Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
-     * @param {string=} params.siteId Select only orders that are associated with these site IDs.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Orders$List,
@@ -30185,7 +29569,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersListResponse>(parameters);
@@ -30253,9 +29637,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementGroups.get
-     * @desc Gets one placement group by ID.
+     * Gets one placement group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -30322,15 +29706,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Placement group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Placementgroups$Get,
@@ -30404,7 +29785,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30412,9 +29793,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementGroups.insert
-     * @desc Inserts a new placement group.
+     * Inserts a new placement group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -30512,15 +29893,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementGroups.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Placementgroups$Insert,
@@ -30594,7 +29972,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30602,9 +29980,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementGroups.list
-     * @desc Retrieves a list of placement groups, possibly filtered. This method supports paging.
+     * Retrieves a list of placement groups, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -30684,33 +30062,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only placement groups that belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     * @param {string=} params.campaignIds Select only placement groups that belong to these campaigns.
-     * @param {string=} params.contentCategoryIds Select only placement groups that are associated with these content categories.
-     * @param {string=} params.directorySiteIds Select only placement groups that are associated with these directory sites.
-     * @param {string=} params.ids Select only placement groups with these IDs.
-     * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string=} params.placementGroupType Select only placement groups belonging with this group type. A package is a simple group of placements that acts as a single pricing point for a group of tags. A roadblock is a group of placements that not only acts as a single pricing point but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned placements to be marked as primary for reporting.
-     * @param {string=} params.placementStrategyIds Select only placement groups that are associated with these placement strategies.
-     * @param {string=} params.pricingTypes Select only placement groups with these pricing types.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for placement groups by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placement groups with names like "placement group June 2015", "placement group May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementgroup" will match placement groups with name "my placementgroup", "placementgroup 2015", or simply "placementgroup".
-     * @param {string=} params.siteIds Select only placement groups that are associated with these sites.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Placementgroups$List,
@@ -30791,7 +30148,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroupsListResponse>(parameters);
@@ -30799,9 +30156,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementGroups.patch
-     * @desc Updates an existing placement group. This method supports patch semantics.
+     * Updates an existing placement group. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -30901,16 +30258,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementGroups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id PlacementGroup ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Placementgroups$Patch,
@@ -30984,7 +30337,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30992,9 +30345,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementGroups.update
-     * @desc Updates an existing placement group.
+     * Updates an existing placement group.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -31092,15 +30445,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementGroups.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementGroup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Placementgroups$Update,
@@ -31174,7 +30524,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -31324,9 +30674,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.generatetags
-     * @desc Generates tags for a placement.
+     * Generates tags for a placement.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -31373,17 +30723,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.generatetags
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.campaignId Generate placements belonging to this campaign. This is a required field.
-     * @param {string=} params.placementIds Generate tags for these placements.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.tagFormats Tag formats to generate for these placements. *Note:* PLACEMENT_TAG_STANDARD can only be generated for 1x1 placements.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generatetags(
       params: Params$Resource$Placements$Generatetags,
@@ -31464,7 +30809,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
@@ -31474,9 +30819,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.get
-     * @desc Gets one placement by ID.
+     * Gets one placement by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -31558,15 +30903,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Placement ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Placements$Get,
@@ -31639,7 +30981,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -31647,9 +30989,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.insert
-     * @desc Inserts a new placement.
+     * Inserts a new placement.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -31777,15 +31119,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Placements$Insert,
@@ -31858,7 +31197,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -31866,9 +31205,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.list
-     * @desc Retrieves a list of placements, possibly filtered. This method supports paging.
+     * Retrieves a list of placements, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -31954,36 +31293,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only placements that belong to these advertisers.
-     * @param {boolean=} params.archived Select only archived placements. Don't set this field to select both archived and non-archived placements.
-     * @param {string=} params.campaignIds Select only placements that belong to these campaigns.
-     * @param {string=} params.compatibilities Select only placements that are associated with these compatibilities. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop or on mobile devices for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
-     * @param {string=} params.contentCategoryIds Select only placements that are associated with these content categories.
-     * @param {string=} params.directorySiteIds Select only placements that are associated with these directory sites.
-     * @param {string=} params.groupIds Select only placements that belong to these placement groups.
-     * @param {string=} params.ids Select only placements with these IDs.
-     * @param {string=} params.maxEndDate Select only placements or placement groups whose end date is on or before the specified maxEndDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.maxStartDate Select only placements or placement groups whose start date is on or before the specified maxStartDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minEndDate Select only placements or placement groups whose end date is on or after the specified minEndDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.minStartDate Select only placements or placement groups whose start date is on or after the specified minStartDate. The date should be formatted as "yyyy-MM-dd".
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string=} params.paymentSource Select only placements with this payment source.
-     * @param {string=} params.placementStrategyIds Select only placements that are associated with these placement strategies.
-     * @param {string=} params.pricingTypes Select only placements with these pricing types.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for placements by name or ID. Wildcards (*) are allowed. For example, "placement*2015" will return placements with names like "placement June 2015", "placement May 2015", or simply "placements 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placement" will match placements with name "my placement", "placement 2015", or simply "placement" .
-     * @param {string=} params.siteIds Select only placements that are associated with these sites.
-     * @param {string=} params.sizeIds Select only placements that are associated with these sizes.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Placements$List,
@@ -32060,7 +31375,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementsListResponse>(parameters);
@@ -32068,9 +31383,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.patch
-     * @desc Updates an existing placement. This method supports patch semantics.
+     * Updates an existing placement. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -32200,16 +31515,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Placement ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Placements$Patch,
@@ -32281,7 +31592,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -32289,9 +31600,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placements.update
-     * @desc Updates an existing placement.
+     * Updates an existing placement.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -32419,15 +31730,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placements.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Placement} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Placements$Update,
@@ -32500,7 +31808,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -32678,9 +31986,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.delete
-     * @desc Deletes an existing placement strategy.
+     * Deletes an existing placement strategy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -32717,15 +32025,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Placement strategy ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Placementstrategies$Delete,
@@ -32797,7 +32102,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -32805,9 +32110,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.get
-     * @desc Gets one placement strategy by ID.
+     * Gets one placement strategy by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -32852,15 +32157,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Placement strategy ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Placementstrategies$Get,
@@ -32937,7 +32239,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -32945,9 +32247,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.insert
-     * @desc Inserts a new placement strategy.
+     * Inserts a new placement strategy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33001,15 +32303,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Placementstrategies$Insert,
@@ -33086,7 +32385,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -33094,9 +32393,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.list
-     * @desc Retrieves a list of placement strategies, possibly filtered. This method supports paging.
+     * Retrieves a list of placement strategies, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33150,20 +32449,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only placement strategies with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "placementstrategy*2015" will return objects with names like "placementstrategy June 2015", "placementstrategy April 2015", or simply "placementstrategy 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "placementstrategy" will match objects with name "my placementstrategy", "placementstrategy 2015", or simply "placementstrategy".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Placementstrategies$List,
@@ -33244,7 +32535,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategiesListResponse>(
@@ -33254,9 +32545,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.patch
-     * @desc Updates an existing placement strategy. This method supports patch semantics.
+     * Updates an existing placement strategy. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33312,16 +32603,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id PlacementStrategy ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Placementstrategies$Patch,
@@ -33398,7 +32685,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -33406,9 +32693,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.placementStrategies.update
-     * @desc Updates an existing placement strategy.
+     * Updates an existing placement strategy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33462,15 +32749,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.placementStrategies.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().PlacementStrategy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Placementstrategies$Update,
@@ -33547,7 +32831,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -33656,9 +32940,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.platformTypes.get
-     * @desc Gets one platform type by ID.
+     * Gets one platform type by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33702,15 +32986,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.platformTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Platform type ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Platformtypes$Get,
@@ -33784,7 +33065,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlatformType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlatformType>(parameters);
@@ -33792,9 +33073,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.platformTypes.list
-     * @desc Retrieves a list of platform types.
+     * Retrieves a list of platform types.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -33835,14 +33116,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.platformTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Platformtypes$List,
@@ -33923,7 +33202,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PlatformTypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlatformTypesListResponse>(parameters);
@@ -33957,9 +33236,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.postalCodes.get
-     * @desc Gets one postal code by ID.
+     * Gets one postal code by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34005,15 +33284,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.postalCodes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.code Postal code ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Postalcodes$Get,
@@ -34086,7 +33362,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PostalCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostalCode>(parameters);
@@ -34094,9 +33370,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.postalCodes.list
-     * @desc Retrieves a list of postal codes.
+     * Retrieves a list of postal codes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34137,14 +33413,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.postalCodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Postalcodes$List,
@@ -34222,7 +33496,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$PostalCodesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostalCodesListResponse>(parameters);
@@ -34254,9 +33528,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.projects.get
-     * @desc Gets one project by ID.
+     * Gets one project by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34319,15 +33593,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.projects.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Project ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Get,
@@ -34400,7 +33671,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -34408,9 +33679,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.projects.list
-     * @desc Retrieves a list of projects, possibly filtered. This method supports paging .
+     * Retrieves a list of projects, possibly filtered. This method supports paging .
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34466,21 +33737,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.projects.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserIds Select only projects with these advertiser IDs.
-     * @param {string=} params.ids Select only projects with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$List,
@@ -34557,7 +33819,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ProjectsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectsListResponse>(parameters);
@@ -34617,9 +33879,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.regions.list
-     * @desc Retrieves a list of regions.
+     * Retrieves a list of regions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34660,14 +33922,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.regions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Regions$List,
@@ -34742,7 +34002,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RegionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RegionsListResponse>(parameters);
@@ -34764,9 +34024,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingLists.get
-     * @desc Gets one remarketing list by ID.
+     * Gets one remarketing list by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34820,15 +34080,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Remarketing list ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Remarketinglists$Get,
@@ -34902,7 +34159,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -34910,9 +34167,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingLists.insert
-     * @desc Inserts a new remarketing list.
+     * Inserts a new remarketing list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -34984,15 +34241,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingLists.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Remarketinglists$Insert,
@@ -35066,7 +34320,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -35074,9 +34328,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingLists.list
-     * @desc Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
+     * Retrieves a list of remarketing lists, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -35134,22 +34388,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active or only inactive remarketing lists.
-     * @param {string} params.advertiserId Select only remarketing lists owned by this advertiser.
-     * @param {string=} params.floodlightActivityId Select only remarketing lists that have this floodlight activity ID.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Remarketinglists$List,
@@ -35230,7 +34474,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListsListResponse>(
@@ -35240,9 +34484,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingLists.patch
-     * @desc Updates an existing remarketing list. This method supports patch semantics.
+     * Updates an existing remarketing list. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -35316,16 +34560,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingLists.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id RemarketingList ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Remarketinglists$Patch,
@@ -35399,7 +34639,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -35407,9 +34647,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingLists.update
-     * @desc Updates an existing remarketing list.
+     * Updates an existing remarketing list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -35481,15 +34721,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingLists.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Remarketinglists$Update,
@@ -35563,7 +34800,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -35669,9 +34906,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingListShares.get
-     * @desc Gets one remarketing list share by remarketing list ID.
+     * Gets one remarketing list share by remarketing list ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -35716,15 +34953,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingListShares.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string} params.remarketingListId Remarketing list ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Remarketinglistshares$Get,
@@ -35803,7 +35037,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -35811,9 +35045,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingListShares.patch
-     * @desc Updates an existing remarketing list share. This method supports patch semantics.
+     * Updates an existing remarketing list share. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -35869,16 +35103,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingListShares.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id RemarketingList ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingListShare} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Remarketinglistshares$Patch,
@@ -35957,7 +35187,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -35965,9 +35195,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.remarketingListShares.update
-     * @desc Updates an existing remarketing list share.
+     * Updates an existing remarketing list share.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36021,15 +35251,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.remarketingListShares.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().RemarketingListShare} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Remarketinglistshares$Update,
@@ -36108,7 +35335,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -36169,9 +35396,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.delete
-     * @desc Deletes a report by its ID.
+     * Deletes a report by its ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36208,15 +35435,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Reports$Delete,
@@ -36287,7 +35511,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -36295,9 +35519,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.get
-     * @desc Retrieves a report by its ID.
+     * Retrieves a report by its ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36358,15 +35582,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Reports$Get,
@@ -36439,7 +35660,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36447,9 +35668,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.insert
-     * @desc Creates a report.
+     * Creates a report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36535,15 +35756,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {().Report} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Reports$Insert,
@@ -36615,7 +35833,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36623,9 +35841,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.list
-     * @desc Retrieves list of reports.
+     * Retrieves list of reports.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36678,19 +35896,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string=} params.scope The scope that defines which results are returned.
-     * @param {string=} params.sortField The field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Reports$List,
@@ -36762,7 +35973,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$ReportList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportList>(parameters);
@@ -36770,9 +35981,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.patch
-     * @desc Updates an existing report. This method supports patch semantics.
+     * Updates an existing report. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -36860,16 +36071,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {().Report} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Reports$Patch,
@@ -36942,7 +36149,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36950,9 +36157,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.run
-     * @desc Runs a report.
+     * Runs a report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37005,16 +36212,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.run
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {boolean=} params.synchronous If set and true, tries to run the report synchronously.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     run(
       params: Params$Resource$Reports$Run,
@@ -37087,7 +36290,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -37095,9 +36298,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.update
-     * @desc Updates a report.
+     * Updates a report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37185,16 +36388,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {().Report} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Reports$Update,
@@ -37267,7 +36466,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -37384,9 +36583,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.compatibleFields.query
-     * @desc Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
+     * Returns the fields that are compatible to be selected in the respective sections of a report criteria, given the fields already selected in the input report and user permissions.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37460,15 +36659,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.compatibleFields.query
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {().Report} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     query(
       params: Params$Resource$Reports$Compatiblefields$Query,
@@ -37542,7 +36738,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$CompatibleFields>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CompatibleFields>(parameters);
@@ -37570,9 +36766,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.files.get
-     * @desc Retrieves a report file by its report ID and file ID. This method supports media download.
+     * Retrieves a report file by its report ID and file ID. This method supports media download.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37625,16 +36821,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.files.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.fileId The ID of the report file.
-     * @param {string} params.profileId The DFA user profile ID.
-     * @param {string} params.reportId The ID of the report.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Reports$Files$Get,
@@ -37708,7 +36900,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -37716,9 +36908,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.reports.files.list
-     * @desc Lists files for a report.
+     * Lists files for a report.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37771,19 +36963,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.reports.files.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken The value of the nextToken from the previous result page.
-     * @param {string} params.profileId The DFA profile ID.
-     * @param {string} params.reportId The ID of the parent report.
-     * @param {string=} params.sortField The field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Reports$Files$List,
@@ -37857,7 +37042,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$FileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
@@ -37915,9 +37100,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sites.get
-     * @desc Gets one site by ID.
+     * Gets one site by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -37971,15 +37156,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sites.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Site ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sites$Get,
@@ -38051,7 +37233,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38059,9 +37241,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sites.insert
-     * @desc Inserts a new site.
+     * Inserts a new site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -38133,15 +37315,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sites.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Sites$Insert,
@@ -38213,7 +37392,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38221,9 +37400,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sites.list
-     * @desc Retrieves a list of sites, possibly filtered. This method supports paging.
+     * Retrieves a list of sites, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -38295,29 +37474,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sites.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.acceptsInStreamVideoPlacements This search filter is no longer supported and will have no effect on the results returned.
-     * @param {boolean=} params.acceptsInterstitialPlacements This search filter is no longer supported and will have no effect on the results returned.
-     * @param {boolean=} params.acceptsPublisherPaidPlacements Select only sites that accept publisher paid placements.
-     * @param {boolean=} params.adWordsSite Select only AdWords sites.
-     * @param {boolean=} params.approved Select only approved sites.
-     * @param {string=} params.campaignIds Select only sites with these campaign IDs.
-     * @param {string=} params.directorySiteIds Select only sites with these directory site IDs.
-     * @param {string=} params.ids Select only sites with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name, ID or keyName. Wildcards (*) are allowed. For example, "site*2015" will return objects with names like "site June 2015", "site April 2015", or simply "site 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "site" will match objects with name "my site", "site 2015", or simply "site".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only sites with this subaccount ID.
-     * @param {boolean=} params.unmappedSite Select only sites that have not been mapped to a directory site.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sites$List,
@@ -38392,7 +37554,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
@@ -38400,9 +37562,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sites.patch
-     * @desc Updates an existing site. This method supports patch semantics.
+     * Updates an existing site. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -38476,16 +37638,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sites.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Site ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Sites$Patch,
@@ -38557,7 +37715,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38565,9 +37723,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sites.update
-     * @desc Updates an existing site.
+     * Updates an existing site.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -38639,15 +37797,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sites.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Site} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Sites$Update,
@@ -38719,7 +37874,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38848,9 +38003,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sizes.get
-     * @desc Gets one size by ID.
+     * Gets one size by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -38896,15 +38051,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sizes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Size ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Sizes$Get,
@@ -38976,7 +38128,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Size>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Size>(parameters);
@@ -38984,9 +38136,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sizes.insert
-     * @desc Inserts a new size.
+     * Inserts a new size.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39042,15 +38194,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sizes.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Size} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Sizes$Insert,
@@ -39122,7 +38271,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Size>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Size>(parameters);
@@ -39130,9 +38279,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.sizes.list
-     * @desc Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.
+     * Retrieves a list of sizes, possibly filtered. Retrieved sizes are globally unique and may include values not currently in use by your account. Due to this, the list of sizes returned by this method may differ from the list seen in the Trafficking UI.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39181,18 +38330,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.sizes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.height Select only sizes with this height.
-     * @param {boolean=} params.iabStandard Select only IAB standard sizes.
-     * @param {string=} params.ids Select only sizes with these IDs.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {integer=} params.width Select only sizes with this width.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Sizes$List,
@@ -39267,7 +38410,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$SizesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SizesListResponse>(parameters);
@@ -39326,9 +38469,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.subaccounts.get
-     * @desc Gets one subaccount by ID.
+     * Gets one subaccount by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39374,15 +38517,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.subaccounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Subaccount ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Subaccounts$Get,
@@ -39455,7 +38595,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39463,9 +38603,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.subaccounts.insert
-     * @desc Inserts a new subaccount.
+     * Inserts a new subaccount.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39521,15 +38661,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.subaccounts.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Subaccounts$Insert,
@@ -39603,7 +38740,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39611,9 +38748,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.subaccounts.list
-     * @desc Gets a list of subaccounts, possibly filtered. This method supports paging.
+     * Gets a list of subaccounts, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39667,20 +38804,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.subaccounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only subaccounts with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "subaccount*2015" will return objects with names like "subaccount June 2015", "subaccount April 2015", or simply "subaccount 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "subaccount" will match objects with name "my subaccount", "subaccount 2015", or simply "subaccount" .
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Subaccounts$List,
@@ -39758,7 +38887,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$SubaccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SubaccountsListResponse>(parameters);
@@ -39766,9 +38895,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.subaccounts.patch
-     * @desc Updates an existing subaccount. This method supports patch semantics.
+     * Updates an existing subaccount. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39826,16 +38955,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.subaccounts.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Subaccount ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Subaccounts$Patch,
@@ -39909,7 +39034,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39917,9 +39042,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.subaccounts.update
-     * @desc Updates an existing subaccount.
+     * Updates an existing subaccount.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -39975,15 +39100,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.subaccounts.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().Subaccount} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Subaccounts$Update,
@@ -40057,7 +39179,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -40153,9 +39275,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetableRemarketingLists.get
-     * @desc Gets one remarketing list by ID.
+     * Gets one remarketing list by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -40208,15 +39330,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetableRemarketingLists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Remarketing list ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Targetableremarketinglists$Get,
@@ -40295,7 +39414,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingList>(parameters);
@@ -40303,9 +39422,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetableRemarketingLists.list
-     * @desc Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
+     * Retrieves a list of targetable remarketing lists, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -40361,21 +39480,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetableRemarketingLists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.active Select only active or only inactive targetable remarketing lists.
-     * @param {string} params.advertiserId Select only targetable remarketing lists targetable by these advertisers.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.name Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "remarketing list*2015" will return objects with names like "remarketing list June 2015", "remarketing list April 2015", or simply "remarketing list 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "remarketing list" will match objects with name "my remarketing list", "remarketing list 2015", or simply "remarketing list".
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Targetableremarketinglists$List,
@@ -40462,7 +39572,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
@@ -40526,9 +39636,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetingTemplates.get
-     * @desc Gets one targeting template by ID.
+     * Gets one targeting template by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -40582,15 +39692,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetingTemplates.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id Targeting template ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Targetingtemplates$Get,
@@ -40667,7 +39774,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40675,9 +39782,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetingTemplates.insert
-     * @desc Inserts a new targeting template.
+     * Inserts a new targeting template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -40749,15 +39856,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetingTemplates.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Targetingtemplates$Insert,
@@ -40834,7 +39938,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40842,9 +39946,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetingTemplates.list
-     * @desc Retrieves a list of targeting templates, optionally filtered. This method supports paging.
+     * Retrieves a list of targeting templates, optionally filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -40900,21 +40004,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetingTemplates.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.advertiserId Select only targeting templates with this advertiser ID.
-     * @param {string=} params.ids Select only targeting templates with these IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "template*2015" will return objects with names like "template June 2015", "template April 2015", or simply "template 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "template" will match objects with name "my template", "template 2015", or simply "template".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Targetingtemplates$List,
@@ -40995,7 +40090,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplatesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplatesListResponse>(
@@ -41005,9 +40100,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetingTemplates.patch
-     * @desc Updates an existing targeting template. This method supports patch semantics.
+     * Updates an existing targeting template. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41081,16 +40176,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetingTemplates.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id TargetingTemplate ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Targetingtemplates$Patch,
@@ -41167,7 +40258,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -41175,9 +40266,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.targetingTemplates.update
-     * @desc Updates an existing targeting template.
+     * Updates an existing targeting template.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41249,15 +40340,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.targetingTemplates.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().TargetingTemplate} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Targetingtemplates$Update,
@@ -41334,7 +40422,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -41436,9 +40524,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userProfiles.get
-     * @desc Gets one user profile by ID.
+     * Gets one user profile by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41489,14 +40577,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userProfiles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId The user profile ID.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userprofiles$Get,
@@ -41568,7 +40654,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserProfile>(parameters);
@@ -41576,9 +40662,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userProfiles.list
-     * @desc Retrieves list of user profiles for a user.
+     * Retrieves list of user profiles for a user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41621,13 +40707,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userProfiles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Userprofiles$List,
@@ -41701,7 +40786,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserProfileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserProfileList>(parameters);
@@ -41725,9 +40810,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRolePermissionGroups.get
-     * @desc Gets one user role permission group by ID.
+     * Gets one user role permission group by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41771,15 +40856,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRolePermissionGroups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id User role permission group ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userrolepermissiongroups$Get,
@@ -41858,7 +40940,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionGroup>(parameters);
@@ -41866,9 +40948,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRolePermissionGroups.list
-     * @desc Gets a list of all supported user role permission groups.
+     * Gets a list of all supported user role permission groups.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -41909,14 +40991,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRolePermissionGroups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Userrolepermissiongroups$List,
@@ -42003,7 +41083,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
@@ -42039,9 +41119,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRolePermissions.get
-     * @desc Gets one user role permission by ID.
+     * Gets one user role permission by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42087,15 +41167,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRolePermissions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id User role permission ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userrolepermissions$Get,
@@ -42172,7 +41249,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermission>(parameters);
@@ -42180,9 +41257,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRolePermissions.list
-     * @desc Gets a list of user role permissions, possibly filtered.
+     * Gets a list of user role permissions, possibly filtered.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42225,15 +41302,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRolePermissions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.ids Select only user role permissions with these IDs.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Userrolepermissions$List,
@@ -42314,7 +41388,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionsListResponse>(
@@ -42354,9 +41428,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.delete
-     * @desc Deletes an existing user role.
+     * Deletes an existing user role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42393,15 +41467,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id User role ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Userroles$Delete,
@@ -42472,7 +41543,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -42480,9 +41551,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.get
-     * @desc Gets one user role by ID.
+     * Gets one user role by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42531,15 +41602,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id User role ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Userroles$Get,
@@ -42612,7 +41680,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42620,9 +41688,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.insert
-     * @desc Inserts a new user role.
+     * Inserts a new user role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42684,15 +41752,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Userroles$Insert,
@@ -42764,7 +41829,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42772,9 +41837,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.list
-     * @desc Retrieves a list of user roles, possibly filtered. This method supports paging.
+     * Retrieves a list of user roles, possibly filtered. This method supports paging.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42832,22 +41897,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {boolean=} params.accountUserRoleOnly Select only account level user roles not associated with any specific subaccount.
-     * @param {string=} params.ids Select only user roles with the specified IDs.
-     * @param {integer=} params.maxResults Maximum number of results to return.
-     * @param {string=} params.pageToken Value of the nextPageToken from the previous result page.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {string=} params.searchString Allows searching for objects by name or ID. Wildcards (*) are allowed. For example, "userrole*2015" will return objects with names like "userrole June 2015", "userrole April 2015", or simply "userrole 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "userrole" will match objects with name "my userrole", "userrole 2015", or simply "userrole".
-     * @param {string=} params.sortField Field by which to sort the list.
-     * @param {string=} params.sortOrder Order of sorted results.
-     * @param {string=} params.subaccountId Select only user roles that belong to this subaccount.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Userroles$List,
@@ -42924,7 +41979,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRolesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolesListResponse>(parameters);
@@ -42932,9 +41987,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.patch
-     * @desc Updates an existing user role. This method supports patch semantics.
+     * Updates an existing user role. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -42998,16 +42053,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.id UserRole ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Userroles$Patch,
@@ -43079,7 +42130,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -43087,9 +42138,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.userRoles.update
-     * @desc Updates an existing user role.
+     * Updates an existing user role.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -43151,15 +42202,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.userRoles.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {().UserRole} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Userroles$Update,
@@ -43231,7 +42279,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -43342,9 +42390,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.videoFormats.get
-     * @desc Gets one video format by ID.
+     * Gets one video format by ID.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -43390,15 +42438,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.videoFormats.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer} params.id Video format ID.
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Videoformats$Get,
@@ -43471,7 +42516,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$VideoFormat>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VideoFormat>(parameters);
@@ -43479,9 +42524,9 @@ export namespace dfareporting_v3_4 {
     }
 
     /**
-     * dfareporting.videoFormats.list
-     * @desc Lists available video formats.
+     * Lists available video formats.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
@@ -43522,14 +42567,12 @@ export namespace dfareporting_v3_4 {
      *   throw e;
      * });
      *
-     * @alias dfareporting.videoFormats.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.profileId User profile ID associated with this request.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Videoformats$List,
@@ -43608,7 +42651,7 @@ export namespace dfareporting_v3_4 {
       if (callback) {
         createAPIRequest<Schema$VideoFormatsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VideoFormatsListResponse>(parameters);

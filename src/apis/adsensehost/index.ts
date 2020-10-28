@@ -33,3 +33,14 @@ export function adsensehost<T = adsensehost_v4_1.Adsensehost>(
 
 const auth = new AuthPlus();
 export {auth};
+export {adsensehost_v4_1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

@@ -104,14 +104,10 @@ export namespace file_v1beta1 {
    * The Cloud Filestore API is used for creating and managing cloud file servers.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const file = google.file('v1beta1');
-   *
-   * @namespace file
-   * @type {Function}
-   * @version v1beta1
-   * @variation v1beta1
-   * @param {object=} options Options for File
+   * ```
    */
   export class File {
     context: APIRequestContext;
@@ -152,7 +148,7 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}.
+     * Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
      */
     name?: string | null;
     /**
@@ -160,7 +156,7 @@ export namespace file_v1beta1 {
      */
     sourceFileShare?: string | null;
     /**
-     * The resource name of the source Cloud Filestore instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}, used to create this backup.
+     * The resource name of the source Cloud Filestore instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}, used to create this backup.
      */
     sourceInstance?: string | null;
     /**
@@ -181,7 +177,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -201,7 +197,7 @@ export namespace file_v1beta1 {
      */
     nfsExportOptions?: Schema$NfsExportOptions[];
     /**
-     * The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}, that this file share has been restored from.
+     * The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}, that this file share has been restored from.
      */
     sourceBackup?: string | null;
   }
@@ -235,7 +231,7 @@ export namespace file_v1beta1 {
      */
     maintenanceSettings?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSettings;
     /**
-     * Unique name of the resource. It uses the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}`
+     * Unique name of the resource. It uses the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`
      */
     name?: string | null;
     /**
@@ -247,7 +243,7 @@ export namespace file_v1beta1 {
      */
     provisionedResources?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource[];
     /**
-     * Link to the SLM instance template. Only populated when updating SLM instances via SSA&#39;s Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn&#39;t need to populate this field. Instead they should use software_versions.
+     * Link to the SLM instance template. Only populated when updating SLM instances via SSA's Actuation service adaptor. Service producers with custom control plane (e.g. Cloud SQL) doesn't need to populate this field. Instead they should use software_versions.
      */
     slmInstanceTemplate?: string | null;
     /**
@@ -259,7 +255,7 @@ export namespace file_v1beta1 {
      */
     softwareVersions?: {[key: string]: string} | null;
     /**
-     * Output only. Current lifecycle state of the resource (e.g. if it&#39;s being created or ready to use).
+     * Output only. Current lifecycle state of the resource (e.g. if it's being created or ready to use).
      */
     state?: string | null;
     /**
@@ -276,7 +272,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1MaintenanceSchedule {
     /**
-     * Can this scheduled update be rescheduled? By default, it&#39;s true and API needs to do explicitly check whether it&#39;s set, if it&#39;s set as false explicitly, it&#39;s false
+     * Can this scheduled update be rescheduled? By default, it's true and API needs to do explicitly check whether it's set, if it's set as false explicitly, it's false
      */
     canReschedule?: boolean | null;
     /**
@@ -306,7 +302,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1NodeSloMetadata {
     /**
-     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level&#39;s reason will be reported by Eligibility Exporter.
+     * By default node is eligible if instance is eligible. But individual node might be excluded from SLO by adding entry here. For semantic see SloMetadata.exclusions. If both instance and node level exclusions are present for time period, the node level's reason will be reported by Eligibility Exporter.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -323,11 +319,11 @@ export namespace file_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1ProvisionedResource {
     /**
-     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider&#39;s VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with &#39;compute-&#39;, for example: &#39;compute-instance&#39;, &#39;compute-disk&#39;, &#39;compute-autoscaler&#39;.
+     * Type of the resource. This can be either a GCP resource or a custom one (e.g. another cloud provider's VM). For GCP compute resources use singular form of the names listed in GCP compute API documentation (https://cloud.google.com/compute/docs/reference/rest/v1/), prefixed with 'compute-', for example: 'compute-instance', 'compute-disk', 'compute-autoscaler'.
      */
     resourceType?: string | null;
     /**
-     * URL identifying the resource, e.g. &quot;https://www.googleapis.com/compute/v1/projects/...)&quot;.
+     * URL identifying the resource, e.g. "https://www.googleapis.com/compute/v1/projects/...)".
      */
     resourceUrl?: string | null;
   }
@@ -349,11 +345,11 @@ export namespace file_v1beta1 {
    */
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion {
     /**
-     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be &quot;gaps&quot; in the exclusion application in the exported timeseries.
+     * Exclusion duration. No restrictions on the possible values. When an ongoing operation is taking longer than initially expected, an existing entry in the exclusion list can be updated by extending the duration. This is supported by the subsystem exporting eligibility data as long as such extension is committed at least 10 minutes before the original exclusion expiration - otherwise it is possible that there will be "gaps" in the exclusion application in the exported timeseries.
      */
     duration?: string | null;
     /**
-     * Human-readable reason for the exclusion. This should be a static string (e.g. &quot;Disruptive update in progress&quot;) and should not contain dynamically generated data (e.g. instance name). Can be left empty.
+     * Human-readable reason for the exclusion. This should be a static string (e.g. "Disruptive update in progress") and should not contain dynamically generated data (e.g. instance name). Can be left empty.
      */
     reason?: string | null;
     /**
@@ -374,7 +370,7 @@ export namespace file_v1beta1 {
      */
     eligibility?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloEligibility;
     /**
-     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See &#39;eligibility&#39; field below.
+     * List of SLO exclusion windows. When multiple entries in the list match (matching the exclusion time-window against current time point) the exclusion reason used in the first matching entry will be published. It is not needed to include expired exclusion in this list, as only the currently applicable exclusions are taken into account by the eligibility exporting subsystem (the historical state of exclusions will be reflected in the historically produced timeseries regardless of the current state). This field can be used to mark the instance as temporary ineligible for the purpose of SLO calculation. For permanent instance SLO exclusion, use of custom instance eligibility is recommended. See 'eligibility' field below.
      */
     exclusions?: Schema$GoogleCloudSaasacceleratorManagementProvidersV1SloExclusion[];
     /**
@@ -411,7 +407,7 @@ export namespace file_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
+     * Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
      */
     name?: string | null;
     /**
@@ -436,7 +432,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$ListBackupsResponse {
     /**
-     * A list of backups in the project for the specified location. If the {location} value in the request is &quot;-&quot;, the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the &quot;unreachable&quot; field will be populated with a list of unreachable locations.
+     * A list of backups in the project for the specified location. If the {location\} value in the request is "-", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
      */
     backups?: Schema$Backup[];
     /**
@@ -453,7 +449,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$ListInstancesResponse {
     /**
-     * A list of instances in the project for the specified location. If the {location} value in the request is &quot;-&quot;, the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the &quot;unreachable&quot; field will be populated with a list of unreachable locations.
+     * A list of instances in the project for the specified location. If the {location\} value in the request is "-", the response contains a list of instances from all locations. If any location is unreachable, the response will only return instances in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
      */
     instances?: Schema$Instance[];
     /**
@@ -496,15 +492,15 @@ export namespace file_v1beta1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -512,7 +508,7 @@ export namespace file_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -521,7 +517,7 @@ export namespace file_v1beta1 {
    */
   export interface Schema$NetworkConfig {
     /**
-     * Output only. IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or IPv6 addresses in the format {block 1}:{block 2}:{block 3}:{block 4}:{block 5}:{block 6}:{block 7}:{block 8}.
+     * Output only. IPv4 addresses in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\} or IPv6 addresses in the format {block 1\}:{block 2\}:{block 3\}:{block 4\}:{block 5\}:{block 6\}:{block 7\}:{block 8\}.
      */
     ipAddresses?: string[] | null;
     /**
@@ -533,7 +529,7 @@ export namespace file_v1beta1 {
      */
     network?: string | null;
     /**
-     * A /29 CIDR block for Basic or a /23 CIDR block for High Scale in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/23. The range you specify can&#39;t overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
+     * A /29 CIDR block for Basic or a /23 CIDR block for High Scale in one of the [internal IP address ranges](https://www.arin.net/knowledge/address_filters.html) that identifies the range of IP addresses reserved for this instance. For example, 10.0.0.0/29 or 192.168.0.0/23. The range you specify can't overlap with either existing subnets or assigned IP address ranges for other Cloud Filestore instances in the selected VPC network.
      */
     reservedIpRange?: string | null;
   }
@@ -554,7 +550,7 @@ export namespace file_v1beta1 {
      */
     anonUid?: string | null;
     /**
-     * List of either an IPv4 addresses in the format {octet 1}.{octet 2}.{octet 3}.{octet 4} or CIDR ranges in the format {octet 1}.{octet 2}.{octet 3}.{octet 4}/{mask size} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
+     * List of either an IPv4 addresses in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\} or CIDR ranges in the format {octet 1\}.{octet 2\}.{octet 3\}.{octet 4\}/{mask size\} which may mount the file share. Overlapping IP ranges are not allowed, both within and across NfsExportOptions. An error will be returned. The limit is 64 IP ranges/addresses for each FileShareConfig among all NfsExportOptions.
      */
     ipRanges?: string[] | null;
     /**
@@ -579,7 +575,7 @@ export namespace file_v1beta1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -621,7 +617,7 @@ export namespace file_v1beta1 {
     verb?: string | null;
   }
   /**
-   * RestoreInstanceRequest restores an existing instances&#39;s file share from a snapshot or backup.
+   * RestoreInstanceRequest restores an existing instances's file share from a snapshot or backup.
    */
   export interface Schema$RestoreInstanceRequest {
     /**
@@ -629,11 +625,11 @@ export namespace file_v1beta1 {
      */
     fileShare?: string | null;
     /**
-     * The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}.
+     * The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
      */
     sourceBackup?: string | null;
     /**
-     * The resource name of the snapshot, in the format projects/{project_id}/locations/{location_id}/snapshots/{snapshot_id}.
+     * The resource name of the snapshot, in the format projects/{project_id\}/locations/{location_id\}/snapshots/{snapshot_id\}.
      */
     sourceSnapshot?: string | null;
   }
@@ -679,9 +675,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -725,14 +721,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -803,7 +797,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -811,9 +805,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -862,18 +856,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {boolean=} params.includeUnrevealedLocations If true, the returned list will include locations which are not yet revealed.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -952,7 +940,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -998,9 +986,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.backups.create
-     * @desc Creates a backup.
+     * Creates a backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1026,7 +1014,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.backups.create({
      *     // Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     backupId: 'placeholder-value',
-     *     // Required. The backup's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     *     // Required. The backup's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1064,16 +1052,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.backups.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.backupId Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     * @param {string} params.parent Required. The backup's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
-     * @param {().Backup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Backups$Create,
@@ -1147,7 +1131,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1155,9 +1139,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.backups.delete
-     * @desc Deletes a backup.
+     * Deletes a backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1181,7 +1165,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.delete({
-     *     // Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}
+     *     // Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -1201,14 +1185,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.backups.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Backups$Delete,
@@ -1279,7 +1261,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1287,9 +1269,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.backups.get
-     * @desc Gets the details of a specific backup.
+     * Gets the details of a specific backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1313,7 +1295,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.get({
-     *     // Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}.
+     *     // Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}.
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *   });
      *   console.log(res.data);
@@ -1339,14 +1321,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.backups.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Backups$Get,
@@ -1417,7 +1397,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Backup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
@@ -1425,9 +1405,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.backups.list
-     * @desc Lists all backups in a project for either a specified location or for all locations.
+     * Lists all backups in a project for either a specified location or for all locations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1459,7 +1439,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve backup information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location} value.
+     *     // Required. The project and location for which to retrieve backup information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1477,18 +1457,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.backups.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results. Supported values are "name", "name desc" or "" (unsorted).
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value to use if there are additional results to retrieve for this list request.
-     * @param {string} params.parent Required. The project and location for which to retrieve backup information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location} value.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Backups$List,
@@ -1565,7 +1539,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListBackupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBackupsResponse>(parameters);
@@ -1573,9 +1547,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.backups.patch
-     * @desc Updates the settings of a specific backup.
+     * Updates the settings of a specific backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1599,7 +1573,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.backups.patch({
-     *     // Output only. The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}.
+     *     // Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
      *     name: 'projects/my-project/locations/my-location/backups/my-backup',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field.
      *     updateMask: 'placeholder-value',
@@ -1639,16 +1613,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.backups.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field.
-     * @param {().Backup} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Backups$Patch,
@@ -1719,7 +1689,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1734,7 +1704,7 @@ export namespace file_v1beta1 {
      */
     backupId?: string;
     /**
-     * Required. The backup's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     * Required. The backup's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
      */
     parent?: string;
 
@@ -1746,14 +1716,14 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Backups$Delete
     extends StandardParameters {
     /**
-     * Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}
+     * Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Backups$Get
     extends StandardParameters {
     /**
-     * Required. The backup resource name, in the format projects/{project_id}/locations/{location}/backups/{backup_id}.
+     * Required. The backup resource name, in the format projects/{project_id\}/locations/{location\}/backups/{backup_id\}.
      */
     name?: string;
   }
@@ -1776,14 +1746,14 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve backup information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location} value.
+     * Required. The project and location for which to retrieve backup information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Backups$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the backup, in the format projects/{project_id}/locations/{location_id}/backups/{backup_id}.
+     * Output only. The resource name of the backup, in the format projects/{project_id\}/locations/{location_id\}/backups/{backup_id\}.
      */
     name?: string;
     /**
@@ -1804,9 +1774,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.create
-     * @desc Creates an instance.
+     * Creates an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1832,7 +1802,7 @@ export namespace file_v1beta1 {
      *   const res = await file.projects.locations.instances.create({
      *     // Required. The ID of the instance to create. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
      *     instanceId: 'placeholder-value',
-     *     // Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     *     // Required. The instance's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1869,16 +1839,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.instanceId Required. The ID of the instance to create. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen.
-     * @param {string} params.parent Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Instances$Create,
@@ -1952,7 +1918,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1960,9 +1926,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.delete
-     * @desc Deletes an instance.
+     * Deletes an instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -1986,7 +1952,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.delete({
-     *     // Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
+     *     // Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2006,14 +1972,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Instances$Delete,
@@ -2084,7 +2048,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2092,9 +2056,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.get
-     * @desc Gets the details of a specific instance.
+     * Gets the details of a specific instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2118,7 +2082,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.get({
-     *     // Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
+     *     // Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *   });
      *   console.log(res.data);
@@ -2143,14 +2107,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Instances$Get,
@@ -2221,7 +2183,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Instance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
@@ -2229,9 +2191,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.list
-     * @desc Lists all instances in a project for either a specified location or for all locations.
+     * Lists all instances in a project for either a specified location or for all locations.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2263,7 +2225,7 @@ export namespace file_v1beta1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value to use if there are additional results to retrieve for this list request.
      *     pageToken: 'placeholder-value',
-     *     // Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
+     *     // Required. The project and location for which to retrieve instance information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location\} value.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -2281,18 +2243,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results. Supported values are "name", "name desc" or "" (unsorted).
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value to use if there are additional results to retrieve for this list request.
-     * @param {string} params.parent Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Instances$List,
@@ -2371,7 +2327,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
@@ -2379,9 +2335,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.patch
-     * @desc Updates the settings of a specific instance.
+     * Updates the settings of a specific instance.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2405,7 +2361,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.patch({
-     *     // Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
+     *     // Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *     // Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
      *     updateMask: 'placeholder-value',
@@ -2444,16 +2400,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
-     * @param {string=} params.updateMask Required. Mask of fields to update. At least one path must be supplied in this field. The elements of the repeated paths field may only include these fields: * "description" * "file_shares" * "labels"
-     * @param {().Instance} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Locations$Instances$Patch,
@@ -2524,7 +2476,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2532,9 +2484,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.instances.restore
-     * @desc Restores an existing instance's file share from a snapshot or backup.
+     * Restores an existing instance's file share from a snapshot or backup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2558,7 +2510,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.instances.restore({
-     *     // Required. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
+     *     // Required. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
      *     name: 'projects/my-project/locations/my-location/instances/my-instance',
      *
      *     // Request body metadata
@@ -2588,15 +2540,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.instances.restore
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
-     * @param {().RestoreInstanceRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     restore(
       params: Params$Resource$Projects$Locations$Instances$Restore,
@@ -2670,7 +2619,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2685,7 +2634,7 @@ export namespace file_v1beta1 {
      */
     instanceId?: string;
     /**
-     * Required. The instance's project and location, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
+     * Required. The instance's project and location, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**.
      */
     parent?: string;
 
@@ -2697,14 +2646,14 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Delete
     extends StandardParameters {
     /**
-     * Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}
+     * Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
     /**
-     * Required. The instance resource name, in the format projects/{project_id}/locations/{location}/instances/{instance_id}.
+     * Required. The instance resource name, in the format projects/{project_id\}/locations/{location\}/instances/{instance_id\}.
      */
     name?: string;
   }
@@ -2727,14 +2676,14 @@ export namespace file_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The project and location for which to retrieve instance information, in the format projects/{project_id}/locations/{location}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location} value.
+     * Required. The project and location for which to retrieve instance information, in the format projects/{project_id\}/locations/{location\}. In Cloud Filestore, locations map to GCP zones, for example **us-west1-b**. To retrieve instance information for all locations, use "-" for the {location\} value.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Instances$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
+     * Output only. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
      */
     name?: string;
     /**
@@ -2750,7 +2699,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$Instances$Restore
     extends StandardParameters {
     /**
-     * Required. The resource name of the instance, in the format projects/{project_id}/locations/{location_id}/instances/{instance_id}.
+     * Required. The resource name of the instance, in the format projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}.
      */
     name?: string;
 
@@ -2767,9 +2716,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2813,15 +2762,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {().CancelOperationRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -2895,7 +2841,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2903,9 +2849,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -2943,14 +2889,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -3021,7 +2965,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3029,9 +2973,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -3075,14 +3019,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -3153,7 +3095,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3161,9 +3103,9 @@ export namespace file_v1beta1 {
     }
 
     /**
-     * file.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/file.googleapis.com
@@ -3210,17 +3152,12 @@ export namespace file_v1beta1 {
      *   throw e;
      * });
      *
-     * @alias file.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -3299,7 +3236,7 @@ export namespace file_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);

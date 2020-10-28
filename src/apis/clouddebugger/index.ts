@@ -33,3 +33,14 @@ export function clouddebugger<T = clouddebugger_v2.Clouddebugger>(
 
 const auth = new AuthPlus();
 export {auth};
+export {clouddebugger_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

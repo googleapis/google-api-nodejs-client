@@ -104,14 +104,10 @@ export namespace tpu_v1alpha1 {
    * TPU API provides customers with access to Google TPU technology.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const tpu = google.tpu('v1alpha1');
-   *
-   * @namespace tpu
-   * @type {Function}
-   * @version v1alpha1
-   * @variation v1alpha1
-   * @param {object=} options Options for Tpu
+   * ```
    */
   export class Tpu {
     context: APIRequestContext;
@@ -141,7 +137,7 @@ export namespace tpu_v1alpha1 {
     type?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -226,15 +222,15 @@ export namespace tpu_v1alpha1 {
    */
   export interface Schema$Location {
     /**
-     * The friendly name for this location, typically a nearby city name. For example, &quot;Tokyo&quot;.
+     * The friendly name for this location, typically a nearby city name. For example, "Tokyo".
      */
     displayName?: string | null;
     /**
-     * Cross-service attributes for the location. For example {&quot;cloud.googleapis.com/region&quot;: &quot;us-east1&quot;}
+     * Cross-service attributes for the location. For example {"cloud.googleapis.com/region": "us-east1"\}
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The canonical id for this location. For example: `&quot;us-east1&quot;`.
+     * The canonical id for this location. For example: `"us-east1"`.
      */
     locationId?: string | null;
     /**
@@ -242,7 +238,7 @@ export namespace tpu_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * Resource name for the location, which may vary between implementations. For example: `&quot;projects/example-project/locations/us-east1&quot;`
+     * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
   }
@@ -264,11 +260,11 @@ export namespace tpu_v1alpha1 {
    */
   export interface Schema$Node {
     /**
-     * The type of hardware accelerators associated with this node. Required.
+     * Required. The type of hardware accelerators associated with this node.
      */
     acceleratorType?: string | null;
     /**
-     * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user&#39;s provided network, or the provided network is peered with another network that is using that CIDR block.
+     * The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block.
      */
     cidrBlock?: string | null;
     /**
@@ -296,11 +292,11 @@ export namespace tpu_v1alpha1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. The immutable name of the TPU
+     * Output only. Immutable. The name of the TPU
      */
     name?: string | null;
     /**
-     * The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, &quot;default&quot; will be used.
+     * The name of a network they wish to peer the TPU node to. It must be a preexisting Compute Engine network inside of the project on which this API has been activated. If none is provided, "default" will be used.
      */
     network?: string | null;
     /**
@@ -311,6 +307,9 @@ export namespace tpu_v1alpha1 {
      * Output only. DEPRECATED! Use network_endpoints instead. The network port for the TPU Node as visible to Compute Engine instances.
      */
     port?: string | null;
+    /**
+     * The scheduling options for this node.
+     */
     schedulingConfig?: Schema$SchedulingConfig;
     /**
      * Output only. The service account used to run the tensor flow services within the node. To share resources, including Google Cloud Storage data, with the Tensorflow job running in the Node, this account must have permissions to that data.
@@ -325,7 +324,7 @@ export namespace tpu_v1alpha1 {
      */
     symptoms?: Schema$Symptom[];
     /**
-     * The version of Tensorflow running in the Node. Required.
+     * Required. The version of Tensorflow running in the Node.
      */
     tensorflowVersion?: string | null;
     /**
@@ -350,7 +349,7 @@ export namespace tpu_v1alpha1 {
      */
     metadata?: {[key: string]: any} | null;
     /**
-     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id}`.
+     * The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should be a resource name ending with `operations/{unique_id\}`.
      */
     name?: string | null;
     /**
@@ -503,9 +502,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.get
-     * @desc Gets information about a location.
+     * Gets information about a location.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -549,14 +548,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Resource name for the location.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Get,
@@ -627,7 +624,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -635,9 +632,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.list
-     * @desc Lists information about the supported locations for this service.
+     * Lists information about the supported locations for this service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -684,17 +681,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The resource that owns the locations collection, if applicable.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$List,
@@ -773,7 +765,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -815,9 +807,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.acceleratorTypes.get
-     * @desc Gets AcceleratorType.
+     * Gets AcceleratorType.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -841,7 +833,7 @@ export namespace tpu_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.acceleratorTypes.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name:
      *       'projects/my-project/locations/my-location/acceleratorTypes/my-acceleratorType',
      *   });
@@ -859,14 +851,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.acceleratorTypes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Acceleratortypes$Get,
@@ -937,7 +927,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$AcceleratorType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AcceleratorType>(parameters);
@@ -945,9 +935,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.acceleratorTypes.list
-     * @desc Lists accelerator types supported by this API.
+     * Lists accelerator types supported by this API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -979,7 +969,7 @@ export namespace tpu_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -997,18 +987,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.acceleratorTypes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Acceleratortypes$List,
@@ -1089,7 +1073,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListAcceleratorTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAcceleratorTypesResponse>(
@@ -1102,7 +1086,7 @@ export namespace tpu_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Acceleratortypes$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -1125,7 +1109,7 @@ export namespace tpu_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }
@@ -1137,9 +1121,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.create
-     * @desc Creates a node.
+     * Creates a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1165,7 +1149,7 @@ export namespace tpu_v1alpha1 {
      *   const res = await tpu.projects.locations.nodes.create({
      *     // The unqualified resource name.
      *     nodeId: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -1210,16 +1194,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.nodeId The unqualified resource name.
-     * @param {string} params.parent The parent resource name.
-     * @param {().Node} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Locations$Nodes$Create,
@@ -1293,7 +1273,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1301,9 +1281,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.delete
-     * @desc Deletes a node.
+     * Deletes a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1327,7 +1307,7 @@ export namespace tpu_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.delete({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *   });
      *   console.log(res.data);
@@ -1347,14 +1327,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Nodes$Delete,
@@ -1425,7 +1403,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1433,9 +1411,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.get
-     * @desc Gets the details of a node.
+     * Gets the details of a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1459,7 +1437,7 @@ export namespace tpu_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.nodes.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name: 'projects/my-project/locations/my-location/nodes/my-node',
      *   });
      *   console.log(res.data);
@@ -1492,14 +1470,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Nodes$Get,
@@ -1570,7 +1546,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Node>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Node>(parameters);
@@ -1578,9 +1554,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.list
-     * @desc Lists nodes.
+     * Lists nodes.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1608,7 +1584,7 @@ export namespace tpu_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -1626,16 +1602,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Nodes$List,
@@ -1712,7 +1684,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNodesResponse>(parameters);
@@ -1720,9 +1692,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.reimage
-     * @desc Reimages a node's OS.
+     * Reimages a node's OS.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1774,15 +1746,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.reimage
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().ReimageNodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     reimage(
       params: Params$Resource$Projects$Locations$Nodes$Reimage,
@@ -1856,7 +1825,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1864,9 +1833,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.start
-     * @desc Starts a node.
+     * Starts a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -1916,15 +1885,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.start
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().StartNodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     start(
       params: Params$Resource$Projects$Locations$Nodes$Start,
@@ -1998,7 +1964,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2006,9 +1972,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.nodes.stop
-     * @desc Stops a node.
+     * Stops a node.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2058,15 +2024,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.nodes.stop
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {().StopNodeRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     stop(
       params: Params$Resource$Projects$Locations$Nodes$Stop,
@@ -2140,7 +2103,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2155,7 +2118,7 @@ export namespace tpu_v1alpha1 {
      */
     nodeId?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
 
@@ -2167,14 +2130,14 @@ export namespace tpu_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Nodes$Delete
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Nodes$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -2189,7 +2152,7 @@ export namespace tpu_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }
@@ -2237,9 +2200,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.operations.cancel
-     * @desc Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2277,14 +2240,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.operations.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be cancelled.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Locations$Operations$Cancel,
@@ -2358,7 +2319,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2366,9 +2327,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.operations.delete
-     * @desc Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2406,14 +2367,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.operations.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource to be deleted.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Locations$Operations$Delete,
@@ -2484,7 +2443,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2492,9 +2451,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.operations.get
-     * @desc Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2538,14 +2497,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.operations.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The name of the operation resource.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Operations$Get,
@@ -2616,7 +2573,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2624,9 +2581,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.operations.list
-     * @desc Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`. NOTE: the `name` binding allows API services to override the binding to use different resource name schemes, such as `users/x/operations`. To override the binding, API services can add a binding such as `"/v1/{name=users/x\}/operations"` to their service configuration. For backwards compatibility, the default name includes the operations collection id, however overriding users must ensure the name binding is the parent resource, without the operations collection id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2673,17 +2630,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.operations.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter The standard list filter.
-     * @param {string} params.name The name of the operation's parent resource.
-     * @param {integer=} params.pageSize The standard list page size.
-     * @param {string=} params.pageToken The standard list page token.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
@@ -2762,7 +2714,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -2818,9 +2770,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.tensorflowVersions.get
-     * @desc Gets TensorFlow Version.
+     * Gets TensorFlow Version.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2844,7 +2796,7 @@ export namespace tpu_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.tensorflowVersions.get({
-     *     // The resource name.
+     *     // Required. The resource name.
      *     name:
      *       'projects/my-project/locations/my-location/tensorflowVersions/my-tensorflowVersion',
      *   });
@@ -2862,14 +2814,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.tensorflowVersions.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name The resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Locations$Tensorflowversions$Get,
@@ -2943,7 +2893,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$TensorFlowVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TensorFlowVersion>(parameters);
@@ -2951,9 +2901,9 @@ export namespace tpu_v1alpha1 {
     }
 
     /**
-     * tpu.projects.locations.tensorflowVersions.list
-     * @desc Lists TensorFlow versions supported by this API.
+     * Lists TensorFlow versions supported by this API.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tpu.googleapis.com
@@ -2985,7 +2935,7 @@ export namespace tpu_v1alpha1 {
      *     pageSize: 'placeholder-value',
      *     // The next_page_token value returned from a previous List request, if any.
      *     pageToken: 'placeholder-value',
-     *     // The parent resource name.
+     *     // Required. The parent resource name.
      *     parent: 'projects/my-project/locations/my-location',
      *   });
      *   console.log(res.data);
@@ -3003,18 +2953,12 @@ export namespace tpu_v1alpha1 {
      *   throw e;
      * });
      *
-     * @alias tpu.projects.locations.tensorflowVersions.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter List filter.
-     * @param {string=} params.orderBy Sort results.
-     * @param {integer=} params.pageSize The maximum number of items to return.
-     * @param {string=} params.pageToken The next_page_token value returned from a previous List request, if any.
-     * @param {string} params.parent The parent resource name.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Locations$Tensorflowversions$List,
@@ -3095,7 +3039,7 @@ export namespace tpu_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTensorFlowVersionsResponse>(
@@ -3108,7 +3052,7 @@ export namespace tpu_v1alpha1 {
   export interface Params$Resource$Projects$Locations$Tensorflowversions$Get
     extends StandardParameters {
     /**
-     * The resource name.
+     * Required. The resource name.
      */
     name?: string;
   }
@@ -3131,7 +3075,7 @@ export namespace tpu_v1alpha1 {
      */
     pageToken?: string;
     /**
-     * The parent resource name.
+     * Required. The parent resource name.
      */
     parent?: string;
   }

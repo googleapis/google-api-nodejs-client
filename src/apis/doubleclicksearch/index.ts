@@ -35,3 +35,14 @@ export function doubleclicksearch<T = doubleclicksearch_v2.Doubleclicksearch>(
 
 const auth = new AuthPlus();
 export {auth};
+export {doubleclicksearch_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

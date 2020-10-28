@@ -33,3 +33,14 @@ export function cloudprofiler<T = cloudprofiler_v2.Cloudprofiler>(
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudprofiler_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

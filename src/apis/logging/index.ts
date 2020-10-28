@@ -31,3 +31,14 @@ export function logging<T = logging_v2.Logging>(
 
 const auth = new AuthPlus();
 export {auth};
+export {logging_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

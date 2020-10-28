@@ -32,13 +32,6 @@ describe(__filename, () => {
     assert.strictEqual(result, expected);
   });
 
-  it('should strip reserved characters from paths', () => {
-    const param = '/*/ /*` boop */';
-    const expected = '/x/ /x boop x/';
-    const result = filters.cleanPaths(param);
-    assert.strictEqual(result, expected);
-  });
-
   it('should strip reserved characters property names', () => {
     const param = 'property-name';
     const expected = "'property-name'";
@@ -49,12 +42,6 @@ describe(__filename, () => {
   it('should check for simple types', () => {
     assert.strictEqual(filters.isSimpleType('{}'), false);
     assert.strictEqual(filters.isSimpleType('1'), true);
-  });
-
-  it('should create one liners', () => {
-    const original = '1\n2\n3';
-    const expected = '1 2 3';
-    assert.strictEqual(filters.oneLine(original), expected);
   });
 
   it('should convert regex paths to examples', () => {

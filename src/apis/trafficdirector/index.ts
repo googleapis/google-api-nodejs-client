@@ -35,3 +35,14 @@ export function trafficdirector<T = trafficdirector_v2.Trafficdirector>(
 
 const auth = new AuthPlus();
 export {auth};
+export {trafficdirector_v2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

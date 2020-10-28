@@ -807,6 +807,107 @@
             }
           },
           "resources": {
+            "devices": {
+              "methods": {
+                "create": {
+                  "description": "Creates a device under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/nodes/{nodesId}/devices",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.customers.nodes.devices.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "request": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "createSigned": {
+                  "description": "Creates a signed device under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/nodes/{nodesId}/devices:createSigned",
+                  "httpMethod": "POST",
+                  "id": "prod_tt_sasportal.customers.nodes.devices.createSigned",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices:createSigned",
+                  "request": {
+                    "$ref": "SasPortalCreateSignedDeviceRequest"
+                  },
+                  "response": {
+                    "$ref": "SasPortalDevice"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                },
+                "list": {
+                  "description": "Lists devices under a node or customer.",
+                  "flatPath": "v1alpha1/customers/{customersId}/nodes/{nodesId}/devices",
+                  "httpMethod": "GET",
+                  "id": "prod_tt_sasportal.customers.nodes.devices.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "The filter expression. The filter should have one of the following formats: \"sn=123454\" or \"display_name=MyDevice\". sn corresponds to serial_number of the device. The filter is case insensitive.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of devices to return in the response. If empty or zero, all devices will be listed. Must be in the range [0, 1000].",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "A pagination token returned from a previous call to ListDevices that indicates where this listing should continue from.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the parent resource.",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/nodes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+parent}/devices",
+                  "response": {
+                    "$ref": "SasPortalListDevicesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/userinfo.email"
+                  ]
+                }
+              }
+            },
             "nodes": {
               "methods": {
                 "create": {
@@ -1996,7 +2097,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201017",
   "rootUrl": "https://prod-tt-sasportal.googleapis.com/",
   "schemas": {
     "SasPortalAssignment": {

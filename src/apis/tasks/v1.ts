@@ -104,14 +104,10 @@ export namespace tasks_v1 {
    * The Google Tasks API lets you manage your tasks and task lists.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const tasks = google.tasks('v1');
-   *
-   * @namespace tasks
-   * @type {Function}
-   * @version v1
-   * @variation v1
-   * @param {object=} options Options for Tasks
+   * ```
    */
   export class Tasks {
     context: APIRequestContext;
@@ -142,7 +138,7 @@ export namespace tasks_v1 {
      */
     deleted?: boolean | null;
     /**
-     * Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn&#39;t possible to read or write the time that a task is due via the API.
+     * Due date of the task (as a RFC 3339 timestamp). Optional. The due date only records date information; the time portion of the timestamp is discarded when setting the due date. It isn't possible to read or write the time that a task is due via the API.
      */
     due?: string | null;
     /**
@@ -158,7 +154,7 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always &quot;tasks#task&quot;.
+     * Type of the resource. This is always "tasks#task".
      */
     kind?: string | null;
     /**
@@ -170,11 +166,11 @@ export namespace tasks_v1 {
      */
     notes?: string | null;
     /**
-     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the &quot;move&quot; method to move the task under a different parent or to the top level.
+     * Parent task identifier. This field is omitted if it is a top-level task. This field is read-only. Use the "move" method to move the task under a different parent or to the top level.
      */
     parent?: string | null;
     /**
-     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task&#39;s corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the &quot;move&quot; method to move the task to another position.
+     * String indicating the position of the task among its sibling tasks under the same parent task or at the top level. If this string is greater than another task's corresponding position string according to lexicographical ordering, the task is positioned after the other task under the same parent task (or at the top level). This field is read-only. Use the "move" method to move the task to another position.
      */
     position?: string | null;
     /**
@@ -182,7 +178,7 @@ export namespace tasks_v1 {
      */
     selfLink?: string | null;
     /**
-     * Status of the task. This is either &quot;needsAction&quot; or &quot;completed&quot;.
+     * Status of the task. This is either "needsAction" or "completed".
      */
     status?: string | null;
     /**
@@ -204,7 +200,7 @@ export namespace tasks_v1 {
      */
     id?: string | null;
     /**
-     * Type of the resource. This is always &quot;tasks#taskList&quot;.
+     * Type of the resource. This is always "tasks#taskList".
      */
     kind?: string | null;
     /**
@@ -230,7 +226,7 @@ export namespace tasks_v1 {
      */
     items?: Schema$TaskList[];
     /**
-     * Type of the resource. This is always &quot;tasks#taskLists&quot;.
+     * Type of the resource. This is always "tasks#taskLists".
      */
     kind?: string | null;
     /**
@@ -248,7 +244,7 @@ export namespace tasks_v1 {
      */
     items?: Schema$Task[];
     /**
-     * Type of the resource. This is always &quot;tasks#tasks&quot;.
+     * Type of the resource. This is always "tasks#tasks".
      */
     kind?: string | null;
     /**
@@ -264,9 +260,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.delete
-     * @desc Deletes the authenticated user's specified task list.
+     * Deletes the authenticated user's specified task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -301,14 +297,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Tasklists$Delete,
@@ -379,7 +373,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -387,9 +381,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.get
-     * @desc Returns the authenticated user's specified task list.
+     * Returns the authenticated user's specified task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -437,14 +431,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tasklists$Get,
@@ -517,7 +509,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -525,9 +517,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.insert
-     * @desc Creates a new task list and adds it to the authenticated user's task lists.
+     * Creates a new task list and adds it to the authenticated user's task lists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -582,14 +574,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {().TaskList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Tasklists$Insert,
@@ -662,7 +652,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -670,9 +660,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.list
-     * @desc Returns all the authenticated user's task lists.
+     * Returns all the authenticated user's task lists.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -720,15 +710,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
-     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tasklists$List,
@@ -801,7 +788,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskLists>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskLists>(parameters);
@@ -809,9 +796,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.patch
-     * @desc Updates the authenticated user's specified task list. This method supports patch semantics.
+     * Updates the authenticated user's specified task list. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -869,15 +856,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Tasklists$Patch,
@@ -950,7 +934,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -958,9 +942,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasklists.update
-     * @desc Updates the authenticated user's specified task list.
+     * Updates the authenticated user's specified task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1018,15 +1002,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasklists.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.tasklist Task list identifier.
-     * @param {().TaskList} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Tasklists$Update,
@@ -1099,7 +1080,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$TaskList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TaskList>(parameters);
@@ -1165,9 +1146,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.clear
-     * @desc Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
+     * Clears all completed tasks from the specified task list. The affected tasks will be marked as 'hidden' and no longer be returned by default when retrieving all tasks for a task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1202,14 +1183,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.clear
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     clear(
       params: Params$Resource$Tasks$Clear,
@@ -1280,7 +1259,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1288,9 +1267,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.delete
-     * @desc Deletes the specified task from the task list.
+     * Deletes the specified task from the task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1327,15 +1306,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.task Task identifier.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Tasks$Delete,
@@ -1406,7 +1382,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1414,9 +1390,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.get
-     * @desc Returns the specified task.
+     * Returns the specified task.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1475,15 +1451,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.task Task identifier.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Tasks$Get,
@@ -1556,7 +1529,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -1564,9 +1537,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.insert
-     * @desc Creates a new task on the specified task list.
+     * Creates a new task on the specified task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1646,17 +1619,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent Parent task identifier. If the task is created at the top level, this parameter is omitted. Optional.
-     * @param {string=} params.previous Previous sibling task identifier. If the task is created at the first position among its siblings, this parameter is omitted. Optional.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Tasks$Insert,
@@ -1729,7 +1697,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -1737,9 +1705,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.list
-     * @desc Returns all tasks in the specified task list.
+     * Returns all tasks in the specified task list.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1805,24 +1773,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.completedMax Upper bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
-     * @param {string=} params.completedMin Lower bound for a task's completion date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by completion date.
-     * @param {string=} params.dueMax Upper bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param {string=} params.dueMin Lower bound for a task's due date (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by due date.
-     * @param {integer=} params.maxResults Maximum number of task lists returned on one page. Optional. The default is 20 (max allowed: 100).
-     * @param {string=} params.pageToken Token specifying the result page to return. Optional.
-     * @param {boolean=} params.showCompleted Flag indicating whether completed tasks are returned in the result. Optional. The default is True. Note that showHidden must also be True to show tasks completed in first party clients, such as the web UI and Google's mobile apps.
-     * @param {boolean=} params.showDeleted Flag indicating whether deleted tasks are returned in the result. Optional. The default is False.
-     * @param {boolean=} params.showHidden Flag indicating whether hidden tasks are returned in the result. Optional. The default is False.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {string=} params.updatedMin Lower bound for a task's last modification time (as a RFC 3339 timestamp) to filter by. Optional. The default is not to filter by last modification time.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Tasks$List,
@@ -1895,7 +1851,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Tasks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tasks>(parameters);
@@ -1903,9 +1859,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.move
-     * @desc Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
+     * Moves the specified task to another position in the task list. This can include putting it as a child task under a new parent and/or move it to a different position among its sibling tasks.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -1965,17 +1921,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.move
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.parent New parent task identifier. If the task is moved to the top level, this parameter is omitted. Optional.
-     * @param {string=} params.previous New previous sibling task identifier. If the task is moved to the first position among its siblings, this parameter is omitted. Optional.
-     * @param {string} params.task Task identifier.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     move(
       params: Params$Resource$Tasks$Move,
@@ -2047,7 +1998,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -2055,9 +2006,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.patch
-     * @desc Updates the specified task. This method supports patch semantics.
+     * Updates the specified task. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -2135,16 +2086,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.task Task identifier.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Tasks$Patch,
@@ -2217,7 +2164,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);
@@ -2225,9 +2172,9 @@ export namespace tasks_v1 {
     }
 
     /**
-     * tasks.tasks.update
-     * @desc Updates the specified task.
+     * Updates the specified task.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/tasks.googleapis.com
@@ -2305,16 +2252,12 @@ export namespace tasks_v1 {
      *   throw e;
      * });
      *
-     * @alias tasks.tasks.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.task Task identifier.
-     * @param {string} params.tasklist Task list identifier.
-     * @param {().Task} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Tasks$Update,
@@ -2387,7 +2330,7 @@ export namespace tasks_v1 {
       if (callback) {
         createAPIRequest<Schema$Task>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Task>(parameters);

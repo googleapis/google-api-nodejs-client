@@ -88,14 +88,10 @@ export namespace adsensehost_v4_1 {
    * Generates performance reports, generates ad codes, and provides publisher management capabilities for AdSense Hosts.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const adsensehost = google.adsensehost('v4.1');
-   *
-   * @namespace adsensehost
-   * @type {Function}
-   * @version v4.1
-   * @variation v4.1
-   * @param {object=} options Options for Adsensehost
+   * ```
    */
   export class Adsensehost {
     context: APIRequestContext;
@@ -167,7 +163,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * This ad client&#39;s product code, which corresponds to the PRODUCT_CODE report dimension.
+     * This ad client's product code, which corresponds to the PRODUCT_CODE report dimension.
      */
     productCode?: string | null;
     /**
@@ -189,7 +185,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through ad clients. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -266,7 +262,12 @@ export namespace adsensehost_v4_1 {
      */
     name?: string | null;
     /**
-     * Status of this ad unit. Possible values are: NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.  ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.  INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
+     * Status of this ad unit. Possible values are:
+     * NEW: Indicates that the ad unit was created within the last seven days and does not yet have any activity associated with it.
+     *
+     * ACTIVE: Indicates that there has been activity on this ad unit in the last seven days.
+     *
+     * INACTIVE: Indicates that there has been no activity on this ad unit in the last seven days.
      */
     status?: string | null;
   }
@@ -284,7 +285,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through ad units. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -318,11 +319,11 @@ export namespace adsensehost_v4_1 {
      */
     userLocale?: string | null;
     /**
-     * The locale of the user&#39;s hosted website.
+     * The locale of the user's hosted website.
      */
     websiteLocale?: string | null;
     /**
-     * The URL of the user&#39;s hosted website.
+     * The URL of the user's hosted website.
      */
     websiteUrl?: string | null;
   }
@@ -358,7 +359,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through custom channels. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -402,7 +403,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * URL Pattern of this URL channel. Does not include &quot;http://&quot; or &quot;https://&quot;. Example: www.example.com/home
+     * URL Pattern of this URL channel. Does not include "http://" or "https://". Example: www.example.com/home
      */
     urlPattern?: string | null;
   }
@@ -420,7 +421,7 @@ export namespace adsensehost_v4_1 {
      */
     kind?: string | null;
     /**
-     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request&#39;s &quot;pageToken&quot; value to this.
+     * Continuation token used to page through URL channels. To retrieve the next page of results, set the next request's "pageToken" value to this.
      */
     nextPageToken?: string | null;
   }
@@ -438,9 +439,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.get
-     * @desc Get information about the selected associated AdSense account.
+     * Get information about the selected associated AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -483,14 +484,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account to get information about.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Get,
@@ -563,7 +562,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -571,9 +570,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.list
-     * @desc List hosted accounts associated with this AdSense account by ad client id.
+     * List hosted accounts associated with this AdSense account by ad client id.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -615,14 +614,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.filterAdClientId Ad clients to list accounts for.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$List,
@@ -695,7 +692,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$Accounts>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
@@ -723,9 +720,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adclients.get
-     * @desc Get information about one of the ad clients in the specified publisher's AdSense account.
+     * Get information about one of the ad clients in the specified publisher's AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -771,15 +768,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adclients.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Adclients$Get,
@@ -853,7 +847,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClient>(parameters);
@@ -861,9 +855,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adclients.list
-     * @desc List all hosted ad clients in the specified hosted account.
+     * List all hosted ad clients in the specified hosted account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -910,16 +904,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adclients.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account for which to list ad clients.
-     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Adclients$List,
@@ -992,7 +982,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdClients>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
@@ -1034,9 +1024,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.delete
-     * @desc Delete the specified ad unit from the specified publisher AdSense account.
+     * Delete the specified ad unit from the specified publisher AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1087,16 +1077,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad unit.
-     * @param {string} params.adClientId Ad client for which to get ad unit.
-     * @param {string} params.adUnitId Ad unit to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Accounts$Adunits$Delete,
@@ -1170,7 +1156,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -1178,9 +1164,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.get
-     * @desc Get the specified host ad unit in this AdSense account.
+     * Get the specified host ad unit in this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1231,16 +1217,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad unit.
-     * @param {string} params.adClientId Ad client for which to get ad unit.
-     * @param {string} params.adUnitId Ad unit to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Accounts$Adunits$Get,
@@ -1314,7 +1296,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -1322,9 +1304,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.getAdCode
-     * @desc Get ad code for the specified ad unit, attaching the specified host custom channels.
+     * Get ad code for the specified ad unit, attaching the specified host custom channels.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1371,17 +1353,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.getAdCode
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client with contains the ad unit.
-     * @param {string} params.adUnitId Ad unit to get the code for.
-     * @param {string=} params.hostCustomChannelId Host custom channel to attach to the ad code.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     getAdCode(
       params: Params$Resource$Accounts$Adunits$Getadcode,
@@ -1455,7 +1432,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdCode>(parameters);
@@ -1463,9 +1440,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.insert
-     * @desc Insert the supplied ad unit into the specified publisher AdSense account.
+     * Insert the supplied ad unit into the specified publisher AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1529,16 +1506,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which will contain the ad unit.
-     * @param {string} params.adClientId Ad client into which to insert the ad unit.
-     * @param {().AdUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Accounts$Adunits$Insert,
@@ -1612,7 +1585,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -1620,9 +1593,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.list
-     * @desc List all ad units in the specified publisher's AdSense account.
+     * List all ad units in the specified publisher's AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1673,18 +1646,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client for which to list ad units.
-     * @param {boolean=} params.includeInactive Whether to include inactive ad units. Default: true.
-     * @param {integer=} params.maxResults The maximum number of ad units to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad units. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Accounts$Adunits$List,
@@ -1758,7 +1725,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnits>(parameters);
@@ -1766,9 +1733,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.patch
-     * @desc Update the supplied ad unit in the specified publisher AdSense account. This method supports patch semantics.
+     * Update the supplied ad unit in the specified publisher AdSense account. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1834,17 +1801,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {string} params.adUnitId Ad unit to get.
-     * @param {().AdUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Accounts$Adunits$Patch,
@@ -1918,7 +1880,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -1926,9 +1888,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.adunits.update
-     * @desc Update the supplied ad unit in the specified publisher AdSense account.
+     * Update the supplied ad unit in the specified publisher AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -1992,16 +1954,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.adunits.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Account which contains the ad client.
-     * @param {string} params.adClientId Ad client which contains the ad unit.
-     * @param {().AdUnit} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Accounts$Adunits$Update,
@@ -2075,7 +2033,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdUnit>(parameters);
@@ -2215,9 +2173,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.accounts.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -2283,23 +2241,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.accounts.reports.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.accountId Hosted account upon which to report.
-     * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Accounts$Reports$Generate,
@@ -2372,7 +2319,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -2431,9 +2378,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.adclients.get
-     * @desc Get information about one of the ad clients in the Host AdSense account.
+     * Get information about one of the ad clients in the Host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -2477,14 +2424,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.adclients.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Adclients$Get,
@@ -2557,7 +2502,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdClient>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClient>(parameters);
@@ -2565,9 +2510,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.adclients.list
-     * @desc List all host ad clients in this AdSense account.
+     * List all host ad clients in this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -2612,15 +2557,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.adclients.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object=} params Parameters for request
-     * @param {integer=} params.maxResults The maximum number of ad clients to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through ad clients. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Adclients$List,
@@ -2693,7 +2635,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AdClients>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdClients>(parameters);
@@ -2725,9 +2667,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.associationsessions.start
-     * @desc Create an association session for initiating an association with an AdSense user.
+     * Create an association session for initiating an association with an AdSense user.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -2783,18 +2725,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.associationsessions.start
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.callbackUrl The URL to redirect the user to once association is completed. It receives a token parameter that can then be used to retrieve the associated account.
-     * @param {string} params.productCode Products to associate with the user.
-     * @param {string=} params.userLocale The preferred locale of the user.
-     * @param {string=} params.websiteLocale The locale of the user's hosted website.
-     * @param {string} params.websiteUrl The URL of the user's hosted website.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     start(
       params: Params$Resource$Associationsessions$Start,
@@ -2870,7 +2806,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssociationSession>(parameters);
@@ -2878,9 +2814,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.associationsessions.verify
-     * @desc Verify an association session after the association callback returns from AdSense signup.
+     * Verify an association session after the association callback returns from AdSense signup.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -2928,14 +2864,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.associationsessions.verify
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.token The token returned to the association callback URL.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     verify(
       params: Params$Resource$Associationsessions$Verify,
@@ -3011,7 +2945,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$AssociationSession>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AssociationSession>(parameters);
@@ -3057,9 +2991,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.delete
-     * @desc Delete a specific custom channel from the host AdSense account.
+     * Delete a specific custom channel from the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3104,15 +3038,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client from which to delete the custom channel.
-     * @param {string} params.customChannelId Custom channel to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Customchannels$Delete,
@@ -3186,7 +3117,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -3194,9 +3125,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.get
-     * @desc Get a specific custom channel from the host AdSense account.
+     * Get a specific custom channel from the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3241,15 +3172,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client from which to get the custom channel.
-     * @param {string} params.customChannelId Custom channel to get.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Customchannels$Get,
@@ -3323,7 +3251,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -3331,9 +3259,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.insert
-     * @desc Add a new custom channel to the host AdSense account.
+     * Add a new custom channel to the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3387,15 +3315,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client to which the new custom channel will be added.
-     * @param {().CustomChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Customchannels$Insert,
@@ -3469,7 +3394,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -3477,9 +3402,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.list
-     * @desc List all host custom channels in this AdSense account.
+     * List all host custom channels in this AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3526,16 +3451,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list custom channels.
-     * @param {integer=} params.maxResults The maximum number of custom channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through custom channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Customchannels$List,
@@ -3609,7 +3530,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannels>(parameters);
@@ -3617,9 +3538,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.patch
-     * @desc Update a custom channel in the host AdSense account. This method supports patch semantics.
+     * Update a custom channel in the host AdSense account. This method supports patch semantics.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3675,16 +3596,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client in which the custom channel will be updated.
-     * @param {string} params.customChannelId Custom channel to get.
-     * @param {().CustomChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Customchannels$Patch,
@@ -3758,7 +3675,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -3766,9 +3683,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.customchannels.update
-     * @desc Update a custom channel in the host AdSense account.
+     * Update a custom channel in the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -3822,15 +3739,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.customchannels.update
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client in which the custom channel will be updated.
-     * @param {().CustomChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     update(
       params: Params$Resource$Customchannels$Update,
@@ -3904,7 +3818,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$CustomChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomChannel>(parameters);
@@ -3997,9 +3911,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.reports.generate
-     * @desc Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
+     * Generate an AdSense report based on the report request sent in the query parameters. Returns the result as JSON; to retrieve output in CSV format specify "alt=csv" as a query parameter.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -4063,22 +3977,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.reports.generate
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.dimension Dimensions to base the report on.
-     * @param {string} params.endDate End of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {string=} params.filter Filters to be run on the report.
-     * @param {string=} params.locale Optional locale to use for translating report output to a local language. Defaults to "en_US" if not specified.
-     * @param {integer=} params.maxResults The maximum number of rows of report data to return.
-     * @param {string=} params.metric Numeric columns to include in the report.
-     * @param {string=} params.sort The name of a dimension or metric to sort the resulting report on, optionally prefixed with "+" to sort ascending or "-" to sort descending. If no prefix is specified, the column is sorted ascending.
-     * @param {string} params.startDate Start of the date range to report on in "YYYY-MM-DD" format, inclusive.
-     * @param {integer=} params.startIndex Index of the first row of report data to return.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     generate(
       params: Params$Resource$Reports$Generate,
@@ -4151,7 +4055,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -4205,9 +4109,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.urlchannels.delete
-     * @desc Delete a URL channel from the host AdSense account.
+     * Delete a URL channel from the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -4251,15 +4155,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.urlchannels.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client from which to delete the URL channel.
-     * @param {string} params.urlChannelId URL channel to delete.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Urlchannels$Delete,
@@ -4333,7 +4234,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlChannel>(parameters);
@@ -4341,9 +4242,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.urlchannels.insert
-     * @desc Add a new URL channel to the host AdSense account.
+     * Add a new URL channel to the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -4395,15 +4296,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.urlchannels.insert
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client to which the new URL channel will be added.
-     * @param {().UrlChannel} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     insert(
       params: Params$Resource$Urlchannels$Insert,
@@ -4476,7 +4374,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$UrlChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlChannel>(parameters);
@@ -4484,9 +4382,9 @@ export namespace adsensehost_v4_1 {
     }
 
     /**
-     * adsensehost.urlchannels.list
-     * @desc List all host URL channels in the host AdSense account.
+     * List all host URL channels in the host AdSense account.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/adsensehost.googleapis.com
@@ -4533,16 +4431,12 @@ export namespace adsensehost_v4_1 {
      *   throw e;
      * });
      *
-     * @alias adsensehost.urlchannels.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.adClientId Ad client for which to list URL channels.
-     * @param {integer=} params.maxResults The maximum number of URL channels to include in the response, used for paging.
-     * @param {string=} params.pageToken A continuation token, used to page through URL channels. To retrieve the next page, set this parameter to the value of "nextPageToken" from the previous response.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Urlchannels$List,
@@ -4614,7 +4508,7 @@ export namespace adsensehost_v4_1 {
       if (callback) {
         createAPIRequest<Schema$UrlChannels>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UrlChannels>(parameters);

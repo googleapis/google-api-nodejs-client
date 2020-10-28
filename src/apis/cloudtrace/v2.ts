@@ -104,14 +104,10 @@ export namespace cloudtrace_v2 {
    * Sends application trace data to Cloud Trace for viewing. Trace data is collected for all App Engine applications by default. Trace data from other applications can be provided using this API. This library is used to interact with the Cloud Trace API directly. If you are looking to instrument your application for Cloud Trace, we recommend using OpenCensus.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const cloudtrace = google.cloudtrace('v2');
-   *
-   * @namespace cloudtrace
-   * @type {Function}
-   * @version v2
-   * @variation v2
-   * @param {object=} options Options for Cloudtrace
+   * ```
    */
   export class Cloudtrace {
     context: APIRequestContext;
@@ -145,7 +141,7 @@ export namespace cloudtrace_v2 {
    */
   export interface Schema$Attributes {
     /**
-     * The set of attributes. Each attribute&#39;s key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: &quot;/instance_id&quot;: { &quot;string_value&quot;: { &quot;value&quot;: &quot;my-instance&quot; } } &quot;/http/request_bytes&quot;: { &quot;int_value&quot;: 300 } &quot;abc.com/myattribute&quot;: { &quot;bool_value&quot;: false }
+     * The set of attributes. Each attribute's key can be up to 128 bytes long. The value can be a string up to 256 bytes, a signed 64-bit integer, or the Boolean values `true` and `false`. For example: "/instance_id": { "string_value": { "value": "my-instance" \} \} "/http/request_bytes": { "int_value": 300 \} "abc.com/myattribute": { "bool_value": false \}
      */
     attributeMap?: {[key: string]: Schema$AttributeValue} | null;
     /**
@@ -180,7 +176,7 @@ export namespace cloudtrace_v2 {
     spans?: Schema$Span[];
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -226,7 +222,7 @@ export namespace cloudtrace_v2 {
      */
     compressedSizeBytes?: string | null;
     /**
-     * An identifier for the MessageEvent&#39;s message that can be used to match SENT and RECEIVED MessageEvents. It is recommended to be unique within a Span.
+     * An identifier for the MessageEvent's message that can be used to match SENT and RECEIVED MessageEvents. It is recommended to be unique within a Span.
      */
     id?: string | null;
     /**
@@ -264,7 +260,7 @@ export namespace cloudtrace_v2 {
      */
     childSpanCount?: number | null;
     /**
-     * Required. A description of the span&#39;s operation (up to 128 bytes). Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
+     * Required. A description of the span's operation (up to 128 bytes). Trace displays the description in the Google Cloud Platform Console. For example, the display name can be a qualified method name or a file name and a line number where the operation is called. A best practice is to use the same display name within an application and at the same call point. This makes it easier to correlate spans in different traces.
      */
     displayName?: Schema$TruncatableString;
     /**
@@ -280,7 +276,7 @@ export namespace cloudtrace_v2 {
      */
     name?: string | null;
     /**
-     * The [SPAN_ID] of this span&#39;s parent span. If this is a root span, then this field must be empty.
+     * The [SPAN_ID] of this span's parent span. If this is a root span, then this field must be empty.
      */
     parentSpanId?: string | null;
     /**
@@ -288,7 +284,7 @@ export namespace cloudtrace_v2 {
      */
     sameProcessAsParentSpan?: boolean | null;
     /**
-     * Required. The [SPAN_ID] portion of the span&#39;s resource name.
+     * Required. The [SPAN_ID] portion of the span's resource name.
      */
     spanId?: string | null;
     /**
@@ -300,7 +296,7 @@ export namespace cloudtrace_v2 {
      */
     stackTrace?: Schema$StackTrace;
     /**
-     * Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server&#39;s application handler starts running.
+     * Required. The start time of the span. On the client side, this is the time kept by the local machine where the span execution starts. On the server side, this is the time when the server's application handler starts running.
      */
     startTime?: string | null;
     /**
@@ -454,9 +450,9 @@ export namespace cloudtrace_v2 {
     }
 
     /**
-     * cloudtrace.projects.traces.batchWrite
-     * @desc Sends new spans to new or existing traces. You cannot update existing spans.
+     * Sends new spans to new or existing traces. You cannot update existing spans.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
@@ -505,15 +501,12 @@ export namespace cloudtrace_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudtrace.projects.traces.batchWrite
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The name of the project where the spans belong. The format is `projects/[PROJECT_ID]`.
-     * @param {().BatchWriteSpansRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     batchWrite(
       params: Params$Resource$Projects$Traces$Batchwrite,
@@ -587,7 +580,7 @@ export namespace cloudtrace_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -615,9 +608,9 @@ export namespace cloudtrace_v2 {
     }
 
     /**
-     * cloudtrace.projects.traces.spans.createSpan
-     * @desc Creates a new span.
+     * Creates a new span.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/cloudtrace.googleapis.com
@@ -694,15 +687,12 @@ export namespace cloudtrace_v2 {
      *   throw e;
      * });
      *
-     * @alias cloudtrace.projects.traces.spans.createSpan
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the span in the following format: projects/[PROJECT_ID]/traces/[TRACE_ID]/spans/SPAN_ID is a unique identifier for a trace within a project; it is a 32-character hexadecimal encoding of a 16-byte array. [SPAN_ID] is a unique identifier for a span within a trace; it is a 16-character hexadecimal encoding of an 8-byte array. It should not be zero.
-     * @param {().Span} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     createSpan(
       params: Params$Resource$Projects$Traces$Spans$Createspan,
@@ -773,7 +763,7 @@ export namespace cloudtrace_v2 {
       if (callback) {
         createAPIRequest<Schema$Span>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Span>(parameters);

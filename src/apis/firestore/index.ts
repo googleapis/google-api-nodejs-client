@@ -56,3 +56,16 @@ export function firestore<
 
 const auth = new AuthPlus();
 export {auth};
+export {firestore_v1};
+export {firestore_v1beta1};
+export {firestore_v1beta2};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

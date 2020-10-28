@@ -104,14 +104,10 @@ export namespace osconfig_v1beta {
    * OS management tools that can be used for patch management, patch compliance, and configuration management on VM instances.
    *
    * @example
+   * ```js
    * const {google} = require('googleapis');
    * const osconfig = google.osconfig('v1beta');
-   *
-   * @namespace osconfig
-   * @type {Function}
-   * @version v1beta
-   * @variation v1beta
-   * @param {object=} options Options for Osconfig
+   * ```
    */
   export class Osconfig {
     context: APIRequestContext;
@@ -153,7 +149,7 @@ export namespace osconfig_v1beta {
     uri?: string | null;
   }
   /**
-   * Apt patching is completed by executing `apt-get update &amp;&amp; apt-get upgrade`. Additional options can be set to control how this is executed.
+   * Apt patching is completed by executing `apt-get update && apt-get upgrade`. Additional options can be set to control how this is executed.
    */
   export interface Schema$AptSettings {
     /**
@@ -174,11 +170,11 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$Assignment {
     /**
-     * Targets instances matching at least one of these label sets. This allows an assignment to target disparate groups, for example &quot;env=prod or env=staging&quot;.
+     * Targets instances matching at least one of these label sets. This allows an assignment to target disparate groups, for example "env=prod or env=staging".
      */
     groupLabels?: Schema$AssignmentGroupLabel[];
     /**
-     * Targets VM instances whose name starts with one of these prefixes. Like labels, this is another way to group VM instances when targeting configs, for example prefix=&quot;prod-&quot;. Only supported for project-level policies.
+     * Targets VM instances whose name starts with one of these prefixes. Like labels, this is another way to group VM instances when targeting configs, for example prefix="prod-". Only supported for project-level policies.
      */
     instanceNamePrefixes?: string[] | null;
     /**
@@ -195,7 +191,7 @@ export namespace osconfig_v1beta {
     zones?: string[] | null;
   }
   /**
-   * Represents a group of VM intances that can be identified as having all these labels, for example &quot;env=prod and app=web&quot;.
+   * Represents a group of VM intances that can be identified as having all these labels, for example "env=prod and app=web".
    */
   export interface Schema$AssignmentGroupLabel {
     /**
@@ -212,7 +208,7 @@ export namespace osconfig_v1beta {
      */
     osArchitecture?: string | null;
     /**
-     * Targets VM instances with OS Inventory enabled and having the following OS short name, for example &quot;debian&quot; or &quot;windows&quot;.
+     * Targets VM instances with OS Inventory enabled and having the following OS short name, for example "debian" or "windows".
      */
     osShortName?: string | null;
     /**
@@ -281,7 +277,7 @@ export namespace osconfig_v1beta {
     source?: string | null;
   }
   /**
-   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
   export interface Schema$Empty {}
   /**
@@ -352,7 +348,7 @@ export namespace osconfig_v1beta {
     rollout?: Schema$PatchRollout;
   }
   /**
-   * Message encapsulating a value that can be either absolute (&quot;fixed&quot;) or relative (&quot;percent&quot;) to a value.
+   * Message encapsulating a value that can be either absolute ("fixed") or relative ("percent") to a value.
    */
   export interface Schema$FixedOrPercent {
     /**
@@ -415,11 +411,11 @@ export namespace osconfig_v1beta {
      */
     description?: string | null;
     /**
-     * The etag for this guest policy. If this is provided on update, it must match the server&#39;s etag.
+     * The etag for this guest policy. If this is provided on update, it must match the server's etag.
      */
     etag?: string | null;
     /**
-     * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string | null;
     /**
@@ -509,11 +505,11 @@ export namespace osconfig_v1beta {
     osVersion?: string | null;
   }
   /**
-   * Represents a monthly schedule. An example of a valid monthly schedule is &quot;on the third Tuesday of the month&quot; or &quot;on the 15th of the month&quot;.
+   * Represents a monthly schedule. An example of a valid monthly schedule is "on the third Tuesday of the month" or "on the 15th of the month".
    */
   export interface Schema$MonthlySchedule {
     /**
-     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month. Months without the target day will be skipped. For example, a schedule to run &quot;every month on the 31st&quot; will not run in February, April, June, etc.
+     * Required. One day of the month. 1-31 indicates the 1st to the 31st day. -1 indicates the last day of the month. Months without the target day will be skipped. For example, a schedule to run "every month on the 31st" will not run in February, April, June, etc.
      */
     monthDay?: number | null;
     /**
@@ -531,7 +527,7 @@ export namespace osconfig_v1beta {
     executeTime?: string | null;
   }
   /**
-   * Package is a reference to the software package to be installed or removed. The agent on the VM instance uses the system package manager to apply the config. These are the commands that the agent uses to install or remove packages. Apt install: `apt-get update &amp;&amp; apt-get -y install package1 package2 package3` remove: `apt-get -y remove package1 package2 package3` Yum install: `yum -y install package1 package2 package3` remove: `yum -y remove package1 package2 package3` Zypper install: `zypper install package1 package2 package3` remove: `zypper rm package1 package2` Googet install: `googet -noconfirm install package1 package2 package3` remove: `googet -noconfirm remove package1 package2 package3`
+   * Package is a reference to the software package to be installed or removed. The agent on the VM instance uses the system package manager to apply the config. These are the commands that the agent uses to install or remove packages. Apt install: `apt-get update && apt-get -y install package1 package2 package3` remove: `apt-get -y remove package1 package2 package3` Yum install: `yum -y install package1 package2 package3` remove: `yum -y remove package1 package2 package3` Zypper install: `zypper install package1 package2 package3` remove: `zypper rm package1 package2` Googet install: `googet -noconfirm install package1 package2 package3` remove: `googet -noconfirm remove package1 package2 package3`
    */
   export interface Schema$Package {
     /**
@@ -630,7 +626,7 @@ export namespace osconfig_v1beta {
      */
     lastExecuteTime?: string | null;
     /**
-     * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id}/patchDeployments/{patch_deployment_id}`. This field is ignored when you create a new patch deployment.
+     * Unique name for the patch deployment resource in a project. The patch deployment name is in the form: `projects/{project_id\}/patchDeployments/{patch_deployment_id\}`. This field is ignored when you create a new patch deployment.
      */
     name?: string | null;
     /**
@@ -663,11 +659,11 @@ export namespace osconfig_v1beta {
      */
     all?: boolean | null;
     /**
-     * Targets VM instances matching at least one of these label sets. This allows targeting of disparate groups, for example &quot;env=prod or env=staging&quot;.
+     * Targets VM instances matching at least one of these label sets. This allows targeting of disparate groups, for example "env=prod or env=staging".
      */
     groupLabels?: Schema$PatchInstanceFilterGroupLabel[];
     /**
-     * Targets VMs whose name starts with one of these prefixes. Similar to labels, this is another way to group VMs when targeting configs, for example prefix=&quot;prod-&quot;.
+     * Targets VMs whose name starts with one of these prefixes. Similar to labels, this is another way to group VMs when targeting configs, for example prefix="prod-".
      */
     instanceNamePrefixes?: string[] | null;
     /**
@@ -680,7 +676,7 @@ export namespace osconfig_v1beta {
     zones?: string[] | null;
   }
   /**
-   * Represents a group of VMs that can be identified as having all these labels, for example &quot;env=prod and app=web&quot;.
+   * Represents a group of VMs that can be identified as having all these labels, for example "env=prod and app=web".
    */
   export interface Schema$PatchInstanceFilterGroupLabel {
     /**
@@ -725,7 +721,7 @@ export namespace osconfig_v1beta {
      */
     instanceFilter?: Schema$PatchInstanceFilter;
     /**
-     * Unique identifier for this patch job in the form `projects/x/patchJobs/x
+     * Unique identifier for this patch job in the form `projects/x/patchJobs/x`
      */
     name?: string | null;
     /**
@@ -770,7 +766,7 @@ export namespace osconfig_v1beta {
      */
     instanceSystemId?: string | null;
     /**
-     * The instance name in the form `projects/x/zones/x/instances/x
+     * The instance name in the form `projects/x/zones/x/instances/x`
      */
     name?: string | null;
     /**
@@ -906,7 +902,7 @@ export namespace osconfig_v1beta {
      */
     artifacts?: Schema$SoftwareRecipeArtifact[];
     /**
-     * Default is INSTALLED. The desired state the agent should maintain for this recipe. INSTALLED: The software recipe is installed on the instance but won&#39;t be updated to new versions. UPDATED: The software recipe is installed on the instance. The recipe is updated to a higher version, if a higher version of the recipe is assigned to this instance. REMOVE: Remove is unsupported for software recipes and attempts to create or update a recipe to the REMOVE state is rejected.
+     * Default is INSTALLED. The desired state the agent should maintain for this recipe. INSTALLED: The software recipe is installed on the instance but won't be updated to new versions. UPDATED: The software recipe is installed on the instance. The recipe is updated to a higher version, if a higher version of the recipe is assigned to this instance. REMOVE: Remove is unsupported for software recipes and attempts to create or update a recipe to the REMOVE state is rejected.
      */
     desiredState?: string | null;
     /**
@@ -969,11 +965,11 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$SoftwareRecipeArtifactRemote {
     /**
-     * Must be provided if `allow_insecure` is `false`. SHA256 checksum in hex format, to compare to the checksum of the artifact. If the checksum is not empty and it doesn&#39;t match the artifact then the recipe installation fails before running any of the steps.
+     * Must be provided if `allow_insecure` is `false`. SHA256 checksum in hex format, to compare to the checksum of the artifact. If the checksum is not empty and it doesn't match the artifact then the recipe installation fails before running any of the steps.
      */
     checksum?: string | null;
     /**
-     * URI from which to fetch the object. It should contain both the protocol and path following the format {protocol}://{location}.
+     * URI from which to fetch the object. It should contain both the protocol and path following the format {protocol\}://{location\}.
      */
     uri?: string | null;
   }
@@ -1091,7 +1087,7 @@ export namespace osconfig_v1beta {
      */
     artifactId?: string | null;
     /**
-     * The flags to use when installing the MSI defaults to [&quot;/i&quot;] (i.e. the install flag).
+     * The flags to use when installing the MSI defaults to ["/i"] (i.e. the install flag).
      */
     flags?: string[] | null;
   }
@@ -1126,7 +1122,7 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$TimeOfDay {
     /**
-     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value &quot;24:00:00&quot; for scenarios like business closing time.
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
      */
     hours?: number | null;
     /**
@@ -1147,16 +1143,16 @@ export namespace osconfig_v1beta {
    */
   export interface Schema$TimeZone {
     /**
-     * IANA Time Zone Database time zone, e.g. &quot;America/New_York&quot;.
+     * IANA Time Zone Database time zone, e.g. "America/New_York".
      */
     id?: string | null;
     /**
-     * Optional. IANA Time Zone Database version number, e.g. &quot;2019a&quot;.
+     * Optional. IANA Time Zone Database version number, e.g. "2019a".
      */
     version?: string | null;
   }
   /**
-   * Represents one week day in a month. An example is &quot;the 4th Sunday&quot;.
+   * Represents one week day in a month. An example is "the 4th Sunday".
    */
   export interface Schema$WeekDayOfMonth {
     /**
@@ -1270,7 +1266,7 @@ export namespace osconfig_v1beta {
      */
     excludes?: string[] | null;
     /**
-     * An exclusive list of patches to be updated. These are the only patches that will be installed using &#39;zypper patch patch:&#39; command. This field must not be used with any other patch configuration fields.
+     * An exclusive list of patches to be updated. These are the only patches that will be installed using 'zypper patch patch:' command. This field must not be used with any other patch configuration fields.
      */
     exclusivePatches?: string[] | null;
     /**
@@ -1311,9 +1307,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.guestPolicies.create
-     * @desc Create an OS Config guest policy.
+     * Create an OS Config guest policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1339,7 +1335,7 @@ export namespace osconfig_v1beta {
      *   const res = await osconfig.projects.guestPolicies.create({
      *     // Required. The logical name of the guest policy in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
      *     guestPolicyId: 'placeholder-value',
-     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
+     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
      *     parent: 'projects/my-project',
      *
      *     // Request body metadata
@@ -1379,16 +1375,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.guestPolicies.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.guestPolicyId Required. The logical name of the guest policy in the project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
-     * @param {string} params.parent Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
-     * @param {().GuestPolicy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Guestpolicies$Create,
@@ -1462,7 +1454,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -1470,9 +1462,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.guestPolicies.delete
-     * @desc Delete an OS Config guest policy.
+     * Delete an OS Config guest policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1496,7 +1488,7 @@ export namespace osconfig_v1beta {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.delete({
-     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
      *   });
      *   console.log(res.data);
@@ -1510,14 +1502,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.guestPolicies.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Guestpolicies$Delete,
@@ -1588,7 +1578,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1596,9 +1586,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.guestPolicies.get
-     * @desc Get an OS Config guest policy.
+     * Get an OS Config guest policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1622,7 +1612,7 @@ export namespace osconfig_v1beta {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.get({
-     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     // Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
      *   });
      *   console.log(res.data);
@@ -1646,14 +1636,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.guestPolicies.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Guestpolicies$Get,
@@ -1724,7 +1712,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -1732,9 +1720,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.guestPolicies.list
-     * @desc Get a page of OS Config guest policies.
+     * Get a page of OS Config guest policies.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1762,7 +1750,7 @@ export namespace osconfig_v1beta {
      *     pageSize: 'placeholder-value',
      *     // A pagination token returned from a previous call to `ListGuestPolicies` that indicates where this listing should continue from.
      *     pageToken: 'placeholder-value',
-     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
+     *     // Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
      *     parent: 'projects/my-project',
      *   });
      *   console.log(res.data);
@@ -1779,16 +1767,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.guestPolicies.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize The maximum number of guest policies to return.
-     * @param {string=} params.pageToken A pagination token returned from a previous call to `ListGuestPolicies` that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Guestpolicies$List,
@@ -1869,7 +1853,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGuestPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGuestPoliciesResponse>(parameters);
@@ -1877,9 +1861,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.guestPolicies.patch
-     * @desc Update an OS Config guest policy.
+     * Update an OS Config guest policy.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -1903,7 +1887,7 @@ export namespace osconfig_v1beta {
      *
      *   // Do the magic
      *   const res = await osconfig.projects.guestPolicies.patch({
-     *     // Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     *     // Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      *     name: 'projects/my-project/guestPolicies/my-guestPolicie',
      *     // Field mask that controls which fields of the guest policy should be updated.
      *     updateMask: 'placeholder-value',
@@ -1945,16 +1929,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.guestPolicies.patch
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
-     * @param {string=} params.updateMask Field mask that controls which fields of the guest policy should be updated.
-     * @param {().GuestPolicy} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     patch(
       params: Params$Resource$Projects$Guestpolicies$Patch,
@@ -2025,7 +2005,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -2040,7 +2020,7 @@ export namespace osconfig_v1beta {
      */
     guestPolicyId?: string;
     /**
-     * Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
+     * Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
      */
     parent?: string;
 
@@ -2052,14 +2032,14 @@ export namespace osconfig_v1beta {
   export interface Params$Resource$Projects$Guestpolicies$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Guestpolicies$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     * Required. The resource name of the guest policy using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string;
   }
@@ -2074,14 +2054,14 @@ export namespace osconfig_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The resource name of the parent using one of the following forms: `projects/{project_number}`.
+     * Required. The resource name of the parent using one of the following forms: `projects/{project_number\}`.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Guestpolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number}/guestPolicies/{guest_policy_id}`.
+     * Required. Unique name of the resource in this project using one of the following forms: `projects/{project_number\}/guestPolicies/{guest_policy_id\}`.
      */
     name?: string;
     /**
@@ -2102,9 +2082,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchDeployments.create
-     * @desc Create an OS Config patch deployment.
+     * Create an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2174,16 +2154,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.create
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project to apply this patch deployment to in the form `projects/x`.
-     * @param {string=} params.patchDeploymentId Required. A name for the patch deployment in the project. When creating a name the following rules apply: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the project.
-     * @param {().PatchDeployment} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     create(
       params: Params$Resource$Projects$Patchdeployments$Create,
@@ -2257,7 +2233,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
@@ -2265,9 +2241,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchDeployments.delete
-     * @desc Delete an OS Config patch deployment.
+     * Delete an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2305,14 +2281,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.delete
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     delete(
       params: Params$Resource$Projects$Patchdeployments$Delete,
@@ -2383,7 +2357,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2391,9 +2365,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchDeployments.get
-     * @desc Get an OS Config patch deployment.
+     * Get an OS Config patch deployment.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2443,14 +2417,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. The resource name of the patch deployment in the form `projects/x/patchDeployments/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Patchdeployments$Get,
@@ -2521,7 +2493,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
@@ -2529,9 +2501,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchDeployments.list
-     * @desc Get a page of OS Config patch deployments.
+     * Get a page of OS Config patch deployments.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2576,16 +2548,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchDeployments.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {integer=} params.pageSize Optional. The maximum number of patch deployments to return. Default is 100.
-     * @param {string=} params.pageToken Optional. A pagination token returned from a previous call to ListPatchDeployments that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The resource name of the parent in the form `projects/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchdeployments$List,
@@ -2666,7 +2634,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchDeploymentsResponse>(
@@ -2733,9 +2701,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchJobs.cancel
-     * @desc Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
+     * Cancel a patch job. The patch job must be active. Canceled patch jobs cannot be restarted.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2795,15 +2763,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.cancel
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the patch in the form `projects/x/patchJobs/x`
-     * @param {().CancelPatchJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     cancel(
       params: Params$Resource$Projects$Patchjobs$Cancel,
@@ -2877,7 +2842,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -2885,9 +2850,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchJobs.execute
-     * @desc Patch VM instances by creating and running a patch job.
+     * Patch VM instances by creating and running a patch job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -2955,15 +2920,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.execute
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.parent Required. The project in which to run this patch in the form `projects/x`
-     * @param {().ExecutePatchJobRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     execute(
       params: Params$Resource$Projects$Patchjobs$Execute,
@@ -3037,7 +2999,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -3045,9 +3007,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchJobs.get
-     * @desc Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
+     * Get the patch job. This can be used to track the progress of an ongoing patch job or review the details of completed jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -3101,14 +3063,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.get
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.name Required. Name of the patch in the form `projects/x/patchJobs/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     get(
       params: Params$Resource$Projects$Patchjobs$Get,
@@ -3179,7 +3139,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -3187,9 +3147,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchJobs.list
-     * @desc Get a list of patch jobs.
+     * Get a list of patch jobs.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -3236,17 +3196,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter If provided, this field specifies the criteria that must be met by patch jobs to be included in the response. Currently, filtering is only available on the patch_deployment field.
-     * @param {integer=} params.pageSize The maximum number of instance status to return.
-     * @param {string=} params.pageToken A pagination token returned from a previous call that indicates where this listing should continue from.
-     * @param {string} params.parent Required. In the form of `projects/x`
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchjobs$List,
@@ -3325,7 +3280,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchJobsResponse>(parameters);
@@ -3391,9 +3346,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.patchJobs.instanceDetails.list
-     * @desc Get a list of instance details for a given patch job.
+     * Get a list of instance details for a given patch job.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -3440,17 +3395,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.patchJobs.instanceDetails.list
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string=} params.filter A filter expression that filters results listed in the response. This field supports filtering results by instance zone, name, state, or `failure_reason`.
-     * @param {integer=} params.pageSize The maximum number of instance details records to return. Default is 100.
-     * @param {string=} params.pageToken A pagination token returned from a previous call that indicates where this listing should continue from.
-     * @param {string} params.parent Required. The parent for the instances are in the form of `projects/x/patchJobs/x`.
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     list(
       params: Params$Resource$Projects$Patchjobs$Instancedetails$List,
@@ -3531,7 +3481,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(
@@ -3577,9 +3527,9 @@ export namespace osconfig_v1beta {
     }
 
     /**
-     * osconfig.projects.zones.instances.lookupEffectiveGuestPolicy
-     * @desc Lookup the effective guest policy that applies to a VM instance. This lookup merges all policies that are assigned to the instance ancestry.
+     * Lookup the effective guest policy that applies to a VM instance. This lookup merges all policies that are assigned to the instance ancestry.
      * @example
+     * ```js
      * // Before running the sample:
      * // - Enable the API at:
      * //   https://console.developers.google.com/apis/api/osconfig.googleapis.com
@@ -3633,15 +3583,12 @@ export namespace osconfig_v1beta {
      *   throw e;
      * });
      *
-     * @alias osconfig.projects.zones.instances.lookupEffectiveGuestPolicy
-     * @memberOf! ()
+     * ```
      *
-     * @param {object} params Parameters for request
-     * @param {string} params.instance Required. The VM instance whose policies are being looked up.
-     * @param {().LookupEffectiveGuestPolicyRequest} params.requestBody Request body data
-     * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param {callback} callback The callback that handles the response.
-     * @return {object} Request object
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
      */
     lookupEffectiveGuestPolicy(
       params: Params$Resource$Projects$Zones$Instances$Lookupeffectiveguestpolicy,
@@ -3721,7 +3668,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$EffectiveGuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EffectiveGuestPolicy>(parameters);

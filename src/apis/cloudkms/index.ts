@@ -31,3 +31,14 @@ export function cloudkms<T = cloudkms_v1.Cloudkms>(
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudkms_v1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

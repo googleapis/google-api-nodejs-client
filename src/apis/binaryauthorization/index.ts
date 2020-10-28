@@ -51,3 +51,15 @@ export function binaryauthorization<
 
 const auth = new AuthPlus();
 export {auth};
+export {binaryauthorization_v1};
+export {binaryauthorization_v1beta1};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';

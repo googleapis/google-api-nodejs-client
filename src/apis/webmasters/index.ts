@@ -33,3 +33,14 @@ export function webmasters<T = webmasters_v3.Webmasters>(
 
 const auth = new AuthPlus();
 export {auth};
+export {webmasters_v3};
+export {
+  AuthPlus,
+  GlobalOptions,
+  APIRequestContext,
+  GoogleConfigurable,
+  StreamMethodOptions,
+  GaxiosPromise,
+  MethodOptions,
+  BodyResponseCallback,
+} from 'googleapis-common';
