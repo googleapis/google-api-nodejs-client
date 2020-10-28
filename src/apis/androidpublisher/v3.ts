@@ -977,7 +977,7 @@ export namespace androidpublisher_v3 {
      */
     orderId?: string | null;
     /**
-     * The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade
+     * The payment state of the subscription. Possible values are: 0. Payment pending 1. Payment received 2. Free trial 3. Pending deferred upgrade/downgrade Not present for canceled, expired subscriptions.
      */
     paymentState?: number | null;
     /**
