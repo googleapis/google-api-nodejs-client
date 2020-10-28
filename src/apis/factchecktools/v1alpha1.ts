@@ -526,7 +526,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1FactCheckedClaimSearchResponse
@@ -733,7 +733,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
@@ -863,7 +863,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1021,7 +1021,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
@@ -1188,7 +1188,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ListClaimReviewMarkupPagesResponse
@@ -1361,7 +1361,7 @@ export namespace factchecktools_v1alpha1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleFactcheckingFactchecktoolsV1alpha1ClaimReviewMarkupPage

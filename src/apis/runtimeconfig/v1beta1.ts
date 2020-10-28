@@ -564,7 +564,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
@@ -694,7 +694,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -827,7 +827,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
@@ -967,7 +967,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1112,7 +1112,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigsResponse>(parameters);
@@ -1258,7 +1258,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1409,7 +1409,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1552,7 +1552,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$RuntimeConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RuntimeConfig>(parameters);
@@ -1788,7 +1788,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1941,7 +1941,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2123,7 +2123,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -2256,7 +2256,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2392,7 +2392,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -2545,7 +2545,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListVariablesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVariablesResponse>(parameters);
@@ -2698,7 +2698,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2847,7 +2847,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -2995,7 +2995,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Variable>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Variable>(parameters);
@@ -3253,7 +3253,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3383,7 +3383,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3521,7 +3521,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Waiter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Waiter>(parameters);
@@ -3666,7 +3666,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListWaitersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListWaitersResponse>(parameters);
@@ -3817,7 +3817,7 @@ export namespace runtimeconfig_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

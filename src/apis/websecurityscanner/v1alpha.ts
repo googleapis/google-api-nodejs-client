@@ -685,7 +685,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
@@ -812,7 +812,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -950,7 +950,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
@@ -1094,7 +1094,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListScanConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScanConfigsResponse>(parameters);
@@ -1253,7 +1253,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanConfig>(parameters);
@@ -1400,7 +1400,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanRun>(parameters);
@@ -1626,7 +1626,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanRun>(parameters);
@@ -1770,7 +1770,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListScanRunsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScanRunsResponse>(parameters);
@@ -1917,7 +1917,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ScanRun>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ScanRun>(parameters);
@@ -2106,7 +2106,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListCrawledUrlsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCrawledUrlsResponse>(parameters);
@@ -2275,7 +2275,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$Finding>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Finding>(parameters);
@@ -2425,7 +2425,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListFindingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFindingsResponse>(parameters);
@@ -2601,7 +2601,7 @@ export namespace websecurityscanner_v1alpha {
       if (callback) {
         createAPIRequest<Schema$ListFindingTypeStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFindingTypeStatsResponse>(

@@ -544,7 +544,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -698,7 +698,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
@@ -845,7 +845,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$ReportStateAndNotificationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportStateAndNotificationResponse>(
@@ -989,7 +989,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$RequestSyncDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RequestSyncDevicesResponse>(parameters);
@@ -1123,7 +1123,7 @@ export namespace homegraph_v1 {
       if (callback) {
         createAPIRequest<Schema$SyncResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SyncResponse>(parameters);

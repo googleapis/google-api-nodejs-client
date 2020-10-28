@@ -376,7 +376,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -522,7 +522,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -671,7 +671,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -823,7 +823,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -976,7 +976,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -1119,7 +1119,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -1248,7 +1248,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);
@@ -1373,7 +1373,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -1498,7 +1498,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -1628,7 +1628,7 @@ export namespace domainsrdap_v1 {
       if (callback) {
         createAPIRequest<Schema$RdapResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RdapResponse>(parameters);

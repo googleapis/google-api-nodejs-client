@@ -926,7 +926,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1066,7 +1066,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccount>(
@@ -1223,7 +1223,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaDataSharingSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1381,7 +1381,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAccountsResponse
@@ -1539,7 +1539,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaAccount>(
@@ -1704,7 +1704,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaProvisionAccountTicketResponse
@@ -1932,7 +1932,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
@@ -2100,7 +2100,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
@@ -2245,7 +2245,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -2405,7 +2405,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
@@ -2572,7 +2572,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
@@ -2728,7 +2728,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -2860,7 +2860,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -2998,7 +2998,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -3160,7 +3160,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
@@ -3310,7 +3310,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -3597,7 +3597,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAccountSummariesResponse
@@ -3797,7 +3797,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
@@ -3929,7 +3929,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -4072,7 +4072,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
@@ -4236,7 +4236,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListPropertiesResponse
@@ -4400,7 +4400,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaProperty>(
@@ -4635,7 +4635,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
@@ -4767,7 +4767,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -4923,7 +4923,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
@@ -5088,7 +5088,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListAndroidAppDataStreamsResponse
@@ -5262,7 +5262,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAndroidAppDataStream
@@ -5488,7 +5488,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
@@ -5620,7 +5620,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -5777,7 +5777,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListFirebaseLinksResponse
@@ -5938,7 +5938,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaFirebaseLink>(
@@ -6158,7 +6158,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6290,7 +6290,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -6454,7 +6454,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListGoogleAdsLinksResponse
@@ -6623,7 +6623,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGoogleAdsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6855,7 +6855,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6987,7 +6987,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -7142,7 +7142,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7308,7 +7308,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListIosAppDataStreamsResponse
@@ -7481,7 +7481,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaIosAppDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7712,7 +7712,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaAuditUserLinksResponse
@@ -7880,7 +7880,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchCreateUserLinksResponse
@@ -8025,7 +8025,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8185,7 +8185,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchGetUserLinksResponse
@@ -8352,7 +8352,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksResponse
@@ -8508,7 +8508,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -8640,7 +8640,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8778,7 +8778,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -8940,7 +8940,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListUserLinksResponse
@@ -9090,7 +9090,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaUserLink>(
@@ -9382,7 +9382,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9514,7 +9514,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -9662,7 +9662,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9838,7 +9838,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
@@ -9982,7 +9982,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaGlobalSiteTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -10148,7 +10148,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaListWebDataStreamsResponse
@@ -10315,7 +10315,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaWebDataStream>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -10520,7 +10520,7 @@ export namespace analyticsadmin_v1alpha {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAnalyticsAdminV1alphaEnhancedMeasurementSettings

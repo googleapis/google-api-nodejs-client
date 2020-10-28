@@ -372,7 +372,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -529,7 +529,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -671,7 +671,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$Execution>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Execution>(parameters);
@@ -820,7 +820,7 @@ export namespace workflowexecutions_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListExecutionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExecutionsResponse>(parameters);

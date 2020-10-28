@@ -3309,7 +3309,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateDocumentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateDocumentResponse>(parameters);
@@ -3475,7 +3475,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
@@ -3629,7 +3629,7 @@ export namespace docs_v1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);

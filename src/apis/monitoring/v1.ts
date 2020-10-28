@@ -864,7 +864,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
@@ -994,7 +994,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1132,7 +1132,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);
@@ -1279,7 +1279,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDashboardsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDashboardsResponse>(parameters);
@@ -1432,7 +1432,7 @@ export namespace monitoring_v1 {
       if (callback) {
         createAPIRequest<Schema$Dashboard>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dashboard>(parameters);

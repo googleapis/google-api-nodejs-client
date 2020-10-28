@@ -1018,7 +1018,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1174,7 +1174,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
@@ -1346,7 +1346,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
@@ -1492,7 +1492,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$BucketAccessControls>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BucketAccessControls>(parameters);
@@ -1667,7 +1667,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
@@ -1842,7 +1842,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$BucketAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BucketAccessControl>(parameters);
@@ -2110,7 +2110,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2287,7 +2287,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Bucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bucket>(parameters);
@@ -2434,7 +2434,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2641,7 +2641,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Bucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bucket>(parameters);
@@ -2794,7 +2794,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Buckets>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Buckets>(parameters);
@@ -2963,7 +2963,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Bucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bucket>(parameters);
@@ -3178,7 +3178,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Bucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bucket>(parameters);
@@ -3335,7 +3335,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3488,7 +3488,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3703,7 +3703,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Bucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bucket>(parameters);
@@ -4118,7 +4118,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4267,7 +4267,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4424,7 +4424,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -4600,7 +4600,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -4752,7 +4752,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControls>(parameters);
@@ -4930,7 +4930,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -5108,7 +5108,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -5382,7 +5382,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5536,7 +5536,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Notification>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Notification>(parameters);
@@ -5701,7 +5701,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Notification>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Notification>(parameters);
@@ -5844,7 +5844,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Notifications>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Notifications>(parameters);
@@ -6066,7 +6066,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6229,7 +6229,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -6411,7 +6411,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -6563,7 +6563,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControls>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControls>(parameters);
@@ -6747,7 +6747,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -6931,7 +6931,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ObjectAccessControl>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ObjectAccessControl>(parameters);
@@ -7305,7 +7305,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -7571,7 +7571,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -7722,7 +7722,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7916,7 +7916,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -8069,7 +8069,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8318,7 +8318,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -8490,7 +8490,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Objects>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Objects>(parameters);
@@ -8724,7 +8724,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -8970,7 +8970,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$RewriteResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RewriteResponse>(parameters);
@@ -9134,7 +9134,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -9293,7 +9293,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -9527,7 +9527,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Object>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Object>(parameters);
@@ -9723,7 +9723,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -10523,7 +10523,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$HmacKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HmacKey>(parameters);
@@ -10656,7 +10656,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10806,7 +10806,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$HmacKeyMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HmacKeyMetadata>(parameters);
@@ -10958,7 +10958,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$HmacKeysMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HmacKeysMetadata>(parameters);
@@ -11124,7 +11124,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$HmacKeyMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HmacKeyMetadata>(parameters);
@@ -11367,7 +11367,7 @@ export namespace storage_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);

@@ -707,7 +707,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitiesResponse>(parameters);
@@ -854,7 +854,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeEntitySentimentResponse>(
@@ -1005,7 +1005,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeSentimentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeSentimentResponse>(parameters);
@@ -1154,7 +1154,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeSyntaxResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeSyntaxResponse>(parameters);
@@ -1307,7 +1307,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$AnnotateTextResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnnotateTextResponse>(parameters);
@@ -1453,7 +1453,7 @@ export namespace language_v1beta2 {
       if (callback) {
         createAPIRequest<Schema$ClassifyTextResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClassifyTextResponse>(parameters);

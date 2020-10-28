@@ -730,7 +730,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -873,7 +873,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1063,7 +1063,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1235,7 +1235,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$CallFunctionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CallFunctionResponse>(parameters);
@@ -1403,7 +1403,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1536,7 +1536,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1686,7 +1686,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateDownloadUrlResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateDownloadUrlResponse>(parameters);
@@ -1833,7 +1833,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateUploadUrlResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateUploadUrlResponse>(parameters);
@@ -1985,7 +1985,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$CloudFunction>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CloudFunction>(parameters);
@@ -2123,7 +2123,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2268,7 +2268,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFunctionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFunctionsResponse>(parameters);
@@ -2436,7 +2436,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2581,7 +2581,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2732,7 +2732,7 @@ export namespace cloudfunctions_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

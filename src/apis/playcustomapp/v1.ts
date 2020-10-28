@@ -307,7 +307,7 @@ export namespace playcustomapp_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomApp>(parameters);

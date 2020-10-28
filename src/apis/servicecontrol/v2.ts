@@ -758,7 +758,7 @@ export namespace servicecontrol_v2 {
       if (callback) {
         createAPIRequest<Schema$CheckResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckResponse>(parameters);
@@ -900,7 +900,7 @@ export namespace servicecontrol_v2 {
       if (callback) {
         createAPIRequest<Schema$ReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportResponse>(parameters);

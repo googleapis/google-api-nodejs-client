@@ -2100,7 +2100,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2229,7 +2229,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2371,7 +2371,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2527,7 +2527,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListAlertPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAlertPoliciesResponse>(parameters);
@@ -2690,7 +2690,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$AlertPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AlertPolicy>(parameters);
@@ -2917,7 +2917,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateCollectdTimeSeriesResponse>(
@@ -3092,7 +3092,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3224,7 +3224,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3360,7 +3360,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3511,7 +3511,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
@@ -3662,7 +3662,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -3904,7 +3904,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListGroupMembersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupMembersResponse>(parameters);
@@ -4103,7 +4103,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
@@ -4232,7 +4232,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4375,7 +4375,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MetricDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetricDescriptor>(parameters);
@@ -4528,7 +4528,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListMetricDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMetricDescriptorsResponse>(
@@ -4728,7 +4728,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$MonitoredResourceDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MonitoredResourceDescriptor>(parameters);
@@ -4887,7 +4887,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5068,7 +5068,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannelDescriptor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannelDescriptor>(
@@ -5232,7 +5232,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5424,7 +5424,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -5556,7 +5556,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5698,7 +5698,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -5865,7 +5865,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6023,7 +6023,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListNotificationChannelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListNotificationChannelsResponse>(
@@ -6185,7 +6185,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -6326,7 +6326,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6476,7 +6476,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$NotificationChannel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationChannel>(parameters);
@@ -6731,7 +6731,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6919,7 +6919,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTimeSeriesResponse>(parameters);
@@ -7073,7 +7073,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$QueryTimeSeriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryTimeSeriesResponse>(parameters);
@@ -7340,7 +7340,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -7469,7 +7469,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7615,7 +7615,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -7765,7 +7765,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckConfigsResponse>(
@@ -7935,7 +7935,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$UptimeCheckConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UptimeCheckConfig>(parameters);
@@ -8163,7 +8163,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8291,7 +8291,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8429,7 +8429,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8578,7 +8578,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -8734,7 +8734,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -8963,7 +8963,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -9093,7 +9093,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9239,7 +9239,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -9394,7 +9394,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServiceLevelObjectivesResponse>(
@@ -9555,7 +9555,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ServiceLevelObjective>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceLevelObjective>(parameters);
@@ -9779,7 +9779,7 @@ export namespace monitoring_v3 {
       if (callback) {
         createAPIRequest<Schema$ListUptimeCheckIpsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUptimeCheckIpsResponse>(parameters);

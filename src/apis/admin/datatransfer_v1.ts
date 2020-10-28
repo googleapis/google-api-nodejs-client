@@ -399,7 +399,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$Application>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
@@ -547,7 +547,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$ApplicationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ApplicationsListResponse>(parameters);
@@ -715,7 +715,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfer>(parameters);
@@ -864,7 +864,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfer>(parameters);
@@ -1022,7 +1022,7 @@ export namespace admin_datatransfer_v1 {
       if (callback) {
         createAPIRequest<Schema$DataTransfersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataTransfersListResponse>(parameters);

@@ -1258,7 +1258,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -1410,7 +1410,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -1578,7 +1578,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -1707,7 +1707,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1845,7 +1845,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -1993,7 +1993,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
@@ -2146,7 +2146,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -2384,7 +2384,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -2514,7 +2514,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2660,7 +2660,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBucketsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
@@ -2816,7 +2816,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -2956,7 +2956,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3185,7 +3185,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -3315,7 +3315,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3462,7 +3462,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListViewsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListViewsResponse>(parameters);
@@ -3614,7 +3614,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -3805,7 +3805,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3945,7 +3945,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
@@ -4143,7 +4143,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -4272,7 +4272,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4416,7 +4416,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -4562,7 +4562,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
@@ -4730,7 +4730,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -4898,7 +4898,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -5139,7 +5139,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogEntriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogEntriesResponse>(parameters);
@@ -5283,7 +5283,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$WriteLogEntriesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WriteLogEntriesResponse>(parameters);
@@ -5456,7 +5456,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -5585,7 +5585,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5722,7 +5722,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -5869,7 +5869,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
@@ -6021,7 +6021,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -6251,7 +6251,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -6380,7 +6380,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6518,7 +6518,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -6666,7 +6666,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
@@ -6819,7 +6819,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -7053,7 +7053,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -7182,7 +7182,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7321,7 +7321,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -7467,7 +7467,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBucketsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
@@ -7622,7 +7622,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -7761,7 +7761,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7996,7 +7996,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -8126,7 +8126,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8264,7 +8264,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -8410,7 +8410,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListViewsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListViewsResponse>(parameters);
@@ -8562,7 +8562,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -8760,7 +8760,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8900,7 +8900,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
@@ -9098,7 +9098,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -9227,7 +9227,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9371,7 +9371,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -9517,7 +9517,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
@@ -9685,7 +9685,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -9853,7 +9853,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -10115,7 +10115,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -10244,7 +10244,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10383,7 +10383,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -10529,7 +10529,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBucketsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
@@ -10684,7 +10684,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -10823,7 +10823,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11058,7 +11058,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -11187,7 +11187,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11324,7 +11324,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -11470,7 +11470,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListViewsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListViewsResponse>(parameters);
@@ -11621,7 +11621,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -11818,7 +11818,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11957,7 +11957,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
@@ -12138,7 +12138,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12305,7 +12305,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$CmekSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
@@ -12457,7 +12457,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$CmekSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
@@ -12641,7 +12641,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -12770,7 +12770,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -12908,7 +12908,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -13056,7 +13056,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
@@ -13209,7 +13209,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -13445,7 +13445,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -13575,7 +13575,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -13715,7 +13715,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -13861,7 +13861,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBucketsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
@@ -14017,7 +14017,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -14157,7 +14157,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14393,7 +14393,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -14523,7 +14523,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -14661,7 +14661,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -14808,7 +14808,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListViewsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListViewsResponse>(parameters);
@@ -14960,7 +14960,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -15158,7 +15158,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15298,7 +15298,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
@@ -15496,7 +15496,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -15625,7 +15625,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -15769,7 +15769,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -15915,7 +15915,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
@@ -16083,7 +16083,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -16251,7 +16251,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -16514,7 +16514,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -16643,7 +16643,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -16781,7 +16781,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -16929,7 +16929,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListExclusionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListExclusionsResponse>(parameters);
@@ -17082,7 +17082,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogExclusion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogExclusion>(parameters);
@@ -17316,7 +17316,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -17445,7 +17445,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -17584,7 +17584,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -17730,7 +17730,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBucketsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBucketsResponse>(parameters);
@@ -17885,7 +17885,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogBucket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogBucket>(parameters);
@@ -18024,7 +18024,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -18259,7 +18259,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -18389,7 +18389,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -18527,7 +18527,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -18673,7 +18673,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListViewsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListViewsResponse>(parameters);
@@ -18825,7 +18825,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogView>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogView>(parameters);
@@ -19023,7 +19023,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -19163,7 +19163,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogsResponse>(parameters);
@@ -19355,7 +19355,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
@@ -19485,7 +19485,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -19627,7 +19627,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
@@ -19775,7 +19775,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLogMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLogMetricsResponse>(parameters);
@@ -19934,7 +19934,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogMetric>(parameters);
@@ -20163,7 +20163,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -20292,7 +20292,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -20436,7 +20436,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -20582,7 +20582,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
@@ -20750,7 +20750,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -20918,7 +20918,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -21178,7 +21178,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -21306,7 +21306,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -21449,7 +21449,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -21594,7 +21594,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$ListSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSinksResponse>(parameters);
@@ -21761,7 +21761,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$LogSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LogSink>(parameters);
@@ -21967,7 +21967,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$CmekSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);
@@ -22119,7 +22119,7 @@ export namespace logging_v2 {
       if (callback) {
         createAPIRequest<Schema$CmekSettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CmekSettings>(parameters);

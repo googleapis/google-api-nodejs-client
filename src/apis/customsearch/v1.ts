@@ -621,7 +621,7 @@ export namespace customsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Search>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Search>(parameters);
@@ -983,7 +983,7 @@ export namespace customsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Search>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Search>(parameters);

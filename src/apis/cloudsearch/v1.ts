@@ -2361,7 +2361,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$CheckAccessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckAccessResponse>(parameters);
@@ -2514,7 +2514,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchItemsByViewUrlResponse>(
@@ -2703,7 +2703,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -2909,7 +2909,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3100,7 +3100,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUnmappedIdentitiesResponse>(
@@ -3286,7 +3286,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3425,7 +3425,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -3575,7 +3575,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3767,7 +3767,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3915,7 +3915,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4064,7 +4064,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Item>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
@@ -4215,7 +4215,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4368,7 +4368,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListItemsResponse>(parameters);
@@ -4518,7 +4518,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$PollItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PollItemsResponse>(parameters);
@@ -4672,7 +4672,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Item>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Item>(parameters);
@@ -4821,7 +4821,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4965,7 +4965,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$UploadItemRef>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UploadItemRef>(parameters);
@@ -5263,7 +5263,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Media>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Media>(parameters);
@@ -5437,7 +5437,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5601,7 +5601,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -5782,7 +5782,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchResponse>(parameters);
@@ -5919,7 +5919,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SuggestResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SuggestResponse>(parameters);
@@ -6088,7 +6088,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListQuerySourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListQuerySourcesResponse>(parameters);
@@ -6283,7 +6283,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6425,7 +6425,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6570,7 +6570,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$DataSource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DataSource>(parameters);
@@ -6717,7 +6717,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDataSourceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDataSourceResponse>(parameters);
@@ -6866,7 +6866,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7081,7 +7081,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7223,7 +7223,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7371,7 +7371,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchApplication>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchApplication>(parameters);
@@ -7520,7 +7520,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSearchApplicationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSearchApplicationsResponse>(
@@ -7670,7 +7670,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7825,7 +7825,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8062,7 +8062,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerIndexStatsResponse>(
@@ -8217,7 +8217,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerQueryStatsResponse>(
@@ -8372,7 +8372,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerSessionStatsResponse>(
@@ -8527,7 +8527,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetCustomerUserStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetCustomerUserStatsResponse>(
@@ -8810,7 +8810,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetDataSourceIndexStatsResponse>(
@@ -9028,7 +9028,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetSearchApplicationQueryStatsResponse>(
@@ -9246,7 +9246,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9464,7 +9464,7 @@ export namespace cloudsearch_v1 {
       if (callback) {
         createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetSearchApplicationUserStatsResponse>(

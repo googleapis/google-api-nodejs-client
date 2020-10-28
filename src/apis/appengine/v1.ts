@@ -1778,7 +1778,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1922,7 +1922,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Application>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Application>(parameters);
@@ -2078,7 +2078,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2219,7 +2219,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2426,7 +2426,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
@@ -2558,7 +2558,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2712,7 +2712,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
@@ -2864,7 +2864,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedCertificatesResponse>(
@@ -3033,7 +3033,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$AuthorizedCertificate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuthorizedCertificate>(parameters);
@@ -3267,7 +3267,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -3442,7 +3442,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3579,7 +3579,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3719,7 +3719,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -3868,7 +3868,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -4020,7 +4020,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4256,7 +4256,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateIngressRulesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateIngressRulesResponse>(
@@ -4404,7 +4404,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirewallRule>(parameters);
@@ -4536,7 +4536,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4677,7 +4677,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirewallRule>(parameters);
@@ -4827,7 +4827,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListIngressRulesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListIngressRulesResponse>(parameters);
@@ -4979,7 +4979,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$FirewallRule>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FirewallRule>(parameters);
@@ -5213,7 +5213,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -5363,7 +5363,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -5542,7 +5542,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5692,7 +5692,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -5870,7 +5870,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6011,7 +6011,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -6158,7 +6158,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -6314,7 +6314,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6570,7 +6570,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6711,7 +6711,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6892,7 +6892,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -7044,7 +7044,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
@@ -7234,7 +7234,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7492,7 +7492,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7636,7 +7636,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7795,7 +7795,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$Instance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
@@ -7948,7 +7948,7 @@ export namespace appengine_v1 {
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);

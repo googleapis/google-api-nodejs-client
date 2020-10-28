@@ -488,7 +488,7 @@ export namespace policytroubleshooter_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudPolicytroubleshooterV1TroubleshootIamPolicyResponse

@@ -398,7 +398,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Domain>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domain>(parameters);
@@ -533,7 +533,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainsResponse>(parameters);
@@ -696,7 +696,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TrafficStats>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TrafficStats>(parameters);
@@ -858,7 +858,7 @@ export namespace gmailpostmastertools_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListTrafficStatsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTrafficStatsResponse>(parameters);

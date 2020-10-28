@@ -852,7 +852,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Media>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Media>(parameters);
@@ -1001,7 +1001,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Space>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Space>(parameters);
@@ -1135,7 +1135,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$ListSpacesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSpacesResponse>(parameters);
@@ -1290,7 +1290,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Membership>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
@@ -1433,7 +1433,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
@@ -1634,7 +1634,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -1760,7 +1760,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1901,7 +1901,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -2067,7 +2067,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -2256,7 +2256,7 @@ export namespace chat_v1 {
       if (callback) {
         createAPIRequest<Schema$Attachment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Attachment>(parameters);

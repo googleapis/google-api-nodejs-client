@@ -2459,7 +2459,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2597,7 +2597,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Asp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asp>(parameters);
@@ -2729,7 +2729,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Asps>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Asps>(parameters);
@@ -2906,7 +2906,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3057,7 +3057,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3232,7 +3232,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -3390,7 +3390,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevices>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevices>(parameters);
@@ -3526,7 +3526,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3742,7 +3742,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -3958,7 +3958,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$ChromeOsDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChromeOsDevice>(parameters);
@@ -4275,7 +4275,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DirectoryChromeosdevicesIssueCommandResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4454,7 +4454,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectoryChromeosdevicesCommand>(
@@ -4619,7 +4619,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -4773,7 +4773,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -4927,7 +4927,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -5090,7 +5090,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5232,7 +5232,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAlias>(parameters);
@@ -5381,7 +5381,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAlias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAlias>(parameters);
@@ -5519,7 +5519,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainAliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainAliases>(parameters);
@@ -5698,7 +5698,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5840,7 +5840,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains>(parameters);
@@ -5990,7 +5990,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains>(parameters);
@@ -6124,7 +6124,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Domains2>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Domains2>(parameters);
@@ -6294,7 +6294,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6436,7 +6436,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -6589,7 +6589,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -6746,7 +6746,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Groups>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Groups>(parameters);
@@ -6903,7 +6903,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -7060,7 +7060,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -7268,7 +7268,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7415,7 +7415,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Alias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alias>(parameters);
@@ -7550,7 +7550,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Aliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Aliases>(parameters);
@@ -7717,7 +7717,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7862,7 +7862,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8001,7 +8001,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MembersHasMember>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MembersHasMember>(parameters);
@@ -8156,7 +8156,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8305,7 +8305,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Members>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Members>(parameters);
@@ -8464,7 +8464,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8623,7 +8623,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Member>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Member>(parameters);
@@ -8864,7 +8864,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8991,7 +8991,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9171,7 +9171,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MobileDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileDevice>(parameters);
@@ -9327,7 +9327,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$MobileDevices>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileDevices>(parameters);
@@ -9534,7 +9534,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9678,7 +9678,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -9832,7 +9832,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -9972,7 +9972,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnits>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnits>(parameters);
@@ -10130,7 +10130,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -10288,7 +10288,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$OrgUnit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrgUnit>(parameters);
@@ -10506,7 +10506,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Privileges>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Privileges>(parameters);
@@ -10662,7 +10662,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10806,7 +10806,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -10965,7 +10965,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -11108,7 +11108,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Buildings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Buildings>(parameters);
@@ -11270,7 +11270,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -11432,7 +11432,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Building>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Building>(parameters);
@@ -11662,7 +11662,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11813,7 +11813,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -11983,7 +11983,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -12135,7 +12135,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResources>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResources>(parameters);
@@ -12308,7 +12308,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -12481,7 +12481,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$CalendarResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CalendarResource>(parameters);
@@ -12707,7 +12707,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12846,7 +12846,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -12992,7 +12992,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13135,7 +13135,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Features>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Features>(parameters);
@@ -13284,7 +13284,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13422,7 +13422,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -13571,7 +13571,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Feature>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feature>(parameters);
@@ -13803,7 +13803,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -13946,7 +13946,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignment>(parameters);
@@ -14098,7 +14098,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignment>(parameters);
@@ -14247,7 +14247,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$RoleAssignments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RoleAssignments>(parameters);
@@ -14437,7 +14437,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -14579,7 +14579,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -14731,7 +14731,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -14872,7 +14872,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Roles>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Roles>(parameters);
@@ -15027,7 +15027,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -15182,7 +15182,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -15391,7 +15391,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -15532,7 +15532,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -15680,7 +15680,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -15814,7 +15814,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schemas>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schemas>(parameters);
@@ -15966,7 +15966,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -16118,7 +16118,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Schema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Schema>(parameters);
@@ -16318,7 +16318,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16457,7 +16457,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Token>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Token>(parameters);
@@ -16588,7 +16588,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Tokens>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Tokens>(parameters);
@@ -16746,7 +16746,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16888,7 +16888,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17075,7 +17075,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17300,7 +17300,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17468,7 +17468,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Users>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Users>(parameters);
@@ -17599,7 +17599,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17828,7 +17828,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -17950,7 +17950,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18081,7 +18081,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18310,7 +18310,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -18504,7 +18504,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -18822,7 +18822,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18972,7 +18972,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Alias>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Alias>(parameters);
@@ -19109,7 +19109,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Aliases>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Aliases>(parameters);
@@ -19274,7 +19274,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$Channel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Channel>(parameters);
@@ -19451,7 +19451,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -19590,7 +19590,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -19743,7 +19743,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -19896,7 +19896,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$UserPhoto>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserPhoto>(parameters);
@@ -20065,7 +20065,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -20189,7 +20189,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -20324,7 +20324,7 @@ export namespace admin_directory_v1 {
       if (callback) {
         createAPIRequest<Schema$VerificationCodes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerificationCodes>(parameters);

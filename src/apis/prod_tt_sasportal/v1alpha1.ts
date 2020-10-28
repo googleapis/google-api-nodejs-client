@@ -823,7 +823,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalCustomer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
@@ -965,7 +965,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListCustomersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListCustomersResponse>(
@@ -1114,7 +1114,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalCustomer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalCustomer>(parameters);
@@ -1303,7 +1303,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -1480,7 +1480,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -1632,7 +1632,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -1781,7 +1781,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -1982,7 +1982,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -2141,7 +2141,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2291,7 +2291,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2418,7 +2418,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -2555,7 +2555,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -2704,7 +2704,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -2854,7 +2854,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -3011,7 +3011,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -3150,7 +3150,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -3300,7 +3300,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -3578,7 +3578,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -3705,7 +3705,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -3836,7 +3836,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -3982,7 +3982,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -4130,7 +4130,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -4275,7 +4275,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -4509,7 +4509,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -4659,7 +4659,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -4808,7 +4808,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -5006,7 +5006,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -5152,7 +5152,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -5323,7 +5323,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -5460,7 +5460,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -5608,7 +5608,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -5765,7 +5765,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -5904,7 +5904,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -6054,7 +6054,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -6270,7 +6270,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalGenerateSecretResponse>(
@@ -6416,7 +6416,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalValidateInstallerResponse>(
@@ -6576,7 +6576,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -6740,7 +6740,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -6917,7 +6917,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7067,7 +7067,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7216,7 +7216,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -7417,7 +7417,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -7576,7 +7576,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7726,7 +7726,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -7853,7 +7853,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -7990,7 +7990,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -8139,7 +8139,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -8289,7 +8289,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -8446,7 +8446,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -8585,7 +8585,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -8735,7 +8735,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -9013,7 +9013,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -9140,7 +9140,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalEmpty>(parameters);
@@ -9270,7 +9270,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -9415,7 +9415,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -9562,7 +9562,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalOperation>(parameters);
@@ -9707,7 +9707,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -9929,7 +9929,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalBulkCreateDeviceResponse>(
@@ -10088,7 +10088,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -10238,7 +10238,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalDevice>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalDevice>(parameters);
@@ -10387,7 +10387,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListDevicesResponse>(
@@ -10597,7 +10597,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalNode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalNode>(parameters);
@@ -10743,7 +10743,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalListNodesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalListNodesResponse>(parameters);
@@ -10915,7 +10915,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
@@ -11053,7 +11053,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalPolicy>(parameters);
@@ -11197,7 +11197,7 @@ export namespace prod_tt_sasportal_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$SasPortalTestPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SasPortalTestPermissionsResponse>(

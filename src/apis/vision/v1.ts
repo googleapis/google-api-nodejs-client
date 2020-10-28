@@ -5288,7 +5288,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -5432,7 +5432,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5599,7 +5599,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -5744,7 +5744,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5909,7 +5909,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6060,7 +6060,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6189,7 +6189,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6323,7 +6323,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6468,7 +6468,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -6685,7 +6685,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -6833,7 +6833,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7016,7 +7016,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -7165,7 +7165,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7369,7 +7369,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateFilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateFilesResponse>(parameters);
@@ -7517,7 +7517,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7700,7 +7700,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchAnnotateImagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchAnnotateImagesResponse>(parameters);
@@ -7849,7 +7849,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8016,7 +8016,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -8189,7 +8189,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -8318,7 +8318,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8453,7 +8453,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -8599,7 +8599,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProductsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProductsResponse>(parameters);
@@ -8750,7 +8750,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -8899,7 +8899,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -9130,7 +9130,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
@@ -9260,7 +9260,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9394,7 +9394,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ReferenceImage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReferenceImage>(parameters);
@@ -9543,7 +9543,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListReferenceImagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReferenceImagesResponse>(parameters);
@@ -9741,7 +9741,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9893,7 +9893,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
@@ -10022,7 +10022,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10156,7 +10156,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
@@ -10303,7 +10303,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -10449,7 +10449,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProductSetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProductSetsResponse>(parameters);
@@ -10598,7 +10598,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
@@ -10739,7 +10739,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10992,7 +10992,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$ListProductsInProductSetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProductsInProductSetResponse>(
@@ -11152,7 +11152,7 @@ export namespace vision_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

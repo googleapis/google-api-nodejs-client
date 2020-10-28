@@ -540,7 +540,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
@@ -703,7 +703,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
@@ -868,7 +868,7 @@ export namespace playablelocations_v3 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse

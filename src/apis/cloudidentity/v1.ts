@@ -906,7 +906,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1074,7 +1074,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1209,7 +1209,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1380,7 +1380,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1Device>(
@@ -1551,7 +1551,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
@@ -1693,7 +1693,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1930,7 +1930,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2072,7 +2072,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2217,7 +2217,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2353,7 +2353,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2515,7 +2515,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -2690,7 +2690,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
@@ -2865,7 +2865,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
@@ -3008,7 +3008,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3305,7 +3305,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ClientState>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3477,7 +3477,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
@@ -3638,7 +3638,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3853,7 +3853,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3988,7 +3988,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4127,7 +4127,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -4272,7 +4272,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
@@ -4414,7 +4414,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$LookupGroupNameResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LookupGroupNameResponse>(parameters);
@@ -4568,7 +4568,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4715,7 +4715,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchGroupsResponse>(parameters);
@@ -4960,7 +4960,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5096,7 +5096,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5234,7 +5234,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$Membership>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Membership>(parameters);
@@ -5385,7 +5385,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ListMembershipsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMembershipsResponse>(parameters);
@@ -5534,7 +5534,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$LookupMembershipNameResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LookupMembershipNameResponse>(
@@ -5688,7 +5688,7 @@ export namespace cloudidentity_v1 {
       if (callback) {
         createAPIRequest<Schema$ModifyMembershipRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyMembershipRolesResponse>(

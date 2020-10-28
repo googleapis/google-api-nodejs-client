@@ -1719,7 +1719,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -1903,7 +1903,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BuildBazelRemoteExecutionV2ActionResult>(
@@ -2118,7 +2118,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2298,7 +2298,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchReadBlobsResponse
@@ -2465,7 +2465,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2BatchUpdateBlobsResponse
@@ -2632,7 +2632,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$BuildBazelRemoteExecutionV2FindMissingBlobsResponse
@@ -2797,7 +2797,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2GetTreeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3014,7 +3014,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3191,7 +3191,7 @@ export namespace remotebuildexecution_v2 {
       if (callback) {
         createAPIRequest<Schema$BuildBazelRemoteExecutionV2ServerCapabilities>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

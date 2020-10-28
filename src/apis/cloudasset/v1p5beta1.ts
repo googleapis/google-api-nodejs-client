@@ -730,7 +730,7 @@ export namespace cloudasset_v1p5beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAssetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAssetsResponse>(parameters);

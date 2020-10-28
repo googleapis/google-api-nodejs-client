@@ -887,7 +887,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserProcessesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserProcessesResponse>(parameters);
@@ -1053,7 +1053,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListScriptProcessesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListScriptProcessesResponse>(parameters);
@@ -1293,7 +1293,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1432,7 +1432,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1570,7 +1570,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Content>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
@@ -1709,7 +1709,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Metrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metrics>(parameters);
@@ -1851,7 +1851,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Content>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Content>(parameters);
@@ -2055,7 +2055,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2186,7 +2186,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2325,7 +2325,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2471,7 +2471,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDeploymentsResponse>(parameters);
@@ -2616,7 +2616,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Deployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Deployment>(parameters);
@@ -2835,7 +2835,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -2974,7 +2974,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Version>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Version>(parameters);
@@ -3120,7 +3120,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVersionsResponse>(parameters);
@@ -3323,7 +3323,7 @@ export namespace script_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

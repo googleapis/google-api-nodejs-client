@@ -594,7 +594,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Organization>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Organization>(parameters);
@@ -741,7 +741,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -890,7 +890,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOrganizationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOrganizationsResponse>(parameters);
@@ -1035,7 +1035,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1186,7 +1186,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1334,7 +1334,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Organization>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Organization>(parameters);
@@ -1565,7 +1565,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1694,7 +1694,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1834,7 +1834,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -1980,7 +1980,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GetAncestryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetAncestryResponse>(parameters);
@@ -2126,7 +2126,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2269,7 +2269,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListProjectsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListProjectsResponse>(parameters);
@@ -2413,7 +2413,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2563,7 +2563,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2700,7 +2700,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2852,7 +2852,7 @@ export namespace cloudresourcemanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);

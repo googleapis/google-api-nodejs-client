@@ -1462,7 +1462,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -1588,7 +1588,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1724,7 +1724,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -1869,7 +1869,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListGuestPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGuestPoliciesResponse>(parameters);
@@ -2025,7 +2025,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$GuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GuestPolicy>(parameters);
@@ -2257,7 +2257,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
@@ -2383,7 +2383,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2521,7 +2521,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchDeployment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchDeployment>(parameters);
@@ -2666,7 +2666,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchDeploymentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchDeploymentsResponse>(
@@ -2877,7 +2877,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -3037,7 +3037,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -3179,7 +3179,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$PatchJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PatchJob>(parameters);
@@ -3325,7 +3325,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchJobsResponse>(parameters);
@@ -3531,7 +3531,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPatchJobInstanceDetailsResponse>(
@@ -3721,7 +3721,7 @@ export namespace osconfig_v1beta {
       if (callback) {
         createAPIRequest<Schema$EffectiveGuestPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EffectiveGuestPolicy>(parameters);

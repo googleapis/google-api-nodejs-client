@@ -583,7 +583,7 @@ export namespace discovery_v1 {
       if (callback) {
         createAPIRequest<Schema$RestDescription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RestDescription>(parameters);
@@ -715,7 +715,7 @@ export namespace discovery_v1 {
       if (callback) {
         createAPIRequest<Schema$DirectoryList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectoryList>(parameters);

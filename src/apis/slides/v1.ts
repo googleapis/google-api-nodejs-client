@@ -2745,7 +2745,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdatePresentationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdatePresentationResponse>(
@@ -2900,7 +2900,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$Presentation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
@@ -3045,7 +3045,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$Presentation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Presentation>(parameters);
@@ -3227,7 +3227,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$Page>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Page>(parameters);
@@ -3375,7 +3375,7 @@ export namespace slides_v1 {
       if (callback) {
         createAPIRequest<Schema$Thumbnail>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Thumbnail>(parameters);

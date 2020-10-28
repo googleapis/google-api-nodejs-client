@@ -4952,7 +4952,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateSpreadsheetResponse>(
@@ -5105,7 +5105,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
@@ -5254,7 +5254,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
@@ -5405,7 +5405,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$Spreadsheet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Spreadsheet>(parameters);
@@ -5603,7 +5603,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$DeveloperMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeveloperMetadata>(parameters);
@@ -5754,7 +5754,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchDeveloperMetadataResponse>(
@@ -5943,7 +5943,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$SheetProperties>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SheetProperties>(parameters);
@@ -6137,7 +6137,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$AppendValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppendValuesResponse>(parameters);
@@ -6288,7 +6288,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchClearValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchClearValuesResponse>(parameters);
@@ -6446,7 +6446,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchClearValuesByDataFilterResponse>(
@@ -6604,7 +6604,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchGetValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetValuesResponse>(parameters);
@@ -6759,7 +6759,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetValuesByDataFilterResponse>(
@@ -6920,7 +6920,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateValuesResponse>(parameters);
@@ -7086,7 +7086,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateValuesByDataFilterResponse>(
@@ -7236,7 +7236,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$ClearValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClearValuesResponse>(parameters);
@@ -7386,7 +7386,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$ValueRange>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ValueRange>(parameters);
@@ -7556,7 +7556,7 @@ export namespace sheets_v4 {
       if (callback) {
         createAPIRequest<Schema$UpdateValuesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UpdateValuesResponse>(parameters);

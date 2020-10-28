@@ -1595,7 +1595,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1735,7 +1735,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -1872,7 +1872,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceState>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceState>(parameters);
@@ -2009,7 +2009,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$DevicesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DevicesListResponse>(parameters);
@@ -2155,7 +2155,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceState>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceState>(parameters);
@@ -2310,7 +2310,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -2538,7 +2538,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2675,7 +2675,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Enterprise>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Enterprise>(parameters);
@@ -2829,7 +2829,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$AdministratorWebToken>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdministratorWebToken>(parameters);
@@ -2976,7 +2976,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Enterprise>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Enterprise>(parameters);
@@ -3109,7 +3109,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$SignupInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignupInfo>(parameters);
@@ -3242,7 +3242,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Enterprise>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Enterprise>(parameters);
@@ -3380,7 +3380,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
@@ -3513,7 +3513,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreLayout>(parameters);
@@ -3649,7 +3649,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$EnterprisesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EnterprisesListResponse>(parameters);
@@ -3783,7 +3783,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$NotificationSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$NotificationSet>(parameters);
@@ -3937,7 +3937,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$EnterprisesSendTestPushNotificationResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4083,7 +4083,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$EnterpriseAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EnterpriseAccount>(parameters);
@@ -4226,7 +4226,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreLayout>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreLayout>(parameters);
@@ -4351,7 +4351,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4614,7 +4614,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -4752,7 +4752,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Entitlement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Entitlement>(parameters);
@@ -4892,7 +4892,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$EntitlementsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntitlementsListResponse>(parameters);
@@ -5044,7 +5044,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Entitlement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Entitlement>(parameters);
@@ -5256,7 +5256,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$GroupLicense>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupLicense>(parameters);
@@ -5395,7 +5395,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$GroupLicensesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupLicensesListResponse>(parameters);
@@ -5563,7 +5563,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$GroupLicenseUsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupLicenseUsersListResponse>(
@@ -5717,7 +5717,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5859,7 +5859,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Install>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Install>(parameters);
@@ -6001,7 +6001,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$InstallsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InstallsListResponse>(parameters);
@@ -6154,7 +6154,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Install>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Install>(parameters);
@@ -6379,7 +6379,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6538,7 +6538,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
@@ -6697,7 +6697,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForDeviceListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6870,7 +6870,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
@@ -7090,7 +7090,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7240,7 +7240,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
@@ -7388,7 +7388,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsForUserListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7552,7 +7552,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ManagedConfiguration>(parameters);
@@ -7771,7 +7771,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ManagedConfigurationsSettingsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7927,7 +7927,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Permission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Permission>(parameters);
@@ -8082,7 +8082,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -8227,7 +8227,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsGenerateApprovalUrlResponse>(
@@ -8389,7 +8389,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$Product>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Product>(parameters);
@@ -8535,7 +8535,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$AppRestrictionsSchema>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppRestrictionsSchema>(parameters);
@@ -8676,7 +8676,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductPermissions>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductPermissions>(parameters);
@@ -8829,7 +8829,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductsListResponse>(parameters);
@@ -8957,7 +8957,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9200,7 +9200,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9350,7 +9350,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
@@ -9489,7 +9489,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKeysListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccountKeysListResponse>(
@@ -9660,7 +9660,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9801,7 +9801,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreCluster>(parameters);
@@ -9951,7 +9951,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreCluster>(parameters);
@@ -10093,7 +10093,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreLayoutClustersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreLayoutClustersListResponse>(
@@ -10248,7 +10248,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreCluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreCluster>(parameters);
@@ -10461,7 +10461,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10598,7 +10598,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StorePage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StorePage>(parameters);
@@ -10743,7 +10743,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StorePage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StorePage>(parameters);
@@ -10882,7 +10882,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StoreLayoutPagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StoreLayoutPagesListResponse>(
@@ -11032,7 +11032,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$StorePage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$StorePage>(parameters);
@@ -11224,7 +11224,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11364,7 +11364,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$AuthenticationToken>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AuthenticationToken>(parameters);
@@ -11503,7 +11503,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -11642,7 +11642,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
@@ -11791,7 +11791,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -11927,7 +11927,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$UsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UsersListResponse>(parameters);
@@ -12055,7 +12055,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12205,7 +12205,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$ProductSet>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProductSet>(parameters);
@@ -12358,7 +12358,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$User>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$User>(parameters);
@@ -12598,7 +12598,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12738,7 +12738,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$WebApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);
@@ -12890,7 +12890,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$WebApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);
@@ -13024,7 +13024,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$WebAppsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebAppsListResponse>(parameters);
@@ -13179,7 +13179,7 @@ export namespace androidenterprise_v1 {
       if (callback) {
         createAPIRequest<Schema$WebApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WebApp>(parameters);

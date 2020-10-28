@@ -595,7 +595,7 @@ export namespace datastore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -750,7 +750,7 @@ export namespace datastore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);

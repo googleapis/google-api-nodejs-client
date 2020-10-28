@@ -2703,7 +2703,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$GaData>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GaData>(parameters);
@@ -2939,7 +2939,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$McfData>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$McfData>(parameters);
@@ -3146,7 +3146,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RealtimeData>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RealtimeData>(parameters);
@@ -3393,7 +3393,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Accounts>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Accounts>(parameters);
@@ -3555,7 +3555,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$AccountSummaries>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountSummaries>(parameters);
@@ -3701,7 +3701,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3851,7 +3851,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -3997,7 +3997,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
@@ -4150,7 +4150,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -4362,7 +4362,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$HashClientIdResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HashClientIdResponse>(parameters);
@@ -4531,7 +4531,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDataSources>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDataSources>(parameters);
@@ -4709,7 +4709,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
@@ -4874,7 +4874,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
@@ -5024,7 +5024,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDimensions>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDimensions>(parameters);
@@ -5195,7 +5195,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
@@ -5366,7 +5366,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomDimension>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomDimension>(parameters);
@@ -5626,7 +5626,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
@@ -5797,7 +5797,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
@@ -5947,7 +5947,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomMetrics>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomMetrics>(parameters);
@@ -6124,7 +6124,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
@@ -6301,7 +6301,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$CustomMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomMetric>(parameters);
@@ -6548,7 +6548,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6724,7 +6724,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Experiment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
@@ -6927,7 +6927,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Experiment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
@@ -7081,7 +7081,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Experiments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Experiments>(parameters);
@@ -7292,7 +7292,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Experiment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
@@ -7503,7 +7503,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Experiment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Experiment>(parameters);
@@ -7788,7 +7788,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -7939,7 +7939,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8106,7 +8106,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8252,7 +8252,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filters>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filters>(parameters);
@@ -8423,7 +8423,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8594,7 +8594,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Filter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Filter>(parameters);
@@ -8843,7 +8843,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Goal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
@@ -9023,7 +9023,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Goal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
@@ -9177,7 +9177,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Goals>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Goals>(parameters);
@@ -9360,7 +9360,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Goal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
@@ -9543,7 +9543,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Goal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Goal>(parameters);
@@ -9794,7 +9794,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -9945,7 +9945,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
@@ -10104,7 +10104,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
@@ -10260,7 +10260,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLinks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProfileFilterLinks>(parameters);
@@ -10422,7 +10422,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
@@ -10584,7 +10584,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$ProfileFilterLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProfileFilterLink>(parameters);
@@ -10851,7 +10851,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -11016,7 +11016,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -11209,7 +11209,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -11360,7 +11360,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Profiles>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profiles>(parameters);
@@ -11556,7 +11556,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -11752,7 +11752,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -11998,7 +11998,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12154,7 +12154,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -12306,7 +12306,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
@@ -12465,7 +12465,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -12689,7 +12689,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -12845,7 +12845,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
@@ -13017,7 +13017,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
@@ -13175,7 +13175,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingAudiences>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingAudiences>(parameters);
@@ -13350,7 +13350,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
@@ -13525,7 +13525,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingAudience>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingAudience>(parameters);
@@ -13787,7 +13787,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Segments>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Segments>(parameters);
@@ -13949,7 +13949,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -14121,7 +14121,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
@@ -14306,7 +14306,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$UnsampledReport>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UnsampledReport>(parameters);
@@ -14460,7 +14460,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$UnsampledReports>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UnsampledReports>(parameters);
@@ -14691,7 +14691,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -14851,7 +14851,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Upload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Upload>(parameters);
@@ -15004,7 +15004,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Uploads>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Uploads>(parameters);
@@ -15165,7 +15165,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Upload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Upload>(parameters);
@@ -15425,7 +15425,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Webproperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
@@ -15601,7 +15601,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Webproperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
@@ -15749,7 +15749,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Webproperties>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Webproperties>(parameters);
@@ -15928,7 +15928,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Webproperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
@@ -16107,7 +16107,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Webproperty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Webproperty>(parameters);
@@ -16319,7 +16319,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -16472,7 +16472,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
@@ -16630,7 +16630,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
@@ -16782,7 +16782,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLinks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLinks>(parameters);
@@ -16947,7 +16947,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
@@ -17112,7 +17112,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityAdWordsLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityAdWordsLink>(parameters);
@@ -17355,7 +17355,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17508,7 +17508,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -17657,7 +17657,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLinks>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLinks>(parameters);
@@ -17813,7 +17813,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$EntityUserLink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EntityUserLink>(parameters);
@@ -18038,7 +18038,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$Columns>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Columns>(parameters);
@@ -18200,7 +18200,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$AccountTicket>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTicket>(parameters);
@@ -18348,7 +18348,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$AccountTreeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountTreeResponse>(parameters);
@@ -18529,7 +18529,7 @@ export namespace analytics_v3 {
       if (callback) {
         createAPIRequest<Schema$UserDeletionRequest>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserDeletionRequest>(parameters);

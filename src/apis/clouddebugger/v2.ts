@@ -771,7 +771,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$RegisterDebuggeeResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RegisterDebuggeeResponse>(parameters);
@@ -938,7 +938,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$ListActiveBreakpointsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListActiveBreakpointsResponse>(
@@ -1091,7 +1091,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UpdateActiveBreakpointResponse>(
@@ -1295,7 +1295,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$ListDebuggeesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDebuggeesResponse>(parameters);
@@ -1457,7 +1457,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1603,7 +1603,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$GetBreakpointResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetBreakpointResponse>(parameters);
@@ -1761,7 +1761,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBreakpointsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBreakpointsResponse>(parameters);
@@ -1932,7 +1932,7 @@ export namespace clouddebugger_v2 {
       if (callback) {
         createAPIRequest<Schema$SetBreakpointResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SetBreakpointResponse>(parameters);

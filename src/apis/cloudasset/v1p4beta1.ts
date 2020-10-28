@@ -656,7 +656,7 @@ export namespace cloudasset_v1p4beta1 {
       if (callback) {
         createAPIRequest<Schema$AnalyzeIamPolicyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnalyzeIamPolicyResponse>(parameters);
@@ -803,7 +803,7 @@ export namespace cloudasset_v1p4beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

@@ -326,7 +326,7 @@ export namespace cloudtrace_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$TraceSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TraceSink>(parameters);
@@ -455,7 +455,7 @@ export namespace cloudtrace_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -588,7 +588,7 @@ export namespace cloudtrace_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$TraceSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TraceSink>(parameters);
@@ -734,7 +734,7 @@ export namespace cloudtrace_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$ListTraceSinksResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTraceSinksResponse>(parameters);
@@ -881,7 +881,7 @@ export namespace cloudtrace_v2beta1 {
       if (callback) {
         createAPIRequest<Schema$TraceSink>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TraceSink>(parameters);

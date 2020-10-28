@@ -503,7 +503,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
@@ -657,7 +657,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$GroupItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GroupItem>(parameters);
@@ -802,7 +802,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$ListGroupItemsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupItemsResponse>(parameters);
@@ -980,7 +980,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$EmptyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EmptyResponse>(parameters);
@@ -1133,7 +1133,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -1283,7 +1283,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$ListGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListGroupsResponse>(parameters);
@@ -1436,7 +1436,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$Group>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Group>(parameters);
@@ -1661,7 +1661,7 @@ export namespace youtubeAnalytics_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);

@@ -2384,7 +2384,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -2530,7 +2530,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -2736,7 +2736,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2882,7 +2882,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3008,7 +3008,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3137,7 +3137,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3274,7 +3274,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3417,7 +3417,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDatasetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDatasetsResponse>(parameters);
@@ -3559,7 +3559,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3703,7 +3703,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3850,7 +3850,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4117,7 +4117,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
@@ -4246,7 +4246,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4397,7 +4397,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4545,7 +4545,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4677,7 +4677,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
@@ -4817,7 +4817,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4964,7 +4964,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5114,7 +5114,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAnnotationStoresResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAnnotationStoresResponse>(
@@ -5261,7 +5261,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AnnotationStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnnotationStore>(parameters);
@@ -5408,7 +5408,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5558,7 +5558,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -5855,7 +5855,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Annotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
@@ -5984,7 +5984,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6120,7 +6120,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Annotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
@@ -6272,7 +6272,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAnnotationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAnnotationsResponse>(parameters);
@@ -6425,7 +6425,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Annotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
@@ -6668,7 +6668,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CheckDataAccessResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckDataAccessResponse>(parameters);
@@ -6819,7 +6819,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ConsentStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConsentStore>(parameters);
@@ -6948,7 +6948,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7104,7 +7104,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$EvaluateUserConsentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EvaluateUserConsentsResponse>(
@@ -7238,7 +7238,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ConsentStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConsentStore>(parameters);
@@ -7378,7 +7378,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7526,7 +7526,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConsentStoresResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConsentStoresResponse>(parameters);
@@ -7673,7 +7673,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ConsentStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConsentStore>(parameters);
@@ -7821,7 +7821,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7968,7 +7968,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8118,7 +8118,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -8421,7 +8421,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AttributeDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AttributeDefinition>(parameters);
@@ -8550,7 +8550,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8689,7 +8689,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AttributeDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AttributeDefinition>(parameters);
@@ -8840,7 +8840,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListAttributeDefinitionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAttributeDefinitionsResponse>(
@@ -8998,7 +8998,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AttributeDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AttributeDefinition>(parameters);
@@ -9228,7 +9228,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ConsentArtifact>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConsentArtifact>(parameters);
@@ -9357,7 +9357,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9495,7 +9495,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ConsentArtifact>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConsentArtifact>(parameters);
@@ -9646,7 +9646,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConsentArtifactsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConsentArtifactsResponse>(
@@ -9854,7 +9854,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -10013,7 +10013,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -10142,7 +10142,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10274,7 +10274,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -10413,7 +10413,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -10562,7 +10562,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConsentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConsentsResponse>(parameters);
@@ -10713,7 +10713,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListConsentRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConsentRevisionsResponse>(
@@ -10874,7 +10874,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -11025,7 +11025,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -11176,7 +11176,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Consent>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Consent>(parameters);
@@ -11453,7 +11453,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ArchiveUserDataMappingResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ArchiveUserDataMappingResponse>(
@@ -11608,7 +11608,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$UserDataMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserDataMapping>(parameters);
@@ -11737,7 +11737,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -11873,7 +11873,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$UserDataMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserDataMapping>(parameters);
@@ -12024,7 +12024,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListUserDataMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserDataMappingsResponse>(
@@ -12179,7 +12179,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$UserDataMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserDataMapping>(parameters);
@@ -12413,7 +12413,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$DicomStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DicomStore>(parameters);
@@ -12562,7 +12562,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -12689,7 +12689,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -12835,7 +12835,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -12967,7 +12967,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$DicomStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DicomStore>(parameters);
@@ -13107,7 +13107,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -13252,7 +13252,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -13398,7 +13398,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDicomStoresResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDicomStoresResponse>(parameters);
@@ -13545,7 +13545,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$DicomStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DicomStore>(parameters);
@@ -13683,7 +13683,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -13821,7 +13821,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -13959,7 +13959,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -14106,7 +14106,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -14255,7 +14255,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -14405,7 +14405,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -14742,7 +14742,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -14880,7 +14880,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15018,7 +15018,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15156,7 +15156,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15294,7 +15294,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15443,7 +15443,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15666,7 +15666,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -15804,7 +15804,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -15942,7 +15942,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -16080,7 +16080,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -16270,7 +16270,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -16408,7 +16408,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -16547,7 +16547,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -16686,7 +16686,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -16877,7 +16877,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -17016,7 +17016,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -17209,7 +17209,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$FhirStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FhirStore>(parameters);
@@ -17358,7 +17358,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -17485,7 +17485,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -17631,7 +17631,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -17768,7 +17768,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$FhirStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FhirStore>(parameters);
@@ -17908,7 +17908,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -18054,7 +18054,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -18200,7 +18200,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListFhirStoresResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFhirStoresResponse>(parameters);
@@ -18357,7 +18357,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$FhirStore>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FhirStore>(parameters);
@@ -18504,7 +18504,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -18654,7 +18654,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -18934,7 +18934,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19090,7 +19090,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19235,7 +19235,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19370,7 +19370,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -19520,7 +19520,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19670,7 +19670,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19820,7 +19820,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -19953,7 +19953,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20100,7 +20100,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20248,7 +20248,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20383,7 +20383,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20527,7 +20527,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20681,7 +20681,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20814,7 +20814,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -20946,7 +20946,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -21091,7 +21091,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -21235,7 +21235,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -21368,7 +21368,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$HttpBody>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$HttpBody>(parameters);
@@ -21786,7 +21786,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
@@ -21913,7 +21913,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -22060,7 +22060,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22194,7 +22194,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
@@ -22334,7 +22334,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -22479,7 +22479,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -22625,7 +22625,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListHl7V2StoresResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListHl7V2StoresResponse>(parameters);
@@ -22776,7 +22776,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Hl7V2Store>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Hl7V2Store>(parameters);
@@ -22923,7 +22923,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -23073,7 +23073,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -23357,7 +23357,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -23486,7 +23486,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -23629,7 +23629,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -23778,7 +23778,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$IngestMessageResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IngestMessageResponse>(parameters);
@@ -23933,7 +23933,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListMessagesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListMessagesResponse>(parameters);
@@ -24094,7 +24094,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Message>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Message>(parameters);
@@ -24324,7 +24324,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -24457,7 +24457,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -24603,7 +24603,7 @@ export namespace healthcare_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);

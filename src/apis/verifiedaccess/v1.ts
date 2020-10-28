@@ -323,7 +323,7 @@ export namespace verifiedaccess_v1 {
       if (callback) {
         createAPIRequest<Schema$Challenge>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Challenge>(parameters);
@@ -470,7 +470,7 @@ export namespace verifiedaccess_v1 {
       if (callback) {
         createAPIRequest<Schema$VerifyChallengeResponseResult>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VerifyChallengeResponseResult>(

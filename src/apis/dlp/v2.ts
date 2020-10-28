@@ -3298,7 +3298,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3488,7 +3488,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListInfoTypesResponse>(
@@ -3698,7 +3698,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -3830,7 +3830,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -3977,7 +3977,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4144,7 +4144,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -4302,7 +4302,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -4527,7 +4527,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4658,7 +4658,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -4798,7 +4798,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -4965,7 +4965,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5117,7 +5117,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -5367,7 +5367,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5499,7 +5499,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -5646,7 +5646,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -5813,7 +5813,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -5971,7 +5971,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -6196,7 +6196,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6328,7 +6328,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -6469,7 +6469,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -6636,7 +6636,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6789,7 +6789,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -7011,7 +7011,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7143,7 +7143,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -7281,7 +7281,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7448,7 +7448,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7598,7 +7598,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7820,7 +7820,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -7951,7 +7951,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -8088,7 +8088,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -8255,7 +8255,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8404,7 +8404,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -8671,7 +8671,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8829,7 +8829,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -8998,7 +8998,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -9204,7 +9204,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -9335,7 +9335,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -9481,7 +9481,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -9648,7 +9648,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -9805,7 +9805,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -10012,7 +10012,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -10171,7 +10171,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -10300,7 +10300,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -10442,7 +10442,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -10605,7 +10605,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -10843,7 +10843,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -11019,7 +11019,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -11150,7 +11150,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -11290,7 +11290,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -11457,7 +11457,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -11609,7 +11609,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -11834,7 +11834,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -11992,7 +11992,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -12123,7 +12123,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -12267,7 +12267,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -12431,7 +12431,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -12587,7 +12587,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -12870,7 +12870,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13028,7 +13028,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13197,7 +13197,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ReidentifyContentResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13403,7 +13403,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -13535,7 +13535,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -13682,7 +13682,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -13849,7 +13849,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GooglePrivacyDlpV2ListDeidentifyTemplatesResponse
@@ -14007,7 +14007,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DeidentifyTemplate>(
@@ -14214,7 +14214,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -14373,7 +14373,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -14502,7 +14502,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -14638,7 +14638,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -14780,7 +14780,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -14931,7 +14931,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
@@ -15096,7 +15096,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2ListDlpJobsResponse>(
@@ -15358,7 +15358,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2RedactImageResponse>(
@@ -15534,7 +15534,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -15666,7 +15666,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -15807,7 +15807,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -15974,7 +15974,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListInspectTemplatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -16127,7 +16127,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2InspectTemplate>(
@@ -16352,7 +16352,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2DlpJob>(parameters);
@@ -16510,7 +16510,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -16641,7 +16641,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -16785,7 +16785,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -16938,7 +16938,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2HybridInspectResponse>(
@@ -17102,7 +17102,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListJobTriggersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -17258,7 +17258,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2JobTrigger>(
@@ -17508,7 +17508,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17640,7 +17640,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -17778,7 +17778,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -17945,7 +17945,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -18095,7 +18095,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -18317,7 +18317,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -18448,7 +18448,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -18585,7 +18585,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
@@ -18752,7 +18752,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2ListStoredInfoTypesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -18901,7 +18901,7 @@ export namespace dlp_v2 {
       if (callback) {
         createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GooglePrivacyDlpV2StoredInfoType>(

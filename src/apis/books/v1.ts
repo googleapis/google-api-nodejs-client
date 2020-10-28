@@ -1367,7 +1367,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bookshelf>(parameters);
@@ -1501,7 +1501,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bookshelves>(parameters);
@@ -1680,7 +1680,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -1865,7 +1865,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
@@ -1994,7 +1994,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2143,7 +2143,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksCloudloadingResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BooksCloudloadingResource>(parameters);
@@ -2316,7 +2316,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Metadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
@@ -2463,7 +2463,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$FamilyInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FamilyInfo>(parameters);
@@ -2598,7 +2598,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2733,7 +2733,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2934,7 +2934,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Layersummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Layersummary>(parameters);
@@ -3077,7 +3077,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Layersummaries>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Layersummaries>(parameters);
@@ -3301,7 +3301,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$DictionaryAnnotationdata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DictionaryAnnotationdata>(parameters);
@@ -3470,7 +3470,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Annotationsdata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotationsdata>(parameters);
@@ -3732,7 +3732,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumeannotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumeannotation>(parameters);
@@ -3911,7 +3911,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumeannotations>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumeannotations>(parameters);
@@ -4138,7 +4138,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Usersettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Usersettings>(parameters);
@@ -4281,7 +4281,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$DownloadAccesses>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DownloadAccesses>(parameters);
@@ -4434,7 +4434,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$RequestAccessData>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RequestAccessData>(parameters);
@@ -4588,7 +4588,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -4730,7 +4730,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Usersettings>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Usersettings>(parameters);
@@ -4979,7 +4979,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5160,7 +5160,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Annotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
@@ -5321,7 +5321,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Annotations>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotations>(parameters);
@@ -5459,7 +5459,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$AnnotationsSummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AnnotationsSummary>(parameters);
@@ -5633,7 +5633,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Annotation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Annotation>(parameters);
@@ -5885,7 +5885,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6016,7 +6016,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6159,7 +6159,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Bookshelf>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bookshelf>(parameters);
@@ -6291,7 +6291,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Bookshelves>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Bookshelves>(parameters);
@@ -6428,7 +6428,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6565,7 +6565,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6812,7 +6812,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -6997,7 +6997,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$ReadingPosition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReadingPosition>(parameters);
@@ -7144,7 +7144,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7349,7 +7349,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Notification>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Notification>(parameters);
@@ -7503,7 +7503,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Category>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Category>(parameters);
@@ -7648,7 +7648,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volume2>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volume2>(parameters);
@@ -7828,7 +7828,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Discoveryclusters>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Discoveryclusters>(parameters);
@@ -8001,7 +8001,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8148,7 +8148,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -8294,7 +8294,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Offers>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Offers>(parameters);
@@ -8527,7 +8527,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Series>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Series>(parameters);
@@ -8680,7 +8680,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Seriesmembership>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Seriesmembership>(parameters);
@@ -8869,7 +8869,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volume>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volume>(parameters);
@@ -9037,7 +9037,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -9278,7 +9278,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -9460,7 +9460,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -9638,7 +9638,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);
@@ -9785,7 +9785,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BooksVolumesRecommendedRateResponse>(
@@ -9977,7 +9977,7 @@ export namespace books_v1 {
       if (callback) {
         createAPIRequest<Schema$Volumes>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Volumes>(parameters);

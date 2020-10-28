@@ -1722,7 +1722,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1897,7 +1897,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$V1Beta1ConsumerQuotaMetric>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$V1Beta1ConsumerQuotaMetric>(parameters);
@@ -2047,7 +2047,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2204,7 +2204,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$V1Beta1ListConsumerQuotaMetricsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$V1Beta1ListConsumerQuotaMetricsResponse>(
@@ -2404,7 +2404,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$V1Beta1ConsumerQuotaLimit>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$V1Beta1ConsumerQuotaLimit>(parameters);
@@ -2579,7 +2579,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2718,7 +2718,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2873,7 +2873,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$V1Beta1ListProducerOverridesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$V1Beta1ListProducerOverridesResponse>(
@@ -3031,7 +3031,7 @@ export namespace serviceconsumermanagement_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

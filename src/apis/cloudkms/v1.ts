@@ -945,7 +945,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -1094,7 +1094,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -1284,7 +1284,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$KeyRing>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$KeyRing>(parameters);
@@ -1416,7 +1416,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$KeyRing>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$KeyRing>(parameters);
@@ -1556,7 +1556,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1709,7 +1709,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListKeyRingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListKeyRingsResponse>(parameters);
@@ -1856,7 +1856,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2006,7 +2006,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2262,7 +2262,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
@@ -2410,7 +2410,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$DecryptResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DecryptResponse>(parameters);
@@ -2561,7 +2561,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$EncryptResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EncryptResponse>(parameters);
@@ -2700,7 +2700,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
@@ -2843,7 +2843,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2999,7 +2999,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeysResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCryptoKeysResponse>(parameters);
@@ -3157,7 +3157,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
@@ -3307,7 +3307,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3460,7 +3460,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3615,7 +3615,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKey>(parameters);
@@ -3920,7 +3920,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$AsymmetricDecryptResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AsymmetricDecryptResponse>(parameters);
@@ -4077,7 +4077,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$AsymmetricSignResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AsymmetricSignResponse>(parameters);
@@ -4247,7 +4247,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -4403,7 +4403,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -4549,7 +4549,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -4689,7 +4689,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$PublicKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublicKey>(parameters);
@@ -4849,7 +4849,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -5010,7 +5010,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCryptoKeyVersionsResponse>(
@@ -5182,7 +5182,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -5338,7 +5338,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$CryptoKeyVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CryptoKeyVersion>(parameters);
@@ -5639,7 +5639,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ImportJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImportJob>(parameters);
@@ -5780,7 +5780,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ImportJob>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImportJob>(parameters);
@@ -5923,7 +5923,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6076,7 +6076,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$ListImportJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListImportJobsResponse>(parameters);
@@ -6226,7 +6226,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6379,7 +6379,7 @@ export namespace cloudkms_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

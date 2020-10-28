@@ -769,7 +769,7 @@ export namespace pagespeedonline_v5 {
       if (callback) {
         createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PagespeedApiPagespeedResponseV5>(

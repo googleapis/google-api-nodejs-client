@@ -909,7 +909,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$LintPolicyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LintPolicyResponse>(parameters);
@@ -1052,7 +1052,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryAuditableServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryAuditableServicesResponse>(
@@ -1232,7 +1232,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -1369,7 +1369,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -1503,7 +1503,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -1650,7 +1650,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
@@ -1802,7 +1802,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -1948,7 +1948,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -2183,7 +2183,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryTestablePermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryTestablePermissionsResponse>(
@@ -2360,7 +2360,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -2497,7 +2497,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -2631,7 +2631,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -2778,7 +2778,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
@@ -2930,7 +2930,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -3076,7 +3076,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -3316,7 +3316,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
@@ -3442,7 +3442,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3578,7 +3578,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3711,7 +3711,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3847,7 +3847,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
@@ -3984,7 +3984,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4129,7 +4129,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServiceAccountsResponse>(parameters);
@@ -4275,7 +4275,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
@@ -4419,7 +4419,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -4560,7 +4560,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
@@ -4701,7 +4701,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);
@@ -4848,7 +4848,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -4993,7 +4993,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$UndeleteServiceAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UndeleteServiceAccountResponse>(
@@ -5148,7 +5148,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccount>(parameters);
@@ -5465,7 +5465,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
@@ -5591,7 +5591,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5733,7 +5733,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
@@ -5871,7 +5871,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServiceAccountKeysResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServiceAccountKeysResponse>(
@@ -6024,7 +6024,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ServiceAccountKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServiceAccountKey>(parameters);
@@ -6218,7 +6218,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$Role>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Role>(parameters);
@@ -6361,7 +6361,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRolesResponse>(parameters);
@@ -6508,7 +6508,7 @@ export namespace iam_v1 {
       if (callback) {
         createAPIRequest<Schema$QueryGrantableRolesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryGrantableRolesResponse>(parameters);

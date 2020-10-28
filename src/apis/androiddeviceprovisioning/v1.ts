@@ -951,7 +951,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListCustomersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomerListCustomersResponse>(
@@ -1130,7 +1130,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -1257,7 +1257,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1395,7 +1395,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -1534,7 +1534,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomerListConfigurationsResponse>(
@@ -1695,7 +1695,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -1894,7 +1894,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2028,7 +2028,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -2174,7 +2174,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListDevicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomerListDevicesResponse>(parameters);
@@ -2314,7 +2314,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2453,7 +2453,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2653,7 +2653,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$CustomerListDpcsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomerListDpcsResponse>(parameters);
@@ -2800,7 +2800,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2973,7 +2973,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Company>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
@@ -3118,7 +3118,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomersResponse>(parameters);
@@ -3301,7 +3301,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$ClaimDeviceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ClaimDeviceResponse>(parameters);
@@ -3445,7 +3445,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -3604,7 +3604,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindDevicesByDeviceIdentifierResponse>(
@@ -3758,7 +3758,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$FindDevicesByOwnerResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindDevicesByOwnerResponse>(parameters);
@@ -3892,7 +3892,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Device>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Device>(parameters);
@@ -4036,7 +4036,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$DeviceMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeviceMetadata>(parameters);
@@ -4178,7 +4178,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4322,7 +4322,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4468,7 +4468,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4728,7 +4728,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVendorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVendorsResponse>(parameters);
@@ -4898,7 +4898,7 @@ export namespace androiddeviceprovisioning_v1 {
       if (callback) {
         createAPIRequest<Schema$ListVendorCustomersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListVendorCustomersResponse>(parameters);

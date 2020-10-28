@@ -587,7 +587,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -734,7 +734,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -914,7 +914,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SecretVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
@@ -1064,7 +1064,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Secret>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
@@ -1191,7 +1191,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1323,7 +1323,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Secret>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
@@ -1461,7 +1461,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -1604,7 +1604,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListSecretsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSecretsResponse>(parameters);
@@ -1751,7 +1751,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Secret>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Secret>(parameters);
@@ -1896,7 +1896,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2044,7 +2044,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2300,7 +2300,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$AccessSecretVersionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessSecretVersionResponse>(parameters);
@@ -2442,7 +2442,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SecretVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
@@ -2584,7 +2584,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SecretVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
@@ -2726,7 +2726,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SecretVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
@@ -2858,7 +2858,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$SecretVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SecretVersion>(parameters);
@@ -3005,7 +3005,7 @@ export namespace secretmanager_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListSecretVersionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSecretVersionsResponse>(parameters);

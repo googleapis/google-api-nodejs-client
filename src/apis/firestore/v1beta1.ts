@@ -1392,7 +1392,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1547,7 +1547,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1736,7 +1736,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetDocumentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetDocumentsResponse>(parameters);
@@ -1883,7 +1883,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BatchWriteResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchWriteResponse>(parameters);
@@ -2032,7 +2032,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
@@ -2177,7 +2177,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommitResponse>(parameters);
@@ -2335,7 +2335,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
@@ -2470,7 +2470,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2613,7 +2613,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
@@ -2778,7 +2778,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListDocumentsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDocumentsResponse>(parameters);
@@ -2931,7 +2931,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCollectionIdsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCollectionIdsResponse>(parameters);
@@ -3080,7 +3080,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListenResponse>(parameters);
@@ -3235,7 +3235,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$PartitionQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PartitionQueryResponse>(parameters);
@@ -3393,7 +3393,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Document>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Document>(parameters);
@@ -3534,7 +3534,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3684,7 +3684,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunQueryResponse>(parameters);
@@ -3833,7 +3833,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$WriteResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WriteResponse>(parameters);
@@ -4243,7 +4243,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -4372,7 +4372,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4513,7 +4513,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1Index>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleFirestoreAdminV1beta1Index>(
@@ -4679,7 +4679,7 @@ export namespace firestore_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleFirestoreAdminV1beta1ListIndexesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

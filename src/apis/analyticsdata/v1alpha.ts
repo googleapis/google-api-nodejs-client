@@ -1066,7 +1066,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$Metadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Metadata>(parameters);
@@ -1229,7 +1229,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$BatchRunPivotReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchRunPivotReportsResponse>(
@@ -1379,7 +1379,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$BatchRunReportsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchRunReportsResponse>(parameters);
@@ -1516,7 +1516,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$UniversalMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UniversalMetadata>(parameters);
@@ -1679,7 +1679,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$RunPivotReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunPivotReportResponse>(parameters);
@@ -1840,7 +1840,7 @@ export namespace analyticsdata_v1alpha {
       if (callback) {
         createAPIRequest<Schema$RunReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunReportResponse>(parameters);

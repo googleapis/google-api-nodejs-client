@@ -442,7 +442,7 @@ export namespace billingbudgets_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
@@ -577,7 +577,7 @@ export namespace billingbudgets_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -722,7 +722,7 @@ export namespace billingbudgets_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
@@ -887,7 +887,7 @@ export namespace billingbudgets_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1052,7 +1052,7 @@ export namespace billingbudgets_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1Budget>(

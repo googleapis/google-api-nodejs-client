@@ -1152,7 +1152,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1286,7 +1286,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1426,7 +1426,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1620,7 +1620,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOperationsResponse>(parameters);
@@ -1821,7 +1821,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1955,7 +1955,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2096,7 +2096,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Instance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
@@ -2247,7 +2247,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2397,7 +2397,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListInstancesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListInstancesResponse>(parameters);
@@ -2555,7 +2555,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2707,7 +2707,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2862,7 +2862,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3015,7 +3015,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Instance>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
@@ -3286,7 +3286,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$AppProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppProfile>(parameters);
@@ -3423,7 +3423,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3564,7 +3564,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$AppProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AppProfile>(parameters);
@@ -3716,7 +3716,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListAppProfilesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAppProfilesResponse>(parameters);
@@ -3875,7 +3875,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4119,7 +4119,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4253,7 +4253,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4394,7 +4394,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Cluster>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Cluster>(parameters);
@@ -4544,7 +4544,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListClustersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListClustersResponse>(parameters);
@@ -4697,7 +4697,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -4918,7 +4918,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5052,7 +5052,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5194,7 +5194,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Backup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
@@ -5347,7 +5347,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5501,7 +5501,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListBackupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListBackupsResponse>(parameters);
@@ -5661,7 +5661,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Backup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Backup>(parameters);
@@ -5815,7 +5815,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5972,7 +5972,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -6239,7 +6239,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$CheckConsistencyResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CheckConsistencyResponse>(parameters);
@@ -6392,7 +6392,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -6525,7 +6525,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6671,7 +6671,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6825,7 +6825,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateConsistencyTokenResponse>(
@@ -6970,7 +6970,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -7120,7 +7120,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7272,7 +7272,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListTablesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTablesResponse>(parameters);
@@ -7425,7 +7425,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -7577,7 +7577,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -7728,7 +7728,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7882,7 +7882,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -8176,7 +8176,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -8331,7 +8331,7 @@ export namespace bigtableadmin_v2 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);

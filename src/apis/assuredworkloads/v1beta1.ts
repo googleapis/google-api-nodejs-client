@@ -636,7 +636,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -791,7 +791,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
@@ -993,7 +993,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1127,7 +1127,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleProtobufEmpty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
@@ -1289,7 +1289,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -1458,7 +1458,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudAssuredworkloadsV1beta1ListWorkloadsResponse
@@ -1644,7 +1644,7 @@ export namespace assuredworkloads_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudAssuredworkloadsV1beta1Workload>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<

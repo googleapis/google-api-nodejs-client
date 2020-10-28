@@ -928,7 +928,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -1073,7 +1073,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$WatchCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$WatchCreativesResponse>(parameters);
@@ -1259,7 +1259,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$GetRemarketingTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetRemarketingTagResponse>(parameters);
@@ -1453,7 +1453,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1604,7 +1604,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -1754,7 +1754,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListCreativesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCreativesResponse>(parameters);
@@ -1933,7 +1933,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -2144,7 +2144,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2295,7 +2295,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2429,7 +2429,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -2568,7 +2568,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$GetRemarketingTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetRemarketingTagResponse>(parameters);
@@ -2712,7 +2712,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$ListUserListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListUserListsResponse>(parameters);
@@ -2853,7 +2853,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);
@@ -3001,7 +3001,7 @@ export namespace realtimebidding_v1 {
       if (callback) {
         createAPIRequest<Schema$UserList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserList>(parameters);

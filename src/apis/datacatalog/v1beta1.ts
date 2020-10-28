@@ -1034,7 +1034,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1SearchCatalogResponse
@@ -1201,7 +1201,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
@@ -1419,7 +1419,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
@@ -1550,7 +1550,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1697,7 +1697,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
@@ -1842,7 +1842,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2005,7 +2005,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListEntryGroupsResponse
@@ -2165,7 +2165,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1EntryGroup>(
@@ -2310,7 +2310,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -2460,7 +2460,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -2752,7 +2752,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
@@ -2881,7 +2881,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3029,7 +3029,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
@@ -3176,7 +3176,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -3339,7 +3339,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListEntriesResponse
@@ -3512,7 +3512,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Entry>(
@@ -3664,7 +3664,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -3919,7 +3919,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
@@ -4050,7 +4050,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4212,7 +4212,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -4372,7 +4372,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
@@ -4588,7 +4588,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
@@ -4717,7 +4717,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -4877,7 +4877,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1ListTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5035,7 +5035,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Tag>(
@@ -5259,7 +5259,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5391,7 +5391,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -5535,7 +5535,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5680,7 +5680,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -5838,7 +5838,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -5983,7 +5983,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -6133,7 +6133,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -6404,7 +6404,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6536,7 +6536,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -6706,7 +6706,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -6874,7 +6874,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7107,7 +7107,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1TagTemplateField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -7292,7 +7292,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
@@ -7420,7 +7420,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -7582,7 +7582,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ExportTaxonomiesResponse
@@ -7727,7 +7727,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
@@ -7872,7 +7872,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8037,7 +8037,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ImportTaxonomiesResponse
@@ -8201,7 +8201,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListTaxonomiesResponse
@@ -8361,7 +8361,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1Taxonomy>(
@@ -8506,7 +8506,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8656,7 +8656,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -8948,7 +8948,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
@@ -9079,7 +9079,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -9225,7 +9225,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
@@ -9372,7 +9372,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -9535,7 +9535,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudDatacatalogV1beta1ListPolicyTagsResponse
@@ -9698,7 +9698,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudDatacatalogV1beta1PolicyTag>(
@@ -9845,7 +9845,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -9995,7 +9995,7 @@ export namespace datacatalog_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

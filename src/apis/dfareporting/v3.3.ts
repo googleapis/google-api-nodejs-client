@@ -6577,7 +6577,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountActiveAdSummary>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountActiveAdSummary>(parameters);
@@ -6737,7 +6737,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionGroup>(parameters);
@@ -6876,7 +6876,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionGroupsListResponse>(
@@ -7046,7 +7046,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountPermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermission>(parameters);
@@ -7185,7 +7185,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountPermissionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountPermissionsListResponse>(
@@ -7364,7 +7364,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -7521,7 +7521,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsListResponse>(parameters);
@@ -7698,7 +7698,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -7872,7 +7872,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -8102,7 +8102,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -8275,7 +8275,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -8442,7 +8442,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfilesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfilesListResponse>(
@@ -8620,7 +8620,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -8793,7 +8793,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AccountUserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountUserProfile>(parameters);
@@ -9065,7 +9065,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -9279,7 +9279,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -9479,7 +9479,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdsListResponse>(parameters);
@@ -9696,7 +9696,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -9910,7 +9910,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Ad>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Ad>(parameters);
@@ -10190,7 +10190,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -10327,7 +10327,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -10473,7 +10473,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -10631,7 +10631,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroupsListResponse>(
@@ -10782,7 +10782,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -10928,7 +10928,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserGroup>(parameters);
@@ -11169,7 +11169,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -11321,7 +11321,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -11491,7 +11491,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertiserLandingPagesListResponse>(
@@ -11648,7 +11648,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -11800,7 +11800,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$LandingPage>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LandingPage>(parameters);
@@ -12053,7 +12053,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12221,7 +12221,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12394,7 +12394,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$AdvertisersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AdvertisersListResponse>(parameters);
@@ -12565,7 +12565,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12733,7 +12733,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Advertiser>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Advertiser>(parameters);
@@ -12980,7 +12980,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$BrowsersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BrowsersListResponse>(parameters);
@@ -13146,7 +13146,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CampaignCreativeAssociation>(parameters);
@@ -13304,7 +13304,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CampaignCreativeAssociationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -13513,7 +13513,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -13705,7 +13705,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -13880,7 +13880,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CampaignsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CampaignsListResponse>(parameters);
@@ -14075,7 +14075,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -14267,7 +14267,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Campaign>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Campaign>(parameters);
@@ -14526,7 +14526,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ChangeLog>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangeLog>(parameters);
@@ -14692,7 +14692,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ChangeLogsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ChangeLogsListResponse>(parameters);
@@ -14901,7 +14901,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CitiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CitiesListResponse>(parameters);
@@ -15067,7 +15067,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ConnectionType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConnectionType>(parameters);
@@ -15206,7 +15206,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ConnectionTypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConnectionTypesListResponse>(parameters);
@@ -15359,7 +15359,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -15496,7 +15496,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -15642,7 +15642,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -15800,7 +15800,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ContentCategoriesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategoriesListResponse>(
@@ -15951,7 +15951,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -16097,7 +16097,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ContentCategory>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContentCategory>(parameters);
@@ -16349,7 +16349,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchInsertResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionsBatchInsertResponse>(
@@ -16502,7 +16502,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ConversionsBatchUpdateResponse>(
@@ -16673,7 +16673,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Country>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Country>(parameters);
@@ -16808,7 +16808,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CountriesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CountriesListResponse>(parameters);
@@ -17003,7 +17003,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeAssetMetadata>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeAssetMetadata>(parameters);
@@ -17169,7 +17169,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -17309,7 +17309,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -17461,7 +17461,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -17622,7 +17622,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldsListResponse>(parameters);
@@ -17777,7 +17777,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -17929,7 +17929,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeField>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeField>(parameters);
@@ -18164,7 +18164,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -18306,7 +18306,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -18456,7 +18456,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -18617,7 +18617,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValuesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValuesListResponse>(
@@ -18772,7 +18772,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -18922,7 +18922,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeFieldValue>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeFieldValue>(parameters);
@@ -19188,7 +19188,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -19342,7 +19342,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -19506,7 +19506,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroupsListResponse>(parameters);
@@ -19663,7 +19663,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -19817,7 +19817,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativeGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativeGroup>(parameters);
@@ -20111,7 +20111,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -20375,7 +20375,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -20559,7 +20559,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CreativesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativesListResponse>(parameters);
@@ -20826,7 +20826,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -21090,7 +21090,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -21371,7 +21371,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DimensionValueList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DimensionValueList>(parameters);
@@ -21541,7 +21541,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySite>(parameters);
@@ -21697,7 +21697,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DirectorySite>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySite>(parameters);
@@ -21870,7 +21870,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DirectorySitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectorySitesListResponse>(parameters);
@@ -22085,7 +22085,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -22234,7 +22234,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKey>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DynamicTargetingKey>(parameters);
@@ -22385,7 +22385,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DynamicTargetingKeysListResponse>(
@@ -22575,7 +22575,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -22725,7 +22725,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -22897,7 +22897,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23062,7 +23062,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$EventTagsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTagsListResponse>(parameters);
@@ -23237,7 +23237,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23409,7 +23409,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$EventTag>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$EventTag>(parameters);
@@ -23661,7 +23661,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -23808,7 +23808,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
@@ -23979,7 +23979,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -24128,7 +24128,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesGenerateTagResponse>(
@@ -24294,7 +24294,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -24491,7 +24491,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -24670,7 +24670,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivitiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivitiesListResponse>(
@@ -24872,7 +24872,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -25069,7 +25069,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivity>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivity>(parameters);
@@ -25359,7 +25359,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -25528,7 +25528,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -25701,7 +25701,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroupsListResponse>(
@@ -25873,7 +25873,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26042,7 +26042,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightActivityGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightActivityGroup>(parameters);
@@ -26300,7 +26300,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -26448,7 +26448,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfigurationsListResponse>(
@@ -26632,7 +26632,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -26813,7 +26813,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FloodlightConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FloodlightConfiguration>(parameters);
@@ -27027,7 +27027,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$InventoryItem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventoryItem>(parameters);
@@ -27197,7 +27197,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$InventoryItemsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$InventoryItemsListResponse>(parameters);
@@ -27402,7 +27402,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LanguagesListResponse>(parameters);
@@ -27549,7 +27549,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$MetrosListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MetrosListResponse>(parameters);
@@ -27700,7 +27700,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$MobileApp>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileApp>(parameters);
@@ -27851,7 +27851,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$MobileAppsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileAppsListResponse>(parameters);
@@ -28033,7 +28033,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$MobileCarrier>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileCarrier>(parameters);
@@ -28172,7 +28172,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$MobileCarriersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$MobileCarriersListResponse>(parameters);
@@ -28336,7 +28336,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystem>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystem>(parameters);
@@ -28475,7 +28475,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemsListResponse>(
@@ -28647,7 +28647,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersion>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemVersion>(parameters);
@@ -28786,7 +28786,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OperatingSystemVersionsListResponse>(
@@ -28967,7 +28967,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OrderDocument>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderDocument>(parameters);
@@ -29137,7 +29137,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OrderDocumentsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrderDocumentsListResponse>(parameters);
@@ -29362,7 +29362,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Order>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Order>(parameters);
@@ -29521,7 +29521,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$OrdersListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$OrdersListResponse>(parameters);
@@ -29740,7 +29740,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -29930,7 +29930,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30127,7 +30127,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroupsListResponse>(parameters);
@@ -30320,7 +30320,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30510,7 +30510,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementGroup>(parameters);
@@ -30800,7 +30800,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementsGenerateTagsResponse>(
@@ -30975,7 +30975,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -31194,7 +31194,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -31396,7 +31396,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementsListResponse>(parameters);
@@ -31617,7 +31617,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -31836,7 +31836,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Placement>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Placement>(parameters);
@@ -32133,7 +32133,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -32273,7 +32273,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -32422,7 +32422,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -32580,7 +32580,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategiesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategiesListResponse>(
@@ -32734,7 +32734,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -32883,7 +32883,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlacementStrategy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlacementStrategy>(parameters);
@@ -33120,7 +33120,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlatformType>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlatformType>(parameters);
@@ -33259,7 +33259,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PlatformTypesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PlatformTypesListResponse>(parameters);
@@ -33422,7 +33422,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PostalCode>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostalCode>(parameters);
@@ -33558,7 +33558,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$PostalCodesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PostalCodesListResponse>(parameters);
@@ -33736,7 +33736,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Project>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Project>(parameters);
@@ -33893,7 +33893,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ProjectsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectsListResponse>(parameters);
@@ -34078,7 +34078,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RegionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RegionsListResponse>(parameters);
@@ -34238,7 +34238,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -34402,7 +34402,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -34566,7 +34566,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListsListResponse>(
@@ -34735,7 +34735,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -34899,7 +34899,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingList>(parameters);
@@ -35139,7 +35139,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -35293,7 +35293,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -35444,7 +35444,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$RemarketingListShare>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RemarketingListShare>(parameters);
@@ -35623,7 +35623,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -35773,7 +35773,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -35945,7 +35945,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36092,7 +36092,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$ReportList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReportList>(parameters);
@@ -36268,7 +36268,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36413,7 +36413,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -36589,7 +36589,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Report>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Report>(parameters);
@@ -36860,7 +36860,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$CompatibleFields>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CompatibleFields>(parameters);
@@ -37026,7 +37026,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$File>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$File>(parameters);
@@ -37175,7 +37175,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$FileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FileList>(parameters);
@@ -37369,7 +37369,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -37531,7 +37531,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -37710,7 +37710,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$SitesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SitesListResponse>(parameters);
@@ -37875,7 +37875,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38037,7 +38037,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Site>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Site>(parameters);
@@ -38294,7 +38294,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Size>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Size>(parameters);
@@ -38440,7 +38440,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Size>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Size>(parameters);
@@ -38585,7 +38585,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$SizesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SizesListResponse>(parameters);
@@ -38773,7 +38773,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -38921,7 +38921,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39076,7 +39076,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$SubaccountsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SubaccountsListResponse>(parameters);
@@ -39227,7 +39227,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39375,7 +39375,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$Subaccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subaccount>(parameters);
@@ -39613,7 +39613,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingList>(parameters);
@@ -39780,7 +39780,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetableRemarketingListsListResponse>(
@@ -39985,7 +39985,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40152,7 +40152,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40313,7 +40313,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplatesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplatesListResponse>(
@@ -40485,7 +40485,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40652,7 +40652,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$TargetingTemplate>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TargetingTemplate>(parameters);
@@ -40886,7 +40886,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserProfile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserProfile>(parameters);
@@ -41019,7 +41019,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserProfileList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserProfileList>(parameters);
@@ -41176,7 +41176,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionGroup>(parameters);
@@ -41321,7 +41321,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionGroupsListResponse>(
@@ -41490,7 +41490,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermission>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermission>(parameters);
@@ -41632,7 +41632,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRolePermissionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolePermissionsListResponse>(
@@ -41790,7 +41790,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -41930,7 +41930,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42082,7 +42082,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42242,7 +42242,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRolesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRolesListResponse>(parameters);
@@ -42397,7 +42397,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42549,7 +42549,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$UserRole>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UserRole>(parameters);
@@ -42789,7 +42789,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$VideoFormat>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VideoFormat>(parameters);
@@ -42926,7 +42926,7 @@ export namespace dfareporting_v3_3 {
       if (callback) {
         createAPIRequest<Schema$VideoFormatsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VideoFormatsListResponse>(parameters);

@@ -459,7 +459,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -598,7 +598,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListTablesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListTablesResponse>(parameters);
@@ -774,7 +774,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$BatchCreateRowsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchCreateRowsResponse>(parameters);
@@ -926,7 +926,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$BatchUpdateRowsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchUpdateRowsResponse>(parameters);
@@ -1076,7 +1076,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Row>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Row>(parameters);
@@ -1207,7 +1207,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1345,7 +1345,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Row>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Row>(parameters);
@@ -1492,7 +1492,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$ListRowsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRowsResponse>(parameters);
@@ -1642,7 +1642,7 @@ export namespace area120tables_v1alpha1 {
       if (callback) {
         createAPIRequest<Schema$Row>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Row>(parameters);

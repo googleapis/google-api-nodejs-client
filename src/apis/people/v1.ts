@@ -1627,7 +1627,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetContactGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetContactGroupsResponse>(
@@ -1769,7 +1769,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
@@ -1901,7 +1901,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2045,7 +2045,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
@@ -2192,7 +2192,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ListContactGroupsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListContactGroupsResponse>(parameters);
@@ -2339,7 +2339,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ContactGroup>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ContactGroup>(parameters);
@@ -2563,7 +2563,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ModifyContactGroupMembersResponse>(
@@ -2768,7 +2768,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Person>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
@@ -2917,7 +2917,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ListOtherContactsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListOtherContactsResponse>(parameters);
@@ -3179,7 +3179,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Person>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
@@ -3308,7 +3308,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3452,7 +3452,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$DeleteContactPhotoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DeleteContactPhotoResponse>(parameters);
@@ -3640,7 +3640,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Person>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
@@ -3795,7 +3795,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$GetPeopleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetPeopleResponse>(parameters);
@@ -3953,7 +3953,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDirectoryPeopleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDirectoryPeopleResponse>(parameters);
@@ -4108,7 +4108,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchDirectoryPeopleResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchDirectoryPeopleResponse>(
@@ -4333,7 +4333,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$Person>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Person>(parameters);
@@ -4482,7 +4482,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$UpdateContactPhotoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$UpdateContactPhotoResponse>(parameters);
@@ -4826,7 +4826,7 @@ export namespace people_v1 {
       if (callback) {
         createAPIRequest<Schema$ListConnectionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConnectionsResponse>(parameters);

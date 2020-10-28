@@ -321,7 +321,7 @@ export namespace adexperiencereport_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteSummaryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteSummaryResponse>(parameters);
@@ -465,7 +465,7 @@ export namespace adexperiencereport_v1 {
       if (callback) {
         createAPIRequest<Schema$ViolatingSitesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ViolatingSitesResponse>(parameters);

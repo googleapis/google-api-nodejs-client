@@ -1635,7 +1635,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -1795,7 +1795,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -1957,7 +1957,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -2154,7 +2154,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -2299,7 +2299,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -2434,7 +2434,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -2596,7 +2596,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -2822,7 +2822,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -2957,7 +2957,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -3117,7 +3117,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -3321,7 +3321,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -3479,7 +3479,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -3676,7 +3676,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -3821,7 +3821,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -3956,7 +3956,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -4116,7 +4116,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -4264,7 +4264,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -4515,7 +4515,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -4704,7 +4704,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -4876,7 +4876,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAuthorizedDomainsResponse>(
@@ -5034,7 +5034,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Configuration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Configuration>(parameters);
@@ -5197,7 +5197,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListConfigurationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListConfigurationsResponse>(parameters);
@@ -5395,7 +5395,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -5538,7 +5538,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -5671,7 +5671,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$DomainMapping>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DomainMapping>(parameters);
@@ -5834,7 +5834,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListDomainMappingsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListDomainMappingsResponse>(parameters);
@@ -6057,7 +6057,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -6189,7 +6189,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Revision>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Revision>(parameters);
@@ -6350,7 +6350,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRevisionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRevisionsResponse>(parameters);
@@ -6551,7 +6551,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Route>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Route>(parameters);
@@ -6710,7 +6710,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListRoutesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutesResponse>(parameters);
@@ -6908,7 +6908,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7050,7 +7050,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Status>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Status>(parameters);
@@ -7182,7 +7182,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7319,7 +7319,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7480,7 +7480,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$ListServicesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicesResponse>(parameters);
@@ -7625,7 +7625,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Service>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Service>(parameters);
@@ -7769,7 +7769,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -7916,7 +7916,7 @@ export namespace run_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

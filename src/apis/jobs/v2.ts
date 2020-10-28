@@ -2122,7 +2122,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Company>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
@@ -2250,7 +2250,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2397,7 +2397,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Company>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
@@ -2540,7 +2540,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$ListCompaniesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCompaniesResponse>(parameters);
@@ -2716,7 +2716,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Company>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Company>(parameters);
@@ -2928,7 +2928,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$ListCompanyJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCompanyJobsResponse>(parameters);
@@ -3099,7 +3099,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3273,7 +3273,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -3404,7 +3404,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3542,7 +3542,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3709,7 +3709,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -3856,7 +3856,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$GetHistogramResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetHistogramResponse>(parameters);
@@ -3997,7 +3997,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -4176,7 +4176,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -4337,7 +4337,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchJobsResponse>(parameters);
@@ -4504,7 +4504,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$SearchJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchJobsResponse>(parameters);
@@ -4748,7 +4748,7 @@ export namespace jobs_v2 {
       if (callback) {
         createAPIRequest<Schema$CompleteQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CompleteQueryResponse>(parameters);

@@ -584,7 +584,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -717,7 +717,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -848,7 +848,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$AccessPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessPolicy>(parameters);
@@ -994,7 +994,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListAccessPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAccessPoliciesResponse>(parameters);
@@ -1141,7 +1141,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1350,7 +1350,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1483,7 +1483,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1619,7 +1619,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$AccessLevel>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccessLevel>(parameters);
@@ -1766,7 +1766,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListAccessLevelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAccessLevelsResponse>(parameters);
@@ -1915,7 +1915,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2139,7 +2139,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2275,7 +2275,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2409,7 +2409,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ServicePerimeter>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ServicePerimeter>(parameters);
@@ -2555,7 +2555,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$ListServicePerimetersResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListServicePerimetersResponse>(
@@ -2709,7 +2709,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2906,7 +2906,7 @@ export namespace accesscontextmanager_v1beta {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);

@@ -566,7 +566,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -716,7 +716,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -893,7 +893,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Attestor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
@@ -1020,7 +1020,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1152,7 +1152,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Attestor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
@@ -1289,7 +1289,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
@@ -1433,7 +1433,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$ListAttestorsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListAttestorsResponse>(parameters);
@@ -1576,7 +1576,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
@@ -1724,7 +1724,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -1868,7 +1868,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$Attestor>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Attestor>(parameters);
@@ -2026,7 +2026,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$ValidateAttestationOccurrenceResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ValidateAttestationOccurrenceResponse>(
@@ -2277,7 +2277,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
@@ -2420,7 +2420,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$IamPolicy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$IamPolicy>(parameters);
@@ -2568,7 +2568,7 @@ export namespace binaryauthorization_v1 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);

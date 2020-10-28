@@ -624,7 +624,7 @@ export namespace vectortile_v1 {
       if (callback) {
         createAPIRequest<Schema$FeatureTile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FeatureTile>(parameters);
@@ -865,7 +865,7 @@ export namespace vectortile_v1 {
       if (callback) {
         createAPIRequest<Schema$TerrainTile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TerrainTile>(parameters);

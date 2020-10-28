@@ -275,7 +275,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -414,7 +414,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -578,7 +578,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceGettokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -734,7 +734,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -875,7 +875,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceListResponse>(
@@ -1028,7 +1028,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(
@@ -1181,7 +1181,7 @@ export namespace siteVerification_v1 {
       if (callback) {
         createAPIRequest<Schema$SiteVerificationWebResourceResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SiteVerificationWebResourceResource>(

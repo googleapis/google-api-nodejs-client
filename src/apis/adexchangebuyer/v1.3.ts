@@ -806,7 +806,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -933,7 +933,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$AccountsList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AccountsList>(parameters);
@@ -1086,7 +1086,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -1239,7 +1239,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Account>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Account>(parameters);
@@ -1408,7 +1408,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$BillingInfo>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BillingInfo>(parameters);
@@ -1535,7 +1535,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$BillingInfoList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BillingInfoList>(parameters);
@@ -1689,7 +1689,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
@@ -1841,7 +1841,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
@@ -1993,7 +1993,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Budget>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Budget>(parameters);
@@ -2198,7 +2198,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -2381,7 +2381,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$Creative>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Creative>(parameters);
@@ -2525,7 +2525,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$CreativesList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreativesList>(parameters);
@@ -2715,7 +2715,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$DirectDeal>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectDeal>(parameters);
@@ -2842,7 +2842,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$DirectDealsList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DirectDealsList>(parameters);
@@ -3007,7 +3007,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PerformanceReportList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PerformanceReportList>(parameters);
@@ -3165,7 +3165,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3325,7 +3325,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
@@ -3513,7 +3513,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
@@ -3649,7 +3649,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PretargetingConfigList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PretargetingConfigList>(parameters);
@@ -3841,7 +3841,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);
@@ -4033,7 +4033,7 @@ export namespace adexchangebuyer_v1_3 {
       if (callback) {
         createAPIRequest<Schema$PretargetingConfig>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PretargetingConfig>(parameters);

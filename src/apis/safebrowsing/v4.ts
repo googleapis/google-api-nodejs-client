@@ -716,7 +716,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
@@ -883,7 +883,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1053,7 +1053,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindFullHashesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindFullHashesResponse>(parameters);
@@ -1203,7 +1203,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1346,7 +1346,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$ListThreatListsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListThreatListsResponse>(parameters);
@@ -1501,7 +1501,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FetchThreatListUpdatesResponse>(
@@ -1662,7 +1662,7 @@ export namespace safebrowsing_v4 {
       if (callback) {
         createAPIRequest<Schema$FindThreatMatchesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$FindThreatMatchesResponse>(parameters);

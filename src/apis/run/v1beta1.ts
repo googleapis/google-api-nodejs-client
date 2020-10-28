@@ -683,7 +683,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
@@ -878,7 +878,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CustomResourceDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
@@ -1050,7 +1050,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$CustomResourceDefinition>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CustomResourceDefinition>(parameters);
@@ -1218,7 +1218,7 @@ export namespace run_v1beta1 {
       if (callback) {
         createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListCustomResourceDefinitionsResponse>(

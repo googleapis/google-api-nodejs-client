@@ -836,7 +836,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateManagedShortLinkResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateManagedShortLinkResponse>(
@@ -999,7 +999,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CreateShortDynamicLinkResponse>(
@@ -1153,7 +1153,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$DynamicLinkStats>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DynamicLinkStats>(parameters);
@@ -1325,7 +1325,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetIosPostInstallAttributionResponse>(
@@ -1481,7 +1481,7 @@ export namespace firebasedynamiclinks_v1 {
       if (callback) {
         createAPIRequest<Schema$GetIosReopenAttributionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetIosReopenAttributionResponse>(

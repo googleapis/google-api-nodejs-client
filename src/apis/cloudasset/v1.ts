@@ -1079,7 +1079,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Feed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feed>(parameters);
@@ -1204,7 +1204,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1336,7 +1336,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Feed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feed>(parameters);
@@ -1469,7 +1469,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$ListFeedsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListFeedsResponse>(parameters);
@@ -1611,7 +1611,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Feed>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Feed>(parameters);
@@ -1790,7 +1790,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -1954,7 +1954,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BatchGetAssetsHistoryResponse>(
@@ -2102,7 +2102,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -2250,7 +2250,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchAllIamPoliciesResponse>(
@@ -2406,7 +2406,7 @@ export namespace cloudasset_v1 {
       if (callback) {
         createAPIRequest<Schema$SearchAllResourcesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchAllResourcesResponse>(parameters);

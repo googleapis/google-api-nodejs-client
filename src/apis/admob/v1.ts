@@ -621,7 +621,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$PublisherAccount>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$PublisherAccount>(parameters);
@@ -759,7 +759,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$ListPublisherAccountsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListPublisherAccountsResponse>(
@@ -934,7 +934,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateMediationReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateMediationReportResponse>(
@@ -1105,7 +1105,7 @@ export namespace admob_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateNetworkReportResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateNetworkReportResponse>(

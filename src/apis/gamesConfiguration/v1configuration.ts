@@ -519,7 +519,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -662,7 +662,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
@@ -824,7 +824,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
@@ -977,7 +977,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$AchievementConfigurationListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementConfigurationListResponse>(
@@ -1140,7 +1140,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$AchievementConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AchievementConfiguration>(parameters);
@@ -1357,7 +1357,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$ImageConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ImageConfiguration>(parameters);
@@ -1520,7 +1520,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -1663,7 +1663,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
@@ -1825,7 +1825,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);
@@ -1978,7 +1978,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardConfigurationListResponse>(
@@ -2141,7 +2141,7 @@ export namespace gamesConfiguration_v1configuration {
       if (callback) {
         createAPIRequest<Schema$LeaderboardConfiguration>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LeaderboardConfiguration>(parameters);

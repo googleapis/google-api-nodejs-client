@@ -3231,7 +3231,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -3383,7 +3383,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3554,7 +3554,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -3703,7 +3703,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$DatasetList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DatasetList>(parameters);
@@ -3877,7 +3877,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -4051,7 +4051,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Dataset>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Dataset>(parameters);
@@ -4288,7 +4288,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$JobCancelResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobCancelResponse>(parameters);
@@ -4436,7 +4436,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -4607,7 +4607,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$GetQueryResultsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetQueryResultsResponse>(parameters);
@@ -4778,7 +4778,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -4940,7 +4940,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$JobList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$JobList>(parameters);
@@ -5108,7 +5108,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$QueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$QueryResponse>(parameters);
@@ -5382,7 +5382,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -5536,7 +5536,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Model>(parameters);
@@ -5684,7 +5684,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ListModelsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListModelsResponse>(parameters);
@@ -5858,7 +5858,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Model>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Model>(parameters);
@@ -6074,7 +6074,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$GetServiceAccountResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GetServiceAccountResponse>(parameters);
@@ -6216,7 +6216,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ProjectList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ProjectList>(parameters);
@@ -6373,7 +6373,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -6528,7 +6528,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -6695,7 +6695,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -6851,7 +6851,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ListRoutinesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRoutinesResponse>(parameters);
@@ -7021,7 +7021,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Routine>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Routine>(parameters);
@@ -7277,7 +7277,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListRowAccessPoliciesResponse>(
@@ -7472,7 +7472,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableDataInsertAllResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableDataInsertAllResponse>(parameters);
@@ -7629,7 +7629,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableDataList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableDataList>(parameters);
@@ -7819,7 +7819,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -7991,7 +7991,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -8139,7 +8139,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8340,7 +8340,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -8488,7 +8488,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TableList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TableList>(parameters);
@@ -8692,7 +8692,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);
@@ -8839,7 +8839,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Policy>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Policy>(parameters);
@@ -8990,7 +8990,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$TestIamPermissionsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
@@ -9194,7 +9194,7 @@ export namespace bigquery_v2 {
       if (callback) {
         createAPIRequest<Schema$Table>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Table>(parameters);

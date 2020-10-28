@@ -346,7 +346,7 @@ export namespace cloudprofiler_v2 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -501,7 +501,7 @@ export namespace cloudprofiler_v2 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);
@@ -656,7 +656,7 @@ export namespace cloudprofiler_v2 {
       if (callback) {
         createAPIRequest<Schema$Profile>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Profile>(parameters);

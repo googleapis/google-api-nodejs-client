@@ -375,7 +375,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateAccessTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
@@ -525,7 +525,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$GenerateIdTokenResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GenerateIdTokenResponse>(parameters);
@@ -668,7 +668,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$SignBlobResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignBlobResponse>(parameters);
@@ -811,7 +811,7 @@ export namespace iamcredentials_v1 {
       if (callback) {
         createAPIRequest<Schema$SignJwtResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SignJwtResponse>(parameters);

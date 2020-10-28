@@ -321,7 +321,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -468,7 +468,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
@@ -621,7 +621,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
@@ -770,7 +770,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
@@ -923,7 +923,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignmentList>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignmentList>(parameters);
@@ -1086,7 +1086,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);
@@ -1249,7 +1249,7 @@ export namespace licensing_v1 {
       if (callback) {
         createAPIRequest<Schema$LicenseAssignment>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LicenseAssignment>(parameters);

@@ -519,7 +519,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -672,7 +672,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -825,7 +825,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -978,7 +978,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Customer>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Customer>(parameters);
@@ -1168,7 +1168,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResellernotifyGetwatchdetailsResponse>(
@@ -1307,7 +1307,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResellernotifyResource>(parameters);
@@ -1444,7 +1444,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$ResellernotifyResource>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ResellernotifyResource>(parameters);
@@ -1619,7 +1619,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -1783,7 +1783,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -1946,7 +1946,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2109,7 +2109,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2239,7 +2239,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<void>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<void>(parameters);
@@ -2393,7 +2393,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2569,7 +2569,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -2719,7 +2719,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscriptions>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscriptions>(parameters);
@@ -2870,7 +2870,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);
@@ -3021,7 +3021,7 @@ export namespace reseller_v1 {
       if (callback) {
         createAPIRequest<Schema$Subscription>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Subscription>(parameters);

@@ -375,7 +375,7 @@ export namespace translate_v2 {
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DetectionsListResponse>(parameters);
@@ -514,7 +514,7 @@ export namespace translate_v2 {
       if (callback) {
         createAPIRequest<Schema$DetectionsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DetectionsListResponse>(parameters);
@@ -677,7 +677,7 @@ export namespace translate_v2 {
       if (callback) {
         createAPIRequest<Schema$LanguagesListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LanguagesListResponse>(parameters);
@@ -856,7 +856,7 @@ export namespace translate_v2 {
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);
@@ -1006,7 +1006,7 @@ export namespace translate_v2 {
       if (callback) {
         createAPIRequest<Schema$TranslationsListResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$TranslationsListResponse>(parameters);

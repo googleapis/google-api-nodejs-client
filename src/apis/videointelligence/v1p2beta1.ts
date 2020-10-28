@@ -3482,7 +3482,7 @@ export namespace videointelligence_v1p2beta1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunning_Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunning_Operation>(parameters);

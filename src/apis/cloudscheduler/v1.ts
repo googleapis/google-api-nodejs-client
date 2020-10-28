@@ -584,7 +584,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Location>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Location>(parameters);
@@ -731,7 +731,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$ListLocationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListLocationsResponse>(parameters);
@@ -929,7 +929,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1056,7 +1056,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1198,7 +1198,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1334,7 +1334,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$ListJobsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListJobsResponse>(parameters);
@@ -1501,7 +1501,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1650,7 +1650,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1799,7 +1799,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);
@@ -1948,7 +1948,7 @@ export namespace cloudscheduler_v1 {
       if (callback) {
         createAPIRequest<Schema$Job>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Job>(parameters);

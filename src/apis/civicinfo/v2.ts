@@ -870,7 +870,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$DivisionSearchResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$DivisionSearchResponse>(parameters);
@@ -1019,7 +1019,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$ElectionsQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ElectionsQueryResponse>(parameters);
@@ -1174,7 +1174,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$VoterInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$VoterInfoResponse>(parameters);
@@ -1354,7 +1354,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoResponse>(parameters);
@@ -1503,7 +1503,7 @@ export namespace civicinfo_v2 {
       if (callback) {
         createAPIRequest<Schema$RepresentativeInfoData>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RepresentativeInfoData>(parameters);

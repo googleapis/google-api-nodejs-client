@@ -479,7 +479,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$SearchReservationGrantsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SearchReservationGrantsResponse>(
@@ -641,7 +641,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -777,7 +777,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -953,7 +953,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ReservationGrant>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReservationGrant>(parameters);
@@ -1086,7 +1086,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1237,7 +1237,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListReservationGrantsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReservationGrantsResponse>(
@@ -1436,7 +1436,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Reservation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
@@ -1589,7 +1589,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Reservation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
@@ -1722,7 +1722,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -1856,7 +1856,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Reservation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
@@ -2006,7 +2006,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListReservationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListReservationsResponse>(parameters);
@@ -2155,7 +2155,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Reservation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Reservation>(parameters);
@@ -2381,7 +2381,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -2521,7 +2521,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$SlotPool>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$SlotPool>(parameters);
@@ -2671,7 +2671,7 @@ export namespace bigqueryreservation_v1alpha2 {
       if (callback) {
         createAPIRequest<Schema$ListSlotPoolsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ListSlotPoolsResponse>(parameters);

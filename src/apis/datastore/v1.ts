@@ -1248,7 +1248,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$AllocateIdsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$AllocateIdsResponse>(parameters);
@@ -1397,7 +1397,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$BeginTransactionResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$BeginTransactionResponse>(parameters);
@@ -1542,7 +1542,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$CommitResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$CommitResponse>(parameters);
@@ -1697,7 +1697,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1852,7 +1852,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -1997,7 +1997,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$LookupResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$LookupResponse>(parameters);
@@ -2142,7 +2142,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$ReserveIdsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$ReserveIdsResponse>(parameters);
@@ -2283,7 +2283,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$RollbackResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RollbackResponse>(parameters);
@@ -2430,7 +2430,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$RunQueryResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$RunQueryResponse>(parameters);
@@ -2701,7 +2701,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2848,7 +2848,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -2996,7 +2996,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleDatastoreAdminV1Index>(parameters);
@@ -3154,7 +3154,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<
@@ -3346,7 +3346,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3475,7 +3475,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$Empty>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Empty>(parameters);
@@ -3617,7 +3617,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningOperation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
@@ -3774,7 +3774,7 @@ export namespace datastore_v1 {
       if (callback) {
         createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$GoogleLongrunningListOperationsResponse>(

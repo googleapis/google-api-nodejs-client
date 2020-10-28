@@ -5145,7 +5145,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
@@ -5290,7 +5290,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5475,7 +5475,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
@@ -5621,7 +5621,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -5824,7 +5824,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
@@ -5972,7 +5972,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6173,7 +6173,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
@@ -6322,7 +6322,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6534,7 +6534,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateFilesResponse
@@ -6682,7 +6682,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
@@ -6883,7 +6883,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<{} | void>);
+        >(parameters, callback as BodyResponseCallback<unknown>);
       } else {
         return createAPIRequest<
           Schema$GoogleCloudVisionV1p1beta1BatchAnnotateImagesResponse
@@ -7032,7 +7032,7 @@ export namespace vision_v1p1beta1 {
       if (callback) {
         createAPIRequest<Schema$Operation>(
           parameters,
-          callback as BodyResponseCallback<{} | void>
+          callback as BodyResponseCallback<unknown>
         );
       } else {
         return createAPIRequest<Schema$Operation>(parameters);
