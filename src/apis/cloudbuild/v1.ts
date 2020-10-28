@@ -560,7 +560,7 @@ export namespace cloudbuild_v1 {
      */
     builds?: Schema$Build[];
     /**
-     * Token to receive the next page of results.
+     * Token to receive the next page of results. This will be absent if the end of the response list has been reached.
      */
     nextPageToken?: string | null;
   }
@@ -1795,7 +1795,7 @@ export namespace cloudbuild_v1 {
      *     filter: 'placeholder-value',
      *     // Number of results to return in the list.
      *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
+     *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      *     pageToken: 'placeholder-value',
      *     // The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`
      *     parent: 'placeholder-value',
@@ -1822,7 +1822,7 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter The raw filter text to constrain the results.
      * @param {integer=} params.pageSize Number of results to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+     * @param {string=} params.pageToken The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      * @param {string=} params.parent The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`
      * @param {string} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2118,7 +2118,7 @@ export namespace cloudbuild_v1 {
      */
     pageSize?: number;
     /**
-     * Token to provide to skip to a particular spot in the list.
+     * The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      */
     pageToken?: string;
     /**
@@ -2689,7 +2689,7 @@ export namespace cloudbuild_v1 {
      *     filter: 'placeholder-value',
      *     // Number of results to return in the list.
      *     pageSize: 'placeholder-value',
-     *     // Token to provide to skip to a particular spot in the list.
+     *     // The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      *     pageToken: 'placeholder-value',
      *     // The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`
      *     parent: 'projects/my-project/locations/my-location',
@@ -2716,7 +2716,7 @@ export namespace cloudbuild_v1 {
      * @param {object} params Parameters for request
      * @param {string=} params.filter The raw filter text to constrain the results.
      * @param {integer=} params.pageSize Number of results to return in the list.
-     * @param {string=} params.pageToken Token to provide to skip to a particular spot in the list.
+     * @param {string=} params.pageToken The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      * @param {string} params.parent The parent of the collection of `Builds`. Format: `projects/{project}/locations/location`
      * @param {string=} params.projectId Required. ID of the project.
      * @param {object} [options] Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3003,7 +3003,7 @@ export namespace cloudbuild_v1 {
      */
     pageSize?: number;
     /**
-     * Token to provide to skip to a particular spot in the list.
+     * The page token for the next page of Builds. If unspecified, the first page of results is returned. If the token is rejected for any reason, INVALID_ARGUMENT will be thrown. In this case, the token should be discarded, and pagination should be restarted from the first page of results. See https://google.aip.dev/158 for more.
      */
     pageToken?: string;
     /**
