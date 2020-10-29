@@ -1572,6 +1572,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "datalabeling:v1beta1",
+      "name": "datalabeling",
+      "version": "v1beta1",
+      "title": "Data Labeling API",
+      "description": "Public API for Google Cloud AI Data Labeling Service.",
+      "discoveryRestUrl": "https://datalabeling.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/data-labeling/docs/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "dataproc:v1",
       "name": "dataproc",
       "version": "v1",
