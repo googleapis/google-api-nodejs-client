@@ -4,6 +4,30 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [63.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v62.0.0...v63.0.0) (2020-10-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* **deploymentmanager:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([95e46e6](https://www.github.com/googleapis/google-api-nodejs-client/commit/95e46e682c093b5f3e9d5f4c5c4930c1c75291e2))
+* **content:** update the API ([c03446b](https://www.github.com/googleapis/google-api-nodejs-client/commit/c03446bd06245286d6e9befa132661e89b23f26d))
+* **datacatalog:** update the API ([9240bc7](https://www.github.com/googleapis/google-api-nodejs-client/commit/9240bc7ff916e3e1a7bff9f5a1743a3f3079bbd6))
+* **deploymentmanager:** update the API ([e32d555](https://www.github.com/googleapis/google-api-nodejs-client/commit/e32d555caa337c8852c14386353910e0dd959612))
+
+
+### Bug Fixes
+
+* **datalabeling:** update the API ([9b8b03a](https://www.github.com/googleapis/google-api-nodejs-client/commit/9b8b03adbe023887418339a66b467f08cebb3c8c))
+* **eventarc:** update the API ([2028f1d](https://www.github.com/googleapis/google-api-nodejs-client/commit/2028f1d924aa13c6446fd0b7ac4f035457cdc890))
+* **firebase:** update the API ([def1cb5](https://www.github.com/googleapis/google-api-nodejs-client/commit/def1cb5c39ff30e75479c4316da9222555b09450))
+* **firebasehosting:** update the API ([998b9a5](https://www.github.com/googleapis/google-api-nodejs-client/commit/998b9a5c8b4c409505b1be01683794d3396d40ff))
+* **reseller:** update the API ([b818e56](https://www.github.com/googleapis/google-api-nodejs-client/commit/b818e5620a8086f19924e55780a552cd00b95f8e))
+* **translate:** update the API ([c765672](https://www.github.com/googleapis/google-api-nodejs-client/commit/c7656722a95968ec148b9abd1b6587b01998fa48))
+
 ## [62.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v61.0.0...v62.0.0) (2020-10-28)
 
 
