@@ -465,7 +465,7 @@ export namespace translate_v3beta1 {
    */
   export interface Schema$TranslateTextRequest {
     /**
-     * Required. The content of the input in string format. We recommend the total content be less than 30k codepoints. Use BatchTranslateText for larger text.
+     * Required. The content of the input in string format. We recommend the total content be less than 30k codepoints. The max length of this field is 1024. Use BatchTranslateText for larger text.
      */
     contents?: string[] | null;
     /**
