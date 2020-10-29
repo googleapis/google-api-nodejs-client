@@ -924,6 +924,6 @@
     }
   },
   "servicePath": "apps/reseller/v1/",
-  "title": "Enterprise Apps Reseller API",
+  "title": "Workspace Reseller API",
   "version": "v1"
 }

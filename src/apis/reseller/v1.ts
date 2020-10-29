@@ -83,7 +83,7 @@ export namespace reseller_v1 {
   }
 
   /**
-   * Enterprise Apps Reseller API
+   * Workspace Reseller API
    *
    * Creates and manages your customers and their subscriptions.
    *
