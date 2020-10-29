@@ -1217,7 +1217,8 @@
           "id": "content.liasettings.requestgmbaccess",
           "parameterOrder": [
             "merchantId",
-            "accountId"
+            "accountId",
+            "gmbEmail"
           ],
           "parameters": {
             "accountId": {
@@ -1230,6 +1231,7 @@
             "gmbEmail": {
               "description": "The email of the Google My Business account.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "merchantId": {
@@ -1295,7 +1297,11 @@
           "id": "content.liasettings.setinventoryverificationcontact",
           "parameterOrder": [
             "merchantId",
-            "accountId"
+            "accountId",
+            "country",
+            "language",
+            "contactName",
+            "contactEmail"
           ],
           "parameters": {
             "accountId": {
@@ -1308,21 +1314,25 @@
             "contactEmail": {
               "description": "The email of the inventory verification contact.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "contactName": {
               "description": "The name of the inventory verification contact.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "country": {
               "description": "The country for which inventory verification is requested.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "language": {
               "description": "The language for which inventory verification is requested.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "merchantId": {
@@ -1348,7 +1358,8 @@
           "id": "content.liasettings.setposdataprovider",
           "parameterOrder": [
             "merchantId",
-            "accountId"
+            "accountId",
+            "country"
           ],
           "parameters": {
             "accountId": {
@@ -1361,6 +1372,7 @@
             "country": {
               "description": "The country for which the POS data provider is selected.",
               "location": "query",
+              "required": true,
               "type": "string"
             },
             "merchantId": {
@@ -3286,7 +3298,7 @@
       }
     }
   },
-  "revision": "20201014",
+  "revision": "20201028",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
