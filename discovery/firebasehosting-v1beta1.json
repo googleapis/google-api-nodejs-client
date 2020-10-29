@@ -1777,7 +1777,7 @@
       }
     }
   },
-  "revision": "20200920",
+  "revision": "20201024",
   "rootUrl": "https://firebasehosting.googleapis.com/",
   "schemas": {
     "ActingUser": {
@@ -2277,7 +2277,7 @@
       "type": "object"
     },
     "PreviewConfig": {
-      "description": "Version preview configuration. If active and unexpired, this version will be accessible via a custom URL even if it is not the currently released version.",
+      "description": "Version preview configuration. If active and unexpired, this version will be accessible via a custom URL even if it is not the currently released version. Deprecated in favor of site channels.",
       "id": "PreviewConfig",
       "properties": {
         "active": {
@@ -2549,7 +2549,7 @@
         },
         "preview": {
           "$ref": "PreviewConfig",
-          "description": "Version preview configuration for the site version. This configuration specfies whether previewing is enabled for this site version. Version previews allow you to preview your site at a custom URL before releasing it as the live version."
+          "description": "Deprecated in favor of site channels. Version preview configuration for the site version. This configuration specifies whether previewing is enabled for this site version. Version previews allow you to preview your site at a custom URL before releasing it as the live version."
         },
         "status": {
           "description": "The deploy status of a version. For a successful deploy, call the [`CreateVersion`](sites.versions/create) endpoint to make a new version (`CREATED` status), [upload all desired files](sites.versions/populateFiles) to the version, then [update](sites.versions/patch) the version to the `FINALIZED` status. Note that if you leave the version in the `CREATED` state for more than 12 hours, the system will automatically mark the version as `ABANDONED`. You can also change the status of a version to `DELETED` by calling the [`DeleteVersion`](sites.versions/delete) endpoint.",
