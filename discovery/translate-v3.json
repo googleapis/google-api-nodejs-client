@@ -687,7 +687,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201023",
   "rootUrl": "https://translation.googleapis.com/",
   "schemas": {
     "BatchTranslateTextRequest": {
@@ -1144,7 +1144,7 @@
       "id": "TranslateTextRequest",
       "properties": {
         "contents": {
-          "description": "Required. The content of the input in string format. We recommend the total content be less than 30k codepoints. Use BatchTranslateText for larger text.",
+          "description": "Required. The content of the input in string format. We recommend the total content be less than 30k codepoints. The max length of this field is 1024. Use BatchTranslateText for larger text.",
           "items": {
             "type": "string"
           },
