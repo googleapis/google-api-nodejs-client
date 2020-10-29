@@ -173,6 +173,7 @@ import {VERSIONS as customsearchVersions, customsearch} from './customsearch';
 import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
 import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
+import {VERSIONS as datalabelingVersions, datalabeling} from './datalabeling';
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
 import {
@@ -515,6 +516,7 @@ export const APIS: APIList = {
   datacatalog: datacatalogVersions,
   dataflow: dataflowVersions,
   datafusion: datafusionVersions,
+  datalabeling: datalabelingVersions,
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
   deploymentmanager: deploymentmanagerVersions,
@@ -709,6 +711,7 @@ export class GeneratedAPIs {
   datacatalog = datacatalog;
   dataflow = dataflow;
   datafusion = datafusion;
+  datalabeling = datalabeling;
   dataproc = dataproc;
   datastore = datastore;
   deploymentmanager = deploymentmanager;

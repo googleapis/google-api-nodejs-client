@@ -1,4 +1,4 @@
-/**
+/** 
  * Config file for API Extractor.  For more info, please visit: https://api-extractor.com
  */
 {
@@ -34,7 +34,7 @@
    */
   // "projectFolder": "..",
 
-    /**
+  /**
    * (REQUIRED) Specifies the .d.ts file to be used as the starting point for analysis.  API Extractor
    * analyzes the symbols exported by this module.
    *
@@ -45,9 +45,9 @@
    *
    * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
    */
-  "mainEntryPointFilePath": "<projectFolder>/build/src/index.d.ts",
+  "mainEntryPointFilePath": "<projectFolder>/protos/protos.d.ts",
 
-    /**
+  /**
    * A list of NPM package names whose exports should be treated as part of this package.
    *
    * For example, suppose that Webpack is used to generate a distributed bundle for the project "library1",
@@ -111,7 +111,7 @@
     /**
      * (REQUIRED) Whether to generate an API report.
      */
-    "enabled": false,
+    "enabled": true,
 
     /**
      * The filename for the API report files.  It will be combined with "reportFolder" or "reportTempFolder" to produce
@@ -173,7 +173,7 @@
      * SUPPORTED TOKENS: <projectFolder>, <packageName>, <unscopedPackageName>
      * DEFAULT VALUE: "<projectFolder>/temp/<unscopedPackageName>.api.json"
      */
-    "apiJsonFilePath": "./build/docs/<unscopedPackageName>.api.json"
+    // "apiJsonFilePath": "<projectFolder>/temp/<unscopedPackageName>.api.json"
   },
 
   /**
@@ -313,14 +313,14 @@
          * DEFAULT VALUE: false
          */
         // "addToApiReportFile": false
-    },
+      },
 
-    // "TS2551": {
-    //   "logLevel": "warning",
-    //   "addToApiReportFile": true
-    // },
-    //
-    // . . .
+      // "TS2551": {
+      //   "logLevel": "warning",
+      //   "addToApiReportFile": true
+      // },
+      //
+      // . . .
     },
 
     /**
@@ -335,9 +335,13 @@
         "logLevel": "warning",
         // "addToApiReportFile": false
       },
-      "ae-missing-release-tag": {
-        "logLevel": "none"
-      }
+
+      // "ae-extra-release-tag": {
+      //   "logLevel": "warning",
+      //   "addToApiReportFile": true
+      // },
+      //
+      // . . .
     },
 
     /**
