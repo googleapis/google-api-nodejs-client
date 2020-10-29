@@ -458,7 +458,7 @@ export namespace firebasehosting_v1beta1 {
     uploadUrl?: string | null;
   }
   /**
-   * Version preview configuration. If active and unexpired, this version will be accessible via a custom URL even if it is not the currently released version.
+   * Version preview configuration. If active and unexpired, this version will be accessible via a custom URL even if it is not the currently released version. Deprecated in favor of site channels.
    */
   export interface Schema$PreviewConfig {
     /**
@@ -657,7 +657,7 @@ export namespace firebasehosting_v1beta1 {
      */
     name?: string | null;
     /**
-     * Version preview configuration for the site version. This configuration specfies whether previewing is enabled for this site version. Version previews allow you to preview your site at a custom URL before releasing it as the live version.
+     * Deprecated in favor of site channels. Version preview configuration for the site version. This configuration specifies whether previewing is enabled for this site version. Version previews allow you to preview your site at a custom URL before releasing it as the live version.
      */
     preview?: Schema$PreviewConfig;
     /**
