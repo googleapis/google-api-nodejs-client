@@ -12323,7 +12323,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'gmbEmail'],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
@@ -12642,7 +12642,14 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: [
+          'merchantId',
+          'accountId',
+          'country',
+          'language',
+          'contactName',
+          'contactEmail',
+        ],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
@@ -12794,7 +12801,7 @@ export namespace content_v2_1 {
           options
         ),
         params,
-        requiredParams: ['merchantId', 'accountId'],
+        requiredParams: ['merchantId', 'accountId', 'country'],
         pathParams: ['accountId', 'merchantId'],
         context: this.context,
       };
