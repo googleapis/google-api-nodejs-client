@@ -53,9 +53,21 @@ export namespace deploymentmanager_alpha {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace deploymentmanager_alpha {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Google Cloud Deployment Manager Alpha API
+   * Cloud Deployment Manager V2 API
    *
-   * The Deployment Manager API allows users to declaratively configure, deploy and run complex solutions on the Google Cloud Platform.
+   * The Google Cloud Deployment Manager v2 API provides services for configuring, deploying, and viewing Google Cloud services and APIs via templates which specify deployments of Cloud resources.
    *
    * @example
    * ```js
@@ -133,53 +149,51 @@ export namespace deploymentmanager_alpha {
     pollingOptions?: Schema$PollingOptions;
   }
   /**
-   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs.
-   *
-   * If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted.
-   *
-   * Example Policy with multiple AuditConfigs:
-   *
-   * { "audit_configs": [ { "service": "allServices" "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE", \}, { "log_type": "ADMIN_READ", \} ] \}, { "service": "sampleservice.googleapis.com" "audit_log_configs": [ { "log_type": "DATA_READ", \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \}
-   *
-   * For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
+   * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts jose@example.com from DATA_READ logging, and aliya@example.com from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
     /**
      * The configuration for logging of each type of permission.
      */
     auditLogConfigs?: Schema$AuditLogConfig[];
-    exemptedMembers?: string[] | null;
     /**
      * Specifies a service that will be enabled for audit logging. For example, `storage.googleapis.com`, `cloudsql.googleapis.com`. `allServices` is a special value that covers all services.
      */
     service?: string | null;
   }
   /**
-   * Provides the configuration for logging a type of permissions. Example:
-   *
-   * { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE", \} ] \}
-   *
-   * This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
+   * Provides the configuration for logging a type of permissions. Example: { "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \} ] \} This enables 'DATA_READ' and 'DATA_WRITE' logging, while exempting jose@example.com from DATA_READ logging.
    */
   export interface Schema$AuditLogConfig {
     /**
-     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of [Binding.members][].
+     * Specifies the identities that do not cause logging for this type of permission. Follows the same format of Binding.members.
      */
     exemptedMembers?: string[] | null;
-    ignoreChildExemptions?: boolean | null;
     /**
      * The log type that this config enables.
      */
     logType?: string | null;
   }
   /**
-   * Authorization-related information used by Cloud Audit Logging.
+   * BaseType that describes a service-backed Type.
    */
-  export interface Schema$AuthorizationLoggingOptions {
+  export interface Schema$BaseType {
     /**
-     * The type of the permission that was checked.
+     * Allows resource handling overrides for specific collections
      */
-    permissionType?: string | null;
+    collectionOverrides?: Schema$CollectionOverride[];
+    /**
+     * Credential used when interacting with this type.
+     */
+    credential?: Schema$Credential;
+    /**
+     * Descriptor Url for the this type.
+     */
+    descriptorUrl?: string | null;
+    /**
+     * Options to apply when handling any resources in this service.
+     */
+    options?: Schema$Options;
   }
   /**
    * Basic Auth used as a credential.
@@ -193,39 +207,11 @@ export namespace deploymentmanager_alpha {
    */
   export interface Schema$Binding {
     /**
-     * The condition that is associated with this binding.
-     *
-     * If the condition evaluates to `true`, then this binding applies to the current request.
-     *
-     * If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.
-     *
-     * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     condition?: Schema$Expr;
     /**
-     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values:
-     *
-     * * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account.
-     *
-     * * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account.
-     *
-     * * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` .
-     *
-     *
-     *
-     * * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`.
-     *
-     * * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`.
-     *
-     * * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding.
-     *
-     * * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding.
-     *
-     * * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding.
-     *
-     *
-     *
-     * * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
+     * Specifies the identities requesting access for a Cloud Platform resource. `members` can have the following values: * `allUsers`: A special identifier that represents anyone who is on the internet; with or without a Google account. * `allAuthenticatedUsers`: A special identifier that represents anyone who is authenticated with a Google account or a service account. * `user:{emailid\}`: An email address that represents a specific Google account. For example, `alice@example.com` . * `serviceAccount:{emailid\}`: An email address that represents a service account. For example, `my-other-app@appspot.gserviceaccount.com`. * `group:{emailid\}`: An email address that represents a Google group. For example, `admins@example.com`. * `deleted:user:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a user that has been recently deleted. For example, `alice@example.com?uid=123456789012345678901`. If the user is recovered, this value reverts to `user:{emailid\}` and the recovered user retains the role in the binding. * `deleted:serviceAccount:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a service account that has been recently deleted. For example, `my-other-app@appspot.gserviceaccount.com?uid=123456789012345678901`. If the service account is undeleted, this value reverts to `serviceAccount:{emailid\}` and the undeleted service account retains the role in the binding. * `deleted:group:{emailid\}?uid={uniqueid\}`: An email address (plus unique identifier) representing a Google group that has been recently deleted. For example, `admins@example.com?uid=123456789012345678901`. If the group is recovered, this value reverts to `group:{emailid\}` and the recovered group retains the role in the binding. * `domain:{domain\}`: The G Suite domain (primary) that represents all the users of that domain. For example, `google.com` or `example.com`.
      */
     members?: string[] | null;
     /**
@@ -285,8 +271,17 @@ export namespace deploymentmanager_alpha {
      */
     templateContents?: Schema$TemplateContents;
   }
+  /**
+   * Label object for CompositeTypes
+   */
   export interface Schema$CompositeTypeLabelEntry {
+    /**
+     * Key of the label
+     */
     key?: string | null;
+    /**
+     * Value of the label
+     */
     value?: string | null;
   }
   /**
@@ -302,57 +297,11 @@ export namespace deploymentmanager_alpha {
      */
     nextPageToken?: string | null;
   }
-  /**
-   * A condition to be met.
-   */
-  export interface Schema$Condition {
-    /**
-     * Trusted attributes supplied by the IAM system.
-     */
-    iam?: string | null;
-    /**
-     * An operator to apply the subject with.
-     */
-    op?: string | null;
-    /**
-     * Trusted attributes discharged by the service.
-     */
-    svc?: string | null;
-    /**
-     * Trusted attributes supplied by any service that owns resources and uses the IAM system for access control.
-     */
-    sys?: string | null;
-    /**
-     * The objects of the condition.
-     */
-    values?: string[] | null;
-  }
   export interface Schema$ConfigFile {
     /**
      * The contents of the file.
      */
     content?: string | null;
-  }
-  /**
-   * BaseType that describes a service-backed Type.
-   */
-  export interface Schema$ConfigurableService {
-    /**
-     * Allows resource handling overrides for specific collections
-     */
-    collectionOverrides?: Schema$CollectionOverride[];
-    /**
-     * Credential used when interacting with this type.
-     */
-    credential?: Schema$Credential;
-    /**
-     * Descriptor Url for the this type.
-     */
-    descriptorUrl?: string | null;
-    /**
-     * Options to apply when handling any resources in this service.
-     */
-    options?: Schema$Options;
   }
   /**
    * The credential used by Deployment Manager and TypeProvider. Only one of the options is permitted.
@@ -381,9 +330,7 @@ export namespace deploymentmanager_alpha {
      */
     description?: string | null;
     /**
-     * Provides a fingerprint to use in requests to modify a deployment, such as `update()`, `stop()`, and `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided with `update()`, `stop()`, and `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time.
-     *
-     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a `get()` request to a deployment.
+     * Provides a fingerprint to use in requests to modify a deployment, such as `update()`, `stop()`, and `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided with `update()`, `stop()`, and `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that only one request happens at a time. The fingerprint is initially generated by Deployment Manager and changes after every request to modify data. To get the latest fingerprint value, perform a `get()` request to a deployment.
      */
     fingerprint?: string | null;
     id?: string | null;
@@ -392,7 +339,7 @@ export namespace deploymentmanager_alpha {
      */
     insertTime?: string | null;
     /**
-     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     * Map of One Platform labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      */
     labels?: Schema$DeploymentLabelEntry[];
     /**
@@ -428,8 +375,17 @@ export namespace deploymentmanager_alpha {
      */
     updateTime?: string | null;
   }
+  /**
+   * Label object for Deployments
+   */
   export interface Schema$DeploymentLabelEntry {
+    /**
+     * Key of the label
+     */
     key?: string | null;
+    /**
+     * Value of the label
+     */
     value?: string | null;
   }
   /**
@@ -447,9 +403,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$DeploymentsCancelPreviewRequest {
     /**
-     * Specifies a fingerprint for `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided in `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests).
-     *
-     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
+     * Specifies a fingerprint for `cancelPreview()` requests. A fingerprint is a randomly generated value that must be provided in `cancelPreview()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to cancel a preview, this would prevent one of the requests). The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
      */
     fingerprint?: string | null;
   }
@@ -468,9 +422,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Schema$DeploymentsStopRequest {
     /**
-     * Specifies a fingerprint for `stop()` requests. A fingerprint is a randomly generated value that must be provided in `stop()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision).
-     *
-     * The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
+     * Specifies a fingerprint for `stop()` requests. A fingerprint is a randomly generated value that must be provided in `stop()` requests to perform optimistic locking. This ensures optimistic concurrency so that the deployment does not have conflicting requests (e.g. if someone attempts to make a new update request while another user attempts to stop an ongoing update request, this would prevent a collision). The fingerprint is initially generated by Deployment Manager and changes after every request to modify a deployment. To get the latest fingerprint value, perform a `get()` request on the deployment.
      */
     fingerprint?: string | null;
   }
@@ -484,7 +436,7 @@ export namespace deploymentmanager_alpha {
      */
     description?: string | null;
     /**
-     * Output only. Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     * Map of One Platform labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      */
     labels?: Schema$DeploymentUpdateLabelEntry[];
     /**
@@ -492,8 +444,17 @@ export namespace deploymentmanager_alpha {
      */
     manifest?: string | null;
   }
+  /**
+   * Label object for DeploymentUpdate
+   */
   export interface Schema$DeploymentUpdateLabelEntry {
+    /**
+     * Key of the label
+     */
     key?: string | null;
+    /**
+     * Value of the label
+     */
     value?: string | null;
   }
   export interface Schema$Diagnostic {
@@ -507,25 +468,7 @@ export namespace deploymentmanager_alpha {
     level?: string | null;
   }
   /**
-   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec.
-   *
-   * Example (Comparison):
-   *
-   * title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100"
-   *
-   * Example (Equality):
-   *
-   * title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email"
-   *
-   * Example (Logic):
-   *
-   * title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'"
-   *
-   * Example (Data Manipulation):
-   *
-   * title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)"
-   *
-   * The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
+   * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
     /**
@@ -590,80 +533,6 @@ export namespace deploymentmanager_alpha {
      */
     value?: string | null;
   }
-  /**
-   * Specifies what kind of log the caller must write
-   */
-  export interface Schema$LogConfig {
-    /**
-     * Cloud audit options.
-     */
-    cloudAudit?: Schema$LogConfigCloudAuditOptions;
-    /**
-     * Counter options.
-     */
-    counter?: Schema$LogConfigCounterOptions;
-    /**
-     * Data access options.
-     */
-    dataAccess?: Schema$LogConfigDataAccessOptions;
-  }
-  /**
-   * Write a Cloud Audit log
-   */
-  export interface Schema$LogConfigCloudAuditOptions {
-    /**
-     * Information used by the Cloud Audit Logging pipeline.
-     */
-    authorizationLoggingOptions?: Schema$AuthorizationLoggingOptions;
-    /**
-     * The log_name to populate in the Cloud Audit Record.
-     */
-    logName?: string | null;
-  }
-  /**
-   * Increment a streamz counter with the specified metric and field names.
-   *
-   * Metric names should start with a '/', generally be lowercase-only, and end in "_count". Field names should not contain an initial slash. The actual exported metric names will have "/iam/policy" prepended.
-   *
-   * Field names correspond to IAM request parameters and field values are their respective values.
-   *
-   * Supported field names: - "authority", which is "[token]" if IAMContext.token is present, otherwise the value of IAMContext.authority_selector if present, and otherwise a representation of IAMContext.principal; or - "iam_principal", a representation of IAMContext.principal even if a token or authority selector is present; or - "" (empty string), resulting in a counter with no fields.
-   *
-   * Examples: counter { metric: "/debug_access_count" field: "iam_principal" \} ==\> increment counter /iam/policy/debug_access_count {iam_principal=[value of IAMContext.principal]\}
-   */
-  export interface Schema$LogConfigCounterOptions {
-    /**
-     * Custom fields.
-     */
-    customFields?: Schema$LogConfigCounterOptionsCustomField[];
-    /**
-     * The field value to attribute.
-     */
-    field?: string | null;
-    /**
-     * The metric to update.
-     */
-    metric?: string | null;
-  }
-  /**
-   * Custom fields. These can be used to create a counter with arbitrary field/value pairs. See: go/rpcsp-custom-fields.
-   */
-  export interface Schema$LogConfigCounterOptionsCustomField {
-    /**
-     * Name is the field name.
-     */
-    name?: string | null;
-    /**
-     * Value is the field value. It is important that in contrast to the CounterOptions.field, the value here is a constant that is not derived from the IAMContext.
-     */
-    value?: string | null;
-  }
-  /**
-   * Write a Data Access (Gin) log
-   */
-  export interface Schema$LogConfigDataAccessOptions {
-    logMode?: string | null;
-  }
   export interface Schema$Manifest {
     /**
      * Output only. The YAML configuration for this manifest.
@@ -687,9 +556,7 @@ export namespace deploymentmanager_alpha {
      */
     layout?: string | null;
     /**
-     * Output only.
-     *
-     * The name of the manifest.
+     * Output only. The name of the manifest.
      */
     name?: string | null;
     /**
@@ -736,20 +603,7 @@ export namespace deploymentmanager_alpha {
     update?: string | null;
   }
   /**
-   * Represents an Operation resource.
-   *
-   * Google Compute Engine has three Operation resources:
-   *
-   * * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations)
-   *
-   * You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses.
-   *
-   * Operations can be global, regional or zonal.
-   * - For global operations, use the `globalOperations` resource.
-   * - For regional operations, use the `regionOperations` resource.
-   * - For zonal operations, use the `zonalOperations` resource.
-   *
-   * For more information, read  Global, Regional, and Zonal Resources. (== resource_for {$api_version\}.globalOperations ==) (== resource_for {$api_version\}.regionOperations ==) (== resource_for {$api_version\}.zoneOperations ==)
+   * Represents an Operation resource. Google Compute Engine has three Operation resources: * [Global](/compute/docs/reference/rest/{$api_version\}/globalOperations) * [Regional](/compute/docs/reference/rest/{$api_version\}/regionOperations) * [Zonal](/compute/docs/reference/rest/{$api_version\}/zoneOperations) You can use an operation resource to manage asynchronous API requests. For more information, read Handling API responses. Operations can be global, regional or zonal. - For global operations, use the `globalOperations` resource. - For regional operations, use the `regionOperations` resource. - For zonal operations, use the `zonalOperations` resource. For more information, read Global, Regional, and Zonal Resources.
    */
   export interface Schema$Operation {
     /**
@@ -814,10 +668,6 @@ export namespace deploymentmanager_alpha {
      * [Output Only] Server-defined URL for the resource.
      */
     selfLink?: string | null;
-    /**
-     * [Output Only] Server-defined URL for this resource with the resource id.
-     */
-    selfLinkWithId?: string | null;
     /**
      * [Output Only] The time that this operation was started by the server. This value is in RFC3339 text format.
      */
@@ -890,23 +740,7 @@ export namespace deploymentmanager_alpha {
     validationOptions?: Schema$ValidationOptions;
   }
   /**
-   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources.
-   *
-   *
-   *
-   * A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role.
-   *
-   * For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
-   *
-   * **JSON example:**
-   *
-   * { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \}
-   *
-   * **YAML example:**
-   *
-   * bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3
-   *
-   * For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
+   * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members` to a single `role`. Members can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} **YAML example:** bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') - etag: BwWWja0YfJA= - version: 3 For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
     /**
@@ -918,30 +752,11 @@ export namespace deploymentmanager_alpha {
      */
     bindings?: Schema$Binding[];
     /**
-     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy.
-     *
-     * **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
+     * `etag` is used for optimistic concurrency control as a way to help prevent simultaneous updates of a policy from overwriting each other. It is strongly suggested that systems make use of the `etag` in the read-modify-write cycle to perform policy updates in order to avoid race conditions: An `etag` is returned in the response to `getIamPolicy`, and systems are expected to put that etag in the request to `setIamPolicy` to ensure that their change will be applied to the same version of the policy. **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
      */
     etag?: string | null;
-    iamOwned?: boolean | null;
     /**
-     * If more than one rule is specified, the rules are applied in the following manner: - All matching LOG rules are always applied. - If any DENY/DENY_WITH_LOG rule matches, permission is denied. Logging will be applied if one or more matching rule requires logging. - Otherwise, if any ALLOW/ALLOW_WITH_LOG rule matches, permission is granted. Logging will be applied if one or more matching rule requires logging. - Otherwise, if no rule applies, permission is denied.
-     */
-    rules?: Schema$Rule[];
-    /**
-     * Specifies the format of the policy.
-     *
-     * Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected.
-     *
-     * Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations:
-     *
-     * * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions
-     *
-     * **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost.
-     *
-     * If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset.
-     *
-     * To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
   }
@@ -1097,39 +912,6 @@ export namespace deploymentmanager_alpha {
     }> | null;
   }
   /**
-   * A rule to be applied in a Policy.
-   */
-  export interface Schema$Rule {
-    /**
-     * Required
-     */
-    action?: string | null;
-    /**
-     * Additional restrictions that must be met. All conditions must pass for the rule to match.
-     */
-    conditions?: Schema$Condition[];
-    /**
-     * Human-readable description of the rule.
-     */
-    description?: string | null;
-    /**
-     * If one or more 'in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in at least one of these entries.
-     */
-    ins?: string[] | null;
-    /**
-     * The config returned to callers of tech.iam.IAM.CheckPolicy for any entries that match the LOG action.
-     */
-    logConfigs?: Schema$LogConfig[];
-    /**
-     * If one or more 'not_in' clauses are specified, the rule matches if the PRINCIPAL/AUTHORITY_SELECTOR is in none of the entries.
-     */
-    notIns?: string[] | null;
-    /**
-     * A permission is a string of form '..' (e.g., 'storage.buckets.list'). A value of '*' matches all permissions, and a verb part of '*' (e.g., 'storage.buckets.*') matches all verbs.
-     */
-    permissions?: string[] | null;
-  }
-  /**
    * Service Account used as a credential.
    */
   export interface Schema$ServiceAccount {
@@ -1192,7 +974,7 @@ export namespace deploymentmanager_alpha {
     /**
      * Base Type (configurable service) that backs this Type.
      */
-    configurableService?: Schema$ConfigurableService;
+    base?: Schema$BaseType;
     /**
      * An optional textual description of the resource; provided by the client when the resource is created.
      */
@@ -1203,7 +985,7 @@ export namespace deploymentmanager_alpha {
      */
     insertTime?: string | null;
     /**
-     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     * Map of One Platform labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
      */
     labels?: Schema$TypeLabelEntry[];
     /**
@@ -1262,8 +1044,17 @@ export namespace deploymentmanager_alpha {
      */
     output?: string | null;
   }
+  /**
+   * Label object for Types
+   */
   export interface Schema$TypeLabelEntry {
+    /**
+     * Key of the label
+     */
     key?: string | null;
+    /**
+     * Value of the label
+     */
     value?: string | null;
   }
   /**
@@ -1299,7 +1090,7 @@ export namespace deploymentmanager_alpha {
      */
     insertTime?: string | null;
     /**
-     * Map of labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`.
+     * Map of One Platform labels; provided by the client when the resource is created or updated. Specifically: Label keys must be between 1 and 63 characters long and must conform to the following regular expression: `[a-z]([-a-z0-9]*[a-z0-9])?` Label values must be between 0 and 63 characters long and must conform to the regular expression `([a-z]([-a-z0-9]*[a-z0-9])?)?`
      */
     labels?: Schema$TypeProviderLabelEntry[];
     /**
@@ -1319,8 +1110,17 @@ export namespace deploymentmanager_alpha {
      */
     selfLink?: string | null;
   }
+  /**
+   * Label object for TypeProviders
+   */
   export interface Schema$TypeProviderLabelEntry {
+    /**
+     * Key of the label
+     */
     key?: string | null;
+    /**
+     * Value of the label
+     */
     value?: string | null;
   }
   /**
@@ -1434,7 +1234,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -1510,7 +1309,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1655,7 +1455,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1751,7 +1552,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -1827,7 +1627,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1886,21 +1687,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.compositeTypes.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -1990,7 +1781,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2088,7 +1880,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -2164,7 +1955,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2262,7 +2054,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -2338,7 +2129,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2403,13 +2195,7 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Compositetypes$List
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -2417,11 +2203,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -2539,7 +2321,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -2615,7 +2396,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2699,7 +2481,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -2775,7 +2556,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2924,7 +2706,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2996,8 +2779,6 @@ export namespace deploymentmanager_alpha {
      *   //   "auditConfigs": [],
      *   //   "bindings": [],
      *   //   "etag": "my_etag",
-     *   //   "iamOwned": false,
-     *   //   "rules": [],
      *   //   "version": 0
      *   // }
      * }
@@ -3066,7 +2847,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3171,7 +2953,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -3247,7 +3028,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3306,21 +3088,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.deployments.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -3407,7 +3179,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3516,7 +3289,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -3592,7 +3364,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3672,8 +3445,6 @@ export namespace deploymentmanager_alpha {
      *   //   "auditConfigs": [],
      *   //   "bindings": [],
      *   //   "etag": "my_etag",
-     *   //   "iamOwned": false,
-     *   //   "rules": [],
      *   //   "version": 0
      *   // }
      * }
@@ -3742,7 +3513,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3832,7 +3604,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -3907,7 +3678,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4057,7 +3829,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4166,7 +3939,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -4242,7 +4014,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4348,13 +4121,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Deployments$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -4362,11 +4129,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -4610,7 +4373,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4671,21 +4435,11 @@ export namespace deploymentmanager_alpha {
      *   const res = await deploymentmanager.manifests.list({
      *     // The name of the deployment for this request.
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -4772,7 +4526,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4820,13 +4575,7 @@ export namespace deploymentmanager_alpha {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -4834,11 +4583,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -4918,7 +4663,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -4993,7 +4737,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5052,21 +4797,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.operations.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -5153,7 +4888,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5193,13 +4929,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Operations$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -5207,11 +4937,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -5358,7 +5084,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5419,21 +5146,11 @@ export namespace deploymentmanager_alpha {
      *   const res = await deploymentmanager.resources.list({
      *     // The name of the deployment for this request.
      *     deployment: '[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?',
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -5520,7 +5237,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5568,13 +5286,7 @@ export namespace deploymentmanager_alpha {
      */
     deployment?: string;
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -5582,11 +5294,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -5664,7 +5372,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -5740,7 +5447,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5888,7 +5596,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6033,7 +5742,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6132,7 +5842,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -6208,7 +5917,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6267,21 +5977,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -6371,7 +6071,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6430,21 +6131,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.typeProviders.listTypes({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -6536,7 +6227,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6639,7 +6331,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -6715,7 +6406,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6816,7 +6508,6 @@ export namespace deploymentmanager_alpha {
      *   //   "progress": 0,
      *   //   "region": "my_region",
      *   //   "selfLink": "my_selfLink",
-     *   //   "selfLinkWithId": "my_selfLinkWithId",
      *   //   "startTime": "my_startTime",
      *   //   "status": "my_status",
      *   //   "statusMessage": "my_statusMessage",
@@ -6892,7 +6583,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6972,13 +6664,7 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Typeproviders$List
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -6986,11 +6672,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -7009,13 +6691,7 @@ export namespace deploymentmanager_alpha {
   export interface Params$Resource$Typeproviders$Listtypes
     extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -7023,11 +6699,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
@@ -7128,7 +6800,7 @@ export namespace deploymentmanager_alpha {
      *
      *   // Example response
      *   // {
-     *   //   "configurableService": {},
+     *   //   "base": {},
      *   //   "description": "my_description",
      *   //   "id": "my_id",
      *   //   "insertTime": "my_insertTime",
@@ -7202,7 +6874,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7261,21 +6934,11 @@ export namespace deploymentmanager_alpha {
      *
      *   // Do the magic
      *   const res = await deploymentmanager.types.list({
-     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *     //
-     *     // For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *     //
-     *     // You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *     //
-     *     // To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     *     // A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      *     filter: 'placeholder-value',
      *     // The maximum number of results per page that should be returned. If the number of available results is larger than `maxResults`, Compute Engine returns a `nextPageToken` that can be used to get the next page of results in subsequent list requests. Acceptable values are `0` to `500`, inclusive. (Default: `500`)
      *     maxResults: 'placeholder-value',
-     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *     //
-     *     // You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *     //
-     *     // Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     *     // Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      *     orderBy: 'placeholder-value',
      *     // Specifies a page token to use. Set `pageToken` to the `nextPageToken` returned by a previous list request to get the next page of results.
      *     pageToken: 'placeholder-value',
@@ -7360,7 +7023,8 @@ export namespace deploymentmanager_alpha {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl =
+        options.rootUrl || 'https://deploymentmanager.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7400,13 +7064,7 @@ export namespace deploymentmanager_alpha {
   }
   export interface Params$Resource$Types$List extends StandardParameters {
     /**
-     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`.
-     *
-     * For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`.
-     *
-     * You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels.
-     *
-     * To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
+     * A filter expression that filters resources listed in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. The value must be a string, a number, or a boolean. The comparison operator must be either `=`, `!=`, `\>`, or `<`. For example, if you are filtering Compute Engine instances, you can exclude instances named `example-instance` by specifying `name != example-instance`. You can also filter nested fields. For example, you could specify `scheduling.automaticRestart = false` to include instances only if they are not scheduled for automatic restarts. You can use filtering on nested fields to filter based on resource labels. To filter on multiple expressions, provide each separate expression within parentheses. For example: ``` (scheduling.automaticRestart = true) (cpuPlatform = "Intel Skylake") ``` By default, each expression is an `AND` expression. However, you can include `AND` and `OR` expressions explicitly. For example: ``` (cpuPlatform = "Intel Skylake") OR (cpuPlatform = "Intel Broadwell") AND (scheduling.automaticRestart = true) ```
      */
     filter?: string;
     /**
@@ -7414,11 +7072,7 @@ export namespace deploymentmanager_alpha {
      */
     maxResults?: number;
     /**
-     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name.
-     *
-     * You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first.
-     *
-     * Currently, only sorting by `name` or `creationTimestamp desc` is supported.
+     * Sorts list results by a certain order. By default, results are returned in alphanumerical order based on the resource name. You can also sort results in descending order based on the creation timestamp using `orderBy="creationTimestamp desc"`. This sorts results based on the `creationTimestamp` field in reverse chronological order (newest result first). Use this to sort resources like operations so that the newest operation is returned first. Currently, only sorting by `name` or `creationTimestamp desc` is supported.
      */
     orderBy?: string;
     /**
