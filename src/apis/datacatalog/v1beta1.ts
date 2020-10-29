@@ -643,6 +643,10 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1SerializedTaxonomy {
     /**
+     * A list of policy types that are activated for a taxonomy.
+     */
+    activatedPolicyTypes?: string[] | null;
+    /**
      * Description of the serialized taxonomy. The length of the description is limited to 2000 bytes when encoded in UTF-8. If not set, defaults to an empty description.
      */
     description?: string | null;
@@ -774,6 +778,10 @@ export namespace datacatalog_v1beta1 {
    */
   export interface Schema$GoogleCloudDatacatalogV1beta1TagTemplateField {
     /**
+     * The description for this field. Defaults to an empty string.
+     */
+    description?: string | null;
+    /**
      * The display name for this field. Defaults to an empty string.
      */
     displayName?: string | null;
@@ -814,6 +822,14 @@ export namespace datacatalog_v1beta1 {
      * Output only. Resource name of this taxonomy, whose format is: "projects/{project_number\}/locations/{location_id\}/taxonomies/{id\}".
      */
     name?: string | null;
+    /**
+     * Output only. Number of policy tags contained in this taxonomy.
+     */
+    policyTagCount?: number | null;
+    /**
+     * Output only. Timestamps about this taxonomy. Only create_time and update_time are used.
+     */
+    taxonomyTimestamps?: Schema$GoogleCloudDatacatalogV1beta1SystemTimestamps;
   }
   /**
    * Table view specification.
@@ -6168,6 +6184,7 @@ export namespace datacatalog_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "isRequired": false,
      *       //   "name": "my_name",
@@ -6180,6 +6197,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isRequired": false,
      *   //   "name": "my_name",
@@ -6466,6 +6484,7 @@ export namespace datacatalog_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "isRequired": false,
      *       //   "name": "my_name",
@@ -6478,6 +6497,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isRequired": false,
      *   //   "name": "my_name",
@@ -6640,6 +6660,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isRequired": false,
      *   //   "name": "my_name",
@@ -6870,6 +6891,7 @@ export namespace datacatalog_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isRequired": false,
      *   //   "name": "my_name",
@@ -7053,7 +7075,9 @@ export namespace datacatalog_v1beta1 {
      *       //   "activatedPolicyTypes": [],
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "policyTagCount": 0,
+     *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
      *   });
@@ -7064,7 +7088,9 @@ export namespace datacatalog_v1beta1 {
      *   //   "activatedPolicyTypes": [],
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "policyTagCount": 0,
+     *   //   "taxonomyTimestamps": {}
      *   // }
      * }
      *
@@ -7494,7 +7520,9 @@ export namespace datacatalog_v1beta1 {
      *   //   "activatedPolicyTypes": [],
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "policyTagCount": 0,
+     *   //   "taxonomyTimestamps": {}
      *   // }
      * }
      *
@@ -8103,7 +8131,9 @@ export namespace datacatalog_v1beta1 {
      *       //   "activatedPolicyTypes": [],
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "policyTagCount": 0,
+     *       //   "taxonomyTimestamps": {}
      *       // }
      *     },
      *   });
@@ -8114,7 +8144,9 @@ export namespace datacatalog_v1beta1 {
      *   //   "activatedPolicyTypes": [],
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "policyTagCount": 0,
+     *   //   "taxonomyTimestamps": {}
      *   // }
      * }
      *
