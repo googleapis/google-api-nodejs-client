@@ -559,7 +559,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201023",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -647,7 +647,7 @@
           "type": "string"
         },
         "region": {
-          "description": "Optional. The region the Cloud Run service is deployed in. If not set, the location of the trigger is used. For triggers in the \"global\" location, setting this field is mandatory.",
+          "description": "Required. The region the Cloud Run service is deployed in.",
           "type": "string"
         },
         "service": {
