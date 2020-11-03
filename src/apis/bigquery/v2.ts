@@ -3204,7 +3204,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3353,7 +3353,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3521,7 +3521,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3664,7 +3664,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3834,7 +3834,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4004,7 +4004,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4237,7 +4237,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4381,7 +4381,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4544,7 +4544,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4705,7 +4705,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4860,7 +4860,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5026,7 +5026,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5295,7 +5295,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5445,7 +5445,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5588,7 +5588,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5757,7 +5757,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5972,7 +5972,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6110,7 +6110,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6263,7 +6263,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6413,7 +6413,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6576,7 +6576,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6725,7 +6725,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6890,7 +6890,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7140,7 +7140,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7330,7 +7330,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7479,7 +7479,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7665,7 +7665,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7832,7 +7832,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7977,7 +7977,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8174,7 +8174,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8317,7 +8317,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8516,7 +8516,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8660,7 +8660,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8809,7 +8809,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9007,7 +9007,7 @@ export namespace bigquery_v2 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
