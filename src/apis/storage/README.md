@@ -2,7 +2,7 @@
 
 # storage
 
-> Stores and retrieves potentially large, immutable data objects.
+> Lets you store and retrieve potentially-large, immutable data objects.
 
 ## Installation
 
