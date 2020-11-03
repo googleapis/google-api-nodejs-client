@@ -463,7 +463,7 @@
               ],
               "parameters": {
                 "notifyNewUser": {
-                  "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+                  "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1449,7 +1449,7 @@
               ],
               "parameters": {
                 "notifyNewUser": {
-                  "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+                  "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
                   "location": "query",
                   "type": "boolean"
                 },
@@ -1827,7 +1827,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201031",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccount": {
@@ -1835,7 +1835,7 @@
       "id": "GoogleAnalyticsAdminV1alphaAccount",
       "properties": {
         "countryCode": {
-          "description": "Country of business. Must be a non-deprecated code for a UN M.49 region. https://unicode.org/cldr/charts/latest/supplemental/territory_containment_un_m_49.html",
+          "description": "Country of business. Must be a non-deprecated code for a UN M.49 region. https: //unicode.org/cldr/charts/latest/supplem // ental/territory_containment_un_m_49.html",
           "type": "string"
         },
         "createTime": {
@@ -1998,11 +1998,11 @@
       "id": "GoogleAnalyticsAdminV1alphaBatchCreateUserLinksRequest",
       "properties": {
         "notifyNewUsers": {
-          "description": "Optional. If notify_new_users is set, then email new users that they've been given permissions on the resource.",
+          "description": "Optional. If set, then email the new users notifying them that they've been granted permissions to the resource. Regardless of whether this is set or not, notify_new_user field inside each individual request is ignored.",
           "type": "boolean"
         },
         "requests": {
-          "description": "The requests specifying the user links to create. A maximum of 1000 user links can be created in a batch.",
+          "description": "Required. The requests specifying the user links to create. A maximum of 1000 user links can be created in a batch.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest"
           },
@@ -2030,7 +2030,7 @@
       "id": "GoogleAnalyticsAdminV1alphaBatchDeleteUserLinksRequest",
       "properties": {
         "requests": {
-          "description": "The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
+          "description": "Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaDeleteUserLinkRequest"
           },
@@ -2058,7 +2058,7 @@
       "id": "GoogleAnalyticsAdminV1alphaBatchUpdateUserLinksRequest",
       "properties": {
         "requests": {
-          "description": "The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
+          "description": "Required. The requests specifying the user links to update. A maximum of 1000 user links can be updated in a batch.",
           "items": {
             "$ref": "GoogleAnalyticsAdminV1alphaUpdateUserLinkRequest"
           },
@@ -2086,7 +2086,7 @@
       "id": "GoogleAnalyticsAdminV1alphaCreateUserLinkRequest",
       "properties": {
         "notifyNewUser": {
-          "description": "Optional. If notify_new_user is set, then email new user that they've been given permissions on the resource.",
+          "description": "Optional. If set, then email the new user notifying them that they've been granted permissions to the resource.",
           "type": "boolean"
         },
         "parent": {
