@@ -174,6 +174,10 @@ import {VERSIONS as datacatalogVersions, datacatalog} from './datacatalog';
 import {VERSIONS as dataflowVersions, dataflow} from './dataflow';
 import {VERSIONS as datafusionVersions, datafusion} from './datafusion';
 import {VERSIONS as datalabelingVersions, datalabeling} from './datalabeling';
+import {
+  VERSIONS as datamigrationVersions,
+  datamigration,
+} from './datamigration';
 import {VERSIONS as dataprocVersions, dataproc} from './dataproc';
 import {VERSIONS as datastoreVersions, datastore} from './datastore';
 import {
@@ -315,6 +319,7 @@ import {
   policytroubleshooter,
 } from './policytroubleshooter';
 import {VERSIONS as polyVersions, poly} from './poly';
+import {VERSIONS as privatecaVersions, privateca} from './privateca';
 import {
   VERSIONS as prod_tt_sasportalVersions,
   prod_tt_sasportal,
@@ -517,6 +522,7 @@ export const APIS: APIList = {
   dataflow: dataflowVersions,
   datafusion: datafusionVersions,
   datalabeling: datalabelingVersions,
+  datamigration: datamigrationVersions,
   dataproc: dataprocVersions,
   datastore: datastoreVersions,
   deploymentmanager: deploymentmanagerVersions,
@@ -586,6 +592,7 @@ export const APIS: APIList = {
   plus: plusVersions,
   policytroubleshooter: policytroubleshooterVersions,
   poly: polyVersions,
+  privateca: privatecaVersions,
   prod_tt_sasportal: prod_tt_sasportalVersions,
   pubsub: pubsubVersions,
   pubsublite: pubsubliteVersions,
@@ -712,6 +719,7 @@ export class GeneratedAPIs {
   dataflow = dataflow;
   datafusion = datafusion;
   datalabeling = datalabeling;
+  datamigration = datamigration;
   dataproc = dataproc;
   datastore = datastore;
   deploymentmanager = deploymentmanager;
@@ -781,6 +789,7 @@ export class GeneratedAPIs {
   plus = plus;
   policytroubleshooter = policytroubleshooter;
   poly = poly;
+  privateca = privateca;
   prod_tt_sasportal = prod_tt_sasportal;
   pubsub = pubsub;
   pubsublite = pubsublite;

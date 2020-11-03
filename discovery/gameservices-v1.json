@@ -1312,7 +1312,7 @@
       }
     }
   },
-  "revision": "20201008",
+  "revision": "20201022",
   "rootUrl": "https://gameservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1478,7 +1478,7 @@
             "An approver (distinct from the requester) that has authorized this request. When used with IN, the condition indicates that one of the approvers associated with the request matches the specified principal, or is a member of the specified group. Approvers can only grant additional access, and are thus only used in a strictly positive context (e.g. ALLOW/IN or DENY/NOT_IN).",
             "What types of justifications have been supplied with this request. String values should match enum names from security.credentials.JustificationType, e.g. \"MANUAL_STRING\". It is not permitted to grant access based on the *absence* of a justification, so justification conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN). Multiple justifications, e.g., a Buganizer ID and a manually-entered reason, are normal and supported.",
             "What type of credentials have been supplied with this request. String values should match enum names from security_loas_l2.CredentialsType - currently, only CREDS_TYPE_EMERGENCY is supported. It is not permitted to grant access based on the *absence* of a credentials type, so the conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN).",
-            "EXPERIMENTAL -- DO NOT USE. "
+            "EXPERIMENTAL -- DO NOT USE. The conditions can only be used in a \"positive\" context (e.g., ALLOW/IN or DENY/NOT_IN)."
           ],
           "type": "string"
         },

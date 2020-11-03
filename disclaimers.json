@@ -272,6 +272,10 @@
     "package": "@google-cloud/text-to-speech"
   },
   {
+    "api": "transcoder",
+    "package": "@google-cloud/video-transcoder"
+  },
+  {
     "api": "translate",
     "package": "@google-cloud/translate"
   },
