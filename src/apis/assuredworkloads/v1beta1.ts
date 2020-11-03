@@ -202,7 +202,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
      */
     name?: string | null;
     /**
@@ -338,7 +338,7 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
      */
     name?: string | null;
     /**
@@ -1468,7 +1468,7 @@ export namespace assuredworkloads_v1beta1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.patch({
-     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
+     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
      *     name:
      *       'organizations/my-organization/locations/my-location/workloads/my-workload',
      *     // Required. The list of fields to be updated.
@@ -1681,7 +1681,7 @@ export namespace assuredworkloads_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Patch
     extends StandardParameters {
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
      */
     name?: string;
     /**
