@@ -1597,7 +1597,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:\"NO_VALID_CREATIVE\"` The length of this field should be no more than 500 characters.",
+                  "description": "Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId=\"1234\"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus=\"ENTITY_STATUS_ACTIVE\" OR entityStatus=\"ENTITY_STATUS_PAUSED\") AND lineItemType=\"LINE_ITEM_TYPE_DISPLAY_DEFAULT\"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<\"2019-03-28\"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:\"NO_VALID_CREATIVE\"` The length of this field should be no more than 500 characters.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2544,6 +2544,241 @@
                   ]
                 }
               }
+            }
+          }
+        },
+        "manualTriggers": {
+          "methods": {
+            "activate": {
+              "description": "Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers/{manualTriggersId}:activate",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.manualTriggers.activate",
+              "parameterOrder": [
+                "advertiserId",
+                "triggerId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser that the manual trigger belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "triggerId": {
+                  "description": "Required. The ID of the manual trigger to activate.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate",
+              "request": {
+                "$ref": "ActivateManualTriggerRequest"
+              },
+              "response": {
+                "$ref": "ManualTrigger"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "create": {
+              "description": "Creates a new manual trigger. Returns the newly created manual trigger if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.manualTriggers.create",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers",
+              "request": {
+                "$ref": "ManualTrigger"
+              },
+              "response": {
+                "$ref": "ManualTrigger"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "deactivate": {
+              "description": "Deactivates a manual trigger.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers/{manualTriggersId}:deactivate",
+              "httpMethod": "POST",
+              "id": "displayvideo.advertisers.manualTriggers.deactivate",
+              "parameterOrder": [
+                "advertiserId",
+                "triggerId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser that the manual trigger belongs.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "triggerId": {
+                  "description": "Required. The ID of the manual trigger to deactivate.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate",
+              "request": {
+                "$ref": "DeactivateManualTriggerRequest"
+              },
+              "response": {
+                "$ref": "ManualTrigger"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "get": {
+              "description": "Gets a manual trigger.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers/{manualTriggersId}",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.manualTriggers.get",
+              "parameterOrder": [
+                "advertiserId",
+                "triggerId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser this manual trigger belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "triggerId": {
+                  "description": "Required. The ID of the manual trigger to fetch.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}",
+              "response": {
+                "$ref": "ManualTrigger"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "list": {
+              "description": "Lists manual triggers that are accessible to the current user for a given advertiser id. The order is defined by the order_by parameter. A single advertiser_id is required.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers",
+              "httpMethod": "GET",
+              "id": "displayvideo.advertisers.manualTriggers.list",
+              "parameterOrder": [
+                "advertiserId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. The ID of the advertiser that the fetched manual triggers belong to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Allows filtering by manual trigger properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field} {operator} {value}`. * The operator must be `EQUALS (=)`. * Supported fields: - `displayName` - `state` Examples: * All active manual triggers under an advertiser: `state=\"ACTIVE\"` The length of this field should be no more than 500 characters.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "orderBy": {
+                  "description": "Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix \"desc\" should be added to the field name. For example, `displayName desc`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers",
+              "response": {
+                "$ref": "ListManualTriggersResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
+            },
+            "patch": {
+              "description": "Updates a manual trigger. Returns the updated manual trigger if successful.",
+              "flatPath": "v1/advertisers/{advertisersId}/manualTriggers/{manualTriggersId}",
+              "httpMethod": "PATCH",
+              "id": "displayvideo.advertisers.manualTriggers.patch",
+              "parameterOrder": [
+                "advertiserId",
+                "triggerId"
+              ],
+              "parameters": {
+                "advertiserId": {
+                  "description": "Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "triggerId": {
+                  "description": "Output only. The unique ID of the manual trigger.",
+                  "format": "int64",
+                  "location": "path",
+                  "pattern": "^[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The mask to control which fields to update.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}",
+              "request": {
+                "$ref": "ManualTrigger"
+              },
+              "response": {
+                "$ref": "ManualTrigger"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/display-video"
+              ]
             }
           }
         },
@@ -5906,9 +6141,15 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201030",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
+    "ActivateManualTriggerRequest": {
+      "description": "Request message for ManualTriggerService.ActivateManualTrigger.",
+      "id": "ActivateManualTriggerRequest",
+      "properties": {},
+      "type": "object"
+    },
     "ActiveViewVideoViewabilityMetricConfig": {
       "description": "Configuration for custom Active View video viewability metrics.",
       "id": "ActiveViewVideoViewabilityMetricConfig",
@@ -8589,6 +8830,12 @@
       },
       "type": "object"
     },
+    "DeactivateManualTriggerRequest": {
+      "description": "Request message for ManualTriggerService.DeactivateManualTrigger.",
+      "id": "DeactivateManualTriggerRequest",
+      "properties": {},
+      "type": "object"
+    },
     "DeleteAssignedTargetingOptionsRequest": {
       "description": "A request listing which assigned targeting options of a given targeting type should be deleted.",
       "id": "DeleteAssignedTargetingOptionsRequest",
@@ -8888,6 +9135,11 @@
         "brandSafetyCategories": {
           "$ref": "DoubleVerifyBrandSafetyCategories",
           "description": "DV Brand Safety Controls."
+        },
+        "customSegmentId": {
+          "description": "The custom segment ID provided by DoubleVerify. The ID must start with \"51\" and consist of eight digits. Custom segment id cannot be specified along with any of the following fields: * brand_safety_categories * avoided_age_ratings * app_star_rating * fraud_invalid_traffic",
+          "format": "int64",
+          "type": "string"
         },
         "displayViewability": {
           "$ref": "DoubleVerifyDisplayViewability",
@@ -10668,6 +10920,14 @@
       "description": "Details of Integral Ad Science settings.",
       "id": "IntegralAdScience",
       "properties": {
+        "customSegmentId": {
+          "description": "The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999`, inclusive.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
         "displayViewability": {
           "description": "Display Viewability section (applicable to display line items only).",
           "enum": [
@@ -11439,6 +11699,10 @@
           "$ref": "PartnerRevenueModel",
           "description": "Required. The partner revenue model setting of the line item."
         },
+        "targetingExpansion": {
+          "$ref": "TargetingExpansionConfig",
+          "description": "The targeting expansion settings of the line item."
+        },
         "updateTime": {
           "description": "Output only. The timestamp when the line item was last updated. Assigned by the system.",
           "format": "google-datetime",
@@ -11550,13 +11814,20 @@
           "enum": [
             "LINE_ITEM_FLIGHT_DATE_TYPE_UNSPECIFIED",
             "LINE_ITEM_FLIGHT_DATE_TYPE_INHERITED",
-            "LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM"
+            "LINE_ITEM_FLIGHT_DATE_TYPE_CUSTOM",
+            "LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER"
           ],
           "enumDescriptions": [
             "Type value is not specified or is unknown in this version.",
             "The line item's flight dates are inherited from its parent insertion order.",
-            "The line item uses its own custom flight dates."
+            "The line item uses its own custom flight dates.",
+            "The line item uses a trigger."
           ],
+          "type": "string"
+        },
+        "triggerId": {
+          "description": "The ID of the manual trigger associated with the line item. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER`. Must not be set otherwise. * A line item's flight dates are inherited from its parent insertion order. * Active line items will spend when the selected trigger is activated within the parent insertion order's flight dates.",
+          "format": "int64",
           "type": "string"
         }
       },
@@ -11873,6 +12144,23 @@
       },
       "type": "object"
     },
+    "ListManualTriggersResponse": {
+      "id": "ListManualTriggersResponse",
+      "properties": {
+        "manualTriggers": {
+          "description": "The list of manual triggers. This list will be absent if empty.",
+          "items": {
+            "$ref": "ManualTrigger"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListManualTriggers` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListNegativeKeywordListsResponse": {
       "description": "Response message for NegativeKeywordListService.ListNegativeKeywordLists.",
       "id": "ListNegativeKeywordListsResponse",
@@ -12050,6 +12338,59 @@
           "description": "Lookback window, in days, from the last time a given user viewed one of your ads.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ManualTrigger": {
+      "description": "A single manual trigger in Display & Video 360 (DV360).",
+      "id": "ManualTrigger",
+      "properties": {
+        "activationDurationMinutes": {
+          "description": "Required. The maximum duration of each activation in minutes. Must be between 1 and 360 inclusive. After this duration, the trigger will be automatically deactivated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "advertiserId": {
+          "description": "Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.",
+          "format": "int64",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the manual trigger. Must be UTF-8 encoded with a maximum size of 240 bytes.",
+          "type": "string"
+        },
+        "latestActivationTime": {
+          "description": "Output only. The timestamp of the trigger's latest activation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The resource name of the manual trigger.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the manual trigger. Will be set to the `INACTIVE` state upon creation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "Default value when state is not specified or is unknown in this version.",
+            "The trigger is currently inactive and ready to be activated.",
+            "The trigger is currently active (activated)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "triggerId": {
+          "description": "Output only. The unique ID of the manual trigger.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -13293,6 +13634,39 @@
         "displayName": {
           "description": "Output only. The display name of the sub-exchange.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TargetingExpansionConfig": {
+      "description": "Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.",
+      "id": "TargetingExpansionConfig",
+      "properties": {
+        "excludeFirstPartyAudience": {
+          "description": "Required. Whether to exclude first party audiences from targeting. Similar audiences of the excluded first party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.",
+          "type": "boolean"
+        },
+        "targetingExpansionLevel": {
+          "description": "Required. Magnitude of expansion for applicable targeting under this line item.",
+          "enum": [
+            "TARGETING_EXPANSION_LEVEL_UNSPECIFIED",
+            "NO_EXPANSION",
+            "LEAST_EXPANSION",
+            "SOME_EXPANSION",
+            "BALANCED_EXPANSION",
+            "MORE_EXPANSION",
+            "MOST_EXPANSION"
+          ],
+          "enumDescriptions": [
+            "Targeting expansion level is not specified or is unknown in this version.",
+            "Targeting expansion off.",
+            "Conservative targeting expansion, lowest reach.",
+            "Moderately conservative targeting expansion, lower reach.",
+            "Moderate targeting expansion, medium reach.",
+            "Moderately aggressive targeting expansion, higher reach.",
+            "Aggressive targeting expansion, highest reach."
+          ],
           "type": "string"
         }
       },
