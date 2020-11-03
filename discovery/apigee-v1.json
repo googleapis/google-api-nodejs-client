@@ -5691,7 +5691,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201022",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -8453,6 +8453,10 @@
         "properties": {
           "$ref": "GoogleCloudApigeeV1Properties",
           "description": "Properties defined in the Apigee organization profile."
+        },
+        "runtimeDatabaseEncryptionKeyName": {
+          "description": "Cloud KMS key name used for encrypting the data that is stored and replicated across runtime instances. Update is not allowed after the organization is created. If not specified, a Google-Managed encryption key will be used. Valid only when [RuntimeType] is CLOUD. For example: \"projects/foo/locations/us/keyRings/bar/cryptoKeys/baz\". **Note:** Not supported for Apigee hybrid.",
+          "type": "string"
         },
         "runtimeType": {
           "description": "Required. Runtime type of the Apigee organization based on the Apigee subscription purchased.",

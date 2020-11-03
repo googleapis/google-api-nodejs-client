@@ -125,6 +125,8 @@ pass_down_envvars=(
     "TRAMPOLINE_CI"
     # Indicates the version of the script.
     "TRAMPOLINE_VERSION"
+    # Contains path to build artifacts being executed.
+    "KOKORO_BUILD_ARTIFACTS_SUBDIR"
 )
 
 log_yellow "Building with Trampoline ${TRAMPOLINE_VERSION}"
