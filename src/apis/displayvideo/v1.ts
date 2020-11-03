@@ -156,6 +156,10 @@ export namespace displayvideo_v1 {
   }
 
   /**
+   * Request message for ManualTriggerService.ActivateManualTrigger.
+   */
+  export interface Schema$ActivateManualTriggerRequest {}
+  /**
    * Configuration for custom Active View video viewability metrics.
    */
   export interface Schema$ActiveViewVideoViewabilityMetricConfig {
@@ -1677,6 +1681,10 @@ export namespace displayvideo_v1 {
     timeZoneResolution?: string | null;
   }
   /**
+   * Request message for ManualTriggerService.DeactivateManualTrigger.
+   */
+  export interface Schema$DeactivateManualTriggerRequest {}
+  /**
    * A request listing which assigned targeting options of a given targeting type should be deleted.
    */
   export interface Schema$DeleteAssignedTargetingOptionsRequest {
@@ -1788,6 +1796,10 @@ export namespace displayvideo_v1 {
      * DV Brand Safety Controls.
      */
     brandSafetyCategories?: Schema$DoubleVerifyBrandSafetyCategories;
+    /**
+     * The custom segment ID provided by DoubleVerify. The ID must start with "51" and consist of eight digits. Custom segment id cannot be specified along with any of the following fields: * brand_safety_categories * avoided_age_ratings * app_star_rating * fraud_invalid_traffic
+     */
+    customSegmentId?: string | null;
     /**
      * Display viewability settings (applicable to display line items only).
      */
@@ -2391,6 +2403,10 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$IntegralAdScience {
     /**
+     * The custom segment ID provided by Integral Ad Science. The ID must be between `1000001` and `1999999`, inclusive.
+     */
+    customSegmentId?: string[] | null;
+    /**
      * Display Viewability section (applicable to display line items only).
      */
     displayViewability?: string | null;
@@ -2724,6 +2740,10 @@ export namespace displayvideo_v1 {
      */
     partnerRevenueModel?: Schema$PartnerRevenueModel;
     /**
+     * The targeting expansion settings of the line item.
+     */
+    targetingExpansion?: Schema$TargetingExpansionConfig;
+    /**
      * Output only. The timestamp when the line item was last updated. Assigned by the system.
      */
     updateTime?: string | null;
@@ -2761,6 +2781,10 @@ export namespace displayvideo_v1 {
      * Required. The type of the line item's flight dates.
      */
     flightDateType?: string | null;
+    /**
+     * The ID of the manual trigger associated with the line item. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER`. Must not be set otherwise. * A line item's flight dates are inherited from its parent insertion order. * Active line items will spend when the selected trigger is activated within the parent insertion order's flight dates.
+     */
+    triggerId?: string | null;
   }
   /**
    * Response message for ListAdvertiserAssignedTargetingOptions.
@@ -2957,6 +2981,16 @@ export namespace displayvideo_v1 {
      */
     nextPageToken?: string | null;
   }
+  export interface Schema$ListManualTriggersResponse {
+    /**
+     * The list of manual triggers. This list will be absent if empty.
+     */
+    manualTriggers?: Schema$ManualTrigger[];
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `ListManualTriggers` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
   /**
    * Response message for NegativeKeywordListService.ListNegativeKeywordLists.
    */
@@ -3076,6 +3110,39 @@ export namespace displayvideo_v1 {
      * Lookback window, in days, from the last time a given user viewed one of your ads.
      */
     impressionDays?: number | null;
+  }
+  /**
+   * A single manual trigger in Display & Video 360 (DV360).
+   */
+  export interface Schema$ManualTrigger {
+    /**
+     * Required. The maximum duration of each activation in minutes. Must be between 1 and 360 inclusive. After this duration, the trigger will be automatically deactivated.
+     */
+    activationDurationMinutes?: string | null;
+    /**
+     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     */
+    advertiserId?: string | null;
+    /**
+     * Required. The display name of the manual trigger. Must be UTF-8 encoded with a maximum size of 240 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Output only. The timestamp of the trigger's latest activation.
+     */
+    latestActivationTime?: string | null;
+    /**
+     * Output only. The resource name of the manual trigger.
+     */
+    name?: string | null;
+    /**
+     * Output only. The state of the manual trigger. Will be set to the `INACTIVE` state upon creation.
+     */
+    state?: string | null;
+    /**
+     * Output only. The unique ID of the manual trigger.
+     */
+    triggerId?: string | null;
   }
   /**
    * A strategy that automatically adjusts the bid to optimize a specified performance goal while spending the full budget.
@@ -3684,6 +3751,19 @@ export namespace displayvideo_v1 {
     displayName?: string | null;
   }
   /**
+   * Settings that control the targeting expansion of the line item. Targeting expansion allows the line item to reach a larger audience based on the original audience list and the targeting expansion level.
+   */
+  export interface Schema$TargetingExpansionConfig {
+    /**
+     * Required. Whether to exclude first party audiences from targeting. Similar audiences of the excluded first party lists will not be excluded. Only applicable when a first-party audience is positively targeted (directly or included in a combined audience), otherwise this selection will be ignored.
+     */
+    excludeFirstPartyAudience?: boolean | null;
+    /**
+     * Required. Magnitude of expansion for applicable targeting under this line item.
+     */
+    targetingExpansionLevel?: string | null;
+  }
+  /**
    * Represents a single targeting option, which is a targetable concept in DV360.
    */
   export interface Schema$TargetingOption {
@@ -4050,6 +4130,7 @@ export namespace displayvideo_v1 {
     insertionOrders: Resource$Advertisers$Insertionorders;
     lineItems: Resource$Advertisers$Lineitems;
     locationLists: Resource$Advertisers$Locationlists;
+    manualTriggers: Resource$Advertisers$Manualtriggers;
     negativeKeywordLists: Resource$Advertisers$Negativekeywordlists;
     targetingTypes: Resource$Advertisers$Targetingtypes;
     constructor(context: APIRequestContext) {
@@ -4063,6 +4144,9 @@ export namespace displayvideo_v1 {
       );
       this.lineItems = new Resource$Advertisers$Lineitems(this.context);
       this.locationLists = new Resource$Advertisers$Locationlists(this.context);
+      this.manualTriggers = new Resource$Advertisers$Manualtriggers(
+        this.context
+      );
       this.negativeKeywordLists = new Resource$Advertisers$Negativekeywordlists(
         this.context
       );
@@ -9904,6 +9988,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "partnerRevenueModel": {},
+     *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "warningMessages": []
      *       // }
@@ -9932,6 +10017,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
      *   // }
@@ -10211,6 +10297,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
      *   // }
@@ -10336,7 +10423,7 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
      *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
@@ -10506,6 +10593,7 @@ export namespace displayvideo_v1 {
      *       //   "pacing": {},
      *       //   "partnerCosts": [],
      *       //   "partnerRevenueModel": {},
+     *       //   "targetingExpansion": {},
      *       //   "updateTime": "my_updateTime",
      *       //   "warningMessages": []
      *       // }
@@ -10534,6 +10622,7 @@ export namespace displayvideo_v1 {
      *   //   "pacing": {},
      *   //   "partnerCosts": [],
      *   //   "partnerRevenueModel": {},
+     *   //   "targetingExpansion": {},
      *   //   "updateTime": "my_updateTime",
      *   //   "warningMessages": []
      *   // }
@@ -10715,7 +10804,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
@@ -12908,6 +12997,980 @@ export namespace displayvideo_v1 {
      * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAssignedLocations` method. If not specified, the first page of results will be returned.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Advertisers$Manualtriggers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Activates a manual trigger. Each activation of the manual trigger must be at least 5 minutes apart, otherwise an error will be returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.activate({
+     *     // Required. The ID of the advertiser that the manual trigger belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to activate.
+     *     triggerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Advertisers$Manualtriggers$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Advertisers$Manualtriggers$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManualTrigger>;
+    activate(
+      params: Params$Resource$Advertisers$Manualtriggers$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Advertisers$Manualtriggers$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    activate(
+      params: Params$Resource$Advertisers$Manualtriggers$Activate,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$Activate
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'triggerId'],
+        pathParams: ['advertiserId', 'triggerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManualTrigger>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManualTrigger>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new manual trigger. Returns the newly created manual trigger if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.create({
+     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "latestActivationTime": "my_latestActivationTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "triggerId": "my_triggerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Advertisers$Manualtriggers$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Advertisers$Manualtriggers$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManualTrigger>;
+    create(
+      params: Params$Resource$Advertisers$Manualtriggers$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Manualtriggers$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    create(
+      params: Params$Resource$Advertisers$Manualtriggers$Create,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$Create
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/advertisers/{+advertiserId}/manualTriggers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManualTrigger>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManualTrigger>(parameters);
+      }
+    }
+
+    /**
+     * Deactivates a manual trigger.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.deactivate({
+     *     // Required. The ID of the advertiser that the manual trigger belongs.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to deactivate.
+     *     triggerId: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivate(
+      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    deactivate(
+      params?: Params$Resource$Advertisers$Manualtriggers$Deactivate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManualTrigger>;
+    deactivate(
+      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivate(
+      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    deactivate(
+      params: Params$Resource$Advertisers$Manualtriggers$Deactivate,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    deactivate(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
+    deactivate(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$Deactivate
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$Deactivate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}:deactivate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'triggerId'],
+        pathParams: ['advertiserId', 'triggerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManualTrigger>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManualTrigger>(parameters);
+      }
+    }
+
+    /**
+     * Gets a manual trigger.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.get({
+     *     // Required. The ID of the advertiser this manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Required. The ID of the manual trigger to fetch.
+     *     triggerId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Advertisers$Manualtriggers$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Advertisers$Manualtriggers$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManualTrigger>;
+    get(
+      params: Params$Resource$Advertisers$Manualtriggers$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Manualtriggers$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    get(
+      params: Params$Resource$Advertisers$Manualtriggers$Get,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$Get
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'triggerId'],
+        pathParams: ['advertiserId', 'triggerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManualTrigger>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManualTrigger>(parameters);
+      }
+    }
+
+    /**
+     * Lists manual triggers that are accessible to the current user for a given advertiser id. The order is defined by the order_by parameter. A single advertiser_id is required.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.list({
+     *     // Required. The ID of the advertiser that the fetched manual triggers belong to.
+     *     advertiserId: '[^/]+',
+     *     // Allows filtering by manual trigger properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `displayName` - `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters.
+     *     filter: 'placeholder-value',
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     *     orderBy: 'placeholder-value',
+     *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "manualTriggers": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Advertisers$Manualtriggers$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Advertisers$Manualtriggers$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListManualTriggersResponse>;
+    list(
+      params: Params$Resource$Advertisers$Manualtriggers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Manualtriggers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListManualTriggersResponse>,
+      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Advertisers$Manualtriggers$List,
+      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListManualTriggersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$List
+        | BodyResponseCallback<Schema$ListManualTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListManualTriggersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListManualTriggersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListManualTriggersResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/advertisers/{+advertiserId}/manualTriggers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId'],
+        pathParams: ['advertiserId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListManualTriggersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListManualTriggersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a manual trigger. Returns the updated manual trigger if successful.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.advertisers.manualTriggers.patch({
+     *     // Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     *     advertiserId: '[^/]+',
+     *     // Output only. The unique ID of the manual trigger.
+     *     triggerId: '[^/]+',
+     *     // Required. The mask to control which fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "displayName": "my_displayName",
+     *       //   "latestActivationTime": "my_latestActivationTime",
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "triggerId": "my_triggerId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activationDurationMinutes": "my_activationDurationMinutes",
+     *   //   "advertiserId": "my_advertiserId",
+     *   //   "displayName": "my_displayName",
+     *   //   "latestActivationTime": "my_latestActivationTime",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "triggerId": "my_triggerId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Advertisers$Manualtriggers$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Advertisers$Manualtriggers$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ManualTrigger>;
+    patch(
+      params: Params$Resource$Advertisers$Manualtriggers$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Manualtriggers$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ManualTrigger>,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    patch(
+      params: Params$Resource$Advertisers$Manualtriggers$Patch,
+      callback: BodyResponseCallback<Schema$ManualTrigger>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ManualTrigger>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Advertisers$Manualtriggers$Patch
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ManualTrigger>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ManualTrigger> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Advertisers$Manualtriggers$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Advertisers$Manualtriggers$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/advertisers/{+advertiserId}/manualTriggers/{+triggerId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['advertiserId', 'triggerId'],
+        pathParams: ['advertiserId', 'triggerId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ManualTrigger>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ManualTrigger>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Advertisers$Manualtriggers$Activate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the manual trigger belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the manual trigger to activate.
+     */
+    triggerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateManualTriggerRequest;
+  }
+  export interface Params$Resource$Advertisers$Manualtriggers$Create
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     */
+    advertiserId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManualTrigger;
+  }
+  export interface Params$Resource$Advertisers$Manualtriggers$Deactivate
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the manual trigger belongs.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the manual trigger to deactivate.
+     */
+    triggerId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateManualTriggerRequest;
+  }
+  export interface Params$Resource$Advertisers$Manualtriggers$Get
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser this manual trigger belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Required. The ID of the manual trigger to fetch.
+     */
+    triggerId?: string;
+  }
+  export interface Params$Resource$Advertisers$Manualtriggers$List
+    extends StandardParameters {
+    /**
+     * Required. The ID of the advertiser that the fetched manual triggers belong to.
+     */
+    advertiserId?: string;
+    /**
+     * Allows filtering by manual trigger properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `displayName` - `state` Examples: * All active manual triggers under an advertiser: `state="ACTIVE"` The length of this field should be no more than 500 characters.
+     */
+    filter?: string;
+    /**
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `state` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. For example, `displayName desc`.
+     */
+    orderBy?: string;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListManualTriggers` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Advertisers$Manualtriggers$Patch
+    extends StandardParameters {
+    /**
+     * Required. Immutable. The unique ID of the advertiser that the manual trigger belongs to.
+     */
+    advertiserId?: string;
+    /**
+     * Output only. The unique ID of the manual trigger.
+     */
+    triggerId?: string;
+    /**
+     * Required. The mask to control which fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ManualTrigger;
   }
 
   export class Resource$Advertisers$Negativekeywordlists {
