@@ -1579,8 +1579,8 @@
       }
     }
   },
-  "revision": "20201015",
-  "rootUrl": "https://bigquery.googleapis.com/",
+  "revision": "20201022",
+  "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
       "description": "Aggregate metrics for classification/classifier models. For multi-class models, the metrics are either macro-averaged or micro-averaged. When macro-averaged, the metrics are calculated for each label and then an unweighted average is taken of those values. When micro-averaged, the metric is calculated globally by counting the total number of correctly predicted rows.",
