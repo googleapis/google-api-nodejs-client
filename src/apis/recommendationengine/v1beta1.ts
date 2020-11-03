@@ -848,6 +848,10 @@ export namespace recommendationengine_v1beta1 {
     userEventsSample?: Schema$GoogleCloudRecommendationengineV1beta1UserEvent[];
   }
   /**
+   * Metadata for RejoinUserEvents method.
+   */
+  export interface Schema$GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata {}
+  /**
    * Request message for CatalogRejoin method.
    */
   export interface Schema$GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest {
@@ -855,6 +859,15 @@ export namespace recommendationengine_v1beta1 {
      * Required. The type of the catalog rejoin to define the scope and range of the user events to be rejoined with catalog items.
      */
     userEventRejoinScope?: string | null;
+  }
+  /**
+   * Response message for RejoinUserEvents method.
+   */
+  export interface Schema$GoogleCloudRecommendationengineV1beta1RejoinUserEventsResponse {
+    /**
+     * Number of user events that were joined with latest catalog items.
+     */
+    rejoinedUserEventsCount?: string | null;
   }
   /**
    * UserEvent captures all metadata information recommendation engine needs to know about how end users interact with customers' website.
