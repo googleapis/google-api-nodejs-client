@@ -407,6 +407,35 @@
                 "https://www.googleapis.com/auth/cloud-platform.read-only"
               ]
             },
+            "importAdminOverrides": {
+              "description": "Create or update multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
+              "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics:importAdminOverrides",
+              "httpMethod": "POST",
+              "id": "serviceusage.services.consumerQuotaMetrics.importAdminOverrides",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "The resource name of the consumer. An example name would be: `projects/123/services/compute.googleapis.com`",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/services/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+parent}/consumerQuotaMetrics:importAdminOverrides",
+              "request": {
+                "$ref": "ImportAdminOverridesRequest"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/service.management"
+              ]
+            },
             "importConsumerOverrides": {
               "description": "Create or update multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.",
               "flatPath": "v1beta1/{v1beta1Id}/{v1beta1Id1}/services/{servicesId}/consumerQuotaMetrics:importConsumerOverrides",
@@ -834,7 +863,7 @@
       }
     }
   },
-  "revision": "20201026",
+  "revision": "20201031",
   "rootUrl": "https://serviceusage.googleapis.com/",
   "schemas": {
     "AdminQuotaPolicy": {
@@ -2038,6 +2067,21 @@
         "selector": {
           "description": "Selects a method to which this rule applies. Refer to selector for syntax details.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportAdminOverridesRequest": {
+      "description": "Request message for ImportAdminOverrides",
+      "id": "ImportAdminOverridesRequest",
+      "properties": {
+        "force": {
+          "description": "Whether to force the creation of the quota overrides. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.",
+          "type": "boolean"
+        },
+        "inlineSource": {
+          "$ref": "OverrideInlineSource",
+          "description": "The import data is specified in the request message itself"
         }
       },
       "type": "object"
