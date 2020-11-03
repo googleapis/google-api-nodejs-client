@@ -128,6 +128,49 @@ export namespace cloudasset_v1 {
   }
 
   /**
+   * Specifies roles and/or permissions to analyze, to determine both the identities possessing them and the resources they control. If multiple values are specified, results will include roles or permissions matching any of them. The total number of roles and permissions should be equal or less than 10.
+   */
+  export interface Schema$AccessSelector {
+    /**
+     * Optional. The permissions to appear in result.
+     */
+    permissions?: string[] | null;
+    /**
+     * Optional. The roles to appear in result.
+     */
+    roles?: string[] | null;
+  }
+  /**
+   * A request message for AssetService.AnalyzeIamPolicyLongrunning.
+   */
+  export interface Schema$AnalyzeIamPolicyLongrunningRequest {
+    /**
+     * Required. The request query.
+     */
+    analysisQuery?: Schema$IamPolicyAnalysisQuery;
+    /**
+     * Required. Output configuration indicating where the results will be output to.
+     */
+    outputConfig?: Schema$IamPolicyAnalysisOutputConfig;
+  }
+  /**
+   * A response message for AssetService.AnalyzeIamPolicy.
+   */
+  export interface Schema$AnalyzeIamPolicyResponse {
+    /**
+     * Represents whether all entries in the main_analysis and service_account_impersonation_analysis have been fully explored to answer the query in the request.
+     */
+    fullyExplored?: boolean | null;
+    /**
+     * The main analysis that matches the original request.
+     */
+    mainAnalysis?: Schema$IamPolicyAnalysis;
+    /**
+     * The service account impersonation analysis if AnalyzeIamPolicyRequest.analyze_service_account_impersonation is enabled.
+     */
+    serviceAccountImpersonationAnalysis?: Schema$IamPolicyAnalysis[];
+  }
+  /**
    * An asset in Google Cloud. An asset can be any resource in the Google Cloud [resource hierarchy](https://cloud.google.com/resource-manager/docs/cloud-platform-resource-hierarchy), a resource outside the Google Cloud resource hierarchy (such as Google Kubernetes Engine clusters and objects), or a policy (e.g. Cloud IAM policy). See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
    */
   export interface Schema$Asset {
@@ -367,6 +410,122 @@ export namespace cloudasset_v1 {
      * The uri prefix of all generated Cloud Storage objects. Example: "gs://bucket_name/object_name_prefix". Each object uri is in format: "gs://bucket_name/object_name_prefix// and only contains assets for that type. starts from 0. Example: "gs://bucket_name/object_name_prefix/compute.googleapis.com/Disk/0" is the first shard of output objects containing all compute.googleapis.com/Disk assets. An INVALID_ARGUMENT error will be returned if file with the same name "gs://bucket_name/object_name_prefix" already exists.
      */
     uriPrefix?: string | null;
+  }
+  /**
+   * An IAM role or permission under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1Access {
+    /**
+     * The analysis state of this access.
+     */
+    analysisState?: Schema$IamPolicyAnalysisState;
+    /**
+     * The permission.
+     */
+    permission?: string | null;
+    /**
+     * The role.
+     */
+    role?: string | null;
+  }
+  /**
+   * An access control list, derived from the above IAM policy binding, which contains a set of resources and accesses. May include one item from each set to compose an access control entry. NOTICE that there could be multiple access control lists for one IAM policy binding. The access control lists are created based on resource and access combinations. For example, assume we have the following cases in one IAM policy binding: - Permission P1 and P2 apply to resource R1 and R2; - Permission P3 applies to resource R2 and R3; This will result in the following access control lists: - AccessControlList 1: [R1, R2], [P1, P2] - AccessControlList 2: [R2, R3], [P3]
+   */
+  export interface Schema$GoogleCloudAssetV1AccessControlList {
+    /**
+     * The accesses that match one of the following conditions: - The access_selector, if it is specified in request; - Otherwise, access specifiers reachable from the policy binding's role.
+     */
+    accesses?: Schema$GoogleCloudAssetV1Access[];
+    /**
+     * Resource edges of the graph starting from the policy attached resource to any descendant resources. The Edge.source_node contains the full resource name of a parent resource and Edge.target_node contains the full resource name of a child resource. This field is present only if the output_resource_edges option is enabled in request.
+     */
+    resourceEdges?: Schema$GoogleCloudAssetV1Edge[];
+    /**
+     * The resources that match one of the following conditions: - The resource_selector, if it is specified in request; - Otherwise, resources reachable from the policy attached resource.
+     */
+    resources?: Schema$GoogleCloudAssetV1Resource[];
+  }
+  /**
+   * A BigQuery destination.
+   */
+  export interface Schema$GoogleCloudAssetV1BigQueryDestination {
+    /**
+     * Required. The BigQuery dataset in format "projects/projectId/datasets/datasetId", to which the analysis results should be exported. If this dataset does not exist, the export call will return an INVALID_ARGUMENT error.
+     */
+    dataset?: string | null;
+    /**
+     * The partition key for BigQuery partitioned table.
+     */
+    partitionKey?: string | null;
+    /**
+     * Required. The prefix of the BigQuery tables to which the analysis results will be written. Tables will be created based on this table_prefix if not exist: * _analysis table will contain export operation's metadata. * _analysis_result will contain all the IamPolicyAnalysisResult. When [partition_key] is specified, both tables will be partitioned based on the [partition_key].
+     */
+    tablePrefix?: string | null;
+    /**
+     * Optional. Specifies the action that occurs if the destination table or partition already exists. The following values are supported: * WRITE_TRUNCATE: If the table or partition already exists, BigQuery overwrites the entire table or all the partitions data. * WRITE_APPEND: If the table or partition already exists, BigQuery appends the data to the table or the latest partition. * WRITE_EMPTY: If the table already exists and contains data, an error is returned. The default value is WRITE_APPEND. Each action is atomic and only occurs if BigQuery is able to complete the job successfully. Details are at https://cloud.google.com/bigquery/docs/loading-data-local#appending_to_or_overwriting_a_table_using_a_local_file.
+     */
+    writeDisposition?: string | null;
+  }
+  /**
+   * A directional edge.
+   */
+  export interface Schema$GoogleCloudAssetV1Edge {
+    /**
+     * The source node of the edge. For example, it could be a full resource name for a resource node or an email of an identity.
+     */
+    sourceNode?: string | null;
+    /**
+     * The target node of the edge. For example, it could be a full resource name for a resource node or an email of an identity.
+     */
+    targetNode?: string | null;
+  }
+  /**
+   * A Cloud Storage location.
+   */
+  export interface Schema$GoogleCloudAssetV1GcsDestination {
+    /**
+     * Required. The uri of the Cloud Storage object. It's the same uri that is used by gsutil. For example: "gs://bucket_name/object_name". See [Quickstart: Using the gsutil tool] (https://cloud.google.com/storage/docs/quickstart-gsutil) for examples.
+     */
+    uri?: string | null;
+  }
+  /**
+   * An identity under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1Identity {
+    /**
+     * The analysis state of this identity.
+     */
+    analysisState?: Schema$IamPolicyAnalysisState;
+    /**
+     * The identity name in any form of members appear in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding), such as: - user:foo@google.com - group:group1@google.com - serviceAccount:s1@prj1.iam.gserviceaccount.com - projectOwner:some_project_id - domain:google.com - allUsers - etc.
+     */
+    name?: string | null;
+  }
+  /**
+   * The identities and group edges.
+   */
+  export interface Schema$GoogleCloudAssetV1IdentityList {
+    /**
+     * Group identity edges of the graph starting from the binding's group members to any node of the identities. The Edge.source_node contains a group, such as `group:parent@google.com`. The Edge.target_node contains a member of the group, such as `group:child@google.com` or `user:foo@google.com`. This field is present only if the output_group_edges option is enabled in request.
+     */
+    groupEdges?: Schema$GoogleCloudAssetV1Edge[];
+    /**
+     * Only the identities that match one of the following conditions will be presented: - The identity_selector, if it is specified in request; - Otherwise, identities reachable from the policy binding's members.
+     */
+    identities?: Schema$GoogleCloudAssetV1Identity[];
+  }
+  /**
+   * A Google Cloud resource under analysis.
+   */
+  export interface Schema$GoogleCloudAssetV1Resource {
+    /**
+     * The analysis state of this resource.
+     */
+    analysisState?: Schema$IamPolicyAnalysisState;
+    /**
+     * The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format)
+     */
+    fullResourceName?: string | null;
   }
   /**
    * Used in `policy_type` to specify how `boolean_policy` will behave at this resource.
@@ -650,6 +809,103 @@ export namespace cloudasset_v1 {
     enableRestriction?: boolean | null;
   }
   /**
+   * An analysis message to group the query and results.
+   */
+  export interface Schema$IamPolicyAnalysis {
+    /**
+     * The analysis query.
+     */
+    analysisQuery?: Schema$IamPolicyAnalysisQuery;
+    /**
+     * A list of IamPolicyAnalysisResult that matches the analysis query, or empty if no result is found.
+     */
+    analysisResults?: Schema$IamPolicyAnalysisResult[];
+    /**
+     * Represents whether all entries in the analysis_results have been fully explored to answer the query.
+     */
+    fullyExplored?: boolean | null;
+    /**
+     * A list of non-critical errors happened during the query handling.
+     */
+    nonCriticalErrors?: Schema$IamPolicyAnalysisState[];
+  }
+  /**
+   * Output configuration for export IAM policy analysis destination.
+   */
+  export interface Schema$IamPolicyAnalysisOutputConfig {
+    /**
+     * Destination on BigQuery.
+     */
+    bigqueryDestination?: Schema$GoogleCloudAssetV1BigQueryDestination;
+    /**
+     * Destination on Cloud Storage.
+     */
+    gcsDestination?: Schema$GoogleCloudAssetV1GcsDestination;
+  }
+  /**
+   * IAM policy analysis query message.
+   */
+  export interface Schema$IamPolicyAnalysisQuery {
+    /**
+     * Optional. Specifies roles or permissions for analysis. This is optional.
+     */
+    accessSelector?: Schema$AccessSelector;
+    /**
+     * Optional. Specifies an identity for analysis.
+     */
+    identitySelector?: Schema$IdentitySelector;
+    /**
+     * Optional. The query options.
+     */
+    options?: Schema$Options;
+    /**
+     * Optional. Specifies a resource for analysis.
+     */
+    resourceSelector?: Schema$ResourceSelector;
+    /**
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     */
+    scope?: string | null;
+  }
+  /**
+   * IAM Policy analysis result, consisting of one IAM policy binding and derived access control lists.
+   */
+  export interface Schema$IamPolicyAnalysisResult {
+    /**
+     * The access control lists derived from the iam_binding that match or potentially match resource and access selectors specified in the request.
+     */
+    accessControlLists?: Schema$GoogleCloudAssetV1AccessControlList[];
+    /**
+     * The [full resource name](https://cloud.google.com/asset-inventory/docs/resource-name-format) of the resource to which the iam_binding policy attaches.
+     */
+    attachedResourceFullName?: string | null;
+    /**
+     * Represents whether all analyses on the iam_binding have successfully finished.
+     */
+    fullyExplored?: boolean | null;
+    /**
+     * The Cloud IAM policy binding under analysis.
+     */
+    iamBinding?: Schema$Binding;
+    /**
+     * The identity list derived from members of the iam_binding that match or potentially match identity selector specified in the request.
+     */
+    identityList?: Schema$GoogleCloudAssetV1IdentityList;
+  }
+  /**
+   * Represents the detailed state of an entity under analysis, such as a resource, an identity or an access.
+   */
+  export interface Schema$IamPolicyAnalysisState {
+    /**
+     * The human-readable description of the cause of failure.
+     */
+    cause?: string | null;
+    /**
+     * The Google standard error code that best describes the state. For example: - OK means the analysis on this entity has been successfully finished; - PERMISSION_DENIED means an access denied error is encountered; - DEADLINE_EXCEEDED means the analysis on this entity hasn't been started in time;
+     */
+    code?: string | null;
+  }
+  /**
    * A result of IAM Policy search, containing information of an IAM policy.
    */
   export interface Schema$IamPolicySearchResult {
@@ -669,6 +925,15 @@ export namespace cloudasset_v1 {
      * The full resource name of the resource associated with this IAM policy. Example: `//compute.googleapis.com/projects/my_project_123/zones/zone1/instances/instance1`. See [Cloud Asset Inventory Resource Name Format](https://cloud.google.com/asset-inventory/docs/resource-name-format) for more information. To search against the `resource`: * use a field query. Example: `resource:organizations/123`
      */
     resource?: string | null;
+  }
+  /**
+   * Specifies an identity for which to determine resource access, based on roles assigned either directly to them or to the groups they belong to, directly or indirectly.
+   */
+  export interface Schema$IdentitySelector {
+    /**
+     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     */
+    identity?: string | null;
   }
   export interface Schema$ListFeedsResponse {
     /**
@@ -700,6 +965,35 @@ export namespace cloudasset_v1 {
      * The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`.
      */
     response?: {[key: string]: any} | null;
+  }
+  /**
+   * Contains query options.
+   */
+  export interface Schema$Options {
+    /**
+     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
+     */
+    analyzeServiceAccountImpersonation?: boolean | null;
+    /**
+     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If IamPolicyAnalysisQuery.identity_selector is specified, the identity in the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     */
+    expandGroups?: boolean | null;
+    /**
+     * Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resource cannot be used together with this option. For example, if the request analyzes for which users have permission P on a GCP project with this option enabled, the results will include all users who have permission P on that project or any lower resource. Default is false.
+     */
+    expandResources?: boolean | null;
+    /**
+     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     */
+    expandRoles?: boolean | null;
+    /**
+     * Optional. If true, the result will output group identity edges, starting from the binding's group members, to any expanded identities. Default is false.
+     */
+    outputGroupEdges?: boolean | null;
+    /**
+     * Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
+     */
+    outputResourceEdges?: boolean | null;
   }
   /**
    * Output configuration for export assets destination.
@@ -835,6 +1129,15 @@ export namespace cloudasset_v1 {
      * The project that this resource belongs to, in the form of projects/{PROJECT_NUMBER\}. To search against the `project`: * specify the `scope` field as this project in your search request.
      */
     project?: string | null;
+  }
+  /**
+   * Specifies the resource to analyze for access policies, which may be set directly on the resource, or on ancestors such as organizations, folders or projects.
+   */
+  export interface Schema$ResourceSelector {
+    /**
+     * Required. The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
+     */
+    fullResourceName?: string | null;
   }
   /**
    * Search all IAM policies response.
@@ -1794,6 +2097,311 @@ export namespace cloudasset_v1 {
     }
 
     /**
+     * Analyzes IAM policies to answer which identities have what accesses on which resources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeIamPolicy({
+     *     // Optional. The permissions to appear in result.
+     *     'analysisQuery.accessSelector.permissions': 'placeholder-value',
+     *     // Optional. The roles to appear in result.
+     *     'analysisQuery.accessSelector.roles': 'placeholder-value',
+     *     // Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     *     'analysisQuery.identitySelector.identity': 'placeholder-value',
+     *     // Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
+     *     'analysisQuery.options.analyzeServiceAccountImpersonation':
+     *       'placeholder-value',
+     *     // Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If IamPolicyAnalysisQuery.identity_selector is specified, the identity in the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     *     'analysisQuery.options.expandGroups': 'placeholder-value',
+     *     // Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resource cannot be used together with this option. For example, if the request analyzes for which users have permission P on a GCP project with this option enabled, the results will include all users who have permission P on that project or any lower resource. Default is false.
+     *     'analysisQuery.options.expandResources': 'placeholder-value',
+     *     // Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     *     'analysisQuery.options.expandRoles': 'placeholder-value',
+     *     // Optional. If true, the result will output group identity edges, starting from the binding's group members, to any expanded identities. Default is false.
+     *     'analysisQuery.options.outputGroupEdges': 'placeholder-value',
+     *     // Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
+     *     'analysisQuery.options.outputResourceEdges': 'placeholder-value',
+     *     // Required. The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
+     *     'analysisQuery.resourceSelector.fullResourceName': 'placeholder-value',
+     *     // Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.
+     *     executionTimeout: 'placeholder-value',
+     *     // Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     *     scope: '[^/]+/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fullyExplored": false,
+     *   //   "mainAnalysis": {},
+     *   //   "serviceAccountImpersonationAnalysis": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeIamPolicy(
+      params: Params$Resource$V1$Analyzeiampolicy,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeIamPolicy(
+      params?: Params$Resource$V1$Analyzeiampolicy,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$AnalyzeIamPolicyResponse>;
+    analyzeIamPolicy(
+      params: Params$Resource$V1$Analyzeiampolicy,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeIamPolicy(
+      params: Params$Resource$V1$Analyzeiampolicy,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>,
+      callback: BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+    ): void;
+    analyzeIamPolicy(
+      params: Params$Resource$V1$Analyzeiampolicy,
+      callback: BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+    ): void;
+    analyzeIamPolicy(
+      callback: BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+    ): void;
+    analyzeIamPolicy(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzeiampolicy
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$AnalyzeIamPolicyResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$AnalyzeIamPolicyResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Analyzeiampolicy;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzeiampolicy;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:analyzeIamPolicy').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$AnalyzeIamPolicyResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$AnalyzeIamPolicyResponse>(parameters);
+      }
+    }
+
+    /**
+     * Analyzes IAM policies asynchronously to answer which identities have what accesses on which resources, and writes the analysis results to a Google Cloud Storage or a BigQuery destination. For Cloud Storage destination, the output format is the JSON format that represents a AnalyzeIamPolicyResponse. This method implements the google.longrunning.Operation, which allows you to track the operation status. We recommend intervals of at least 2 seconds with exponential backoff retry to poll the operation result. The metadata contains the request to help callers to map responses to requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudasset.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const cloudasset = google.cloudasset('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudasset.analyzeIamPolicyLongrunning({
+     *     // Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     *     scope: '[^/]+/[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "analysisQuery": {},
+     *       //   "outputConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    analyzeIamPolicyLongrunning(
+      params: Params$Resource$V1$Analyzeiampolicylongrunning,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    analyzeIamPolicyLongrunning(
+      params?: Params$Resource$V1$Analyzeiampolicylongrunning,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    analyzeIamPolicyLongrunning(
+      params: Params$Resource$V1$Analyzeiampolicylongrunning,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    analyzeIamPolicyLongrunning(
+      params: Params$Resource$V1$Analyzeiampolicylongrunning,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    analyzeIamPolicyLongrunning(
+      params: Params$Resource$V1$Analyzeiampolicylongrunning,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    analyzeIamPolicyLongrunning(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    analyzeIamPolicyLongrunning(
+      paramsOrCallback?:
+        | Params$Resource$V1$Analyzeiampolicylongrunning
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$V1$Analyzeiampolicylongrunning;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$V1$Analyzeiampolicylongrunning;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://cloudasset.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+scope}:analyzeIamPolicyLongrunning').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['scope'],
+        pathParams: ['scope'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Batch gets the update history of assets that overlap a time window. For IAM_POLICY content, this API outputs history when the asset and its attached IAM POLICY both exist. This can create gaps in the output history. Otherwise, this API outputs history with asset in both non-delete or deleted status. If a specified asset does not exist, this API returns an INVALID_ARGUMENT error.
      * @example
      * ```js
@@ -2375,6 +2983,69 @@ export namespace cloudasset_v1 {
     }
   }
 
+  export interface Params$Resource$V1$Analyzeiampolicy
+    extends StandardParameters {
+    /**
+     * Optional. The permissions to appear in result.
+     */
+    'analysisQuery.accessSelector.permissions'?: string[];
+    /**
+     * Optional. The roles to appear in result.
+     */
+    'analysisQuery.accessSelector.roles'?: string[];
+    /**
+     * Required. The identity appear in the form of members in [IAM policy binding](https://cloud.google.com/iam/reference/rest/v1/Binding). The examples of supported forms are: "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com". Notice that wildcard characters (such as * and ?) are not supported. You must give a specific identity.
+     */
+    'analysisQuery.identitySelector.identity'?: string;
+    /**
+     * Optional. If true, the response will include access analysis from identities to resources via service account impersonation. This is a very expensive operation, because many derived queries will be executed. We highly recommend you use AssetService.AnalyzeIamPolicyLongrunning rpc instead. For example, if the request analyzes for which resources user A has permission P, and there's an IAM policy states user A has iam.serviceAccounts.getAccessToken permission to a service account SA, and there's another IAM policy states service account SA has permission P to a GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Another example, if the request analyzes for who has permission P to a GCP folder F, and there's an IAM policy states user A has iam.serviceAccounts.actAs permission to a service account SA, and there's another IAM policy states service account SA has permission P to the GCP folder F, then user A potentially has access to the GCP folder F. And those advanced analysis results will be included in AnalyzeIamPolicyResponse.service_account_impersonation_analysis. Default is false.
+     */
+    'analysisQuery.options.analyzeServiceAccountImpersonation'?: boolean;
+    /**
+     * Optional. If true, the identities section of the result will expand any Google groups appearing in an IAM policy binding. If IamPolicyAnalysisQuery.identity_selector is specified, the identity in the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     */
+    'analysisQuery.options.expandGroups'?: boolean;
+    /**
+     * Optional. If true and IamPolicyAnalysisQuery.resource_selector is not specified, the resource section of the result will expand any resource attached to an IAM policy to include resources lower in the resource hierarchy. For example, if the request analyzes for which resources user A has permission P, and the results include an IAM policy with P on a GCP folder, the results will also include resources in that folder with permission P. If true and IamPolicyAnalysisQuery.resource_selector is specified, the resource section of the result will expand the specified resource to include resources lower in the resource hierarchy. Only project or lower resources are supported. Folder and organization resource cannot be used together with this option. For example, if the request analyzes for which users have permission P on a GCP project with this option enabled, the results will include all users who have permission P on that project or any lower resource. Default is false.
+     */
+    'analysisQuery.options.expandResources'?: boolean;
+    /**
+     * Optional. If true, the access section of result will expand any roles appearing in IAM policy bindings to include their permissions. If IamPolicyAnalysisQuery.access_selector is specified, the access section of the result will be determined by the selector, and this flag is not allowed to set. Default is false.
+     */
+    'analysisQuery.options.expandRoles'?: boolean;
+    /**
+     * Optional. If true, the result will output group identity edges, starting from the binding's group members, to any expanded identities. Default is false.
+     */
+    'analysisQuery.options.outputGroupEdges'?: boolean;
+    /**
+     * Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
+     */
+    'analysisQuery.options.outputResourceEdges'?: boolean;
+    /**
+     * Required. The [full resource name] (https://cloud.google.com/asset-inventory/docs/resource-name-format) of a resource of [supported resource types](https://cloud.google.com/asset-inventory/docs/supported-asset-types#analyzable_asset_types).
+     */
+    'analysisQuery.resourceSelector.fullResourceName'?: string;
+    /**
+     * Optional. Amount of time executable has to complete. See JSON representation of [Duration](https://developers.google.com/protocol-buffers/docs/proto3#json). If this field is set with a value less than the RPC deadline, and the execution of your query hasn't finished in the specified execution timeout, you will get a response with partial result. Otherwise, your query's execution will continue until the RPC deadline. If it's not finished until then, you will get a DEADLINE_EXCEEDED error. Default is empty.
+     */
+    executionTimeout?: string;
+    /**
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     */
+    scope?: string;
+  }
+  export interface Params$Resource$V1$Analyzeiampolicylongrunning
+    extends StandardParameters {
+    /**
+     * Required. The relative name of the root asset. Only resources and IAM policies within the scope will be analyzed. This can only be an organization number (such as "organizations/123"), a folder number (such as "folders/123"), a project ID (such as "projects/my-project-id"), or a project number (such as "projects/12345"). To know how to get organization id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-organization#retrieving_your_organization_id). To know how to get folder or project id, visit [here ](https://cloud.google.com/resource-manager/docs/creating-managing-folders#viewing_or_listing_folders_and_projects).
+     */
+    scope?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AnalyzeIamPolicyLongrunningRequest;
+  }
   export interface Params$Resource$V1$Batchgetassetshistory
     extends StandardParameters {
     /**
