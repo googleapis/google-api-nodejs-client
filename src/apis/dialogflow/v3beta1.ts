@@ -619,6 +619,10 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1Intent {
     /**
+     * Optional. Human readable description for better understanding an intent like its scope, content, result etc. Maximum character limit: 140 characters.
+     */
+    description?: string | null;
+    /**
      * Required. The human-readable name of the intent, unique within the agent.
      */
     displayName?: string | null;
@@ -626,6 +630,10 @@ export namespace dialogflow_v3beta1 {
      * Indicates whether this is a fallback intent. Currently only default fallback intent is allowed in the agent, which is added upon agent creation. Adding training phrases to fallback intent is useful in the case of requests that are mistakenly matched, since training phrases assigned to fallback intents act as negative examples that triggers no-match event.
      */
     isFallback?: boolean | null;
+    /**
+     * Optional. The key/value metadata to label an intent. Labels can contain lowercase letters, digits and the symbols '-' and '_'. International characters are allowed, including letters from unicase alphabets. Keys must start with a letter. Keys and values can be no longer than 63 characters and no more than 128 bytes. Prefix "sys-" is reserved for Dialogflow defined labels. Currently allowed Dialogflow defined labels include: * sys-head * sys-contextual The above labels do not require value. "sys-head" means the intent is a head intent. "sys-contextual" means the intent is a contextual intent.
+     */
+    labels?: {[key: string]: string} | null;
     /**
      * The unique identifier of the intent. Required for the Intents.UpdateIntent method. Intents.CreateIntent populates the name automatically. Format: `projects//locations//agents//intents/`.
      */
@@ -4143,9 +4151,22 @@ export namespace dialogflow_v3beta1 {
     source?: string | null;
   }
   /**
-   * Metadata returned for the TestCases.RunTestCase long running operation.
+   * Metadata in google::longrunning::Operation.
    */
-  export interface Schema$GoogleCloudDialogflowV3alpha1RunTestCaseMetadata {}
+  export interface Schema$GoogleCloudKnowledgeV1alpha1OperationMetadata {
+    /**
+     * The error codes from Manifold endpoints' last failures.
+     */
+    errorCode?: number[] | null;
+    /**
+     * The failure messages from Manifold endpoints' last failures.
+     */
+    message?: string[] | null;
+    /**
+     * Required. The current state of this operation.
+     */
+    state?: string | null;
+  }
   /**
    * The response message for Operations.ListOperations.
    */
@@ -12523,8 +12544,10 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "isFallback": false,
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parameters": [],
      *       //   "priority": 0,
@@ -12536,8 +12559,10 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isFallback": false,
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parameters": [],
      *   //   "priority": 0,
@@ -12822,8 +12847,10 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isFallback": false,
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parameters": [],
      *   //   "priority": 0,
@@ -13139,8 +13166,10 @@ export namespace dialogflow_v3beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "isFallback": false,
+     *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "parameters": [],
      *       //   "priority": 0,
@@ -13152,8 +13181,10 @@ export namespace dialogflow_v3beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "isFallback": false,
+     *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "parameters": [],
      *   //   "priority": 0,
