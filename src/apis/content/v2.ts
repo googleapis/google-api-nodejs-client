@@ -3754,7 +3754,7 @@ export namespace content_v2 {
      */
     batchId?: number | null;
     /**
-     * The inventory to submit. Set this only if the method is `inventory`.
+     * The inventory to submit. This should be set only if the method is `inventory`.
      */
     inventory?: Schema$PosInventory;
     /**
@@ -3766,15 +3766,15 @@ export namespace content_v2 {
      */
     method?: string | null;
     /**
-     * The sale information to submit. Set this only if the method is `sale`.
+     * The sale information to submit. This should be set only if the method is `sale`.
      */
     sale?: Schema$PosSale;
     /**
-     * The store information to submit. Set this only if the method is `insert`.
+     * The store information to submit. This should be set only if the method is `insert`.
      */
     store?: Schema$PosStore;
     /**
-     * The store code. Set this only if the method is `delete` or `get`.
+     * The store code. This should be set only if the method is `delete` or `get`.
      */
     storeCode?: string | null;
     /**
@@ -4151,7 +4151,7 @@ export namespace content_v2 {
      */
     additionalProductTypes?: string[] | null;
     /**
-     * Set to true if the item is targeted towards adults.
+     * Should be set to true if the item is targeted towards adults.
      */
     adult?: boolean | null;
     /**
@@ -4828,7 +4828,7 @@ export namespace content_v2 {
      */
     region?: string | null;
     /**
-     * Set to true if tax is charged on shipping.
+     * Should be set to true if tax is charged on shipping.
      */
     taxShip?: boolean | null;
   }
