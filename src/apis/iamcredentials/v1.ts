@@ -101,7 +101,7 @@ export namespace iamcredentials_v1 {
   /**
    * IAM Service Account Credentials API
    *
-   *  Creates short-lived credentials for impersonating IAM service accounts. *Note:* This API is tied to the IAM API (iam.googleapis.com). Enabling or disabling this API will also enable or disable the IAM API.
+   * Creates short-lived credentials for impersonating IAM service accounts. To enable this API, you must enable the IAM API (iam.googleapis.com).
    *
    * @example
    * ```js
