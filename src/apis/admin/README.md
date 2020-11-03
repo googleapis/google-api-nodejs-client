@@ -2,7 +2,7 @@
 
 # admin
 
-> Transfers user data from one user to another.
+> Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
 
 ## Installation
 
