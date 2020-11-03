@@ -991,6 +991,19 @@ export namespace serviceusage_v1beta1 {
     selector?: string | null;
   }
   /**
+   * Request message for ImportAdminOverrides
+   */
+  export interface Schema$ImportAdminOverridesRequest {
+    /**
+     * Whether to force the creation of the quota overrides. If creating an override would cause the effective quota for the consumer to decrease by more than 10 percent, the call is rejected, as a safety measure to avoid accidentally decreasing quota too quickly. Setting the force parameter to true ignores this restriction.
+     */
+    force?: boolean | null;
+    /**
+     * The import data is specified in the request message itself
+     */
+    inlineSource?: Schema$OverrideInlineSource;
+  }
+  /**
    * Response message for ImportAdminOverrides
    */
   export interface Schema$ImportAdminOverridesResponse {
@@ -3142,6 +3155,155 @@ export namespace serviceusage_v1beta1 {
     }
 
     /**
+     * Create or update multiple admin overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/serviceusage.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const serviceusage = google.serviceusage('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await serviceusage.services.consumerQuotaMetrics.importAdminOverrides(
+     *     {
+     *       // The resource name of the consumer. An example name would be: `projects/123/services/compute.googleapis.com`
+     *       parent: '[^/]+/[^/]+/services/my-service',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "force": false,
+     *         //   "inlineSource": {}
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    importAdminOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importadminoverrides,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    importAdminOverrides(
+      params?: Params$Resource$Services$Consumerquotametrics$Importadminoverrides,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    importAdminOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importadminoverrides,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    importAdminOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importadminoverrides,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importAdminOverrides(
+      params: Params$Resource$Services$Consumerquotametrics$Importadminoverrides,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importAdminOverrides(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    importAdminOverrides(
+      paramsOrCallback?:
+        | Params$Resource$Services$Consumerquotametrics$Importadminoverrides
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Consumerquotametrics$Importadminoverrides;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Consumerquotametrics$Importadminoverrides;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://serviceusage.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/consumerQuotaMetrics:importAdminOverrides'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Create or update multiple consumer overrides atomically, all on the same consumer, but on many different metrics or limits. The name field in the quota override message should not be set.
      * @example
      * ```js
@@ -3449,6 +3611,18 @@ export namespace serviceusage_v1beta1 {
      * Specifies the level of detail for quota information in the response.
      */
     view?: string;
+  }
+  export interface Params$Resource$Services$Consumerquotametrics$Importadminoverrides
+    extends StandardParameters {
+    /**
+     * The resource name of the consumer. An example name would be: `projects/123/services/compute.googleapis.com`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ImportAdminOverridesRequest;
   }
   export interface Params$Resource$Services$Consumerquotametrics$Importconsumeroverrides
     extends StandardParameters {
