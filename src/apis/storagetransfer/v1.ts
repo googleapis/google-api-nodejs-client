@@ -130,7 +130,7 @@ export namespace storagetransfer_v1 {
   }
 
   /**
-   * AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)).
+   * AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).
    */
   export interface Schema$AwsAccessKey {
     /**
@@ -147,7 +147,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AwsS3Data {
     /**
-     * Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key.
+     * Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).
      */
     awsAccessKey?: Schema$AwsAccessKey;
     /**
@@ -160,7 +160,7 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$AzureBlobStorageData {
     /**
-     * Required. Input only. Credentials used to authenticate API requests to Azure.
+     * Required. Input only. Credentials used to authenticate API requests to Azure. For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).
      */
     azureCredentials?: Schema$AzureCredentials;
     /**
@@ -173,7 +173,7 @@ export namespace storagetransfer_v1 {
     storageAccount?: string | null;
   }
   /**
-   * Azure credentials
+   * Azure credentials For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).
    */
   export interface Schema$AzureCredentials {
     /**
@@ -599,7 +599,7 @@ export namespace storagetransfer_v1 {
      */
     deleteObjectsUniqueInSink?: boolean | null;
     /**
-     * Whether overwriting objects that already exist in the sink is allowed.
+     * When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source will be overwritten with the source object.
      */
     overwriteObjectsAlreadyExistingInSink?: boolean | null;
   }
