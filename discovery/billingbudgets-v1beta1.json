@@ -264,7 +264,7 @@
       }
     }
   },
-  "revision": "20201012",
+  "revision": "20201026",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1beta1AllUpdatesRule": {
@@ -362,17 +362,26 @@
       "description": "A filter for a budget, limiting the scope of the cost to calculate.",
       "id": "GoogleCloudBillingBudgetsV1beta1Filter",
       "properties": {
+        "creditTypes": {
+          "description": "Optional. A list of credit types to be subtracted from gross cost to determine the spend for threshold calculations if and only if credit_types_treatment is INCLUDE_SPECIFIED_CREDITS. If credit_types_treatment is not INCLUDE_SPECIFIED_CREDITS, this field must be empty. See credits.type at https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#data-schema for a list of acceptable credit type values in this field.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "creditTypesTreatment": {
           "description": "Optional. If not set, default behavior is `INCLUDE_ALL_CREDITS`.",
           "enum": [
             "CREDIT_TYPES_TREATMENT_UNSPECIFIED",
             "INCLUDE_ALL_CREDITS",
-            "EXCLUDE_ALL_CREDITS"
+            "EXCLUDE_ALL_CREDITS",
+            "INCLUDE_SPECIFIED_CREDITS"
           ],
           "enumDescriptions": [
             "",
             "All types of credit are subtracted from the gross cost to determine the spend for threshold calculations.",
-            "All types of credit are added to the net cost to determine the spend for threshold calculations."
+            "All types of credit are added to the net cost to determine the spend for threshold calculations.",
+            "Credit types specified in the credit_types field are subtracted from the gross cost to determine the spend for threshold calculations."
           ],
           "type": "string"
         },
