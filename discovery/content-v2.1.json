@@ -4368,7 +4368,7 @@
       }
     }
   },
-  "revision": "20201028",
+  "revision": "20201029",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -9023,7 +9023,7 @@
         },
         "inventory": {
           "$ref": "PosInventory",
-          "description": "The inventory to submit. Set this only if the method is `inventory`."
+          "description": "The inventory to submit. This should be set only if the method is `inventory`."
         },
         "merchantId": {
           "description": "The ID of the POS data provider.",
@@ -9036,14 +9036,14 @@
         },
         "sale": {
           "$ref": "PosSale",
-          "description": "The sale information to submit. Set this only if the method is `sale`."
+          "description": "The sale information to submit. This should be set only if the method is `sale`."
         },
         "store": {
           "$ref": "PosStore",
-          "description": "The store information to submit. Set this only if the method is `insert`."
+          "description": "The store information to submit. This should be set only if the method is `insert`."
         },
         "storeCode": {
-          "description": "The store code. Set this only if the method is `delete` or `get`.",
+          "description": "The store code. This should be set only if the method is `delete` or `get`.",
           "type": "string"
         },
         "targetMerchantId": {
@@ -9513,7 +9513,7 @@
           "type": "string"
         },
         "adult": {
-          "description": "Set to true if the item is targeted towards adults.",
+          "description": "Should be set to true if the item is targeted towards adults.",
           "type": "boolean"
         },
         "ageGroup": {
@@ -10135,7 +10135,7 @@
           "type": "string"
         },
         "taxShip": {
-          "description": "Set to true if tax is charged on shipping.",
+          "description": "Should be set to true if tax is charged on shipping.",
           "type": "boolean"
         }
       },
@@ -10997,10 +10997,10 @@
         },
         "returnAddress": {
           "$ref": "ReturnAddress",
-          "description": "The return address to submit. Set this only if the method is `insert`."
+          "description": "The return address to submit. This should be set only if the method is `insert`."
         },
         "returnAddressId": {
-          "description": "The return address ID. Set this only if the method is `delete` or `get`.",
+          "description": "The return address ID. This should be set only if the method is `delete` or `get`.",
           "type": "string"
         }
       },
@@ -11098,10 +11098,10 @@
         },
         "returnPolicy": {
           "$ref": "ReturnPolicy",
-          "description": "The return policy to submit. Set this only if the method is `insert`."
+          "description": "The return policy to submit. This should be set only if the method is `insert`."
         },
         "returnPolicyId": {
-          "description": "The return policy ID. Set this only if the method is `delete` or `get`.",
+          "description": "The return policy ID. This should be set only if the method is `delete` or `get`.",
           "type": "string"
         }
       },
