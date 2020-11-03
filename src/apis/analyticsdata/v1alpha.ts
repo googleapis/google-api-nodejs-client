@@ -389,7 +389,7 @@ export namespace analyticsdata_v1alpha {
      */
     inListFilter?: Schema$InListFilter;
     /**
-     * A filter for null values.
+     * A filter for null values. If True, a null dimension value is matched by this filter. Null filter is commonly used inside a NOT filter expression. For example, a NOT expression of a null filter removes rows when a dimension is null.
      */
     nullFilter?: boolean | null;
     /**
@@ -663,19 +663,19 @@ export namespace analyticsdata_v1alpha {
    */
   export interface Schema$PropertyQuota {
     /**
-     * Analytics Properties can send up to 10 concurrent requests.
+     * Standard Analytics Properties can send up to 10 concurrent requests; Analytics 360 Properties can use up to 50 concurrent requests.
      */
     concurrentRequests?: Schema$QuotaStatus;
     /**
-     * Analytics Properties and cloud project pairs can have up to 10 server errors per hour.
+     * Standard Analytics Properties and cloud project pairs can have up to 10 server errors per hour; Analytics 360 Properties and cloud project pairs can have up to 50 server errors per hour.
      */
     serverErrorsPerProjectPerHour?: Schema$QuotaStatus;
     /**
-     * Analytics Properties can use up to 25,000 tokens per day. Most requests consume fewer than 10 tokens.
+     * Standard Analytics Properties can use up to 25,000 tokens per day; Analytics 360 Properties can use 250,000 tokens per day. Most requests consume fewer than 10 tokens.
      */
     tokensPerDay?: Schema$QuotaStatus;
     /**
-     * Analytics Properties can use up to 5,000 tokens per day. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
+     * Standard Analytics Properties can use up to 5,000 tokens per day; Analytics 360 Properties can use 50,000 tokens per day. An API request consumes a single number of tokens, and that number is deducted from both the hourly and daily quotas.
      */
     tokensPerHour?: Schema$QuotaStatus;
   }
@@ -702,7 +702,7 @@ export namespace analyticsdata_v1alpha {
     dataLossFromOtherRow?: boolean | null;
   }
   /**
-   * Report data for each row. For example if RunReportRequest contains: ```none dimensions { name: "eventName" \} dimensions { name: "countryId" \} metrics { name: "eventCount" \} ``` One row with 'in_app_purchase' as the eventName, 'us' as the countryId, and 15 as the eventCount, would be: ```none dimension_values { name: 'in_app_purchase' name: 'us' \} metric_values { int64_value: 15 \} ```
+   * Report data for each row. For example if RunReportRequest contains: ```none "dimensions": [ { "name": "eventName" \}, { "name": "countryId" \} ], "metrics": [ { "name": "eventCount" \} ] ``` One row with 'in_app_purchase' as the eventName, 'JP' as the countryId, and 15 as the eventCount, would be: ```none "dimensionValues": [ { "value": "in_app_purchase" \}, { "value": "JP" \} ], "metricValues": [ { "value": "15" \} ] ```
    */
   export interface Schema$Row {
     /**
@@ -795,6 +795,80 @@ export namespace analyticsdata_v1alpha {
      * Rows of dimension value combinations and metric values in the report.
      */
     rows?: Schema$Row[];
+  }
+  /**
+   * The request to generate a realtime report.
+   */
+  export interface Schema$RunRealtimeReportRequest {
+    /**
+     * The filter clause of dimensions. Dimensions must be requested to be used in this filter. Metrics cannot be used in this filter.
+     */
+    dimensionFilter?: Schema$FilterExpression;
+    /**
+     * The dimensions requested and displayed.
+     */
+    dimensions?: Schema$Dimension[];
+    /**
+     * The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.
+     */
+    limit?: string | null;
+    /**
+     * Aggregation of metrics. Aggregated metric values will be shown in rows where the dimension_values are set to "RESERVED_(MetricAggregation)".
+     */
+    metricAggregations?: string[] | null;
+    /**
+     * The filter clause of metrics. Applied at post aggregation phase, similar to SQL having-clause. Metrics must be requested to be used in this filter. Dimensions cannot be used in this filter.
+     */
+    metricFilter?: Schema$FilterExpression;
+    /**
+     * The metrics requested and displayed.
+     */
+    metrics?: Schema$Metric[];
+    /**
+     * Specifies how rows are ordered in the response.
+     */
+    orderBys?: Schema$OrderBy[];
+    /**
+     * Toggles whether to return the current state of this Analytics Property's Realtime quota. Quota is returned in [PropertyQuota](#PropertyQuota).
+     */
+    returnPropertyQuota?: boolean | null;
+  }
+  /**
+   * The response realtime report table corresponding to a request.
+   */
+  export interface Schema$RunRealtimeReportResponse {
+    /**
+     * Describes dimension columns. The number of DimensionHeaders and ordering of DimensionHeaders matches the dimensions present in rows.
+     */
+    dimensionHeaders?: Schema$DimensionHeader[];
+    /**
+     * If requested, the maximum values of metrics.
+     */
+    maximums?: Schema$Row[];
+    /**
+     * Describes metric columns. The number of MetricHeaders and ordering of MetricHeaders matches the metrics present in rows.
+     */
+    metricHeaders?: Schema$MetricHeader[];
+    /**
+     * If requested, the minimum values of metrics.
+     */
+    minimums?: Schema$Row[];
+    /**
+     * This Analytics Property's Realtime quota state including this request.
+     */
+    propertyQuota?: Schema$PropertyQuota;
+    /**
+     * The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows.
+     */
+    rowCount?: number | null;
+    /**
+     * Rows of dimension value combinations and metric values in the report.
+     */
+    rows?: Schema$Row[];
+    /**
+     * If requested, the totaled values of metrics.
+     */
+    totals?: Schema$Row[];
   }
   /**
    * The request to generate a report.
@@ -1066,6 +1140,168 @@ export namespace analyticsdata_v1alpha {
         return createAPIRequest<Schema$Metadata>(parameters);
       }
     }
+
+    /**
+     * The Google Analytics Realtime API returns a customized report of realtime event data for your property. These reports show events and usage from the last 30 minutes.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const analyticsdata = google.analyticsdata('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsdata.properties.runRealtimeReport({
+     *     // A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234
+     *     property: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dimensionFilter": {},
+     *       //   "dimensions": [],
+     *       //   "limit": "my_limit",
+     *       //   "metricAggregations": [],
+     *       //   "metricFilter": {},
+     *       //   "metrics": [],
+     *       //   "orderBys": [],
+     *       //   "returnPropertyQuota": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dimensionHeaders": [],
+     *   //   "maximums": [],
+     *   //   "metricHeaders": [],
+     *   //   "minimums": [],
+     *   //   "propertyQuota": {},
+     *   //   "rowCount": 0,
+     *   //   "rows": [],
+     *   //   "totals": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    runRealtimeReport(
+      params: Params$Resource$Properties$Runrealtimereport,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    runRealtimeReport(
+      params?: Params$Resource$Properties$Runrealtimereport,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$RunRealtimeReportResponse>;
+    runRealtimeReport(
+      params: Params$Resource$Properties$Runrealtimereport,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    runRealtimeReport(
+      params: Params$Resource$Properties$Runrealtimereport,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RunRealtimeReportResponse>,
+      callback: BodyResponseCallback<Schema$RunRealtimeReportResponse>
+    ): void;
+    runRealtimeReport(
+      params: Params$Resource$Properties$Runrealtimereport,
+      callback: BodyResponseCallback<Schema$RunRealtimeReportResponse>
+    ): void;
+    runRealtimeReport(
+      callback: BodyResponseCallback<Schema$RunRealtimeReportResponse>
+    ): void;
+    runRealtimeReport(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Runrealtimereport
+        | BodyResponseCallback<Schema$RunRealtimeReportResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RunRealtimeReportResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RunRealtimeReportResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$RunRealtimeReportResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Runrealtimereport;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Runrealtimereport;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsdata.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+property}:runRealtimeReport').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['property'],
+        pathParams: ['property'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RunRealtimeReportResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RunRealtimeReportResponse>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Properties$Getmetadata
@@ -1074,6 +1310,18 @@ export namespace analyticsdata_v1alpha {
      * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
      */
     name?: string;
+  }
+  export interface Params$Resource$Properties$Runrealtimereport
+    extends StandardParameters {
+    /**
+     * A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234
+     */
+    property?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunRealtimeReportRequest;
   }
 
   export class Resource$V1alpha {
