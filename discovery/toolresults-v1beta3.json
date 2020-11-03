@@ -1463,7 +1463,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201102",
   "rootUrl": "https://toolresults.googleapis.com/",
   "schemas": {
     "ANR": {
@@ -1766,6 +1766,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DeviceOutOfMemory": {
+      "description": "A warning that device ran out of memory",
+      "id": "DeviceOutOfMemory",
+      "properties": {},
       "type": "object"
     },
     "Duration": {
@@ -3602,7 +3608,8 @@
             "uiElementsTooDeep",
             "blankScreen",
             "overlappingUiElements",
-            "unityException"
+            "unityException",
+            "deviceOutOfMemory"
           ],
           "enumDescriptions": [
             "Default unspecified type. Do not use. For versioning only.",
@@ -3633,7 +3640,8 @@
             "UI element depth is greater than the threshold",
             "Blank screen is found in the Robo crawl",
             "Overlapping UI elements are found in the Robo crawl",
-            "An uncaught Unity exception was detected (these don't crash apps)."
+            "An uncaught Unity exception was detected (these don't crash apps).",
+            "Device running out of memory was detected"
           ],
           "type": "string"
         },
