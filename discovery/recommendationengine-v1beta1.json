@@ -842,7 +842,7 @@
       }
     }
   },
-  "revision": "20200810",
+  "revision": "20201027",
   "rootUrl": "https://recommendationengine.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -1814,6 +1814,12 @@
       },
       "type": "object"
     },
+    "GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata": {
+      "description": "Metadata for RejoinUserEvents method.",
+      "id": "GoogleCloudRecommendationengineV1beta1RejoinUserEventsMetadata",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest": {
       "description": "Request message for CatalogRejoin method.",
       "id": "GoogleCloudRecommendationengineV1beta1RejoinUserEventsRequest",
@@ -1830,6 +1836,18 @@
             "Only rejoin catalogs with joined events.",
             "Only rejoin catalogs with unjoined events."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecommendationengineV1beta1RejoinUserEventsResponse": {
+      "description": "Response message for RejoinUserEvents method.",
+      "id": "GoogleCloudRecommendationengineV1beta1RejoinUserEventsResponse",
+      "properties": {
+        "rejoinedUserEventsCount": {
+          "description": "Number of user events that were joined with latest catalog items.",
+          "format": "int64",
           "type": "string"
         }
       },
