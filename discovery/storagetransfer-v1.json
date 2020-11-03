@@ -406,11 +406,11 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201027",
   "rootUrl": "https://storagetransfer.googleapis.com/",
   "schemas": {
     "AwsAccessKey": {
-      "description": "AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)).",
+      "description": "AWS access key (see [AWS Security Credentials](https://docs.aws.amazon.com/general/latest/gr/aws-security-credentials.html)). For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).",
       "id": "AwsAccessKey",
       "properties": {
         "accessKeyId": {
@@ -430,7 +430,7 @@
       "properties": {
         "awsAccessKey": {
           "$ref": "AwsAccessKey",
-          "description": "Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key."
+          "description": "Required. Input only. AWS access key used to sign the API requests to the AWS S3 bucket. Permissions on the bucket must be granted to the access ID of the AWS access key. For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials)."
         },
         "bucketName": {
           "description": "Required. S3 Bucket name (see [Creating a bucket](https://docs.aws.amazon.com/AmazonS3/latest/dev/create-bucket-get-location-example.html)).",
@@ -445,7 +445,7 @@
       "properties": {
         "azureCredentials": {
           "$ref": "AzureCredentials",
-          "description": "Required. Input only. Credentials used to authenticate API requests to Azure."
+          "description": "Required. Input only. Credentials used to authenticate API requests to Azure. For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials)."
         },
         "container": {
           "description": "Required. The container to transfer from the Azure Storage account.",
@@ -459,7 +459,7 @@
       "type": "object"
     },
     "AzureCredentials": {
-      "description": "Azure credentials",
+      "description": "Azure credentials For information on our data retention policy for user credentials, see [User credentials](data-retention#user-credentials).",
       "id": "AzureCredentials",
       "properties": {
         "sasToken": {
@@ -1095,7 +1095,7 @@
           "type": "boolean"
         },
         "overwriteObjectsAlreadyExistingInSink": {
-          "description": "Whether overwriting objects that already exist in the sink is allowed.",
+          "description": "When to overwrite objects that already exist in the sink. The default is that only objects that are different from the source are ovewritten. If true, all objects in the sink whose name matches an object in the source will be overwritten with the source object.",
           "type": "boolean"
         }
       },
