@@ -2,7 +2,7 @@
 
 # licensing
 
-> Licensing API to view and manage licenses for your domain
+> The Google Enterprise License Manager API&#39;s allows you to license apps for all the users of a domain managed by you.
 
 ## Installation
 
