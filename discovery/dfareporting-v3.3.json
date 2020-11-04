@@ -4004,7 +4004,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -4669,7 +4669,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "The DFA profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -7796,7 +7796,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -7826,7 +7826,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -7858,7 +7858,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -7900,7 +7900,7 @@
               "type": "string"
             },
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -8006,7 +8006,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -8045,7 +8045,7 @@
           ],
           "parameters": {
             "profileId": {
-              "description": "The DFA user profile ID.",
+              "description": "The Campaign Manager 360 user profile ID.",
               "format": "int64",
               "location": "path",
               "required": true,
@@ -8084,7 +8084,7 @@
               ],
               "parameters": {
                 "profileId": {
-                  "description": "The DFA user profile ID.",
+                  "description": "The Campaign Manager 360 user profile ID.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
@@ -8125,7 +8125,7 @@
                   "type": "string"
                 },
                 "profileId": {
-                  "description": "The DFA user profile ID.",
+                  "description": "The Campaign Manager 360 user profile ID.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
@@ -8173,7 +8173,7 @@
                   "type": "string"
                 },
                 "profileId": {
-                  "description": "The DFA profile ID.",
+                  "description": "The Campaign Manager 360 user profile ID.",
                   "format": "int64",
                   "location": "path",
                   "required": true,
@@ -9638,7 +9638,7 @@
       }
     }
   },
-  "revision": "20200921",
+  "revision": "20201102",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11119,7 +11119,7 @@
           "type": "boolean"
         },
         "enabledSizes": {
-          "description": "Whitelist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.",
+          "description": "Allowlist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.",
           "items": {
             "$ref": "Size"
           },
@@ -11590,9 +11590,11 @@
           "enum": [
             "CREATIVE_AUTHORING_SOURCE_DCM",
             "CREATIVE_AUTHORING_SOURCE_DBM",
-            "CREATIVE_AUTHORING_SOURCE_STUDIO"
+            "CREATIVE_AUTHORING_SOURCE_STUDIO",
+            "CREATIVE_AUTHORING_SOURCE_GWD"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             ""
@@ -16587,7 +16589,7 @@
           "description": "Lookback window settings for this placement."
         },
         "name": {
-          "description": "Name of this placement.This is a required field and must be less than 256 characters long.",
+          "description": "Name of this placement.This is a required field and must be less than or equal to 256 characters long.",
           "type": "string"
         },
         "paymentApproved": {
@@ -18514,7 +18516,7 @@
           "type": "boolean"
         },
         "enabledSizes": {
-          "description": "Whitelist of companion sizes to be served via this site template. Set this list to null or empty to serve all companion sizes.",
+          "description": "Allowlist of companion sizes to be served via this site template. Set this list to null or empty to serve all companion sizes.",
           "items": {
             "$ref": "Size"
           },
@@ -18650,7 +18652,7 @@
       "id": "SiteTranscodeSetting",
       "properties": {
         "enabledVideoFormats": {
-          "description": "Whitelist of video formats to be served to this site template. Set this list to null or empty to serve all video formats.",
+          "description": "Allowlist of video formats to be served to this site template. Set this list to null or empty to serve all video formats.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -19340,7 +19342,7 @@
       "id": "TranscodeSetting",
       "properties": {
         "enabledVideoFormats": {
-          "description": "Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.",
+          "description": "Allowlist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.",
           "items": {
             "format": "int32",
             "type": "integer"
@@ -19960,6 +19962,6 @@
     }
   },
   "servicePath": "dfareporting/v3.3/",
-  "title": "DCM/DFA Reporting And Trafficking API",
+  "title": "Campaign Manager 360 API",
   "version": "v3.3"
 }
