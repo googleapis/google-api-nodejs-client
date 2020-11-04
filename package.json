@@ -10,8 +10,7 @@
     "node": ">=10"
   },
   "files": [
-    "build/src",
-    "!build/src/**/*.map"
+    "build/src"
   ],
   "scripts": {
     "pretest": "npm run compile",
