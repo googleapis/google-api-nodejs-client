@@ -179,7 +179,7 @@ export namespace eventarc_v1beta1 {
      */
     path?: string | null;
     /**
-     * Optional. The region the Cloud Run service is deployed in. If not set, the location of the trigger is used. For triggers in the "global" location, setting this field is mandatory.
+     * Required. The region the Cloud Run service is deployed in.
      */
     region?: string | null;
     /**
