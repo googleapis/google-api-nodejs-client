@@ -2,7 +2,7 @@
 
 # reseller
 
-> Creates and manages your customers and their subscriptions.
+> Perform common functions that are available on the Google Apps Reseller Console at scale like placing orders and viewing customer information
 
 ## Installation
 
