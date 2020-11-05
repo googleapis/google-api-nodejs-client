@@ -6141,7 +6141,7 @@
       }
     }
   },
-  "revision": "20201030",
+  "revision": "20201103",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -6384,7 +6384,7 @@
       "properties": {
         "cmHybridConfig": {
           "$ref": "CmHybridConfig",
-          "description": "The configuration for advertisers that use both Campaign Manager (CM) and third-party ad servers."
+          "description": "The configuration for advertisers that use both Campaign Manager 360 (CM360) and third-party ad servers."
         },
         "thirdPartyOnlyConfig": {
           "$ref": "ThirdPartyOnlyConfig",
@@ -6411,7 +6411,7 @@
           "type": "boolean"
         },
         "videoCreativeDataSharingAuthorized": {
-          "description": "By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display & Video 360 advertiser to provide reporting and features related to the advertiser's television campaigns. Applicable only when the advertiser has a CM hybrid ad server configuration.",
+          "description": "By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display & Video 360 advertiser to provide reporting and features related to the advertiser's television campaigns. Applicable only when the advertiser has a CM360 hybrid ad server configuration.",
           "type": "boolean"
         }
       },
@@ -6441,7 +6441,7 @@
           "type": "string"
         },
         "timeZone": {
-          "description": "Output only. The standard TZ database name of the advertiser's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.",
+          "description": "Output only. The standard TZ database name of the advertiser's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM360 hybrid advertisers, the time zone is the same as that of the associated CM360 account; for third-party only advertisers, the time zone is the same as that of the parent partner.",
           "readOnly": true,
           "type": "string"
         }
@@ -7796,16 +7796,16 @@
       "type": "object"
     },
     "CmHybridConfig": {
-      "description": "Settings for advertisers that use both Campaign Manager (CM) and third-party ad servers.",
+      "description": "Settings for advertisers that use both Campaign Manager 360 (CM360) and third-party ad servers.",
       "id": "CmHybridConfig",
       "properties": {
         "cmAccountId": {
-          "description": "Required. Immutable. Account ID of the CM Floodlight configuration linked with the DV360 advertiser.",
+          "description": "Required. Immutable. Account ID of the CM360 Floodlight configuration linked with the DV360 advertiser.",
           "format": "int64",
           "type": "string"
         },
         "cmFloodlightConfigId": {
-          "description": "Required. Immutable. ID of the CM Floodlight configuration linked with the DV360 advertiser.",
+          "description": "Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.",
           "format": "int64",
           "type": "string"
         },
@@ -7814,7 +7814,7 @@
           "type": "boolean"
         },
         "cmSyncableSiteIds": {
-          "description": "A list of CM sites whose placements will be synced to DV360 as creatives. If absent or empty in CreateAdvertiser method, the system will automatically create a CM site. Removing sites from this list may cause DV360 creatives synced from CM to be deleted. At least one site must be specified.",
+          "description": "A list of CM360 sites whose placements will be synced to DV360 as creatives. If absent or empty in CreateAdvertiser method, the system will automatically create a CM360 site. Removing sites from this list may cause DV360 creatives synced from CM360 to be deleted. At least one site must be specified.",
           "items": {
             "format": "int64",
             "type": "string"
@@ -7822,32 +7822,32 @@
           "type": "array"
         },
         "dv360ToCmCostReportingEnabled": {
-          "description": "Whether or not to report DV360 cost to CM.",
+          "description": "Whether or not to report DV360 cost to CM360.",
           "type": "boolean"
         },
         "dv360ToCmDataSharingEnabled": {
-          "description": "Whether or not to include DV360 data in CM data transfer reports.",
+          "description": "Whether or not to include DV360 data in CM360 data transfer reports.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "CmTrackingAd": {
-      "description": "A Campaign Manager tracking ad.",
+      "description": "A Campaign Manager 360 tracking ad.",
       "id": "CmTrackingAd",
       "properties": {
         "cmAdId": {
-          "description": "The ad ID of the campaign manager tracking Ad.",
+          "description": "The ad ID of the campaign manager 360 tracking Ad.",
           "format": "int64",
           "type": "string"
         },
         "cmCreativeId": {
-          "description": "The creative ID of the campaign manager tracking Ad.",
+          "description": "The creative ID of the campaign manager 360 tracking Ad.",
           "format": "int64",
           "type": "string"
         },
         "cmPlacementId": {
-          "description": "The placement ID of the campaign manager tracking Ad.",
+          "description": "The placement ID of the campaign manager 360 tracking Ad.",
           "format": "int64",
           "type": "string"
         }
@@ -8251,14 +8251,14 @@
           "type": "array"
         },
         "cmPlacementId": {
-          "description": "Output only. The unique ID of the Campaign Manager placement associated with the creative. This field is only applicable for creatives that are synced from Campaign Manager.",
+          "description": "Output only. The unique ID of the Campaign Manager 360 placement associated with the creative. This field is only applicable for creatives that are synced from Campaign Manager.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "cmTrackingAd": {
           "$ref": "CmTrackingAd",
-          "description": "The Campaign Manager tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases."
+          "description": "The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases."
         },
         "companionCreativeIds": {
           "description": "The IDs of companion creatives for a video creative. You can assign existing display creatives (with image or HTML5 assets) to serve surrounding the publisher's video player. Companions display around the video player while the video is playing and remain after the video has completed. Creatives contain additional dimensions can not be companion creatives. This field is only supported for following creative_type: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_VIDEO`",
@@ -8434,10 +8434,10 @@
           ],
           "enumDescriptions": [
             "Hosting source is not specified or is unknown in this version.",
-            "A creative synced from Campaign Manager. Create and update methods are **not** supported for this hosting type.",
+            "A creative synced from Campaign Manager 360. Create and update methods are **not** supported for this hosting type.",
             "A creative hosted by a third-party ad server (3PAS). Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_EXPANDABLE` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
-            "A creative created in DV360 and hosted by Campaign Manager. Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
-            "A rich media creative created in Studio and hosted by Campaign Manager. Create and update methods are **not** supported for this hosting type."
+            "A creative created in DV360 and hosted by Campaign Manager 360. Create and update methods are supported for this hosting type if the creative_type is one of the following: * `CREATIVE_TYPE_AUDIO` * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_VIDEO` * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_VIDEO`",
+            "A rich media creative created in Studio and hosted by Campaign Manager 360. Create and update methods are **not** supported for this hosting type."
           ],
           "type": "string"
         },
@@ -8499,7 +8499,7 @@
           "type": "boolean"
         },
         "requirePingForAttribution": {
-          "description": "Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`",
+          "description": "Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`",
           "type": "boolean"
         },
         "reviewStatus": {
@@ -9593,6 +9593,7 @@
             "EXCHANGE_INMOBI",
             "EXCHANGE_SMAATO",
             "EXCHANGE_AJA",
+            "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE"
           ],
@@ -9655,6 +9656,7 @@
             "InMobi.",
             "Smaato",
             "Aja.",
+            "Supership.",
             "Nexstar Digital.",
             "Waze."
           ],
@@ -9743,6 +9745,7 @@
             "EXCHANGE_INMOBI",
             "EXCHANGE_SMAATO",
             "EXCHANGE_AJA",
+            "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE"
           ],
@@ -9805,6 +9808,7 @@
             "InMobi.",
             "Smaato",
             "Aja.",
+            "Supership.",
             "Nexstar Digital.",
             "Waze."
           ],
@@ -9894,6 +9898,7 @@
             "EXCHANGE_INMOBI",
             "EXCHANGE_SMAATO",
             "EXCHANGE_AJA",
+            "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE"
           ],
@@ -9956,6 +9961,7 @@
             "InMobi.",
             "Smaato",
             "Aja.",
+            "Supership.",
             "Nexstar Digital.",
             "Waze."
           ],
@@ -10022,7 +10028,7 @@
           "enumDescriptions": [
             "Default value when audience source is not specified or is unknown.",
             "Originated from Display & Video 360.",
-            "Originated from Campaign Manager.",
+            "Originated from Campaign Manager 360.",
             "Originated from Google Ad Manager.",
             "Originated from Search Ads 360.",
             "Originated from Youtube.",
@@ -11244,6 +11250,7 @@
             "EXCHANGE_INMOBI",
             "EXCHANGE_SMAATO",
             "EXCHANGE_AJA",
+            "EXCHANGE_SUPERSHIP",
             "EXCHANGE_NEXSTAR_DIGITAL",
             "EXCHANGE_WAZE"
           ],
@@ -11306,6 +11313,7 @@
             "InMobi.",
             "Smaato",
             "Aja.",
+            "Supership.",
             "Nexstar Digital.",
             "Waze."
           ],
@@ -12441,11 +12449,11 @@
       "id": "MeasurementConfig",
       "properties": {
         "dv360ToCmCostReportingEnabled": {
-          "description": "Whether or not to report DV360 cost to CM.",
+          "description": "Whether or not to report DV360 cost to CM360.",
           "type": "boolean"
         },
         "dv360ToCmDataSharingEnabled": {
-          "description": "Whether or not to include DV360 data in CM data transfer reports.",
+          "description": "Whether or not to include DV360 data in CM360 data transfer reports.",
           "type": "boolean"
         }
       },
@@ -14081,7 +14089,7 @@
             "Use Ad-ID to provide the Universal Ad ID.",
             "Use clearcast.co.uk to provide the Universal Ad ID.",
             "Use Display & Video 360 to provide the Universal Ad ID.",
-            "Use Campaign Manager to provide the Universal Ad ID."
+            "Use Campaign Manager 360 to provide the Universal Ad ID."
           ],
           "type": "string"
         }
