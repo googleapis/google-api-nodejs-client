@@ -20,6 +20,7 @@
   "basePath": "",
   "baseUrl": "https://dataflow.googleapis.com/",
   "batchPath": "batch",
+  "canonicalName": "Dataflow",
   "description": "Manages Google Cloud Dataflow projects on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://cloud.google.com/dataflow",
@@ -2442,7 +2443,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201023",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
