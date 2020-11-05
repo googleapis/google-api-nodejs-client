@@ -80,6 +80,10 @@
     "package": "@google-cloud/documentai"
   },
   {
+    "api": "clouderrorreporting",
+    "package": "@google-cloud/error-reporting"
+  },
+  {
     "api": "firestore",
     "package": "@google-cloud/firestore"
   },
@@ -242,10 +246,6 @@
   {
     "api": "clouddebugger",
     "package": "@google-cloud/debug-agent"
-  },
-  {
-    "api": "clouderrorreporting",
-    "package": "@google-cloud/error-reporting"
   },
   {
     "api": "monitoring",

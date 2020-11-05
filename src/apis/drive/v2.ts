@@ -355,7 +355,7 @@ export namespace drive_v2 {
      */
     supportsCreate?: boolean | null;
     /**
-     * Whether this app supports importing Google Docs.
+     * Whether this app supports importing from Docs Editors.
      */
     supportsImport?: boolean | null;
     /**
@@ -949,7 +949,7 @@ export namespace drive_v2 {
      */
     description?: string | null;
     /**
-     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     downloadUrl?: string | null;
     /**
@@ -973,15 +973,15 @@ export namespace drive_v2 {
      */
     explicitlyTrashed?: boolean | null;
     /**
-     * Links for exporting Google Docs to specific formats.
+     * Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
-     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     fileExtension?: string | null;
     /**
-     * The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     fileSize?: string | null;
     /**
@@ -989,7 +989,7 @@ export namespace drive_v2 {
      */
     folderColorRgb?: string | null;
     /**
-     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The full file extension; extracted from the title. May contain multiple concatenated extensions, such as "tar.gz". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     fullFileExtension?: string | null;
     /**
@@ -1001,7 +1001,7 @@ export namespace drive_v2 {
      */
     hasThumbnail?: boolean | null;
     /**
-     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     headRevisionId?: string | null;
     /**
@@ -1078,7 +1078,7 @@ export namespace drive_v2 {
      */
     markedViewedByMeDate?: string | null;
     /**
-     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.
+     * An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
      */
     md5Checksum?: string | null;
     /**
@@ -1525,7 +1525,7 @@ export namespace drive_v2 {
      */
     etag?: string | null;
     /**
-     * Links for exporting Google Docs to specific formats.
+     * Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
@@ -1565,15 +1565,15 @@ export namespace drive_v2 {
      */
     originalFilename?: string | null;
     /**
-     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.
+     * Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive, excluding Docs Editors files. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.
      */
     pinned?: boolean | null;
     /**
-     * Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.
+     * Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Docs Editors files.
      */
     publishAuto?: boolean | null;
     /**
-     * Whether this revision is published. This is only populated and can only be modified for Google Docs.
+     * Whether this revision is published. This is only populated and can only be modified for Docs Editors files.
      */
     published?: boolean | null;
     /**
@@ -1581,7 +1581,7 @@ export namespace drive_v2 {
      */
     publishedLink?: string | null;
     /**
-     * Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.
+     * Whether this revision is published outside the domain. This is only populated and can only be modified for Docs Editors files.
      */
     publishedOutsideDomain?: boolean | null;
     /**
@@ -6007,7 +6007,7 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.files.copy({
-     *     // Whether to convert this file to the corresponding Google Docs format.
+     *     // Whether to convert this file to the corresponding Docs Editors format.
      *     convert: 'placeholder-value',
      *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      *     enforceSingleParent: 'placeholder-value',
@@ -7043,7 +7043,7 @@ export namespace drive_v2 {
      *
      *   // Do the magic
      *   const res = await drive.files.insert({
-     *     // Whether to convert this file to the corresponding Google Docs format.
+     *     // Whether to convert this file to the corresponding Docs Editors format.
      *     convert: 'placeholder-value',
      *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
      *     enforceSingleParent: 'placeholder-value',
@@ -8927,7 +8927,7 @@ export namespace drive_v2 {
 
   export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
-     * Whether to convert this file to the corresponding Google Docs format.
+     * Whether to convert this file to the corresponding Docs Editors format.
      */
     convert?: boolean;
     /**
@@ -9061,7 +9061,7 @@ export namespace drive_v2 {
   }
   export interface Params$Resource$Files$Insert extends StandardParameters {
     /**
-     * Whether to convert this file to the corresponding Google Docs format.
+     * Whether to convert this file to the corresponding Docs Editors format.
      */
     convert?: boolean;
     /**

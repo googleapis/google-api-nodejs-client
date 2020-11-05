@@ -372,7 +372,7 @@
       }
     }
   },
-  "revision": "20201019",
+  "revision": "20201028",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "ActionParameter": {
@@ -1247,7 +1247,7 @@
           "type": "string"
         },
         "isAnonymous": {
-          "description": "Set to true if none of the depending services (Gaia, PeopleApi) returns any info for this user.",
+          "description": "True when the user is deleted or the user's proifle is not visible.",
           "type": "boolean"
         },
         "name": {

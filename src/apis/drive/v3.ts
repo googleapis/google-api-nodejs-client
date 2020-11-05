@@ -580,7 +580,7 @@ export namespace drive_v3 {
      */
     explicitlyTrashed?: boolean | null;
     /**
-     * Links for exporting Google Docs to specific formats.
+     * Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
@@ -1013,7 +1013,7 @@ export namespace drive_v3 {
    */
   export interface Schema$Revision {
     /**
-     * Links for exporting Google Docs to specific formats.
+     * Links for exporting Docs Editors files to specific formats.
      */
     exportLinks?: {[key: string]: string} | null;
     /**
@@ -1050,11 +1050,11 @@ export namespace drive_v3 {
      */
     originalFilename?: string | null;
     /**
-     * Whether subsequent revisions will be automatically republished. This is only applicable to Google Docs.
+     * Whether subsequent revisions will be automatically republished. This is only applicable to Docs Editors files.
      */
     publishAuto?: boolean | null;
     /**
-     * Whether this revision is published. This is only applicable to Google Docs.
+     * Whether this revision is published. This is only applicable to Docs Editors files.
      */
     published?: boolean | null;
     /**
@@ -1062,7 +1062,7 @@ export namespace drive_v3 {
      */
     publishedLink?: string | null;
     /**
-     * Whether this revision is published outside the domain. This is only applicable to Google Docs.
+     * Whether this revision is published outside the domain. This is only applicable to Docs Editors files.
      */
     publishedOutsideDomain?: boolean | null;
     /**

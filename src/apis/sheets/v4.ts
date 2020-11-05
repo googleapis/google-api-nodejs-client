@@ -996,7 +996,7 @@ export namespace sheets_v4 {
      */
     bubbleSizes?: Schema$ChartData;
     /**
-     * The format of the text inside the bubbles. Underline and Strikethrough are not supported.
+     * The format of the text inside the bubbles. Strikethrough and underline are not supported.
      */
     bubbleTextStyle?: Schema$TextFormat;
     /**
@@ -1101,7 +1101,7 @@ export namespace sheets_v4 {
      */
     formattedValue?: string | null;
     /**
-     * A hyperlink this cell points to, if any. This field is read-only. (To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.)
+     * A hyperlink this cell points to, if any. If the cell contains multiple hyperlinks, this field will be empty. This field is read-only. To set it, use a `=HYPERLINK` formula in the userEnteredValue.formulaValue field.
      */
     hyperlink?: string | null;
     /**
@@ -1113,7 +1113,7 @@ export namespace sheets_v4 {
      */
     pivotTable?: Schema$PivotTable;
     /**
-     * Runs of rich text applied to subsections of the cell. Runs are only valid on user entered strings, not formulas, bools, or numbers. Runs start at specific indexes in the text and continue until the next run. Properties of a run will continue unless explicitly changed in a subsequent run (and properties of the first run will continue the properties of the cell unless explicitly changed). When writing, the new runs will overwrite any prior runs. When writing a new user_entered_value, previous runs are erased.
+     * Runs of rich text applied to subsections of the cell. Runs are only valid on user entered strings, not formulas, bools, or numbers. Properties of a run start at a specific index in the text and continue until the next run. Runs will inherit the properties of the cell unless explicitly changed. When writing, the new runs will overwrite any prior runs. When writing a new user_entered_value, previous runs are erased.
      */
     textFormatRuns?: Schema$TextFormatRun[];
     /**
@@ -2996,6 +2996,14 @@ export namespace sheets_v4 {
    * Criteria for showing/hiding rows in a pivot table.
    */
   export interface Schema$PivotFilterCriteria {
+    /**
+     * A condition that must be true for values to be shown. (`visibleValues` does not override this -- even if a value is listed there, it is still hidden if it does not meet the condition.) Condition values that refer to ranges in A1-notation are evaluated relative to the pivot table sheet. References are treated absolutely, so are not filled down the pivot table. For example, a condition value of `=A1` on "Pivot Table 1" is treated as `'Pivot Table 1'!$A$1`. The source data of the pivot table can be referenced by column header name. For example, if the source data has columns named "Revenue" and "Cost" and a condition is applied to the "Revenue" column with type `NUMBER_GREATER` and value `=Cost`, then only columns where "Revenue" \> "Cost" are included.
+     */
+    condition?: Schema$BooleanCondition;
+    /**
+     * Whether values are visible by default. If true, the visible_values are ignored, all values that meet condition (if specified) are shown. If false, values that are both in visible_values and meet condition are shown.
+     */
+    visibleByDefault?: boolean | null;
     /**
      * Values that should be included. Values not listed here are excluded.
      */

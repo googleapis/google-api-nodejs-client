@@ -176,9 +176,6 @@ export namespace iap_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -348,10 +345,6 @@ export namespace iap_v1 {
    * Configuration for OAuth login&consent flow behavior as well as for OAuth Credentials.
    */
   export interface Schema$OAuthSettings {
-    /**
-     * OAuth 2.0 client ID used in the OAuth flow to generate an access token. If this field is set, you can skip obtaining the OAuth credentials in this step: https://developers.google.com/identity/protocols/OAuth2?hl=en_US#1.-obtain-oauth-2.0-credentials-from-the-google-api-console. However, this could allow for client sharing. The risks of client sharing are outlined here: https://cloud.google.com/iap/docs/sharing-oauth-clients#risks.
-     */
-    clientId?: string | null;
     /**
      * Domain hint to send as hd=? parameter in OAuth request flow. Enables redirect to primary IDP by skipping Google's login screen. https://developers.google.com/identity/protocols/OpenIDConnect#hd-param Note: IAP does not verify that the id token's hd claim matches this value since access behavior is managed by IAM policies.
      */

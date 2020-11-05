@@ -2789,10 +2789,9 @@
       "id": "licensing:v1",
       "name": "licensing",
       "version": "v1",
-      "title": "Licensing API",
-      "description": "Licensing API to view and manage licenses for your domain",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/licensing/v1/rest",
-      "discoveryLink": "./apis/licensing/v1/rest",
+      "title": "Enterprise License Manager API",
+      "description": "The Google Enterprise License Manager API's allows you to license apps for all the users of a domain managed by you.",
+      "discoveryRestUrl": "https://licensing.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -3451,18 +3450,14 @@
       "id": "reseller:v1",
       "name": "reseller",
       "version": "v1",
-      "title": "Enterprise Apps Reseller API",
-      "description": "Creates and manages your customers and their subscriptions.",
-      "discoveryRestUrl": "https://www.googleapis.com/discovery/v1/apis/reseller/v1/rest",
-      "discoveryLink": "./apis/reseller/v1/rest",
+      "title": "Google Workspace Reseller API",
+      "description": "Perform common functions that are available on the Google Apps Reseller Console at scale like placing orders and viewing customer information",
+      "discoveryRestUrl": "https://reseller.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://developers.google.com/google-apps/reseller/",
-      "labels": [
-        "limited_availability"
-      ],
       "preferred": true
     },
     {
