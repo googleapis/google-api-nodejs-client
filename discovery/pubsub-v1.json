@@ -1119,7 +1119,7 @@
       }
     }
   },
-  "revision": "20201012",
+  "revision": "20201101",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
@@ -1141,7 +1141,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {
