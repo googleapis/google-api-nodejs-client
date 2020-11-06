@@ -2525,7 +2525,7 @@
       }
     }
   },
-  "revision": "20201028",
+  "revision": "20201102",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3PageInfo": {
@@ -3920,6 +3920,10 @@
           "format": "float",
           "type": "number"
         },
+        "event": {
+          "description": "The event that matched the query. Only filled for `EVENT` match type.",
+          "type": "string"
+        },
         "intent": {
           "$ref": "GoogleCloudDialogflowCxV3beta1Intent",
           "description": "The Intent that matched the query. Some, not all fields are filled in this message, including but not limited to: `name` and `display_name`. Only filled for `INTENT` match type."
@@ -3932,7 +3936,8 @@
             "DIRECT_INTENT",
             "PARAMETER_FILLING",
             "NO_MATCH",
-            "NO_INPUT"
+            "NO_INPUT",
+            "EVENT"
           ],
           "enumDescriptions": [
             "Not specified. Should never be used.",
@@ -3940,7 +3945,8 @@
             "The query directly triggered an intent.",
             "The query was used for parameter filling.",
             "No match was found for the query.",
-            "Indicates an empty query."
+            "Indicates an empty query.",
+            "The query directly triggered an event."
           ],
           "type": "string"
         },
