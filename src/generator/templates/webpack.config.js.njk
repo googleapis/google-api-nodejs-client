@@ -20,17 +20,26 @@ module.exports = {
   entry: './index.ts',
   resolve: {
     extensions: ['.ts', '.js', '.json'],
+    fallback: {
+      crypto: "polyfill-library-node",
+      child_process: "polyfill-library-node",
+      fs: "polyfill-library-node",
+      http2: "polyfill-library-node",
+      buffer: "polyfill-library-node",
+      process: "polyfill-library-node",
+      os: "polyfill-library-node",
+      querystring: "polyfill-library-node",
+      path: "polyfill-library-node",
+      stream: "polyfill-library-node",
+      url: "polyfill-library-node",
+      util: "polyfill-library-node",
+      zlib: "polyfill-library-node",
+    },
   },
   output: {
     library: '{{ name|capitalize }}',
     filename: '{{ name }}.min.js',
     path: path.resolve(__dirname, 'dist'),
-  },
-  node: {
-    child_process: 'empty',
-    fs: 'empty',
-    crypto: 'empty',
-    http2: 'empty',
   },
   module: {
     rules: [
