@@ -170,9 +170,6 @@ export namespace cloudresourcemanager_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -212,6 +209,48 @@ export namespace cloudresourcemanager_v1 {
      * The current version, for concurrency control. Not sending an `etag` will cause the `Policy` to be cleared blindly.
      */
     etag?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
   }
   /**
    * A `Constraint` describes a way in which a resource's configuration can be restricted. For example, it controls which cloud services can be activated across an organization, or whether a Compute Engine instance can have serial port connections established. `Constraints` can be configured by the organization's policy administrator to fit the needs of the organzation by setting Policies for `Constraints` at different locations in the organization's resource hierarchy. Policies are inherited down the resource hierarchy from higher levels, but can also be overridden. For details about the inheritance rules please read about [Policies](/resource-manager/reference/rest/v1/Policy). `Constraints` have a default behavior determined by the `constraint_default` field, which is the enforcement behavior that is used in the absence of a `Policy` being defined or inherited for the resource in question.
