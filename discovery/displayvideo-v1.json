@@ -6141,7 +6141,7 @@
       }
     }
   },
-  "revision": "20201103",
+  "revision": "20201105",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActivateManualTriggerRequest": {
@@ -11573,7 +11573,7 @@
       "type": "object"
     },
     "LineItem": {
-      "description": "A single line item.",
+      "description": "A single line item. Next id: 24",
       "id": "LineItem",
       "properties": {
         "advertiserId": {
