@@ -729,6 +729,19 @@ export namespace ml_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * The request message for the ListTrials service method.
+   */
+  export interface Schema$GoogleCloudMlV1__ListOptimalTrialsRequest {}
+  /**
+   * The response message for the ListOptimalTrials method.
+   */
+  export interface Schema$GoogleCloudMlV1__ListOptimalTrialsResponse {
+    /**
+     * The pareto-optimal trials for multiple objective study or the optimal trial for single objective study. The definition of pareto-optimal can be checked in wiki page. https://en.wikipedia.org/wiki/Pareto_efficiency
+     */
+    trials?: Schema$GoogleCloudMlV1__Trial[];
+  }
   export interface Schema$GoogleCloudMlV1__ListStudiesResponse {
     /**
      * The studies associated with the project.
@@ -1499,9 +1512,6 @@ export namespace ml_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$GoogleIamV1__Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -5670,6 +5680,164 @@ export namespace ml_v1 {
     }
 
     /**
+     * Lists the pareto-optimal trials for multi-objective study or the optimal trials for single-objective study. The definition of pareto-optimal can be checked in wiki page. https://en.wikipedia.org/wiki/Pareto_efficiency
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/ml.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const ml = google.ml('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await ml.projects.locations.studies.trials.listOptimalTrials({
+     *     // Required. The name of the study that the pareto-optimal trial belongs to.
+     *     parent: 'projects/my-project/locations/my-location/studies/my-studie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "trials": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listOptimalTrials(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    listOptimalTrials(
+      params?: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>;
+    listOptimalTrials(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listOptimalTrials(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
+    ): void;
+    listOptimalTrials(
+      params: Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials,
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
+    ): void;
+    listOptimalTrials(
+      callback: BodyResponseCallback<
+        Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+      >
+    ): void;
+    listOptimalTrials(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<
+            Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+          >
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://ml.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/trials:listOptimalTrials').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudMlV1__ListOptimalTrialsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<
+          Schema$GoogleCloudMlV1__ListOptimalTrialsResponse
+        >(parameters);
+      }
+    }
+
+    /**
      * Stops a trial.
      * @example
      * ```js
@@ -6036,6 +6204,18 @@ export namespace ml_v1 {
      * Required. The name of the study that the trial belongs to.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Studies$Trials$Listoptimaltrials
+    extends StandardParameters {
+    /**
+     * Required. The name of the study that the pareto-optimal trial belongs to.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudMlV1__ListOptimalTrialsRequest;
   }
   export interface Params$Resource$Projects$Locations$Studies$Trials$Stop
     extends StandardParameters {
