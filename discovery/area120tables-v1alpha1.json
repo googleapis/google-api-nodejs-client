@@ -458,9 +458,69 @@
           }
         }
       }
+    },
+    "workspaces": {
+      "methods": {
+        "get": {
+          "description": "Gets a workspace. Returns NOT_FOUND if the workspace does not exist.",
+          "flatPath": "v1alpha1/workspaces/{workspacesId}",
+          "httpMethod": "GET",
+          "id": "area120tables.workspaces.get",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the workspace to retrieve. Format: workspaces/{workspace}",
+              "location": "path",
+              "pattern": "^workspaces/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/{+name}",
+          "response": {
+            "$ref": "Workspace"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/spreadsheets"
+          ]
+        },
+        "list": {
+          "description": "Lists workspaces for the user.",
+          "flatPath": "v1alpha1/workspaces",
+          "httpMethod": "GET",
+          "id": "area120tables.workspaces.list",
+          "parameterOrder": [],
+          "parameters": {
+            "pageSize": {
+              "description": "The maximum number of workspaces to return. The service may return fewer than this value. If unspecified, at most 10 workspaces are returned. The maximum value is 25; values above 25 are coerced to 25.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "v1alpha1/workspaces",
+          "response": {
+            "$ref": "ListWorkspacesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/drive",
+            "https://www.googleapis.com/auth/drive.file",
+            "https://www.googleapis.com/auth/spreadsheets"
+          ]
+        }
+      }
     }
   },
-  "revision": "20201026",
+  "revision": "20201104",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {
@@ -637,6 +697,24 @@
       },
       "type": "object"
     },
+    "ListWorkspacesResponse": {
+      "description": "Response message for TablesService.ListWorkspaces.",
+      "id": "ListWorkspacesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.",
+          "type": "string"
+        },
+        "workspaces": {
+          "description": "The list of workspaces.",
+          "items": {
+            "$ref": "Workspace"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "LookupDetails": {
       "description": "Details about a lookup column whose value comes from the associated relationship.",
       "id": "LookupDetails",
@@ -727,6 +805,28 @@
             "Uses internally generated column id to identify values."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Workspace": {
+      "description": "A single workspace.",
+      "id": "Workspace",
+      "properties": {
+        "displayName": {
+          "description": "The human readable title of the workspace.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The resource name of the workspace. Workspace names have the form `workspaces/{workspace}`.",
+          "type": "string"
+        },
+        "tables": {
+          "description": "The list of tables in the workspace.",
+          "items": {
+            "$ref": "Table"
+          },
+          "type": "array"
         }
       },
       "type": "object"
