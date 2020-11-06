@@ -864,6 +864,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "listOptimalTrials": {
+                      "description": "Lists the pareto-optimal trials for multi-objective study or the optimal trials for single-objective study. The definition of pareto-optimal can be checked in wiki page. https://en.wikipedia.org/wiki/Pareto_efficiency",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/studies/{studiesId}/trials:listOptimalTrials",
+                      "httpMethod": "POST",
+                      "id": "ml.projects.locations.studies.trials.listOptimalTrials",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The name of the study that the pareto-optimal trial belongs to.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/studies/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/trials:listOptimalTrials",
+                      "request": {
+                        "$ref": "GoogleCloudMlV1__ListOptimalTrialsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudMlV1__ListOptimalTrialsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "stop": {
                       "description": "Stops a trial.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/studies/{studiesId}/trials/{trialsId}:stop",
@@ -1458,7 +1486,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201029",
   "rootUrl": "https://ml.googleapis.com/",
   "schemas": {
     "GoogleApi__HttpBody": {
@@ -1790,6 +1818,7 @@
             "NVIDIA_TESLA_V100",
             "NVIDIA_TESLA_P4",
             "NVIDIA_TESLA_T4",
+            "NVIDIA_TESLA_A100",
             "TPU_V2",
             "TPU_V3"
           ],
@@ -1800,6 +1829,7 @@
             "Nvidia Tesla V100 GPU.",
             "Nvidia Tesla P4 GPU.",
             "Nvidia Tesla T4 GPU.",
+            "Nvidia Tesla A100 GPU.",
             "TPU v2.",
             "TPU v3."
           ],
@@ -1898,6 +1928,7 @@
               "NVIDIA_TESLA_V100",
               "NVIDIA_TESLA_P4",
               "NVIDIA_TESLA_T4",
+              "NVIDIA_TESLA_A100",
               "TPU_V2",
               "TPU_V3"
             ],
@@ -1908,6 +1939,7 @@
               "Nvidia Tesla V100 GPU.",
               "Nvidia Tesla P4 GPU.",
               "Nvidia Tesla T4 GPU.",
+              "Nvidia Tesla A100 GPU.",
               "TPU v2.",
               "TPU v3."
             ],
@@ -2418,6 +2450,26 @@
         "nextPageToken": {
           "description": "Optional. Pass this token as the `page_token` field of the request for a subsequent call.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudMlV1__ListOptimalTrialsRequest": {
+      "description": "The request message for the ListTrials service method.",
+      "id": "GoogleCloudMlV1__ListOptimalTrialsRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudMlV1__ListOptimalTrialsResponse": {
+      "description": "The response message for the ListOptimalTrials method.",
+      "id": "GoogleCloudMlV1__ListOptimalTrialsResponse",
+      "properties": {
+        "trials": {
+          "description": "The pareto-optimal trials for multiple objective study or the optimal trial for single objective study. The definition of pareto-optimal can be checked in wiki page. https://en.wikipedia.org/wiki/Pareto_efficiency",
+          "items": {
+            "$ref": "GoogleCloudMlV1__Trial"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3580,7 +3632,6 @@
       "id": "GoogleIamV1__Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {
