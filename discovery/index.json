@@ -1684,7 +1684,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": false
     },
     {
@@ -1699,7 +1699,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": false
     },
     {
@@ -1714,7 +1714,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": true
     },
     {
@@ -1821,51 +1821,6 @@
       },
       "documentationLink": "https://developers.google.com/discovery",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1dev",
-      "name": "displayvideo",
-      "version": "v1dev",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1dev",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1beta",
-      "name": "displayvideo",
-      "version": "v1beta",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1beta",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1beta2",
-      "name": "displayvideo",
-      "version": "v1beta2",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1beta2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
