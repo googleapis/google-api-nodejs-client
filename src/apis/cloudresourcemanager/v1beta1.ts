@@ -164,9 +164,6 @@ export namespace cloudresourcemanager_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -180,6 +177,48 @@ export namespace cloudresourcemanager_v1beta1 {
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
