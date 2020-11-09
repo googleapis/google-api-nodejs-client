@@ -515,7 +515,7 @@
         "apiproducts": {
           "methods": {
             "attributes": {
-              "description": "Updates or creates API product attributes. This API **replaces** the current list of attributes with the attributes specified in the request body. In this way, you can update existing attributes, add new attributes, or delete existing attributes by omitting them from the request body. OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with entities also get cached for at least 180 seconds after entity is accessed during runtime. In this case, the `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
+              "description": "Updates or creates API product attributes. This API **replaces** the current list of attributes with the attributes specified in the request body. In this way, you can update existing attributes, add new attributes, or delete existing attributes by omitting them from the request body. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with entities also get cached for at least 180 seconds after entity is accessed during runtime. In this case, the `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
               "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/attributes",
               "httpMethod": "POST",
               "id": "apigee.organizations.apiproducts.attributes",
@@ -524,7 +524,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -543,7 +543,7 @@
               ]
             },
             "create": {
-              "description": "Creates an API product in an organization. You create API products after you have proxied backend services using API proxies. An API product is a collection of API resources combined with quota settings and metadata that you can use to deliver customized and productized API bundles to your developer community. This metadata can include: - Scope - Environments - API proxies - Extensible profile API products enable you repackage APIs on-the-fly, without having to do any additional coding or configuration. Apigee recommends that you start with a simple API product including only required elements. You then provision credentials to apps to enable them to start testing your APIs. After you have authentication and authorization working against a simple API product, you can iterate to create finer grained API products, defining different sets of API resources for each API product. *WARNING:* - If you don't specify an API proxy in the request body, *any* app associated with the product can make calls to *any* API in your entire organization. - If you don't specify an environment in the request body, the product allows access to all environments. For more information, see {{what_api_product}}",
+              "description": "Creates an API product in an organization. You create API products after you have proxied backend services using API proxies. An API product is a collection of API resources combined with quota settings and metadata that you can use to deliver customized and productized API bundles to your developer community. This metadata can include: - Scope - Environments - API proxies - Extensible profile API products enable you repackage APIs on-the-fly, without having to do any additional coding or configuration. Apigee recommends that you start with a simple API product including only required elements. You then provision credentials to apps to enable them to start testing your APIs. After you have authentication and authorization working against a simple API product, you can iterate to create finer grained API products, defining different sets of API resources for each API product. **WARNING:** - If you don't specify an API proxy in the request body, *any* app associated with the product can make calls to *any* API in your entire organization. - If you don't specify an environment in the request body, the product allows access to all environments. For more information, see What is an API product?",
               "flatPath": "v1/organizations/{organizationsId}/apiproducts",
               "httpMethod": "POST",
               "id": "apigee.organizations.apiproducts.create",
@@ -552,7 +552,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent organization name under which the API product will be created. Must be in the following form: organizations/organization_ID ",
+                  "description": "Required. Name of the organization in which the API product will be created. Use the following structure in your request: `organizations/{org}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -580,7 +580,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. API product name in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -605,7 +605,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -630,12 +630,12 @@
               ],
               "parameters": {
                 "attributename": {
-                  "description": "The name of the attribute to search.",
+                  "description": "Name of the attribute used to filter the search.",
                   "location": "query",
                   "type": "string"
                 },
                 "attributevalue": {
-                  "description": "The value of the attribute.",
+                  "description": "Value of the attribute used to filter the search.",
                   "location": "query",
                   "type": "string"
                 },
@@ -646,12 +646,12 @@
                   "type": "string"
                 },
                 "expand": {
-                  "description": "Set to `true` to get expanded details about each API.",
+                  "description": "Flag that specifies whether to expand the results. Set to `true` to get expanded details about each API.",
                   "location": "query",
                   "type": "boolean"
                 },
                 "parent": {
-                  "description": "**Required.** The parent organization name in the following form: organizations/organization_ID ",
+                  "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -681,7 +681,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                  "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                   "required": true,
@@ -713,7 +713,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name/attributes/attribute_name ",
+                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -729,7 +729,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Returns the value of an API product attribute.",
+                  "description": "Gets the value of an API product attribute.",
                   "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/attributes/{attributesId}",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.apiproducts.attributes.get",
@@ -738,7 +738,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name/attributes/attribute_name ",
+                      "description": "Required. Name of the API product attribute. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}/attributes/{attribute}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -754,7 +754,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Returns a list of all API product attributes.",
+                  "description": "Lists all API product attributes.",
                   "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/attributes",
                   "httpMethod": "GET",
                   "id": "apigee.organizations.apiproducts.attributes.list",
@@ -763,7 +763,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent organization name. Must be in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+$",
                       "required": true,
@@ -779,7 +779,7 @@
                   ]
                 },
                 "updateApiProductAttribute": {
-                  "description": "Updates the value of an API product attribute. Limitations are: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with entities also get cached for at least 180 seconds after entity is accessed during runtime. In this case, the `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
+                  "description": "Updates the value of an API product attribute. **Note**: OAuth access tokens and Key Management Service (KMS) entities (apps, developers, and API products) are cached for 180 seconds (current default). Any custom attributes associated with entities also get cached for at least 180 seconds after entity is accessed during runtime. In this case, the `ExpiresIn` element on the OAuthV2 policy won't be able to expire an access token in less than 180 seconds.",
                   "flatPath": "v1/organizations/{organizationsId}/apiproducts/{apiproductsId}/attributes/{attributesId}",
                   "httpMethod": "POST",
                   "id": "apigee.organizations.apiproducts.attributes.updateApiProductAttribute",
@@ -788,7 +788,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "**Required.** API product name in the following form: organizations/organization_ID/apiproducts/api_product_name ",
+                      "description": "Required. Name of the API product. Use the following structure in your request: `organizations/{org}/apiproducts/{apiproduct}`",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/apiproducts/[^/]+/attributes/[^/]+$",
                       "required": true,
@@ -1246,6 +1246,163 @@
               "path": "v1/{+parent}/apps",
               "response": {
                 "$ref": "GoogleCloudApigeeV1ListAppsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "datacollectors": {
+          "methods": {
+            "create": {
+              "description": "Creates a new data collector.",
+              "flatPath": "v1/organizations/{organizationsId}/datacollectors",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.datacollectors.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "dataCollectorId": {
+                  "description": "ID of the Data Collector. Overrides any ID in the Data Collector resource.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization in which to create the Data Collector in the following format: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/datacollectors",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1DataCollector"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DataCollector"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a data collector.",
+              "flatPath": "v1/organizations/{organizationsId}/datacollectors/{datacollectorsId}",
+              "httpMethod": "DELETE",
+              "id": "apigee.organizations.datacollectors.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleProtobufEmpty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Gets a data collector.",
+              "flatPath": "v1/organizations/{organizationsId}/datacollectors/{datacollectorsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.datacollectors.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DataCollector"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Lists all data collectors.",
+              "flatPath": "v1/organizations/{organizationsId}/datacollectors",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.datacollectors.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Maximum number of Data Collectors to return. The page size defaults to 25.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Page token, returned from a previous ListDataCollectors call, that you can use to retrieve the next page.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the organization for which to list Data Collectors in the following format: `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/datacollectors",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListDataCollectorsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "patch": {
+              "description": "Updates a data collector.",
+              "flatPath": "v1/organizations/{organizationsId}/datacollectors/{datacollectorsId}",
+              "httpMethod": "PATCH",
+              "id": "apigee.organizations.datacollectors.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "List of fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1DataCollector"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1DataCollector"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -4743,7 +4900,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instance/{instance}`.",
+                  "description": "Required. Name of the instance. Use the following structure in your request: `organizations/{org}/instances/{instance}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/instances/[^/]+$",
                   "required": true,
@@ -4960,6 +5117,63 @@
                   "path": "v1/{+parent}/attachments",
                   "response": {
                     "$ref": "GoogleCloudApigeeV1ListInstanceAttachmentsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "canaryevaluations": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new canary evaluation for an organization.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/canaryevaluations",
+                  "httpMethod": "POST",
+                  "id": "apigee.organizations.instances.canaryevaluations.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Name of the organization. Use the following structure in your request: `organizations/{org}/instances/{instance}`.",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/canaryevaluations",
+                  "request": {
+                    "$ref": "GoogleCloudApigeeV1CanaryEvaluation"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a CanaryEvaluation for an organization.",
+                  "flatPath": "v1/organizations/{organizationsId}/instances/{instancesId}/canaryevaluations/{canaryevaluationsId}",
+                  "httpMethod": "GET",
+                  "id": "apigee.organizations.instances.canaryevaluations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the CanaryEvaluation. Use the following structure in your request: `organizations/{org}/instances/*/canaryevaluations/{evaluation}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/instances/[^/]+/canaryevaluations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApigeeV1CanaryEvaluation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -5691,7 +5905,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201029",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5889,18 +6103,17 @@
       "id": "GoogleCloudApigeeV1ApiProduct",
       "properties": {
         "apiResources": {
-          "description": "Comma-separated list of API resources to be bundled in the API Product. By default, the resource paths are mapped from the `proxy.pathsuffix` variable. The proxy path suffix is defined as the URI fragment following the ProxyEndpoint base path. For example, if the `apiResources` element is defined to be `/forecastrss` and the base path defined for the API proxy is `/weather`, then only requests to `/weather/forecastrss` are permitted by the API product. You can select a specific path, or you can select all subpaths with the following wildcard: - /**: Indicates that all sub-URIs are included. - /* : Indicates that only URIs one level down are included. By default, / supports the same resources as /** as well as the base path defined by the API proxy. For example, if the base path of the API proxy is `/v1/weatherapikey`, then the API product supports requests to `/v1/weatherapikey` and to any sub-URIs, such as `/v1/weatherapikey/forecastrss`, `/v1/weatherapikey/region/CA`, and so on. For more information, see: - Manage API products - Managing a transaction recording policy using the API",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "approvalType": {
-          "description": "Specifies how API keys are approved to access the APIs defined by the API product. If set to `manual`, the consumer key is generated and returned in \"pending\" state. In this case, the API keys won't work until they have been explicitly approved. If set to `auto`, the consumer key is generated and returned in \"approved\" state and can be used immediately. *NOTE:* Typically, `auto` is used to provide access to free or trial API products that provide limited quota or capabilities.",
+          "description": "Flag that specifies how API keys are approved to access the APIs defined by the API product. If set to `manual`, the consumer key is generated and returned in \"pending\" state. In this case, the API keys won't work until they have been explicitly approved. If set to `auto`, the consumer key is generated and returned in \"approved\" state and can be used immediately. **Note:** Typically, `auto` is used to provide access to free or trial API products that provide limited quota or capabilities.",
           "type": "string"
         },
         "attributes": {
-          "description": "Array of attributes that may be used to extend the default API product profile with customer-specific metadata. You can specify a maximum of 18 attributes. Use this property to specify the access level of the API product as either `public`, `private`, or `internal`. Only products marked `public` are available to developers in the Apigee developer portal. For example, you can set a product to `internal` while it is in development and then change access to `public` when it is ready to release on the portal. API products marked as `private` do not appear on the portal but can be accessed by external developers. For monetization, you can use the attributes field to: - Specify transaction success criteria - Specify custom attributes on which you base rate plan charges.",
+          "description": "Array of attributes that may be used to extend the default API product profile with customer-specific metadata. You can specify a maximum of 18 attributes. Use this property to specify the access level of the API product as either `public`, `private`, or `internal`. Only products marked `public` are available to developers in the Apigee developer portal. For example, you can set a product to `internal` while it is in development and then change access to `public` when it is ready to release on the portal. API products marked as `private` do not appear on the portal, but can be accessed by external developers.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Attribute"
           },
@@ -5912,15 +6125,15 @@
           "type": "string"
         },
         "description": {
-          "description": "An overview of the API product. Include key information about the API product that is not captured by other fields.",
+          "description": "Description of the API product. Include key information about the API product that is not captured by other fields. Comma-separated list of API resources to be bundled in the API product. By default, the resource paths are mapped from the `proxy.pathsuffix` variable. The proxy path suffix is defined as the URI fragment following the ProxyEndpoint base path. For example, if the `apiResources` element is defined to be `/forecastrss` and the base path defined for the API proxy is `/weather`, then only requests to `/weather/forecastrss` are permitted by the API product. You can select a specific path, or you can select all subpaths with the following wildcard: - `/**`: Indicates that all sub-URIs are included. - `/*` : Indicates that only URIs one level down are included. By default, / supports the same resources as /** as well as the base path defined by the API proxy. For example, if the base path of the API proxy is `/v1/weatherapikey`, then the API product supports requests to `/v1/weatherapikey` and to any sub-URIs, such as `/v1/weatherapikey/forecastrss`, `/v1/weatherapikey/region/CA`, and so on. For more information, see Managing API products.",
           "type": "string"
         },
         "displayName": {
-          "description": "The name to be displayed in the UI or developer portal to developers registering for API access.",
+          "description": "Name displayed in the UI or developer portal to developers registering for API access.",
           "type": "string"
         },
         "environments": {
-          "description": "A comma-separated list of environment names to which the API product is bound. Requests to environments that are not listed are rejected. By specifying one or more environments, you can bind the resources listed in the API product to a specific environment, preventing developers from accessing those resources through API proxies deployed in another environment. This setting is used, for example, to prevent resources associated with API proxies in 'prod' from being accessed by API proxies deployed in 'test'.",
+          "description": "Comma-separated list of environment names to which the API product is bound. Requests to environments that are not listed are rejected. By specifying one or more environments, you can bind the resources listed in the API product to a specific environment, preventing developers from accessing those resources through API proxies deployed in another environment. This setting is used, for example, to prevent resources associated with API proxies in `prod` from being accessed by API proxies deployed in `test`.",
           "items": {
             "type": "string"
           },
@@ -5932,34 +6145,34 @@
           "type": "string"
         },
         "name": {
-          "description": "The internal name of the API Product. Characters you can use in the name are restricted to: A-Z0-9._\\-$ %. *NOTE:* The internal name cannot be edited when updating the API product.",
+          "description": "Internal name of the API product. Characters you can use in the name are restricted to: `A-Z0-9._\\-$ %`. **Note:** The internal name cannot be edited when updating the API product.",
           "type": "string"
         },
         "operationGroup": {
           "$ref": "GoogleCloudApigeeV1OperationGroup",
-          "description": "The operation_group enables api product creators to group Apigee proxies or remote services with resources, method types and quotas. The resource refers to the resource URI(excluding the base path). With this grouping, API product creator is able to finetune and give precise control over which REST methods have access to which resources, and how many such calls can be made (via Quota). Note that api_resources cannot be specified at both the API product level as well as within the operation_group. If configured that way, the call will fail. Please refer go/api-product-with-methods for additional details."
+          "description": "Configuration used to group Apigee proxies or remote services with resources, method types, and quotas. The resource refers to the resource URI (excluding the base path). With this grouping, the API product creator is able to fine-tune and give precise control over which REST methods have access to specific resources and how many calls can be made (using the `quota` setting). **Note:** The `api_resources` setting cannot be specified for both the API product and operation group; otherwise the call will fail."
         },
         "proxies": {
-          "description": "A comma-separated list of API proxy names to which this API product is bound. By specifying API proxies, you can associate resources in the API product with specific API proxies, preventing developers from accessing those resources through other API proxies. Edge rejects requests to API proxies that are not listed. *NOTE:* The API proxy names must already exist in the specified environment as they will be validated upon creation.",
+          "description": "Comma-separated list of API proxy names to which this API product is bound. By specifying API proxies, you can associate resources in the API product with specific API proxies, preventing developers from accessing those resources through other API proxies. Apigee rejects requests to API proxies that are not listed. **Note:** The API proxy names must already exist in the specified environment as they will be validated upon creation.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "quota": {
-          "description": "The number of request messages permitted per app by this API product for the specified `quotaInterval` and `quotaTimeUnit`. For example, a `quota` of 50, for a `quotaInterval` of 12 and a `quotaTimeUnit` of hours means 50 requests are allowed every 12 hours.",
+          "description": "Number of request messages permitted per app by this API product for the specified `quotaInterval` and `quotaTimeUnit`. For example, a `quota` of 50, for a `quotaInterval` of 12 and a `quotaTimeUnit` of hours means 50 requests are allowed every 12 hours.",
           "type": "string"
         },
         "quotaInterval": {
-          "description": "The time interval over which the number of request messages is calculated.",
+          "description": "Time interval over which the number of request messages is calculated.",
           "type": "string"
         },
         "quotaTimeUnit": {
-          "description": "The time unit defined for the `quotaInterval`. Valid values include minute, hour, day, or month.",
+          "description": "Time unit defined for the `quotaInterval`. Valid values include `minute`, `hour`, `day`, or `month`.",
           "type": "string"
         },
         "scopes": {
-          "description": "A comma-separated list of OAuth scopes that are validated at runtime. Edge validates that the scopes in any access token presented match the scopes defined in the OAuth policy assoicated with the API product.",
+          "description": "Comma-separated list of OAuth scopes that are validated at runtime. Apigee validates that the scopes in any access token presented match the scopes defined in the OAuth policy associated with the API product.",
           "items": {
             "type": "string"
           },
@@ -6333,6 +6546,97 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1CanaryEvaluation": {
+      "description": "CanaryEvaluation represents the canary analysis between two versions of the runtime that is serving requests.",
+      "id": "GoogleCloudApigeeV1CanaryEvaluation",
+      "properties": {
+        "control": {
+          "description": "Required. The stable version that is serving requests.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time of the canary evaluation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endTime": {
+          "description": "Required. End time for the evaluation's analysis.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "metricLabels": {
+          "$ref": "GoogleCloudApigeeV1CanaryEvaluationMetricLabels",
+          "description": "Required. Labels used to filter the metrics used for a canary evaluation."
+        },
+        "name": {
+          "description": "Output only. Name of the canary evalution.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. Start time for the canary evaluation's analysis.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The current state of the canary evaluation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "RUNNING",
+            "SUCCEEDED"
+          ],
+          "enumDescriptions": [
+            "No state has been specified.",
+            "The canary evaluation is still in progress.",
+            "The canary evaluation has finished."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "treatment": {
+          "description": "Required. The newer version that is serving requests.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Output only. The resulting verdict of the canary evaluations: NONE, PASS, or FAIL.",
+          "enum": [
+            "VERDICT_UNSPECIFIED",
+            "NONE",
+            "FAIL",
+            "PASS"
+          ],
+          "enumDescriptions": [
+            "Verdict is not available yet.",
+            "No verdict reached.",
+            "Evaluation is not good.",
+            "Evaluation is good."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1CanaryEvaluationMetricLabels": {
+      "description": "Labels that can be used to filter Apigee metrics.",
+      "id": "GoogleCloudApigeeV1CanaryEvaluationMetricLabels",
+      "properties": {
+        "env": {
+          "description": "The environment ID associated with the metrics.",
+          "type": "string"
+        },
+        "instance_id": {
+          "description": "Required. The instance ID associated with the metrics. In Apigee Hybrid, the value is configured during installation.",
+          "type": "string"
+        },
+        "location": {
+          "description": "Required. The location associated with the metrics.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1CertInfo": {
       "description": "An X.509 certificate as defined in RFC 5280.",
       "id": "GoogleCloudApigeeV1CertInfo",
@@ -6611,6 +6915,53 @@
         },
         "name": {
           "description": "name of the metric",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1DataCollector": {
+      "description": "Data Collector configuration.",
+      "id": "GoogleCloudApigeeV1DataCollector",
+      "properties": {
+        "createdAt": {
+          "description": "Output only. The time at which the Data Collector was created in milliseconds since the epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the Data Collector.",
+          "type": "string"
+        },
+        "lastModifiedAt": {
+          "description": "Output only. The time at which the Data Collector was last updated in milliseconds since the epoch.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "ID of the Data Collector.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Immutable. The type of data this DataCollector will collect.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "BOOLEAN",
+            "DATETIME"
+          ],
+          "enumDescriptions": [
+            "For future compatibility.",
+            "For integer values.",
+            "For float values.",
+            "For string values.",
+            "For boolean values.",
+            "For datetime values."
+          ],
           "type": "string"
         }
       },
@@ -7983,6 +8334,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudApigeeV1ListDataCollectorsResponse": {
+      "description": "Response for ListDataCollectors.",
+      "id": "GoogleCloudApigeeV1ListDataCollectorsResponse",
+      "properties": {
+        "dataCollectors": {
+          "description": "Data Collectors in the specified organization.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DataCollector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Page token that you can include in a ListDataCollectors request to retrieve the next page. If omitted, no subsequent pages exist.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApigeeV1ListDatastoresResponse": {
       "description": "The response for ListDatastores",
       "id": "GoogleCloudApigeeV1ListDatastoresResponse",
@@ -8253,18 +8622,18 @@
       "id": "GoogleCloudApigeeV1OperationConfig",
       "properties": {
         "apiSource": {
-          "description": "Required. api_source represents either a proxy or remote service name for which the resources, methods and quota are associated with.",
+          "description": "Required. API proxy or remote service name with which the resources, methods, and quota are associated.",
           "type": "string"
         },
         "attributes": {
-          "description": "custom attribute associated with the operation.",
+          "description": "Custom attributes associated with the operation.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Attribute"
           },
           "type": "array"
         },
         "operations": {
-          "description": "operations is the list of resource/methods pair, belonging to proxy/remote service, upon which quota will applied on. Note that currently we allow only a single operation. The call will fail if more than one is provided.",
+          "description": "List of resource/method pairs for the proxy/remote service, upon which quota will applied. **Note**: Currently, you can specify only a single resource/method pair. The call will fail if more than one resource/method pair is provided.",
           "items": {
             "$ref": "GoogleCloudApigeeV1Operation"
           },
@@ -8272,21 +8641,21 @@
         },
         "quota": {
           "$ref": "GoogleCloudApigeeV1Quota",
-          "description": "Quota parameters to be enforced for the resources, methods, api_source combination. If none specified, quota enforcement will not be done."
+          "description": "Quota parameters to be enforced for the resources, methods, api_source combination. If none are specified, quota enforcement will not be done."
         }
       },
       "type": "object"
     },
     "GoogleCloudApigeeV1OperationGroup": {
-      "description": "The OperationGroup contains a list of configuration details associated with Apigee proxies or Remote services. Remote services are non-Apigee Edge proxies. eg, Istio-Envoy.",
+      "description": "List of operation configuration details associated with Apigee API proxies or remote services. Remote services are non-Apigee proxies, such as Istio-Envoy.",
       "id": "GoogleCloudApigeeV1OperationGroup",
       "properties": {
         "operationConfigType": {
-          "description": "Identfies whether the configuration is for Apigee proxy or a remote service. Possible values are \"proxy\" and \"remoteservice\". If none specified, the default is \"proxy\". \"proxy\" is used when Apigee proxies are associated with the API product. \"remoteservice\" is used when non-Apigee proxy like Envoy is used, and is associated with the API product.",
+          "description": "Flag that specifes whether the configuration is for Apigee API proxy or a remote service. Valid values are `proxy` or `remoteservice`. Defaults to `proxy`. Set to `proxy` when Apigee API proxies are associated with the API product. Set to `remoteservice` when non-Apigee proxies like Istio-Envoy are associated with the API product.",
           "type": "string"
         },
         "operationConfigs": {
-          "description": "Required. A list of OperationConfig for either Apigee proxies or other other remote services, that are associated with this API product.",
+          "description": "Required. List of operation configurations for either Apigee API proxies or other remote services that are associated with this API product.",
           "items": {
             "$ref": "GoogleCloudApigeeV1OperationConfig"
           },
@@ -8755,15 +9124,15 @@
       "id": "GoogleCloudApigeeV1Quota",
       "properties": {
         "interval": {
-          "description": "Required. The time interval over which the number of request messages is calculated.",
+          "description": "Required. Time interval over which the number of request messages is calculated.",
           "type": "string"
         },
         "limit": {
-          "description": "Required. Limit represents the upper bound count allowed for the time interval and time unit specified. Requests exceeding this limit will get rejected.",
+          "description": "Required. Upper limit allowed for the time interval and time unit specified. Requests exceeding this limit will be rejected.",
           "type": "string"
         },
         "timeUnit": {
-          "description": "The time unit defined for the `interval`. Valid values include minute, hour, day, or month. The default value is empty. If limit and interval are valid, the default value is \"hour\".",
+          "description": "Time unit defined for the `interval`. Valid values include `minute`, `hour`, `day`, or `month`. If `limit` and `interval` are valid, the default value is `hour`; otherwise, the default is null.",
           "type": "string"
         }
       },
@@ -9392,7 +9761,7 @@
       "id": "GoogleCloudApigeeV1SyncAuthorization",
       "properties": {
         "etag": {
-          "description": "Entity tag (ETag) used for optimistic concurrency control as a way to help prevent simultaneous updates from overwriting each other. For example, when you call [getSyncAuthorization](getSyncAuthorization) an ETag is returned in the response. Pass that ETag when calling the [setSyncAuthorization](setSyncAuthorization) to ensure that you are updating the correct version. If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. **Note**: We strongly recommend that you use the ETag in the read-modify-write cycle to avoid race conditions.",
+          "description": "Entity tag (ETag) used for optimistic concurrency control as a way to help prevent simultaneous updates from overwriting each other. For example, when you call [getSyncAuthorization](organizations/getSyncAuthorization) an ETag is returned in the response. Pass that ETag when calling the [setSyncAuthorization](organizations/setSyncAuthorization) to ensure that you are updating the correct version. If you don't pass the ETag in the call to `setSyncAuthorization`, then the existing authorization is overwritten indiscriminately. **Note**: We strongly recommend that you use the ETag in the read-modify-write cycle to avoid race conditions.",
           "format": "byte",
           "type": "string"
         },
@@ -9702,6 +10071,9 @@
       "description": "Associates `members` with a `role`.",
       "id": "GoogleIamV1Binding",
       "properties": {
+        "bindingId": {
+          "type": "string"
+        },
         "condition": {
           "$ref": "GoogleTypeExpr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
