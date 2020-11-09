@@ -2247,7 +2247,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201029",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2357,7 +2357,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {
@@ -3432,7 +3431,7 @@
           "type": "string"
         },
         "kmsKeyUri": {
-          "description": "Required. The uri of the KMS key used to encrypt various sensitive files.",
+          "description": "Optional. The uri of the KMS key used to encrypt various sensitive files.",
           "type": "string"
         },
         "realm": {
@@ -3440,7 +3439,7 @@
           "type": "string"
         },
         "rootPrincipalPasswordUri": {
-          "description": "Required. The Cloud Storage URI of a KMS encrypted file containing the root principal password.",
+          "description": "Optional. The Cloud Storage URI of a KMS encrypted file containing the root principal password.",
           "type": "string"
         },
         "tgtLifetimeHours": {
