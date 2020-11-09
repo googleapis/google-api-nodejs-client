@@ -1808,7 +1808,7 @@
       }
     }
   },
-  "revision": "20201021",
+  "revision": "20201102",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -1816,7 +1816,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {
@@ -2003,12 +2002,14 @@
           "enum": [
             "INTEGRATED_SYSTEM_UNSPECIFIED",
             "BIGQUERY",
-            "CLOUD_PUBSUB"
+            "CLOUD_PUBSUB",
+            "DPMS"
           ],
           "enumDescriptions": [
             "Default unknown system.",
             "BigQuery.",
-            "Cloud Pub/Sub."
+            "Cloud Pub/Sub.",
+            "Dataproc Metastore - Managed Hive Metastore."
           ],
           "readOnly": true,
           "type": "string"
@@ -2129,7 +2130,6 @@
       "id": "GoogleCloudDatacatalogV1beta1FieldTypeEnumType",
       "properties": {
         "allowedValues": {
-          "description": "The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. The order of items in this list is preserved. This field can be used to Required on create; optional on update. The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. Currently, enum values can only be added to the list of allowed values. Deletion and renaming of enum values are not supported. Can have up to 500 allowed values.",
           "items": {
             "$ref": "GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue"
           },
