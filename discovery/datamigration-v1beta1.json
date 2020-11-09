@@ -1049,7 +1049,7 @@
       }
     }
   },
-  "revision": "20201027",
+  "revision": "20201028",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1766,7 +1766,9 @@
             "AUTHENTICATION_FAILURE",
             "INVALID_CONNECTION_PROFILE_CONFIG",
             "VERSION_INCOMPATIBILITY",
-            "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY"
+            "CONNECTION_PROFILE_TYPES_INCOMPATIBILITY",
+            "UNSUPPORTED_GTID_MODE",
+            "UNSUPPORTED_DEFINER"
           ],
           "enumDescriptions": [
             "An unknown error occurred",
@@ -1774,7 +1776,9 @@
             "We failed to authenticate to one of the connection profile.",
             "One of the involved connection profiles has an invalid configuration.",
             "The versions of the source and the destination are incompatible.",
-            "The types of the source and the destination are incompatible."
+            "The types of the source and the destination are incompatible.",
+            "The gtid_mode is not supported, applicable for MySQL.",
+            "The definer is not supported."
           ],
           "readOnly": true,
           "type": "string"
