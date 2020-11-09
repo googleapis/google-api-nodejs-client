@@ -685,7 +685,7 @@
       }
     }
   },
-  "revision": "20200924",
+  "revision": "20201030",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AppEngineHttpQueue": {
@@ -804,7 +804,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {

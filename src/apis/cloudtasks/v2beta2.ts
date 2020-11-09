@@ -212,9 +212,6 @@ export namespace cloudtasks_v2beta2 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -1268,7 +1265,7 @@ export namespace cloudtasks_v2beta2 {
      *   const res = await cloudtasks.projects.locations.queues.get({
      *     // Required. The resource name of the queue. For example: `projects/PROJECT_ID/locations/LOCATION_ID/queues/QUEUE_ID`
      *     name: 'projects/my-project/locations/my-location/queues/my-queue',
-     *     // Optional. Read mask is used for a more granular control over what the API returns. By it includes all fields in Queue except for stats.
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
      *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1547,6 +1544,8 @@ export namespace cloudtasks_v2beta2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     *     readMask: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -2532,7 +2531,7 @@ export namespace cloudtasks_v2beta2 {
      */
     name?: string;
     /**
-     * Optional. Read mask is used for a more granular control over what the API returns. By it includes all fields in Queue except for stats.
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
      */
     readMask?: string;
   }
@@ -2566,6 +2565,10 @@ export namespace cloudtasks_v2beta2 {
      * Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`
      */
     parent?: string;
+    /**
+     * Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to "*" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.
+     */
+    readMask?: string;
   }
   export interface Params$Resource$Projects$Locations$Queues$Patch
     extends StandardParameters {
