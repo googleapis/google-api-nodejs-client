@@ -318,6 +318,31 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "getAuthString": {
+                  "description": "Gets the AUTH string for a Redis instance. If AUTH is not enabled for the instance the response will be empty. This information is not included in the details returned to GetInstance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}/authString",
+                  "httpMethod": "GET",
+                  "id": "redis.projects.locations.instances.getAuthString",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Redis instance resource name using the form: `projects/{project_id}/locations/{location_id}/instances/{instance_id}` where `location_id` refers to a GCP region.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}/authString",
+                  "response": {
+                    "$ref": "InstanceAuthString"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "import": {
                   "description": "Import a Redis RDB snapshot file from Cloud Storage into a Redis instance. Redis may stop serving during this operation. Instance state will be IMPORTING for entire operation. When complete, the instance will contain only data from the imported file. The returned operation is automatically deleted after a few hours, so there is no need to call DeleteOperation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:import",
@@ -571,7 +596,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201104",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -722,6 +747,10 @@
           "description": "Optional. Only applicable to STANDARD_HA tier which protects the instance against zonal failures by provisioning it across two zones. If provided, it must be a different zone from the one provided in location_id.",
           "type": "string"
         },
+        "authEnabled": {
+          "description": "Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If set to \"true\" AUTH is enabled on the instance. Default value is \"false\" meaning AUTH is disabled.",
+          "type": "boolean"
+        },
         "authorizedNetwork": {
           "description": "Optional. The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.",
           "type": "string"
@@ -850,6 +879,17 @@
             "BASIC tier: standalone instance",
             "STANDARD_HA tier: highly available primary/replica instances"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InstanceAuthString": {
+      "description": "Instance AUTH string details.",
+      "id": "InstanceAuthString",
+      "properties": {
+        "authString": {
+          "description": "AUTH string set on the instance.",
           "type": "string"
         }
       },

@@ -672,7 +672,7 @@ export namespace chat_v1 {
      */
     domainId?: string | null;
     /**
-     * Set to true if none of the depending services (Gaia, PeopleApi) returns any info for this user.
+     * True when the user is deleted or the user's proifle is not visible.
      */
     isAnonymous?: boolean | null;
     /**

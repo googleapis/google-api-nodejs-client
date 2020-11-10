@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/6fuP5JDS7CDwzVsd3cAc59pg_GE\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/fcv4OojYDxxlAuyFQjV4FQ5X7aI\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -1132,7 +1132,7 @@
           "parameters": {
             "convert": {
               "default": "false",
-              "description": "Whether to convert this file to the corresponding Google Docs format.",
+              "description": "Whether to convert this file to the corresponding Docs Editors format.",
               "location": "query",
               "type": "boolean"
             },
@@ -1442,7 +1442,7 @@
           "parameters": {
             "convert": {
               "default": "false",
-              "description": "Whether to convert this file to the corresponding Google Docs format.",
+              "description": "Whether to convert this file to the corresponding Docs Editors format.",
               "location": "query",
               "type": "boolean"
             },
@@ -3521,7 +3521,7 @@
       }
     }
   },
-  "revision": "20201012",
+  "revision": "20201101",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3906,7 +3906,7 @@
           "type": "boolean"
         },
         "supportsImport": {
-          "description": "Whether this app supports importing Google Docs.",
+          "description": "Whether this app supports importing from Docs Editors.",
           "type": "boolean"
         },
         "supportsMultiOpen": {
@@ -4798,7 +4798,7 @@
           "type": "string"
         },
         "downloadUrl": {
-          "description": "Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "Short lived download URL for the file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "driveId": {
@@ -4826,15 +4826,15 @@
             "description": "A mapping from export format to URL",
             "type": "string"
           },
-          "description": "Links for exporting Google Docs to specific formats.",
+          "description": "Links for exporting Docs Editors files to specific formats.",
           "type": "object"
         },
         "fileExtension": {
-          "description": "The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "The final component of fullFileExtension with trailing text that does not appear to be part of the extension removed. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "fileSize": {
-          "description": "The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "format": "int64",
           "type": "string"
         },
@@ -4843,7 +4843,7 @@
           "type": "string"
         },
         "fullFileExtension": {
-          "description": "The full file extension; extracted from the title. May contain multiple concatenated extensions, such as \"tar.gz\". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "The full file extension; extracted from the title. May contain multiple concatenated extensions, such as \"tar.gz\". Removing an extension from the title does not clear this field; however, changing the extension on the title does update this field. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "hasAugmentedPermissions": {
@@ -4855,7 +4855,7 @@
           "type": "boolean"
         },
         "headRevisionId": {
-          "description": "The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "The ID of the file's head revision. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "iconLink": {
@@ -5051,7 +5051,7 @@
           "type": "string"
         },
         "md5Checksum": {
-          "description": "An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Google Docs or shortcut files.",
+          "description": "An MD5 checksum for the content of this file. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "mimeType": {
@@ -5661,7 +5661,7 @@
             "description": "A mapping from export format to URL",
             "type": "string"
           },
-          "description": "Links for exporting Google Docs to specific formats.",
+          "description": "Links for exporting Docs Editors files to specific formats.",
           "type": "object"
         },
         "fileSize": {
@@ -5704,15 +5704,15 @@
           "type": "string"
         },
         "pinned": {
-          "description": "Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive which are not Google Docs. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.",
+          "description": "Whether this revision is pinned to prevent automatic purging. This will only be populated and can only be modified on files with content stored in Drive, excluding Docs Editors files. Revisions can also be pinned when they are created through the drive.files.insert/update/copy by using the pinned query parameter. Pinned revisions are stored indefinitely using additional storage quota, up to a maximum of 200 revisions.",
           "type": "boolean"
         },
         "publishAuto": {
-          "description": "Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Google Docs.",
+          "description": "Whether subsequent revisions will be automatically republished. This is only populated and can only be modified for Docs Editors files.",
           "type": "boolean"
         },
         "published": {
-          "description": "Whether this revision is published. This is only populated and can only be modified for Google Docs.",
+          "description": "Whether this revision is published. This is only populated and can only be modified for Docs Editors files.",
           "type": "boolean"
         },
         "publishedLink": {
@@ -5720,7 +5720,7 @@
           "type": "string"
         },
         "publishedOutsideDomain": {
-          "description": "Whether this revision is published outside the domain. This is only populated and can only be modified for Google Docs.",
+          "description": "Whether this revision is published outside the domain. This is only populated and can only be modified for Docs Editors files.",
           "type": "boolean"
         },
         "selfLink": {

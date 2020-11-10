@@ -255,7 +255,7 @@ export namespace logging_v2 {
      */
     referer?: string | null;
     /**
-     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: "192.168.1.1", "FE80::0202:B3FF:FE1E:8329".
+     * The IP address (IPv4 or IPv6) of the client that issued the HTTP request. This field can include port information. Examples: "192.168.1.1", "10.0.0.1:80", "FE80::0202:B3FF:FE1E:8329".
      */
     remoteIp?: string | null;
     /**
@@ -275,7 +275,7 @@ export namespace logging_v2 {
      */
     responseSize?: string | null;
     /**
-     * The IP address (IPv4 or IPv6) of the origin server that the request was sent to.
+     * The IP address (IPv4 or IPv6) of the origin server that the request was sent to. This field can include port information. Examples: "192.168.1.1", "10.0.0.1:80", "FE80::0202:B3FF:FE1E:8329".
      */
     serverIp?: string | null;
     /**
@@ -1096,6 +1096,49 @@ export namespace logging_v2 {
      * The canonical and persistent identifier of the deployed revision. Example (git): "0035781c50ec7aa23385dc841529ce8a4b70db1b"
      */
     revisionId?: string | null;
+  }
+  /**
+   * Information about entries that were omitted from the session.
+   */
+  export interface Schema$SuppressionInfo {
+    /**
+     * The reason that entries were omitted from the session.
+     */
+    reason?: string | null;
+    /**
+     * A lower bound on the count of entries omitted due to reason.
+     */
+    suppressedCount?: number | null;
+  }
+  /**
+   * The parameters to TailLogEntries.
+   */
+  export interface Schema$TailLogEntriesRequest {
+    /**
+     * Optional. The amount of time to buffer log entries at the server before being returned to prevent out of order results due to late arriving log entries. Valid values are between 0-60000 milliseconds. Defaults to 2000 milliseconds.
+     */
+    bufferWindow?: string | null;
+    /**
+     * Optional. A filter that chooses which log entries to return. See Advanced Logs Filters (https://cloud.google.com/logging/docs/view/advanced_filters). Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.
+     */
+    filter?: string | null;
+    /**
+     * Required. Name of a parent resource from which to retrieve log entries: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]" May alternatively be one or more views: "projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID" "organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID" "billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID" "folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID"
+     */
+    resourceNames?: string[] | null;
+  }
+  /**
+   * Result returned from TailLogEntries.
+   */
+  export interface Schema$TailLogEntriesResponse {
+    /**
+     * A list of log entries. Each response in the stream will order entries with increasing values of LogEntry.timestamp. Ordering is not guaranteed between separate responses.
+     */
+    entries?: Schema$LogEntry[];
+    /**
+     * If entries that otherwise would have been included in the session were not sent back to the client, counts of relevant entries omitted from the session with the reason that they were not included. There will be at most one of each reason per response. The counts represent the number of suppressed entries since the last streamed response.
+     */
+    suppressionInfo?: Schema$SuppressionInfo[];
   }
   /**
    * The parameters to UndeleteBucket.
@@ -4140,6 +4183,8 @@ export namespace logging_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'billingAccounts/my-billingAccount',
+     *     // Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -4260,6 +4305,10 @@ export namespace logging_v2 {
      * Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
     parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Billingaccounts$Sinks {
@@ -5409,6 +5458,149 @@ export namespace logging_v2 {
     }
 
     /**
+     * Streaming read of log entries as they are ingested. Until the stream is terminated, it will continue reading logs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/logging.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const logging = google.logging('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *       'https://www.googleapis.com/auth/logging.admin',
+     *       'https://www.googleapis.com/auth/logging.read',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await logging.entries.tail({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bufferWindow": "my_bufferWindow",
+     *       //   "filter": "my_filter",
+     *       //   "resourceNames": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "suppressionInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    tail(
+      params: Params$Resource$Entries$Tail,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    tail(
+      params?: Params$Resource$Entries$Tail,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$TailLogEntriesResponse>;
+    tail(
+      params: Params$Resource$Entries$Tail,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    tail(
+      params: Params$Resource$Entries$Tail,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TailLogEntriesResponse>,
+      callback: BodyResponseCallback<Schema$TailLogEntriesResponse>
+    ): void;
+    tail(
+      params: Params$Resource$Entries$Tail,
+      callback: BodyResponseCallback<Schema$TailLogEntriesResponse>
+    ): void;
+    tail(callback: BodyResponseCallback<Schema$TailLogEntriesResponse>): void;
+    tail(
+      paramsOrCallback?:
+        | Params$Resource$Entries$Tail
+        | BodyResponseCallback<Schema$TailLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TailLogEntriesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TailLogEntriesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$TailLogEntriesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Entries$Tail;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Entries$Tail;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://logging.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/entries:tail').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TailLogEntriesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TailLogEntriesResponse>(parameters);
+      }
+    }
+
+    /**
      * Writes log entries to Logging. This API method is the only way to send log entries to Logging. This method is used, directly or indirectly, by the Logging agent (fluentd) and all logging libraries configured to use Logging. A single request may contain log entries for a maximum of 1000 different resources (projects, organizations, billing accounts or folders)
      * @example
      * ```js
@@ -5556,6 +5748,12 @@ export namespace logging_v2 {
      * Request body metadata
      */
     requestBody?: Schema$ListLogEntriesRequest;
+  }
+  export interface Params$Resource$Entries$Tail extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TailLogEntriesRequest;
   }
   export interface Params$Resource$Entries$Write extends StandardParameters {
     /**
@@ -9306,6 +9504,8 @@ export namespace logging_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'folders/my-folder',
+     *     // Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -9426,6 +9626,10 @@ export namespace logging_v2 {
      * Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
     parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Folders$Sinks {
@@ -12605,6 +12809,8 @@ export namespace logging_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: '[^/]+/[^/]+',
+     *     // Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -12722,6 +12928,10 @@ export namespace logging_v2 {
      * Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
     parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Monitoredresourcedescriptors {
@@ -16188,6 +16398,8 @@ export namespace logging_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'organizations/my-organization',
+     *     // Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -16308,6 +16520,10 @@ export namespace logging_v2 {
      * Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
     parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Organizations$Sinks {
@@ -20283,6 +20499,8 @@ export namespace logging_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      *     parent: 'projects/my-project',
+     *     // Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     *     resourceNames: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -20403,6 +20621,10 @@ export namespace logging_v2 {
      * Required. The resource name that owns the logs: "projects/[PROJECT_ID]" "organizations/[ORGANIZATION_ID]" "billingAccounts/[BILLING_ACCOUNT_ID]" "folders/[FOLDER_ID]"
      */
     parent?: string;
+    /**
+     * Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: "projects/PROJECT_ID" "organizations/ORGANIZATION_ID" "billingAccounts/BILLING_ACCOUNT_ID" "folders/FOLDER_ID"
+     */
+    resourceNames?: string[];
   }
 
   export class Resource$Projects$Metrics {

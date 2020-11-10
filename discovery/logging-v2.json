@@ -785,6 +785,12 @@
                   "pattern": "^billingAccounts/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "resourceNames": {
+                  "description": "Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: \"projects/PROJECT_ID\" \"organizations/ORGANIZATION_ID\" \"billingAccounts/BILLING_ACCOUNT_ID\" \"folders/FOLDER_ID\"",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
                 }
               },
               "path": "v2/{+parent}/logs",
@@ -1028,6 +1034,27 @@
           },
           "response": {
             "$ref": "ListLogEntriesResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only",
+            "https://www.googleapis.com/auth/logging.admin",
+            "https://www.googleapis.com/auth/logging.read"
+          ]
+        },
+        "tail": {
+          "description": "Streaming read of log entries as they are ingested. Until the stream is terminated, it will continue reading logs.",
+          "flatPath": "v2/entries:tail",
+          "httpMethod": "POST",
+          "id": "logging.entries.tail",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v2/entries:tail",
+          "request": {
+            "$ref": "TailLogEntriesRequest"
+          },
+          "response": {
+            "$ref": "TailLogEntriesResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform",
@@ -1877,6 +1904,12 @@
                   "pattern": "^folders/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "resourceNames": {
+                  "description": "Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: \"projects/PROJECT_ID\" \"organizations/ORGANIZATION_ID\" \"billingAccounts/BILLING_ACCOUNT_ID\" \"folders/FOLDER_ID\"",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
                 }
               },
               "path": "v2/{+parent}/logs",
@@ -2599,6 +2632,12 @@
               "location": "path",
               "pattern": "^[^/]+/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "resourceNames": {
+              "description": "Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: \"projects/PROJECT_ID\" \"organizations/ORGANIZATION_ID\" \"billingAccounts/BILLING_ACCOUNT_ID\" \"folders/FOLDER_ID\"",
+              "location": "query",
+              "repeated": true,
               "type": "string"
             }
           },
@@ -3371,6 +3410,12 @@
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
+                  "type": "string"
+                },
+                "resourceNames": {
+                  "description": "Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: \"projects/PROJECT_ID\" \"organizations/ORGANIZATION_ID\" \"billingAccounts/BILLING_ACCOUNT_ID\" \"folders/FOLDER_ID\"",
+                  "location": "query",
+                  "repeated": true,
                   "type": "string"
                 }
               },
@@ -4258,6 +4303,12 @@
                   "pattern": "^projects/[^/]+$",
                   "required": true,
                   "type": "string"
+                },
+                "resourceNames": {
+                  "description": "Optional. The resource name that owns the logs: projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_IDTo support legacy queries, it could also be: \"projects/PROJECT_ID\" \"organizations/ORGANIZATION_ID\" \"billingAccounts/BILLING_ACCOUNT_ID\" \"folders/FOLDER_ID\"",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
                 }
               },
               "path": "v2/{+parent}/logs",
@@ -4883,7 +4934,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201101",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -5020,7 +5071,7 @@
           "type": "string"
         },
         "remoteIp": {
-          "description": "The IP address (IPv4 or IPv6) of the client that issued the HTTP request. Examples: \"192.168.1.1\", \"FE80::0202:B3FF:FE1E:8329\".",
+          "description": "The IP address (IPv4 or IPv6) of the client that issued the HTTP request. This field can include port information. Examples: \"192.168.1.1\", \"10.0.0.1:80\", \"FE80::0202:B3FF:FE1E:8329\".",
           "type": "string"
         },
         "requestMethod": {
@@ -5042,7 +5093,7 @@
           "type": "string"
         },
         "serverIp": {
-          "description": "The IP address (IPv4 or IPv6) of the origin server that the request was sent to.",
+          "description": "The IP address (IPv4 or IPv6) of the origin server that the request was sent to. This field can include port information. Examples: \"192.168.1.1\", \"10.0.0.1:80\", \"FE80::0202:B3FF:FE1E:8329\".",
           "type": "string"
         },
         "status": {
@@ -6222,6 +6273,76 @@
         "revisionId": {
           "description": "The canonical and persistent identifier of the deployed revision. Example (git): \"0035781c50ec7aa23385dc841529ce8a4b70db1b\"",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SuppressionInfo": {
+      "description": "Information about entries that were omitted from the session.",
+      "id": "SuppressionInfo",
+      "properties": {
+        "reason": {
+          "description": "The reason that entries were omitted from the session.",
+          "enum": [
+            "REASON_UNSPECIFIED",
+            "RATE_LIMIT",
+            "NOT_CONSUMED"
+          ],
+          "enumDescriptions": [
+            "Unexpected default.",
+            "Indicates suppression occurred due to relevant entries being received in excess of rate limits.",
+            "Indicates suppression occurred due to the client not consuming responses quickly enough."
+          ],
+          "type": "string"
+        },
+        "suppressedCount": {
+          "description": "A lower bound on the count of entries omitted due to reason.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TailLogEntriesRequest": {
+      "description": "The parameters to TailLogEntries.",
+      "id": "TailLogEntriesRequest",
+      "properties": {
+        "bufferWindow": {
+          "description": "Optional. The amount of time to buffer log entries at the server before being returned to prevent out of order results due to late arriving log entries. Valid values are between 0-60000 milliseconds. Defaults to 2000 milliseconds.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "filter": {
+          "description": "Optional. A filter that chooses which log entries to return. See Advanced Logs Filters (https://cloud.google.com/logging/docs/view/advanced_filters). Only log entries that match the filter are returned. An empty filter matches all log entries in the resources listed in resource_names. Referencing a parent resource that is not in resource_names will cause the filter to return no results. The maximum length of the filter is 20000 characters.",
+          "type": "string"
+        },
+        "resourceNames": {
+          "description": "Required. Name of a parent resource from which to retrieve log entries: \"projects/[PROJECT_ID]\" \"organizations/[ORGANIZATION_ID]\" \"billingAccounts/[BILLING_ACCOUNT_ID]\" \"folders/[FOLDER_ID]\" May alternatively be one or more views: \"projects/PROJECT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID\" \"organization/ORGANIZATION_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID\" \"billingAccounts/BILLING_ACCOUNT_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID\" \"folders/FOLDER_ID/locations/LOCATION_ID/buckets/BUCKET_ID/views/VIEW_ID\"",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TailLogEntriesResponse": {
+      "description": "Result returned from TailLogEntries.",
+      "id": "TailLogEntriesResponse",
+      "properties": {
+        "entries": {
+          "description": "A list of log entries. Each response in the stream will order entries with increasing values of LogEntry.timestamp. Ordering is not guaranteed between separate responses.",
+          "items": {
+            "$ref": "LogEntry"
+          },
+          "type": "array"
+        },
+        "suppressionInfo": {
+          "description": "If entries that otherwise would have been included in the session were not sent back to the client, counts of relevant entries omitted from the session with the reason that they were not included. There will be at most one of each reason per response. The counts represent the number of suppressed entries since the last streamed response.",
+          "items": {
+            "$ref": "SuppressionInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"

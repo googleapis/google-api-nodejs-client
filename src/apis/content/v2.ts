@@ -8260,7 +8260,7 @@ export namespace content_v2 {
     }
 
     /**
-     * Invokes a fetch for the datafeed in your Merchant Center account.
+     * Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.
      * @example
      * ```js
      * // Before running the sample:

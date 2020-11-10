@@ -131,9 +131,6 @@ export namespace datacatalog_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -348,9 +345,6 @@ export namespace datacatalog_v1beta1 {
     primitiveType?: string | null;
   }
   export interface Schema$GoogleCloudDatacatalogV1beta1FieldTypeEnumType {
-    /**
-     * The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. The order of items in this list is preserved. This field can be used to Required on create; optional on update. The set of allowed values for this enum. This set must not be empty, the display names of the values in this set must not be empty and the display names of the values must be case-insensitively unique within this set. Currently, enum values can only be added to the list of allowed values. Deletion and renaming of enum values are not supported. Can have up to 500 allowed values.
-     */
     allowedValues?: Schema$GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue[];
   }
   export interface Schema$GoogleCloudDatacatalogV1beta1FieldTypeEnumTypeEnumValue {

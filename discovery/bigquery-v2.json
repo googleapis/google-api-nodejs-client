@@ -41,7 +41,7 @@
   },
   "id": "bigquery:v2",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://bigquery.mtls.googleapis.com/",
   "name": "bigquery",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -1579,8 +1579,8 @@
       }
     }
   },
-  "revision": "20201022",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20201030",
+  "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
       "description": "Aggregate metrics for classification/classifier models. For multi-class models, the metrics are either macro-averaged or micro-averaged. When macro-averaged, the metrics are calculated for each label and then an unweighted average is taken of those values. When micro-averaged, the metric is calculated globally by counting the total number of correctly predicted rows.",
@@ -2173,6 +2173,9 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
+        "bindingId": {
+          "type": "string"
+        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."

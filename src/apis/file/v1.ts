@@ -124,9 +124,105 @@ export namespace file_v1 {
   }
 
   /**
+   * A Cloud Filestore backup.
+   */
+  export interface Schema$Backup {
+    /**
+     * Output only. Capacity of the source file share when the backup was created.
+     */
+    capacityGb?: string | null;
+    /**
+     * Output only. The time when the backup was created.
+     */
+    createTime?: string | null;
+    /**
+     * A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected.
+     */
+    description?: string | null;
+    /**
+     * Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage.
+     */
+    downloadBytes?: string | null;
+    /**
+     * Resource labels to represent user provided metadata.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}.
+     */
+    name?: string | null;
+    /**
+     * Name of the file share in the source Cloud Filestore instance that the backup is created from.
+     */
+    sourceFileShare?: string | null;
+    /**
+     * The resource name of the source Cloud Filestore instance, in the format projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}, used to create this backup.
+     */
+    sourceInstance?: string | null;
+    /**
+     * Output only. The service tier of the source Cloud Filestore instance that this backup is created from.
+     */
+    sourceInstanceTier?: string | null;
+    /**
+     * Output only. The backup state.
+     */
+    state?: string | null;
+    /**
+     * Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion.
+     */
+    storageBytes?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Time window specified for daily operations.
+   */
+  export interface Schema$DailyCycle {
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the day to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be before the end.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be the same or after the start.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$TimeOfDay;
+  }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
    */
@@ -143,6 +239,10 @@ export namespace file_v1 {
      * The name of the file share (must be 16 characters or less).
      */
     name?: string | null;
+    /**
+     * The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}, that this file share has been restored from.
+     */
+    sourceBackup?: string | null;
   }
   export interface Schema$GoogleCloudSaasacceleratorManagementProvidersV1Instance {
     /**
@@ -158,7 +258,7 @@ export namespace file_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
+     * Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
@@ -239,6 +339,10 @@ export namespace file_v1 {
      * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
      */
     exclude?: boolean | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
+     */
+    maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
   }
   /**
    * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
@@ -371,6 +475,23 @@ export namespace file_v1 {
     tier?: string | null;
   }
   /**
+   * ListBackupsResponse is the result of ListBackupsRequest.
+   */
+  export interface Schema$ListBackupsResponse {
+    /**
+     * A list of backups in the project for the specified location. If the {location\} value in the request is "-", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the "unreachable" field will be populated with a list of unreachable locations.
+     */
+    backups?: Schema$Backup[];
+    /**
+     * The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * ListInstancesResponse is the result of ListInstancesRequest.
    */
   export interface Schema$ListInstancesResponse {
@@ -437,6 +558,52 @@ export namespace file_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  /**
+   * Defines policies to service maintenance events.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Output only. The time when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. MaintenancePolicy name using the form: `projects/{project_id\}/locations/{location_id\}/maintenancePolicies/{maintenance_policy_id\}` where {project_id\} refers to a GCP consumer project ID, {location_id\} refers to a GCP region/zone, {maintenance_policy_id\} must be 1-63 characters long and match the regular expression `[a-z0-9]([-a-z0-9]*[a-z0-9])?`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The state of the policy.
+     */
+    state?: string | null;
+    /**
+     * Maintenance policy applicable to instance update.
+     */
+    updatePolicy?: Schema$UpdatePolicy;
+    /**
+     * Output only. The time when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * MaintenanceWindow definition.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Daily cycle.
+     */
+    dailyCycle?: Schema$DailyCycle;
+    /**
+     * Weekly cycle.
+     */
+    weeklyCycle?: Schema$WeeklyCycle;
   }
   /**
    * Network configuration for the instance.
@@ -518,6 +685,36 @@ export namespace file_v1 {
     verb?: string | null;
   }
   /**
+   * RestoreInstanceRequest restores an existing instances's file share from a backup.
+   */
+  export interface Schema$RestoreInstanceRequest {
+    /**
+     * Required. Name of the file share in the Cloud Filestore instance that the backup is being restored to.
+     */
+    fileShare?: string | null;
+    /**
+     * The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}.
+     */
+    sourceBackup?: string | null;
+  }
+  /**
+   * Configure the schedule.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the window to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -534,6 +731,53 @@ export namespace file_v1 {
      */
     message?: string | null;
   }
+  /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
+   * Maintenance policy applicable to instance updates.
+   */
+  export interface Schema$UpdatePolicy {
+    /**
+     * Optional. Relative scheduling channel applied to resource.
+     */
+    channel?: string | null;
+    /**
+     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. For V1, Maximum number of deny_maintenance_periods is expected to be one.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy.
+     */
+    window?: Schema$MaintenanceWindow;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyCycle {
+    /**
+     * User can specify multiple windows in a week. Minimum of 1 window.
+     */
+    schedule?: Schema$Schedule[];
+  }
 
   export class Resource$Projects {
     context: APIRequestContext;
@@ -546,10 +790,12 @@ export namespace file_v1 {
 
   export class Resource$Projects$Locations {
     context: APIRequestContext;
+    backups: Resource$Projects$Locations$Backups;
     instances: Resource$Projects$Locations$Instances;
     operations: Resource$Projects$Locations$Operations;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.backups = new Resource$Projects$Locations$Backups(this.context);
       this.instances = new Resource$Projects$Locations$Instances(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
@@ -861,6 +1107,794 @@ export namespace file_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Backups {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.backups.create({
+     *     // Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.
+     *     backupId: 'placeholder-value',
+     *     // Required. The backup's project and location, in the format projects/{project_number\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "downloadBytes": "my_downloadBytes",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "sourceFileShare": "my_sourceFileShare",
+     *       //   "sourceInstance": "my_sourceInstance",
+     *       //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *       //   "state": "my_state",
+     *       //   "storageBytes": "my_storageBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Backups$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Locations$Backups$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    create(
+      params: Params$Resource$Projects$Locations$Backups$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Backups$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Backups$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.backups.delete({
+     *     // Required. The backup resource name, in the format projects/{project_number\}/locations/{location\}/backups/{backup_id\}
+     *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Backups$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Backups$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.backups.get({
+     *     // Required. The backup resource name, in the format projects/{project_number\}/locations/{location\}/backups/{backup_id\}.
+     *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "capacityGb": "my_capacityGb",
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "downloadBytes": "my_downloadBytes",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "sourceFileShare": "my_sourceFileShare",
+     *   //   "sourceInstance": "my_sourceInstance",
+     *   //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *   //   "state": "my_state",
+     *   //   "storageBytes": "my_storageBytes"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Locations$Backups$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Backup>;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Backup>,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Backups$Get,
+      callback: BodyResponseCallback<Schema$Backup>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Backup>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Get
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Backup>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Backup> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Backup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Backup>(parameters);
+      }
+    }
+
+    /**
+     * Lists all backups in a project for either a specified location or for all locations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.backups.list({
+     *     // List filter.
+     *     filter: 'placeholder-value',
+     *     // Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value to use if there are additional results to retrieve for this list request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The project and location for which to retrieve backup information, in the format projects/{project_number\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backups": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Projects$Locations$Backups$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListBackupsResponse>;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListBackupsResponse>,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Backups$List,
+      callback: BodyResponseCallback<Schema$ListBackupsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListBackupsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$List
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListBackupsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListBackupsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/backups').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListBackupsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListBackupsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the settings of a specific backup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.backups.patch({
+     *     // Output only. The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}.
+     *     name: 'projects/my-project/locations/my-location/backups/my-backup',
+     *     // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "capacityGb": "my_capacityGb",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "downloadBytes": "my_downloadBytes",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "sourceFileShare": "my_sourceFileShare",
+     *       //   "sourceInstance": "my_sourceInstance",
+     *       //   "sourceInstanceTier": "my_sourceInstanceTier",
+     *       //   "state": "my_state",
+     *       //   "storageBytes": "my_storageBytes"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Backups$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Backups$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    patch(
+      params: Params$Resource$Projects$Locations$Backups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Backups$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backups$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Backups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Backups$Create
+    extends StandardParameters {
+    /**
+     * Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.
+     */
+    backupId?: string;
+    /**
+     * Required. The backup's project and location, in the format projects/{project_number\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$Delete
+    extends StandardParameters {
+    /**
+     * Required. The backup resource name, in the format projects/{project_number\}/locations/{location\}/backups/{backup_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$Get
+    extends StandardParameters {
+    /**
+     * Required. The backup resource name, in the format projects/{project_number\}/locations/{location\}/backups/{backup_id\}.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$List
+    extends StandardParameters {
+    /**
+     * List filter.
+     */
+    filter?: string;
+    /**
+     * Sort results. Supported values are "name", "name desc" or "" (unsorted).
+     */
+    orderBy?: string;
+    /**
+     * The maximum number of items to return.
+     */
+    pageSize?: number;
+    /**
+     * The next_page_token value to use if there are additional results to retrieve for this list request.
+     */
+    pageToken?: string;
+    /**
+     * Required. The project and location for which to retrieve backup information, in the format projects/{project_number\}/locations/{location\}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use "-" for the {location\} value.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Backups$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the backup, in the format projects/{project_number\}/locations/{location_id\}/backups/{backup_id\}.
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Backup;
+  }
+
   export class Resource$Projects$Locations$Instances {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -868,7 +1902,7 @@ export namespace file_v1 {
     }
 
     /**
-     * Creates an instance.
+     * Creates an instance. When creating from a backup, the capacity of the new instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).
      * @example
      * ```js
      * // Before running the sample:
@@ -1576,6 +2610,148 @@ export namespace file_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * Restores an existing instance's file share from a backup. The instance's file share capacity will be set to the backup's capacity or the minimum capacity of the tier, whichever is larger.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.restore({
+     *     // Required. The resource name of the instance, in the format projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileShare": "my_fileShare",
+     *       //   "sourceBackup": "my_sourceBackup"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    restore(
+      params?: Params$Resource$Projects$Locations$Instances$Restore,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Operation>;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(
+      params: Params$Resource$Projects$Locations$Instances$Restore,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    restore(callback: BodyResponseCallback<Schema$Operation>): void;
+    restore(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Restore
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Operation> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Restore;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Restore;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:restore').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Instances$Create
@@ -1646,6 +2822,18 @@ export namespace file_v1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Restore
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format projects/{project_number\}/locations/{location_id\}/instances/{instance_id\}.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RestoreInstanceRequest;
   }
 
   export class Resource$Projects$Locations$Operations {

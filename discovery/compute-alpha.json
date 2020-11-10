@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/-j-4kEaw-IymDYPchM3d5GvWF38\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/axYSpezpsrRN9uJAkuL9_ckfG58\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -1320,6 +1320,46 @@
             "https://www.googleapis.com/auth/compute"
           ]
         },
+        "setEdgeSecurityPolicy": {
+          "description": "Sets the edge security policy for the specified backend bucket.",
+          "httpMethod": "POST",
+          "id": "compute.backendBuckets.setEdgeSecurityPolicy",
+          "parameterOrder": [
+            "project",
+            "backendBucket"
+          ],
+          "parameters": {
+            "backendBucket": {
+              "description": "Name of the BackendService resource to which the security policy should be set. The name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendBuckets/{backendBucket}/setEdgeSecurityPolicy",
+          "request": {
+            "$ref": "SecurityPolicyReference"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "setIamPolicy": {
           "description": "Sets the access control policy on the specified resource. Replaces any existing policy.",
           "httpMethod": "POST",
@@ -1808,6 +1848,46 @@
           "path": "projects/{project}/global/backendServices/{backendService}",
           "request": {
             "$ref": "BackendService"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
+        "setEdgeSecurityPolicy": {
+          "description": "Sets the edge security policy for the specified backend service.",
+          "httpMethod": "POST",
+          "id": "compute.backendServices.setEdgeSecurityPolicy",
+          "parameterOrder": [
+            "project",
+            "backendService"
+          ],
+          "parameters": {
+            "backendService": {
+              "description": "Name of the BackendService resource to which the edge security policy should be set. The name should conform to RFC1035.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/backendServices/{backendService}/setEdgeSecurityPolicy",
+          "request": {
+            "$ref": "SecurityPolicyReference"
           },
           "response": {
             "$ref": "Operation"
@@ -33350,7 +33430,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201019",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -34481,6 +34561,10 @@
           "format": "int64",
           "type": "string"
         },
+        "forceAttach": {
+          "description": "[Input Only] Whether to force attach the regional disk even if it's currently attached to another instance. If you try to force attach a zonal disk to an instance, you will receive an error.",
+          "type": "boolean"
+        },
         "guestOsFeatures": {
           "description": "A list of features to enable on the guest operating system. Applicable only for bootable images. Read  Enabling guest operating system features to see a list of available options.",
           "items": {
@@ -35600,6 +35684,10 @@
           "description": "An optional textual description of the resource; provided by the client when the resource is created.",
           "type": "string"
         },
+        "edgeSecurityPolicy": {
+          "description": "[Output Only] The resource URL for the edge security policy associated with this backend bucket.",
+          "type": "string"
+        },
         "enableCdn": {
           "description": "If true, enable Cloud CDN for this BackendBucket.",
           "type": "boolean"
@@ -35902,6 +35990,10 @@
         },
         "description": {
           "description": "An optional description of this resource. Provide this property when you create the resource.",
+          "type": "string"
+        },
+        "edgeSecurityPolicy": {
+          "description": "[Output Only] The resource URL for the edge security policy associated with this backend service.",
           "type": "string"
         },
         "enableCDN": {
@@ -46678,6 +46770,11 @@
           "description": "[Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.",
           "type": "string"
         },
+        "dataplaneVersion": {
+          "description": "[Output Only] Dataplane version for this InterconnectAttachment.",
+          "format": "int32",
+          "type": "integer"
+        },
         "description": {
           "description": "An optional description of this resource.",
           "type": "string"
@@ -48473,7 +48570,7 @@
       "type": "object"
     },
     "LocationPolicy": {
-      "description": "Configuration for location policy among multiple possible locations (e.g. preferences for zone selection among zones in a single region). Note that this message has a copy in logs/proto/bigcluster/bulk_apis.proto.",
+      "description": "Configuration for location policy among multiple possible locations (e.g. preferences for zone selection among zones in a single region).",
       "id": "LocationPolicy",
       "properties": {
         "locations": {
@@ -59834,9 +59931,11 @@
           "description": "The type indicates the intended use of the security policy. CLOUD_ARMOR policies apply to backend services. FIREWALL policies apply to organizations.",
           "enum": [
             "CLOUD_ARMOR",
+            "CLOUD_ARMOR_EDGE",
             "FIREWALL"
           ],
           "enumDescriptions": [
+            "",
             "",
             ""
           ],

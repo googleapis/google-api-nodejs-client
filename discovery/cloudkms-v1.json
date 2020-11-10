@@ -1259,7 +1259,7 @@
       }
     }
   },
-  "revision": "20200925",
+  "revision": "20201102",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -1394,7 +1394,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {

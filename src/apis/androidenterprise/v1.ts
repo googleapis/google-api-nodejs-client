@@ -1131,6 +1131,10 @@ export namespace androidenterprise_v1 {
      */
     autoInstallPolicy?: Schema$AutoInstallPolicy;
     /**
+     * The auto-update mode for the product.
+     */
+    autoUpdateMode?: string | null;
+    /**
      * The managed configuration for the product.
      */
     managedConfiguration?: Schema$ManagedConfiguration;

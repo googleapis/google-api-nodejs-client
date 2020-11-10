@@ -87,8 +87,8 @@
     }
   },
   "basePath": "",
-  "baseUrl": "https://www.googleapis.com/",
-  "batchPath": "batch/admin/directory_v1",
+  "baseUrl": "https://admin.googleapis.com/",
+  "batchPath": "batch",
   "canonicalName": "directory",
   "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
   "discoveryVersion": "v1",
@@ -100,7 +100,7 @@
   },
   "id": "admin:directory_v1",
   "kind": "discovery#restDescription",
-  "mtlsRootUrl": "https://www.mtls.googleapis.com/",
+  "mtlsRootUrl": "https://admin.mtls.googleapis.com/",
   "name": "admin",
   "ownerDomain": "google.com",
   "ownerName": "Google",
@@ -4139,8 +4139,8 @@
       }
     }
   },
-  "revision": "20201020",
-  "rootUrl": "https://www.googleapis.com/",
+  "revision": "20201103",
+  "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
       "description": "JSON template for Alias object in Directory API.",
@@ -6921,7 +6921,7 @@
       "type": "object"
     },
     "UserPosixAccount": {
-      "description": "JSON template for a POSIX account entry. Description of the field family: go/fbs-posix.",
+      "description": "JSON template for a POSIX account entry.",
       "id": "UserPosixAccount",
       "properties": {
         "accountId": {

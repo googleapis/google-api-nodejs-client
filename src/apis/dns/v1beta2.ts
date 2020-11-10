@@ -705,6 +705,7 @@ export namespace dns_v1beta2 {
      */
     type?: string | null;
   }
+  export interface Schema$ResourceRecordSetsDeleteResponse {}
   export interface Schema$ResourceRecordSetsListResponse {
     header?: Schema$ResponseHeader;
     kind?: string | null;
@@ -4023,8 +4024,10 @@ export namespace dns_v1beta2 {
 
   export class Resource$Projects {
     context: APIRequestContext;
+    managedZones: Resource$Projects$Managedzones;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.managedZones = new Resource$Projects$Managedzones(this.context);
     }
 
     /**
@@ -4175,6 +4178,723 @@ export namespace dns_v1beta2 {
      * Identifies the project addressed by this request.
      */
     project?: string;
+  }
+
+  export class Resource$Projects$Managedzones {
+    context: APIRequestContext;
+    rrsets: Resource$Projects$Managedzones$Rrsets;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.rrsets = new Resource$Projects$Managedzones$Rrsets(this.context);
+    }
+  }
+
+  export class Resource$Projects$Managedzones$Rrsets {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Create a new ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.projects.managedZones.rrsets.create({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
+     *       //   "rrdatas": [],
+     *       //   "signatureRrdatas": [],
+     *       //   "ttl": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Projects$Managedzones$Rrsets$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourceRecordSet>;
+    create(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$ResourceRecordSet>,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Create,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$ResourceRecordSet>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Managedzones$Rrsets$Create
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResourceRecordSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Managedzones$Rrsets$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Managedzones$Rrsets$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedZone'],
+        pathParams: ['managedZone', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceRecordSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceRecordSet>(parameters);
+      }
+    }
+
+    /**
+     * Delete a previously created ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.projects.managedZones.rrsets.delete({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Projects$Managedzones$Rrsets$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourceRecordSetsDeleteResponse>;
+    delete(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>,
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Delete,
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Managedzones$Rrsets$Delete
+        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceRecordSetsDeleteResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResourceRecordSetsDeleteResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Managedzones$Rrsets$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Managedzones$Rrsets$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedZone', 'name', 'type'],
+        pathParams: ['managedZone', 'name', 'project', 'type'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceRecordSetsDeleteResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceRecordSetsDeleteResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Fetch the representation of an existing ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.projects.managedZones.rrsets.get({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Projects$Managedzones$Rrsets$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourceRecordSet>;
+    get(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ResourceRecordSet>,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Get,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ResourceRecordSet>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Managedzones$Rrsets$Get
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResourceRecordSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Managedzones$Rrsets$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Managedzones$Rrsets$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedZone', 'name', 'type'],
+        pathParams: ['managedZone', 'name', 'project', 'type'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceRecordSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceRecordSet>(parameters);
+      }
+    }
+
+    /**
+     * Apply a partial update to an existing ResourceRecordSet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dns.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const dns = google.dns('v1beta2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dns.projects.managedZones.rrsets.patch({
+     *     // For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     *     clientOperationId: 'placeholder-value',
+     *     // Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     *     managedZone: 'placeholder-value',
+     *     // Fully qualified domain name.
+     *     name: 'placeholder-value',
+     *     // Identifies the project addressed by this request.
+     *     project: 'placeholder-value',
+     *     // RRSet type.
+     *     type: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "kind": "my_kind",
+     *       //   "name": "my_name",
+     *       //   "routingPolicy": {},
+     *       //   "rrdatas": [],
+     *       //   "signatureRrdatas": [],
+     *       //   "ttl": 0,
+     *       //   "type": "my_type"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "routingPolicy": {},
+     *   //   "rrdatas": [],
+     *   //   "signatureRrdatas": [],
+     *   //   "ttl": 0,
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Projects$Managedzones$Rrsets$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ResourceRecordSet>;
+    patch(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$ResourceRecordSet>,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Managedzones$Rrsets$Patch,
+      callback: BodyResponseCallback<Schema$ResourceRecordSet>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$ResourceRecordSet>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Managedzones$Rrsets$Patch
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ResourceRecordSet>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ResourceRecordSet>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Managedzones$Rrsets$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Managedzones$Rrsets$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dns.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'managedZone', 'name', 'type'],
+        pathParams: ['managedZone', 'name', 'project', 'type'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ResourceRecordSet>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ResourceRecordSet>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Managedzones$Rrsets$Create
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     */
+    managedZone?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResourceRecordSet;
+  }
+  export interface Params$Resource$Projects$Managedzones$Rrsets$Delete
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     */
+    managedZone?: string;
+    /**
+     * Fully qualified domain name.
+     */
+    name?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * RRSet type.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Projects$Managedzones$Rrsets$Get
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     */
+    managedZone?: string;
+    /**
+     * Fully qualified domain name.
+     */
+    name?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * RRSet type.
+     */
+    type?: string;
+  }
+  export interface Params$Resource$Projects$Managedzones$Rrsets$Patch
+    extends StandardParameters {
+    /**
+     * For mutating operation requests only. An optional identifier specified by the client. Must be unique for operation resources in the Operations collection.
+     */
+    clientOperationId?: string;
+    /**
+     * Identifies the managed zone addressed by this request. Can be the managed zone name or ID.
+     */
+    managedZone?: string;
+    /**
+     * Fully qualified domain name.
+     */
+    name?: string;
+    /**
+     * Identifies the project addressed by this request.
+     */
+    project?: string;
+    /**
+     * RRSet type.
+     */
+    type?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResourceRecordSet;
   }
 
   export class Resource$Resourcerecordsets {

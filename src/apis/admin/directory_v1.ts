@@ -2162,7 +2162,7 @@ export namespace admin_directory_v1 {
     width?: number | null;
   }
   /**
-   * JSON template for a POSIX account entry. Description of the field family: go/fbs-posix.
+   * JSON template for a POSIX account entry.
    */
   export interface Schema$UserPosixAccount {
     /**
@@ -2433,7 +2433,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2568,7 +2568,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2697,7 +2697,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2872,7 +2872,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3019,7 +3019,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3190,7 +3190,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3339,7 +3339,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3471,7 +3471,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3682,7 +3682,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3893,7 +3893,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4206,7 +4206,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4381,7 +4381,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4545,7 +4545,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4696,7 +4696,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -4847,7 +4847,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5006,7 +5006,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5145,7 +5145,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5292,7 +5292,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5427,7 +5427,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5602,7 +5602,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5741,7 +5741,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -5889,7 +5889,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6021,7 +6021,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6188,7 +6188,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6328,7 +6328,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6479,7 +6479,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6627,7 +6627,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6781,7 +6781,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -6935,7 +6935,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7141,7 +7141,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7285,7 +7285,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7418,7 +7418,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7581,7 +7581,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7723,7 +7723,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -7859,7 +7859,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8012,7 +8012,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8155,7 +8155,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8309,7 +8309,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8464,7 +8464,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8701,7 +8701,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -8825,7 +8825,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9001,7 +9001,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9149,7 +9149,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9353,7 +9353,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9494,7 +9494,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9646,7 +9646,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9782,7 +9782,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -9935,7 +9935,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10089,7 +10089,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10305,7 +10305,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10458,7 +10458,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10599,7 +10599,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10754,7 +10754,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -10893,7 +10893,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11050,7 +11050,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11207,7 +11207,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11434,7 +11434,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11582,7 +11582,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11749,7 +11749,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -11895,7 +11895,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12064,7 +12064,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12233,7 +12233,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12456,7 +12456,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12592,7 +12592,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12735,7 +12735,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -12874,7 +12874,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13019,7 +13019,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13153,7 +13153,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13298,7 +13298,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13527,7 +13527,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13667,7 +13667,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13816,7 +13816,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -13959,7 +13959,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14147,7 +14147,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14286,7 +14286,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14435,7 +14435,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14572,7 +14572,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14723,7 +14723,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -14874,7 +14874,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15079,7 +15079,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15217,7 +15217,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15363,7 +15363,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15495,7 +15495,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15642,7 +15642,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15790,7 +15790,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -15988,7 +15988,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16124,7 +16124,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16253,7 +16253,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16408,7 +16408,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16548,7 +16548,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16730,7 +16730,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -16953,7 +16953,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17109,7 +17109,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17238,7 +17238,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17463,7 +17463,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17584,7 +17584,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17712,7 +17712,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -17937,7 +17937,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18117,7 +18117,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18433,7 +18433,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18580,7 +18580,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18715,7 +18715,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -18876,7 +18876,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19051,7 +19051,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19188,7 +19188,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19338,7 +19338,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19488,7 +19488,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19654,7 +19654,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19776,7 +19776,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -19910,7 +19910,7 @@ export namespace admin_directory_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://admin.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {

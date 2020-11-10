@@ -99,7 +99,7 @@ export namespace dfareporting_v3_3 {
   }
 
   /**
-   * DCM/DFA Reporting And Trafficking API
+   * Campaign Manager 360 API
    *
    * Manage your DoubleClick Campaign Manager ad campaigns and reports.
    *
@@ -1366,7 +1366,7 @@ export namespace dfareporting_v3_3 {
      */
     companionsDisabled?: boolean | null;
     /**
-     * Whitelist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.
+     * Allowlist of companion sizes to be served to this placement. Set this list to null or empty to serve all companion sizes.
      */
     enabledSizes?: Schema$Size[];
     /**
@@ -4505,7 +4505,7 @@ export namespace dfareporting_v3_3 {
      */
     lookbackConfiguration?: Schema$LookbackConfiguration;
     /**
-     * Name of this placement.This is a required field and must be less than 256 characters long.
+     * Name of this placement.This is a required field and must be less than or equal to 256 characters long.
      */
     name?: string | null;
     /**
@@ -5592,7 +5592,7 @@ export namespace dfareporting_v3_3 {
      */
     companionsDisabled?: boolean | null;
     /**
-     * Whitelist of companion sizes to be served via this site template. Set this list to null or empty to serve all companion sizes.
+     * Allowlist of companion sizes to be served via this site template. Set this list to null or empty to serve all companion sizes.
      */
     enabledSizes?: Schema$Size[];
     /**
@@ -5713,7 +5713,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$SiteTranscodeSetting {
     /**
-     * Whitelist of video formats to be served to this site template. Set this list to null or empty to serve all video formats.
+     * Allowlist of video formats to be served to this site template. Set this list to null or empty to serve all video formats.
      */
     enabledVideoFormats?: number[] | null;
     /**
@@ -6140,7 +6140,7 @@ export namespace dfareporting_v3_3 {
    */
   export interface Schema$TranscodeSetting {
     /**
-     * Whitelist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
+     * Allowlist of video formats to be served to this placement. Set this list to null or empty to serve all video formats.
      */
     enabledVideoFormats?: number[] | null;
     /**
@@ -20862,7 +20862,7 @@ export namespace dfareporting_v3_3 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous result page.
      *     pageToken: 'placeholder-value',
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -20994,7 +20994,7 @@ export namespace dfareporting_v3_3 {
      */
     pageToken?: string;
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
 
@@ -23239,7 +23239,7 @@ export namespace dfareporting_v3_3 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous result page.
      *     pageToken: 'placeholder-value',
-     *     // The DFA profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The scope that defines which results are returned.
      *     scope: 'placeholder-value',
@@ -23369,7 +23369,7 @@ export namespace dfareporting_v3_3 {
      */
     pageToken?: string;
     /**
-     * The DFA profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -34761,7 +34761,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.delete({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -34884,7 +34884,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.get({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -35031,7 +35031,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.insert({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -35204,7 +35204,7 @@ export namespace dfareporting_v3_3 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous result page.
      *     pageToken: 'placeholder-value',
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The scope that defines which results are returned.
      *     scope: 'placeholder-value',
@@ -35512,7 +35512,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.run({
-     *     // The DFA profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -35653,7 +35653,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.update({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -35801,7 +35801,7 @@ export namespace dfareporting_v3_3 {
 
   export interface Params$Resource$Reports$Delete extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -35811,7 +35811,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Reports$Get extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -35821,7 +35821,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Reports$Insert extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
 
@@ -35840,7 +35840,7 @@ export namespace dfareporting_v3_3 {
      */
     pageToken?: string;
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -35873,7 +35873,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
-     * The DFA profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -35887,7 +35887,7 @@ export namespace dfareporting_v3_3 {
   }
   export interface Params$Resource$Reports$Update extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -35934,7 +35934,7 @@ export namespace dfareporting_v3_3 {
      *
      *   // Do the magic
      *   const res = await dfareporting.reports.compatibleFields.query({
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -36070,7 +36070,7 @@ export namespace dfareporting_v3_3 {
   export interface Params$Resource$Reports$Compatiblefields$Query
     extends StandardParameters {
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
 
@@ -36115,7 +36115,7 @@ export namespace dfareporting_v3_3 {
      *   const res = await dfareporting.reports.files.get({
      *     // The ID of the report file.
      *     fileId: 'placeholder-value',
-     *     // The DFA user profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the report.
      *     reportId: 'placeholder-value',
@@ -36259,7 +36259,7 @@ export namespace dfareporting_v3_3 {
      *     maxResults: 'placeholder-value',
      *     // The value of the nextToken from the previous result page.
      *     pageToken: 'placeholder-value',
-     *     // The DFA profile ID.
+     *     // The Campaign Manager 360 user profile ID.
      *     profileId: 'placeholder-value',
      *     // The ID of the parent report.
      *     reportId: 'placeholder-value',
@@ -36378,7 +36378,7 @@ export namespace dfareporting_v3_3 {
      */
     fileId?: string;
     /**
-     * The DFA user profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
@@ -36397,7 +36397,7 @@ export namespace dfareporting_v3_3 {
      */
     pageToken?: string;
     /**
-     * The DFA profile ID.
+     * The Campaign Manager 360 user profile ID.
      */
     profileId?: string;
     /**
