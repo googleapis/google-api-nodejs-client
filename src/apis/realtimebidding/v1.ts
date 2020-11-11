@@ -126,6 +126,49 @@ export namespace realtimebidding_v1 {
   }
 
   /**
+   * A request to activate a pretargeting configuration. Sets the configuration's state to ACTIVE.
+   */
+  export interface Schema$ActivatePretargetingConfigRequest {}
+  /**
+   * A request to start targeting the provided app IDs in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.
+   */
+  export interface Schema$AddTargetedAppsRequest {
+    /**
+     * A list of app IDs to target in the pretargeting configuration. These values will be added to the list of targeted app IDs in PretargetingConfig.appTargeting.mobileAppTargeting.values.
+     */
+    appIds?: string[] | null;
+    /**
+     * Required. The targeting mode that should be applied to the list of app IDs. If there are existing targeted app IDs, must be equal to the existing PretargetingConfig.appTargeting.mobileAppTargeting.targetingMode or a 400 bad request error will be returned.
+     */
+    targetingMode?: string | null;
+  }
+  /**
+   * A request to start targeting the provided publishers in a specific pretargeting configuration. The pretargeting configuration itself specifies how these publishers are targeted in PretargetingConfig.publisherTargeting.
+   */
+  export interface Schema$AddTargetedPublishersRequest {
+    /**
+     * A list of publisher IDs to target in the pretargeting configuration. These values will be added to the list of targeted publisher IDs in PretargetingConfig.publisherTargeting.values. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details.
+     */
+    publisherIds?: string[] | null;
+    /**
+     * Required. The targeting mode that should be applied to the list of publisher IDs. If are existing publisher IDs, must be equal to the existing PretargetingConfig.publisherTargeting.targetingMode or a 400 bad request error will be returned.
+     */
+    targetingMode?: string | null;
+  }
+  /**
+   * A request to start targeting the provided sites in a specific pretargeting configuration. The pretargeting configuration itself specifies how these sites are targeted in PretargetingConfig.webTargeting.
+   */
+  export interface Schema$AddTargetedSitesRequest {
+    /**
+     * A list of site URLs to target in the pretargeting configuration. These values will be added to the list of targeted URLs in PretargetingConfig.webTargeting.values.
+     */
+    sites?: string[] | null;
+    /**
+     * Required. The targeting mode that should be applied to the list of site URLs. If there are existing targeted sites, must be equal to the existing PretargetingConfig.webTargeting.targetingMode or a 400 bad request error will be returned.
+     */
+    targetingMode?: string | null;
+  }
+  /**
    * Detected advertiser and brand information.
    */
   export interface Schema$AdvertiserAndBrand {
@@ -145,6 +188,19 @@ export namespace realtimebidding_v1 {
      * Brand name. Can be used to filter the response of the creatives.list method.
      */
     brandName?: string | null;
+  }
+  /**
+   * A subset of app inventory to target. Bid requests that match criteria in at least one of the specified dimensions will be sent.
+   */
+  export interface Schema$AppTargeting {
+    /**
+     * Lists of included and excluded mobile app categories as defined in https://developers.google.com/adwords/api/docs/appendix/mobileappcategories.csv.
+     */
+    mobileAppCategoryTargeting?: Schema$NumericTargetingDimension;
+    /**
+     * Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted.
+     */
+    mobileAppTargeting?: Schema$StringTargetingDimension;
   }
   /**
    * A request to close a specified user list.
@@ -234,6 +290,19 @@ export namespace realtimebidding_v1 {
      * A video creative.
      */
     video?: Schema$VideoContent;
+  }
+  /**
+   * The dimensions of a creative. This applies to only HTML and Native creatives.
+   */
+  export interface Schema$CreativeDimensions {
+    /**
+     * The height of the creative in pixels.
+     */
+    height?: string | null;
+    /**
+     * The width of the creative in pixels.
+     */
+    width?: string | null;
   }
   /**
    * Top level status and detected attributes of a creative.
@@ -416,6 +485,10 @@ export namespace realtimebidding_v1 {
     totalDownloadSizeKb?: number | null;
   }
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   */
+  export interface Schema$Empty {}
+  /**
    * Response for a request to get remarketing tag.
    */
   export interface Schema$GetRemarketingTagResponse {
@@ -492,6 +565,19 @@ export namespace realtimebidding_v1 {
      * A token to retrieve the next page of results. Pass this value in the ListCreativesRequest.pageToken field in the subsequent call to the `ListCreatives` method to retrieve the next page of results.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * A response containing pretargeting configurations.
+   */
+  export interface Schema$ListPretargetingConfigsResponse {
+    /**
+     * A token which can be passed to a subsequent call to the `ListPretargetingConfigs` method to retrieve the next page of results in ListPretargetingConfigsRequest.pageToken.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of pretargeting configurations.
+     */
+    pretargetingConfigs?: Schema$PretargetingConfig[];
   }
   /**
    * The list user list response.
@@ -573,6 +659,19 @@ export namespace realtimebidding_v1 {
     videoUrl?: string | null;
   }
   /**
+   * Generic targeting used for targeting dimensions that contain a list of included and excluded numeric IDs used in app, user list, geo, and vertical id targeting.
+   */
+  export interface Schema$NumericTargetingDimension {
+    /**
+     * The IDs excluded in a configuration.
+     */
+    excludedIds?: string[] | null;
+    /**
+     * The IDs included in a configuration.
+     */
+    includedIds?: string[] | null;
+  }
+  /**
    * A request to open a specified user list.
    */
   export interface Schema$OpenUserListRequest {}
@@ -639,6 +738,147 @@ export namespace realtimebidding_v1 {
      */
     httpCookie?: Schema$HttpCookieEvidence;
   }
+  /**
+   * Pretargeting configuration: a set of targeting dimensions applied at the pretargeting stage of the RTB funnel. These control which inventory a bidder will receive bid requests for.
+   */
+  export interface Schema$PretargetingConfig {
+    /**
+     * Targeting modes included by this configuration. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.
+     */
+    allowedUserTargetingModes?: string[] | null;
+    /**
+     * Targeting on a subset of app inventory. If APP is listed in targeted_environments, the specified targeting is applied. A maximum of 30,000 app IDs can be targeted. An unset value for targeting allows all app-based bid requests to be sent. Apps can either be targeting positively (bid requests will be sent only if the destination app is listed in the targeting dimension) or negatively (bid requests will be sent only if the destination app is not listed in the targeting dimension).
+     */
+    appTargeting?: Schema$AppTargeting;
+    /**
+     * Output only. The identifier that corresponds to this pretargeting configuration that helps buyers track and attribute their spend across their own arbitrary divisions. If a bid request matches more than one configuration, the buyer chooses which billing_id to attribute each of their bids.
+     */
+    billingId?: string | null;
+    /**
+     * The diplay name associated with this configuration. This name must be unique among all the pretargeting configurations a bidder has.
+     */
+    displayName?: string | null;
+    /**
+     * The sensitive content category label IDs excluded in this configuration. Bid requests for inventory with any of the specified content label IDs will not be sent. Refer to this file https://storage.googleapis.com/adx-rtb-dictionaries/content-labels.txt for category IDs.
+     */
+    excludedContentLabelIds?: string[] | null;
+    /**
+     * The geos included or excluded in this configuration defined in https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv
+     */
+    geoTargeting?: Schema$NumericTargetingDimension;
+    /**
+     * Creative dimensions included by this configuration. Only bid requests eligible for at least one of the specified creative dimensions will be sent. An unset value allows all bid requests to be sent, regardless of creative dimension.
+     */
+    includedCreativeDimensions?: Schema$CreativeDimensions[];
+    /**
+     * Environments that are being included. Bid requests will not be sent for a given environment if it is not included. Further restrictions can be applied to included environments to target only a subset of its inventory. An unset value includes all environments.
+     */
+    includedEnvironments?: string[] | null;
+    /**
+     * Creative formats included by this configuration. Only bid requests eligible for at least one of the specified creative formats will be sent. An unset value will allow all bid requests to be sent, regardless of format.
+     */
+    includedFormats?: string[] | null;
+    /**
+     * The languages included in this configuration, represented by their language code. See https://developers.google.com/adwords/api/docs/appendix/languagecodes.
+     */
+    includedLanguages?: string[] | null;
+    /**
+     * The mobile operating systems included in this configuration as defined in https://storage.googleapis.com/adx-rtb-dictionaries/mobile-os.csv
+     */
+    includedMobileOperatingSystemIds?: string[] | null;
+    /**
+     * The platforms included by this configration. Bid requests for devices with the specified platform types will be sent. An unset value allows all bid requests to be sent, regardless of platform.
+     */
+    includedPlatforms?: string[] | null;
+    /**
+     * User identifier types included in this configuration. At least one of the user identifier types specified in this list must be available for the bid request to be sent.
+     */
+    includedUserIdTypes?: string[] | null;
+    /**
+     * The interstitial targeting specified for this configuration. The unset value will allow bid requests to be sent regardless of whether they are for interstitials or not.
+     */
+    interstitialTargeting?: string | null;
+    /**
+     * Output only. Existing included or excluded geos that are invalid. Previously targeted geos may become invalid due to privacy restrictions.
+     */
+    invalidGeoIds?: string[] | null;
+    /**
+     * The maximum QPS threshold for this configuration. The bidder should receive no more than this number of bid requests matching this configuration per second across all their bidding endpoints among all trading locations. Further information available at https://developers.google.com/authorized-buyers/rtb/peer-guide
+     */
+    maximumQps?: string | null;
+    /**
+     * The targeted minimum viewability decile, ranging in values [0, 10]. A value of 5 means that the configuration will only match adslots for which we predict at least 50% viewability. Values \> 10 will be rounded down to 10. An unset value or a value of 0 indicates that bid requests will be sent regardless of viewability.
+     */
+    minimumViewabilityDecile?: number | null;
+    /**
+     * Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id\}/pretargetingConfigs/{config_id\}`
+     */
+    name?: string | null;
+    /**
+     * Targeting on a subset of publisher inventory. Publishers can either be targeted positively (bid requests will be sent only if the publisher is listed in the targeting dimension) or negatively (bid requests will be sent only if the publisher is not listed in the targeting dimension). A maximum of 10,000 publisher IDs can be targeted. Publisher IDs are found in [ads.txt](https://iabtechlab.com/ads-txt/) / [app-ads.txt](https://iabtechlab.com/app-ads-txt/) and in bid requests in the `BidRequest.publisher_id` field on the [Google RTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) or the `BidRequest.site.publisher.id` / `BidRequest.app.publisher.id` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto).
+     */
+    publisherTargeting?: Schema$StringTargetingDimension;
+    /**
+     * Output only. The state of this pretargeting configuration.
+     */
+    state?: string | null;
+    /**
+     * The remarketing lists included or excluded in this configuration as defined in UserList.
+     */
+    userListTargeting?: Schema$NumericTargetingDimension;
+    /**
+     * The verticals included or excluded in this configuration as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals
+     */
+    verticalTargeting?: Schema$NumericTargetingDimension;
+    /**
+     * Targeting on a subset of site inventory. If WEB is listed in included_environments, the specified targeting is applied. A maximum of 50,000 site URLs can be targeted. An unset value for targeting allows all web-based bid requests to be sent. Sites can either be targeting positively (bid requests will be sent only if the destination site is listed in the targeting dimension) or negatively (bid requests will be sent only if the destination site is not listed in the pretargeting configuration).
+     */
+    webTargeting?: Schema$StringTargetingDimension;
+  }
+  /**
+   * A request to stop targeting the provided apps in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.
+   */
+  export interface Schema$RemoveTargetedAppsRequest {
+    /**
+     * A list of app IDs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted app IDs in PretargetingConfig.appTargeting.mobileAppTargeting.values.
+     */
+    appIds?: string[] | null;
+  }
+  /**
+   * A request to stop targeting publishers in a specific configuration. The pretargeting configuration itself specifies how these publishers are targeted in PretargetingConfig.publisherTargeting.
+   */
+  export interface Schema$RemoveTargetedPublishersRequest {
+    /**
+     * A list of publisher IDs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted publisher IDs in PretargetingConfig.publisherTargeting.values. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details.
+     */
+    publisherIds?: string[] | null;
+  }
+  /**
+   * A request to stop targeting sites in a specific pretargeting configuration. The pretargeting configuration itself specifies how these sites are targeted in PretargetingConfig.webTargeting.
+   */
+  export interface Schema$RemoveTargetedSitesRequest {
+    /**
+     * A list of site URLs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted URLs in PretargetingConfig.webTargeting.values.
+     */
+    sites?: string[] | null;
+  }
+  /**
+   * Generic targeting with string values used in app, website and publisher targeting.
+   */
+  export interface Schema$StringTargetingDimension {
+    /**
+     * How the items in this list should be targeted.
+     */
+    targetingMode?: string | null;
+    /**
+     * The values specified.
+     */
+    values?: string[] | null;
+  }
+  /**
+   * A request to suspend a pretargeting configuration. Sets the configuration's state to SUSPENDED.
+   */
+  export interface Schema$SuspendPretargetingConfigRequest {}
   /**
    * The URL-level breakdown for the download size.
    */
@@ -769,9 +1009,13 @@ export namespace realtimebidding_v1 {
   export class Resource$Bidders {
     context: APIRequestContext;
     creatives: Resource$Bidders$Creatives;
+    pretargetingConfigs: Resource$Bidders$Pretargetingconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.creatives = new Resource$Bidders$Creatives(this.context);
+      this.pretargetingConfigs = new Resource$Bidders$Pretargetingconfigs(
+        this.context
+      );
     }
   }
 
@@ -1102,6 +1346,2284 @@ export namespace realtimebidding_v1 {
      * Request body metadata
      */
     requestBody?: Schema$WatchCreativesRequest;
+  }
+
+  export class Resource$Bidders$Pretargetingconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Activates a pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.activate({
+     *     // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    activate(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Activate,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    activate(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    activate(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Activate,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Activate
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:activate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Adds targeted apps to the pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedApps(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "appIds": [],
+     *         //   "targetingMode": "my_targetingMode"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addTargetedApps(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    addTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedApps(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedApps(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:addTargetedApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Adds targeted publishers to the pretargeting config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedPublishers(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "publisherIds": [],
+     *         //   "targetingMode": "my_targetingMode"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addTargetedPublishers(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    addTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedPublishers(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedPublishers(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:addTargetedPublishers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Adds targeted sites to the pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.addTargetedSites(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "sites": [],
+     *         //   "targetingMode": "my_targetingMode"
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    addTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    addTargetedSites(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    addTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    addTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedSites(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    addTargetedSites(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:addTargetedSites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Creates a pretargeting configuration. A pretargeting configuration's state (PretargetingConfig.state) is active upon creation, and it will start to affect traffic shortly after. A bidder may create a maximum of 10 pretargeting configurations. Attempts to exceed this maximum results in a 400 bad request error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.create({
+     *     // Required. Name of the bidder to create the pretargeting configuration for. Format: bidders/{bidderAccountId\}
+     *     parent: 'bidders/my-bidder',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedUserTargetingModes": [],
+     *       //   "appTargeting": {},
+     *       //   "billingId": "my_billingId",
+     *       //   "displayName": "my_displayName",
+     *       //   "excludedContentLabelIds": [],
+     *       //   "geoTargeting": {},
+     *       //   "includedCreativeDimensions": [],
+     *       //   "includedEnvironments": [],
+     *       //   "includedFormats": [],
+     *       //   "includedLanguages": [],
+     *       //   "includedMobileOperatingSystemIds": [],
+     *       //   "includedPlatforms": [],
+     *       //   "includedUserIdTypes": [],
+     *       //   "interstitialTargeting": "my_interstitialTargeting",
+     *       //   "invalidGeoIds": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "name": "my_name",
+     *       //   "publisherTargeting": {},
+     *       //   "state": "my_state",
+     *       //   "userListTargeting": {},
+     *       //   "verticalTargeting": {},
+     *       //   "webTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    create(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    create(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Create,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Create
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pretargetingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.delete({
+     *     // Required. The name of the pretargeting configuration to delete. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Empty>;
+    delete(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.get({
+     *     // Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    get(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    get(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Get,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Get
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists all pretargeting configurations for a single bidder.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.list({
+     *     // The maximum number of pretargeting configurations to return. If unspecified, at most 10 pretargeting configurations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server should return. This value is received from a previous `ListPretargetingConfigs` call in ListPretargetingConfigsResponse.nextPageToken.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Name of the bidder whose pretargeting configurations will be listed. Format: bidders/{bidderAccountId\}
+     *     parent: 'bidders/my-bidder',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "pretargetingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Bidders$Pretargetingconfigs$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListPretargetingConfigsResponse>;
+    list(
+      params: Params$Resource$Bidders$Pretargetingconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Pretargetingconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListPretargetingConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Bidders$Pretargetingconfigs$List,
+      callback: BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$List
+        | BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListPretargetingConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListPretargetingConfigsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/pretargetingConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListPretargetingConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListPretargetingConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.patch({
+     *     // Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id\}/pretargetingConfigs/{config_id\}`
+     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *     // Field mask to use for partial in-place updates.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allowedUserTargetingModes": [],
+     *       //   "appTargeting": {},
+     *       //   "billingId": "my_billingId",
+     *       //   "displayName": "my_displayName",
+     *       //   "excludedContentLabelIds": [],
+     *       //   "geoTargeting": {},
+     *       //   "includedCreativeDimensions": [],
+     *       //   "includedEnvironments": [],
+     *       //   "includedFormats": [],
+     *       //   "includedLanguages": [],
+     *       //   "includedMobileOperatingSystemIds": [],
+     *       //   "includedPlatforms": [],
+     *       //   "includedUserIdTypes": [],
+     *       //   "interstitialTargeting": "my_interstitialTargeting",
+     *       //   "invalidGeoIds": [],
+     *       //   "maximumQps": "my_maximumQps",
+     *       //   "minimumViewabilityDecile": 0,
+     *       //   "name": "my_name",
+     *       //   "publisherTargeting": {},
+     *       //   "state": "my_state",
+     *       //   "userListTargeting": {},
+     *       //   "verticalTargeting": {},
+     *       //   "webTargeting": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    patch(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    patch(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Patch,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Patch
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Removes targeted apps from the pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedApps(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "appIds": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeTargetedApps(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    removeTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedApps(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedApps(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedApps(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:removeTargetedApps'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Removes targeted publishers from the pretargeting config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedPublishers(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "publisherIds": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeTargetedPublishers(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    removeTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedPublishers(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedPublishers(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedPublishers(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:removeTargetedPublishers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Removes targeted sites from the pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.removeTargetedSites(
+     *     {
+     *       // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *       pretargetingConfig:
+     *         'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "sites": []
+     *         // }
+     *       },
+     *     }
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    removeTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    removeTargetedSites(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    removeTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    removeTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedSites(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedSites(
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    removeTargetedSites(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/{+pretargetingConfig}:removeTargetedSites'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['pretargetingConfig'],
+        pathParams: ['pretargetingConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+
+    /**
+     * Suspends a pretargeting configuration.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/realtimebidding.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const realtimebidding = google.realtimebidding('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/realtime-bidding'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await realtimebidding.bidders.pretargetingConfigs.suspend({
+     *     // Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     *     name: 'bidders/my-bidder/pretargetingConfigs/my-pretargetingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowedUserTargetingModes": [],
+     *   //   "appTargeting": {},
+     *   //   "billingId": "my_billingId",
+     *   //   "displayName": "my_displayName",
+     *   //   "excludedContentLabelIds": [],
+     *   //   "geoTargeting": {},
+     *   //   "includedCreativeDimensions": [],
+     *   //   "includedEnvironments": [],
+     *   //   "includedFormats": [],
+     *   //   "includedLanguages": [],
+     *   //   "includedMobileOperatingSystemIds": [],
+     *   //   "includedPlatforms": [],
+     *   //   "includedUserIdTypes": [],
+     *   //   "interstitialTargeting": "my_interstitialTargeting",
+     *   //   "invalidGeoIds": [],
+     *   //   "maximumQps": "my_maximumQps",
+     *   //   "minimumViewabilityDecile": 0,
+     *   //   "name": "my_name",
+     *   //   "publisherTargeting": {},
+     *   //   "state": "my_state",
+     *   //   "userListTargeting": {},
+     *   //   "verticalTargeting": {},
+     *   //   "webTargeting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    suspend(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    suspend(
+      params?: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$PretargetingConfig>;
+    suspend(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    suspend(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
+      options: MethodOptions | BodyResponseCallback<Schema$PretargetingConfig>,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    suspend(
+      params: Params$Resource$Bidders$Pretargetingconfigs$Suspend,
+      callback: BodyResponseCallback<Schema$PretargetingConfig>
+    ): void;
+    suspend(callback: BodyResponseCallback<Schema$PretargetingConfig>): void;
+    suspend(
+      paramsOrCallback?:
+        | Params$Resource$Bidders$Pretargetingconfigs$Suspend
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PretargetingConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$PretargetingConfig>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Bidders$Pretargetingconfigs$Suspend;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Bidders$Pretargetingconfigs$Suspend;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://realtimebidding.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:suspend').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PretargetingConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PretargetingConfig>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Activate
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivatePretargetingConfigRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedapps
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddTargetedAppsRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedpublishers
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddTargetedPublishersRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Addtargetedsites
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AddTargetedSitesRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. Name of the bidder to create the pretargeting configuration for. Format: bidders/{bidderAccountId\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PretargetingConfig;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration to delete. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$List
+    extends StandardParameters {
+    /**
+     * The maximum number of pretargeting configurations to return. If unspecified, at most 10 pretargeting configurations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * A token identifying a page of results the server should return. This value is received from a previous `ListPretargetingConfigs` call in ListPretargetingConfigsResponse.nextPageToken.
+     */
+    pageToken?: string;
+    /**
+     * Required. Name of the bidder whose pretargeting configurations will be listed. Format: bidders/{bidderAccountId\}
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id\}/pretargetingConfigs/{config_id\}`
+     */
+    name?: string;
+    /**
+     * Field mask to use for partial in-place updates.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PretargetingConfig;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedapps
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveTargetedAppsRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedpublishers
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveTargetedPublishersRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Removetargetedsites
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    pretargetingConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RemoveTargetedSitesRequest;
+  }
+  export interface Params$Resource$Bidders$Pretargetingconfigs$Suspend
+    extends StandardParameters {
+    /**
+     * Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId\}/pretargetingConfig/{configId\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SuspendPretargetingConfigRequest;
   }
 
   export class Resource$Buyers {
