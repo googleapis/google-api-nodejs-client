@@ -1023,7 +1023,7 @@
           ]
         },
         "fetchnow": {
-          "description": "Invokes a fetch for the datafeed in your Merchant Center account.",
+          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.",
           "flatPath": "content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow",
           "httpMethod": "POST",
           "id": "content.datafeeds.fetchnow",
@@ -2948,6 +2948,38 @@
         }
       }
     },
+    "ordertrackingsignals": {
+      "methods": {
+        "create": {
+          "description": "Creates new order tracking signal.",
+          "flatPath": "content/v2.1/{merchantId}/ordertrackingsignals",
+          "httpMethod": "POST",
+          "id": "content.ordertrackingsignals.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The ID of the merchant for which the order signal is created.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/ordertrackingsignals",
+          "request": {
+            "$ref": "OrderTrackingSignal"
+          },
+          "response": {
+            "$ref": "OrderTrackingSignal"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "pos": {
       "methods": {
         "custombatch": {
@@ -4368,7 +4400,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201104",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5929,6 +5961,57 @@
             "$ref": "DatafeedStatus"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DateTime": {
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "id": "DateTime",
+      "properties": {
+        "day": {
+          "description": "Required. Day of month. Must be from 1 to 31 and valid for the year and month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Required. Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Required. Month of year. Must be from 1 to 12.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7849,6 +7932,174 @@
       },
       "type": "object"
     },
+    "OrderTrackingSignal": {
+      "description": "Represents a merchant trade from which signals are extracted, e.g. shipping.",
+      "id": "OrderTrackingSignal",
+      "properties": {
+        "customerShippingFee": {
+          "$ref": "PriceAmount",
+          "description": "The shipping fee of the order; this value should be set to zero in the case of free shipping."
+        },
+        "deliveryPostalCode": {
+          "description": "Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "type": "string"
+        },
+        "deliveryRegionCode": {
+          "description": "Required. The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping destination.",
+          "type": "string"
+        },
+        "lineItems": {
+          "description": "Information about line items in the order.",
+          "items": {
+            "$ref": "OrderTrackingSignalLineItemDetails"
+          },
+          "type": "array"
+        },
+        "merchantId": {
+          "description": "The Google merchant ID of this order tracking signal. This value is optional. If left unset, the caller's merchant ID is used. You must request access in order to provide data on behalf of another merchant. For more information, see [Submitting Order Tracking Signals](/shopping-content/guides/order-tracking-signals).",
+          "format": "int64",
+          "type": "string"
+        },
+        "orderCreatedTime": {
+          "$ref": "DateTime",
+          "description": "Required. The time when the order was created on the merchant side. Include the year and timezone string, if available."
+        },
+        "orderId": {
+          "description": "Required. The ID of the order on the merchant side.",
+          "type": "string"
+        },
+        "orderTrackingSignalId": {
+          "description": "Output only. The ID that uniquely identifies this order tracking signal.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "shipmentLineItemMapping": {
+          "description": "The mapping of the line items to the shipment information.",
+          "items": {
+            "$ref": "OrderTrackingSignalShipmentLineItemMapping"
+          },
+          "type": "array"
+        },
+        "shippingInfo": {
+          "description": "The shipping information for the order.",
+          "items": {
+            "$ref": "OrderTrackingSignalShippingInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalLineItemDetails": {
+      "description": "The line items of the order.",
+      "id": "OrderTrackingSignalLineItemDetails",
+      "properties": {
+        "gtin": {
+          "description": "The Global Trade Item Number.",
+          "type": "string"
+        },
+        "lineItemId": {
+          "description": "Required. The ID for this line item.",
+          "type": "string"
+        },
+        "mpn": {
+          "description": "The manufacturer part number.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The Content API REST ID of the product, in the form channel:contentLanguage:targetCountry:offerId.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Required. The quantity of the line item in the order.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalShipmentLineItemMapping": {
+      "description": "Represents how many items are in the shipment for the given shipment_id and line_item_id.",
+      "id": "OrderTrackingSignalShipmentLineItemMapping",
+      "properties": {
+        "lineItemId": {
+          "description": "Required. The line item ID.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Required. The line item quantity in the shipment.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shipmentId": {
+          "description": "Required. The shipment ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalShippingInfo": {
+      "description": "The shipping information for the order.",
+      "id": "OrderTrackingSignalShippingInfo",
+      "properties": {
+        "actualDeliveryTime": {
+          "$ref": "DateTime",
+          "description": "The time when the shipment was actually delivered. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "carrierName": {
+          "description": "The name of the shipping carrier for the delivery. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time.",
+          "type": "string"
+        },
+        "carrierServiceName": {
+          "description": "The service type for fulfillment, e.g., GROUND, FIRST_CLASS, etc.",
+          "type": "string"
+        },
+        "earliestDeliveryPromiseTime": {
+          "$ref": "DateTime",
+          "description": "The earliest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "latestDeliveryPromiseTime": {
+          "$ref": "DateTime",
+          "description": "The latest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "originPostalCode": {
+          "description": "The origin postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "type": "string"
+        },
+        "originRegionCode": {
+          "description": "The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping origin.",
+          "type": "string"
+        },
+        "shipmentId": {
+          "description": "Required. The shipment ID.",
+          "type": "string"
+        },
+        "shippedTime": {
+          "$ref": "DateTime",
+          "description": "The time when the shipment was shipped. Include the year and timezone string, if available."
+        },
+        "shippingStatus": {
+          "description": "The status of the shipment.",
+          "enum": [
+            "SHIPPING_STATE_UNSPECIFIED",
+            "SHIPPED",
+            "DELIVERED"
+          ],
+          "enumDescriptions": [
+            "The shipping status is not known to merchant.",
+            "All items are shipped.",
+            "The shipment is already delivered."
+          ],
+          "type": "string"
+        },
+        "trackingId": {
+          "description": "The tracking ID of the shipment. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OrderinvoicesCreateChargeInvoiceRequest": {
       "id": "OrderinvoicesCreateChargeInvoiceRequest",
       "properties": {
@@ -9486,6 +9737,21 @@
       },
       "type": "object"
     },
+    "PriceAmount": {
+      "description": "The price represented as a number and currency.",
+      "id": "PriceAmount",
+      "properties": {
+        "currency": {
+          "description": "The currency of the price.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The price represented as a number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Product": {
       "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
       "id": "Product",
@@ -10741,12 +11007,12 @@
       "id": "RepricingRuleRestrictionBoundary",
       "properties": {
         "percentageDelta": {
-          "description": "The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be > -100. If an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is >= $7.",
+          "description": "The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be > -100. For example, if an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is >= $7.",
           "format": "int32",
           "type": "integer"
         },
         "priceDelta": {
-          "description": "The price micros relative to the offer selling price. This field is signed. It must be negative in floor. If an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is >= $8.",
+          "description": "The price micros relative to the offer selling price. This field is signed. It must be negative in floor. For example, if an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is >= $8.",
           "type": "string"
         }
       },
@@ -11925,6 +12191,21 @@
         },
         "phoneNumber": {
           "description": "Required. The phone number of the person picking up the items.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeZone": {
+      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "TimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
           "type": "string"
         }
       },
