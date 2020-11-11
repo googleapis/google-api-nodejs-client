@@ -297,6 +297,7 @@ import {
   VERSIONS as networkmanagementVersions,
   networkmanagement,
 } from './networkmanagement';
+import {VERSIONS as notebooksVersions, notebooks} from './notebooks';
 import {VERSIONS as oauth2Versions, oauth2} from './oauth2';
 import {VERSIONS as osconfigVersions, osconfig} from './osconfig';
 import {VERSIONS as osloginVersions, oslogin} from './oslogin';
@@ -417,6 +418,7 @@ import {
   VERSIONS as trafficdirectorVersions,
   trafficdirector,
 } from './trafficdirector';
+import {VERSIONS as transcoderVersions, transcoder} from './transcoder';
 import {VERSIONS as translateVersions, translate} from './translate';
 import {VERSIONS as vaultVersions, vault} from './vault';
 import {VERSIONS as vectortileVersions, vectortile} from './vectortile';
@@ -582,6 +584,7 @@ export const APIS: APIList = {
   ml: mlVersions,
   monitoring: monitoringVersions,
   networkmanagement: networkmanagementVersions,
+  notebooks: notebooksVersions,
   oauth2: oauth2Versions,
   osconfig: osconfigVersions,
   oslogin: osloginVersions,
@@ -636,6 +639,7 @@ export const APIS: APIList = {
   toolresults: toolresultsVersions,
   tpu: tpuVersions,
   trafficdirector: trafficdirectorVersions,
+  transcoder: transcoderVersions,
   translate: translateVersions,
   vault: vaultVersions,
   vectortile: vectortileVersions,
@@ -779,6 +783,7 @@ export class GeneratedAPIs {
   ml = ml;
   monitoring = monitoring;
   networkmanagement = networkmanagement;
+  notebooks = notebooks;
   oauth2 = oauth2;
   osconfig = osconfig;
   oslogin = oslogin;
@@ -833,6 +838,7 @@ export class GeneratedAPIs {
   toolresults = toolresults;
   tpu = tpu;
   trafficdirector = trafficdirector;
+  transcoder = transcoder;
   translate = translate;
   vault = vault;
   vectortile = vectortile;
