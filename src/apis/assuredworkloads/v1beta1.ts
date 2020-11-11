@@ -202,9 +202,13 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string | null;
+    /**
+     * Input only. The parent resource for the resources managed by this Assured Workload. May be either an organization or a folder. Must be the same or a child of the Workload parent. If not specified all resources are created under the Workload parent. Formats: folders/{folder_id\} organizations/{organization_id\}
+     */
+    provisionedResourcesParent?: string | null;
     /**
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
@@ -338,9 +342,13 @@ export namespace assuredworkloads_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string | null;
+    /**
+     * Input only. The parent resource for the resources managed by this Assured Workload. May be either an organization or a folder. Must be the same or a child of the Workload parent. If not specified all resources are created under the Workload parent. Formats: folders/{folder_id\} organizations/{organization_id\}
+     */
+    provisionedResourcesParent?: string | null;
     /**
      * Output only. The resources associated with this workload. These resources will be created when creating the workload. If any of the projects already exist, the workload creation will fail. Always read only.
      */
@@ -870,6 +878,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "il4Settings": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resources": []
      *       // }
      *     },
@@ -1162,6 +1171,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "il4Settings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resources": []
      *   // }
      * }
@@ -1468,7 +1478,7 @@ export namespace assuredworkloads_v1beta1 {
      *
      *   // Do the magic
      *   const res = await assuredworkloads.organizations.locations.workloads.patch({
-     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
+     *     // Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      *     name:
      *       'organizations/my-organization/locations/my-location/workloads/my-workload',
      *     // Required. The list of fields to be updated.
@@ -1489,6 +1499,7 @@ export namespace assuredworkloads_v1beta1 {
      *       //   "il4Settings": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *       //   "resources": []
      *       // }
      *     },
@@ -1508,6 +1519,7 @@ export namespace assuredworkloads_v1beta1 {
      *   //   "il4Settings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "provisionedResourcesParent": "my_provisionedResourcesParent",
      *   //   "resources": []
      *   // }
      * }
@@ -1681,7 +1693,7 @@ export namespace assuredworkloads_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Workloads$Patch
     extends StandardParameters {
     /**
-     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only. The UI extracts the location and workload name from this string, since they aren't set directly on the workload object. If the format of this field changes, the UI should likely be updated. LINT.IfChange LINT.ThenChange(//depot/google3/cloud/console/web/compliance/assurant/common/workload_helper.ts)
+     * Optional. The resource name of the workload. Format: organizations/{organization\}/locations/{location\}/workloads/{workload\} Read-only.
      */
     name?: string;
     /**
