@@ -866,6 +866,15 @@ export namespace container_v1beta1 {
    */
   export interface Schema$Empty {}
   /**
+   * EphemeralStorageConfig contains configuration for the ephemeral storage filesystem.
+   */
+  export interface Schema$EphemeralStorageConfig {
+    /**
+     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD is 375 GB in size. If zero, it means to disable using local SSDs as ephemeral storage.
+     */
+    localSsdCount?: number | null;
+  }
+  /**
    * Configuration for the Compute Engine PD CSI driver. This option can only be enabled at cluster creation time.
    */
   export interface Schema$GcePersistentDiskCsiDriverConfig {
@@ -1367,6 +1376,10 @@ export namespace container_v1beta1 {
      * Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'
      */
     diskType?: string | null;
+    /**
+     * Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk.
+     */
+    ephemeralStorageConfig?: Schema$EphemeralStorageConfig;
     /**
      * The image type to use for this node. Note that for a given image type, the latest version of it will be used.
      */

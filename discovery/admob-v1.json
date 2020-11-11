@@ -2,6 +2,9 @@
   "auth": {
     "oauth2": {
       "scopes": {
+        "https://www.googleapis.com/auth/admob.readonly": {
+          "description": "See your AdMob data"
+        },
         "https://www.googleapis.com/auth/admob.report": {
           "description": "See your AdMob data"
         }
@@ -129,6 +132,7 @@
             "$ref": "PublisherAccount"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
           ]
         },
@@ -156,6 +160,7 @@
             "$ref": "ListPublisherAccountsResponse"
           },
           "scopes": [
+            "https://www.googleapis.com/auth/admob.readonly",
             "https://www.googleapis.com/auth/admob.report"
           ]
         }
@@ -164,7 +169,7 @@
         "mediationReport": {
           "methods": {
             "generate": {
-              "description": "Generates an AdMob Mediation report based on the provided report specification.",
+              "description": "Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.",
               "flatPath": "v1/accounts/{accountsId}/mediationReport:generate",
               "httpMethod": "POST",
               "id": "admob.accounts.mediationReport.generate",
@@ -196,7 +201,7 @@
         "networkReport": {
           "methods": {
             "generate": {
-              "description": "Generates an AdMob Network report based on the provided report specification.",
+              "description": "Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.",
               "flatPath": "v1/accounts/{accountsId}/networkReport:generate",
               "httpMethod": "POST",
               "id": "admob.accounts.networkReport.generate",
@@ -228,7 +233,7 @@
       }
     }
   },
-  "revision": "20201027",
+  "revision": "20201110",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {

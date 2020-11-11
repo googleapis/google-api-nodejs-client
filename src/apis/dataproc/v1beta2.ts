@@ -209,9 +209,6 @@ export namespace dataproc_v1beta2 {
    * Associates members with a role.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding.If the condition evaluates to true, then this binding applies to the current request.If the condition evaluates to false, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -980,7 +977,7 @@ export namespace dataproc_v1beta2 {
      */
     keystoreUri?: string | null;
     /**
-     * Required. The uri of the KMS key used to encrypt various sensitive files.
+     * Optional. The uri of the KMS key used to encrypt various sensitive files.
      */
     kmsKeyUri?: string | null;
     /**
@@ -988,7 +985,7 @@ export namespace dataproc_v1beta2 {
      */
     realm?: string | null;
     /**
-     * Required. The Cloud Storage URI of a KMS encrypted file containing the root principal password.
+     * Optional. The Cloud Storage URI of a KMS encrypted file containing the root principal password.
      */
     rootPrincipalPasswordUri?: string | null;
     /**

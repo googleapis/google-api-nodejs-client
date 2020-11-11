@@ -202,6 +202,21 @@
     },
     {
       "kind": "discovery#directoryItem",
+      "id": "admob:v1beta",
+      "name": "admob",
+      "version": "v1beta",
+      "title": "AdMob API",
+      "description": "The AdMob API allows publishers to programmatically get information about their AdMob account.",
+      "discoveryRestUrl": "https://admob.googleapis.com/$discovery/rest?version=v1beta",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://developers.google.com/admob/api/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
       "id": "admob:v1",
       "name": "admob",
       "version": "v1",
@@ -1684,7 +1699,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": false
     },
     {
@@ -1699,7 +1714,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": false
     },
     {
@@ -1714,7 +1729,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "http://cloud.google.com/deployment-manager",
+      "documentationLink": "https://cloud.google.com/deployment-manager",
       "preferred": true
     },
     {
@@ -1821,51 +1836,6 @@
       },
       "documentationLink": "https://developers.google.com/discovery",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1dev",
-      "name": "displayvideo",
-      "version": "v1dev",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1dev",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1beta",
-      "name": "displayvideo",
-      "version": "v1beta",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1beta",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "displayvideo:v1beta2",
-      "name": "displayvideo",
-      "version": "v1beta2",
-      "title": "Display & Video 360 API",
-      "description": "Display & Video 360 API allows users to manage and create campaigns and reports.",
-      "discoveryRestUrl": "https://displayvideo.googleapis.com/$discovery/rest?version=v1beta2",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://developers.google.com/display-video/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -3007,6 +2977,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "notebooks:v1",
+      "name": "notebooks",
+      "version": "v1",
+      "title": "Notebooks API",
+      "description": "AI Platform Notebooks API is used to manage notebook resources in Google Cloud.",
+      "discoveryRestUrl": "https://notebooks.googleapis.com/$discovery/rest?version=v1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/ai-platform/notebooks/docs/",
       "preferred": true
     },
     {
@@ -4192,6 +4177,21 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview#management-server",
+      "preferred": true
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "transcoder:v1beta1",
+      "name": "transcoder",
+      "version": "v1beta1",
+      "title": "Transcoder API",
+      "description": "This API converts video files into formats suitable for consumer distribution.",
+      "discoveryRestUrl": "https://transcoder.googleapis.com/$discovery/rest?version=v1beta1",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/transcoder/docs/",
       "preferred": true
     },
     {

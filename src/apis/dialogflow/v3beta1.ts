@@ -872,6 +872,10 @@ export namespace dialogflow_v3beta1 {
      */
     confidence?: number | null;
     /**
+     * The event that matched the query. Only filled for `EVENT` match type.
+     */
+    event?: string | null;
+    /**
      * The Intent that matched the query. Some, not all fields are filled in this message, including but not limited to: `name` and `display_name`. Only filled for `INTENT` match type.
      */
     intent?: Schema$GoogleCloudDialogflowCxV3beta1Intent;

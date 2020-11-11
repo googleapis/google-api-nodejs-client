@@ -709,7 +709,7 @@
           ]
         },
         "fetchnow": {
-          "description": "Invokes a fetch for the datafeed in your Merchant Center account.",
+          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.",
           "flatPath": "content/v2/{merchantId}/datafeeds/{datafeedId}/fetchNow",
           "httpMethod": "POST",
           "id": "content.datafeeds.fetchnow",
@@ -3298,7 +3298,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201104",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {

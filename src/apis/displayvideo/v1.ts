@@ -2660,7 +2660,7 @@ export namespace displayvideo_v1 {
     displayName?: string | null;
   }
   /**
-   * A single line item.
+   * A single line item. Next id: 24
    */
   export interface Schema$LineItem {
     /**
