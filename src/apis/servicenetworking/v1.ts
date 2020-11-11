@@ -4531,6 +4531,145 @@ export namespace servicenetworking_v1 {
     }
 
     /**
+     * Service producers use this method to get the configuration of their connection including the import/export of custom routes and subnetwork routes with public IP.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/servicenetworking.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const servicenetworking = google.servicenetworking('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/service.management',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await servicenetworking.services.projects.global.networks.get({
+     *     // Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
+     *     name: 'services/my-service/projects/my-project/global/networks/my-network',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "consumerExportCustomRoutes": false,
+     *   //   "consumerExportSubnetRoutesWithPublicIp": false,
+     *   //   "consumerImportCustomRoutes": false,
+     *   //   "consumerImportSubnetRoutesWithPublicIp": false,
+     *   //   "producerExportCustomRoutes": false,
+     *   //   "producerExportSubnetRoutesWithPublicIp": false,
+     *   //   "producerImportCustomRoutes": false,
+     *   //   "producerImportSubnetRoutesWithPublicIp": false,
+     *   //   "producerNetwork": "my_producerNetwork",
+     *   //   "reservedRanges": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Services$Projects$Global$Networks$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ConsumerConfig>;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$ConsumerConfig>,
+      callback: BodyResponseCallback<Schema$ConsumerConfig>
+    ): void;
+    get(
+      params: Params$Resource$Services$Projects$Global$Networks$Get,
+      callback: BodyResponseCallback<Schema$ConsumerConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$ConsumerConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Services$Projects$Global$Networks$Get
+        | BodyResponseCallback<Schema$ConsumerConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ConsumerConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ConsumerConfig>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$ConsumerConfig> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Services$Projects$Global$Networks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Services$Projects$Global$Networks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://servicenetworking.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ConsumerConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ConsumerConfig>(parameters);
+      }
+    }
+
+    /**
      * Service producers use this method to update the configuration of their connection including the import/export of custom routes and subnetwork routes with public IP.
      * @example
      * ```js
@@ -4681,6 +4820,13 @@ export namespace servicenetworking_v1 {
     }
   }
 
+  export interface Params$Resource$Services$Projects$Global$Networks$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the consumer config to retrieve in the format: `services/{service\}/projects/{project\}/global/networks/{network\}`. {service\} is the peering service that is managing connectivity for the service producer's organization. For Google services that support this functionality, this value is `servicenetworking.googleapis.com`. {project\} is a project number e.g. `12345` that contains the service consumer's VPC network. {network\} is the name of the service consumer's VPC network.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Services$Projects$Global$Networks$Updateconsumerconfig
     extends StandardParameters {
     /**
