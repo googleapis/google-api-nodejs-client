@@ -310,6 +310,7 @@ export namespace healthcare_v1beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
+    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -758,19 +759,6 @@ export namespace healthcare_v1beta1 {
     subjectId?: string | null;
   }
   /**
-   * Structure to describe the error encountered during batch operation on one resource. This is used both for sample errors in operation response, and for format of errors in error reports.
-   */
-  export interface Schema$ErrorDetail {
-    /**
-     * The status of the error.
-     */
-    error?: Schema$Status;
-    /**
-     * The identifier of the resource.
-     */
-    resource?: string | null;
-  }
-  /**
    * Request to evaluate an Annotation store against a ground truth [Annotation store].
    */
   export interface Schema$EvaluateAnnotationStoreRequest {
@@ -867,6 +855,10 @@ export namespace healthcare_v1beta1 {
      * The BigQuery output destination. You can only export to a BigQuery dataset that's in the same project as the DICOM store you're exporting from. The Cloud Healthcare Service Agent requires two IAM roles on the BigQuery location: `roles/bigquery.dataEditor` and `roles/bigquery.jobUser`.
      */
     bigqueryDestination?: Schema$GoogleCloudHealthcareV1beta1DicomBigQueryDestination;
+    /**
+     * Specifies the filter configuration.
+     */
+    filterConfig?: Schema$DicomFilterConfig;
     /**
      * The Cloud Storage output destination. The Cloud Healthcare Service Agent requires the `roles/storage.objectAdmin` Cloud IAM roles on the Cloud Storage location.
      */
@@ -1459,15 +1451,6 @@ export namespace healthcare_v1beta1 {
    * Final response of importing Annotations in successful case. This structure is included in the response. It is only included when the operation finishes.
    */
   export interface Schema$ImportAnnotationsResponse {}
-  /**
-   * Deprecated. Error details are in [Cloud Logging](/healthcare/docs/how-tos/logging). Returns the errors encountered during DICOM store import.
-   */
-  export interface Schema$ImportDicomDataErrorDetails {
-    /**
-     * Deprecated. Use only for debugging purposes. Contains sample errors encountered in imports of individual resources. For example, a Cloud Storage object.
-     */
-    sampleErrors?: Schema$ErrorDetail[];
-  }
   /**
    * Imports data into the specified DICOM store. Returns an error if any of the files to import are not DICOM files. This API accepts duplicate DICOM instances by ignoring the newly-pushed instance. It does not overwrite.
    */
@@ -12651,6 +12634,7 @@ export namespace healthcare_v1beta1 {
      *       // request body parameters
      *       // {
      *       //   "bigqueryDestination": {},
+     *       //   "filterConfig": {},
      *       //   "gcsDestination": {}
      *       // }
      *     },
