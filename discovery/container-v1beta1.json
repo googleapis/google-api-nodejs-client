@@ -2484,7 +2484,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201029",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3385,6 +3385,18 @@
       "properties": {},
       "type": "object"
     },
+    "EphemeralStorageConfig": {
+      "description": "EphemeralStorageConfig contains configuration for the ephemeral storage filesystem.",
+      "id": "EphemeralStorageConfig",
+      "properties": {
+        "localSsdCount": {
+          "description": "Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. Each local SSD is 375 GB in size. If zero, it means to disable using local SSDs as ephemeral storage.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GcePersistentDiskCsiDriverConfig": {
       "description": "Configuration for the Compute Engine PD CSI driver. This option can only be enabled at cluster creation time.",
       "id": "GcePersistentDiskCsiDriverConfig",
@@ -4040,6 +4052,10 @@
         "diskType": {
           "description": "Type of the disk attached to each node (e.g. 'pd-standard' or 'pd-ssd') If unspecified, the default disk type is 'pd-standard'",
           "type": "string"
+        },
+        "ephemeralStorageConfig": {
+          "$ref": "EphemeralStorageConfig",
+          "description": "Parameters for the ephemeral storage filesystem. If unspecified, ephemeral storage is backed by the boot disk."
         },
         "imageType": {
           "description": "The image type to use for this node. Note that for a given image type, the latest version of it will be used.",
