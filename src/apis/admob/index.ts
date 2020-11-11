@@ -15,16 +15,20 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {admob_v1} from './v1';
+import {admob_v1beta} from './v1beta';
 
 export const VERSIONS = {
   v1: admob_v1.Admob,
+  v1beta: admob_v1beta.Admob,
 };
 
 export function admob(version: 'v1'): admob_v1.Admob;
 export function admob(options: admob_v1.Options): admob_v1.Admob;
-export function admob<T = admob_v1.Admob>(
+export function admob(version: 'v1beta'): admob_v1beta.Admob;
+export function admob(options: admob_v1beta.Options): admob_v1beta.Admob;
+export function admob<T = admob_v1.Admob | admob_v1beta.Admob>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1' | admob_v1.Options
+  versionOrOptions: 'v1' | admob_v1.Options | 'v1beta' | admob_v1beta.Options
 ) {
   return getAPI<T>('admob', versionOrOptions, VERSIONS, this);
 }
@@ -32,6 +36,7 @@ export function admob<T = admob_v1.Admob>(
 const auth = new AuthPlus();
 export {auth};
 export {admob_v1};
+export {admob_v1beta};
 export {
   AuthPlus,
   GlobalOptions,
