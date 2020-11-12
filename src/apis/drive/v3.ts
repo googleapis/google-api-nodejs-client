@@ -733,7 +733,7 @@ export namespace drive_v3 {
      */
     shortcutDetails?: {targetId?: string; targetMimeType?: string} | null;
     /**
-     * The size of the file's content in bytes. This is only applicable to files with binary content in Google Drive.
+     * The size of the file's content in bytes. This is applicable to binary files in Google Drive and Google Docs files.
      */
     size?: string | null;
     /**
