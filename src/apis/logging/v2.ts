@@ -322,7 +322,7 @@ export namespace logging_v2 {
     width?: number | null;
   }
   /**
-   * The response from ListBuckets (Beta).
+   * The response from ListBuckets.
    */
   export interface Schema$ListBucketsResponse {
     /**
@@ -493,7 +493,7 @@ export namespace logging_v2 {
     name?: string | null;
   }
   /**
-   * Describes a repository of logs (Beta).
+   * Describes a repository of logs.
    */
   export interface Schema$LogBucket {
     /**
@@ -797,7 +797,7 @@ export namespace logging_v2 {
      */
     description?: string | null;
     /**
-     * Filter that restricts which log entries in a bucket are visible in this view. Filters are restricted to be a logical AND of ==/!= of any of the following: originating project/folder/organization/billing account. resource type log id
+     * Filter that restricts which log entries in a bucket are visible in this view. Filters are restricted to be a logical AND of ==/!= of any of the following: originating project/folder/organization/billing account. resource type log id Example: SOURCE("projects/myproject") AND resource.type = "gce_instance" AND LOG_ID("stdout")
      */
     filter?: string | null;
     /**
@@ -1204,7 +1204,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a bucket (Beta).
+     * Gets a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -2882,7 +2882,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists buckets (Beta).
+     * Lists buckets.
      * @example
      * ```js
      * // Before running the sample:
@@ -3024,7 +3024,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.
      * @example
      * ```js
      * // Before running the sample:
@@ -3666,7 +3666,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists views on a bucket..
+     * Lists views on a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -7920,7 +7920,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a bucket (Beta).
+     * Gets a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -8057,7 +8057,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists buckets (Beta).
+     * Lists buckets.
      * @example
      * ```js
      * // Before running the sample:
@@ -8199,7 +8199,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.
      * @example
      * ```js
      * // Before running the sample:
@@ -8981,7 +8981,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists views on a bucket..
+     * Lists views on a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -11229,7 +11229,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a bucket (Beta).
+     * Gets a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -11366,7 +11366,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists buckets (Beta).
+     * Lists buckets.
      * @example
      * ```js
      * // Before running the sample:
@@ -11508,7 +11508,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.
      * @example
      * ```js
      * // Before running the sample:
@@ -12288,7 +12288,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists views on a bucket..
+     * Lists views on a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -14809,7 +14809,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a bucket (Beta).
+     * Gets a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -14947,7 +14947,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists buckets (Beta).
+     * Lists buckets.
      * @example
      * ```js
      * // Before running the sample:
@@ -15089,7 +15089,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.
      * @example
      * ```js
      * // Before running the sample:
@@ -15874,7 +15874,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists views on a bucket..
+     * Lists views on a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -18915,7 +18915,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Gets a bucket (Beta).
+     * Gets a bucket.
      * @example
      * ```js
      * // Before running the sample:
@@ -19052,7 +19052,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists buckets (Beta).
+     * Lists buckets.
      * @example
      * ```js
      * // Before running the sample:
@@ -19194,7 +19194,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.
+     * Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.
      * @example
      * ```js
      * // Before running the sample:
@@ -19976,7 +19976,7 @@ export namespace logging_v2 {
     }
 
     /**
-     * Lists views on a bucket..
+     * Lists views on a bucket.
      * @example
      * ```js
      * // Before running the sample:

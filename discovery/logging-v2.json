@@ -122,7 +122,7 @@
         "buckets": {
           "methods": {
             "get": {
-              "description": "Gets a bucket (Beta).",
+              "description": "Gets a bucket.",
               "flatPath": "v2/billingAccounts/{billingAccountsId}/buckets/{bucketsId}",
               "httpMethod": "GET",
               "id": "logging.billingAccounts.buckets.get",
@@ -485,7 +485,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists buckets (Beta).",
+                  "description": "Lists buckets.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets",
                   "httpMethod": "GET",
                   "id": "logging.billingAccounts.locations.buckets.list",
@@ -524,7 +524,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.",
+                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.",
                   "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.billingAccounts.locations.buckets.patch",
@@ -652,7 +652,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists views on a bucket..",
+                      "description": "Lists views on a bucket.",
                       "flatPath": "v2/billingAccounts/{billingAccountsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "GET",
                       "id": "logging.billingAccounts.locations.buckets.views.list",
@@ -1548,7 +1548,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a bucket (Beta).",
+                  "description": "Gets a bucket.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "GET",
                   "id": "logging.folders.locations.buckets.get",
@@ -1576,7 +1576,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists buckets (Beta).",
+                  "description": "Lists buckets.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets",
                   "httpMethod": "GET",
                   "id": "logging.folders.locations.buckets.list",
@@ -1615,7 +1615,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.",
+                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.",
                   "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.folders.locations.buckets.patch",
@@ -1771,7 +1771,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists views on a bucket..",
+                      "description": "Lists views on a bucket.",
                       "flatPath": "v2/folders/{foldersId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "GET",
                       "id": "logging.folders.locations.buckets.views.list",
@@ -2277,7 +2277,7 @@
               ]
             },
             "get": {
-              "description": "Gets a bucket (Beta).",
+              "description": "Gets a bucket.",
               "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}",
               "httpMethod": "GET",
               "id": "logging.locations.buckets.get",
@@ -2305,7 +2305,7 @@
               ]
             },
             "list": {
-              "description": "Lists buckets (Beta).",
+              "description": "Lists buckets.",
               "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets",
               "httpMethod": "GET",
               "id": "logging.locations.buckets.list",
@@ -2344,7 +2344,7 @@
               ]
             },
             "patch": {
-              "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.",
+              "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.",
               "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}",
               "httpMethod": "PATCH",
               "id": "logging.locations.buckets.patch",
@@ -2500,7 +2500,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists views on a bucket..",
+                  "description": "Lists views on a bucket.",
                   "flatPath": "v2/{v2Id}/{v2Id1}/locations/{locationsId}/buckets/{bucketsId}/views",
                   "httpMethod": "GET",
                   "id": "logging.locations.buckets.views.list",
@@ -3055,7 +3055,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a bucket (Beta).",
+                  "description": "Gets a bucket.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "GET",
                   "id": "logging.organizations.locations.buckets.get",
@@ -3083,7 +3083,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists buckets (Beta).",
+                  "description": "Lists buckets.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets",
                   "httpMethod": "GET",
                   "id": "logging.organizations.locations.buckets.list",
@@ -3122,7 +3122,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.",
+                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.",
                   "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.organizations.locations.buckets.patch",
@@ -3278,7 +3278,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists views on a bucket..",
+                      "description": "Lists views on a bucket.",
                       "flatPath": "v2/organizations/{organizationsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "GET",
                       "id": "logging.organizations.locations.buckets.views.list",
@@ -3947,7 +3947,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets a bucket (Beta).",
+                  "description": "Gets a bucket.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "GET",
                   "id": "logging.projects.locations.buckets.get",
@@ -3975,7 +3975,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists buckets (Beta).",
+                  "description": "Lists buckets.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets",
                   "httpMethod": "GET",
                   "id": "logging.projects.locations.buckets.list",
@@ -4014,7 +4014,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created. This method is in Beta.",
+                  "description": "Updates a bucket. This method replaces the following fields in the existing bucket with values from the new bucket: retention_periodIf the retention period is decreased and the bucket is locked, FAILED_PRECONDITION will be returned.If the bucket has a LifecycleState of DELETE_REQUESTED, FAILED_PRECONDITION will be returned.A buckets region may not be modified after it is created.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}",
                   "httpMethod": "PATCH",
                   "id": "logging.projects.locations.buckets.patch",
@@ -4170,7 +4170,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists views on a bucket..",
+                      "description": "Lists views on a bucket.",
                       "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/buckets/{bucketsId}/views",
                       "httpMethod": "GET",
                       "id": "logging.projects.locations.buckets.views.list",
@@ -4934,7 +4934,7 @@
       }
     }
   },
-  "revision": "20201101",
+  "revision": "20201105",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -5160,7 +5160,7 @@
       "type": "object"
     },
     "ListBucketsResponse": {
-      "description": "The response from ListBuckets (Beta).",
+      "description": "The response from ListBuckets.",
       "id": "ListBucketsResponse",
       "properties": {
         "buckets": {
@@ -5394,7 +5394,7 @@
       "type": "object"
     },
     "LogBucket": {
-      "description": "Describes a repository of logs (Beta).",
+      "description": "Describes a repository of logs.",
       "id": "LogBucket",
       "properties": {
         "createTime": {
@@ -5830,7 +5830,7 @@
           "type": "string"
         },
         "filter": {
-          "description": "Filter that restricts which log entries in a bucket are visible in this view. Filters are restricted to be a logical AND of ==/!= of any of the following: originating project/folder/organization/billing account. resource type log id",
+          "description": "Filter that restricts which log entries in a bucket are visible in this view. Filters are restricted to be a logical AND of ==/!= of any of the following: originating project/folder/organization/billing account. resource type log id Example: SOURCE(\"projects/myproject\") AND resource.type = \"gce_instance\" AND LOG_ID(\"stdout\")",
           "type": "string"
         },
         "name": {
