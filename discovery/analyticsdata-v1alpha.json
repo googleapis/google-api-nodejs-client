@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201110",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -1381,7 +1381,7 @@
           "type": "boolean"
         },
         "limit": {
-          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.",
+          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1418,7 +1418,7 @@
           "type": "array"
         },
         "offset": {
-          "description": "The row count of the start row. The first row is counted as row 0.",
+          "description": "The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1477,7 +1477,7 @@
           "description": "This Analytics Property's quota state including this request."
         },
         "rowCount": {
-          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows.",
+          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int32",
           "type": "integer"
         },
