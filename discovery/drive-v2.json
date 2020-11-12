@@ -38,7 +38,7 @@
   "description": "Manages files in Drive including uploading, downloading, searching, detecting changes, and updating sharing permissions.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/drive/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/fcv4OojYDxxlAuyFQjV4FQ5X7aI\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/6ohqf_UZVcfD3dkqBiiMsIBdm74\"",
   "icons": {
     "x16": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_16.png",
     "x32": "https://ssl.gstatic.com/docs/doclist/images/drive_icon_32.png"
@@ -3521,7 +3521,7 @@
       }
     }
   },
-  "revision": "20201101",
+  "revision": "20201108",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4834,7 +4834,7 @@
           "type": "string"
         },
         "fileSize": {
-          "description": "The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+          "description": "The size of the file in bytes. This field is populated for files with content stored in Google Drive and for files in Docs Editors; it is not populated for shortcut files.",
           "format": "int64",
           "type": "string"
         },

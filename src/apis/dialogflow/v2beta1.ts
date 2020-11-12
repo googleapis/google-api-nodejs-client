@@ -3732,23 +3732,6 @@ export namespace dialogflow_v2beta1 {
     source?: string | null;
   }
   /**
-   * Metadata in google::longrunning::Operation.
-   */
-  export interface Schema$GoogleCloudKnowledgeV1alpha1OperationMetadata {
-    /**
-     * The error codes from Manifold endpoints' last failures.
-     */
-    errorCode?: number[] | null;
-    /**
-     * The failure messages from Manifold endpoints' last failures.
-     */
-    message?: string[] | null;
-    /**
-     * Required. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {
@@ -12472,7 +12455,7 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
-     * Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: If the document source is Google Cloud Storage URI, its metadata will be replaced with the custom metadata from Google Cloud Storage if the `import_gcs_custom_metadata` field is set to true in the request. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
      * @example
      * ```js
      * // Before running the sample:
@@ -16309,7 +16292,7 @@ export namespace dialogflow_v2beta1 {
     }
 
     /**
-     * Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
+     * Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: If the document source is Google Cloud Storage URI, its metadata will be replaced with the custom metadata from Google Cloud Storage if the `import_gcs_custom_metadata` field is set to true in the request. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.
      * @example
      * ```js
      * // Before running the sample:

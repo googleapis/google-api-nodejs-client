@@ -371,8 +371,8 @@
           "httpMethod": "GET",
           "id": "youtube.captions.list",
           "parameterOrder": [
-            "videoId",
-            "part"
+            "part",
+            "videoId"
           ],
           "parameters": {
             "id": {
@@ -1561,8 +1561,8 @@
           "httpMethod": "POST",
           "id": "youtube.liveBroadcasts.transition",
           "parameterOrder": [
-            "id",
             "broadcastStatus",
+            "id",
             "part"
           ],
           "parameters": {
@@ -3855,7 +3855,7 @@
       }
     }
   },
-  "revision": "20201027",
+  "revision": "20201110",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
