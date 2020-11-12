@@ -342,7 +342,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201105",
   "rootUrl": "https://doubleclickbidmanager.googleapis.com/",
   "schemas": {
     "ChannelGrouping": {
@@ -811,9 +811,13 @@
             "FILTER_PATH_PATTERN_ID",
             "FILTER_PATH_EVENT_INDEX",
             "FILTER_EVENT_TYPE",
-            "FILTER_CHANNEL_GROUPING"
+            "FILTER_CHANNEL_GROUPING",
+            "FILTER_OM_SDK_AVAILABLE",
+            "FILTER_DATA_SOURCE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -1419,9 +1423,13 @@
               "FILTER_PATH_PATTERN_ID",
               "FILTER_PATH_EVENT_INDEX",
               "FILTER_EVENT_TYPE",
-              "FILTER_CHANNEL_GROUPING"
+              "FILTER_CHANNEL_GROUPING",
+              "FILTER_OM_SDK_AVAILABLE",
+              "FILTER_DATA_SOURCE"
             ],
             "enumDescriptions": [
+              "",
+              "",
               "",
               "",
               "",
@@ -2963,9 +2971,13 @@
             "FILTER_PATH_PATTERN_ID",
             "FILTER_PATH_EVENT_INDEX",
             "FILTER_EVENT_TYPE",
-            "FILTER_CHANNEL_GROUPING"
+            "FILTER_CHANNEL_GROUPING",
+            "FILTER_OM_SDK_AVAILABLE",
+            "FILTER_DATA_SOURCE"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
