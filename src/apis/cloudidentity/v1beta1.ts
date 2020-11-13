@@ -1309,7 +1309,7 @@ export namespace cloudidentity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -2132,7 +2132,7 @@ export namespace cloudidentity_v1beta1 {
   export interface Params$Resource$Devices$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
 
