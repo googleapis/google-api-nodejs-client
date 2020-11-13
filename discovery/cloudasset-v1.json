@@ -404,14 +404,16 @@
                 "RESOURCE",
                 "IAM_POLICY",
                 "ORG_POLICY",
-                "ACCESS_POLICY"
+                "ACCESS_POLICY",
+                "OS_INVENTORY"
               ],
               "enumDescriptions": [
                 "Unspecified content type.",
                 "Resource metadata.",
                 "The actual IAM policy set on a resource.",
                 "The Cloud Organization Policy set on an asset.",
-                "The Cloud Access context manager Policy set on an asset."
+                "The Cloud Access context manager Policy set on an asset.",
+                "The runtime OS Inventory information."
               ],
               "location": "query",
               "type": "string"
@@ -568,7 +570,7 @@
       }
     }
   },
-  "revision": "20201030",
+  "revision": "20201106",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -666,6 +668,10 @@
             "$ref": "GoogleCloudOrgpolicyV1Policy"
           },
           "type": "array"
+        },
+        "osInventory": {
+          "$ref": "Inventory",
+          "description": "A representation of runtime OS Inventory information. See [this topic](https://cloud.google.com/compute/docs/instances/os-inventory-management) for more information."
         },
         "resource": {
           "$ref": "Resource",
@@ -776,9 +782,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "Expr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."
@@ -850,14 +853,16 @@
             "RESOURCE",
             "IAM_POLICY",
             "ORG_POLICY",
-            "ACCESS_POLICY"
+            "ACCESS_POLICY",
+            "OS_INVENTORY"
           ],
           "enumDescriptions": [
             "Unspecified content type.",
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context manager Policy set on an asset."
+            "The Cloud Access context manager Policy set on an asset.",
+            "The runtime OS Inventory information."
           ],
           "type": "string"
         },
@@ -925,14 +930,16 @@
             "RESOURCE",
             "IAM_POLICY",
             "ORG_POLICY",
-            "ACCESS_POLICY"
+            "ACCESS_POLICY",
+            "OS_INVENTORY"
           ],
           "enumDescriptions": [
             "Unspecified content type.",
             "Resource metadata.",
             "The actual IAM policy set on a resource.",
             "The Cloud Organization Policy set on an asset.",
-            "The Cloud Access context manager Policy set on an asset."
+            "The Cloud Access context manager Policy set on an asset.",
+            "The runtime OS Inventory information."
           ],
           "type": "string"
         },
@@ -1738,6 +1745,79 @@
       },
       "type": "object"
     },
+    "Inventory": {
+      "description": "The inventory details of a VM.",
+      "id": "Inventory",
+      "properties": {
+        "items": {
+          "additionalProperties": {
+            "$ref": "Item"
+          },
+          "description": "Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.",
+          "type": "object"
+        },
+        "osInfo": {
+          "$ref": "OsInfo",
+          "description": "Base level operating system information for the VM."
+        }
+      },
+      "type": "object"
+    },
+    "Item": {
+      "description": "A single piece of inventory on a VM.",
+      "id": "Item",
+      "properties": {
+        "availablePackage": {
+          "$ref": "SoftwarePackage",
+          "description": "Software package available to be installed on the VM instance."
+        },
+        "createTime": {
+          "description": "When this inventory item was first detected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "id": {
+          "description": "Identifier for this item, unique across items for this VM.",
+          "type": "string"
+        },
+        "installedPackage": {
+          "$ref": "SoftwarePackage",
+          "description": "Software package present on the VM instance."
+        },
+        "originType": {
+          "description": "The origin of this inventory item.",
+          "enum": [
+            "ORIGIN_TYPE_UNSPECIFIED",
+            "INVENTORY_REPORT"
+          ],
+          "enumDescriptions": [
+            "Invalid. An origin type must be specified.",
+            "This inventory item was discovered as the result of the agent reporting inventory via the reporting API."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The specific type of inventory, correlating to its specific details.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INSTALLED_PACKAGE",
+            "AVAILABLE_PACKAGE"
+          ],
+          "enumDescriptions": [
+            "Invalid. An type must be specified.",
+            "This represents a package that is installed on the VM.",
+            "This represents an update that is available for a package."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "When this inventory item was last modified.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListFeedsResponse": {
       "id": "ListFeedsResponse",
       "properties": {
@@ -1813,6 +1893,45 @@
         "outputResourceEdges": {
           "description": "Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "OsInfo": {
+      "description": "Operating system information for the VM.",
+      "id": "OsInfo",
+      "properties": {
+        "architecture": {
+          "description": "The system architecture of the operating system.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "The VM hostname.",
+          "type": "string"
+        },
+        "kernelRelease": {
+          "description": "The kernel release of the operating system.",
+          "type": "string"
+        },
+        "kernelVersion": {
+          "description": "The kernel version of the operating system.",
+          "type": "string"
+        },
+        "longName": {
+          "description": "The operating system long name. For example 'Debian GNU/Linux 9' or 'Microsoft Window Server 2019 Datacenter'.",
+          "type": "string"
+        },
+        "osconfigAgentVersion": {
+          "description": "The current version of the OS Config agent running on the VM.",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "The operating system short name. For example, 'windows' or 'debian'.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the operating system.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2048,6 +2167,45 @@
       },
       "type": "object"
     },
+    "SoftwarePackage": {
+      "description": "Software package information of the operating system.",
+      "id": "SoftwarePackage",
+      "properties": {
+        "aptPackage": {
+          "$ref": "VersionedPackage",
+          "description": "Details of an APT package. For details about the apt package manager, see https://wiki.debian.org/Apt."
+        },
+        "cosPackage": {
+          "$ref": "VersionedPackage",
+          "description": "Details of a COS package."
+        },
+        "googetPackage": {
+          "$ref": "VersionedPackage",
+          "description": "Details of a Googet package. For details about the googet package manager, see https://github.com/google/googet."
+        },
+        "qfePackage": {
+          "$ref": "WindowsQuickFixEngineeringPackage",
+          "description": "Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering."
+        },
+        "wuaPackage": {
+          "$ref": "WindowsUpdatePackage",
+          "description": "Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update."
+        },
+        "yumPackage": {
+          "$ref": "VersionedPackage",
+          "description": "Yum package info. For details about the yum package manager, see https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum."
+        },
+        "zypperPackage": {
+          "$ref": "VersionedPackage",
+          "description": "Details of a Zypper package. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual."
+        },
+        "zypperPatch": {
+          "$ref": "ZypperPatch",
+          "description": "Details of a Zypper patch. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual."
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2144,6 +2302,141 @@
         "updateMask": {
           "description": "Required. Only updates the `feed` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server.",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VersionedPackage": {
+      "description": "Information related to the a standard versioned package. This includes package info for APT, Yum, Zypper, and Googet package managers.",
+      "id": "VersionedPackage",
+      "properties": {
+        "architecture": {
+          "description": "The system architecture this package is intended for.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "The name of the package.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsQuickFixEngineeringPackage": {
+      "description": "Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering",
+      "id": "WindowsQuickFixEngineeringPackage",
+      "properties": {
+        "caption": {
+          "description": "A short textual description of the QFE update.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A textual description of the QFE update.",
+          "type": "string"
+        },
+        "hotFixId": {
+          "description": "Unique identifier associated with a particular QFE update.",
+          "type": "string"
+        },
+        "installTime": {
+          "description": "Date that the QFE update was installed. Mapped from installed_on field.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsUpdateCategory": {
+      "description": "Categories specified by the Windows Update.",
+      "id": "WindowsUpdateCategory",
+      "properties": {
+        "id": {
+          "description": "The identifier of the windows update category.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the windows update category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WindowsUpdatePackage": {
+      "description": "Details related to a Windows Update package. Field data and names are taken from Windows Update API IUpdate Interface: https://docs.microsoft.com/en-us/windows/win32/api/_wua/ Descriptive fields like title, and description are localized based on the locale of the VM being updated.",
+      "id": "WindowsUpdatePackage",
+      "properties": {
+        "categories": {
+          "description": "The categories that are associated with this update package.",
+          "items": {
+            "$ref": "WindowsUpdateCategory"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "The localized description of the update package.",
+          "type": "string"
+        },
+        "kbArticleIds": {
+          "description": "A collection of Microsoft Knowledge Base article IDs that are associated with the update package.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lastDeploymentChangeTime": {
+          "description": "The last published date of the update, in (UTC) date and time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "moreInfoUrls": {
+          "description": "A collection of URLs that provide more information about the update package.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "revisionNumber": {
+          "description": "The revision number of this update package.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "supportUrl": {
+          "description": "A hyperlink to the language-specific support information for the update.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The localized title of the update package.",
+          "type": "string"
+        },
+        "updateId": {
+          "description": "Gets the identifier of an update package. Stays the same across revisions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ZypperPatch": {
+      "description": "Details related to a Zypper Patch.",
+      "id": "ZypperPatch",
+      "properties": {
+        "category": {
+          "description": "The category of the patch.",
+          "type": "string"
+        },
+        "patchName": {
+          "description": "The name of the patch.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity specified for this patch",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Any summary information provided about this patch.",
           "type": "string"
         }
       },
