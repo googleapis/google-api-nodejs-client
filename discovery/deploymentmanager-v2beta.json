@@ -23,7 +23,7 @@
   "canonicalName": "Deployment Manager",
   "description": "The Google Cloud Deployment Manager v2 API provides services for configuring, deploying, and viewing Google Cloud services and APIs via templates which specify deployments of Cloud resources.",
   "discoveryVersion": "v1",
-  "documentationLink": "http://cloud.google.com/deployment-manager",
+  "documentationLink": "https://cloud.google.com/deployment-manager",
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -1592,7 +1592,7 @@
       }
     }
   },
-  "revision": "20201102",
+  "revision": "20201109",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {

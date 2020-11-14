@@ -2065,7 +2065,7 @@
       }
     }
   },
-  "revision": "20201028",
+  "revision": "20201109",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3PageInfo": {
@@ -6969,44 +6969,6 @@
         },
         "source": {
           "description": "Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudKnowledgeV1alpha1OperationMetadata": {
-      "description": "Metadata in google::longrunning::Operation.",
-      "id": "GoogleCloudKnowledgeV1alpha1OperationMetadata",
-      "properties": {
-        "errorCode": {
-          "description": "The error codes from Manifold endpoints' last failures.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "message": {
-          "description": "The failure messages from Manifold endpoints' last failures.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "state": {
-          "description": "Required. The current state of this operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ],
-          "enumDescriptions": [
-            "Unspecified state. Should never be used.",
-            "The operation has been created.",
-            "The operation is currently running.",
-            "The operation is done, either cancelled or completed."
-          ],
           "type": "string"
         }
       },

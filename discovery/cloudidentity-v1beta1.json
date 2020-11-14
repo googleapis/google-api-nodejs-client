@@ -126,7 +126,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.",
+              "description": "Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id}`, where device_id is the unique ID assigned to the Device.",
               "location": "path",
               "pattern": "^devices/[^/]+$",
               "required": true,
@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201110",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
