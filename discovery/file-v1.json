@@ -182,10 +182,177 @@
             }
           },
           "resources": {
+            "backups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.backups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "backupId": {
+                      "description": "Required. The ID to use for the backup. The ID must be unique within the specified project and location. This value must start with a lowercase letter followed by up to 62 lowercase letters, numbers, or hyphens, and cannot end with a hyphen. Values that do not match this pattern will trigger an INVALID_ARGUMENT error.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The backup's project and location, in the format projects/{project_number}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backups",
+                  "request": {
+                    "$ref": "Backup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups/{backupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "file.projects.locations.backups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The backup resource name, in the format projects/{project_number}/locations/{location}/backups/{backup_id}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a specific backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups/{backupsId}",
+                  "httpMethod": "GET",
+                  "id": "file.projects.locations.backups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The backup resource name, in the format projects/{project_number}/locations/{location}/backups/{backup_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Backup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all backups in a project for either a specified location or for all locations.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups",
+                  "httpMethod": "GET",
+                  "id": "file.projects.locations.backups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "List filter.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Sort results. Supported values are \"name\", \"name desc\" or \"\" (unsorted).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "The maximum number of items to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value to use if there are additional results to retrieve for this list request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The project and location for which to retrieve backup information, in the format projects/{project_number}/locations/{location}. In Cloud Filestore, backup locations map to GCP regions, for example **us-west1**. To retrieve backup information for all locations, use \"-\" for the {location} value.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/backups",
+                  "response": {
+                    "$ref": "ListBackupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the settings of a specific backup.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backups/{backupsId}",
+                  "httpMethod": "PATCH",
+                  "id": "file.projects.locations.backups.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Backup"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "instances": {
               "methods": {
                 "create": {
-                  "description": "Creates an instance.",
+                  "description": "Creates an instance. When creating from a backup, the capacity of the new instance needs to be equal to or larger than the capacity of the backup (and also equal to or larger than the minimum capacity of the tier).",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances",
                   "httpMethod": "POST",
                   "id": "file.projects.locations.instances.create",
@@ -346,6 +513,34 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "restore": {
+                  "description": "Restores an existing instance's file share from a backup. The instance's file share capacity will be set to the backup's capacity or the minimum capacity of the tier, whichever is larger.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "file.projects.locations.instances.restore",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the instance, in the format projects/{project_number}/locations/{location_id}/instances/{instance_id}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:restore",
+                  "request": {
+                    "$ref": "RestoreInstanceRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             },
@@ -477,13 +672,165 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201029",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
+    "Backup": {
+      "description": "A Cloud Filestore backup.",
+      "id": "Backup",
+      "properties": {
+        "capacityGb": {
+          "description": "Output only. Capacity of the source file share when the backup was created.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the backup was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected.",
+          "type": "string"
+        },
+        "downloadBytes": {
+          "description": "Output only. Amount of bytes that will be downloaded if the backup is restored. This may be different than storage bytes, since sequential backups of the same disk will share storage.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Resource labels to represent user provided metadata.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Output only. The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceFileShare": {
+          "description": "Name of the file share in the source Cloud Filestore instance that the backup is created from.",
+          "type": "string"
+        },
+        "sourceInstance": {
+          "description": "The resource name of the source Cloud Filestore instance, in the format projects/{project_number}/locations/{location_id}/instances/{instance_id}, used to create this backup.",
+          "type": "string"
+        },
+        "sourceInstanceTier": {
+          "description": "Output only. The service tier of the source Cloud Filestore instance that this backup is created from.",
+          "enum": [
+            "TIER_UNSPECIFIED",
+            "STANDARD",
+            "PREMIUM",
+            "BASIC_HDD",
+            "BASIC_SSD",
+            "HIGH_SCALE_SSD"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "STANDARD tier.",
+            "PREMIUM tier.",
+            "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_HDD is an alias for STANDARD Tier, offering economical performance backed by HDD.",
+            "BASIC instances offer a maximum capacity of 63.9 TB. BASIC_SSD is an alias for PREMIUM Tier, and offers improved performance backed by SSD.",
+            "HIGH_SCALE instances offer expanded capacity and performance scaling capabilities."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The backup state.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "FINALIZING",
+            "READY",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "Backup is being created.",
+            "Backup has been taken and the operation is being finalized. At this point, changes to the file share will not be reflected in the backup.",
+            "Backup is available for use.",
+            "Backup is being deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "storageBytes": {
+          "description": "Output only. The size of the storage used by the backup. As backups share storage, this number is expected to change with backup creation/deletion.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "DailyCycle": {
+      "description": "Time window specified for daily operations.",
+      "id": "DailyCycle",
+      "properties": {
+        "duration": {
+          "description": "Output only. Duration of the time window, set by service producer.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Time within the day to start the operations."
+        }
+      },
+      "type": "object"
+    },
+    "Date": {
+      "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.",
+      "id": "Date",
+      "properties": {
+        "day": {
+          "description": "Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DenyMaintenancePeriod": {
+      "description": "DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.",
+      "id": "DenyMaintenancePeriod",
+      "properties": {
+        "endDate": {
+          "$ref": "Date",
+          "description": "Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be before the end."
+        },
+        "startDate": {
+          "$ref": "Date",
+          "description": "Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be the same or after the start."
+        },
+        "time": {
+          "$ref": "TimeOfDay",
+          "description": "Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC"
+        }
+      },
       "type": "object"
     },
     "Empty": {
@@ -503,6 +850,10 @@
         },
         "name": {
           "description": "The name of the file share (must be 16 characters or less).",
+          "type": "string"
+        },
+        "sourceBackup": {
+          "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}, that this file share has been restored from.",
           "type": "string"
         }
       },
@@ -532,7 +883,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.",
+          "description": "Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.",
           "type": "object"
         },
         "maintenanceSchedules": {
@@ -651,6 +1002,13 @@
         "exclude": {
           "description": "Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.",
           "type": "boolean"
+        },
+        "maintenancePolicies": {
+          "additionalProperties": {
+            "$ref": "MaintenancePolicy"
+          },
+          "description": "Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -854,6 +1212,31 @@
       },
       "type": "object"
     },
+    "ListBackupsResponse": {
+      "description": "ListBackupsResponse is the result of ListBackupsRequest.",
+      "id": "ListBackupsResponse",
+      "properties": {
+        "backups": {
+          "description": "A list of backups in the project for the specified location. If the {location} value in the request is \"-\", the response contains a list of backups from all locations. If any location is unreachable, the response will only return backups in reachable locations and the \"unreachable\" field will be populated with a list of unreachable locations.",
+          "items": {
+            "$ref": "Backup"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The token you can use to retrieve the next page of results. Not returned if there are no more results in the list.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListInstancesResponse": {
       "description": "ListInstancesResponse is the result of ListInstancesRequest.",
       "id": "ListInstancesResponse",
@@ -945,6 +1328,71 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenancePolicy": {
+      "description": "Defines policies to service maintenance events.",
+      "id": "MaintenancePolicy",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The time when the resource was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Required. MaintenancePolicy name using the form: `projects/{project_id}/locations/{location_id}/maintenancePolicies/{maintenance_policy_id}` where {project_id} refers to a GCP consumer project ID, {location_id} refers to a GCP region/zone, {maintenance_policy_id} must be 1-63 characters long and match the regular expression `[a-z0-9]([-a-z0-9]*[a-z0-9])?`.",
+          "type": "string"
+        },
+        "state": {
+          "description": "Optional. The state of the policy.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "DELETING"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "Resource is ready to be used.",
+            "Resource is being deleted. It can no longer be attached to instances."
+          ],
+          "type": "string"
+        },
+        "updatePolicy": {
+          "$ref": "UpdatePolicy",
+          "description": "Maintenance policy applicable to instance update."
+        },
+        "updateTime": {
+          "description": "Output only. The time when the resource was updated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MaintenanceWindow": {
+      "description": "MaintenanceWindow definition.",
+      "id": "MaintenanceWindow",
+      "properties": {
+        "dailyCycle": {
+          "$ref": "DailyCycle",
+          "description": "Daily cycle."
+        },
+        "weeklyCycle": {
+          "$ref": "WeeklyCycle",
+          "description": "Weekly cycle."
         }
       },
       "type": "object"
@@ -1059,6 +1507,61 @@
       },
       "type": "object"
     },
+    "RestoreInstanceRequest": {
+      "description": "RestoreInstanceRequest restores an existing instances's file share from a backup.",
+      "id": "RestoreInstanceRequest",
+      "properties": {
+        "fileShare": {
+          "description": "Required. Name of the file share in the Cloud Filestore instance that the backup is being restored to.",
+          "type": "string"
+        },
+        "sourceBackup": {
+          "description": "The resource name of the backup, in the format projects/{project_number}/locations/{location_id}/backups/{backup_id}.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Schedule": {
+      "description": "Configure the schedule.",
+      "id": "Schedule",
+      "properties": {
+        "day": {
+          "description": "Allows to define schedule that runs specified day of the week.",
+          "enum": [
+            "DAY_OF_WEEK_UNSPECIFIED",
+            "MONDAY",
+            "TUESDAY",
+            "WEDNESDAY",
+            "THURSDAY",
+            "FRIDAY",
+            "SATURDAY",
+            "SUNDAY"
+          ],
+          "enumDescriptions": [
+            "The day of the week is unspecified.",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+            "Sunday"
+          ],
+          "type": "string"
+        },
+        "duration": {
+          "description": "Output only. Duration of the time window, set by service producer.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "startTime": {
+          "$ref": "TimeOfDay",
+          "description": "Time within the window to start the operations."
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -1082,6 +1585,79 @@
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeOfDay": {
+      "description": "Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.",
+      "id": "TimeOfDay",
+      "properties": {
+        "hours": {
+          "description": "Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UpdatePolicy": {
+      "description": "Maintenance policy applicable to instance updates.",
+      "id": "UpdatePolicy",
+      "properties": {
+        "channel": {
+          "description": "Optional. Relative scheduling channel applied to resource.",
+          "enum": [
+            "UPDATE_CHANNEL_UNSPECIFIED",
+            "EARLIER",
+            "LATER"
+          ],
+          "enumDescriptions": [
+            "Unspecified channel.",
+            "Early channel within a customer project.",
+            "Later channel within a customer project."
+          ],
+          "type": "string"
+        },
+        "denyMaintenancePeriods": {
+          "description": "Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. For V1, Maximum number of deny_maintenance_periods is expected to be one.",
+          "items": {
+            "$ref": "DenyMaintenancePeriod"
+          },
+          "type": "array"
+        },
+        "window": {
+          "$ref": "MaintenanceWindow",
+          "description": "Optional. Maintenance window that is applied to resources covered by this policy."
+        }
+      },
+      "type": "object"
+    },
+    "WeeklyCycle": {
+      "description": "Time window specified for weekly operations.",
+      "id": "WeeklyCycle",
+      "properties": {
+        "schedule": {
+          "description": "User can specify multiple windows in a week. Minimum of 1 window.",
+          "items": {
+            "$ref": "Schedule"
+          },
+          "type": "array"
         }
       },
       "type": "object"

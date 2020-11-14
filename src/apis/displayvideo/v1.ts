@@ -251,7 +251,7 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$AdvertiserAdServerConfig {
     /**
-     * The configuration for advertisers that use both Campaign Manager (CM) and third-party ad servers.
+     * The configuration for advertisers that use both Campaign Manager 360 (CM360) and third-party ad servers.
      */
     cmHybridConfig?: Schema$CmHybridConfig;
     /**
@@ -276,7 +276,7 @@ export namespace displayvideo_v1 {
      */
     obaComplianceDisabled?: boolean | null;
     /**
-     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display & Video 360 advertiser to provide reporting and features related to the advertiser's television campaigns. Applicable only when the advertiser has a CM hybrid ad server configuration.
+     * By setting this field to `true`, you, on behalf of your company, authorize Google to use video creatives associated with this Display & Video 360 advertiser to provide reporting and features related to the advertiser's television campaigns. Applicable only when the advertiser has a CM360 hybrid ad server configuration.
      */
     videoCreativeDataSharingAuthorized?: boolean | null;
   }
@@ -302,7 +302,7 @@ export namespace displayvideo_v1 {
      */
     domainUrl?: string | null;
     /**
-     * Output only. The standard TZ database name of the advertiser's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM hybrid advertisers, the time zone is the same as that of the associated CM account; for third-party only advertisers, the time zone is the same as that of the parent partner.
+     * Output only. The standard TZ database name of the advertiser's time zone. For example, `America/New_York`. See more at: https://en.wikipedia.org/wiki/List_of_tz_database_time_zones For CM360 hybrid advertisers, the time zone is the same as that of the associated CM360 account; for third-party only advertisers, the time zone is the same as that of the parent partner.
      */
     timeZone?: string | null;
   }
@@ -1149,15 +1149,15 @@ export namespace displayvideo_v1 {
     negative?: boolean | null;
   }
   /**
-   * Settings for advertisers that use both Campaign Manager (CM) and third-party ad servers.
+   * Settings for advertisers that use both Campaign Manager 360 (CM360) and third-party ad servers.
    */
   export interface Schema$CmHybridConfig {
     /**
-     * Required. Immutable. Account ID of the CM Floodlight configuration linked with the DV360 advertiser.
+     * Required. Immutable. Account ID of the CM360 Floodlight configuration linked with the DV360 advertiser.
      */
     cmAccountId?: string | null;
     /**
-     * Required. Immutable. ID of the CM Floodlight configuration linked with the DV360 advertiser.
+     * Required. Immutable. ID of the CM360 Floodlight configuration linked with the DV360 advertiser.
      */
     cmFloodlightConfigId?: string | null;
     /**
@@ -1165,32 +1165,32 @@ export namespace displayvideo_v1 {
      */
     cmFloodlightLinkingAuthorized?: boolean | null;
     /**
-     * A list of CM sites whose placements will be synced to DV360 as creatives. If absent or empty in CreateAdvertiser method, the system will automatically create a CM site. Removing sites from this list may cause DV360 creatives synced from CM to be deleted. At least one site must be specified.
+     * A list of CM360 sites whose placements will be synced to DV360 as creatives. If absent or empty in CreateAdvertiser method, the system will automatically create a CM360 site. Removing sites from this list may cause DV360 creatives synced from CM360 to be deleted. At least one site must be specified.
      */
     cmSyncableSiteIds?: string[] | null;
     /**
-     * Whether or not to report DV360 cost to CM.
+     * Whether or not to report DV360 cost to CM360.
      */
     dv360ToCmCostReportingEnabled?: boolean | null;
     /**
-     * Whether or not to include DV360 data in CM data transfer reports.
+     * Whether or not to include DV360 data in CM360 data transfer reports.
      */
     dv360ToCmDataSharingEnabled?: boolean | null;
   }
   /**
-   * A Campaign Manager tracking ad.
+   * A Campaign Manager 360 tracking ad.
    */
   export interface Schema$CmTrackingAd {
     /**
-     * The ad ID of the campaign manager tracking Ad.
+     * The ad ID of the campaign manager 360 tracking Ad.
      */
     cmAdId?: string | null;
     /**
-     * The creative ID of the campaign manager tracking Ad.
+     * The creative ID of the campaign manager 360 tracking Ad.
      */
     cmCreativeId?: string | null;
     /**
-     * The placement ID of the campaign manager tracking Ad.
+     * The placement ID of the campaign manager 360 tracking Ad.
      */
     cmPlacementId?: string | null;
   }
@@ -1380,11 +1380,11 @@ export namespace displayvideo_v1 {
      */
     assets?: Schema$AssetAssociation[];
     /**
-     * Output only. The unique ID of the Campaign Manager placement associated with the creative. This field is only applicable for creatives that are synced from Campaign Manager.
+     * Output only. The unique ID of the Campaign Manager 360 placement associated with the creative. This field is only applicable for creatives that are synced from Campaign Manager.
      */
     cmPlacementId?: string | null;
     /**
-     * The Campaign Manager tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases.
+     * The Campaign Manager 360 tracking ad associated with the creative. Optional for the following creative_type when created by an advertiser that uses both Campaign Manager 360 and third-party ad serving: * `CREATIVE_TYPE_NATIVE` * `CREATIVE_TYPE_NATIVE_SITE_SQUARE` * `CREATIVE_TYPE_NATIVE_APP_INSTALL` * `CREATIVE_TYPE_NATIVE_APP_INSTALL_SQUARE` Output only for other cases.
      */
     cmTrackingAd?: Schema$CmTrackingAd;
     /**
@@ -1492,7 +1492,7 @@ export namespace displayvideo_v1 {
      */
     requireMraid?: boolean | null;
     /**
-     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
+     * Optional. Indicates that the creative will wait for a return ping for attribution. Only valid when using a Campaign Manager 360 tracking ad with a third-party ad server parameter and the ${DC_DBM_TOKEN\} macro. Optional and only valid for third-party tag creatives or third-party VAST tag creatives. Third-party tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_STANDARD` * `CREATIVE_TYPE_EXPANDABLE` Third-party VAST tag creatives are creatives with following hosting_source: * `HOSTING_SOURCE_THIRD_PARTY` combined with following creative_type: * `CREATIVE_TYPE_VIDEO`
      */
     requirePingForAttribution?: boolean | null;
     /**
@@ -2660,7 +2660,7 @@ export namespace displayvideo_v1 {
     displayName?: string | null;
   }
   /**
-   * A single line item.
+   * A single line item. Next id: 24
    */
   export interface Schema$LineItem {
     /**
@@ -3166,11 +3166,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$MeasurementConfig {
     /**
-     * Whether or not to report DV360 cost to CM.
+     * Whether or not to report DV360 cost to CM360.
      */
     dv360ToCmCostReportingEnabled?: boolean | null;
     /**
-     * Whether or not to include DV360 data in CM data transfer reports.
+     * Whether or not to include DV360 data in CM360 data transfer reports.
      */
     dv360ToCmDataSharingEnabled?: boolean | null;
   }

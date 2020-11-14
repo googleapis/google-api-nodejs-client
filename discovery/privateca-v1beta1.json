@@ -1292,7 +1292,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201102",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {

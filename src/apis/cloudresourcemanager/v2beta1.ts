@@ -155,9 +155,6 @@ export namespace cloudresourcemanager_v2beta1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    /**
-     * A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.
-     */
     bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
@@ -171,6 +168,48 @@ export namespace cloudresourcemanager_v2beta1 {
      * Role that is assigned to `members`. For example, `roles/viewer`, `roles/editor`, or `roles/owner`.
      */
     role?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2alpha1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
+  }
+  /**
+   * Metadata describing a long running folder operation
+   */
+  export interface Schema$CloudresourcemanagerGoogleCloudResourcemanagerV2beta1FolderOperation {
+    /**
+     * The resource name of the folder or organization we are either creating the folder under or moving the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The type of this operation.
+     */
+    operationType?: string | null;
+    /**
+     * The resource name of the folder's parent. Only applicable when the operation_type is MOVE.
+     */
+    sourceParent?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -202,7 +241,7 @@ export namespace cloudresourcemanager_v2beta1 {
      */
     createTime?: string | null;
     /**
-     * The folder’s display name. A folder’s display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?.
+     * The folder's display name. A folder's display name must be unique amongst its siblings, e.g. no two folders with the same parent can share the same display name. The display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?`.
      */
     displayName?: string | null;
     /**
@@ -214,7 +253,7 @@ export namespace cloudresourcemanager_v2beta1 {
      */
     name?: string | null;
     /**
-     * Required. The Folder’s parent's resource name. Updates to the folder's parent must be performed via MoveFolder.
+     * Required. The Folder's parent's resource name. Updates to the folder's parent must be performed via MoveFolder.
      */
     parent?: string | null;
   }
@@ -441,7 +480,7 @@ export namespace cloudresourcemanager_v2beta1 {
     }
 
     /**
-     * Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folder's that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
+     * Creates a Folder in the resource hierarchy. Returns an Operation which can be used to track the progress of the folder creation workflow. Upon success the Operation.response field will be populated with the created Folder. In order to succeed, the addition of this new Folder must not violate the Folder naming, height or fanout constraints. + The Folder's display_name must be distinct from all other Folders that share its parent. + The addition of the Folder must not cause the active Folder hierarchy to exceed a height of 10. Note, the full active + deleted Folder hierarchy is allowed to reach a height of 20; this provides additional headroom when moving folders that contain deleted folders. + The addition of the Folder must not cause the total number of Folders under its parent to exceed 300. If the operation fails due to a folder constraint violation, some errors may be returned by the CreateFolder request, with status code FAILED_PRECONDITION and an error description. Other folder constraint violations will be communicated in the Operation, with the specific PreconditionFailure returned via the details list in the Operation.error field. The caller must have `resourcemanager.folders.create` permission on the identified parent.
      * @example
      * ```js
      * // Before running the sample:
@@ -1267,7 +1306,7 @@ export namespace cloudresourcemanager_v2beta1 {
     }
 
     /**
-     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: [\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
+     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
      * @example
      * ```js
      * // Before running the sample:

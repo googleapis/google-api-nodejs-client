@@ -112,6 +112,7 @@ export namespace area120tables_v1alpha1 {
   export class Area120tables {
     context: APIRequestContext;
     tables: Resource$Tables;
+    workspaces: Resource$Workspaces;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
       this.context = {
@@ -120,6 +121,7 @@ export namespace area120tables_v1alpha1 {
       };
 
       this.tables = new Resource$Tables(this.context);
+      this.workspaces = new Resource$Workspaces(this.context);
     }
   }
 
@@ -249,6 +251,19 @@ export namespace area120tables_v1alpha1 {
     tables?: Schema$Table[];
   }
   /**
+   * Response message for TablesService.ListWorkspaces.
+   */
+  export interface Schema$ListWorkspacesResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of workspaces.
+     */
+    workspaces?: Schema$Workspace[];
+  }
+  /**
    * Details about a lookup column whose value comes from the associated relationship.
    */
   export interface Schema$LookupDetails {
@@ -316,6 +331,23 @@ export namespace area120tables_v1alpha1 {
      * Optional. Column key to use for values in the row. Defaults to user entered name.
      */
     view?: string | null;
+  }
+  /**
+   * A single workspace.
+   */
+  export interface Schema$Workspace {
+    /**
+     * The human readable title of the workspace.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the workspace. Workspace names have the form `workspaces/{workspace\}`.
+     */
+    name?: string | null;
+    /**
+     * The list of tables in the workspace.
+     */
+    tables?: Schema$Table[];
   }
 
   export class Resource$Tables {
@@ -1710,5 +1742,302 @@ export namespace area120tables_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$Row;
+  }
+
+  export class Resource$Workspaces {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a workspace. Returns NOT_FOUND if the workspace does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.workspaces.get({
+     *     // Required. The name of the workspace to retrieve. Format: workspaces/{workspace\}
+     *     name: 'workspaces/my-workspace',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "tables": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Workspaces$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Workspaces$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Workspace>;
+    get(
+      params: Params$Resource$Workspaces$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Workspaces$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Workspace>,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
+    get(
+      params: Params$Resource$Workspaces$Get,
+      callback: BodyResponseCallback<Schema$Workspace>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Workspace>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Workspaces$Get
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Workspace>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Workspace> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Workspaces$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://area120tables.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Workspace>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Workspace>(parameters);
+      }
+    }
+
+    /**
+     * Lists workspaces for the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/area120tables.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const area120tables = google.area120tables('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/drive',
+     *       'https://www.googleapis.com/auth/drive.file',
+     *       'https://www.googleapis.com/auth/spreadsheets',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await area120tables.workspaces.list({
+     *     // The maximum number of workspaces to return. The service may return fewer than this value. If unspecified, at most 10 workspaces are returned. The maximum value is 25; values above 25 are coerced to 25.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workspaces": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Workspaces$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Workspaces$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListWorkspacesResponse>;
+    list(
+      params: Params$Resource$Workspaces$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Workspaces$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Workspaces$List,
+      callback: BodyResponseCallback<Schema$ListWorkspacesResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListWorkspacesResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Workspaces$List
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkspacesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListWorkspacesResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Workspaces$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Workspaces$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://area120tables.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/workspaces').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkspacesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkspacesResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Workspaces$Get extends StandardParameters {
+    /**
+     * Required. The name of the workspace to retrieve. Format: workspaces/{workspace\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Workspaces$List extends StandardParameters {
+    /**
+     * The maximum number of workspaces to return. The service may return fewer than this value. If unspecified, at most 10 workspaces are returned. The maximum value is 25; values above 25 are coerced to 25.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListWorkspaces` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListWorkspaces` must match the call that provided the page token.
+     */
+    pageToken?: string;
   }
 }

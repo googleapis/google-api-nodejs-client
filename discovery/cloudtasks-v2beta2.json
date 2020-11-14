@@ -249,7 +249,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Optional. Read mask is used for a more granular control over what the API returns. By it includes all fields in Queue except for stats.",
+                      "description": "Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to \"*\" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -321,6 +321,12 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "readMask": {
+                      "description": "Optional. Read mask is used for a more granular control over what the API returns. If the mask is not present all fields will be returned except [Queue.stats], if the mask is set to \"*\" all fields including [Queue.stats] will be returned, otherwise only the fields explicitly specified in the mask will be returned.",
+                      "format": "google-fieldmask",
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -803,7 +809,7 @@
       }
     }
   },
-  "revision": "20200924",
+  "revision": "20201030",
   "rootUrl": "https://cloudtasks.googleapis.com/",
   "schemas": {
     "AcknowledgeTaskRequest": {
@@ -930,7 +936,6 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
           "type": "string"
         },
         "condition": {

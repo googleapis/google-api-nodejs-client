@@ -238,6 +238,10 @@ export namespace redis_v1 {
      */
     alternativeLocationId?: string | null;
     /**
+     * Optional. Indicates whether OSS Redis AUTH is enabled for the instance. If set to "true" AUTH is enabled on the instance. Default value is "false" meaning AUTH is disabled.
+     */
+    authEnabled?: boolean | null;
+    /**
      * Optional. The full name of the Google Compute Engine [network](https://cloud.google.com/vpc/docs/vpc) to which the instance is connected. If left unspecified, the `default` network will be used.
      */
     authorizedNetwork?: string | null;
@@ -309,6 +313,15 @@ export namespace redis_v1 {
      * Required. The service tier of the instance.
      */
     tier?: string | null;
+  }
+  /**
+   * Instance AUTH string details.
+   */
+  export interface Schema$InstanceAuthString {
+    /**
+     * AUTH string set on the instance.
+     */
+    authString?: string | null;
   }
   /**
    * Response for ListInstances.
@@ -802,6 +815,7 @@ export namespace redis_v1 {
      *       // request body parameters
      *       // {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
+     *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
@@ -1370,6 +1384,7 @@ export namespace redis_v1 {
      *   // Example response
      *   // {
      *   //   "alternativeLocationId": "my_alternativeLocationId",
+     *   //   "authEnabled": false,
      *   //   "authorizedNetwork": "my_authorizedNetwork",
      *   //   "connectMode": "my_connectMode",
      *   //   "createTime": "my_createTime",
@@ -1476,6 +1491,140 @@ export namespace redis_v1 {
         );
       } else {
         return createAPIRequest<Schema$Instance>(parameters);
+      }
+    }
+
+    /**
+     * Gets the AUTH string for a Redis instance. If AUTH is not enabled for the instance the response will be empty. This information is not included in the details returned to GetInstance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/redis.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const redis = google.redis('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await redis.projects.locations.instances.getAuthString({
+     *     // Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authString": "my_authString"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAuthString(
+      params: Params$Resource$Projects$Locations$Instances$Getauthstring,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    getAuthString(
+      params?: Params$Resource$Projects$Locations$Instances$Getauthstring,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$InstanceAuthString>;
+    getAuthString(
+      params: Params$Resource$Projects$Locations$Instances$Getauthstring,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAuthString(
+      params: Params$Resource$Projects$Locations$Instances$Getauthstring,
+      options: MethodOptions | BodyResponseCallback<Schema$InstanceAuthString>,
+      callback: BodyResponseCallback<Schema$InstanceAuthString>
+    ): void;
+    getAuthString(
+      params: Params$Resource$Projects$Locations$Instances$Getauthstring,
+      callback: BodyResponseCallback<Schema$InstanceAuthString>
+    ): void;
+    getAuthString(
+      callback: BodyResponseCallback<Schema$InstanceAuthString>
+    ): void;
+    getAuthString(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Getauthstring
+        | BodyResponseCallback<Schema$InstanceAuthString>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InstanceAuthString>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InstanceAuthString>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$InstanceAuthString>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Getauthstring;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Instances$Getauthstring;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://redis.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/authString').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InstanceAuthString>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InstanceAuthString>(parameters);
       }
     }
 
@@ -1794,6 +1943,7 @@ export namespace redis_v1 {
      *       // request body parameters
      *       // {
      *       //   "alternativeLocationId": "my_alternativeLocationId",
+     *       //   "authEnabled": false,
      *       //   "authorizedNetwork": "my_authorizedNetwork",
      *       //   "connectMode": "my_connectMode",
      *       //   "createTime": "my_createTime",
@@ -2105,6 +2255,13 @@ export namespace redis_v1 {
     requestBody?: Schema$FailoverInstanceRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get
+    extends StandardParameters {
+    /**
+     * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Getauthstring
     extends StandardParameters {
     /**
      * Required. Redis instance resource name using the form: `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}` where `location_id` refers to a GCP region.
