@@ -981,7 +981,7 @@ export namespace drive_v2 {
      */
     fileExtension?: string | null;
     /**
-     * The size of the file in bytes. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.
+     * The size of the file in bytes. This field is populated for files with content stored in Google Drive and for files in Docs Editors; it is not populated for shortcut files.
      */
     fileSize?: string | null;
     /**

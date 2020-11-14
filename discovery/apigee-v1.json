@@ -1566,6 +1566,11 @@
                 "parent"
               ],
               "parameters": {
+                "app": {
+                  "description": "Optional. List only Developers that are associated with the app. Note that start_key, count are not applicable for this filter criteria.",
+                  "location": "query",
+                  "type": "string"
+                },
                 "count": {
                   "description": "Optional. Number of developers to return in the API call. Use with the `startKey` parameter to provide more targeted filtering. The limit is 1000.",
                   "format": "int64",
@@ -3705,7 +3710,7 @@
                       ],
                       "parameters": {
                         "_password": {
-                          "description": "The password for the private key file, if it exists.",
+                          "description": "DEPRECATED: For improved security, send the password in the body instead of using this query param. To send it in the body, use a multipart/form-data part with name \"password\". The password for the private key file, if it exists.",
                           "location": "query",
                           "type": "string"
                         },
@@ -4860,6 +4865,272 @@
             }
           }
         },
+        "hostQueries": {
+          "methods": {
+            "create": {
+              "description": "Submit a query at host level to be processed in the background. If the submission of the query succeeds, the API returns a 201 status and an ID that refer to the query. In addition to the HTTP status 201, the `state` of \"enqueued\" means that the request succeeded.",
+              "flatPath": "v1/organizations/{organizationsId}/hostQueries",
+              "httpMethod": "POST",
+              "id": "apigee.organizations.hostQueries.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource name. Must be of the form `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/hostQueries",
+              "request": {
+                "$ref": "GoogleCloudApigeeV1Query"
+              },
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AsyncQuery"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Get status of a query submitted at host level. If the query is still in progress, the `state` is set to \"running\" After the query has completed successfully, `state` is set to \"completed\"",
+              "flatPath": "v1/organizations/{organizationsId}/hostQueries/{hostQueriesId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostQueries.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the asynchronous query to get. Must be of the form `organizations/{org}/queries/{queryId}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostQueries/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AsyncQuery"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getResult": {
+              "description": "After the query is completed, use this API to retrieve the results. If the request succeeds, and there is a non-zero result set, the result is downloaded to the client as a zipped JSON file. The name of the downloaded file will be: OfflineQueryResult-.zip Example: `OfflineQueryResult-9cfc0d85-0f30-46d6-ae6f-318d0cb961bd.zip`",
+              "flatPath": "v1/organizations/{organizationsId}/hostQueries/{hostQueriesId}/result",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostQueries.getResult",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the asynchronous query result to get. Must be of the form `organizations/{org}/queries/{queryId}/result`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostQueries/[^/]+/result$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleApiHttpBody"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "getResultView": {
+              "description": "",
+              "flatPath": "v1/organizations/{organizationsId}/hostQueries/{hostQueriesId}/resultView",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostQueries.getResultView",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the asynchronous query result view to get. Must be of the form `organizations/{org}/queries/{queryId}/resultView`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostQueries/[^/]+/resultView$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1AsyncQueryResultView"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "list": {
+              "description": "Return a list of Asynchronous Queries at host level.",
+              "flatPath": "v1/organizations/{organizationsId}/hostQueries",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostQueries.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "dataset": {
+                  "description": "Filter response list by dataset. Example: `api`, `mint`",
+                  "location": "query",
+                  "type": "string"
+                },
+                "envgroupHostname": {
+                  "description": "Required. Filter response list by hostname.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "Filter response list by returning asynchronous queries that created after this date time. Time must be in ISO date-time format like '2011-12-03T10:15:30Z'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "inclQueriesWithoutReport": {
+                  "description": "Flag to include asynchronous queries that don't have a report denifition.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent resource name. Must be of the form `organizations/{org}`.",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "status": {
+                  "description": "Filter response list by asynchronous query status.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "submittedBy": {
+                  "description": "Filter response list by user who submitted queries.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "Filter response list by returning asynchronous queries that created before this date time. Time must be in ISO date-time format like '2011-12-03T10:16:30Z'.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/hostQueries",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1ListAsyncQueriesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "hostStats": {
+          "methods": {
+            "get": {
+              "description": "Retrieve metrics grouped by dimensions in host level. The types of metrics you can retrieve include traffic, message counts, API call latency, response size, and cache hits and counts. Dimensions let you view metrics in meaningful groups. The stats api does accept dimensions as path params. The dimensions are optional in which case the metrics are computed on the entire data for the given timerange.",
+              "flatPath": "v1/organizations/{organizationsId}/hostStats/{hostStatsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.hostStats.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "accuracy": {
+                  "description": "Legacy field: not used anymore.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "envgroupHostname": {
+                  "description": "Required. The hostname for which the interactive query will be executed.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Enables drill-down on specific dimension values.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "limit": {
+                  "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/stats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/stats/apiproxy,request_verb`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/hostStats/.*$",
+                  "required": true,
+                  "type": "string"
+                },
+                "offset": {
+                  "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "realtime": {
+                  "description": "Legacy field: not used anymore.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "select": {
+                  "description": "The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                  "location": "query",
+                  "type": "string"
+                },
+                "sort": {
+                  "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "sortby": {
+                  "description": "Comma separated list of columns to sort the final result.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "timeRange": {
+                  "description": "Time interval for the interactive query. Time range is specified as start~end E.g. 04/15/2017 00:00~05/15/2017 23:59",
+                  "location": "query",
+                  "type": "string"
+                },
+                "timeUnit": {
+                  "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "topk": {
+                  "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "tsAscending": {
+                  "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "tzo": {
+                  "description": "This parameters contains the timezone offset value.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1Stats"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
         "instances": {
           "methods": {
             "create": {
@@ -5303,6 +5574,105 @@
               "path": "v1/{+name}/operations",
               "response": {
                 "$ref": "GoogleLongrunningListOperationsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        },
+        "optimizedHostStats": {
+          "methods": {
+            "get": {
+              "description": "This api is similar to GetHostStats except that the response is less verbose.",
+              "flatPath": "v1/organizations/{organizationsId}/optimizedHostStats/{optimizedHostStatsId}",
+              "httpMethod": "GET",
+              "id": "apigee.organizations.optimizedHostStats.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "accuracy": {
+                  "description": "Legacy field: not used anymore.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "envgroupHostname": {
+                  "description": "Required. The hostname for which the interactive query will be executed.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "filter": {
+                  "description": "Enables drill-down on specific dimension values.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "limit": {
+                  "description": "This parameter is used to limit the number of result items. Default and the max value is 14400.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "Required. The resource name for which the interactive query will be executed. Must be of the form `organizations/{organization_id}/stats/{dimensions}`. Dimensions let you view metrics in meaningful groupings. E.g. apiproxy, target_host. The value of dimensions should be comma separated list as shown below `organizations/{org}/stats/apiproxy,request_verb`",
+                  "location": "path",
+                  "pattern": "^organizations/[^/]+/optimizedHostStats/.*$",
+                  "required": true,
+                  "type": "string"
+                },
+                "offset": {
+                  "description": "Use offset with limit to enable pagination of results. For example, to display results 11-20, set limit to '10' and offset to '10'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "realtime": {
+                  "description": "Legacy field: not used anymore.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "select": {
+                  "description": "Required. The select parameter contains a comma separated list of metrics. E.g. sum(message_count),sum(error_count)",
+                  "location": "query",
+                  "type": "string"
+                },
+                "sort": {
+                  "description": "This parameter specifies if the sort order should be ascending or descending Supported values are DESC and ASC.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "sortby": {
+                  "description": "Comma separated list of columns to sort the final result.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "timeRange": {
+                  "description": "Required. Time interval for the interactive query. Time range is specified as start~end. E.g 04/15/2017 00:00~05/15/2017 23:59.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "timeUnit": {
+                  "description": "A value of second, minute, hour, day, week, month. Time Unit specifies the granularity of metrics returned.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "topk": {
+                  "description": "Take 'top k' results from results, for example, to return the top 5 results 'topk=5'.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "tsAscending": {
+                  "description": "Lists timestamps in ascending order if set to true. Recommend setting this value to true if you are using sortby with sort=DESC.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "tzo": {
+                  "description": "This parameters contains the timezone offset value.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "GoogleCloudApigeeV1OptimizedStats"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -5905,7 +6275,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201108",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -6456,6 +6826,10 @@
           "description": "Creation time of the query.",
           "type": "string"
         },
+        "envgroupHostname": {
+          "description": "Hostname is available only when query is executed at host level.",
+          "type": "string"
+        },
         "error": {
           "description": "Error is set when query fails.",
           "type": "string"
@@ -6490,7 +6864,7 @@
           "type": "string"
         },
         "self": {
-          "description": "Self link of the query. Example: `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
+          "description": "Self link of the query. Example: `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd` or following format if query is running at host level: `/organizations/myorg/hostQueries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd`",
           "type": "string"
         },
         "state": {
@@ -6512,7 +6886,37 @@
           "type": "string"
         },
         "self": {
-          "description": "Self link of the query results. Example: `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`",
+          "description": "Self link of the query results. Example: `/organizations/myorg/environments/myenv/queries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result` or following format if query is running at host level: `/organizations/myorg/hostQueries/9cfc0d85-0f30-46d6-ae6f-318d0cb961bd/result`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1AsyncQueryResultView": {
+      "id": "GoogleCloudApigeeV1AsyncQueryResultView",
+      "properties": {
+        "code": {
+          "description": "Error code when there is a failure.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "error": {
+          "description": "Error message when there is a failure.",
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudApigeeV1QueryMetadata",
+          "description": "Metadata contains information like metrics, dimenstions etc of the AsyncQuery."
+        },
+        "rows": {
+          "description": "Rows of query result. Each row is a JSON object. Example: {sum(message_count): 1, developer_app: \"(not set)\",…}",
+          "items": {
+            "type": "any"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "State of retrieving ResultView.",
           "type": "string"
         }
       },
@@ -9017,6 +9421,10 @@
           },
           "type": "array"
         },
+        "envgroupHostname": {
+          "description": "Hostname needs to be specified if query intends to run at host level. This field is only allowed when query is submitted by CreateHostAsyncQuery where analytics data will be grouped by organization and hostname.",
+          "type": "string"
+        },
         "filter": {
           "description": "Boolean expression that can be used to filter data. Filter expressions can be combined using AND/OR terms and should be fully parenthesized to avoid ambiguity. See Analytics metrics, dimensions, and filters reference https://docs.apigee.com/api-platform/analytics/analytics-reference for more information on the fields available to filter on. For more information on the tokens that you use to build filter expressions, see Filter expression syntax. https://docs.apigee.com/api-platform/analytics/asynch-reports-api#filter-expression-syntax",
           "type": "string"
@@ -9379,7 +9787,7 @@
           "type": "string"
         },
         "envGroupRevision": {
-          "description": "The env group config revision_id when this rule was added or last updated. This value is set when the rule is created and will only update if the the environment_id changes. It is used to determine if the runtime is up to date with respect to this rule. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with debug=true.",
+          "description": "The env group config revision_id when this rule was added or last updated. This value is set when the rule is created and will only update if the the environment_id changes. It is used to determine if the runtime is up to date with respect to this rule. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with view=FULL.",
           "format": "int64",
           "type": "string"
         },
@@ -9388,11 +9796,11 @@
           "type": "string"
         },
         "receiver": {
-          "description": "The resource name of the proxy revision that is receiving this basepath in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with debug=true.",
+          "description": "The resource name of the proxy revision that is receiving this basepath in the following format: `organizations/{org}/apis/{api}/revisions/{rev}`. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with view=FULL.",
           "type": "string"
         },
         "updateTime": {
-          "description": "The unix timestamp when this rule was updated. This is updated whenever env_group_revision is updated. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with debug=true.",
+          "description": "The unix timestamp when this rule was updated. This is updated whenever env_group_revision is updated. This field is omitted from the IngressConfig unless the GetDeployedIngressConfig API is called with view=FULL.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -9715,6 +10123,13 @@
           },
           "type": "array"
         },
+        "hosts": {
+          "description": "This field contains a list of query results grouped by host.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1StatsHostStats"
+          },
+          "type": "array"
+        },
         "metaData": {
           "$ref": "GoogleCloudApigeeV1Metadata",
           "description": "This field contains the metadata information."
@@ -9741,6 +10156,31 @@
           "type": "array"
         },
         "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApigeeV1StatsHostStats": {
+      "description": "This message type encapsulates the hostname wrapper: \"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.52056245E8\" ] } ], \"name\": \"example.com\" } ]",
+      "id": "GoogleCloudApigeeV1StatsHostStats",
+      "properties": {
+        "dimensions": {
+          "description": "This field contains the list of metrics grouped under dimensions.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1DimensionMetric"
+          },
+          "type": "array"
+        },
+        "metrics": {
+          "description": "In the final response, only one of the following fields will be present based on the dimensions provided. If no dimensions are provided, then only a top level metrics is provided. If dimensions are included, then there will be a top level dimensions field under hostnames which will contain metrics values and the dimension name. Example: \"hosts\": [ { \"dimensions\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.14049521E8\" ] } ], \"name\": \"nit_proxy\" } ], \"name\": \"example.com\" } ] OR \"hosts\": [ { \"metrics\": [ { \"name\": \"sum(message_count)\", \"values\": [ \"2.19026331E8\" ] } ], \"name\": \"example.com\" } ] This field contains the list of metric values.",
+          "items": {
+            "$ref": "GoogleCloudApigeeV1Metric"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "This field contains the hostname used in query.",
           "type": "string"
         }
       },
@@ -10071,9 +10511,6 @@
       "description": "Associates `members` with a `role`.",
       "id": "GoogleIamV1Binding",
       "properties": {
-        "bindingId": {
-          "type": "string"
-        },
         "condition": {
           "$ref": "GoogleTypeExpr",
           "description": "The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies)."

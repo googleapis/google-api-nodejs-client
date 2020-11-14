@@ -203,6 +203,10 @@ export namespace cloudasset_v1 {
      */
     orgPolicy?: Schema$GoogleCloudOrgpolicyV1Policy[];
     /**
+     * A representation of runtime OS Inventory information. See [this topic](https://cloud.google.com/compute/docs/instances/os-inventory-management) for more information.
+     */
+    osInventory?: Schema$Inventory;
+    /**
      * A representation of the resource.
      */
     resource?: Schema$Resource;
@@ -279,7 +283,6 @@ export namespace cloudasset_v1 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -936,6 +939,52 @@ export namespace cloudasset_v1 {
      */
     identity?: string | null;
   }
+  /**
+   * The inventory details of a VM.
+   */
+  export interface Schema$Inventory {
+    /**
+     * Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.
+     */
+    items?: {[key: string]: Schema$Item} | null;
+    /**
+     * Base level operating system information for the VM.
+     */
+    osInfo?: Schema$OsInfo;
+  }
+  /**
+   * A single piece of inventory on a VM.
+   */
+  export interface Schema$Item {
+    /**
+     * Software package available to be installed on the VM instance.
+     */
+    availablePackage?: Schema$SoftwarePackage;
+    /**
+     * When this inventory item was first detected.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier for this item, unique across items for this VM.
+     */
+    id?: string | null;
+    /**
+     * Software package present on the VM instance.
+     */
+    installedPackage?: Schema$SoftwarePackage;
+    /**
+     * The origin of this inventory item.
+     */
+    originType?: string | null;
+    /**
+     * The specific type of inventory, correlating to its specific details.
+     */
+    type?: string | null;
+    /**
+     * When this inventory item was last modified.
+     */
+    updateTime?: string | null;
+  }
   export interface Schema$ListFeedsResponse {
     /**
      * A list of feeds.
@@ -995,6 +1044,43 @@ export namespace cloudasset_v1 {
      * Optional. If true, the result will output resource edges, starting from the policy attached resource, to any expanded resources. Default is false.
      */
     outputResourceEdges?: boolean | null;
+  }
+  /**
+   * Operating system information for the VM.
+   */
+  export interface Schema$OsInfo {
+    /**
+     * The system architecture of the operating system.
+     */
+    architecture?: string | null;
+    /**
+     * The VM hostname.
+     */
+    hostname?: string | null;
+    /**
+     * The kernel release of the operating system.
+     */
+    kernelRelease?: string | null;
+    /**
+     * The kernel version of the operating system.
+     */
+    kernelVersion?: string | null;
+    /**
+     * The operating system long name. For example 'Debian GNU/Linux 9' or 'Microsoft Window Server 2019 Datacenter'.
+     */
+    longName?: string | null;
+    /**
+     * The current version of the OS Config agent running on the VM.
+     */
+    osconfigAgentVersion?: string | null;
+    /**
+     * The operating system short name. For example, 'windows' or 'debian'.
+     */
+    shortName?: string | null;
+    /**
+     * The version of the operating system.
+     */
+    version?: string | null;
   }
   /**
    * Output configuration for export assets destination.
@@ -1167,6 +1253,43 @@ export namespace cloudasset_v1 {
     results?: Schema$ResourceSearchResult[];
   }
   /**
+   * Software package information of the operating system.
+   */
+  export interface Schema$SoftwarePackage {
+    /**
+     * Details of an APT package. For details about the apt package manager, see https://wiki.debian.org/Apt.
+     */
+    aptPackage?: Schema$VersionedPackage;
+    /**
+     * Details of a COS package.
+     */
+    cosPackage?: Schema$VersionedPackage;
+    /**
+     * Details of a Googet package. For details about the googet package manager, see https://github.com/google/googet.
+     */
+    googetPackage?: Schema$VersionedPackage;
+    /**
+     * Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering.
+     */
+    qfePackage?: Schema$WindowsQuickFixEngineeringPackage;
+    /**
+     * Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update.
+     */
+    wuaPackage?: Schema$WindowsUpdatePackage;
+    /**
+     * Yum package info. For details about the yum package manager, see https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum.
+     */
+    yumPackage?: Schema$VersionedPackage;
+    /**
+     * Details of a Zypper package. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual.
+     */
+    zypperPackage?: Schema$VersionedPackage;
+    /**
+     * Details of a Zypper patch. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual.
+     */
+    zypperPatch?: Schema$ZypperPatch;
+  }
+  /**
    * The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).
    */
   export interface Schema$Status {
@@ -1233,6 +1356,119 @@ export namespace cloudasset_v1 {
      * Required. Only updates the `feed` fields indicated by this mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server.
      */
     updateMask?: string | null;
+  }
+  /**
+   * Information related to the a standard versioned package. This includes package info for APT, Yum, Zypper, and Googet package managers.
+   */
+  export interface Schema$VersionedPackage {
+    /**
+     * The system architecture this package is intended for.
+     */
+    architecture?: string | null;
+    /**
+     * The name of the package.
+     */
+    packageName?: string | null;
+    /**
+     * The version of the package.
+     */
+    version?: string | null;
+  }
+  /**
+   * Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
+   */
+  export interface Schema$WindowsQuickFixEngineeringPackage {
+    /**
+     * A short textual description of the QFE update.
+     */
+    caption?: string | null;
+    /**
+     * A textual description of the QFE update.
+     */
+    description?: string | null;
+    /**
+     * Unique identifier associated with a particular QFE update.
+     */
+    hotFixId?: string | null;
+    /**
+     * Date that the QFE update was installed. Mapped from installed_on field.
+     */
+    installTime?: string | null;
+  }
+  /**
+   * Categories specified by the Windows Update.
+   */
+  export interface Schema$WindowsUpdateCategory {
+    /**
+     * The identifier of the windows update category.
+     */
+    id?: string | null;
+    /**
+     * The name of the windows update category.
+     */
+    name?: string | null;
+  }
+  /**
+   * Details related to a Windows Update package. Field data and names are taken from Windows Update API IUpdate Interface: https://docs.microsoft.com/en-us/windows/win32/api/_wua/ Descriptive fields like title, and description are localized based on the locale of the VM being updated.
+   */
+  export interface Schema$WindowsUpdatePackage {
+    /**
+     * The categories that are associated with this update package.
+     */
+    categories?: Schema$WindowsUpdateCategory[];
+    /**
+     * The localized description of the update package.
+     */
+    description?: string | null;
+    /**
+     * A collection of Microsoft Knowledge Base article IDs that are associated with the update package.
+     */
+    kbArticleIds?: string[] | null;
+    /**
+     * The last published date of the update, in (UTC) date and time.
+     */
+    lastDeploymentChangeTime?: string | null;
+    /**
+     * A collection of URLs that provide more information about the update package.
+     */
+    moreInfoUrls?: string[] | null;
+    /**
+     * The revision number of this update package.
+     */
+    revisionNumber?: number | null;
+    /**
+     * A hyperlink to the language-specific support information for the update.
+     */
+    supportUrl?: string | null;
+    /**
+     * The localized title of the update package.
+     */
+    title?: string | null;
+    /**
+     * Gets the identifier of an update package. Stays the same across revisions.
+     */
+    updateId?: string | null;
+  }
+  /**
+   * Details related to a Zypper Patch.
+   */
+  export interface Schema$ZypperPatch {
+    /**
+     * The category of the patch.
+     */
+    category?: string | null;
+    /**
+     * The name of the patch.
+     */
+    patchName?: string | null;
+    /**
+     * The severity specified for this patch
+     */
+    severity?: string | null;
+    /**
+     * Any summary information provided about this patch.
+     */
+    summary?: string | null;
   }
 
   export class Resource$Feeds {

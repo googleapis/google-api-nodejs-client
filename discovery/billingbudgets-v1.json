@@ -270,7 +270,7 @@
       }
     }
   },
-  "revision": "20201026",
+  "revision": "20201107",
   "rootUrl": "https://billingbudgets.googleapis.com/",
   "schemas": {
     "GoogleCloudBillingBudgetsV1Budget": {
@@ -332,7 +332,7 @@
       "id": "GoogleCloudBillingBudgetsV1Filter",
       "properties": {
         "creditTypes": {
-          "description": "Optional. A list of credit types to be subtracted from gross cost to determine the spend for threshold calculations if and only if credit_types_treatment is INCLUDE_SPECIFIED_CREDITS. If credit_types_treatment is not INCLUDE_SPECIFIED_CREDITS, this field must be empty. See credits.type on https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#data-schema for a list of acceptable credit type values in this field.",
+          "description": "Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).",
           "items": {
             "type": "string"
           },

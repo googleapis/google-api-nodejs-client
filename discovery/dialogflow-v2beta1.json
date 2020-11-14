@@ -1813,7 +1813,7 @@
                       ]
                     },
                     "reload": {
-                      "description": "Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.",
+                      "description": "Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: If the document source is Google Cloud Storage URI, its metadata will be replaced with the custom metadata from Google Cloud Storage if the `import_gcs_custom_metadata` field is set to true in the request. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.",
                       "flatPath": "v2beta1/projects/{projectsId}/agent/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}:reload",
                       "httpMethod": "POST",
                       "id": "dialogflow.projects.agent.knowledgeBases.documents.reload",
@@ -2550,7 +2550,7 @@
                   ]
                 },
                 "reload": {
-                  "description": "Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.",
+                  "description": "Reloads the specified document from its specified source, content_uri or content. The previously loaded content of the document will be deleted. Note: Even when the content of the document has not changed, there still may be side effects because of internal implementation changes. Note: If the document source is Google Cloud Storage URI, its metadata will be replaced with the custom metadata from Google Cloud Storage if the `import_gcs_custom_metadata` field is set to true in the request. Note: The `projects.agent.knowledgeBases.documents` resource is deprecated; only use `projects.knowledgeBases.documents`.",
                   "flatPath": "v2beta1/projects/{projectsId}/knowledgeBases/{knowledgeBasesId}/documents/{documentsId}:reload",
                   "httpMethod": "POST",
                   "id": "dialogflow.projects.knowledgeBases.documents.reload",
@@ -4537,7 +4537,7 @@
       }
     }
   },
-  "revision": "20201028",
+  "revision": "20201109",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3PageInfo": {
@@ -9636,44 +9636,6 @@
         },
         "source": {
           "description": "Optional. A custom field used to identify the webhook source. Arbitrary strings are supported. When provided, Dialogflow uses this field to populate QueryResult.webhook_source sent to the integration or API caller.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudKnowledgeV1alpha1OperationMetadata": {
-      "description": "Metadata in google::longrunning::Operation.",
-      "id": "GoogleCloudKnowledgeV1alpha1OperationMetadata",
-      "properties": {
-        "errorCode": {
-          "description": "The error codes from Manifold endpoints' last failures.",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "message": {
-          "description": "The failure messages from Manifold endpoints' last failures.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "state": {
-          "description": "Required. The current state of this operation.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PENDING",
-            "RUNNING",
-            "DONE"
-          ],
-          "enumDescriptions": [
-            "Unspecified state. Should never be used.",
-            "The operation has been created.",
-            "The operation is currently running.",
-            "The operation is done, either cancelled or completed."
-          ],
           "type": "string"
         }
       },

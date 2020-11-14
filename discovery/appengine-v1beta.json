@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201107",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -2474,7 +2474,7 @@
         "vmLiveness": {
           "description": "Output only. The liveness health check of this instance. Only applicable for instances in App Engine flexible environment.",
           "enum": [
-            "STATE_UNSPECIFIED",
+            "LIVENESS_STATE_UNSPECIFIED",
             "UNKNOWN",
             "HEALTHY",
             "UNHEALTHY",
