@@ -1,5 +1,5 @@
 {
-  "name": "@google/notebooks",
+  "name": "@googleapis/notebooks",
   "version": "0.1.0",
   "description": "notebooks",
   "main": "build/index.js",
