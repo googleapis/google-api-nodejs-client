@@ -1385,7 +1385,7 @@ export namespace dataflow_v1b3 {
      */
     environment?: Schema$FlexTemplateRuntimeEnvironment;
     /**
-     * Required. The job name to use for the created job.
+     * Required. The job name to use for the created job. For update job request, job name should be same as the existing running job.
      */
     jobName?: string | null;
     /**
@@ -1396,6 +1396,14 @@ export namespace dataflow_v1b3 {
      * The parameters for FlexTemplate. Ex. {"num_workers":"5"\}
      */
     parameters?: {[key: string]: string} | null;
+    /**
+     * Users need to set transform_name_mappings Ex:{"oldTransformName":"newTransformName",...\}'
+     */
+    transformNameMappings?: {[key: string]: string} | null;
+    /**
+     * Set this to true if you are sending a request to update a running streaming job. When set, the job name should be the same as the running job.
+     */
+    update?: boolean | null;
   }
   /**
    * A request to launch a Cloud Dataflow job from a FlexTemplate.
