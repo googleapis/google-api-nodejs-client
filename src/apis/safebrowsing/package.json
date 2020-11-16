@@ -1,5 +1,5 @@
 {
-  "name": "@google/safebrowsing",
+  "name": "@googleapis/safebrowsing",
   "version": "0.1.0",
   "description": "safebrowsing",
   "main": "build/index.js",
