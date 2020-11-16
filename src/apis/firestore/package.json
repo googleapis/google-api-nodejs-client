@@ -1,5 +1,5 @@
 {
-  "name": "@google/firestore",
+  "name": "@googleapis/firestore",
   "version": "0.1.0",
   "description": "firestore",
   "main": "build/index.js",
