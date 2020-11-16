@@ -1,5 +1,5 @@
 {
-  "name": "@google/youtubeAnalytics",
+  "name": "@googleapis/youtubeAnalytics",
   "version": "0.1.0",
   "description": "youtubeAnalytics",
   "main": "build/index.js",
