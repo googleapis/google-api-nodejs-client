@@ -1797,7 +1797,7 @@ export namespace displayvideo_v1 {
      */
     brandSafetyCategories?: Schema$DoubleVerifyBrandSafetyCategories;
     /**
-     * The custom segment ID provided by DoubleVerify. The ID must start with "51" and consist of eight digits. Custom segment id cannot be specified along with any of the following fields: * brand_safety_categories * avoided_age_ratings * app_star_rating * fraud_invalid_traffic
+     * The custom segment ID provided by DoubleVerify. The ID must start with "51" and consist of eight digits. Custom segment ID cannot be specified along with any of the following fields: * brand_safety_categories * avoided_age_ratings * app_star_rating * fraud_invalid_traffic
      */
     customSegmentId?: string | null;
     /**
@@ -2308,7 +2308,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string | null;
     /**
-     * Optional. The bidding strategy of the insertion order. By default, fixed_bid is set.
+     * The bidding strategy of the insertion order. By default, fixed_bid is set.
      */
     bidStrategy?: Schema$BiddingStrategy;
     /**
@@ -2740,7 +2740,7 @@ export namespace displayvideo_v1 {
      */
     partnerRevenueModel?: Schema$PartnerRevenueModel;
     /**
-     * The targeting expansion settings of the line item.
+     * The [targeting expansion](https://support.google.com/displayvideo/answer/10191558) settings of the line item. This config is only applicable when eligible audience list targeting is assigned to the line item.
      */
     targetingExpansion?: Schema$TargetingExpansionConfig;
     /**
@@ -2782,7 +2782,7 @@ export namespace displayvideo_v1 {
      */
     flightDateType?: string | null;
     /**
-     * The ID of the manual trigger associated with the line item. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER`. Must not be set otherwise. * A line item's flight dates are inherited from its parent insertion order. * Active line items will spend when the selected trigger is activated within the parent insertion order's flight dates.
+     * The ID of the manual trigger associated with the line item. * Required when flight_date_type is `LINE_ITEM_FLIGHT_DATE_TYPE_TRIGGER`. Must not be set otherwise. * When set, the line item's flight dates are inherited from its parent insertion order. * Active line items will spend when the selected trigger is activated within the parent insertion order's flight dates.
      */
     triggerId?: string | null;
   }
@@ -3112,7 +3112,7 @@ export namespace displayvideo_v1 {
     impressionDays?: number | null;
   }
   /**
-   * A single manual trigger in Display & Video 360 (DV360).
+   * A single manual trigger in Display & Video 360.
    */
   export interface Schema$ManualTrigger {
     /**
@@ -13577,7 +13577,7 @@ export namespace displayvideo_v1 {
     }
 
     /**
-     * Lists manual triggers that are accessible to the current user for a given advertiser id. The order is defined by the order_by parameter. A single advertiser_id is required.
+     * Lists manual triggers that are accessible to the current user for a given advertiser ID. The order is defined by the order_by parameter. A single advertiser_id is required.
      * @example
      * ```js
      * // Before running the sample:
