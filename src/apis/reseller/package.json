@@ -1,5 +1,5 @@
 {
-  "name": "@google/reseller",
+  "name": "@googleapis/reseller",
   "version": "0.1.0",
   "description": "reseller",
   "main": "build/index.js",
