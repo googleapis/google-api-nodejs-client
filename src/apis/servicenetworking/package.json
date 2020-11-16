@@ -1,5 +1,5 @@
 {
-  "name": "@google/servicenetworking",
+  "name": "@googleapis/servicenetworking",
   "version": "0.1.0",
   "description": "servicenetworking",
   "main": "build/index.js",
