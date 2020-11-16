@@ -1,5 +1,5 @@
 {
-  "name": "@google/privateca",
+  "name": "@googleapis/privateca",
   "version": "0.1.0",
   "description": "privateca",
   "main": "build/index.js",
