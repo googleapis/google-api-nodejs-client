@@ -1,5 +1,5 @@
 {
-  "name": "@google/remotebuildexecution",
+  "name": "@googleapis/remotebuildexecution",
   "version": "0.1.0",
   "description": "remotebuildexecution",
   "main": "build/index.js",
