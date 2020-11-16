@@ -1,5 +1,5 @@
 {
-  "name": "@google/webmasters",
+  "name": "@googleapis/webmasters",
   "version": "0.1.0",
   "description": "webmasters",
   "main": "build/index.js",
