@@ -1,5 +1,5 @@
 {
-  "name": "@google/billingbudgets",
+  "name": "@googleapis/billingbudgets",
   "version": "0.1.0",
   "description": "billingbudgets",
   "main": "build/index.js",

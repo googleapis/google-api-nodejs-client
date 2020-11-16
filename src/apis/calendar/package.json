@@ -1,5 +1,5 @@
 {
-  "name": "@google/calendar",
+  "name": "@googleapis/calendar",
   "version": "0.1.0",
   "description": "calendar",
   "main": "build/index.js",

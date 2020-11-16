@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/AubvcHOOmrHBNbxRjSZ8CR3OwJo\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/IzoQxjVawMYvYrbRbXalwXGvUZI\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -6317,7 +6317,7 @@
           ]
         },
         "setInstanceTemplate": {
-          "description": "Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them.",
+          "description": "Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "httpMethod": "POST",
           "id": "compute.instanceGroupManagers.setInstanceTemplate",
           "parameterOrder": [
@@ -25410,7 +25410,7 @@
       }
     }
   },
-  "revision": "20201007",
+  "revision": "20201022",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -26681,7 +26681,7 @@
       "type": "object"
     },
     "Autoscaler": {
-      "description": "Represents an Autoscaler resource.\n\nGoogle Compute Engine has two Autoscaler resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](/compute/docs/reference/rest/{$api_version}/regionAutoscalers)\n\nUse autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.\n\nFor zonal managed instance groups resource, use the autoscaler resource.\n\nFor regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)",
+      "description": "Represents an Autoscaler resource.\n\nGoogle Compute Engine has two Autoscaler resources:\n\n* [Zonal](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](/compute/docs/reference/rest/{$api_version}/regionAutoscalers)\n\nUse autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.\n\nFor zonal managed instance groups resource, use the autoscaler resource.\n\nFor regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)",
       "id": "Autoscaler",
       "properties": {
         "autoscalingPolicy": {
@@ -30054,7 +30054,7 @@
       "id": "DistributionPolicy",
       "properties": {
         "zones": {
-          "description": "Zones where the regional managed instance group will create and manage instances.",
+          "description": "Zones where the regional managed instance group will create and manage its instances.",
           "items": {
             "$ref": "DistributionPolicyZoneConfiguration"
           },
@@ -34185,7 +34185,7 @@
         },
         "distributionPolicy": {
           "$ref": "DistributionPolicy",
-          "description": "Policy specifying intended distribution of instances in regional managed instance group."
+          "description": "Policy specifying the intended distribution of managed instances across zones in a regional managed instance group."
         },
         "fingerprint": {
           "description": "Fingerprint of this resource. This field may be used in optimistic locking. It will be ignored when inserting an InstanceGroupManager. An up-to-date fingerprint must be provided in order to update the InstanceGroupManager, otherwise the request will fail with error 412 conditionNotMet.\n\nTo see the latest fingerprint, make a get() request to retrieve an InstanceGroupManager.",
@@ -34202,7 +34202,7 @@
           "type": "string"
         },
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "type": "string"
         },
         "kind": {
@@ -34274,7 +34274,7 @@
           "type": "array"
         },
         "zone": {
-          "description": "[Output Only] The URL of the zone where the managed instance group is located (for zonal resources).",
+          "description": "[Output Only] The URL of a zone where the managed instance group is located (for zonal resources).",
           "type": "string"
         }
       },
@@ -34712,7 +34712,7 @@
       "id": "InstanceGroupManagerVersion",
       "properties": {
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE; in those cases, existing instances are updated until the `targetSize` for this version is reached.",
           "type": "string"
         },
         "name": {
@@ -35095,7 +35095,7 @@
       "id": "InstanceGroupManagersSetInstanceTemplateRequest",
       "properties": {
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "type": "string"
         }
       },
@@ -42259,6 +42259,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "direction": {
+          "description": "Direction of traffic to mirror, either INGRESS, EGRESS, or BOTH. The default is BOTH.",
+          "enum": [
+            "BOTH",
+            "EGRESS",
+            "INGRESS"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -43050,9 +43064,11 @@
             "TARGET_VPN_GATEWAYS",
             "URL_MAPS",
             "VPN_GATEWAYS",
-            "VPN_TUNNELS"
+            "VPN_TUNNELS",
+            "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -46359,6 +46375,9 @@
           },
           "type": "array"
         },
+        "enableEndpointIndependentMapping": {
+          "type": "boolean"
+        },
         "icmpIdleTimeoutSec": {
           "description": "Timeout (in seconds) for ICMP connections. Defaults to 30s if not set.",
           "format": "int32",
@@ -48278,7 +48297,7 @@
       "type": "object"
     },
     "SslPolicy": {
-      "description": "Represents a Google Cloud Armor security policy resource.\n\nOnly external backend services used by HTTP or HTTPS load balancers can reference a security policy. For more information, see  Google Cloud Armor security policy overview. (== resource_for {$api_version}.sslPolicies ==)",
+      "description": "Represents an SSL Policy resource.\n\nUse SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read  SSL Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)",
       "id": "SslPolicy",
       "properties": {
         "creationTimestamp": {

@@ -1,5 +1,5 @@
 {
-  "name": "@google/displayvideo",
+  "name": "@googleapis/displayvideo",
   "version": "0.1.0",
   "description": "displayvideo",
   "main": "build/index.js",

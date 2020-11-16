@@ -1,5 +1,5 @@
 {
-  "name": "@google/doubleclicksearch",
+  "name": "@googleapis/doubleclicksearch",
   "version": "0.1.0",
   "description": "doubleclicksearch",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/firebaserules",
+  "name": "@googleapis/firebaserules",
   "version": "0.1.0",
   "description": "firebaserules",
   "main": "build/index.js",

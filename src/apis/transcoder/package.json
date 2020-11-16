@@ -1,5 +1,5 @@
 {
-  "name": "@google/transcoder",
+  "name": "@googleapis/transcoder",
   "version": "0.1.0",
   "description": "transcoder",
   "main": "build/index.js",

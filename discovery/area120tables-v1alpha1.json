@@ -174,7 +174,9 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/spreadsheets"
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
           ]
         }
       },
@@ -485,7 +487,9 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/spreadsheets"
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
           ]
         },
         "list": {
@@ -514,13 +518,15 @@
           "scopes": [
             "https://www.googleapis.com/auth/drive",
             "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/spreadsheets"
+            "https://www.googleapis.com/auth/drive.readonly",
+            "https://www.googleapis.com/auth/spreadsheets",
+            "https://www.googleapis.com/auth/spreadsheets.readonly"
           ]
         }
       }
     }
   },
-  "revision": "20201104",
+  "revision": "20201112",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {

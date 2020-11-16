@@ -1,5 +1,5 @@
 {
-  "name": "@google/admob",
+  "name": "@googleapis/admob",
   "version": "0.1.0",
   "description": "admob",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/sourcerepo",
+  "name": "@googleapis/sourcerepo",
   "version": "0.1.0",
   "description": "sourcerepo",
   "main": "build/index.js",

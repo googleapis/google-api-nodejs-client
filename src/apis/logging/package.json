@@ -1,5 +1,5 @@
 {
-  "name": "@google/logging",
+  "name": "@googleapis/logging",
   "version": "0.1.0",
   "description": "logging",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/secretmanager",
+  "name": "@googleapis/secretmanager",
   "version": "0.1.0",
   "description": "secretmanager",
   "main": "build/index.js",

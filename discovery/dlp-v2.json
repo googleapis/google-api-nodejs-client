@@ -3136,7 +3136,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201107",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -4674,6 +4674,10 @@
         "createTime": {
           "description": "Timestamp when finding was detected.",
           "format": "google-datetime",
+          "type": "string"
+        },
+        "findingId": {
+          "description": "The unique finding id.",
           "type": "string"
         },
         "infoType": {

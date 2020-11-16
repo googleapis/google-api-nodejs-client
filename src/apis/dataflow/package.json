@@ -1,5 +1,5 @@
 {
-  "name": "@google/dataflow",
+  "name": "@googleapis/dataflow",
   "version": "0.1.0",
   "description": "dataflow",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/deploymentmanager",
+  "name": "@googleapis/deploymentmanager",
   "version": "0.1.0",
   "description": "deploymentmanager",
   "main": "build/index.js",

@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/axYSpezpsrRN9uJAkuL9_ckfG58\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/N2RdLSld28K6AbRrUK_kSZIlMkM\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -7568,7 +7568,7 @@
           ]
         },
         "setInstanceTemplate": {
-          "description": "Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you recreate them.",
+          "description": "Specifies the instance template to use when creating new instances in this group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "httpMethod": "POST",
           "id": "compute.instanceGroupManagers.setInstanceTemplate",
           "parameterOrder": [
@@ -29014,6 +29014,47 @@
             "https://www.googleapis.com/auth/compute.readonly"
           ]
         },
+        "patch": {
+          "description": "Patches the specified TargetHttpsProxy resource with the data included in the request. This method supports PATCH semantics and uses JSON merge patch format and processing rules. (== suppress_warning http-rest-shadowed ==)",
+          "httpMethod": "PATCH",
+          "id": "compute.targetHttpsProxies.patch",
+          "parameterOrder": [
+            "project",
+            "targetHttpsProxy"
+          ],
+          "parameters": {
+            "project": {
+              "description": "Project ID for this request.",
+              "location": "path",
+              "pattern": "(?:(?:[-a-z0-9]{1,63}\\.)*(?:[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?):)?(?:[0-9]{1,19}|(?:[a-z0-9](?:[-a-z0-9]{0,61}[a-z0-9])?))",
+              "required": true,
+              "type": "string"
+            },
+            "requestId": {
+              "description": "An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed.\n\nFor example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments.\n\nThe request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+              "location": "query",
+              "type": "string"
+            },
+            "targetHttpsProxy": {
+              "description": "Name of the TargetHttpsProxy resource to patch.",
+              "location": "path",
+              "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?|[1-9][0-9]{0,19}",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "projects/{project}/global/targetHttpsProxies/{targetHttpsProxy}",
+          "request": {
+            "$ref": "TargetHttpsProxy"
+          },
+          "response": {
+            "$ref": "Operation"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/compute"
+          ]
+        },
         "setCertificateMap": {
           "description": "Changes the Certificate Map for TargetHttpsProxy.",
           "httpMethod": "POST",
@@ -33430,7 +33471,7 @@
       }
     }
   },
-  "revision": "20201019",
+  "revision": "20201022",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -33866,11 +33907,15 @@
         "networkTier": {
           "description": "This signifies the networking tier used for configuring this access configuration and can only take the following values: PREMIUM, STANDARD.\n\nIf an AccessConfig is specified without a valid external IP address, an ephemeral IP will be created with this networkTier.\n\nIf an AccessConfig with a valid external IP address is specified, it must match that of the networkTier associated with the Address resource owning that IP.",
           "enum": [
+            "FIXED_STANDARD",
             "PREMIUM",
             "SELECT",
-            "STANDARD"
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             ""
@@ -33994,11 +34039,15 @@
         "networkTier": {
           "description": "This signifies the networking tier used for configuring this address and can only take the following values: PREMIUM or STANDARD. Global forwarding rules can only be Premium Tier. Regional forwarding rules can be either Premium or Standard Tier. Standard Tier addresses applied to regional forwarding rules can be used with any external load balancer. Regional forwarding rules in Premium Tier can only be used with a network load balancer.\n\nIf this field is not specified, it is assumed to be PREMIUM.",
           "enum": [
+            "FIXED_STANDARD",
             "PREMIUM",
             "SELECT",
-            "STANDARD"
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             ""
@@ -34437,6 +34486,24 @@
         },
         "subnetworkRangeName": {
           "description": "The name of a subnetwork secondary IP range from which to allocate an IP alias range. If not specified, the primary range of the subnetwork is used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AllocationShareSettings": {
+      "id": "AllocationShareSettings",
+      "properties": {
+        "shareType": {
+          "description": "Type of sharing for this shared-reservation",
+          "enum": [
+            "ORGANIZATION",
+            "SHARE_TYPE_UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
           "type": "string"
         }
       },
@@ -34890,7 +34957,7 @@
       "type": "object"
     },
     "Autoscaler": {
-      "description": "Represents an Autoscaler resource.\n\nGoogle Compute Engine has two Autoscaler resources:\n\n* [Global](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](/compute/docs/reference/rest/{$api_version}/regionAutoscalers)\n\nUse autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.\n\nFor zonal managed instance groups resource, use the autoscaler resource.\n\nFor regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)",
+      "description": "Represents an Autoscaler resource.\n\nGoogle Compute Engine has two Autoscaler resources:\n\n* [Zonal](/compute/docs/reference/rest/{$api_version}/autoscalers) * [Regional](/compute/docs/reference/rest/{$api_version}/regionAutoscalers)\n\nUse autoscalers to automatically add or delete instances from a managed instance group according to your defined autoscaling policy. For more information, read Autoscaling Groups of Instances.\n\nFor zonal managed instance groups resource, use the autoscaler resource.\n\nFor regional managed instance groups, use the regionAutoscalers resource. (== resource_for {$api_version}.autoscalers ==) (== resource_for {$api_version}.regionAutoscalers ==)",
       "id": "Autoscaler",
       "properties": {
         "autoscalingPolicy": {
@@ -35966,6 +36033,9 @@
         "connectionDraining": {
           "$ref": "ConnectionDraining"
         },
+        "connectionTrackingPolicy": {
+          "$ref": "BackendServiceConnectionTrackingPolicy"
+        },
         "consistentHash": {
           "$ref": "ConsistentHashLoadBalancerSettings",
           "description": "Consistent Hash-based load balancing can be used to provide soft session affinity based on HTTP headers, cookies or other properties. This load balancing policy is applicable only for HTTP connections. The affinity to a particular destination host will be lost when one or more hosts are added/removed from the destination service. This field specifies parameters that control consistent hashing. This field is only applicable when localityLbPolicy is set to MAGLEV or RING_HASH.\n\nThis field is applicable to either:  \n- A regional backend service with the service_protocol set to HTTP, HTTPS, or HTTP2, and load_balancing_scheme set to INTERNAL_MANAGED. \n- A global backend service with the load_balancing_scheme set to INTERNAL_SELF_MANAGED.  \n\nNot supported when the backend service is referenced by a URL map that is bound to target gRPC proxy that has validateForProxyless field set to true."
@@ -36406,6 +36476,27 @@
           "description": "The TTL (in seconds) for which to cache responses with the corresponding status code. The maximum allowed value is 1800s (30 minutes), noting that infrequently accessed objects may be evicted from the cache before the defined TTL.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BackendServiceConnectionTrackingPolicy": {
+      "description": "Connection Tracking configuration for this BackendService.",
+      "id": "BackendServiceConnectionTrackingPolicy",
+      "properties": {
+        "connectionPersistenceOnUnhealthyBackends": {
+          "description": "Specifies connection persistence when backends are unhealthy. The default value is DEFAULT_FOR_PROTOCOL.\n\nIf set to DEFAULT_FOR_PROTOCOL, the existing connections persist on unhealthy backends only for connection-oriented protocols (TCP and SCTP) and only if the Tracking Mode is PER_CONNECTION (default tracking mode) or the Session Affinity is configured for 5-tuple. They do not persist for UDP.\n\nIf set to NEVER_PERSIST, after a backend becomes unhealthy, the existing connections on the unhealthy backend are never persisted on the unhealthy backend. They are always diverted to newly selected healthy backends (unless all backends are unhealthy).\n\nIf set to ALWAYS_PERSIST, existing connections always persist on unhealthy backends regardless of protocol and session affinity. It is generally not recommended to use this mode overriding the default.",
+          "enum": [
+            "ALWAYS_PERSIST",
+            "DEFAULT_FOR_PROTOCOL",
+            "NEVER_PERSIST"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -37038,11 +37129,12 @@
           "type": "string"
         },
         "instance": {
-          "$ref": "Instance"
+          "$ref": "Instance",
+          "description": "The instance defining the VM instances to be created."
         },
         "instanceProperties": {
           "$ref": "InstanceProperties",
-          "description": "The instance properties for the request. Required if sourceInstanceTemplate is not provided."
+          "description": "The instance properties defining the VM instances to be created. Required if sourceInstanceTemplate is not provided."
         },
         "locationPolicy": {
           "$ref": "LocationPolicy"
@@ -39103,7 +39195,7 @@
           "type": "string"
         },
         "zones": {
-          "description": "Zones where the regional managed instance group will create and manage instances.",
+          "description": "Zones where the regional managed instance group will create and manage its instances.",
           "items": {
             "$ref": "DistributionPolicyZoneConfiguration"
           },
@@ -40338,11 +40430,15 @@
         "networkTier": {
           "description": "This signifies the networking tier used for configuring this load balancer and can only take the following values: PREMIUM, STANDARD.\n\nFor regional ForwardingRule, the valid values are PREMIUM and STANDARD. For GlobalForwardingRule, the valid value is PREMIUM.\n\nIf this field is not specified, it is assumed to be PREMIUM. If IPAddress is specified, this value must be equal to the networkTier of the Address.",
           "enum": [
+            "FIXED_STANDARD",
             "PREMIUM",
             "SELECT",
-            "STANDARD"
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             ""
@@ -43999,7 +44095,7 @@
         },
         "distributionPolicy": {
           "$ref": "DistributionPolicy",
-          "description": "Policy specifying intended distribution of instances in regional managed instance group."
+          "description": "Policy specifying the intended distribution of managed instances across zones in a regional managed instance group."
         },
         "failoverAction": {
           "description": "The action to perform in case of zone failure. Only one value is supported, NO_FAILOVER. The default is NO_FAILOVER.",
@@ -44028,7 +44124,7 @@
           "type": "string"
         },
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "type": "string"
         },
         "kind": {
@@ -44112,7 +44208,7 @@
           "type": "array"
         },
         "zone": {
-          "description": "[Output Only] The URL of the zone where the managed instance group is located (for zonal resources).",
+          "description": "[Output Only] The URL of a zone where the managed instance group is located (for zonal resources).",
           "type": "string"
         }
       },
@@ -44589,7 +44685,7 @@
       "id": "InstanceGroupManagerVersion",
       "properties": {
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create new instances in the managed instance group until the `targetSize` for this version is reached. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE; in those cases, existing instances are updated until the `targetSize` for this version is reached.",
           "type": "string"
         },
         "name": {
@@ -45019,7 +45115,7 @@
       "id": "InstanceGroupManagersSetInstanceTemplateRequest",
       "properties": {
         "instanceTemplate": {
-          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group.",
+          "description": "The URL of the instance template that is specified for this managed instance group. The group uses this template to create all new instances in the managed instance group. The templates for existing instances in the group do not change unless you run recreateInstances, run applyUpdatesToInstances, or set the group's updatePolicy.type to PROACTIVE.",
           "type": "string"
         }
       },
@@ -50574,7 +50670,7 @@
           "type": "string"
         },
         "queueCount": {
-          "description": "The networking queue count for the network interface. Both Rx and Tx queues will be set to this number. If it's not specified by the user, a default number of queues will be assigned. For Virtio-net, each interface will get (min(#vCPU, 32) / #vNIC) queues. For gVNIC, each interface will get (min(#vCPU / 2, 16) / #vNIC) qeueus.",
+          "description": "The networking queue count that's specified by users for the network interface. Both Rx and Tx queues will be set to this number. It'll be empty if not specified by the users.",
           "format": "int32",
           "type": "integer"
         },
@@ -54300,11 +54396,15 @@
         "defaultNetworkTier": {
           "description": "This signifies the default network tier used for configuring resources of the project and can only take the following values: PREMIUM, STANDARD. Initially the default network tier is PREMIUM.",
           "enum": [
+            "FIXED_STANDARD",
             "PREMIUM",
             "SELECT",
-            "STANDARD"
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             ""
@@ -54428,11 +54528,15 @@
         "networkTier": {
           "description": "Default network tier to be set.",
           "enum": [
+            "FIXED_STANDARD",
             "PREMIUM",
             "SELECT",
-            "STANDARD"
+            "STANDARD",
+            "STANDARD_OVERRIDES_FIXED_STANDARD"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             ""
@@ -56764,6 +56868,10 @@
         "selfLinkWithId": {
           "description": "[Output Only] Server-defined URL for this resource with the resource id.",
           "type": "string"
+        },
+        "shareSettings": {
+          "$ref": "AllocationShareSettings",
+          "description": "Share-settings for shared-reservation"
         },
         "specificReservation": {
           "$ref": "AllocationSpecificSKUReservation",
@@ -61823,7 +61931,7 @@
       "type": "object"
     },
     "SslPolicy": {
-      "description": "Represents a Google Cloud Armor security policy resource.\n\nOnly external backend services used by HTTP or HTTPS load balancers can reference a security policy. For more information, see  Google Cloud Armor security policy overview. (== resource_for {$api_version}.sslPolicies ==)",
+      "description": "Represents an SSL Policy resource.\n\nUse SSL policies to control the SSL features, such as versions and cipher suites, offered by an HTTPS or SSL Proxy load balancer. For more information, read  SSL Policy Concepts. (== resource_for {$api_version}.sslPolicies ==)",
       "id": "SslPolicy",
       "properties": {
         "creationTimestamp": {
@@ -63533,6 +63641,11 @@
           "description": "An optional description of this resource. Provide this property when you create the resource.",
           "type": "string"
         },
+        "fingerprint": {
+          "description": "Fingerprint of this resource. A hash of the contents stored in this object. This field is used in optimistic locking. This field will be ignored when inserting a TargetHttpsProxy. An up-to-date fingerprint must be provided in order to patch the TargetHttpsProxy; otherwise, the request will fail with error 412 conditionNotMet. To see the latest fingerprint, make a get() request to retrieve the TargetHttpsProxy.",
+          "format": "byte",
+          "type": "string"
+        },
         "httpFilters": {
           "description": "URLs to networkservices.HttpFilter resources enabled for xDS clients using this configuration. For example, https://networkservices.googleapis.com/beta/projects/project/locations/locationhttpFilters/httpFilter Only filters that handle outbound connection and stream events may be specified. These filters work in conjunction with a default set of HTTP filters that may already be configured by Traffic Director. Traffic Director will determine the final location of these filters within xDS configuration based on the name of the HTTP filter. If Traffic Director positions multiple filters at the same location, those filters will be in the same order as specified in this list.\nhttpFilters only applies for loadbalancers with loadBalancingScheme set to INTERNAL_SELF_MANAGED. See ForwardingRule for more details.",
           "items": {
@@ -65033,6 +65146,10 @@
           "description": "Name of the resource. Provided by the client when the resource is created. The name must be 1-63 characters long, and comply with RFC1035. Specifically, the name must be 1-63 characters long and match the regular expression `[a-z]([-a-z0-9]*[a-z0-9])?` which means the first character must be a lowercase letter, and all following characters must be a dash, lowercase letter, or digit, except the last character, which cannot be a dash.",
           "pattern": "[a-z](?:[-a-z0-9]{0,61}[a-z0-9])?",
           "type": "string"
+        },
+        "proxyBind": {
+          "description": "This field only applies when the forwarding rule that references this target proxy has a loadBalancingScheme set to INTERNAL_SELF_MANAGED.\n\nWhen this field is set to true, Envoy proxies set up inbound traffic interception and bind to the IP address and port specified in the forwarding rule. This is generally useful when using Traffic Director to configure Envoy as a gateway or middle proxy (in other words, not a sidecar proxy). The Envoy proxy listens for inbound requests and handles requests when it receives them.\n\nThe default is false.",
+          "type": "boolean"
         },
         "proxyHeader": {
           "description": "Specifies the type of proxy header to append before sending data to the backend, either NONE or PROXY_V1. The default is NONE.",

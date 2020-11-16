@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudkms",
+  "name": "@googleapis/cloudkms",
   "version": "0.1.0",
   "description": "cloudkms",
   "main": "build/index.js",
