@@ -1,5 +1,5 @@
 {
-  "name": "@google/playcustomapp",
+  "name": "@googleapis/playcustomapp",
   "version": "0.1.0",
   "description": "playcustomapp",
   "main": "build/index.js",
