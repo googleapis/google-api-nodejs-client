@@ -1,5 +1,5 @@
 {
-  "name": "@google/androidenterprise",
+  "name": "@googleapis/androidenterprise",
   "version": "0.1.0",
   "description": "androidenterprise",
   "main": "build/index.js",
