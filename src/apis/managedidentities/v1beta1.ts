@@ -155,6 +155,53 @@ export namespace managedidentities_v1beta1 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Time window specified for daily operations.
+   */
+  export interface Schema$DailyCycle {
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the day to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
+   * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values * A month and day value, with a zero year, such as an anniversary * A year on its own, with zero month and day values * A year and month value, with a zero day, such as a credit card expiration date Related types are google.type.TimeOfDay and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$Date {
+    /**
+     * Day of a month. Must be from 1 to 31 and valid for the year and month, or 0 to specify a year by itself or a year and month where the day isn't significant.
+     */
+    day?: number | null;
+    /**
+     * Month of a year. Must be from 1 to 12, or 0 to specify a year without a month and day.
+     */
+    month?: number | null;
+    /**
+     * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
+     */
+    year?: number | null;
+  }
+  /**
+   * DenyMaintenancePeriod definition. Maintenance is forbidden within the deny period. The start_date must be less than the end_date.
+   */
+  export interface Schema$DenyMaintenancePeriod {
+    /**
+     * Deny period end date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be before the end.
+     */
+    endDate?: Schema$Date;
+    /**
+     * Deny period start date. This can be: * A full date, with non-zero year, month and day values. * A month and day value, with a zero year. Allows recurring deny periods each year. Date matching this period will have to be the same or after the start.
+     */
+    startDate?: Schema$Date;
+    /**
+     * Time in UTC when the Blackout period starts on start_date and ends on end_date. This can be: * Full time. * All zeros for 00:00:00 UTC
+     */
+    time?: Schema$TimeOfDay;
+  }
+  /**
    * Request message for DetachTrust
    */
   export interface Schema$DetachTrustRequest {
@@ -342,7 +389,7 @@ export namespace managedidentities_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
+     * Deprecated. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the referenced policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug.
      */
     maintenancePolicyNames?: {[key: string]: string} | null;
     /**
@@ -423,6 +470,10 @@ export namespace managedidentities_v1beta1 {
      * Optional. Exclude instance from maintenance. When true, rollout service will not attempt maintenance on the instance. Rollout service will include the instance in reported rollout progress as not attempted.
      */
     exclude?: boolean | null;
+    /**
+     * Optional. The MaintenancePolicies that have been attached to the instance. The key must be of the type name of the oneof policy name defined in MaintenancePolicy, and the embedded policy must define the same policy type. For complete details of MaintenancePolicy, please refer to go/cloud-saas-mw-ug. If only the name is needed (like in the deprecated Instance.maintenance_policy_names field) then only populate MaintenancePolicy.name.
+     */
+    maintenancePolicies?: {[key: string]: Schema$MaintenancePolicy} | null;
   }
   /**
    * Node information for custom per-node SLO implementations. SSA does not support per-node SLO, but producers can populate per-node information in SloMetadata for custom precomputations. SSA Eligibility Exporter will emit per-node metric based on this information.
@@ -595,6 +646,52 @@ export namespace managedidentities_v1beta1 {
     name?: string | null;
   }
   /**
+   * Defines policies to service maintenance events.
+   */
+  export interface Schema$MaintenancePolicy {
+    /**
+     * Output only. The time when the resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of what this policy is for. Create/Update methods return INVALID_ARGUMENT if the length is greater than 512.
+     */
+    description?: string | null;
+    /**
+     * Optional. Resource labels to represent user provided metadata. Each label is a key-value pair, where both the key and the value are arbitrary strings provided by the user.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. MaintenancePolicy name using the form: `projects/{project_id\}/locations/{location_id\}/maintenancePolicies/{maintenance_policy_id\}` where {project_id\} refers to a GCP consumer project ID, {location_id\} refers to a GCP region/zone, {maintenance_policy_id\} must be 1-63 characters long and match the regular expression `[a-z0-9]([-a-z0-9]*[a-z0-9])?`.
+     */
+    name?: string | null;
+    /**
+     * Optional. The state of the policy.
+     */
+    state?: string | null;
+    /**
+     * Maintenance policy applicable to instance update.
+     */
+    updatePolicy?: Schema$UpdatePolicy;
+    /**
+     * Output only. The time when the resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * MaintenanceWindow definition.
+   */
+  export interface Schema$MaintenanceWindow {
+    /**
+     * Daily cycle.
+     */
+    dailyCycle?: Schema$DailyCycle;
+    /**
+     * Weekly cycle.
+     */
+    weeklyCycle?: Schema$WeeklyCycle;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -696,6 +793,23 @@ export namespace managedidentities_v1beta1 {
     password?: string | null;
   }
   /**
+   * Configure the schedule.
+   */
+  export interface Schema$Schedule {
+    /**
+     * Allows to define schedule that runs specified day of the week.
+     */
+    day?: string | null;
+    /**
+     * Output only. Duration of the time window, set by service producer.
+     */
+    duration?: string | null;
+    /**
+     * Time within the window to start the operations.
+     */
+    startTime?: Schema$TimeOfDay;
+  }
+  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -765,6 +879,27 @@ export namespace managedidentities_v1beta1 {
     permissions?: string[] | null;
   }
   /**
+   * Represents a time of day. The date and time zone are either not significant or are specified elsewhere. An API may choose to allow leap seconds. Related types are google.type.Date and `google.protobuf.Timestamp`.
+   */
+  export interface Schema$TimeOfDay {
+    /**
+     * Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value "24:00:00" for scenarios like business closing time.
+     */
+    hours?: number | null;
+    /**
+     * Minutes of hour of day. Must be from 0 to 59.
+     */
+    minutes?: number | null;
+    /**
+     * Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.
+     */
+    nanos?: number | null;
+    /**
+     * Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.
+     */
+    seconds?: number | null;
+  }
+  /**
    * Represents a relationship between two domains. This allows a controller in one domain to authenticate a user in another domain.
    */
   export interface Schema$Trust {
@@ -814,6 +949,23 @@ export namespace managedidentities_v1beta1 {
     updateTime?: string | null;
   }
   /**
+   * Maintenance policy applicable to instance updates.
+   */
+  export interface Schema$UpdatePolicy {
+    /**
+     * Optional. Relative scheduling channel applied to resource.
+     */
+    channel?: string | null;
+    /**
+     * Deny Maintenance Period that is applied to resource to indicate when maintenance is forbidden. User can specify zero or more non-overlapping deny periods. For V1, Maximum number of deny_maintenance_periods is expected to be one.
+     */
+    denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Optional. Maintenance window that is applied to resources covered by this policy.
+     */
+    window?: Schema$MaintenanceWindow;
+  }
+  /**
    * Request message for ValidateTrust
    */
   export interface Schema$ValidateTrustRequest {
@@ -821,6 +973,15 @@ export namespace managedidentities_v1beta1 {
      * Required. The domain trust to validate trust state for.
      */
     trust?: Schema$Trust;
+  }
+  /**
+   * Time window specified for weekly operations.
+   */
+  export interface Schema$WeeklyCycle {
+    /**
+     * User can specify multiple windows in a week. Minimum of 1 window.
+     */
+    schedule?: Schema$Schedule[];
   }
 
   export class Resource$Projects {
