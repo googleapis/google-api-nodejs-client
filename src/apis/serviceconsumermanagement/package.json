@@ -1,5 +1,5 @@
 {
-  "name": "@google/serviceconsumermanagement",
+  "name": "@googleapis/serviceconsumermanagement",
   "version": "0.1.0",
   "description": "serviceconsumermanagement",
   "main": "build/index.js",

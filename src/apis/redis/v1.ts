@@ -302,6 +302,10 @@ export namespace redis_v1 {
      */
     reservedIpRange?: string | null;
     /**
+     * Output only. List of server CA certificates for the instance.
+     */
+    serverCaCerts?: Schema$TlsCertificate[];
+    /**
      * Output only. The current state of this instance.
      */
     state?: string | null;
@@ -313,6 +317,10 @@ export namespace redis_v1 {
      * Required. The service tier of the instance.
      */
     tier?: string | null;
+    /**
+     * Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.
+     */
+    transitEncryptionMode?: string | null;
   }
   /**
    * Instance AUTH string details.
@@ -441,6 +449,31 @@ export namespace redis_v1 {
      * A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.
      */
     message?: string | null;
+  }
+  /**
+   * TlsCertificate Resource
+   */
+  export interface Schema$TlsCertificate {
+    /**
+     * PEM representation.
+     */
+    cert?: string | null;
+    /**
+     * Output only. The time when the certificate was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2020-05-18T00:00:00.094Z`.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The time when the certificate expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2020-05-18T00:00:00.094Z`.
+     */
+    expireTime?: string | null;
+    /**
+     * Serial number, as extracted from the certificate.
+     */
+    serialNumber?: string | null;
+    /**
+     * Sha1 Fingerprint of the certificate.
+     */
+    sha1Fingerprint?: string | null;
   }
   /**
    * Request for UpgradeInstance.
@@ -831,9 +864,11 @@ export namespace redis_v1 {
      *       //   "redisConfigs": {},
      *       //   "redisVersion": "my_redisVersion",
      *       //   "reservedIpRange": "my_reservedIpRange",
+     *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
-     *       //   "tier": "my_tier"
+     *       //   "tier": "my_tier",
+     *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }
      *     },
      *   });
@@ -1400,9 +1435,11 @@ export namespace redis_v1 {
      *   //   "redisConfigs": {},
      *   //   "redisVersion": "my_redisVersion",
      *   //   "reservedIpRange": "my_reservedIpRange",
+     *   //   "serverCaCerts": [],
      *   //   "state": "my_state",
      *   //   "statusMessage": "my_statusMessage",
-     *   //   "tier": "my_tier"
+     *   //   "tier": "my_tier",
+     *   //   "transitEncryptionMode": "my_transitEncryptionMode"
      *   // }
      * }
      *
@@ -1959,9 +1996,11 @@ export namespace redis_v1 {
      *       //   "redisConfigs": {},
      *       //   "redisVersion": "my_redisVersion",
      *       //   "reservedIpRange": "my_reservedIpRange",
+     *       //   "serverCaCerts": [],
      *       //   "state": "my_state",
      *       //   "statusMessage": "my_statusMessage",
-     *       //   "tier": "my_tier"
+     *       //   "tier": "my_tier",
+     *       //   "transitEncryptionMode": "my_transitEncryptionMode"
      *       // }
      *     },
      *   });

@@ -1,5 +1,5 @@
 {
-  "name": "@google/vault",
+  "name": "@googleapis/vault",
   "version": "0.1.0",
   "description": "vault",
   "main": "build/index.js",

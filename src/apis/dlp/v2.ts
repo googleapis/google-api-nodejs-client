@@ -1224,6 +1224,10 @@ export namespace dlp_v2 {
      */
     createTime?: string | null;
     /**
+     * The unique finding id.
+     */
+    findingId?: string | null;
+    /**
      * The type of content that might have been found. Provided if `excluded_types` is false.
      */
     infoType?: Schema$GooglePrivacyDlpV2InfoType;

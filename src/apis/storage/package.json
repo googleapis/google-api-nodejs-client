@@ -1,5 +1,5 @@
 {
-  "name": "@google/storage",
+  "name": "@googleapis/storage",
   "version": "0.1.0",
   "description": "storage",
   "main": "build/index.js",

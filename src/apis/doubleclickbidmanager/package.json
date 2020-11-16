@@ -1,5 +1,5 @@
 {
-  "name": "@google/doubleclickbidmanager",
+  "name": "@googleapis/doubleclickbidmanager",
   "version": "0.1.0",
   "description": "doubleclickbidmanager",
   "main": "build/index.js",

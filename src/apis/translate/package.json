@@ -1,5 +1,5 @@
 {
-  "name": "@google/translate",
+  "name": "@googleapis/translate",
   "version": "0.1.0",
   "description": "translate",
   "main": "build/index.js",

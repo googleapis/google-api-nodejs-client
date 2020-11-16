@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudidentity",
+  "name": "@googleapis/cloudidentity",
   "version": "0.1.0",
   "description": "cloudidentity",
   "main": "build/index.js",

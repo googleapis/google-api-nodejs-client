@@ -3595,6 +3595,181 @@
         }
       }
     },
+    "regions": {
+      "methods": {
+        "create": {
+          "description": "Creates a region definition in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions",
+          "httpMethod": "POST",
+          "id": "content.regions.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to create region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to create.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions",
+          "request": {
+            "$ref": "Region"
+          },
+          "response": {
+            "$ref": "Region"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a region definition from your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "DELETE",
+          "id": "content.regions.delete",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to delete region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to delete.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "get": {
+          "description": "Retrieves a region defined in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "GET",
+          "id": "content.regions.get",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to retrieve region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to retrieve.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "response": {
+            "$ref": "Region"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "list": {
+          "description": "Lists the regions in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions",
+          "httpMethod": "GET",
+          "id": "content.regions.list",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to list region definitions.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions",
+          "response": {
+            "$ref": "ListRegionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "patch": {
+          "description": "Updates a region definition in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "PATCH",
+          "id": "content.regions.patch",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to update region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to update.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The field mask indicating the fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "request": {
+            "$ref": "Region"
+          },
+          "response": {
+            "$ref": "Region"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "repricingrules": {
       "methods": {
         "create": {
@@ -4400,7 +4575,7 @@
       }
     }
   },
-  "revision": "20201104",
+  "revision": "20201113",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -6715,6 +6890,24 @@
       },
       "type": "object"
     },
+    "ListRegionsResponse": {
+      "description": "Response message for the `ListRegions` method.",
+      "id": "ListRegionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "regions": {
+          "description": "The regions from the specified merchant.",
+          "items": {
+            "$ref": "Region"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListRepricingRulesResponse": {
       "description": "Response message for the `ListRepricingRules` method.",
       "id": "ListRepricingRulesResponse",
@@ -7216,7 +7409,7 @@
           "type": "integer"
         },
         "reason": {
-          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" ",
+          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" ",
           "type": "string"
         },
         "reasonText": {
@@ -7234,7 +7427,7 @@
           "type": "string"
         },
         "invoiceReceivingEmail": {
-          "description": "Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Shopping Actions.",
+          "description": "Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Buy on Google.",
           "type": "string"
         },
         "loyaltyInfo": {
@@ -9823,7 +10016,7 @@
           "description": "Cost of goods sold. Used for gross profit reporting."
         },
         "customAttributes": {
-          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.",
+          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).",
           "items": {
             "$ref": "CustomAttribute"
           },
@@ -10724,6 +10917,94 @@
         },
         "reasonCode": {
           "description": "Code of the refund reason. Acceptable values are: - \"`adjustment`\" - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`courtesyAdjustment`\" - \"`customerCanceled`\" - \"`customerDiscretionaryReturn`\" - \"`customerInitiatedMerchantCancel`\" - \"`customerSupportRequested`\" - \"`deliveredLateByCarrier`\" - \"`deliveredTooLate`\" - \"`expiredItem`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`feeAdjustment`\" - \"`invalidCoupon`\" - \"`lateShipmentCredit`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceAdjustment`\" - \"`priceError`\" - \"`productArrivedDamaged`\" - \"`productNotAsDescribed`\" - \"`promoReallocation`\" - \"`qualityNotAsExpected`\" - \"`returnRefundAbuse`\" - \"`shippingCostAdjustment`\" - \"`shippingPriceError`\" - \"`taxAdjustment`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" - \"`wrongProductShipped`\" ",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Region": {
+      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes or, in some countries, using predefined geotargets.",
+      "id": "Region",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the region.",
+          "type": "string"
+        },
+        "geotargetArea": {
+          "$ref": "RegionGeoTargetArea",
+          "description": "A list of geotargets that defines the region area."
+        },
+        "merchantId": {
+          "description": "Output only. Immutable. Merchant that owns the region.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "postalCodeArea": {
+          "$ref": "RegionPostalCodeArea",
+          "description": "A list of postal codes that defines the region area."
+        },
+        "regionId": {
+          "description": "Output only. Immutable. The ID uniquely identifying each region.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regionalInventoryEligible": {
+          "description": "Output only. Indicates if the region is eligible to use in the Regional Inventory configuration.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "shippingEligible": {
+          "description": "Output only. Indicates if the region is eligible to use in the Shipping Services configuration.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RegionGeoTargetArea": {
+      "description": "A list of geotargets that defines the region area.",
+      "id": "RegionGeoTargetArea",
+      "properties": {
+        "geotargetCriteriaIds": {
+          "description": "Required. A non-empty list of [location IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting). They must all be of the same location type (e.g., state).",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegionPostalCodeArea": {
+      "description": "A list of postal codes that defines the region area. Note: All regions defined using postal codes are accessible via the account's `ShippingSettings.postalCodeGroups` resource.",
+      "id": "RegionPostalCodeArea",
+      "properties": {
+        "postalCodes": {
+          "description": "Required. A range of postal codes.",
+          "items": {
+            "$ref": "RegionPostalCodeAreaPostalCodeRange"
+          },
+          "type": "array"
+        },
+        "regionCode": {
+          "description": "Required. CLDR territory code or the country the postal code group applies to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionPostalCodeAreaPostalCodeRange": {
+      "description": "A range of postal codes that defines the region area.",
+      "id": "RegionPostalCodeAreaPostalCodeRange",
+      "properties": {
+        "begin": {
+          "description": "Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: \"94108\", \"9410*\", \"9*\".",
+          "type": "string"
+        },
+        "end": {
+          "description": "Optional. A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.",
           "type": "string"
         }
       },

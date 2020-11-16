@@ -1015,7 +1015,11 @@
                   },
                   "response": {
                     "$ref": "ResourceRecordSet"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+                  ]
                 },
                 "delete": {
                   "description": "Delete a previously created ResourceRecordSet.",
@@ -1062,7 +1066,11 @@
                   "path": "dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}",
                   "response": {
                     "$ref": "ResourceRecordSetsDeleteResponse"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+                  ]
                 },
                 "get": {
                   "description": "Fetch the representation of an existing ResourceRecordSet.",
@@ -1109,7 +1117,13 @@
                   "path": "dns/v1beta2/projects/{project}/managedZones/{managedZone}/rrsets/{name}/{type}",
                   "response": {
                     "$ref": "ResourceRecordSet"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/cloud-platform.read-only",
+                    "https://www.googleapis.com/auth/ndev.clouddns.readonly",
+                    "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+                  ]
                 },
                 "patch": {
                   "description": "Apply a partial update to an existing ResourceRecordSet.",
@@ -1159,7 +1173,11 @@
                   },
                   "response": {
                     "$ref": "ResourceRecordSet"
-                  }
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/ndev.clouddns.readwrite"
+                  ]
                 }
               }
             }
@@ -1227,7 +1245,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201110",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {

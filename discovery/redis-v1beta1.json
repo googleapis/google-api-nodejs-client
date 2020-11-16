@@ -596,7 +596,7 @@
       }
     }
   },
-  "revision": "20200928",
+  "revision": "20201110",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -835,6 +835,14 @@
           "description": "Optional. The CIDR range of internal addresses that are reserved for this instance. If not provided, the service will choose an unused /29 block, for example, 10.0.0.0/29 or 192.168.0.0/29. Ranges must be unique and non-overlapping with existing subnets in an authorized network.",
           "type": "string"
         },
+        "serverCaCerts": {
+          "description": "Output only. List of server CA certificates for the instance.",
+          "items": {
+            "$ref": "TlsCertificate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "state": {
           "description": "Output only. The current state of this instance.",
           "enum": [
@@ -878,6 +886,20 @@
             "Not set.",
             "BASIC tier: standalone instance",
             "STANDARD_HA tier: highly available primary/replica instances"
+          ],
+          "type": "string"
+        },
+        "transitEncryptionMode": {
+          "description": "Optional. The In-transit encryption mode of Redis instance. If not provided, in-transit encryption is disabled for instance.",
+          "enum": [
+            "TRANSIT_ENCRYPTION_MODE_UNSPECIFIED",
+            "SERVER_AUTHENTICATION",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "Not set.",
+            "In-transit encryption enabled with server authentication",
+            "In-transit encryption is disabled for instance."
           ],
           "type": "string"
         }
@@ -1058,6 +1080,37 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TlsCertificate": {
+      "description": "TlsCertificate Resource",
+      "id": "TlsCertificate",
+      "properties": {
+        "cert": {
+          "description": "PEM representation.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time when the certificate was created in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2020-05-18T00:00:00.094Z`.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expireTime": {
+          "description": "Output only. The time when the certificate expires in [RFC 3339](https://tools.ietf.org/html/rfc3339) format, for example `2020-05-18T00:00:00.094Z`.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "serialNumber": {
+          "description": "Serial number, as extracted from the certificate.",
+          "type": "string"
+        },
+        "sha1Fingerprint": {
+          "description": "Sha1 Fingerprint of the certificate.",
           "type": "string"
         }
       },

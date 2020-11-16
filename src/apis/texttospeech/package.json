@@ -1,5 +1,5 @@
 {
-  "name": "@google/texttospeech",
+  "name": "@googleapis/texttospeech",
   "version": "0.1.0",
   "description": "texttospeech",
   "main": "build/index.js",

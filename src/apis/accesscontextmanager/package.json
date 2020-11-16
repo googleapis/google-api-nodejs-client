@@ -1,5 +1,5 @@
 {
-  "name": "@google/accesscontextmanager",
+  "name": "@googleapis/accesscontextmanager",
   "version": "0.1.0",
   "description": "accesscontextmanager",
   "main": "build/index.js",

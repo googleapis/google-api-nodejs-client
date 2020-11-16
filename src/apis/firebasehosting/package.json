@@ -1,5 +1,5 @@
 {
-  "name": "@google/firebasehosting",
+  "name": "@googleapis/firebasehosting",
   "version": "0.1.0",
   "description": "firebasehosting",
   "main": "build/index.js",

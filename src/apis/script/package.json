@@ -1,5 +1,5 @@
 {
-  "name": "@google/script",
+  "name": "@googleapis/script",
   "version": "0.1.0",
   "description": "script",
   "main": "build/index.js",

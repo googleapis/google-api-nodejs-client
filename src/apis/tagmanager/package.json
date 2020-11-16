@@ -1,5 +1,5 @@
 {
-  "name": "@google/tagmanager",
+  "name": "@googleapis/tagmanager",
   "version": "0.1.0",
   "description": "tagmanager",
   "main": "build/index.js",

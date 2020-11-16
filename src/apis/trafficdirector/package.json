@@ -1,5 +1,5 @@
 {
-  "name": "@google/trafficdirector",
+  "name": "@googleapis/trafficdirector",
   "version": "0.1.0",
   "description": "trafficdirector",
   "main": "build/index.js",

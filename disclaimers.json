@@ -1,5 +1,9 @@
 [
   {
+    "api": "aiplatform",
+    "package": "@google-cloud/aiplatform"
+  },
+  {
     "api": "notebooks",
     "package": "@google-cloud/notebooks"
   },

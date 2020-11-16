@@ -1,5 +1,5 @@
 {
-  "name": "@google/dataproc",
+  "name": "@googleapis/dataproc",
   "version": "0.1.0",
   "description": "dataproc",
   "main": "build/index.js",
