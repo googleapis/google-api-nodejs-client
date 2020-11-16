@@ -1,5 +1,5 @@
 {
-  "name": "@google/clouddebugger",
+  "name": "@googleapis/clouddebugger",
   "version": "0.1.0",
   "description": "clouddebugger",
   "main": "build/index.js",
