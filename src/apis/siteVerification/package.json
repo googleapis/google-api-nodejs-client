@@ -1,5 +1,5 @@
 {
-  "name": "@google/siteVerification",
+  "name": "@googleapis/siteVerification",
   "version": "0.1.0",
   "description": "siteVerification",
   "main": "build/index.js",
