@@ -1,5 +1,5 @@
 {
-  "name": "@google/securitycenter",
+  "name": "@googleapis/securitycenter",
   "version": "0.1.0",
   "description": "securitycenter",
   "main": "build/index.js",
