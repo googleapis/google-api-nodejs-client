@@ -1,5 +1,5 @@
 {
-  "name": "@google/verifiedaccess",
+  "name": "@googleapis/verifiedaccess",
   "version": "0.1.0",
   "description": "verifiedaccess",
   "main": "build/index.js",
