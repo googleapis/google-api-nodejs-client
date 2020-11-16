@@ -1,5 +1,5 @@
 {
-  "name": "@google/clouderrorreporting",
+  "name": "@googleapis/clouderrorreporting",
   "version": "0.1.0",
   "description": "clouderrorreporting",
   "main": "build/index.js",
