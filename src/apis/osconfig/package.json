@@ -1,5 +1,5 @@
 {
-  "name": "@google/osconfig",
+  "name": "@googleapis/osconfig",
   "version": "0.1.0",
   "description": "osconfig",
   "main": "build/index.js",
