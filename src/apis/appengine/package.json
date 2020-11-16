@@ -1,5 +1,5 @@
 {
-  "name": "@google/appengine",
+  "name": "@googleapis/appengine",
   "version": "0.1.0",
   "description": "appengine",
   "main": "build/index.js",
