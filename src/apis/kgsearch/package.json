@@ -1,5 +1,5 @@
 {
-  "name": "@google/kgsearch",
+  "name": "@googleapis/kgsearch",
   "version": "0.1.0",
   "description": "kgsearch",
   "main": "build/index.js",
