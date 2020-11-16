@@ -155,7 +155,6 @@ export namespace cloudresourcemanager_v2 {
    * Associates `members` with a `role`.
    */
   export interface Schema$Binding {
-    bindingId?: string | null;
     /**
      * The condition that is associated with this binding. If the condition evaluates to `true`, then this binding applies to the current request. If the condition evaluates to `false`, then this binding does not apply to the current request. However, a different role binding might grant the same role to one or more of the members in this binding. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
@@ -211,6 +210,64 @@ export namespace cloudresourcemanager_v2 {
      */
     sourceParent?: string | null;
   }
+  /**
+   * Metadata pertaining to the Folder creation process.
+   */
+  export interface Schema$CreateFolderMetadata {
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the folder or organization we are creating the folder under.
+     */
+    parent?: string | null;
+  }
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by CreateProject. It provides insight for when significant phases of Project creation have completed.
+   */
+  export interface Schema$CreateProjectMetadata {
+    /**
+     * Creation time of the project creation workflow.
+     */
+    createTime?: string | null;
+    /**
+     * True if the project can be retrieved using GetProject. No other operations on the project are guaranteed to work until the project creation is complete.
+     */
+    gettable?: boolean | null;
+    /**
+     * True if the project creation process is complete.
+     */
+    ready?: boolean | null;
+  }
+  /**
+   * Runtime operation information for creating a TagKey.
+   */
+  export interface Schema$CreateTagKeyMetadata {}
+  /**
+   * Runtime operation information for creating a TagValue.
+   */
+  export interface Schema$CreateTagValueMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteFolder.
+   */
+  export interface Schema$DeleteFolderMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteOrganization.
+   */
+  export interface Schema$DeleteOrganizationMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by DeleteProject.
+   */
+  export interface Schema$DeleteProjectMetadata {}
+  /**
+   * Runtime operation information for deleting a TagKey.
+   */
+  export interface Schema$DeleteTagKeyMetadata {}
+  /**
+   * Runtime operation information for deleting a TagValue.
+   */
+  export interface Schema$DeleteTagValueMetadata {}
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
@@ -319,6 +376,23 @@ export namespace cloudresourcemanager_v2 {
     nextPageToken?: string | null;
   }
   /**
+   * Metadata pertaining to the Folder move process.
+   */
+  export interface Schema$MoveFolderMetadata {
+    /**
+     * The resource name of the folder or organization to move the folder to.
+     */
+    destinationParent?: string | null;
+    /**
+     * The display name of the folder.
+     */
+    displayName?: string | null;
+    /**
+     * The resource name of the folder's parent.
+     */
+    sourceParent?: string | null;
+  }
+  /**
    * The MoveFolder request message.
    */
   export interface Schema$MoveFolderRequest {
@@ -327,6 +401,10 @@ export namespace cloudresourcemanager_v2 {
      */
     destinationParent?: string | null;
   }
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by MoveProject.
+   */
+  export interface Schema$MoveProjectMetadata {}
   /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
@@ -469,9 +547,45 @@ export namespace cloudresourcemanager_v2 {
     permissions?: string[] | null;
   }
   /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteFolder.
+   */
+  export interface Schema$UndeleteFolderMetadata {}
+  /**
    * The UndeleteFolder request message.
    */
   export interface Schema$UndeleteFolderRequest {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteOrganization.
+   */
+  export interface Schema$UndeleteOrganizationMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UndeleteProject.
+   */
+  export interface Schema$UndeleteProjectMetadata {}
+  /**
+   * Runtime operation information for undeleting a TagKey.
+   */
+  export interface Schema$UndeleteTagKeyMetadata {}
+  /**
+   * Runtime operation information for deleting a TagValue.
+   */
+  export interface Schema$UndeleteTagValueMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateFolder.
+   */
+  export interface Schema$UpdateFolderMetadata {}
+  /**
+   * A status object which is used as the `metadata` field for the Operation returned by UpdateProject.
+   */
+  export interface Schema$UpdateProjectMetadata {}
+  /**
+   * Runtime operation information for updating a TagKey.
+   */
+  export interface Schema$UpdateTagKeyMetadata {}
+  /**
+   * Runtime operation information for updating a TagValue.
+   */
+  export interface Schema$UpdateTagValueMetadata {}
 
   export class Resource$Folders {
     context: APIRequestContext;
@@ -1306,7 +1420,7 @@ export namespace cloudresourcemanager_v2 {
     }
 
     /**
-     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be no longer than 30 characters. This is captured by the regular expression: `[\p{L\}\p{N\}]([\p{L\}\p{N\}_- ]{0,28\}[\p{L\}\p{N\}])?`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
+     * Updates a Folder, changing its display_name. Changes to the folder display_name will be rejected if they violate either the display_name formatting rules or naming constraints described in the CreateFolder documentation. The Folder's display name must start and end with a letter or digit, may contain letters, digits, spaces, hyphens and underscores and can be between 3 and 30 characters. This is captured by the regular expression: `\p{L\}\p{N\}{1,28\}[\p{L\}\p{N\}]`. The caller must have `resourcemanager.folders.update` permission on the identified folder. If the update fails due to the unique name constraint then a PreconditionFailure explaining this violation will be returned in the Status.details field.
      * @example
      * ```js
      * // Before running the sample:
