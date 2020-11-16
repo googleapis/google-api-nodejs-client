@@ -1,5 +1,5 @@
 {
-  "name": "@google/youtubereporting",
+  "name": "@googleapis/youtubereporting",
   "version": "0.1.0",
   "description": "youtubereporting",
   "main": "build/index.js",
