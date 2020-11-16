@@ -1,5 +1,5 @@
 {
-  "name": "@google/digitalassetlinks",
+  "name": "@googleapis/digitalassetlinks",
   "version": "0.1.0",
   "description": "digitalassetlinks",
   "main": "build/index.js",
