@@ -1,5 +1,5 @@
 {
-  "name": "@google/bigqueryconnection",
+  "name": "@googleapis/bigqueryconnection",
   "version": "0.1.0",
   "description": "bigqueryconnection",
   "main": "build/index.js",
