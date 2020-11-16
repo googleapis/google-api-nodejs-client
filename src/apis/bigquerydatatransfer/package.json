@@ -1,5 +1,5 @@
 {
-  "name": "@google/bigquerydatatransfer",
+  "name": "@googleapis/bigquerydatatransfer",
   "version": "0.1.0",
   "description": "bigquerydatatransfer",
   "main": "build/index.js",
