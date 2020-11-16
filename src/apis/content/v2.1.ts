@@ -129,6 +129,7 @@ export namespace content_v2_1 {
     productstatuses: Resource$Productstatuses;
     pubsubnotificationsettings: Resource$Pubsubnotificationsettings;
     regionalinventory: Resource$Regionalinventory;
+    regions: Resource$Regions;
     repricingrules: Resource$Repricingrules;
     returnaddress: Resource$Returnaddress;
     returnpolicy: Resource$Returnpolicy;
@@ -164,6 +165,7 @@ export namespace content_v2_1 {
         this.context
       );
       this.regionalinventory = new Resource$Regionalinventory(this.context);
+      this.regions = new Resource$Regions(this.context);
       this.repricingrules = new Resource$Repricingrules(this.context);
       this.returnaddress = new Resource$Returnaddress(this.context);
       this.returnpolicy = new Resource$Returnpolicy(this.context);
@@ -1869,6 +1871,19 @@ export namespace content_v2_1 {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for the `ListRegions` method.
+   */
+  export interface Schema$ListRegionsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The regions from the specified merchant.
+     */
+    regions?: Schema$Region[];
+  }
+  /**
    * Response message for the `ListRepricingRules` method.
    */
   export interface Schema$ListRepricingRulesResponse {
@@ -2257,7 +2272,7 @@ export namespace content_v2_1 {
      */
     quantity?: number | null;
     /**
-     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`customerCanceled`" - "`customerInitiatedCancel`" - "`customerSupportRequested`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceError`" - "`returnRefundAbuse`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`"
+     * The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - "`autoPostInternal`" - "`autoPostInvalidBillingAddress`" - "`autoPostNoInventory`" - "`autoPostPriceError`" - "`autoPostUndeliverableShippingAddress`" - "`couponAbuse`" - "`customerCanceled`" - "`customerInitiatedCancel`" - "`customerSupportRequested`" - "`failToPushOrderGoogleError`" - "`failToPushOrderMerchantError`" - "`failToPushOrderMerchantFulfillmentError`" - "`failToPushOrderToMerchant`" - "`failToPushOrderToMerchantOutOfStock`" - "`invalidCoupon`" - "`malformedShippingAddress`" - "`merchantDidNotShipOnTime`" - "`noInventory`" - "`orderTimeout`" - "`other`" - "`paymentAbuse`" - "`paymentDeclined`" - "`priceError`" - "`returnRefundAbuse`" - "`shippingPriceError`" - "`taxError`" - "`undeliverableShippingAddress`" - "`unsupportedPoBoxAddress`"
      */
     reason?: string | null;
     /**
@@ -2271,7 +2286,7 @@ export namespace content_v2_1 {
      */
     fullName?: string | null;
     /**
-     * Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Shopping Actions.
+     * Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Buy on Google.
      */
     invoiceReceivingEmail?: string | null;
     /**
@@ -4287,7 +4302,7 @@ export namespace content_v2_1 {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.
+     * A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
@@ -4991,6 +5006,39 @@ export namespace content_v2_1 {
     reasonCode?: string | null;
   }
   /**
+   * Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes or, in some countries, using predefined geotargets.
+   */
+  export interface Schema$Region {
+    /**
+     * The display name of the region.
+     */
+    displayName?: string | null;
+    /**
+     * A list of geotargets that defines the region area.
+     */
+    geotargetArea?: Schema$RegionGeoTargetArea;
+    /**
+     * Output only. Immutable. Merchant that owns the region.
+     */
+    merchantId?: string | null;
+    /**
+     * A list of postal codes that defines the region area.
+     */
+    postalCodeArea?: Schema$RegionPostalCodeArea;
+    /**
+     * Output only. Indicates if the region is eligible to use in the Regional Inventory configuration.
+     */
+    regionalInventoryEligible?: boolean | null;
+    /**
+     * Output only. Immutable. The ID uniquely identifying each region.
+     */
+    regionId?: string | null;
+    /**
+     * Output only. Indicates if the region is eligible to use in the Shipping Services configuration.
+     */
+    shippingEligible?: boolean | null;
+  }
+  /**
    * Regional inventory resource. contains the regional name and all attributes which are overridden for the specified region.
    */
   export interface Schema$RegionalInventory {
@@ -5084,6 +5132,41 @@ export namespace content_v2_1 {
      * Price and availability of the product.
      */
     regionalInventory?: Schema$RegionalInventory;
+  }
+  /**
+   * A list of geotargets that defines the region area.
+   */
+  export interface Schema$RegionGeoTargetArea {
+    /**
+     * Required. A non-empty list of [location IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting). They must all be of the same location type (e.g., state).
+     */
+    geotargetCriteriaIds?: string[] | null;
+  }
+  /**
+   * A list of postal codes that defines the region area. Note: All regions defined using postal codes are accessible via the account's `ShippingSettings.postalCodeGroups` resource.
+   */
+  export interface Schema$RegionPostalCodeArea {
+    /**
+     * Required. A range of postal codes.
+     */
+    postalCodes?: Schema$RegionPostalCodeAreaPostalCodeRange[];
+    /**
+     * Required. CLDR territory code or the country the postal code group applies to.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * A range of postal codes that defines the region area.
+   */
+  export interface Schema$RegionPostalCodeAreaPostalCodeRange {
+    /**
+     * Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: "94108", "9410*", "9*".
+     */
+    begin?: string | null;
+    /**
+     * Optional. A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.
+     */
+    end?: string | null;
   }
   /**
    * Represents a repricing rule. A repricing rule is used by shopping serving to adjust transactable offer prices if conditions are met. Next ID: 24
@@ -22142,6 +22225,781 @@ export namespace content_v2_1 {
      * Request body metadata
      */
     requestBody?: Schema$RegionalInventory;
+  }
+
+  export class Resource$Regions {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a region definition in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.create({
+     *     // Required. The id of the merchant for which to create region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to create.
+     *     regionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "merchantId": "my_merchantId",
+     *       //   "postalCodeArea": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Regions$Create,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    create(
+      params?: Params$Resource$Regions$Create,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Region>;
+    create(
+      params: Params$Resource$Regions$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Regions$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Region>,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    create(
+      params: Params$Resource$Regions$Create,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Region>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Regions$Create
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Region>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Region>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a region definition from your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.delete({
+     *     // Required. The id of the merchant for which to delete region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to delete.
+     *     regionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Regions$Delete,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    delete(
+      params?: Params$Resource$Regions$Delete,
+      options?: MethodOptions
+    ): GaxiosPromise<void>;
+    delete(
+      params: Params$Resource$Regions$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Regions$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Regions$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Regions$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionId'],
+        pathParams: ['merchantId', 'regionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Retrieves a region defined in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.get({
+     *     // Required. The id of the merchant for which to retrieve region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to retrieve.
+     *     regionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Regions$Get,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    get(
+      params?: Params$Resource$Regions$Get,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Region>;
+    get(
+      params: Params$Resource$Regions$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Regions$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Region>,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    get(
+      params: Params$Resource$Regions$Get,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Region>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Regions$Get
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionId'],
+        pathParams: ['merchantId', 'regionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Region>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Region>(parameters);
+      }
+    }
+
+    /**
+     * Lists the regions in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.list({
+     *     // Required. The id of the merchant for which to list region definitions.
+     *     merchantId: 'placeholder-value',
+     *     // The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Regions$List,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    list(
+      params?: Params$Resource$Regions$List,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$ListRegionsResponse>;
+    list(
+      params: Params$Resource$Regions$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Regions$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListRegionsResponse>,
+      callback: BodyResponseCallback<Schema$ListRegionsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Regions$List,
+      callback: BodyResponseCallback<Schema$ListRegionsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListRegionsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Regions$List
+        | BodyResponseCallback<Schema$ListRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRegionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$ListRegionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/content/v2.1/{merchantId}/regions').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId'],
+        pathParams: ['merchantId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRegionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRegionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates a region definition in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/content.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const content = google.content('v2.1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await content.regions.patch({
+     *     // Required. The id of the merchant for which to update region definition.
+     *     merchantId: 'placeholder-value',
+     *     // Required. The id of the region to update.
+     *     regionId: 'placeholder-value',
+     *     // Optional. The field mask indicating the fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "merchantId": "my_merchantId",
+     *       //   "postalCodeArea": {},
+     *       //   "regionId": "my_regionId",
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "merchantId": "my_merchantId",
+     *   //   "postalCodeArea": {},
+     *   //   "regionId": "my_regionId",
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Regions$Patch,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    patch(
+      params?: Params$Resource$Regions$Patch,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$Region>;
+    patch(
+      params: Params$Resource$Regions$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Regions$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Region>,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    patch(
+      params: Params$Resource$Regions$Patch,
+      callback: BodyResponseCallback<Schema$Region>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Region>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Regions$Patch
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Region>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Region> | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Regions$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Regions$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://shoppingcontent.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/content/v2.1/{merchantId}/regions/{regionId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['merchantId', 'regionId'],
+        pathParams: ['merchantId', 'regionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Region>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Region>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Regions$Create extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to create region definition.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the region to create.
+     */
+    regionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Region;
+  }
+  export interface Params$Resource$Regions$Delete extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to delete region definition.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the region to delete.
+     */
+    regionId?: string;
+  }
+  export interface Params$Resource$Regions$Get extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to retrieve region definition.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the region to retrieve.
+     */
+    regionId?: string;
+  }
+  export interface Params$Resource$Regions$List extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to list region definitions.
+     */
+    merchantId?: string;
+    /**
+     * The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Regions$Patch extends StandardParameters {
+    /**
+     * Required. The id of the merchant for which to update region definition.
+     */
+    merchantId?: string;
+    /**
+     * Required. The id of the region to update.
+     */
+    regionId?: string;
+    /**
+     * Optional. The field mask indicating the fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Region;
   }
 
   export class Resource$Repricingrules {
