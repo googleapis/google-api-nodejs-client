@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudsearch",
+  "name": "@googleapis/cloudsearch",
   "version": "0.1.0",
   "description": "cloudsearch",
   "main": "build/index.js",
