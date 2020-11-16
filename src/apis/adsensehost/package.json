@@ -1,5 +1,5 @@
 {
-  "name": "@google/adsensehost",
+  "name": "@googleapis/adsensehost",
   "version": "0.1.0",
   "description": "adsensehost",
   "main": "build/index.js",
