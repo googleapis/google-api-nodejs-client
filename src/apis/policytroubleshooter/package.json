@@ -1,5 +1,5 @@
 {
-  "name": "@google/policytroubleshooter",
+  "name": "@googleapis/policytroubleshooter",
   "version": "0.1.0",
   "description": "policytroubleshooter",
   "main": "build/index.js",

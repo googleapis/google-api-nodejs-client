@@ -1,5 +1,5 @@
 {
-  "name": "@google/webfonts",
+  "name": "@googleapis/webfonts",
   "version": "0.1.0",
   "description": "webfonts",
   "main": "build/index.js",

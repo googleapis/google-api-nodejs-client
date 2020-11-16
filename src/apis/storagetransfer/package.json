@@ -1,5 +1,5 @@
 {
-  "name": "@google/storagetransfer",
+  "name": "@googleapis/storagetransfer",
   "version": "0.1.0",
   "description": "storagetransfer",
   "main": "build/index.js",

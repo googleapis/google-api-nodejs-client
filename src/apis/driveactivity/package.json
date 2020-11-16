@@ -1,5 +1,5 @@
 {
-  "name": "@google/driveactivity",
+  "name": "@googleapis/driveactivity",
   "version": "0.1.0",
   "description": "driveactivity",
   "main": "build/index.js",

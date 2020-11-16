@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudshell",
+  "name": "@googleapis/cloudshell",
   "version": "0.1.0",
   "description": "cloudshell",
   "main": "build/index.js",

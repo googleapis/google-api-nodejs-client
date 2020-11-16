@@ -1,5 +1,5 @@
 {
-  "name": "@google/tpu",
+  "name": "@googleapis/tpu",
   "version": "0.1.0",
   "description": "tpu",
   "main": "build/index.js",

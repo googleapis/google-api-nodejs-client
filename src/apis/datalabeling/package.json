@@ -1,5 +1,5 @@
 {
-  "name": "@google/datalabeling",
+  "name": "@googleapis/datalabeling",
   "version": "0.1.0",
   "description": "datalabeling",
   "main": "build/index.js",

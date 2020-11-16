@@ -1,5 +1,5 @@
 {
-  "name": "@google/analyticsdata",
+  "name": "@googleapis/analyticsdata",
   "version": "0.1.0",
   "description": "analyticsdata",
   "main": "build/index.js",

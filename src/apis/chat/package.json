@@ -1,5 +1,5 @@
 {
-  "name": "@google/chat",
+  "name": "@googleapis/chat",
   "version": "0.1.0",
   "description": "chat",
   "main": "build/index.js",

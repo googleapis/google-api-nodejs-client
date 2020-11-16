@@ -1,5 +1,5 @@
 {
-  "name": "@google/vectortile",
+  "name": "@googleapis/vectortile",
   "version": "0.1.0",
   "description": "vectortile",
   "main": "build/index.js",

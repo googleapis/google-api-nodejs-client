@@ -1,5 +1,5 @@
 {
-  "name": "@google/dfareporting",
+  "name": "@googleapis/dfareporting",
   "version": "0.1.0",
   "description": "dfareporting",
   "main": "build/index.js",

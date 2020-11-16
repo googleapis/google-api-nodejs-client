@@ -1,5 +1,5 @@
 {
-  "name": "@google/searchconsole",
+  "name": "@googleapis/searchconsole",
   "version": "0.1.0",
   "description": "searchconsole",
   "main": "build/index.js",

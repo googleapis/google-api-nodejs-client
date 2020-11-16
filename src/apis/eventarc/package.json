@@ -1,5 +1,5 @@
 {
-  "name": "@google/eventarc",
+  "name": "@googleapis/eventarc",
   "version": "0.1.0",
   "description": "eventarc",
   "main": "build/index.js",

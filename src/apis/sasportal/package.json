@@ -1,5 +1,5 @@
 {
-  "name": "@google/sasportal",
+  "name": "@googleapis/sasportal",
   "version": "0.1.0",
   "description": "sasportal",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/dlp",
+  "name": "@googleapis/dlp",
   "version": "0.1.0",
   "description": "dlp",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/androidpublisher",
+  "name": "@googleapis/androidpublisher",
   "version": "0.1.0",
   "description": "androidpublisher",
   "main": "build/index.js",

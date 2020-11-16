@@ -1,5 +1,5 @@
 {
-  "name": "@google/pubsub",
+  "name": "@googleapis/pubsub",
   "version": "0.1.0",
   "description": "pubsub",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudprofiler",
+  "name": "@googleapis/cloudprofiler",
   "version": "0.1.0",
   "description": "cloudprofiler",
   "main": "build/index.js",

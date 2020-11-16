@@ -1,5 +1,5 @@
 {
-  "name": "@google/firebaseml",
+  "name": "@googleapis/firebaseml",
   "version": "0.1.0",
   "description": "firebaseml",
   "main": "build/index.js",

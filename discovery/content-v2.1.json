@@ -1023,7 +1023,7 @@
           ]
         },
         "fetchnow": {
-          "description": "Invokes a fetch for the datafeed in your Merchant Center account.",
+          "description": "Invokes a fetch for the datafeed in your Merchant Center account. If you need to call this method more than once per day, we recommend you use the Products service to update your product data.",
           "flatPath": "content/v2.1/{merchantId}/datafeeds/{datafeedId}/fetchNow",
           "httpMethod": "POST",
           "id": "content.datafeeds.fetchnow",
@@ -2948,6 +2948,38 @@
         }
       }
     },
+    "ordertrackingsignals": {
+      "methods": {
+        "create": {
+          "description": "Creates new order tracking signal.",
+          "flatPath": "content/v2.1/{merchantId}/ordertrackingsignals",
+          "httpMethod": "POST",
+          "id": "content.ordertrackingsignals.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "The ID of the merchant for which the order signal is created.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/ordertrackingsignals",
+          "request": {
+            "$ref": "OrderTrackingSignal"
+          },
+          "response": {
+            "$ref": "OrderTrackingSignal"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
     "pos": {
       "methods": {
         "custombatch": {
@@ -3556,6 +3588,181 @@
           },
           "response": {
             "$ref": "RegionalInventory"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        }
+      }
+    },
+    "regions": {
+      "methods": {
+        "create": {
+          "description": "Creates a region definition in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions",
+          "httpMethod": "POST",
+          "id": "content.regions.create",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to create region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to create.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions",
+          "request": {
+            "$ref": "Region"
+          },
+          "response": {
+            "$ref": "Region"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "delete": {
+          "description": "Deletes a region definition from your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "DELETE",
+          "id": "content.regions.delete",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to delete region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to delete.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "get": {
+          "description": "Retrieves a region defined in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "GET",
+          "id": "content.regions.get",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to retrieve region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to retrieve.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "response": {
+            "$ref": "Region"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "list": {
+          "description": "Lists the regions in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions",
+          "httpMethod": "GET",
+          "id": "content.regions.list",
+          "parameterOrder": [
+            "merchantId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to list region definitions.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "pageSize": {
+              "description": "The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 rules will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+              "format": "int32",
+              "location": "query",
+              "type": "integer"
+            },
+            "pageToken": {
+              "description": "A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions",
+          "response": {
+            "$ref": "ListRegionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
+        "patch": {
+          "description": "Updates a region definition in your Merchant Center account.",
+          "flatPath": "content/v2.1/{merchantId}/regions/{regionId}",
+          "httpMethod": "PATCH",
+          "id": "content.regions.patch",
+          "parameterOrder": [
+            "merchantId",
+            "regionId"
+          ],
+          "parameters": {
+            "merchantId": {
+              "description": "Required. The id of the merchant for which to update region definition.",
+              "format": "int64",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "regionId": {
+              "description": "Required. The id of the region to update.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "updateMask": {
+              "description": "Optional. The field mask indicating the fields to update.",
+              "format": "google-fieldmask",
+              "location": "query",
+              "type": "string"
+            }
+          },
+          "path": "content/v2.1/{merchantId}/regions/{regionId}",
+          "request": {
+            "$ref": "Region"
+          },
+          "response": {
+            "$ref": "Region"
           },
           "scopes": [
             "https://www.googleapis.com/auth/content"
@@ -4368,7 +4575,7 @@
       }
     }
   },
-  "revision": "20201029",
+  "revision": "20201113",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5933,6 +6140,57 @@
       },
       "type": "object"
     },
+    "DateTime": {
+      "description": "Represents civil time (or occasionally physical time). This type can represent a civil time in one of a few possible ways: * When utc_offset is set and time_zone is unset: a civil time on a calendar day with a particular offset from UTC. * When time_zone is set and utc_offset is unset: a civil time on a calendar day in a particular time zone. * When neither time_zone nor utc_offset is set: a civil time on a calendar day in local time. The date is relative to the Proleptic Gregorian Calendar. If year is 0, the DateTime is considered not to have a specific year. month and day must have valid, non-zero values. This type may also be used to represent a physical time if all the date and time fields are set and either case of the `time_offset` oneof is set. Consider using `Timestamp` message for physical time instead. If your use case also would like to store the user's timezone, that can be done in another field. This type is more flexible than some applications may want. Make sure to document and validate your application's limitations.",
+      "id": "DateTime",
+      "properties": {
+        "day": {
+          "description": "Required. Day of month. Must be from 1 to 31 and valid for the year and month.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hours": {
+          "description": "Required. Hours of day in 24 hour format. Should be from 0 to 23. An API may choose to allow the value \"24:00:00\" for scenarios like business closing time.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minutes": {
+          "description": "Required. Minutes of hour of day. Must be from 0 to 59.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "month": {
+          "description": "Required. Month of year. Must be from 1 to 12.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "nanos": {
+          "description": "Required. Fractions of seconds in nanoseconds. Must be from 0 to 999,999,999.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "seconds": {
+          "description": "Required. Seconds of minutes of the time. Must normally be from 0 to 59. An API may allow the value 60 if it allows leap-seconds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "timeZone": {
+          "$ref": "TimeZone",
+          "description": "Time zone."
+        },
+        "utcOffset": {
+          "description": "UTC offset. Must be whole seconds, between -18 hours and +18 hours. For example, a UTC offset of -4:00 would be represented as { seconds: -14400 }.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "year": {
+          "description": "Optional. Year of date. Must be from 1 to 9999, or 0 if specifying a datetime without a year.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "DeliveryTime": {
       "id": "DeliveryTime",
       "properties": {
@@ -6632,6 +6890,24 @@
       },
       "type": "object"
     },
+    "ListRegionsResponse": {
+      "description": "Response message for the `ListRegions` method.",
+      "id": "ListRegionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "regions": {
+          "description": "The regions from the specified merchant.",
+          "items": {
+            "$ref": "Region"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListRepricingRulesResponse": {
       "description": "Response message for the `ListRepricingRules` method.",
       "id": "ListRepricingRulesResponse",
@@ -7133,7 +7409,7 @@
           "type": "integer"
         },
         "reason": {
-          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Shopping Actions until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" ",
+          "description": "The reason for the cancellation. Orders that are canceled with a noInventory reason will lead to the removal of the product from Buy on Google until you make an update to that product. This will not affect your Shopping ads. Acceptable values are: - \"`autoPostInternal`\" - \"`autoPostInvalidBillingAddress`\" - \"`autoPostNoInventory`\" - \"`autoPostPriceError`\" - \"`autoPostUndeliverableShippingAddress`\" - \"`couponAbuse`\" - \"`customerCanceled`\" - \"`customerInitiatedCancel`\" - \"`customerSupportRequested`\" - \"`failToPushOrderGoogleError`\" - \"`failToPushOrderMerchantError`\" - \"`failToPushOrderMerchantFulfillmentError`\" - \"`failToPushOrderToMerchant`\" - \"`failToPushOrderToMerchantOutOfStock`\" - \"`invalidCoupon`\" - \"`malformedShippingAddress`\" - \"`merchantDidNotShipOnTime`\" - \"`noInventory`\" - \"`orderTimeout`\" - \"`other`\" - \"`paymentAbuse`\" - \"`paymentDeclined`\" - \"`priceError`\" - \"`returnRefundAbuse`\" - \"`shippingPriceError`\" - \"`taxError`\" - \"`undeliverableShippingAddress`\" - \"`unsupportedPoBoxAddress`\" ",
           "type": "string"
         },
         "reasonText": {
@@ -7151,7 +7427,7 @@
           "type": "string"
         },
         "invoiceReceivingEmail": {
-          "description": "Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Shopping Actions.",
+          "description": "Email address for the merchant to send value-added tax or invoice documentation of the order. Only the last document sent is made available to the customer. For more information, see About automated VAT invoicing for Buy on Google.",
           "type": "string"
         },
         "loyaltyInfo": {
@@ -7844,6 +8120,174 @@
         },
         "scheduledDate": {
           "description": "The date a shipment is scheduled for delivery, in ISO 8601 format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignal": {
+      "description": "Represents a merchant trade from which signals are extracted, e.g. shipping.",
+      "id": "OrderTrackingSignal",
+      "properties": {
+        "customerShippingFee": {
+          "$ref": "PriceAmount",
+          "description": "The shipping fee of the order; this value should be set to zero in the case of free shipping."
+        },
+        "deliveryPostalCode": {
+          "description": "Required. The delivery postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "type": "string"
+        },
+        "deliveryRegionCode": {
+          "description": "Required. The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping destination.",
+          "type": "string"
+        },
+        "lineItems": {
+          "description": "Information about line items in the order.",
+          "items": {
+            "$ref": "OrderTrackingSignalLineItemDetails"
+          },
+          "type": "array"
+        },
+        "merchantId": {
+          "description": "The Google merchant ID of this order tracking signal. This value is optional. If left unset, the caller's merchant ID is used. You must request access in order to provide data on behalf of another merchant. For more information, see [Submitting Order Tracking Signals](/shopping-content/guides/order-tracking-signals).",
+          "format": "int64",
+          "type": "string"
+        },
+        "orderCreatedTime": {
+          "$ref": "DateTime",
+          "description": "Required. The time when the order was created on the merchant side. Include the year and timezone string, if available."
+        },
+        "orderId": {
+          "description": "Required. The ID of the order on the merchant side.",
+          "type": "string"
+        },
+        "orderTrackingSignalId": {
+          "description": "Output only. The ID that uniquely identifies this order tracking signal.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "shipmentLineItemMapping": {
+          "description": "The mapping of the line items to the shipment information.",
+          "items": {
+            "$ref": "OrderTrackingSignalShipmentLineItemMapping"
+          },
+          "type": "array"
+        },
+        "shippingInfo": {
+          "description": "The shipping information for the order.",
+          "items": {
+            "$ref": "OrderTrackingSignalShippingInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalLineItemDetails": {
+      "description": "The line items of the order.",
+      "id": "OrderTrackingSignalLineItemDetails",
+      "properties": {
+        "gtin": {
+          "description": "The Global Trade Item Number.",
+          "type": "string"
+        },
+        "lineItemId": {
+          "description": "Required. The ID for this line item.",
+          "type": "string"
+        },
+        "mpn": {
+          "description": "The manufacturer part number.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The Content API REST ID of the product, in the form channel:contentLanguage:targetCountry:offerId.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Required. The quantity of the line item in the order.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalShipmentLineItemMapping": {
+      "description": "Represents how many items are in the shipment for the given shipment_id and line_item_id.",
+      "id": "OrderTrackingSignalShipmentLineItemMapping",
+      "properties": {
+        "lineItemId": {
+          "description": "Required. The line item ID.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "Required. The line item quantity in the shipment.",
+          "format": "int64",
+          "type": "string"
+        },
+        "shipmentId": {
+          "description": "Required. The shipment ID.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OrderTrackingSignalShippingInfo": {
+      "description": "The shipping information for the order.",
+      "id": "OrderTrackingSignalShippingInfo",
+      "properties": {
+        "actualDeliveryTime": {
+          "$ref": "DateTime",
+          "description": "The time when the shipment was actually delivered. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "carrierName": {
+          "description": "The name of the shipping carrier for the delivery. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time.",
+          "type": "string"
+        },
+        "carrierServiceName": {
+          "description": "The service type for fulfillment, e.g., GROUND, FIRST_CLASS, etc.",
+          "type": "string"
+        },
+        "earliestDeliveryPromiseTime": {
+          "$ref": "DateTime",
+          "description": "The earliest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "latestDeliveryPromiseTime": {
+          "$ref": "DateTime",
+          "description": "The latest delivery promised time. Include the year and timezone string, if available. This field is required, if one of the following fields is absent: tracking_id or carrier_name."
+        },
+        "originPostalCode": {
+          "description": "The origin postal code, as a continuous string without spaces or dashes, e.g. \"95016\".",
+          "type": "string"
+        },
+        "originRegionCode": {
+          "description": "The [CLDR territory code] (http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml) for the shipping origin.",
+          "type": "string"
+        },
+        "shipmentId": {
+          "description": "Required. The shipment ID.",
+          "type": "string"
+        },
+        "shippedTime": {
+          "$ref": "DateTime",
+          "description": "The time when the shipment was shipped. Include the year and timezone string, if available."
+        },
+        "shippingStatus": {
+          "description": "The status of the shipment.",
+          "enum": [
+            "SHIPPING_STATE_UNSPECIFIED",
+            "SHIPPED",
+            "DELIVERED"
+          ],
+          "enumDescriptions": [
+            "The shipping status is not known to merchant.",
+            "All items are shipped.",
+            "The shipment is already delivered."
+          ],
+          "type": "string"
+        },
+        "trackingId": {
+          "description": "The tracking ID of the shipment. This field is required if one of the following fields is absent: earliest_delivery_promise_time, latest_delivery_promise_time, and actual_delivery_time.",
           "type": "string"
         }
       },
@@ -9486,6 +9930,21 @@
       },
       "type": "object"
     },
+    "PriceAmount": {
+      "description": "The price represented as a number and currency.",
+      "id": "PriceAmount",
+      "properties": {
+        "currency": {
+          "description": "The currency of the price.",
+          "type": "string"
+        },
+        "value": {
+          "description": "The price represented as a number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Product": {
       "description": " Required product attributes are primarily defined by the products data specification. See the Products Data Specification Help Center article for information. Some attributes are country-specific, so make sure you select the appropriate country in the drop-down selector at the top of the page. Product data. After inserting, updating, or deleting a product, it may take several minutes before changes take effect.",
       "id": "Product",
@@ -9557,7 +10016,7 @@
           "description": "Cost of goods sold. Used for gross profit reporting."
         },
         "customAttributes": {
-          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Shopping Actions.",
+          "description": "A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the feed specification in its generic form (e.g., `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as additional attributes used for Buy on Google (formerly known as Shopping Actions).",
           "items": {
             "$ref": "CustomAttribute"
           },
@@ -10463,6 +10922,94 @@
       },
       "type": "object"
     },
+    "Region": {
+      "description": "Represents a geographic region that you can use as a target with both the `RegionalInventory` and `ShippingSettings` services. You can define regions as collections of either postal codes or, in some countries, using predefined geotargets.",
+      "id": "Region",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the region.",
+          "type": "string"
+        },
+        "geotargetArea": {
+          "$ref": "RegionGeoTargetArea",
+          "description": "A list of geotargets that defines the region area."
+        },
+        "merchantId": {
+          "description": "Output only. Immutable. Merchant that owns the region.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "postalCodeArea": {
+          "$ref": "RegionPostalCodeArea",
+          "description": "A list of postal codes that defines the region area."
+        },
+        "regionId": {
+          "description": "Output only. Immutable. The ID uniquely identifying each region.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regionalInventoryEligible": {
+          "description": "Output only. Indicates if the region is eligible to use in the Regional Inventory configuration.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "shippingEligible": {
+          "description": "Output only. Indicates if the region is eligible to use in the Shipping Services configuration.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RegionGeoTargetArea": {
+      "description": "A list of geotargets that defines the region area.",
+      "id": "RegionGeoTargetArea",
+      "properties": {
+        "geotargetCriteriaIds": {
+          "description": "Required. A non-empty list of [location IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting). They must all be of the same location type (e.g., state).",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RegionPostalCodeArea": {
+      "description": "A list of postal codes that defines the region area. Note: All regions defined using postal codes are accessible via the account's `ShippingSettings.postalCodeGroups` resource.",
+      "id": "RegionPostalCodeArea",
+      "properties": {
+        "postalCodes": {
+          "description": "Required. A range of postal codes.",
+          "items": {
+            "$ref": "RegionPostalCodeAreaPostalCodeRange"
+          },
+          "type": "array"
+        },
+        "regionCode": {
+          "description": "Required. CLDR territory code or the country the postal code group applies to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RegionPostalCodeAreaPostalCodeRange": {
+      "description": "A range of postal codes that defines the region area.",
+      "id": "RegionPostalCodeAreaPostalCodeRange",
+      "properties": {
+        "begin": {
+          "description": "Required. A postal code or a pattern of the form prefix* denoting the inclusive lower bound of the range defining the area. Examples values: \"94108\", \"9410*\", \"9*\".",
+          "type": "string"
+        },
+        "end": {
+          "description": "Optional. A postal code or a pattern of the form prefix* denoting the inclusive upper bound of the range defining the area. It must have the same length as postalCodeRangeBegin: if postalCodeRangeBegin is a postal code then postalCodeRangeEnd must be a postal code too; if postalCodeRangeBegin is a pattern then postalCodeRangeEnd must be a pattern with the same prefix length. Optional: if not set, then the area is defined as being all the postal codes matching postalCodeRangeBegin.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RegionalInventory": {
       "description": "Regional inventory resource. contains the regional name and all attributes which are overridden for the specified region.",
       "id": "RegionalInventory",
@@ -10741,12 +11288,12 @@
       "id": "RepricingRuleRestrictionBoundary",
       "properties": {
         "percentageDelta": {
-          "description": "The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be > -100. If an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is >= $7.",
+          "description": "The percentage delta relative to the offer selling price. This field is signed. It must be negative in floor. When it is used in floor, it should be > -100. For example, if an offer is selling at $10 and this field is -30 in floor, the repricing rule only applies if the calculated new price is >= $7.",
           "format": "int32",
           "type": "integer"
         },
         "priceDelta": {
-          "description": "The price micros relative to the offer selling price. This field is signed. It must be negative in floor. If an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is >= $8.",
+          "description": "The price micros relative to the offer selling price. This field is signed. It must be negative in floor. For example, if an offer is selling at $10 and this field is -$2 in floor, the repricing rule only applies if the calculated new price is >= $8.",
           "type": "string"
         }
       },
@@ -11925,6 +12472,21 @@
         },
         "phoneNumber": {
           "description": "Required. The phone number of the person picking up the items.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TimeZone": {
+      "description": "Represents a time zone from the [IANA Time Zone Database](https://www.iana.org/time-zones).",
+      "id": "TimeZone",
+      "properties": {
+        "id": {
+          "description": "IANA Time Zone Database time zone, e.g. \"America/New_York\".",
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. IANA Time Zone Database version number, e.g. \"2019a\".",
           "type": "string"
         }
       },

@@ -1,5 +1,5 @@
 {
-  "name": "@google/sheets",
+  "name": "@googleapis/sheets",
   "version": "0.1.0",
   "description": "sheets",
   "main": "build/index.js",

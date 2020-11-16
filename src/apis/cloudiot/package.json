@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudiot",
+  "name": "@googleapis/cloudiot",
   "version": "0.1.0",
   "description": "cloudiot",
   "main": "build/index.js",

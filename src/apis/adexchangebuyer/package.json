@@ -1,5 +1,5 @@
 {
-  "name": "@google/adexchangebuyer",
+  "name": "@googleapis/adexchangebuyer",
   "version": "0.1.0",
   "description": "adexchangebuyer",
   "main": "build/index.js",

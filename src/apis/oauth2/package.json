@@ -1,5 +1,5 @@
 {
-  "name": "@google/oauth2",
+  "name": "@googleapis/oauth2",
   "version": "0.1.0",
   "description": "oauth2",
   "main": "build/index.js",

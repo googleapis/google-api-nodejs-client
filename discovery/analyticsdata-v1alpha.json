@@ -120,7 +120,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata",
+              "description": "Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.",
               "location": "path",
               "pattern": "^properties/[^/]+/metadata$",
               "required": true,
@@ -207,22 +207,6 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
-        "getUniversalMetadata": {
-          "description": "Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. Dimensions and metrics will be mostly added over time, but renames and deletions may occur. This method returns Universal Metadata. Universal Metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.",
-          "flatPath": "v1alpha/universalMetadata",
-          "httpMethod": "GET",
-          "id": "analyticsdata.getUniversalMetadata",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/universalMetadata",
-          "response": {
-            "$ref": "UniversalMetadata"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics",
-            "https://www.googleapis.com/auth/analytics.readonly"
-          ]
-        },
         "runPivotReport": {
           "description": "Returns a customized pivot report of your Google Analytics event data. Pivot reports are more advanced and expressive formats than regular reports. In a pivot report, dimensions are only visible if they are included in a pivot. Multiple pivots can be specified to further dissect your data.",
           "flatPath": "v1alpha:runPivotReport",
@@ -264,7 +248,7 @@
       }
     }
   },
-  "revision": "20201030",
+  "revision": "20201110",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -461,7 +445,7 @@
       "type": "object"
     },
     "DateRange": {
-      "description": "A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges, and the union of the ranges can cover up to 1 year.",
+      "description": "A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges.",
       "id": "DateRange",
       "properties": {
         "endDate": {
@@ -1397,7 +1381,7 @@
           "type": "boolean"
         },
         "limit": {
-          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.",
+          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1434,7 +1418,7 @@
           "type": "array"
         },
         "offset": {
-          "description": "The row count of the start row. The first row is counted as row 0.",
+          "description": "The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1493,7 +1477,7 @@
           "description": "This Analytics Property's quota state including this request."
         },
         "rowCount": {
-          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows.",
+          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
           "format": "int32",
           "type": "integer"
         },
@@ -1547,27 +1531,6 @@
         "value": {
           "description": "The string value used for the matching.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "UniversalMetadata": {
-      "description": "The dimensions and metrics currently accepted in reporting methods.",
-      "id": "UniversalMetadata",
-      "properties": {
-        "dimensions": {
-          "description": "The dimensions descriptions.",
-          "items": {
-            "$ref": "DimensionMetadata"
-          },
-          "type": "array"
-        },
-        "metrics": {
-          "description": "The metric descriptions.",
-          "items": {
-            "$ref": "MetricMetadata"
-          },
-          "type": "array"
         }
       },
       "type": "object"

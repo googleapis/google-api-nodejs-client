@@ -1,5 +1,5 @@
 {
-  "name": "@google/memcache",
+  "name": "@googleapis/memcache",
   "version": "0.1.0",
   "description": "memcache",
   "main": "build/index.js",

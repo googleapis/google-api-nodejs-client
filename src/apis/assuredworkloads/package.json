@@ -1,5 +1,5 @@
 {
-  "name": "@google/assuredworkloads",
+  "name": "@googleapis/assuredworkloads",
   "version": "0.1.0",
   "description": "assuredworkloads",
   "main": "build/index.js",

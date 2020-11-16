@@ -512,7 +512,10 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admob.readonly',
+     *       'https://www.googleapis.com/auth/admob.report',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -640,7 +643,10 @@ export namespace admob_v1 {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/admob.report'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/admob.readonly',
+     *       'https://www.googleapis.com/auth/admob.report',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -784,7 +790,7 @@ export namespace admob_v1 {
     }
 
     /**
-     * Generates an AdMob Mediation report based on the provided report specification.
+     * Generates an AdMob Mediation report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
      * @example
      * ```js
      * // Before running the sample:
@@ -952,7 +958,7 @@ export namespace admob_v1 {
     }
 
     /**
-     * Generates an AdMob Network report based on the provided report specification.
+     * Generates an AdMob Network report based on the provided report specification. Returns result of a server-side streaming RPC. The result is returned in a sequence of responses.
      * @example
      * ```js
      * // Before running the sample:

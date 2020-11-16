@@ -1,5 +1,5 @@
 {
-  "name": "@google/workflowexecutions",
+  "name": "@googleapis/workflowexecutions",
   "version": "0.1.0",
   "description": "workflowexecutions",
   "main": "build/index.js",

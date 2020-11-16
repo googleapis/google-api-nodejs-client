@@ -1,5 +1,5 @@
 {
-  "name": "@google/websecurityscanner",
+  "name": "@googleapis/websecurityscanner",
   "version": "0.1.0",
   "description": "websecurityscanner",
   "main": "build/index.js",

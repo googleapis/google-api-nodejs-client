@@ -1,5 +1,5 @@
 {
-  "name": "@google/groupsmigration",
+  "name": "@googleapis/groupsmigration",
   "version": "0.1.0",
   "description": "groupsmigration",
   "main": "build/index.js",

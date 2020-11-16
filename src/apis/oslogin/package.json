@@ -1,5 +1,5 @@
 {
-  "name": "@google/oslogin",
+  "name": "@googleapis/oslogin",
   "version": "0.1.0",
   "description": "oslogin",
   "main": "build/index.js",

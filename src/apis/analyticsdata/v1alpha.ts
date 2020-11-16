@@ -265,7 +265,7 @@ export namespace analyticsdata_v1alpha {
     dimensionNames?: string[] | null;
   }
   /**
-   * A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges, and the union of the ranges can cover up to 1 year.
+   * A contiguous set of days: startDate, startDate + 1, ..., endDate. Requests are allowed up to 4 date ranges.
    */
   export interface Schema$DateRange {
     /**
@@ -903,7 +903,7 @@ export namespace analyticsdata_v1alpha {
      */
     keepEmptyRows?: boolean | null;
     /**
-     * The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned.
+     * The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](basics#pagination).
      */
     limit?: string | null;
     /**
@@ -919,7 +919,7 @@ export namespace analyticsdata_v1alpha {
      */
     metrics?: Schema$Metric[];
     /**
-     * The row count of the start row. The first row is counted as row 0.
+     * The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](basics#pagination).
      */
     offset?: string | null;
     /**
@@ -960,7 +960,7 @@ export namespace analyticsdata_v1alpha {
      */
     propertyQuota?: Schema$PropertyQuota;
     /**
-     * The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows.
+     * The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](basics#pagination).
      */
     rowCount?: number | null;
     /**
@@ -988,19 +988,6 @@ export namespace analyticsdata_v1alpha {
      * The string value used for the matching.
      */
     value?: string | null;
-  }
-  /**
-   * The dimensions and metrics currently accepted in reporting methods.
-   */
-  export interface Schema$UniversalMetadata {
-    /**
-     * The dimensions descriptions.
-     */
-    dimensions?: Schema$DimensionMetadata[];
-    /**
-     * The metric descriptions.
-     */
-    metrics?: Schema$MetricMetadata[];
   }
 
   export class Resource$Properties {
@@ -1039,7 +1026,7 @@ export namespace analyticsdata_v1alpha {
      *
      *   // Do the magic
      *   const res = await analyticsdata.properties.getMetadata({
-     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
+     *     // Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
      *     name: 'properties/my-propertie/metadata',
      *   });
      *   console.log(res.data);
@@ -1307,7 +1294,7 @@ export namespace analyticsdata_v1alpha {
   export interface Params$Resource$Properties$Getmetadata
     extends StandardParameters {
     /**
-     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata
+     * Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.
      */
     name?: string;
   }
@@ -1621,142 +1608,6 @@ export namespace analyticsdata_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$BatchRunReportsResponse>(parameters);
-      }
-    }
-
-    /**
-     * Returns metadata for dimensions and metrics available in reporting methods. Used to explore the dimensions and metrics. Dimensions and metrics will be mostly added over time, but renames and deletions may occur. This method returns Universal Metadata. Universal Metadata are dimensions and metrics applicable to any property such as `country` and `totalUsers`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/analyticsdata.googleapis.com
-     * // - Login into gcloud by running:
-     * //   `$ gcloud auth application-default login`
-     * // - Install the npm module by running:
-     * //   `$ npm install googleapis`
-     *
-     * const {google} = require('googleapis');
-     * const analyticsdata = google.analyticsdata('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/analytics',
-     *       'https://www.googleapis.com/auth/analytics.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await analyticsdata.getUniversalMetadata({});
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "dimensions": [],
-     *   //   "metrics": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getUniversalMetadata(
-      params: Params$Resource$V1alpha$Getuniversalmetadata,
-      options: StreamMethodOptions
-    ): GaxiosPromise<Readable>;
-    getUniversalMetadata(
-      params?: Params$Resource$V1alpha$Getuniversalmetadata,
-      options?: MethodOptions
-    ): GaxiosPromise<Schema$UniversalMetadata>;
-    getUniversalMetadata(
-      params: Params$Resource$V1alpha$Getuniversalmetadata,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getUniversalMetadata(
-      params: Params$Resource$V1alpha$Getuniversalmetadata,
-      options: MethodOptions | BodyResponseCallback<Schema$UniversalMetadata>,
-      callback: BodyResponseCallback<Schema$UniversalMetadata>
-    ): void;
-    getUniversalMetadata(
-      params: Params$Resource$V1alpha$Getuniversalmetadata,
-      callback: BodyResponseCallback<Schema$UniversalMetadata>
-    ): void;
-    getUniversalMetadata(
-      callback: BodyResponseCallback<Schema$UniversalMetadata>
-    ): void;
-    getUniversalMetadata(
-      paramsOrCallback?:
-        | Params$Resource$V1alpha$Getuniversalmetadata
-        | BodyResponseCallback<Schema$UniversalMetadata>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$UniversalMetadata>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$UniversalMetadata>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | GaxiosPromise<Schema$UniversalMetadata>
-      | GaxiosPromise<Readable> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$V1alpha$Getuniversalmetadata;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$V1alpha$Getuniversalmetadata;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://analyticsdata.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/universalMetadata').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$UniversalMetadata>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$UniversalMetadata>(parameters);
       }
     }
 
@@ -2095,8 +1946,6 @@ export namespace analyticsdata_v1alpha {
      */
     requestBody?: Schema$BatchRunReportsRequest;
   }
-  export interface Params$Resource$V1alpha$Getuniversalmetadata
-    extends StandardParameters {}
   export interface Params$Resource$V1alpha$Runpivotreport
     extends StandardParameters {
     /**

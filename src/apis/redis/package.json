@@ -1,5 +1,5 @@
 {
-  "name": "@google/redis",
+  "name": "@googleapis/redis",
   "version": "0.1.0",
   "description": "redis",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/streetviewpublish",
+  "name": "@googleapis/streetviewpublish",
   "version": "0.1.0",
   "description": "streetviewpublish",
   "main": "build/index.js",

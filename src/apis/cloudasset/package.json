@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudasset",
+  "name": "@googleapis/cloudasset",
   "version": "0.1.0",
   "description": "cloudasset",
   "main": "build/index.js",

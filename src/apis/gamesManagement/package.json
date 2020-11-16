@@ -1,5 +1,5 @@
 {
-  "name": "@google/gamesManagement",
+  "name": "@googleapis/gamesManagement",
   "version": "0.1.0",
   "description": "gamesManagement",
   "main": "build/index.js",

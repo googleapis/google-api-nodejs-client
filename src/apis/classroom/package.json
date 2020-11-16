@@ -1,5 +1,5 @@
 {
-  "name": "@google/classroom",
+  "name": "@googleapis/classroom",
   "version": "0.1.0",
   "description": "classroom",
   "main": "build/index.js",

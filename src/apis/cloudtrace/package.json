@@ -1,5 +1,5 @@
 {
-  "name": "@google/cloudtrace",
+  "name": "@googleapis/cloudtrace",
   "version": "0.1.0",
   "description": "cloudtrace",
   "main": "build/index.js",

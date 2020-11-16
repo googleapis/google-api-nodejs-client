@@ -1,5 +1,5 @@
 {
-  "name": "@google/pagespeedonline",
+  "name": "@googleapis/pagespeedonline",
   "version": "0.1.0",
   "description": "pagespeedonline",
   "main": "build/index.js",

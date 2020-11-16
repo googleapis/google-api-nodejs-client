@@ -791,7 +791,7 @@ export namespace cloudidentity_v1 {
      *
      *   // Do the magic
      *   const res = await cloudidentity.devices.cancelWipe({
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      *     name: 'devices/my-device',
      *
      *     // Request body metadata
@@ -1678,7 +1678,7 @@ export namespace cloudidentity_v1 {
   export interface Params$Resource$Devices$Cancelwipe
     extends StandardParameters {
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device, and device_user_id is the unique ID assigned to the User.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Device in format: `devices/{device_id\}`, where device_id is the unique ID assigned to the Device.
      */
     name?: string;
 
@@ -3118,7 +3118,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.devices.deviceUsers.clientStates.get({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
+     *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization.
      *     name:
      *       'devices/my-device/deviceUsers/my-deviceUser/clientStates/my-clientState',
      *   });
@@ -3581,7 +3581,7 @@ export namespace cloudidentity_v1 {
      */
     customer?: string;
     /**
-     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data.
+     * Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the ClientState in format: `devices/{device_id\}/deviceUsers/{device_user_id\}/clientStates/{partner_id\}`, where device_id is the unique ID assigned to the Device, device_user_id is the unique ID assigned to the User and partner_id identifies the partner storing the data. To get the client state for devices belonging to your own organization, the `partnerId` is in the format: `customerId-*anystring*`. Where the `customerId` is your organization's customer ID and `anystring` is any suffix. This suffix is used in setting up Custom Access Levels in Context-Aware Access. You may use `my_customer` instead of the customer ID for devices managed by your own organization.
      */
     name?: string;
   }

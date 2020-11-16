@@ -1,5 +1,5 @@
 {
-  "name": "@google/runtimeconfig",
+  "name": "@googleapis/runtimeconfig",
   "version": "0.1.0",
   "description": "runtimeconfig",
   "main": "build/index.js",

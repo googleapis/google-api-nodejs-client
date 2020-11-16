@@ -1,5 +1,5 @@
 {
-  "name": "@google/drive",
+  "name": "@googleapis/drive",
   "version": "0.1.0",
   "description": "drive",
   "main": "build/index.js",

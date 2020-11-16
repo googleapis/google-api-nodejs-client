@@ -1,5 +1,5 @@
 {
-  "name": "@google/recommendationengine",
+  "name": "@googleapis/recommendationengine",
   "version": "0.1.0",
   "description": "recommendationengine",
   "main": "build/index.js",

@@ -3585,23 +3585,6 @@ export namespace dialogflow_v2 {
     source?: string | null;
   }
   /**
-   * Metadata in google::longrunning::Operation.
-   */
-  export interface Schema$GoogleCloudKnowledgeV1alpha1OperationMetadata {
-    /**
-     * The error codes from Manifold endpoints' last failures.
-     */
-    errorCode?: number[] | null;
-    /**
-     * The failure messages from Manifold endpoints' last failures.
-     */
-    message?: string[] | null;
-    /**
-     * Required. The current state of this operation.
-     */
-    state?: string | null;
-  }
-  /**
    * The response message for Operations.ListOperations.
    */
   export interface Schema$GoogleLongrunningListOperationsResponse {

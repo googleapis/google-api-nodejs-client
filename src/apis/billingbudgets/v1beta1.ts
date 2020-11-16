@@ -204,7 +204,7 @@ export namespace billingbudgets_v1beta1 {
    */
   export interface Schema$GoogleCloudBillingBudgetsV1beta1Filter {
     /**
-     * Optional. A list of credit types to be subtracted from gross cost to determine the spend for threshold calculations if and only if credit_types_treatment is INCLUDE_SPECIFIED_CREDITS. If credit_types_treatment is not INCLUDE_SPECIFIED_CREDITS, this field must be empty. See credits.type at https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#data-schema for a list of acceptable credit type values in this field.
+     * Optional. If Filter.credit_types_treatment is INCLUDE_SPECIFIED_CREDITS, this is a list of credit types to be subtracted from gross cost to determine the spend for threshold calculations. If Filter.credit_types_treatment is **not** INCLUDE_SPECIFIED_CREDITS, this field must be empty. See [a list of acceptable credit type values](https://cloud.google.com/billing/docs/how-to/export-data-bigquery-tables#credits-type).
      */
     creditTypes?: string[] | null;
     /**

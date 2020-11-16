@@ -1,5 +1,5 @@
 {
-  "name": "@google/datamigration",
+  "name": "@googleapis/datamigration",
   "version": "0.1.0",
   "description": "datamigration",
   "main": "build/index.js",

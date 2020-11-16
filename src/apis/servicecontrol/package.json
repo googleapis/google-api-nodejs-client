@@ -1,5 +1,5 @@
 {
-  "name": "@google/servicecontrol",
+  "name": "@googleapis/servicecontrol",
   "version": "0.1.0",
   "description": "servicecontrol",
   "main": "build/index.js",

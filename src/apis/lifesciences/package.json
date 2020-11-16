@@ -1,5 +1,5 @@
 {
-  "name": "@google/lifesciences",
+  "name": "@googleapis/lifesciences",
   "version": "0.1.0",
   "description": "lifesciences",
   "main": "build/index.js",

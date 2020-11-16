@@ -1,5 +1,5 @@
 {
-  "name": "@google/fitness",
+  "name": "@googleapis/fitness",
   "version": "0.1.0",
   "description": "fitness",
   "main": "build/index.js",

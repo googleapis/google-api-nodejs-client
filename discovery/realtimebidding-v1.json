@@ -194,6 +194,382 @@
               ]
             }
           }
+        },
+        "pretargetingConfigs": {
+          "methods": {
+            "activate": {
+              "description": "Activates a pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:activate",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.activate",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:activate",
+              "request": {
+                "$ref": "ActivatePretargetingConfigRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "addTargetedApps": {
+              "description": "Adds targeted apps to the pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:addTargetedApps",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.addTargetedApps",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:addTargetedApps",
+              "request": {
+                "$ref": "AddTargetedAppsRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "addTargetedPublishers": {
+              "description": "Adds targeted publishers to the pretargeting config.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:addTargetedPublishers",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.addTargetedPublishers",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:addTargetedPublishers",
+              "request": {
+                "$ref": "AddTargetedPublishersRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "addTargetedSites": {
+              "description": "Adds targeted sites to the pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:addTargetedSites",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.addTargetedSites",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:addTargetedSites",
+              "request": {
+                "$ref": "AddTargetedSitesRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "create": {
+              "description": "Creates a pretargeting configuration. A pretargeting configuration's state (PretargetingConfig.state) is active upon creation, and it will start to affect traffic shortly after. A bidder may create a maximum of 10 pretargeting configurations. Attempts to exceed this maximum results in a 400 bad request error.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. Name of the bidder to create the pretargeting configuration for. Format: bidders/{bidderAccountId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/pretargetingConfigs",
+              "request": {
+                "$ref": "PretargetingConfig"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}",
+              "httpMethod": "DELETE",
+              "id": "realtimebidding.bidders.pretargetingConfigs.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the pretargeting configuration to delete. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "get": {
+              "description": "Gets a pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.pretargetingConfigs.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Name of the pretargeting configuration to get. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "list": {
+              "description": "Lists all pretargeting configurations for a single bidder.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs",
+              "httpMethod": "GET",
+              "id": "realtimebidding.bidders.pretargetingConfigs.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "The maximum number of pretargeting configurations to return. If unspecified, at most 10 pretargeting configurations will be returned. The maximum value is 100; values above 100 will be coerced to 100.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "A token identifying a page of results the server should return. This value is received from a previous `ListPretargetingConfigs` call in ListPretargetingConfigsResponse.nextPageToken.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. Name of the bidder whose pretargeting configurations will be listed. Format: bidders/{bidderAccountId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/pretargetingConfigs",
+              "response": {
+                "$ref": "ListPretargetingConfigsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "patch": {
+              "description": "Updates a pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}",
+              "httpMethod": "PATCH",
+              "id": "realtimebidding.bidders.pretargetingConfigs.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id}/pretargetingConfigs/{config_id}`",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Field mask to use for partial in-place updates.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}",
+              "request": {
+                "$ref": "PretargetingConfig"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "removeTargetedApps": {
+              "description": "Removes targeted apps from the pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:removeTargetedApps",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.removeTargetedApps",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:removeTargetedApps",
+              "request": {
+                "$ref": "RemoveTargetedAppsRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "removeTargetedPublishers": {
+              "description": "Removes targeted publishers from the pretargeting config.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:removeTargetedPublishers",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.removeTargetedPublishers",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:removeTargetedPublishers",
+              "request": {
+                "$ref": "RemoveTargetedPublishersRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "removeTargetedSites": {
+              "description": "Removes targeted sites from the pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:removeTargetedSites",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.removeTargetedSites",
+              "parameterOrder": [
+                "pretargetingConfig"
+              ],
+              "parameters": {
+                "pretargetingConfig": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+pretargetingConfig}:removeTargetedSites",
+              "request": {
+                "$ref": "RemoveTargetedSitesRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            },
+            "suspend": {
+              "description": "Suspends a pretargeting configuration.",
+              "flatPath": "v1/bidders/{biddersId}/pretargetingConfigs/{pretargetingConfigsId}:suspend",
+              "httpMethod": "POST",
+              "id": "realtimebidding.bidders.pretargetingConfigs.suspend",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the pretargeting configuration. Format: bidders/{bidderAccountId}/pretargetingConfig/{configId}",
+                  "location": "path",
+                  "pattern": "^bidders/[^/]+/pretargetingConfigs/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:suspend",
+              "request": {
+                "$ref": "SuspendPretargetingConfigRequest"
+              },
+              "response": {
+                "$ref": "PretargetingConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/realtime-bidding"
+              ]
+            }
+          }
         }
       }
     },
@@ -593,9 +969,99 @@
       }
     }
   },
-  "revision": "20201017",
+  "revision": "20201110",
   "rootUrl": "https://realtimebidding.googleapis.com/",
   "schemas": {
+    "ActivatePretargetingConfigRequest": {
+      "description": "A request to activate a pretargeting configuration. Sets the configuration's state to ACTIVE.",
+      "id": "ActivatePretargetingConfigRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "AddTargetedAppsRequest": {
+      "description": "A request to start targeting the provided app IDs in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.",
+      "id": "AddTargetedAppsRequest",
+      "properties": {
+        "appIds": {
+          "description": "A list of app IDs to target in the pretargeting configuration. These values will be added to the list of targeted app IDs in PretargetingConfig.appTargeting.mobileAppTargeting.values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetingMode": {
+          "description": "Required. The targeting mode that should be applied to the list of app IDs. If there are existing targeted app IDs, must be equal to the existing PretargetingConfig.appTargeting.mobileAppTargeting.targetingMode or a 400 bad request error will be returned.",
+          "enum": [
+            "TARGETING_MODE_UNSPECIFIED",
+            "INCLUSIVE",
+            "EXCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined targeting mode.",
+            "The inclusive list type. Inventory must match an item in this list to be targeted.",
+            "The exclusive list type. Inventory must not match any item in this list to be targeted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddTargetedPublishersRequest": {
+      "description": "A request to start targeting the provided publishers in a specific pretargeting configuration. The pretargeting configuration itself specifies how these publishers are targeted in PretargetingConfig.publisherTargeting.",
+      "id": "AddTargetedPublishersRequest",
+      "properties": {
+        "publisherIds": {
+          "description": "A list of publisher IDs to target in the pretargeting configuration. These values will be added to the list of targeted publisher IDs in PretargetingConfig.publisherTargeting.values. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetingMode": {
+          "description": "Required. The targeting mode that should be applied to the list of publisher IDs. If are existing publisher IDs, must be equal to the existing PretargetingConfig.publisherTargeting.targetingMode or a 400 bad request error will be returned.",
+          "enum": [
+            "TARGETING_MODE_UNSPECIFIED",
+            "INCLUSIVE",
+            "EXCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined targeting mode.",
+            "The inclusive list type. Inventory must match an item in this list to be targeted.",
+            "The exclusive list type. Inventory must not match any item in this list to be targeted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AddTargetedSitesRequest": {
+      "description": "A request to start targeting the provided sites in a specific pretargeting configuration. The pretargeting configuration itself specifies how these sites are targeted in PretargetingConfig.webTargeting.",
+      "id": "AddTargetedSitesRequest",
+      "properties": {
+        "sites": {
+          "description": "A list of site URLs to target in the pretargeting configuration. These values will be added to the list of targeted URLs in PretargetingConfig.webTargeting.values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetingMode": {
+          "description": "Required. The targeting mode that should be applied to the list of site URLs. If there are existing targeted sites, must be equal to the existing PretargetingConfig.webTargeting.targetingMode or a 400 bad request error will be returned.",
+          "enum": [
+            "TARGETING_MODE_UNSPECIFIED",
+            "INCLUSIVE",
+            "EXCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined targeting mode.",
+            "The inclusive list type. Inventory must match an item in this list to be targeted.",
+            "The exclusive list type. Inventory must not match any item in this list to be targeted."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AdvertiserAndBrand": {
       "description": "Detected advertiser and brand information.",
       "id": "AdvertiserAndBrand",
@@ -617,6 +1083,21 @@
         "brandName": {
           "description": "Brand name. Can be used to filter the response of the creatives.list method.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AppTargeting": {
+      "description": "A subset of app inventory to target. Bid requests that match criteria in at least one of the specified dimensions will be sent.",
+      "id": "AppTargeting",
+      "properties": {
+        "mobileAppCategoryTargeting": {
+          "$ref": "NumericTargetingDimension",
+          "description": "Lists of included and excluded mobile app categories as defined in https://developers.google.com/adwords/api/docs/appendix/mobileappcategories.csv."
+        },
+        "mobileAppTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Targeted app IDs. App IDs can refer to those found in an app store or ones that are not published in an app store. A maximum of 30,000 app IDs can be targeted."
         }
       },
       "type": "object"
@@ -851,6 +1332,23 @@
         "video": {
           "$ref": "VideoContent",
           "description": "A video creative."
+        }
+      },
+      "type": "object"
+    },
+    "CreativeDimensions": {
+      "description": "The dimensions of a creative. This applies to only HTML and Native creatives.",
+      "id": "CreativeDimensions",
+      "properties": {
+        "height": {
+          "description": "The height of the creative in pixels.",
+          "format": "int64",
+          "type": "string"
+        },
+        "width": {
+          "description": "The width of the creative in pixels.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1244,6 +1742,12 @@
       },
       "type": "object"
     },
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "GetRemarketingTagResponse": {
       "description": "Response for a request to get remarketing tag.",
       "id": "GetRemarketingTagResponse",
@@ -1344,6 +1848,24 @@
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Pass this value in the ListCreativesRequest.pageToken field in the subsequent call to the `ListCreatives` method to retrieve the next page of results.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListPretargetingConfigsResponse": {
+      "description": "A response containing pretargeting configurations.",
+      "id": "ListPretargetingConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token which can be passed to a subsequent call to the `ListPretargetingConfigs` method to retrieve the next page of results in ListPretargetingConfigsRequest.pageToken.",
+          "type": "string"
+        },
+        "pretargetingConfigs": {
+          "description": "List of pretargeting configurations.",
+          "items": {
+            "$ref": "PretargetingConfig"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1478,6 +2000,29 @@
       },
       "type": "object"
     },
+    "NumericTargetingDimension": {
+      "description": "Generic targeting used for targeting dimensions that contain a list of included and excluded numeric IDs used in app, user list, geo, and vertical id targeting.",
+      "id": "NumericTargetingDimension",
+      "properties": {
+        "excludedIds": {
+          "description": "The IDs excluded in a configuration.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedIds": {
+          "description": "The IDs included in a configuration.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "OpenUserListRequest": {
       "description": "A request to open a specified user list.",
       "id": "OpenUserListRequest",
@@ -1569,6 +2114,299 @@
           "description": "Evidence for HTTP cookie-related policy violations."
         }
       },
+      "type": "object"
+    },
+    "PretargetingConfig": {
+      "description": "Pretargeting configuration: a set of targeting dimensions applied at the pretargeting stage of the RTB funnel. These control which inventory a bidder will receive bid requests for.",
+      "id": "PretargetingConfig",
+      "properties": {
+        "allowedUserTargetingModes": {
+          "description": "Targeting modes included by this configuration. A bid request must allow all the specified targeting modes. An unset value allows all bid requests to be sent, regardless of which targeting modes they allow.",
+          "items": {
+            "enum": [
+              "USER_TARGETING_MODE_UNSPECIFIED",
+              "REMARKETING_ADS",
+              "INTEREST_BASED_TARGETING"
+            ],
+            "enumDescriptions": [
+              "Placeholder for undefined user targeting mode.",
+              "Remarketing ads are allowed to serve.",
+              "Ads based on user interest category targeting are allowed to serve."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "appTargeting": {
+          "$ref": "AppTargeting",
+          "description": "Targeting on a subset of app inventory. If APP is listed in targeted_environments, the specified targeting is applied. A maximum of 30,000 app IDs can be targeted. An unset value for targeting allows all app-based bid requests to be sent. Apps can either be targeting positively (bid requests will be sent only if the destination app is listed in the targeting dimension) or negatively (bid requests will be sent only if the destination app is not listed in the targeting dimension)."
+        },
+        "billingId": {
+          "description": "Output only. The identifier that corresponds to this pretargeting configuration that helps buyers track and attribute their spend across their own arbitrary divisions. If a bid request matches more than one configuration, the buyer chooses which billing_id to attribute each of their bids.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The diplay name associated with this configuration. This name must be unique among all the pretargeting configurations a bidder has.",
+          "type": "string"
+        },
+        "excludedContentLabelIds": {
+          "description": "The sensitive content category label IDs excluded in this configuration. Bid requests for inventory with any of the specified content label IDs will not be sent. Refer to this file https://storage.googleapis.com/adx-rtb-dictionaries/content-labels.txt for category IDs.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "geoTargeting": {
+          "$ref": "NumericTargetingDimension",
+          "description": "The geos included or excluded in this configuration defined in https://storage.googleapis.com/adx-rtb-dictionaries/geo-table.csv"
+        },
+        "includedCreativeDimensions": {
+          "description": "Creative dimensions included by this configuration. Only bid requests eligible for at least one of the specified creative dimensions will be sent. An unset value allows all bid requests to be sent, regardless of creative dimension.",
+          "items": {
+            "$ref": "CreativeDimensions"
+          },
+          "type": "array"
+        },
+        "includedEnvironments": {
+          "description": "Environments that are being included. Bid requests will not be sent for a given environment if it is not included. Further restrictions can be applied to included environments to target only a subset of its inventory. An unset value includes all environments.",
+          "items": {
+            "enum": [
+              "ENVIRONMENT_UNSPECIFIED",
+              "APP",
+              "WEB"
+            ],
+            "enumDescriptions": [
+              "Placeholder for unspecified environment. This value should not be used.",
+              "App environment.",
+              "Web environment."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedFormats": {
+          "description": "Creative formats included by this configuration. Only bid requests eligible for at least one of the specified creative formats will be sent. An unset value will allow all bid requests to be sent, regardless of format.",
+          "items": {
+            "enum": [
+              "CREATIVE_FORMAT_UNSPECIFIED",
+              "HTML",
+              "VAST",
+              "NATIVE"
+            ],
+            "enumDescriptions": [
+              "Placeholder for undefined creative format. This value should not be used.",
+              "HTML and AMPHTML creatives.",
+              "VAST video or audio creative.",
+              "Native creative, including standard and video native ads."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedLanguages": {
+          "description": "The languages included in this configuration, represented by their language code. See https://developers.google.com/adwords/api/docs/appendix/languagecodes.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedMobileOperatingSystemIds": {
+          "description": "The mobile operating systems included in this configuration as defined in https://storage.googleapis.com/adx-rtb-dictionaries/mobile-os.csv",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedPlatforms": {
+          "description": "The platforms included by this configration. Bid requests for devices with the specified platform types will be sent. An unset value allows all bid requests to be sent, regardless of platform.",
+          "items": {
+            "enum": [
+              "PLATFORM_UNSPECIFIED",
+              "PERSONAL_COMPUTER",
+              "PHONE",
+              "TABLET",
+              "CONNECTED_TV"
+            ],
+            "enumDescriptions": [
+              "Placeholder for an undefined platform. This value should not be used.",
+              "The personal computer platform.",
+              "The mobile platform.",
+              "The tablet platform.",
+              "The connected TV platform."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includedUserIdTypes": {
+          "description": "User identifier types included in this configuration. At least one of the user identifier types specified in this list must be available for the bid request to be sent.",
+          "items": {
+            "enum": [
+              "USER_ID_TYPE_UNSPECIFIED",
+              "HOSTED_MATCH_DATA",
+              "GOOGLE_COOKIE",
+              "DEVICE_ID"
+            ],
+            "enumDescriptions": [
+              "Placeholder for unspecified user identifier.",
+              "Hosted match data, referring to hosted_match_data in the bid request.",
+              "Google cookie, referring to google_user_id in the bid request.",
+              "Mobile device advertising ID."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "interstitialTargeting": {
+          "description": "The interstitial targeting specified for this configuration. The unset value will allow bid requests to be sent regardless of whether they are for interstitials or not.",
+          "enum": [
+            "INTERSTITIAL_TARGETING_UNSPECIFIED",
+            "ONLY_INTERSTITIAL_REQUESTS",
+            "ONLY_NON_INTERSTITIAL_REQUESTS"
+          ],
+          "enumDescriptions": [
+            "Unspecified interstitial targeting. Represents an interstitial-agnostic selection.",
+            "Only bid requests for interstitial inventory should be sent.",
+            "Only bid requests for non-interstitial inventory should be sent."
+          ],
+          "type": "string"
+        },
+        "invalidGeoIds": {
+          "description": "Output only. Existing included or excluded geos that are invalid. Previously targeted geos may become invalid due to privacy restrictions.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "maximumQps": {
+          "description": "The maximum QPS threshold for this configuration. The bidder should receive no more than this number of bid requests matching this configuration per second across all their bidding endpoints among all trading locations. Further information available at https://developers.google.com/authorized-buyers/rtb/peer-guide",
+          "format": "int64",
+          "type": "string"
+        },
+        "minimumViewabilityDecile": {
+          "description": "The targeted minimum viewability decile, ranging in values [0, 10]. A value of 5 means that the configuration will only match adslots for which we predict at least 50% viewability. Values > 10 will be rounded down to 10. An unset value or a value of 0 indicates that bid requests will be sent regardless of viewability.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Output only. Name of the pretargeting configuration that must follow the pattern `bidders/{bidder_account_id}/pretargetingConfigs/{config_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "publisherTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Targeting on a subset of publisher inventory. Publishers can either be targeted positively (bid requests will be sent only if the publisher is listed in the targeting dimension) or negatively (bid requests will be sent only if the publisher is not listed in the targeting dimension). A maximum of 10,000 publisher IDs can be targeted. Publisher IDs are found in [ads.txt](https://iabtechlab.com/ads-txt/) / [app-ads.txt](https://iabtechlab.com/app-ads-txt/) and in bid requests in the `BidRequest.publisher_id` field on the [Google RTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/realtime-bidding-proto) or the `BidRequest.site.publisher.id` / `BidRequest.app.publisher.id` field on the [OpenRTB protocol](https://developers.google.com/authorized-buyers/rtb/downloads/openrtb-adx-proto)."
+        },
+        "state": {
+          "description": "Output only. The state of this pretargeting configuration.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined state.",
+            "This pretargeting configuration is actively being used to filter bid requests.",
+            "This pretargeting configuration is suspended and not used in serving."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "userListTargeting": {
+          "$ref": "NumericTargetingDimension",
+          "description": "The remarketing lists included or excluded in this configuration as defined in UserList."
+        },
+        "verticalTargeting": {
+          "$ref": "NumericTargetingDimension",
+          "description": "The verticals included or excluded in this configuration as defined in https://developers.google.com/authorized-buyers/rtb/downloads/publisher-verticals"
+        },
+        "webTargeting": {
+          "$ref": "StringTargetingDimension",
+          "description": "Targeting on a subset of site inventory. If WEB is listed in included_environments, the specified targeting is applied. A maximum of 50,000 site URLs can be targeted. An unset value for targeting allows all web-based bid requests to be sent. Sites can either be targeting positively (bid requests will be sent only if the destination site is listed in the targeting dimension) or negatively (bid requests will be sent only if the destination site is not listed in the pretargeting configuration)."
+        }
+      },
+      "type": "object"
+    },
+    "RemoveTargetedAppsRequest": {
+      "description": "A request to stop targeting the provided apps in a specific pretargeting configuration. The pretargeting configuration itself specifies how these apps are targeted. in PretargetingConfig.appTargeting.mobileAppTargeting.",
+      "id": "RemoveTargetedAppsRequest",
+      "properties": {
+        "appIds": {
+          "description": "A list of app IDs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted app IDs in PretargetingConfig.appTargeting.mobileAppTargeting.values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveTargetedPublishersRequest": {
+      "description": "A request to stop targeting publishers in a specific configuration. The pretargeting configuration itself specifies how these publishers are targeted in PretargetingConfig.publisherTargeting.",
+      "id": "RemoveTargetedPublishersRequest",
+      "properties": {
+        "publisherIds": {
+          "description": "A list of publisher IDs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted publisher IDs in PretargetingConfig.publisherTargeting.values. Publishers are identified by their publisher ID from ads.txt / app-ads.txt. See https://iabtechlab.com/ads-txt/ and https://iabtechlab.com/app-ads-txt/ for more details.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemoveTargetedSitesRequest": {
+      "description": "A request to stop targeting sites in a specific pretargeting configuration. The pretargeting configuration itself specifies how these sites are targeted in PretargetingConfig.webTargeting.",
+      "id": "RemoveTargetedSitesRequest",
+      "properties": {
+        "sites": {
+          "description": "A list of site URLs to stop targeting in the pretargeting configuration. These values will be removed from the list of targeted URLs in PretargetingConfig.webTargeting.values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "StringTargetingDimension": {
+      "description": "Generic targeting with string values used in app, website and publisher targeting.",
+      "id": "StringTargetingDimension",
+      "properties": {
+        "targetingMode": {
+          "description": "How the items in this list should be targeted.",
+          "enum": [
+            "TARGETING_MODE_UNSPECIFIED",
+            "INCLUSIVE",
+            "EXCLUSIVE"
+          ],
+          "enumDescriptions": [
+            "Placeholder for undefined targeting mode.",
+            "The inclusive list type. Inventory must match an item in this list to be targeted.",
+            "The exclusive list type. Inventory must not match any item in this list to be targeted."
+          ],
+          "type": "string"
+        },
+        "values": {
+          "description": "The values specified.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SuspendPretargetingConfigRequest": {
+      "description": "A request to suspend a pretargeting configuration. Sets the configuration's state to SUSPENDED.",
+      "id": "SuspendPretargetingConfigRequest",
+      "properties": {},
       "type": "object"
     },
     "UrlDownloadSize": {

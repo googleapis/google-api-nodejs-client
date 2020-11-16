@@ -1,5 +1,5 @@
 {
-  "name": "@google/libraryagent",
+  "name": "@googleapis/libraryagent",
   "version": "0.1.0",
   "description": "libraryagent",
   "main": "build/index.js",

@@ -1,5 +1,5 @@
 {
-  "name": "@google/indexing",
+  "name": "@googleapis/indexing",
   "version": "0.1.0",
   "description": "indexing",
   "main": "build/index.js",

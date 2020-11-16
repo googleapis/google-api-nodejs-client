@@ -1,5 +1,5 @@
 {
-  "name": "@google/dialogflow",
+  "name": "@googleapis/dialogflow",
   "version": "0.1.0",
   "description": "dialogflow",
   "main": "build/index.js",

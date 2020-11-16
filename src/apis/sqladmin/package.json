@@ -1,5 +1,5 @@
 {
-  "name": "@google/sqladmin",
+  "name": "@googleapis/sqladmin",
   "version": "0.1.0",
   "description": "sqladmin",
   "main": "build/index.js",

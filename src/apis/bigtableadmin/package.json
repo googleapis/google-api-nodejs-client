@@ -1,5 +1,5 @@
 {
-  "name": "@google/bigtableadmin",
+  "name": "@googleapis/bigtableadmin",
   "version": "0.1.0",
   "description": "bigtableadmin",
   "main": "build/index.js",

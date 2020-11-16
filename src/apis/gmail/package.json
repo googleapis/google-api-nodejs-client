@@ -1,5 +1,5 @@
 {
-  "name": "@google/gmail",
+  "name": "@googleapis/gmail",
   "version": "0.1.0",
   "description": "gmail",
   "main": "build/index.js",
