@@ -1,5 +1,5 @@
 {
-  "name": "@google/pubsublite",
+  "name": "@googleapis/pubsublite",
   "version": "0.1.0",
   "description": "pubsublite",
   "main": "build/index.js",
