@@ -1,5 +1,5 @@
 {
-  "name": "@google/androidmanagement",
+  "name": "@googleapis/androidmanagement",
   "version": "0.1.0",
   "description": "androidmanagement",
   "main": "build/index.js",
