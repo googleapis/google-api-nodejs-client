@@ -1,5 +1,5 @@
 {
-  "name": "@google/bigqueryreservation",
+  "name": "@googleapis/bigqueryreservation",
   "version": "0.1.0",
   "description": "bigqueryreservation",
   "main": "build/index.js",
