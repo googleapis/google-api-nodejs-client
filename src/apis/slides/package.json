@@ -1,5 +1,5 @@
 {
-  "name": "@google/slides",
+  "name": "@googleapis/slides",
   "version": "0.1.0",
   "description": "slides",
   "main": "build/index.js",
