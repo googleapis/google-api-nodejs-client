@@ -1,5 +1,5 @@
 {
-  "name": "@google/fcm",
+  "name": "@googleapis/fcm",
   "version": "0.1.0",
   "description": "fcm",
   "main": "build/index.js",
