@@ -527,16 +527,31 @@
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
       "documentationLink": "https://cloud.google.com/artifacts/docs/",
+      "preferred": false
+    },
+    {
+      "kind": "discovery#directoryItem",
+      "id": "artifactregistry:v1beta2",
+      "name": "artifactregistry",
+      "version": "v1beta2",
+      "title": "Artifact Registry API",
+      "description": "Store and manage build artifacts in a scalable and integrated service built on Google infrastructure.",
+      "discoveryRestUrl": "https://artifactregistry.googleapis.com/$discovery/rest?version=v1beta2",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "documentationLink": "https://cloud.google.com/artifacts/docs/",
       "preferred": true
     },
     {
       "kind": "discovery#directoryItem",
-      "id": "assuredworkloads:v1beta1",
+      "id": "assuredworkloads:v1",
       "name": "assuredworkloads",
-      "version": "v1beta1",
+      "version": "v1",
       "title": "Assured Workloads API",
       "description": "",
-      "discoveryRestUrl": "https://assuredworkloads.googleapis.com/$discovery/rest?version=v1beta1",
+      "discoveryRestUrl": "https://assuredworkloads.googleapis.com/$discovery/rest?version=v1",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -1053,21 +1068,6 @@
       },
       "documentationLink": "https://cloud.google.com/identity/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "cloudiot:v1alpha1",
-      "name": "cloudiot",
-      "version": "v1alpha1",
-      "title": "Cloud IoT API",
-      "description": "Registers and manages IoT (Internet of Things) devices that connect to the Google Cloud Platform.",
-      "discoveryRestUrl": "https://cloudiot.googleapis.com/$discovery/rest?version=v1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/iot",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
@@ -2918,21 +2918,6 @@
       },
       "documentationLink": "https://cloud.google.com/ml/",
       "preferred": true
-    },
-    {
-      "kind": "discovery#directoryItem",
-      "id": "monitoring:v3p1alpha1",
-      "name": "monitoring",
-      "version": "v3p1alpha1",
-      "title": "Cloud Monitoring API",
-      "description": "Manages your Cloud Monitoring data and configurations. Most projects must be associated with a Workspace, with a few exceptions as noted on the individual method pages. The table entries below are presented in alphabetical order, not in order of common use. For explanations of the concepts found in the table entries, read the [Cloud Monitoring documentation](/monitoring/docs).",
-      "discoveryRestUrl": "https://monitoring.googleapis.com/$discovery/rest?version=v3p1alpha1",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "documentationLink": "https://cloud.google.com/monitoring/api/",
-      "preferred": false
     },
     {
       "kind": "discovery#directoryItem",
