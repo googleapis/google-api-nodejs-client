@@ -195,6 +195,7 @@
                 "$ref": "GenerateMediationReportResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
               ],
               "streamingType": "SERVER_SIDE"
@@ -228,6 +229,7 @@
                 "$ref": "GenerateNetworkReportResponse"
               },
               "scopes": [
+                "https://www.googleapis.com/auth/admob.readonly",
                 "https://www.googleapis.com/auth/admob.report"
               ],
               "streamingType": "SERVER_SIDE"
@@ -237,7 +239,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201114",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "Date": {

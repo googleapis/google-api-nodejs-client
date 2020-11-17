@@ -1220,7 +1220,7 @@
       }
     }
   },
-  "revision": "20201015",
+  "revision": "20201112",
   "rootUrl": "https://games.googleapis.com/",
   "schemas": {
     "AchievementDefinition": {
@@ -3062,14 +3062,12 @@
           "type": "string"
         },
         "height": {
-          "description": "Output only. The height of the image in pixels.",
+          "description": "The height of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "mimeType": {
-          "description": "Output only. The MIME type of the image.",
-          "readOnly": true,
+          "description": "The MIME type of the image.",
           "type": "string"
         },
         "resourceId": {
@@ -3077,9 +3075,8 @@
           "type": "string"
         },
         "width": {
-          "description": "Output only. The width of the image in pixels.",
+          "description": "The width of the image in pixels.",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         }
       },

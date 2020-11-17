@@ -15,9 +15,11 @@
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
 import {artifactregistry_v1beta1} from './v1beta1';
+import {artifactregistry_v1beta2} from './v1beta2';
 
 export const VERSIONS = {
   v1beta1: artifactregistry_v1beta1.Artifactregistry,
+  v1beta2: artifactregistry_v1beta2.Artifactregistry,
 };
 
 export function artifactregistry(
@@ -26,9 +28,23 @@ export function artifactregistry(
 export function artifactregistry(
   options: artifactregistry_v1beta1.Options
 ): artifactregistry_v1beta1.Artifactregistry;
-export function artifactregistry<T = artifactregistry_v1beta1.Artifactregistry>(
+export function artifactregistry(
+  version: 'v1beta2'
+): artifactregistry_v1beta2.Artifactregistry;
+export function artifactregistry(
+  options: artifactregistry_v1beta2.Options
+): artifactregistry_v1beta2.Artifactregistry;
+export function artifactregistry<
+  T =
+    | artifactregistry_v1beta1.Artifactregistry
+    | artifactregistry_v1beta2.Artifactregistry
+>(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1beta1' | artifactregistry_v1beta1.Options
+  versionOrOptions:
+    | 'v1beta1'
+    | artifactregistry_v1beta1.Options
+    | 'v1beta2'
+    | artifactregistry_v1beta2.Options
 ) {
   return getAPI<T>('artifactregistry', versionOrOptions, VERSIONS, this);
 }
@@ -36,6 +52,7 @@ export function artifactregistry<T = artifactregistry_v1beta1.Artifactregistry>(
 const auth = new AuthPlus();
 export {auth};
 export {artifactregistry_v1beta1};
+export {artifactregistry_v1beta2};
 export {
   AuthPlus,
   GlobalOptions,

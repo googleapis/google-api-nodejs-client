@@ -312,7 +312,7 @@
       }
     }
   },
-  "revision": "20201001",
+  "revision": "20201105",
   "rootUrl": "https://lifesciences.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -787,6 +787,17 @@
       },
       "type": "object"
     },
+    "NFSMount": {
+      "description": "Configuration for an `NFSMount` to be attached to the VM.",
+      "id": "NFSMount",
+      "properties": {
+        "target": {
+          "description": "A target NFS mount. The target must be specified as `address:/mount\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Network": {
       "description": "VM networking options.",
       "id": "Network",
@@ -1125,6 +1136,10 @@
         "existingDisk": {
           "$ref": "ExistingDisk",
           "description": "Configuration for a existing disk."
+        },
+        "nfsMount": {
+          "$ref": "NFSMount",
+          "description": "Configuration for an NFS mount."
         },
         "persistentDisk": {
           "$ref": "PersistentDisk",

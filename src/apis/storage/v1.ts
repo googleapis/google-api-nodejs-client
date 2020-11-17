@@ -169,6 +169,7 @@ export namespace storage_v1 {
      */
     iamConfiguration?: {
       bucketPolicyOnly?: {enabled?: boolean; lockedTime?: string};
+      publicAccessPrevention?: string;
       uniformBucketLevelAccess?: {enabled?: boolean; lockedTime?: string};
     } | null;
     /**

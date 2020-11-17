@@ -488,6 +488,15 @@ export namespace lifesciences_v2beta {
     usePrivateAddress?: boolean | null;
   }
   /**
+   * Configuration for an `NFSMount` to be attached to the VM.
+   */
+  export interface Schema$NFSMount {
+    /**
+     * A target NFS mount. The target must be specified as `address:/mount".
+     */
+    target?: string | null;
+  }
+  /**
    * This resource represents a long-running operation that is the result of a network API call.
    */
   export interface Schema$Operation {
@@ -727,6 +736,10 @@ export namespace lifesciences_v2beta {
      * Configuration for a existing disk.
      */
     existingDisk?: Schema$ExistingDisk;
+    /**
+     * Configuration for an NFS mount.
+     */
+    nfsMount?: Schema$NFSMount;
     /**
      * Configuration for a persistent disk.
      */
