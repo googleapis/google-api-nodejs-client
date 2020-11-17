@@ -329,6 +329,10 @@ export namespace analyticsdata_v1alpha {
      */
     apiName?: string | null;
     /**
+     * True if the dimension is a custom dimension for this property.
+     */
+    customDefinition?: boolean | null;
+    /**
      * Still usable but deprecated names for this dimension. If populated, this dimension is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the dimension will be available only by `apiName`.
      */
     deprecatedApiNames?: string[] | null;
@@ -499,6 +503,10 @@ export namespace analyticsdata_v1alpha {
      * A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.
      */
     apiName?: string | null;
+    /**
+     * True if the metric is a custom metric for this property.
+     */
+    customDefinition?: boolean | null;
     /**
      * Still usable but deprecated names for this metric. If populated, this metric is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the metric will be available only by `apiName`.
      */

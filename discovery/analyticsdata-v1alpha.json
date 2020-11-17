@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20201112",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -516,6 +516,10 @@
           "description": "This dimension's name. Useable in [Dimension](#Dimension)'s `name`. For example, `eventName`.",
           "type": "string"
         },
+        "customDefinition": {
+          "description": "True if the dimension is a custom dimension for this property.",
+          "type": "boolean"
+        },
         "deprecatedApiNames": {
           "description": "Still usable but deprecated names for this dimension. If populated, this dimension is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the dimension will be available only by `apiName`.",
           "items": {
@@ -765,6 +769,10 @@
         "apiName": {
           "description": "A metric name. Useable in [Metric](#Metric)'s `name`. For example, `eventCount`.",
           "type": "string"
+        },
+        "customDefinition": {
+          "description": "True if the metric is a custom metric for this property.",
+          "type": "boolean"
         },
         "deprecatedApiNames": {
           "description": "Still usable but deprecated names for this metric. If populated, this metric is available by either `apiName` or one of `deprecatedApiNames` for a period of time. After the deprecation period, the metric will be available only by `apiName`.",
