@@ -265,7 +265,7 @@
       }
     }
   },
-  "revision": "20201016",
+  "revision": "20201124",
   "rootUrl": "https://gmailpostmastertools.googleapis.com/",
   "schemas": {
     "DeliveryError": {
@@ -376,8 +376,13 @@
       "description": "IP Reputation information for a set of IPs in a specific reputation category.",
       "id": "IpReputation",
       "properties": {
-        "numIps": {
+        "ipCount": {
           "description": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).",
+          "format": "int64",
+          "type": "string"
+        },
+        "numIps": {
+          "description": "Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/). Deprecated to be complied with ApiLinter for Quantities. Use ip_count instead.",
           "format": "int64",
           "type": "string"
         },
