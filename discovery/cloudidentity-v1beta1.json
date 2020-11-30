@@ -223,7 +223,7 @@
               "type": "string"
             },
             "filter": {
-              "description": "Optional. Additional restrictions when fetching list of devices. [HC article link](https://support.google.com/a/answer/7549103)",
+              "description": "Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.",
               "location": "query",
               "type": "string"
             },
@@ -437,7 +437,7 @@
                   "type": "string"
                 },
                 "filter": {
-                  "description": "Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)",
+                  "description": "Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.",
                   "location": "query",
                   "type": "string"
                 },
@@ -1221,7 +1221,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20201121",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AndroidAttributes": {
