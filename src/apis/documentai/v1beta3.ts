@@ -3321,20 +3321,14 @@ export namespace documentai_v1beta3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudLocationListLocationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudLocationListLocationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudLocationListLocationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudLocationListLocationsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -3391,9 +3385,9 @@ export namespace documentai_v1beta3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudLocationListLocationsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudLocationListLocationsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -3813,42 +3807,28 @@ export namespace documentai_v1beta3 {
       params: Params$Resource$Projects$Locations$Processors$Process,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
     ): void;
     process(
       params: Params$Resource$Projects$Locations$Processors$Process,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
     ): void;
     process(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
     ): void;
     process(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Processors$Process
-        | BodyResponseCallback<
-            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3892,9 +3872,9 @@ export namespace documentai_v1beta3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudDocumentaiV1beta3ProcessResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudDocumentaiV1beta3ProcessResponse>(
+          parameters
+        );
       }
     }
   }

@@ -2642,20 +2642,14 @@ export namespace documentai_v1beta2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
       params: Params$Resource$Projects$Documents$Process,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
       paramsOrCallback?:
@@ -3007,20 +3001,14 @@ export namespace documentai_v1beta2 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
       params: Params$Resource$Projects$Locations$Documents$Process,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudDocumentaiV1beta2Document
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudDocumentaiV1beta2Document>
     ): void;
     process(
       paramsOrCallback?:
