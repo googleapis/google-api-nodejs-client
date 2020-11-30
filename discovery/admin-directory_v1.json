@@ -299,7 +299,7 @@
     "chromeosdevices": {
       "methods": {
         "action": {
-          "description": "Take action on Chrome OS Device",
+          "description": "Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action",
           "httpMethod": "POST",
           "id": "directory.chromeosdevices.action",
@@ -309,13 +309,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "resourceId": {
-              "description": "Immutable ID of Chrome OS Device",
+              "description": "The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -330,7 +330,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve Chrome OS Device",
+          "description": "Retrieves a Chrome OS device's properties.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}",
           "httpMethod": "GET",
           "id": "directory.chromeosdevices.get",
@@ -340,19 +340,19 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "Immutable ID of Chrome OS Device",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "projection": {
-              "description": "Restrict information returned to a set of selected fields.",
+              "description": "Determines whether the response contains the full list of properties or only a subset.",
               "enum": [
                 "PROJECTION_UNDEFINED",
                 "BASIC",
@@ -377,7 +377,7 @@
           ]
         },
         "list": {
-          "description": "Retrieve all Chrome OS Devices of a customer (paginated)",
+          "description": "Retrieves a paginated list of Chrome OS devices within an account.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos",
           "httpMethod": "GET",
           "id": "directory.chromeosdevices.list",
@@ -386,7 +386,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -400,7 +400,7 @@
               "type": "integer"
             },
             "orderBy": {
-              "description": "Column to use for sorting results",
+              "description": "Device property to use for sorting results.",
               "enum": [
                 "orderByUndefined",
                 "annotatedLocation",
@@ -413,24 +413,24 @@
               ],
               "enumDescriptions": [
                 "",
-                "Chromebook location as annotated by the administrator.",
+                "Chrome device location as annotated by the administrator.",
                 "Chromebook user as annotated by administrator.",
-                "Chromebook last sync.",
-                "Chromebook notes as annotated by the administrator.",
-                "Chromebook Serial Number.",
-                "Chromebook status.",
-                "Chromebook support end date."
+                "The date and time the Chrome device was last synchronized with the policy settings in the Admin console.",
+                "Chrome device notes as annotated by the administrator.",
+                "The Chrome device serial number entered when the device was enabled.",
+                "Chrome device status. For more information, see the <a [chromeosdevices](/admin-sdk/directory/v1/reference/chromeosdevices.html).",
+                "Chrome device support end date. This is applicable only for devices purchased directly from Google."
               ],
               "location": "query",
               "type": "string"
             },
             "orgUnitPath": {
-              "description": "Full path of the organizational unit or its ID",
+              "description": "The full path of the organizational unit or its unique ID.",
               "location": "query",
               "type": "string"
             },
             "pageToken": {
-              "description": "Token to specify next page in the list",
+              "description": "The `pageToken` query parameter is used to request the next page of query results. The follow-on request's `pageToken` query parameter is the `nextPageToken` from your previous response.",
               "location": "query",
               "type": "string"
             },
@@ -455,7 +455,7 @@
               "type": "string"
             },
             "sortOrder": {
-              "description": "Whether to return results in ascending or descending order. Only of use when orderBy is also used",
+              "description": "Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.",
               "enum": [
                 "SORT_ORDER_UNDEFINED",
                 "ASCENDING",
@@ -480,7 +480,7 @@
           ]
         },
         "moveDevicesToOu": {
-          "description": "Move or insert multiple Chrome OS Devices to organizational unit",
+          "description": "Move or insert multiple Chrome OS devices to an organizational unit. You can move up to 50 devices at once.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/moveDevicesToOu",
           "httpMethod": "POST",
           "id": "directory.chromeosdevices.moveDevicesToOu",
@@ -511,7 +511,7 @@
           ]
         },
         "patch": {
-          "description": "Patch Chrome OS Device",
+          "description": "Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}",
           "httpMethod": "PATCH",
           "id": "directory.chromeosdevices.patch",
@@ -521,13 +521,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "Immutable ID of Chrome OS Device",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -560,7 +560,7 @@
           ]
         },
         "update": {
-          "description": "Update Chrome OS Device",
+          "description": "Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}",
           "httpMethod": "PUT",
           "id": "directory.chromeosdevices.update",
@@ -570,13 +570,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "Immutable ID of Chrome OS Device",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1025,7 +1025,7 @@
     "groups": {
       "methods": {
         "delete": {
-          "description": "Delete Group",
+          "description": "Deletes a group.",
           "flatPath": "admin/directory/v1/groups/{groupKey}",
           "httpMethod": "DELETE",
           "id": "directory.groups.delete",
@@ -1034,7 +1034,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1046,7 +1046,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve Group",
+          "description": "Retrieves a group's properties.",
           "flatPath": "admin/directory/v1/groups/{groupKey}",
           "httpMethod": "GET",
           "id": "directory.groups.get",
@@ -1055,7 +1055,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1071,7 +1071,7 @@
           ]
         },
         "insert": {
-          "description": "Create Group",
+          "description": "Creates a group.",
           "flatPath": "admin/directory/v1/groups",
           "httpMethod": "POST",
           "id": "directory.groups.insert",
@@ -1096,12 +1096,12 @@
           "parameterOrder": [],
           "parameters": {
             "customer": {
-              "description": "Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.",
+              "description": "The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)",
               "location": "query",
               "type": "string"
             },
             "domain": {
-              "description": "Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.",
+              "description": "The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.",
               "location": "query",
               "type": "string"
             },
@@ -1167,7 +1167,7 @@
           ]
         },
         "patch": {
-          "description": "Patch Groups via Apiary Patch Orchestration",
+          "description": "Updates a group's properties. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/groups/{groupKey}",
           "httpMethod": "PATCH",
           "id": "directory.groups.patch",
@@ -1176,7 +1176,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group. If ID, it should match with id of group object",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1194,7 +1194,7 @@
           ]
         },
         "update": {
-          "description": "Update Group",
+          "description": "Updates a group's properties.",
           "flatPath": "admin/directory/v1/groups/{groupKey}",
           "httpMethod": "PUT",
           "id": "directory.groups.update",
@@ -1203,7 +1203,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group. If ID, it should match with id of group object",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1225,7 +1225,7 @@
         "aliases": {
           "methods": {
             "delete": {
-              "description": "Remove a alias for the group",
+              "description": "Removes an alias.",
               "flatPath": "admin/directory/v1/groups/{groupKey}/aliases/{alias}",
               "httpMethod": "DELETE",
               "id": "directory.groups.aliases.delete",
@@ -1241,7 +1241,7 @@
                   "type": "string"
                 },
                 "groupKey": {
-                  "description": "Email or immutable ID of the group",
+                  "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1253,7 +1253,7 @@
               ]
             },
             "insert": {
-              "description": "Add a alias for the group",
+              "description": "Adds an alias for the group.",
               "flatPath": "admin/directory/v1/groups/{groupKey}/aliases",
               "httpMethod": "POST",
               "id": "directory.groups.aliases.insert",
@@ -1262,7 +1262,7 @@
               ],
               "parameters": {
                 "groupKey": {
-                  "description": "Email or immutable ID of the group",
+                  "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1280,7 +1280,7 @@
               ]
             },
             "list": {
-              "description": "List all aliases for a group",
+              "description": "Lists all aliases for a group.",
               "flatPath": "admin/directory/v1/groups/{groupKey}/aliases",
               "httpMethod": "GET",
               "id": "directory.groups.aliases.list",
@@ -1289,7 +1289,7 @@
               ],
               "parameters": {
                 "groupKey": {
-                  "description": "Email or immutable ID of the group",
+                  "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -1311,7 +1311,7 @@
     "members": {
       "methods": {
         "delete": {
-          "description": "Remove membership.",
+          "description": "Removes a member from a group.",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members/{memberKey}",
           "httpMethod": "DELETE",
           "id": "directory.members.delete",
@@ -1321,13 +1321,13 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "memberKey": {
-              "description": "Email or immutable ID of the member",
+              "description": "Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1340,7 +1340,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve Group Member",
+          "description": "Retrieves a group member's properties.",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members/{memberKey}",
           "httpMethod": "GET",
           "id": "directory.members.get",
@@ -1350,13 +1350,13 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "memberKey": {
-              "description": "Email or immutable ID of the member",
+              "description": "Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1408,7 +1408,7 @@
           ]
         },
         "insert": {
-          "description": "Add user to the specified group.",
+          "description": "Adds a user to the specified group.",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members",
           "httpMethod": "POST",
           "id": "directory.members.insert",
@@ -1417,7 +1417,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1436,7 +1436,7 @@
           ]
         },
         "list": {
-          "description": "Retrieve all members in a group (paginated)",
+          "description": "Retrieves a paginated list of all members in a group.",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members",
           "httpMethod": "GET",
           "id": "directory.members.list",
@@ -1445,7 +1445,7 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1464,12 +1464,12 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "Token to specify next page in the list",
+              "description": "Token to specify next page in the list.",
               "location": "query",
               "type": "string"
             },
             "roles": {
-              "description": "Comma separated role values to filter list results on.",
+              "description": "The `roles` query parameter allows you to retrieve group members by role. Allowed values are `OWNER`, `MANAGER`, and `MEMBER`.",
               "location": "query",
               "type": "string"
             }
@@ -1486,7 +1486,7 @@
           ]
         },
         "patch": {
-          "description": "Patch Member via Apiary Patch Orchestration",
+          "description": "Updates the membership properties of a user in the specified group. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members/{memberKey}",
           "httpMethod": "PATCH",
           "id": "directory.members.patch",
@@ -1496,13 +1496,13 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group. If ID, it should match with id of group object",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "memberKey": {
-              "description": "Email or immutable ID of the user. If ID, it should match with id of member object",
+              "description": "Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1521,7 +1521,7 @@
           ]
         },
         "update": {
-          "description": "Update membership of a user in the specified group.",
+          "description": "Updates the membership of a user in the specified group.",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members/{memberKey}",
           "httpMethod": "PUT",
           "id": "directory.members.update",
@@ -1531,13 +1531,13 @@
           ],
           "parameters": {
             "groupKey": {
-              "description": "Email or immutable ID of the group. If ID, it should match with id of group object",
+              "description": "Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "memberKey": {
-              "description": "Email or immutable ID of the user. If ID, it should match with id of member object",
+              "description": "Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1560,7 +1560,7 @@
     "mobiledevices": {
       "methods": {
         "action": {
-          "description": "Take action on Mobile Device",
+          "description": "Takes an action that affects a mobile device. For example, remotely wiping a device.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}/action",
           "httpMethod": "POST",
           "id": "directory.mobiledevices.action",
@@ -1570,13 +1570,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "resourceId": {
-              "description": "Immutable ID of Mobile Device",
+              "description": "The unique ID the API service uses to identify the mobile device.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1592,7 +1592,7 @@
           ]
         },
         "delete": {
-          "description": "Delete Mobile Device",
+          "description": "Removes a mobile device.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}",
           "httpMethod": "DELETE",
           "id": "directory.mobiledevices.delete",
@@ -1602,13 +1602,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "resourceId": {
-              "description": "Immutable ID of Mobile Device",
+              "description": "The unique ID the API service uses to identify the mobile device.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1620,7 +1620,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve Mobile Device",
+          "description": "Retrieves a mobile device's properties.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile/{resourceId}",
           "httpMethod": "GET",
           "id": "directory.mobiledevices.get",
@@ -1630,7 +1630,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1651,7 +1651,7 @@
               "type": "string"
             },
             "resourceId": {
-              "description": "Immutable ID of Mobile Device",
+              "description": "The unique ID the API service uses to identify the mobile device.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1668,7 +1668,7 @@
           ]
         },
         "list": {
-          "description": "Retrieve all Mobile Devices of a customer (paginated)",
+          "description": "Retrieves a paginated list of all mobile devices for an account.",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile",
           "httpMethod": "GET",
           "id": "directory.mobiledevices.list",
@@ -1677,7 +1677,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1692,7 +1692,7 @@
               "type": "integer"
             },
             "orderBy": {
-              "description": "Column to use for sorting results",
+              "description": "Device property to use for sorting results.",
               "enum": [
                 "orderByUndefined",
                 "deviceId",
@@ -1706,13 +1706,13 @@
               ],
               "enumDescriptions": [
                 "",
-                "Mobile Device serial number.",
-                "Owner user email.",
+                "The serial number for a Google Sync mobile device. For Android devices, this is a software generated unique identifier.",
+                "The device owner's email address.",
                 "Last policy settings sync date time of the device.",
-                "Mobile Device model.",
-                "Owner user name.",
-                "Mobile operating system.",
-                "Status of the device.",
+                "The mobile device's model.",
+                "The device owner's user name.",
+                "The device's operating system.",
+                "The device status.",
                 "Type of the device."
               ],
               "location": "query",
@@ -1744,7 +1744,7 @@
               "type": "string"
             },
             "sortOrder": {
-              "description": "Whether to return results in ascending or descending order. Only of use when orderBy is also used",
+              "description": "Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.",
               "enum": [
                 "SORT_ORDER_UNDEFINED",
                 "ASCENDING",
@@ -1774,7 +1774,7 @@
     "orgunits": {
       "methods": {
         "delete": {
-          "description": "Remove organizational unit",
+          "description": "Removes an organizational unit.",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits/{orgunitsId}",
           "httpMethod": "DELETE",
           "id": "directory.orgunits.delete",
@@ -1784,13 +1784,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "orgUnitPath": {
-              "description": "Full path of the organizational unit or its ID",
+              "description": "The full path of the organizational unit or its unique ID.",
               "location": "path",
               "pattern": "^.*$",
               "required": true,
@@ -1803,7 +1803,7 @@
           ]
         },
         "get": {
-          "description": "Retrieve organizational unit",
+          "description": "Retrieves an organizational unit.",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits/{orgunitsId}",
           "httpMethod": "GET",
           "id": "directory.orgunits.get",
@@ -1813,13 +1813,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "orgUnitPath": {
-              "description": "Full path of the organizational unit or its ID",
+              "description": "The full path of the organizational unit or its unique ID.",
               "location": "path",
               "pattern": "^.*$",
               "required": true,
@@ -1836,7 +1836,7 @@
           ]
         },
         "insert": {
-          "description": "Add organizational unit",
+          "description": "Adds an organizational unit.",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits",
           "httpMethod": "POST",
           "id": "directory.orgunits.insert",
@@ -1845,7 +1845,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1863,7 +1863,7 @@
           ]
         },
         "list": {
-          "description": "Retrieve all organizational units",
+          "description": "Retrieves a list of all organizational units for an account.",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits",
           "httpMethod": "GET",
           "id": "directory.orgunits.list",
@@ -1872,19 +1872,19 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "orgUnitPath": {
               "default": "",
-              "description": "the URL-encoded organizational unit's path or its ID",
+              "description": "The full path to the organizational unit or its unique ID. Returns the children of the specified organizational unit.",
               "location": "query",
               "type": "string"
             },
             "type": {
-              "description": "Whether to return all sub-organizations or just immediate children",
+              "description": "Whether to return all sub-organizations or just immediate children.",
               "enum": [
                 "typeUndefined",
                 "all",
@@ -1909,7 +1909,7 @@
           ]
         },
         "patch": {
-          "description": "Patch organization unit via Apiary Patch Orchestration",
+          "description": "Updates an organizational unit. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch)",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits/{orgunitsId}",
           "httpMethod": "PATCH",
           "id": "directory.orgunits.patch",
@@ -1919,13 +1919,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "orgUnitPath": {
-              "description": "Full path of the organizational unit or its ID",
+              "description": "The full path of the organizational unit or its unique ID.",
               "location": "path",
               "pattern": "^.*$",
               "required": true,
@@ -1944,7 +1944,7 @@
           ]
         },
         "update": {
-          "description": "Update organizational unit",
+          "description": "Updates an organizational unit.",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits/{orgunitsId}",
           "httpMethod": "PUT",
           "id": "directory.orgunits.update",
@@ -1954,13 +1954,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "orgUnitPath": {
-              "description": "Full path of the organizational unit or its ID",
+              "description": "The full path of the organizational unit or its unique ID.",
               "location": "path",
               "pattern": "^.*$",
               "required": true,
@@ -2030,7 +2030,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2058,7 +2058,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2095,13 +2095,13 @@
                     "",
                     "Building.coordinates are set to the coordinates included in the request.",
                     "Building.coordinates are automatically populated based on the postal address.",
-                    "Defaults to RESOLVED_FROM_ADDRESS if postal address is provided. Otherwise, defaults to CLIENT_SPECIFIED if coordinates are provided."
+                    "Defaults to `RESOLVED_FROM_ADDRESS` if postal address is provided. Otherwise, defaults to `CLIENT_SPECIFIED` if coordinates are provided."
                   ],
                   "location": "query",
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2128,7 +2128,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2185,13 +2185,13 @@
                     "",
                     "Building.coordinates are set to the coordinates included in the request.",
                     "Building.coordinates are automatically populated based on the postal address.",
-                    "Defaults to RESOLVED_FROM_ADDRESS if postal address is provided. Otherwise, defaults to CLIENT_SPECIFIED if coordinates are provided."
+                    "Defaults to `RESOLVED_FROM_ADDRESS` if postal address is provided. Otherwise, defaults to `CLIENT_SPECIFIED` if coordinates are provided."
                   ],
                   "location": "query",
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2237,13 +2237,13 @@
                     "",
                     "Building.coordinates are set to the coordinates included in the request.",
                     "Building.coordinates are automatically populated based on the postal address.",
-                    "Defaults to RESOLVED_FROM_ADDRESS if postal address is provided. Otherwise, defaults to CLIENT_SPECIFIED if coordinates are provided."
+                    "Defaults to `RESOLVED_FROM_ADDRESS` if postal address is provided. Otherwise, defaults to `CLIENT_SPECIFIED` if coordinates are provided."
                   ],
                   "location": "query",
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2281,7 +2281,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2309,7 +2309,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2334,7 +2334,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2361,7 +2361,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2375,7 +2375,7 @@
                   "type": "integer"
                 },
                 "orderBy": {
-                  "description": "Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form \"field [asc|desc], field [asc|desc], ...\". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.",
+                  "description": "Field(s) to sort results by in either ascending or descending order. Supported fields include `resourceId`, `resourceName`, `capacity`, `buildingId`, and `floorName`. If no order is specified, defaults to ascending. Should be of the form \"field [asc|desc], field [asc|desc], ...\". For example `buildingId, capacity desc` would return results sorted first by `buildingId` in ascending order then by `capacity` in descending order.",
                   "location": "query",
                   "type": "string"
                 },
@@ -2385,7 +2385,7 @@
                   "type": "string"
                 },
                 "query": {
-                  "description": "String query used to filter results. Should be of the form \"field operator value\" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.",
+                  "description": "String query used to filter results. Should be of the form \"field operator value\" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include `generatedResourceName`, `name`, `buildingId`, `floor_name`, `capacity`, `featureInstances.feature.name`, `resourceEmail`, `resourceCategory`. For example `buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone`.",
                   "location": "query",
                   "type": "string"
                 }
@@ -2416,7 +2416,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2450,7 +2450,7 @@
                   "type": "string"
                 },
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2482,7 +2482,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2510,7 +2510,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2541,7 +2541,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2568,7 +2568,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2607,7 +2607,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2641,7 +2641,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2672,7 +2672,7 @@
               ],
               "parameters": {
                 "customer": {
-                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.",
+                  "description": "The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3048,13 +3048,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "schemaKey": {
-              "description": "Name or immutable ID of the schema",
+              "description": "Name or immutable ID of the schema.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3076,13 +3076,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "schemaKey": {
-              "description": "Name or immutable ID of the schema",
+              "description": "Name or immutable ID of the schema.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3107,7 +3107,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3134,7 +3134,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3160,7 +3160,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3194,7 +3194,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Immutable ID of the G Suite account",
+              "description": "Immutable ID of the G Suite account.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3334,7 +3334,7 @@
     "users": {
       "methods": {
         "delete": {
-          "description": "Delete user",
+          "description": "Deletes a user.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "DELETE",
           "id": "directory.users.delete",
@@ -3343,7 +3343,7 @@
           ],
           "parameters": {
             "userKey": {
-              "description": "Email or immutable ID of the user",
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3355,7 +3355,7 @@
           ]
         },
         "get": {
-          "description": "retrieve user",
+          "description": "Retrieves a user.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "GET",
           "id": "directory.users.get",
@@ -3364,7 +3364,7 @@
           ],
           "parameters": {
             "customFieldMask": {
-              "description": "Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.",
+              "description": "A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.",
               "location": "query",
               "type": "string"
             },
@@ -3380,21 +3380,21 @@
               "enumDescriptions": [
                 "",
                 "Do not include any custom fields for the user.",
-                "Include custom fields from schemas mentioned in customFieldMask.",
+                "Include custom fields from schemas requested in `customFieldMask`.",
                 "Include all fields associated with this user."
               ],
               "location": "query",
               "type": "string"
             },
             "userKey": {
-              "description": "Email or immutable ID of the user",
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "view_type_undefined",
                 "admin_view",
@@ -3402,8 +3402,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "Fetches the ADMIN_VIEW of the user.",
-                "Fetches the DOMAIN_PUBLIC view of the user."
+                "Results include both administrator-only and domain-public fields for the user.",
+                "Results only include fields for the user that are publicly visible to other users in the domain."
               ],
               "location": "query",
               "type": "string"
@@ -3419,7 +3419,7 @@
           ]
         },
         "insert": {
-          "description": "create user.",
+          "description": "Creates a user.",
           "flatPath": "admin/directory/v1/users",
           "httpMethod": "POST",
           "id": "directory.users.insert",
@@ -3437,24 +3437,24 @@
           ]
         },
         "list": {
-          "description": "Retrieve either deleted users or all users in a domain (paginated)",
+          "description": "Retrieves a paginated list of either deleted users or all users in a domain.",
           "flatPath": "admin/directory/v1/users",
           "httpMethod": "GET",
           "id": "directory.users.list",
           "parameterOrder": [],
           "parameters": {
             "customFieldMask": {
-              "description": "Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.",
+              "description": "A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.",
               "location": "query",
               "type": "string"
             },
             "customer": {
-              "description": "Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.",
+              "description": "The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.",
               "location": "query",
               "type": "string"
             },
             "domain": {
-              "description": "Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.",
+              "description": "The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.",
               "location": "query",
               "type": "string"
             },
@@ -3468,7 +3468,7 @@
               "type": "integer"
             },
             "orderBy": {
-              "description": "Column to use for sorting results",
+              "description": "Property to use for sorting results.",
               "enum": [
                 "orderByUndefined",
                 "email",
@@ -3501,19 +3501,19 @@
               "enumDescriptions": [
                 "",
                 "Do not include any custom fields for the user.",
-                "Include custom fields from schemas mentioned in customFieldMask.",
+                "Include custom fields from schemas requested in `customFieldMask`.",
                 "Include all fields associated with this user."
               ],
               "location": "query",
               "type": "string"
             },
             "query": {
-              "description": "Query string search. Should be of the form \"\". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users",
+              "description": "Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).",
               "location": "query",
               "type": "string"
             },
             "showDeleted": {
-              "description": "If set to true, retrieves the list of deleted users. (Default: false)",
+              "description": "If set to `true`, retrieves the list of deleted users. (Default: `false`)",
               "location": "query",
               "type": "string"
             },
@@ -3534,7 +3534,7 @@
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "view_type_undefined",
                 "admin_view",
@@ -3542,8 +3542,8 @@
               ],
               "enumDescriptions": [
                 "",
-                "Fetches the ADMIN_VIEW of the user.",
-                "Fetches the DOMAIN_PUBLIC view of the user."
+                "Results include both administrator-only and domain-public fields for the user.",
+                "Results only include fields for the user that are publicly visible to other users in the domain."
               ],
               "location": "query",
               "type": "string"
@@ -3560,7 +3560,7 @@
           ]
         },
         "makeAdmin": {
-          "description": "change admin status of a user",
+          "description": "Makes a user a super administrator.",
           "flatPath": "admin/directory/v1/users/{userKey}/makeAdmin",
           "httpMethod": "POST",
           "id": "directory.users.makeAdmin",
@@ -3569,7 +3569,7 @@
           ],
           "parameters": {
             "userKey": {
-              "description": "Email or immutable ID of the user as admin",
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3584,7 +3584,7 @@
           ]
         },
         "patch": {
-          "description": "Patch Users via Apiary Patch Orchestration",
+          "description": "Updates a user using patch semantics. The update method should be used instead, since it also supports patch semantics and has better performance. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PATCH",
           "id": "directory.users.patch",
@@ -3593,7 +3593,7 @@
           ],
           "parameters": {
             "userKey": {
-              "description": "Email or immutable ID of the user. If ID, it should match with id of user object",
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3632,7 +3632,7 @@
           ]
         },
         "undelete": {
-          "description": "Undelete a deleted user",
+          "description": "Undeletes a deleted user.",
           "flatPath": "admin/directory/v1/users/{userKey}/undelete",
           "httpMethod": "POST",
           "id": "directory.users.undelete",
@@ -3656,7 +3656,7 @@
           ]
         },
         "update": {
-          "description": "update user",
+          "description": "Updates a user. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PUT",
           "id": "directory.users.update",
@@ -3665,7 +3665,7 @@
           ],
           "parameters": {
             "userKey": {
-              "description": "Email or immutable ID of the user. If ID, it should match with id of user object",
+              "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3705,7 +3705,7 @@
               "type": "string"
             },
             "event": {
-              "description": "Event on which subscription is intended",
+              "description": "Events to watch for.",
               "enum": [
                 "eventTypeUnspecified",
                 "add",
@@ -3801,14 +3801,14 @@
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "admin_view",
                 "domain_public"
               ],
               "enumDescriptions": [
-                "Fetches the ADMIN_VIEW of the user.",
-                "Fetches the DOMAIN_PUBLIC view of the user."
+                "Results include both administrator-only and domain-public fields.",
+                "Results only include fields for the user that are publicly visible to other users in the domain."
               ],
               "location": "query",
               "type": "string"
@@ -3832,7 +3832,7 @@
         "aliases": {
           "methods": {
             "delete": {
-              "description": "Remove a alias for the user",
+              "description": "Removes an alias.",
               "flatPath": "admin/directory/v1/users/{userKey}/aliases/{alias}",
               "httpMethod": "DELETE",
               "id": "directory.users.aliases.delete",
@@ -3842,13 +3842,13 @@
               ],
               "parameters": {
                 "alias": {
-                  "description": "The alias to be removed",
+                  "description": "The alias to be removed.",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3861,7 +3861,7 @@
               ]
             },
             "insert": {
-              "description": "Add a alias for the user",
+              "description": "Adds an alias.",
               "flatPath": "admin/directory/v1/users/{userKey}/aliases",
               "httpMethod": "POST",
               "id": "directory.users.aliases.insert",
@@ -3870,7 +3870,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3889,7 +3889,7 @@
               ]
             },
             "list": {
-              "description": "List all aliases for a user",
+              "description": "Lists all aliases for a user.",
               "flatPath": "admin/directory/v1/users/{userKey}/aliases",
               "httpMethod": "GET",
               "id": "directory.users.aliases.list",
@@ -3898,7 +3898,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3916,7 +3916,7 @@
               ]
             },
             "watch": {
-              "description": "Watch for changes in users list",
+              "description": "Watch for changes in users list.",
               "flatPath": "admin/directory/v1/users/{userKey}/aliases/watch",
               "httpMethod": "POST",
               "id": "directory.users.aliases.watch",
@@ -3925,7 +3925,7 @@
               ],
               "parameters": {
                 "event": {
-                  "description": "Event on which subscription is intended (if subscribing)",
+                  "description": "Events to watch for.",
                   "enum": [
                     "eventUndefined",
                     "add",
@@ -3965,7 +3965,7 @@
         "photos": {
           "methods": {
             "delete": {
-              "description": "Remove photos for the user",
+              "description": "Removes the user's photo.",
               "flatPath": "admin/directory/v1/users/{userKey}/photos/thumbnail",
               "httpMethod": "DELETE",
               "id": "directory.users.photos.delete",
@@ -3974,7 +3974,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -3986,7 +3986,7 @@
               ]
             },
             "get": {
-              "description": "Retrieve photo of a user",
+              "description": "Retrieves the user's photo.",
               "flatPath": "admin/directory/v1/users/{userKey}/photos/thumbnail",
               "httpMethod": "GET",
               "id": "directory.users.photos.get",
@@ -3995,7 +3995,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -4011,7 +4011,7 @@
               ]
             },
             "patch": {
-              "description": "Patch Photo via Apiary Patch Orchestration",
+              "description": "Adds a photo for the user. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
               "flatPath": "admin/directory/v1/users/{userKey}/photos/thumbnail",
               "httpMethod": "PATCH",
               "id": "directory.users.photos.patch",
@@ -4020,7 +4020,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -4038,7 +4038,7 @@
               ]
             },
             "update": {
-              "description": "Add a photo for the user",
+              "description": "Adds a photo for the user.",
               "flatPath": "admin/directory/v1/users/{userKey}/photos/thumbnail",
               "httpMethod": "PUT",
               "id": "directory.users.photos.update",
@@ -4047,7 +4047,7 @@
               ],
               "parameters": {
                 "userKey": {
-                  "description": "Email or immutable ID of the user",
+                  "description": "Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -4139,7 +4139,7 @@
       }
     }
   },
-  "revision": "20201103",
+  "revision": "20201124",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -4186,7 +4186,7 @@
       "type": "object"
     },
     "Asp": {
-      "description": "The template that returns individual ASP (Access Code) data. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "An application-specific password (ASP) is used with applications that do not accept a verification code when logging into the application on certain devices. The ASP access code is used instead of the login and password you commonly use when accessing an application through a browser. For more information about ASPs and how to create one, see the [help center](//http://support.google.com/a/bin/answer.py?amp;answer=1032419).",
       "id": "Asp",
       "properties": {
         "codeId": {
@@ -4195,7 +4195,7 @@
           "type": "integer"
         },
         "creationTime": {
-          "description": "The time when the ASP was created. Expressed in Unix time format.",
+          "description": "The time when the ASP was created. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.",
           "format": "int64",
           "type": "string"
         },
@@ -4205,16 +4205,16 @@
         },
         "kind": {
           "default": "admin#directory#asp",
-          "description": "The type of the API resource. This is always admin#directory#asp.",
+          "description": "The type of the API resource. This is always `admin#directory#asp`.",
           "type": "string"
         },
         "lastTimeUsed": {
-          "description": "The time when the ASP was last used. Expressed in Unix time format.",
+          "description": "The time when the ASP was last used. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.",
           "format": "int64",
           "type": "string"
         },
         "name": {
-          "description": "The name of the application that the user, represented by their userId, entered when the ASP was created.",
+          "description": "The name of the application that the user, represented by their `userId`, entered when the ASP was created.",
           "type": "string"
         },
         "userKey": {
@@ -4225,7 +4225,6 @@
       "type": "object"
     },
     "Asps": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "Asps",
       "properties": {
         "etag": {
@@ -4241,7 +4240,7 @@
         },
         "kind": {
           "default": "admin#directory#aspList",
-          "description": "The type of the API resource. This is always admin#directory#aspList.",
+          "description": "The type of the API resource. This is always `admin#directory#aspList`.",
           "type": "string"
         }
       },
@@ -4253,7 +4252,7 @@
       "properties": {
         "address": {
           "$ref": "BuildingAddress",
-          "description": "The postal address of the building. See PostalAddress for details. Note that only a single address line and region code are required."
+          "description": "The postal address of the building. See [`PostalAddress`](/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required."
         },
         "buildingId": {
           "description": "Unique identifier for the building. The maximum length is 100 characters.",
@@ -4407,7 +4406,7 @@
         },
         "kind": {
           "default": "admin#directory#resources#calendars#CalendarResource",
-          "description": "The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.",
+          "description": "The type of the resource. For calendar resources, the value is `admin#directory#resources#calendars#CalendarResource`.",
           "type": "string"
         },
         "resourceCategory": {
@@ -4468,7 +4467,7 @@
         },
         "kind": {
           "default": "admin#directory#resources#calendars#calendarResourcesList",
-          "description": "Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.",
+          "description": "Identifies this as a collection of CalendarResources. This is always `admin#directory#resources#calendars#calendarResourcesList`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -4497,7 +4496,7 @@
         },
         "kind": {
           "default": "api#channel",
-          "description": "Identifies this as a notification channel used to watch for changes to a resource, which is \"api#channel\".",
+          "description": "Identifies this as a notification channel used to watch for changes to a resource, which is `api#channel`.",
           "type": "string"
         },
         "params": {
@@ -4531,15 +4530,15 @@
       "type": "object"
     },
     "ChromeOsDevice": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Google Chrome devices run on the [Chrome OS](http://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).",
       "id": "ChromeOsDevice",
       "properties": {
         "activeTimeRanges": {
-          "description": "List of active time ranges (Read-only)",
+          "description": "List of active time ranges (Read-only).",
           "items": {
             "properties": {
               "activeTime": {
-                "description": "Duration in milliseconds",
+                "description": "Duration of usage in milliseconds.",
                 "format": "int32",
                 "type": "integer"
               },
@@ -4554,15 +4553,15 @@
           "type": "array"
         },
         "annotatedAssetId": {
-          "description": "AssetId specified during enrollment or through later annotation",
+          "description": "The asset identifier as noted by an administrator or specified during enrollment.",
           "type": "string"
         },
         "annotatedLocation": {
-          "description": "Address or location of the device as noted by the administrator",
+          "description": "The address or location of the device as noted by the administrator. Maximum length is `200` characters. Empty values are allowed.",
           "type": "string"
         },
         "annotatedUser": {
-          "description": "User of the device",
+          "description": "The user of the device as noted by the administrator. Maximum length is 100 characters. Empty values are allowed.",
           "type": "string"
         },
         "autoUpdateExpiration": {
@@ -4571,7 +4570,7 @@
           "type": "string"
         },
         "bootMode": {
-          "description": "Chromebook boot mode (Read-only)",
+          "description": "The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).",
           "type": "string"
         },
         "cpuStatusReports": {
@@ -4640,7 +4639,7 @@
           "type": "array"
         },
         "deviceId": {
-          "description": "Unique identifier of Chrome OS Device (Read-only)",
+          "description": "The unique ID of the Chrome device.",
           "type": "string"
         },
         "diskVolumeReports": {
@@ -4684,7 +4683,7 @@
           "type": "string"
         },
         "ethernetMacAddress": {
-          "description": "Chromebook Mac Address on ethernet network interface (Read-only)",
+          "description": "The device's MAC address on the ethernet network interface.",
           "type": "string"
         },
         "ethernetMacAddress0": {
@@ -4692,12 +4691,12 @@
           "type": "string"
         },
         "firmwareVersion": {
-          "description": "Chromebook firmware version (Read-only)",
+          "description": "The Chrome device's firmware version.",
           "type": "string"
         },
         "kind": {
           "default": "admin#directory#chromeosdevice",
-          "description": "Kind of resource this is.",
+          "description": "The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.",
           "type": "string"
         },
         "lastEnrollmentTime": {
@@ -4729,7 +4728,7 @@
           "type": "string"
         },
         "macAddress": {
-          "description": "Chromebook Mac Address on wifi network interface (Read-only)",
+          "description": "The device's wireless MAC address. If the device does not have this information, it is not included in the response.",
           "type": "string"
         },
         "manufactureDate": {
@@ -4737,56 +4736,46 @@
           "type": "string"
         },
         "meid": {
-          "description": "Contains either the Mobile Equipment identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in the Chromebook (Read-only)",
+          "description": "The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices.html#export_meid).",
           "type": "string"
         },
         "model": {
-          "description": "Chromebook Model (Read-only)",
+          "description": "The device's model information. If the device does not have this information, this property is not included in the response.",
           "type": "string"
         },
         "notes": {
-          "description": "Notes added by the administrator",
+          "description": "Notes about this device added by the administrator. This property can be [searched](http://support.google.com/chromeos/a/bin/answer.py?answer=1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.",
           "type": "string"
         },
         "orderNumber": {
-          "description": "Chromebook order number (Read-only)",
+          "description": "The device's order number. Only devices directly purchased from Google have an order number.",
           "type": "string"
         },
         "orgUnitPath": {
-          "description": "OrgUnit of the device",
+          "description": "The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433).",
           "type": "string"
         },
         "osVersion": {
-          "description": "Chromebook Os Version (Read-only)",
+          "description": "The Chrome device's operating system version.",
           "type": "string"
         },
         "platformVersion": {
-          "description": "Chromebook platform version (Read-only)",
+          "description": "The Chrome device's platform version.",
           "type": "string"
         },
         "recentUsers": {
-          "description": "List of recent device users, in descending order by last login time (Read-only)",
+          "description": "List of recent device users, in descending order, by last login time.",
           "items": {
-            "properties": {
-              "email": {
-                "description": "Email address of the user. Present only if the user type is managed",
-                "type": "string"
-              },
-              "type": {
-                "description": "The type of the user",
-                "type": "string"
-              }
-            },
-            "type": "object"
+            "$ref": "RecentUsers"
           },
           "type": "array"
         },
         "serialNumber": {
-          "description": "Chromebook serial number (Read-only)",
+          "description": "The Chrome device serial number entered when the device was enabled. This value is the same as the Admin console's *Serial Number* in the *Chrome OS Devices* tab.",
           "type": "string"
         },
         "status": {
-          "description": "status of the device (Read-only)",
+          "description": "The status of the device.",
           "type": "string"
         },
         "supportEndDate": {
@@ -4824,7 +4813,7 @@
           "description": "Trusted Platform Module (TPM) (Read-only)",
           "properties": {
             "family": {
-              "description": "TPM family.",
+              "description": "TPM family. We use the TPM 2.0 style encoding, e.g.: TPM 1.2: \"1.2\" -> 312e3200 TPM 2.0: \"2.0\" -> 322e3000",
               "type": "string"
             },
             "firmwareVersion": {
@@ -4836,7 +4825,7 @@
               "type": "string"
             },
             "specLevel": {
-              "description": "TPM specification level.",
+              "description": "TPM specification level. See Library Specification for TPM 2.0 and Main Specification for TPM 1.2.",
               "type": "string"
             },
             "tpmModel": {
@@ -4851,7 +4840,7 @@
           "type": "object"
         },
         "willAutoRenew": {
-          "description": "Will Chromebook auto renew after support end date (Read-only)",
+          "description": "Determines if the device will auto renew its support after the support end date. This is a read-only property.",
           "type": "boolean"
         }
       },
@@ -4866,17 +4855,17 @@
               "directory.chromeosdevices.action"
             ]
           },
-          "description": "Action to be taken on the ChromeOs Device",
+          "description": "Action to be taken on the Chrome OS device.",
           "type": "string"
         },
         "deprovisionReason": {
+          "description": "Only used when the action is `deprovision`. With the `deprovision` action, this field is required. *Note*: The deprovision reason is audited because it might have implications on licenses for perpetual subscription customers.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "ChromeOsDevices": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "ChromeOsDevices",
       "properties": {
         "chromeosdevices": {
@@ -4896,7 +4885,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "Token used to access next page of this result.",
+          "description": "Token used to access the next page of this result. To access the next page, use this token's value in the `pageToken` query string of this request.",
           "type": "string"
         }
       },
@@ -4911,7 +4900,7 @@
               "directory.chromeosdevices.moveDevicesToOu"
             ]
           },
-          "description": "ChromeOs Devices to be moved to OU",
+          "description": "Chrome OS devices to be moved to OU",
           "items": {
             "type": "string"
           },
@@ -4921,11 +4910,10 @@
       "type": "object"
     },
     "Customer": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "Customer",
       "properties": {
         "alternateEmail": {
-          "description": "The customer's secondary contact email address. This email address cannot be on the same domain as the customerDomain",
+          "description": "The customer's secondary contact email address. This email address cannot be on the same domain as the `customerDomain`",
           "type": "string"
         },
         "customerCreationTime": {
@@ -4934,7 +4922,7 @@
           "type": "string"
         },
         "customerDomain": {
-          "description": "The customer's primary domain name string. Do not include the www prefix when creating a new customer.",
+          "description": "The customer's primary domain name string. Do not include the `www` prefix when creating a new customer.",
           "type": "string"
         },
         "etag": {
@@ -4947,15 +4935,15 @@
         },
         "kind": {
           "default": "admin#directory#customer",
-          "description": "Identifies the resource as a customer. Value: admin#directory#customer",
+          "description": "Identifies the resource as a customer. Value: `admin#directory#customer`",
           "type": "string"
         },
         "language": {
-          "description": "The customer's ISO 639-2 language code. The default value is en-US",
+          "description": "The customer's ISO 639-2 language code. See the [Language Codes](/admin-sdk/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.",
           "type": "string"
         },
         "phoneNumber": {
-          "description": "The customer's contact phone number in E.164 format.",
+          "description": "The customer's contact phone number in [E.164](http://en.wikipedia.org/wiki/E.164) format.",
           "type": "string"
         },
         "postalAddress": {
@@ -4966,7 +4954,6 @@
       "type": "object"
     },
     "CustomerPostalAddress": {
-      "description": "STEPLADDER: Generated unstable field number for field 'address_line2' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'address_line3' to avoid collision. (See http://go/stepladder-help#fieldNumber)",
       "id": "CustomerPostalAddress",
       "properties": {
         "addressLine1": {
@@ -4986,11 +4973,11 @@
           "type": "string"
         },
         "countryCode": {
-          "description": "This is a required property. For countryCode information see the ISO 3166 country code elements.",
+          "description": "This is a required property. For `countryCode` information see the [ISO 3166 country code elements](http://www.iso.org/iso/country_codes.htm).",
           "type": "string"
         },
         "locality": {
-          "description": "Name of the locality. An example of a locality value is the city of San Francisco.",
+          "description": "Name of the locality. An example of a locality value is the city of `San Francisco`.",
           "type": "string"
         },
         "organizationName": {
@@ -4998,11 +4985,11 @@
           "type": "string"
         },
         "postalCode": {
-          "description": "The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http: //portablecontacts.net/draft-spec.html#address_element.",
+          "description": "The postal code. A postalCode example is a postal zip code such as `10009`. This is in accordance with - http: //portablecontacts.net/draft-spec.html#address_element.",
           "type": "string"
         },
         "region": {
-          "description": "Name of the region. An example of a region value is NY for the state of New York.",
+          "description": "Name of the region. An example of a region value is `NY` for the state of New York.",
           "type": "string"
         }
       },
@@ -5218,7 +5205,7 @@
       "id": "Domains",
       "properties": {
         "creationTime": {
-          "description": "Creation time of the domain. (Read-only).",
+          "description": "Creation time of the domain. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format. (Read-only).",
           "format": "int64",
           "type": "string"
         },
@@ -5359,26 +5346,26 @@
       "type": "object"
     },
     "Group": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-groups).",
       "id": "Group",
       "properties": {
         "adminCreated": {
-          "description": "Is the group created by admin (Read-only) *",
+          "description": "Value is `true` if this group was created by an administrator rather than a user.",
           "type": "boolean"
         },
         "aliases": {
-          "description": "List of aliases (Read-only)",
+          "description": "List of a group's alias email addresses.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "description": {
-          "description": "Description of the group",
+          "description": "An extended description to help users determine the purpose of a group. For example, you can include information about who should join the group, the types of messages to send to the group, links to FAQs about the group, or related groups. Maximum length is `4,096` characters.",
           "type": "string"
         },
         "directMembersCount": {
-          "description": "Group direct members count",
+          "description": "The number of users that are direct members of the group. If a group is a member (child) of this group (the parent), members of the child group are not counted in the `directMembersCount` property of the parent group.",
           "format": "int64",
           "type": "string"
         },
@@ -5388,7 +5375,7 @@
               "directory.groups.insert"
             ]
           },
-          "description": "Email of Group",
+          "description": "The group's email address. If your account has multiple domains, select the appropriate domain for the email address. The `email` must be unique. This property is required when creating a group. Group email addresses are subject to the same character usage rules as usernames, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386) for the details.",
           "type": "string"
         },
         "etag": {
@@ -5396,20 +5383,20 @@
           "type": "string"
         },
         "id": {
-          "description": "Unique identifier of Group (Read-only)",
+          "description": "The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.",
           "type": "string"
         },
         "kind": {
           "default": "admin#directory#group",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Groups resources, the value is `admin#directory#group`.",
           "type": "string"
         },
         "name": {
-          "description": "Group name",
+          "description": "The group's display name.",
           "type": "string"
         },
         "nonEditableAliases": {
-          "description": "List of non editable aliases (Read-only)",
+          "description": "List of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.",
           "items": {
             "type": "string"
           },
@@ -5419,7 +5406,6 @@
       "type": "object"
     },
     "Groups": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "Groups",
       "properties": {
         "etag": {
@@ -5446,14 +5432,15 @@
       "type": "object"
     },
     "Member": {
+      "description": "A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-group-members).",
       "id": "Member",
       "properties": {
         "delivery_settings": {
-          "description": "Delivery settings of member",
+          "description": "Defines mail delivery preferences of member. This is only supported by create/update/get.",
           "type": "string"
         },
         "email": {
-          "description": "Email of member (Read-only)",
+          "description": "The member's email address. A member can be a user or another group. This property is required when adding a member to a group. The `email` must be unique and cannot be an alias of another group. If the email address is changed, the API automatically reflects the email address changes.",
           "type": "string"
         },
         "etag": {
@@ -5461,16 +5448,16 @@
           "type": "string"
         },
         "id": {
-          "description": "Unique identifier of group (Read-only) Unique identifier of member (Read-only) The unique ID of the group member. A member id can be used as a member request URI's memberKey.",
+          "description": "The unique ID of the group member. A member `id` can be used as a member request URI's `memberKey`.",
           "type": "string"
         },
         "kind": {
           "default": "admin#directory#member",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Members resources, the value is `admin#directory#member`.",
           "type": "string"
         },
         "role": {
-          "description": "Role of member",
+          "description": "The member's role in a group. The API returns an error for cycles in group memberships. For example, if `group1` is a member of `group2`, `group2` cannot be a member of `group1`. For more information about a member's role, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=167094).",
           "type": "string"
         },
         "status": {
@@ -5478,7 +5465,7 @@
           "type": "string"
         },
         "type": {
-          "description": "Type of member (Immutable)",
+          "description": "The type of group member.",
           "type": "string"
         }
       },
@@ -5523,6 +5510,7 @@
       "type": "object"
     },
     "MobileDevice": {
+      "description": "G Suite Mobile Management includes Android, [Google Sync](http://support.google.com/a/bin/answer.py?answer=135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).",
       "id": "MobileDevice",
       "properties": {
         "adbStatus": {
@@ -5530,31 +5518,31 @@
           "type": "boolean"
         },
         "applications": {
-          "description": "List of applications installed on Mobile Device",
+          "description": "The list of applications installed on an Android mobile device. It is not applicable to Google Sync and iOS devices. The list includes any Android applications that access G Suite data. When updating an applications list, it is important to note that updates replace the existing list. If the Android device has two existing applications and the API updates the list with five applications, the is now the updated list of five applications.",
           "items": {
             "properties": {
               "displayName": {
-                "description": "Display name of application",
+                "description": "The application's display name. An example is `Browser`.",
                 "type": "string"
               },
               "packageName": {
-                "description": "Package name of application",
+                "description": "The application's package name. An example is `com.android.browser`.",
                 "type": "string"
               },
               "permission": {
-                "description": "List of Permissions for application",
+                "description": "The list of permissions of this application. These can be either a standard Android permission or one defined by the application, and are found in an application's [Android manifest](http://developer.android.com/guide/topics/manifest/uses-permission-element.html). Examples of a Calendar application's permissions are `READ_CALENDAR`, or `MANAGE_ACCOUNTS`.",
                 "items": {
                   "type": "string"
                 },
                 "type": "array"
               },
               "versionCode": {
-                "description": "Version code of application",
+                "description": "The application's version code. An example is `13`.",
                 "format": "int32",
                 "type": "integer"
               },
               "versionName": {
-                "description": "Version name of application",
+                "description": "The application's version name. An example is `3.2-140714`.",
                 "type": "string"
               }
             },
@@ -5563,7 +5551,7 @@
           "type": "array"
         },
         "basebandVersion": {
-          "description": "Mobile Device Baseband version (Read-only)",
+          "description": "The device's baseband version.",
           "type": "string"
         },
         "bootloaderVersion": {
@@ -5575,11 +5563,11 @@
           "type": "string"
         },
         "buildNumber": {
-          "description": "Mobile Device Build number (Read-only)",
+          "description": "The device's operating system build number.",
           "type": "string"
         },
         "defaultLanguage": {
-          "description": "The default locale used on the Mobile Device (Read-only)",
+          "description": "The default locale used on the device.",
           "type": "string"
         },
         "developerOptionsStatus": {
@@ -5587,11 +5575,11 @@
           "type": "boolean"
         },
         "deviceCompromisedStatus": {
-          "description": "Mobile Device compromised status (Read-only)",
+          "description": "The compromised device status.",
           "type": "string"
         },
         "deviceId": {
-          "description": "Mobile Device serial number (Read-only)",
+          "description": "The serial number for a Google Sync mobile device. For Android and iOS devices, this is a software generated unique identifier.",
           "type": "string"
         },
         "devicePasswordStatus": {
@@ -5599,7 +5587,7 @@
           "type": "string"
         },
         "email": {
-          "description": "List of owner user's email addresses (Read-only)",
+          "description": "List of owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.",
           "items": {
             "type": "string"
           },
@@ -5623,20 +5611,20 @@
           "type": "string"
         },
         "hardwareId": {
-          "description": "Mobile Device Hardware Id (Read-only)",
+          "description": "The IMEI/MEID unique identifier for Android hardware. It is not applicable to Google Sync devices. When adding an Android mobile device, this is an optional property. When updating one of these devices, this is a read-only property.",
           "type": "string"
         },
         "imei": {
-          "description": "Mobile Device IMEI number (Read-only)",
+          "description": "The device's IMEI number.",
           "type": "string"
         },
         "kernelVersion": {
-          "description": "Mobile Device Kernel version (Read-only)",
+          "description": "The device's kernel version.",
           "type": "string"
         },
         "kind": {
           "default": "admin#directory#mobiledevice",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Mobiledevices resources, the value is `admin#directory#mobiledevice`.",
           "type": "string"
         },
         "lastSync": {
@@ -5645,7 +5633,7 @@
           "type": "string"
         },
         "managedAccountIsOnOwnerProfile": {
-          "description": "Boolean indicating if this account is on owner/primary profile or not (Read-only)",
+          "description": "Boolean indicating if this account is on owner/primary profile or not.",
           "type": "boolean"
         },
         "manufacturer": {
@@ -5653,15 +5641,15 @@
           "type": "string"
         },
         "meid": {
-          "description": "Mobile Device MEID number (Read-only)",
+          "description": "The device's MEID number.",
           "type": "string"
         },
         "model": {
-          "description": "Name of the model of the device",
+          "description": "The mobile device's model name, for example Nexus S. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile=devices#update_mobile_device).",
           "type": "string"
         },
         "name": {
-          "description": "List of owner user's names (Read-only)",
+          "description": "List of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).",
           "items": {
             "type": "string"
           },
@@ -5672,7 +5660,7 @@
           "type": "string"
         },
         "os": {
-          "description": "Name of the mobile operating system",
+          "description": "The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
           "type": "string"
         },
         "otherAccountsInfo": {
@@ -5691,7 +5679,7 @@
           "type": "string"
         },
         "resourceId": {
-          "description": "Unique identifier of Mobile Device (Read-only)",
+          "description": "The unique ID the API service uses to identify the mobile device.",
           "type": "string"
         },
         "securityPatchLevel": {
@@ -5700,11 +5688,11 @@
           "type": "string"
         },
         "serialNumber": {
-          "description": "Mobile Device SSN or Serial Number (Read-only)",
+          "description": "The device's serial number.",
           "type": "string"
         },
         "status": {
-          "description": "Status of the device (Read-only)",
+          "description": "The device's status.",
           "type": "string"
         },
         "supportsWorkProfile": {
@@ -5712,7 +5700,7 @@
           "type": "boolean"
         },
         "type": {
-          "description": "The type of device (Read-only)",
+          "description": "The type of mobile device.",
           "type": "string"
         },
         "unknownSourcesStatus": {
@@ -5720,11 +5708,11 @@
           "type": "boolean"
         },
         "userAgent": {
-          "description": "Mobile Device user agent",
+          "description": "Gives information about the device such as `os` version. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
           "type": "string"
         },
         "wifiMacAddress": {
-          "description": "Mobile Device WiFi MAC address (Read-only)",
+          "description": "The device's MAC address on Wi-Fi networks.",
           "type": "string"
         }
       },
@@ -5739,7 +5727,7 @@
               "directory.mobiledevices.action"
             ]
           },
-          "description": "Action to be taken on the Mobile Device",
+          "description": "The action to be performed on the device.",
           "type": "string"
         }
       },
@@ -5772,15 +5760,15 @@
       "type": "object"
     },
     "OrgUnit": {
-      "description": "JSON template for Org Unit resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-org-units.html).",
       "id": "OrgUnit",
       "properties": {
         "blockInheritance": {
-          "description": "Should block inheritance",
+          "description": "Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. For more information on inheritance and users in an organization structure, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182442&topic=1227584&ctx=topic).",
           "type": "boolean"
         },
         "description": {
-          "description": "Description of OrgUnit",
+          "description": "Description of the organizational unit.",
           "type": "string"
         },
         "etag": {
@@ -5789,7 +5777,7 @@
         },
         "kind": {
           "default": "admin#directory#orgUnit",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Orgunits resources, the value is `admin#directory#orgUnit`.",
           "type": "string"
         },
         "name": {
@@ -5798,30 +5786,29 @@
               "directory.orgunits.insert"
             ]
           },
-          "description": "Name of OrgUnit",
+          "description": "The organizational unit's path name. For example, an organizational unit's name within the /corp/support/sales_support parent path is sales_support. Required.",
           "type": "string"
         },
         "orgUnitId": {
-          "description": "Id of OrgUnit",
+          "description": "The unique ID of the organizational unit.",
           "type": "string"
         },
         "orgUnitPath": {
-          "description": "Path of OrgUnit",
+          "description": "The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which G Suite services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433&topic=1227584&ctx=topic). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).",
           "type": "string"
         },
         "parentOrgUnitId": {
-          "description": "Id of parent OrgUnit",
+          "description": "The unique ID of the parent organizational unit. Required, unless `parentOrgUnitPath` is set.",
           "type": "string"
         },
         "parentOrgUnitPath": {
-          "description": "Path of parent OrgUnit",
+          "description": "The organizational unit's parent path. For example, /corp/sales is the parent path for /corp/sales/sales_support organizational unit. Required, unless `parentOrgUnitId` is set.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "OrgUnits": {
-      "description": "JSON response template for List Organization Units operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "OrgUnits",
       "properties": {
         "etag": {
@@ -5830,11 +5817,11 @@
         },
         "kind": {
           "default": "admin#directory#orgUnits",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Org Unit resources, the type is `admin#directory#orgUnits`.",
           "type": "string"
         },
         "organizationUnits": {
-          "description": "List of user objects.",
+          "description": "List of organizational unit objects.",
           "items": {
             "$ref": "OrgUnit"
           },
@@ -5863,7 +5850,7 @@
         },
         "kind": {
           "default": "admin#directory#privilege",
-          "description": "The type of the API resource. This is always admin#directory#privilege.",
+          "description": "The type of the API resource. This is always `admin#directory#privilege`.",
           "type": "string"
         },
         "privilegeName": {
@@ -5871,7 +5858,7 @@
           "type": "string"
         },
         "serviceId": {
-          "description": "The obfuscated ID of the service this privilege is for. This value is returned with Privileges.list().",
+          "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).",
           "type": "string"
         },
         "serviceName": {
@@ -5897,7 +5884,22 @@
         },
         "kind": {
           "default": "admin#directory#privileges",
-          "description": "The type of the API resource. This is always admin#directory#privileges.",
+          "description": "The type of the API resource. This is always `admin#directory#privileges`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RecentUsers": {
+      "description": "List of recent device users, in descending order, by last login time.",
+      "id": "RecentUsers",
+      "properties": {
+        "email": {
+          "description": "The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the user.",
           "type": "string"
         }
       },
@@ -5911,16 +5913,16 @@
           "type": "string"
         },
         "isSuperAdminRole": {
-          "description": "Returns true if the role is a super admin role.",
+          "description": "Returns `true` if the role is a super admin role.",
           "type": "boolean"
         },
         "isSystemRole": {
-          "description": "Returns true if this is a pre-defined system role.",
+          "description": "Returns `true` if this is a pre-defined system role.",
           "type": "boolean"
         },
         "kind": {
           "default": "admin#directory#role",
-          "description": "The type of the API resource. This is always admin#directory#role.",
+          "description": "The type of the API resource. This is always `admin#directory#role`.",
           "type": "string"
         },
         "roleDescription": {
@@ -5955,7 +5957,7 @@
                 "type": "string"
               },
               "serviceId": {
-                "description": "The obfuscated ID of the service this privilege is for. This value is returned with Privileges.list().",
+                "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).",
                 "type": "string"
               }
             },
@@ -5979,7 +5981,7 @@
         },
         "kind": {
           "default": "admin#directory#roleAssignment",
-          "description": "The type of the API resource. This is always admin#directory#roleAssignment.",
+          "description": "The type of the API resource. This is always `admin#directory#roleAssignment`.",
           "type": "string"
         },
         "orgUnitId": {
@@ -5997,7 +5999,7 @@
           "type": "string"
         },
         "scopeType": {
-          "description": "The scope in which this role is assigned. Possible values are: - CUSTOMER - ORG_UNIT ",
+          "description": "The scope in which this role is assigned.",
           "type": "string"
         }
       },
@@ -6019,7 +6021,7 @@
         },
         "kind": {
           "default": "admin#directory#roleAssignments",
-          "description": "The type of the API resource. This is always admin#directory#roleAssignments .",
+          "description": "The type of the API resource. This is always `admin#directory#roleAssignments`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -6044,7 +6046,7 @@
         },
         "kind": {
           "default": "admin#directory#roles",
-          "description": "The type of the API resource. This is always admin#directory#roles.",
+          "description": "The type of the API resource. This is always `admin#directory#roles`.",
           "type": "string"
         },
         "nextPageToken": {
@@ -6054,7 +6056,7 @@
       "type": "object"
     },
     "Schema": {
-      "description": "JSON template for Schema resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "The type of API resource. For Schema resources, this is always `admin#directory#schema`.",
       "id": "Schema",
       "properties": {
         "displayName": {
@@ -6067,7 +6069,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "ETag of the resource.",
+          "description": "The ETag of the resource.",
           "type": "string"
         },
         "fields": {
@@ -6077,7 +6079,7 @@
               "directory.schemas.update"
             ]
           },
-          "description": "Fields of Schema",
+          "description": "A list of fields in the schema.",
           "items": {
             "$ref": "SchemaFieldSpec"
           },
@@ -6089,7 +6091,7 @@
           "type": "string"
         },
         "schemaId": {
-          "description": "Unique identifier of Schema (Read-only)",
+          "description": "The unique identifier of the schema (Read-only)",
           "type": "string"
         },
         "schemaName": {
@@ -6098,14 +6100,14 @@
               "directory.schemas.insert"
             ]
           },
-          "description": "Schema name",
+          "description": "The schema's name.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "SchemaFieldSpec": {
-      "description": "JSON template for FieldSpec resource for Schemas in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](/admin-sdk/directory/v1/guides/manage-schemas).",
       "id": "SchemaFieldSpec",
       "properties": {
         "displayName": {
@@ -6119,11 +6121,11 @@
           "type": "string"
         },
         "etag": {
-          "description": "ETag of the resource.",
+          "description": "The ETag of the field.",
           "type": "string"
         },
         "fieldId": {
-          "description": "Unique identifier of Field (Read-only)",
+          "description": "The unique identifier of the field (Read-only)",
           "type": "string"
         },
         "fieldName": {
@@ -6133,7 +6135,7 @@
               "directory.schemas.update"
             ]
           },
-          "description": "Name of the field.",
+          "description": "The name of the field.",
           "type": "string"
         },
         "fieldType": {
@@ -6143,25 +6145,25 @@
               "directory.schemas.update"
             ]
           },
-          "description": "Type of the field.",
+          "description": "The type of the field.",
           "type": "string"
         },
         "indexed": {
           "default": "true",
-          "description": "Boolean specifying whether the field is indexed or not.",
+          "description": "Boolean specifying whether the field is indexed or not. Default: `true`.",
           "type": "boolean"
         },
         "kind": {
           "default": "admin#directory#schema#fieldspec",
-          "description": "Kind of resource this is.",
+          "description": "The kind of resource this is. For schema fields this is always `admin#directory#schema#fieldspec`.",
           "type": "string"
         },
         "multiValued": {
-          "description": "Boolean specifying whether this is a multi-valued field or not.",
+          "description": "A boolean specifying whether this is a multi-valued field or not. Default: `false`.",
           "type": "boolean"
         },
         "numericIndexingSpec": {
-          "description": "Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.",
+          "description": "Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the `numericIndexingSpec` allows range queries to be supported.",
           "properties": {
             "maxValue": {
               "description": "Maximum value of this field. This is meant to be indicative rather than enforced. Values outside this range will still be indexed, but search may not be as performant.",
@@ -6178,14 +6180,14 @@
         },
         "readAccessType": {
           "default": "ALL_DOMAIN_USERS",
-          "description": "Read ACLs on the field specifying who can view values of this field. Valid values are \"ALL_DOMAIN_USERS\" and \"ADMINS_AND_SELF\".",
+          "description": "Specifies who can view values of this field. See [Retrieve users as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "Schemas": {
-      "description": "JSON response template for List Schema operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "JSON response template for List Schema operation in Directory API.",
       "id": "Schemas",
       "properties": {
         "etag": {
@@ -6208,11 +6210,11 @@
       "type": "object"
     },
     "Token": {
-      "description": "JSON template for token resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "JSON template for token resource in Directory API.",
       "id": "Token",
       "properties": {
         "anonymous": {
-          "description": "Whether the application is registered with Google. The value is true if the application has an anonymous Client ID.",
+          "description": "Whether the application is registered with Google. The value is `true` if the application has an anonymous Client ID.",
           "type": "boolean"
         },
         "clientId": {
@@ -6229,11 +6231,11 @@
         },
         "kind": {
           "default": "admin#directory#token",
-          "description": "The type of the API resource. This is always admin#directory#token.",
+          "description": "The type of the API resource. This is always `admin#directory#token`.",
           "type": "string"
         },
         "nativeApp": {
-          "description": "Whether the token is issued to an installed application. The value is true if the application is installed to a desktop or mobile device.",
+          "description": "Whether the token is issued to an installed application. The value is `true` if the application is installed to a desktop or mobile device.",
           "type": "boolean"
         },
         "scopes": {
@@ -6251,7 +6253,7 @@
       "type": "object"
     },
     "Tokens": {
-      "description": "JSON response template for List tokens operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "JSON response template for List tokens operation in Directory API.",
       "id": "Tokens",
       "properties": {
         "etag": {
@@ -6267,27 +6269,27 @@
         },
         "kind": {
           "default": "admin#directory#tokenList",
-          "description": "The type of the API resource. This is always admin#directory#tokenList.",
+          "description": "The type of the API resource. This is always `admin#directory#tokenList`.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "User": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'external_ids' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'relations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'addresses' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'organizations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'phones' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'languages' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'posix_accounts' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'ssh_public_keys' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'notes' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'websites' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'locations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'keywords' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'gender' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'thumbnail_photo_etag' to avoid collision. (See http://go/stepladder-help#fieldNumber)",
+      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Gmail chat profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
       "id": "User",
       "properties": {
         "addresses": {
-          "description": "Addresses of User",
+          "description": "A list of the user's addresses. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "agreedToTerms": {
-          "description": "Output only. Indicates if user has agreed to terms (Read-only)",
+          "description": "Output only. This property is `true` if the user has completed an initial login and accepted the Terms of Service agreement.",
           "readOnly": true,
           "type": "boolean"
         },
         "aliases": {
-          "description": "Output only. List of aliases (Read-only)",
+          "description": "Output only. List of the user's alias email addresses.",
           "items": {
             "type": "string"
           },
@@ -6299,7 +6301,7 @@
           "type": "boolean"
         },
         "changePasswordAtNextLogin": {
-          "description": "Boolean indicating if the user should change password in next login",
+          "description": "Indicates if the user is forced to change their password at next login. This setting doesn't apply when [the user signs in via a third-party identity provider](https://support.google.com/a/answer/60224).",
           "type": "boolean"
         },
         "creationTime": {
@@ -6316,7 +6318,7 @@
           "type": "object"
         },
         "customerId": {
-          "description": "Output only. CustomerId of User (Read-only)",
+          "description": "Output only. The customer ID to [retrieve all account users](/admin-sdk/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](/admin-sdk/directory/v1/reference/users/list) request.",
           "readOnly": true,
           "type": "string"
         },
@@ -6326,7 +6328,7 @@
           "type": "string"
         },
         "emails": {
-          "description": "Emails of User",
+          "description": "A list of the user's email addresses. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "etag": {
@@ -6335,40 +6337,40 @@
           "type": "string"
         },
         "externalIds": {
-          "description": "The external Ids of User *",
+          "description": "A list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "gender": {
-          "description": "Gender of User",
+          "description": "The user's gender. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "hashFunction": {
-          "description": "Hash function name for password. Supported are MD5, SHA-1 and crypt",
+          "description": "Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. Set the `hashFunction` values as either the [SHA-1](http://wikipedia.org/wiki/SHA-1), [MD5](http://wikipedia.org/wiki/MD5), or [crypt](https://en.wikipedia.org/wiki/Crypt_(C)) hash format.",
           "type": "string"
         },
         "id": {
-          "description": "Unique identifier of User (Read-only)",
+          "description": "The unique ID for the user. A user `id` can be used as a user request URI's `userKey`.",
           "type": "string"
         },
         "ims": {
-          "description": "User's Instant Messenger",
+          "description": "The user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "includeInGlobalAddressList": {
-          "description": "Boolean indicating if user is included in Global Address List",
+          "description": "Indicates if the user's profile is visible in the G Suite global address list when the contact sharing feature is enabled for the domain. For more information about excluding user profiles, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=1285988).",
           "type": "boolean"
         },
         "ipWhitelisted": {
-          "description": "Boolean indicating if ip is whitelisted",
+          "description": "If `true`, the user's IP address is [white listed](http://support.google.com/a/bin/answer.py?answer=60752).",
           "type": "boolean"
         },
         "isAdmin": {
-          "description": "Output only. Boolean indicating if the user is admin (Read-only)",
+          "description": "Output only. Indicates a user with super admininistrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](/admin-sdk/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](/admin-sdk/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](/admin-sdk/directory/v1/reference/users/insert.html) or [update](/admin-sdk/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.",
           "readOnly": true,
           "type": "boolean"
         },
         "isDelegatedAdmin": {
-          "description": "Output only. Boolean indicating if the user is delegated admin (Read-only)",
+          "description": "Output only. Indicates if the user is a delegated administrator. Delegated administrators are supported by the API but cannot create or undelete users, or make users administrators. These requests are ignored by the API service. Roles and privileges for administrators are assigned using the [Admin console](http://support.google.com/a/bin/answer.py?answer=33325).",
           "readOnly": true,
           "type": "boolean"
         },
@@ -6383,22 +6385,22 @@
           "type": "boolean"
         },
         "isMailboxSetup": {
-          "description": "Output only. Is mailbox setup (Read-only)",
+          "description": "Output only. Indicates if the user's Google mailbox is created. This property is only applicable if the user has been assigned a Gmail license.",
           "readOnly": true,
           "type": "boolean"
         },
         "keywords": {
-          "description": "Keywords of User",
+          "description": "The user's keywords. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "kind": {
           "default": "admin#directory#user",
-          "description": "Output only. Kind of resource this is.",
+          "description": "Output only. The type of the API resource. For Users resources, the value is `admin#directory#user`.",
           "readOnly": true,
           "type": "string"
         },
         "languages": {
-          "description": "Languages of User",
+          "description": "The user's languages. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "lastLoginTime": {
@@ -6408,7 +6410,7 @@
           "type": "string"
         },
         "locations": {
-          "description": "Locations of User",
+          "description": "The user's locations. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "name": {
@@ -6418,10 +6420,10 @@
               "directory.users.insert"
             ]
           },
-          "description": "User's name"
+          "description": "Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386). Maximum allowed data size for this field is 1Kb."
         },
         "nonEditableAliases": {
-          "description": "Output only. List of non editable aliases (Read-only)",
+          "description": "Output only. List of the user's non-editable alias email addresses. These are typically outside the account's primary domain or sub-domain.",
           "items": {
             "type": "string"
           },
@@ -6429,15 +6431,15 @@
           "type": "array"
         },
         "notes": {
-          "description": "Notes of User",
+          "description": "Notes for the user.",
           "type": "any"
         },
         "orgUnitPath": {
-          "description": "OrgUnit of User",
+          "description": "The full path of the parent organization associated with the user. If the parent organization is the top-level, it is represented as a forward slash (`/`).",
           "type": "string"
         },
         "organizations": {
-          "description": "Organizations of User",
+          "description": "A list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.",
           "type": "any"
         },
         "password": {
@@ -6450,11 +6452,11 @@
           "type": "string"
         },
         "phones": {
-          "description": "Phone numbers of User",
+          "description": "A list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.",
           "type": "any"
         },
         "posixAccounts": {
-          "description": "The POSIX accounts of User",
+          "description": "A list of [POSIX](http://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.",
           "type": "any"
         },
         "primaryEmail": {
@@ -6463,7 +6465,7 @@
               "directory.users.insert"
             ]
           },
-          "description": "username of User",
+          "description": "The user's primary email address. This property is required in a request to create a user account. The `primaryEmail` must be unique and cannot be an alias of another user.",
           "type": "string"
         },
         "recoveryEmail": {
@@ -6475,11 +6477,11 @@
           "type": "string"
         },
         "relations": {
-          "description": "The Relations of User *",
+          "description": "A list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         },
         "sshPublicKeys": {
-          "description": "The SSH public keys of User",
+          "description": "A list of SSH public keys.",
           "type": "any"
         },
         "suspended": {
@@ -6487,7 +6489,7 @@
           "type": "boolean"
         },
         "suspensionReason": {
-          "description": "Output only. Suspension reason if user is suspended (Read-only)",
+          "description": "Output only. Has the reason a user account is suspended either by the administrator or by Google at the time of suspension. The property is returned only if the `suspended` property is `true`.",
           "readOnly": true,
           "type": "string"
         },
@@ -6502,7 +6504,7 @@
           "type": "string"
         },
         "websites": {
-          "description": "Websites of User",
+          "description": "The user's websites. The maximum allowed data size for this field is 2Kb.",
           "type": "any"
         }
       },
@@ -6759,7 +6761,7 @@
               "directory.users.makeAdmin"
             ]
           },
-          "description": "Boolean indicating new admin status of the user",
+          "description": "Indicates the administrator status of the user.",
           "type": "boolean"
         }
       },
@@ -6774,11 +6776,11 @@
               "directory.users.insert"
             ]
           },
-          "description": "Last Name",
+          "description": "The user's last name. Required when creating a user account.",
           "type": "string"
         },
         "fullName": {
-          "description": "Full Name",
+          "description": "The user's full name formed by concatenating the first and last name values.",
           "type": "string"
         },
         "givenName": {
@@ -6787,7 +6789,7 @@
               "directory.users.insert"
             ]
           },
-          "description": "First Name",
+          "description": "The user's first name. Required when creating a user account.",
           "type": "string"
         }
       },
@@ -6873,7 +6875,6 @@
       "type": "object"
     },
     "UserPhoto": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "UserPhoto",
       "properties": {
         "etag": {
@@ -6881,21 +6882,21 @@
           "type": "string"
         },
         "height": {
-          "description": "Height in pixels of the photo",
+          "description": "Height of the photo in pixels.",
           "format": "int32",
           "type": "integer"
         },
         "id": {
-          "description": "Unique identifier of User (Read-only)",
+          "description": "The ID the API uses to uniquely identify the user.",
           "type": "string"
         },
         "kind": {
           "default": "admin#directory#user#photo",
-          "description": "Kind of resource this is.",
+          "description": "The type of the API resource. For Photo resources, this is `admin#directory#user#photo`.",
           "type": "string"
         },
         "mimeType": {
-          "description": "Mime Type of the photo",
+          "description": "The MIME type of the photo. Allowed values are `JPEG`, `PNG`, `GIF`, `BMP`, `TIFF`, and web-safe base64 encoding.",
           "type": "string"
         },
         "photoData": {
@@ -6904,16 +6905,16 @@
               "directory.users.photos.update"
             ]
           },
-          "description": "Base64 encoded photo data",
+          "description": "The user photo's upload data in [web-safe Base64](https://code.google.com/p/stringencoders/wiki/WebSafeBase64) format in bytes. This means: * The slash (/) character is replaced with the underscore (_) character. * The plus sign (+) character is replaced with the hyphen (-) character. * The equals sign (=) character is replaced with the asterisk (*). * For padding, the period (.) character is used instead of the RFC-4648 baseURL definition which uses the equals sign (=) for padding. This is done to simplify URL-parsing. * Whatever the size of the photo being uploaded, the API downsizes it to 96x96 pixels.",
           "format": "byte",
           "type": "string"
         },
         "primaryEmail": {
-          "description": "Primary email of User (Read-only)",
+          "description": "The user's primary email address.",
           "type": "string"
         },
         "width": {
-          "description": "Width in pixels of the photo",
+          "description": "Width of the photo in pixels.",
           "format": "int32",
           "type": "integer"
         }
@@ -7043,7 +7044,6 @@
       "type": "object"
     },
     "Users": {
-      "description": "STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
       "id": "Users",
       "properties": {
         "etag": {
@@ -7074,7 +7074,7 @@
       "type": "object"
     },
     "VerificationCode": {
-      "description": "JSON template for verification codes in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "The Directory API allows you to view, generate, and invalidate backup verification codes for a user.",
       "id": "VerificationCode",
       "properties": {
         "etag": {
@@ -7083,7 +7083,7 @@
         },
         "kind": {
           "default": "admin#directory#verificationCode",
-          "description": "The type of the resource. This is always admin#directory#verificationCode.",
+          "description": "The type of the resource. This is always `admin#directory#verificationCode`.",
           "type": "string"
         },
         "userId": {
@@ -7098,7 +7098,7 @@
       "type": "object"
     },
     "VerificationCodes": {
-      "description": "JSON response template for List verification codes operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "JSON response template for List verification codes operation in Directory API.",
       "id": "VerificationCodes",
       "properties": {
         "etag": {
@@ -7114,7 +7114,7 @@
         },
         "kind": {
           "default": "admin#directory#verificationCodesList",
-          "description": "The type of the resource. This is always admin#directory#verificationCodesList.",
+          "description": "The type of the resource. This is always `admin#directory#verificationCodesList`.",
           "type": "string"
         }
       },
@@ -7122,6 +7122,6 @@
     }
   },
   "servicePath": "",
-  "title": "Admin SDK",
+  "title": "Admin SDK API",
   "version": "directory_v1"
 }

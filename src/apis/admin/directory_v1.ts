@@ -99,7 +99,7 @@ export namespace admin_directory_v1 {
   }
 
   /**
-   * Admin SDK
+   * Admin SDK API
    *
    * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
@@ -180,7 +180,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * The template that returns individual ASP (Access Code) data. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * An application-specific password (ASP) is used with applications that do not accept a verification code when logging into the application on certain devices. The ASP access code is used instead of the login and password you commonly use when accessing an application through a browser. For more information about ASPs and how to create one, see the [help center](//http://support.google.com/a/bin/answer.py?amp;answer=1032419).
    */
   export interface Schema$Asp {
     /**
@@ -188,7 +188,7 @@ export namespace admin_directory_v1 {
      */
     codeId?: number | null;
     /**
-     * The time when the ASP was created. Expressed in Unix time format.
+     * The time when the ASP was created. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.
      */
     creationTime?: string | null;
     /**
@@ -196,15 +196,15 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The type of the API resource. This is always admin#directory#asp.
+     * The type of the API resource. This is always `admin#directory#asp`.
      */
     kind?: string | null;
     /**
-     * The time when the ASP was last used. Expressed in Unix time format.
+     * The time when the ASP was last used. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format.
      */
     lastTimeUsed?: string | null;
     /**
-     * The name of the application that the user, represented by their userId, entered when the ASP was created.
+     * The name of the application that the user, represented by their `userId`, entered when the ASP was created.
      */
     name?: string | null;
     /**
@@ -212,9 +212,6 @@ export namespace admin_directory_v1 {
      */
     userKey?: string | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$Asps {
     /**
      * ETag of the resource.
@@ -225,7 +222,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$Asp[];
     /**
-     * The type of the API resource. This is always admin#directory#aspList.
+     * The type of the API resource. This is always `admin#directory#aspList`.
      */
     kind?: string | null;
   }
@@ -234,7 +231,7 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$Building {
     /**
-     * The postal address of the building. See PostalAddress for details. Note that only a single address line and region code are required.
+     * The postal address of the building. See [`PostalAddress`](/my-business/reference/rest/v4/PostalAddress) for details. Note that only a single address line and region code are required.
      */
     address?: Schema$BuildingAddress;
     /**
@@ -366,7 +363,7 @@ export namespace admin_directory_v1 {
      */
     generatedResourceName?: string | null;
     /**
-     * The type of the resource. For calendar resources, the value is admin#directory#resources#calendars#CalendarResource.
+     * The type of the resource. For calendar resources, the value is `admin#directory#resources#calendars#CalendarResource`.
      */
     kind?: string | null;
     /**
@@ -411,7 +408,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$CalendarResource[];
     /**
-     * Identifies this as a collection of CalendarResources. This is always admin#directory#resources#calendars#calendarResourcesList.
+     * Identifies this as a collection of CalendarResources. This is always `admin#directory#resources#calendars#calendarResourcesList`.
      */
     kind?: string | null;
     /**
@@ -436,7 +433,7 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * Identifies this as a notification channel used to watch for changes to a resource, which is "api#channel".
+     * Identifies this as a notification channel used to watch for changes to a resource, which is `api#channel`.
      */
     kind?: string | null;
     /**
@@ -465,23 +462,23 @@ export namespace admin_directory_v1 {
     type?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Google Chrome devices run on the [Chrome OS](http://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).
    */
   export interface Schema$ChromeOsDevice {
     /**
-     * List of active time ranges (Read-only)
+     * List of active time ranges (Read-only).
      */
     activeTimeRanges?: Array<{activeTime?: number; date?: string}> | null;
     /**
-     * AssetId specified during enrollment or through later annotation
+     * The asset identifier as noted by an administrator or specified during enrollment.
      */
     annotatedAssetId?: string | null;
     /**
-     * Address or location of the device as noted by the administrator
+     * The address or location of the device as noted by the administrator. Maximum length is `200` characters. Empty values are allowed.
      */
     annotatedLocation?: string | null;
     /**
-     * User of the device
+     * The user of the device as noted by the administrator. Maximum length is 100 characters. Empty values are allowed.
      */
     annotatedUser?: string | null;
     /**
@@ -489,7 +486,7 @@ export namespace admin_directory_v1 {
      */
     autoUpdateExpiration?: string | null;
     /**
-     * Chromebook boot mode (Read-only)
+     * The boot mode for the device. The possible values are: * `Verified`: The device is running a valid version of the Chrome OS. * `Dev`: The devices's developer hardware switch is enabled. When booted, the device has a command line shell. For an example of a developer switch, see the [Chromebook developer information](http://www.chromium.org/chromium-os/developer-information-for-chrome-os-devices/samsung-series-5-chromebook#TOC-Developer-switch).
      */
     bootMode?: string | null;
     /**
@@ -510,7 +507,7 @@ export namespace admin_directory_v1 {
       type?: string;
     }> | null;
     /**
-     * Unique identifier of Chrome OS Device (Read-only)
+     * The unique ID of the Chrome device.
      */
     deviceId?: string | null;
     /**
@@ -532,7 +529,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Chromebook Mac Address on ethernet network interface (Read-only)
+     * The device's MAC address on the ethernet network interface.
      */
     ethernetMacAddress?: string | null;
     /**
@@ -540,11 +537,11 @@ export namespace admin_directory_v1 {
      */
     ethernetMacAddress0?: string | null;
     /**
-     * Chromebook firmware version (Read-only)
+     * The Chrome device's firmware version.
      */
     firmwareVersion?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of resource. For the Chromeosdevices resource, the value is `admin#directory#chromeosdevice`.
      */
     kind?: string | null;
     /**
@@ -563,7 +560,7 @@ export namespace admin_directory_v1 {
      */
     lastSync?: string | null;
     /**
-     * Chromebook Mac Address on wifi network interface (Read-only)
+     * The device's wireless MAC address. If the device does not have this information, it is not included in the response.
      */
     macAddress?: string | null;
     /**
@@ -571,43 +568,43 @@ export namespace admin_directory_v1 {
      */
     manufactureDate?: string | null;
     /**
-     * Contains either the Mobile Equipment identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in the Chromebook (Read-only)
+     * The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices.html#export_meid).
      */
     meid?: string | null;
     /**
-     * Chromebook Model (Read-only)
+     * The device's model information. If the device does not have this information, this property is not included in the response.
      */
     model?: string | null;
     /**
-     * Notes added by the administrator
+     * Notes about this device added by the administrator. This property can be [searched](http://support.google.com/chromeos/a/bin/answer.py?answer=1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.
      */
     notes?: string | null;
     /**
-     * Chromebook order number (Read-only)
+     * The device's order number. Only devices directly purchased from Google have an order number.
      */
     orderNumber?: string | null;
     /**
-     * OrgUnit of the device
+     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#update_chrome_device) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433).
      */
     orgUnitPath?: string | null;
     /**
-     * Chromebook Os Version (Read-only)
+     * The Chrome device's operating system version.
      */
     osVersion?: string | null;
     /**
-     * Chromebook platform version (Read-only)
+     * The Chrome device's platform version.
      */
     platformVersion?: string | null;
     /**
-     * List of recent device users, in descending order by last login time (Read-only)
+     * List of recent device users, in descending order, by last login time.
      */
-    recentUsers?: Array<{email?: string; type?: string}> | null;
+    recentUsers?: Schema$RecentUsers[];
     /**
-     * Chromebook serial number (Read-only)
+     * The Chrome device serial number entered when the device was enabled. This value is the same as the Admin console's *Serial Number* in the *Chrome OS Devices* tab.
      */
     serialNumber?: string | null;
     /**
-     * status of the device (Read-only)
+     * The status of the device.
      */
     status?: string | null;
     /**
@@ -637,20 +634,20 @@ export namespace admin_directory_v1 {
       vendorSpecific?: string;
     } | null;
     /**
-     * Will Chromebook auto renew after support end date (Read-only)
+     * Determines if the device will auto renew its support after the support end date. This is a read-only property.
      */
     willAutoRenew?: boolean | null;
   }
   export interface Schema$ChromeOsDeviceAction {
     /**
-     * Action to be taken on the ChromeOs Device
+     * Action to be taken on the Chrome OS device.
      */
     action?: string | null;
+    /**
+     * Only used when the action is `deprovision`. With the `deprovision` action, this field is required. *Note*: The deprovision reason is audited because it might have implications on licenses for perpetual subscription customers.
+     */
     deprovisionReason?: string | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$ChromeOsDevices {
     /**
      * List of Chrome OS Device objects.
@@ -665,22 +662,19 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * Token used to access next page of this result.
+     * Token used to access the next page of this result. To access the next page, use this token's value in the `pageToken` query string of this request.
      */
     nextPageToken?: string | null;
   }
   export interface Schema$ChromeOsMoveDevicesToOu {
     /**
-     * ChromeOs Devices to be moved to OU
+     * Chrome OS devices to be moved to OU
      */
     deviceIds?: string[] | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$Customer {
     /**
-     * The customer's secondary contact email address. This email address cannot be on the same domain as the customerDomain
+     * The customer's secondary contact email address. This email address cannot be on the same domain as the `customerDomain`
      */
     alternateEmail?: string | null;
     /**
@@ -688,7 +682,7 @@ export namespace admin_directory_v1 {
      */
     customerCreationTime?: string | null;
     /**
-     * The customer's primary domain name string. Do not include the www prefix when creating a new customer.
+     * The customer's primary domain name string. Do not include the `www` prefix when creating a new customer.
      */
     customerDomain?: string | null;
     /**
@@ -700,15 +694,15 @@ export namespace admin_directory_v1 {
      */
     id?: string | null;
     /**
-     * Identifies the resource as a customer. Value: admin#directory#customer
+     * Identifies the resource as a customer. Value: `admin#directory#customer`
      */
     kind?: string | null;
     /**
-     * The customer's ISO 639-2 language code. The default value is en-US
+     * The customer's ISO 639-2 language code. See the [Language Codes](/admin-sdk/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.
      */
     language?: string | null;
     /**
-     * The customer's contact phone number in E.164 format.
+     * The customer's contact phone number in [E.164](http://en.wikipedia.org/wiki/E.164) format.
      */
     phoneNumber?: string | null;
     /**
@@ -716,9 +710,6 @@ export namespace admin_directory_v1 {
      */
     postalAddress?: Schema$CustomerPostalAddress;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'address_line2' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'address_line3' to avoid collision. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$CustomerPostalAddress {
     /**
      * A customer's physical address. The address can be composed of one to three lines.
@@ -737,11 +728,11 @@ export namespace admin_directory_v1 {
      */
     contactName?: string | null;
     /**
-     * This is a required property. For countryCode information see the ISO 3166 country code elements.
+     * This is a required property. For `countryCode` information see the [ISO 3166 country code elements](http://www.iso.org/iso/country_codes.htm).
      */
     countryCode?: string | null;
     /**
-     * Name of the locality. An example of a locality value is the city of San Francisco.
+     * Name of the locality. An example of a locality value is the city of `San Francisco`.
      */
     locality?: string | null;
     /**
@@ -749,11 +740,11 @@ export namespace admin_directory_v1 {
      */
     organizationName?: string | null;
     /**
-     * The postal code. A postalCode example is a postal zip code such as 10009. This is in accordance with - http: //portablecontacts.net/draft-spec.html#address_element.
+     * The postal code. A postalCode example is a postal zip code such as `10009`. This is in accordance with - http: //portablecontacts.net/draft-spec.html#address_element.
      */
     postalCode?: string | null;
     /**
-     * Name of the region. An example of a region value is NY for the state of New York.
+     * Name of the region. An example of a region value is `NY` for the state of New York.
      */
     region?: string | null;
   }
@@ -871,7 +862,7 @@ export namespace admin_directory_v1 {
   }
   export interface Schema$Domains {
     /**
-     * Creation time of the domain. (Read-only).
+     * Creation time of the domain. Expressed in [Unix time](http://en.wikipedia.org/wiki/Epoch_time) format. (Read-only).
      */
     creationTime?: string | null;
     /**
@@ -967,27 +958,27 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-groups).
    */
   export interface Schema$Group {
     /**
-     * Is the group created by admin (Read-only) *
+     * Value is `true` if this group was created by an administrator rather than a user.
      */
     adminCreated?: boolean | null;
     /**
-     * List of aliases (Read-only)
+     * List of a group's alias email addresses.
      */
     aliases?: string[] | null;
     /**
-     * Description of the group
+     * An extended description to help users determine the purpose of a group. For example, you can include information about who should join the group, the types of messages to send to the group, links to FAQs about the group, or related groups. Maximum length is `4,096` characters.
      */
     description?: string | null;
     /**
-     * Group direct members count
+     * The number of users that are direct members of the group. If a group is a member (child) of this group (the parent), members of the child group are not counted in the `directMembersCount` property of the parent group.
      */
     directMembersCount?: string | null;
     /**
-     * Email of Group
+     * The group's email address. If your account has multiple domains, select the appropriate domain for the email address. The `email` must be unique. This property is required when creating a group. Group email addresses are subject to the same character usage rules as usernames, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386) for the details.
      */
     email?: string | null;
     /**
@@ -995,25 +986,22 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Unique identifier of Group (Read-only)
+     * The unique ID of a group. A group `id` can be used as a group request URI's `groupKey`.
      */
     id?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Groups resources, the value is `admin#directory#group`.
      */
     kind?: string | null;
     /**
-     * Group name
+     * The group's display name.
      */
     name?: string | null;
     /**
-     * List of non editable aliases (Read-only)
+     * List of the group's non-editable alias email addresses that are outside of the account's primary domain or subdomains. These are functioning email addresses used by the group. This is a read-only property returned in the API's response for a group. If edited in a group's POST or PUT request, the edit is ignored by the API service.
      */
     nonEditableAliases?: string[] | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$Groups {
     /**
      * ETag of the resource.
@@ -1032,13 +1020,16 @@ export namespace admin_directory_v1 {
      */
     nextPageToken?: string | null;
   }
+  /**
+   * A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-group-members).
+   */
   export interface Schema$Member {
     /**
-     * Delivery settings of member
+     * Defines mail delivery preferences of member. This is only supported by create/update/get.
      */
     delivery_settings?: string | null;
     /**
-     * Email of member (Read-only)
+     * The member's email address. A member can be a user or another group. This property is required when adding a member to a group. The `email` must be unique and cannot be an alias of another group. If the email address is changed, the API automatically reflects the email address changes.
      */
     email?: string | null;
     /**
@@ -1046,15 +1037,15 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Unique identifier of group (Read-only) Unique identifier of member (Read-only) The unique ID of the group member. A member id can be used as a member request URI's memberKey.
+     * The unique ID of the group member. A member `id` can be used as a member request URI's `memberKey`.
      */
     id?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Members resources, the value is `admin#directory#member`.
      */
     kind?: string | null;
     /**
-     * Role of member
+     * The member's role in a group. The API returns an error for cycles in group memberships. For example, if `group1` is a member of `group2`, `group2` cannot be a member of `group1`. For more information about a member's role, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=167094).
      */
     role?: string | null;
     /**
@@ -1062,7 +1053,7 @@ export namespace admin_directory_v1 {
      */
     status?: string | null;
     /**
-     * Type of member (Immutable)
+     * The type of group member.
      */
     type?: string | null;
   }
@@ -1093,13 +1084,16 @@ export namespace admin_directory_v1 {
      */
     isMember?: boolean | null;
   }
+  /**
+   * G Suite Mobile Management includes Android, [Google Sync](http://support.google.com/a/bin/answer.py?answer=135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).
+   */
   export interface Schema$MobileDevice {
     /**
      * Adb (USB debugging) enabled or disabled on device (Read-only)
      */
     adbStatus?: boolean | null;
     /**
-     * List of applications installed on Mobile Device
+     * The list of applications installed on an Android mobile device. It is not applicable to Google Sync and iOS devices. The list includes any Android applications that access G Suite data. When updating an applications list, it is important to note that updates replace the existing list. If the Android device has two existing applications and the API updates the list with five applications, the is now the updated list of five applications.
      */
     applications?: Array<{
       displayName?: string;
@@ -1109,7 +1103,7 @@ export namespace admin_directory_v1 {
       versionName?: string;
     }> | null;
     /**
-     * Mobile Device Baseband version (Read-only)
+     * The device's baseband version.
      */
     basebandVersion?: string | null;
     /**
@@ -1121,11 +1115,11 @@ export namespace admin_directory_v1 {
      */
     brand?: string | null;
     /**
-     * Mobile Device Build number (Read-only)
+     * The device's operating system build number.
      */
     buildNumber?: string | null;
     /**
-     * The default locale used on the Mobile Device (Read-only)
+     * The default locale used on the device.
      */
     defaultLanguage?: string | null;
     /**
@@ -1133,11 +1127,11 @@ export namespace admin_directory_v1 {
      */
     developerOptionsStatus?: boolean | null;
     /**
-     * Mobile Device compromised status (Read-only)
+     * The compromised device status.
      */
     deviceCompromisedStatus?: string | null;
     /**
-     * Mobile Device serial number (Read-only)
+     * The serial number for a Google Sync mobile device. For Android and iOS devices, this is a software generated unique identifier.
      */
     deviceId?: string | null;
     /**
@@ -1145,7 +1139,7 @@ export namespace admin_directory_v1 {
      */
     devicePasswordStatus?: string | null;
     /**
-     * List of owner user's email addresses (Read-only)
+     * List of owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.
      */
     email?: string[] | null;
     /**
@@ -1165,19 +1159,19 @@ export namespace admin_directory_v1 {
      */
     hardware?: string | null;
     /**
-     * Mobile Device Hardware Id (Read-only)
+     * The IMEI/MEID unique identifier for Android hardware. It is not applicable to Google Sync devices. When adding an Android mobile device, this is an optional property. When updating one of these devices, this is a read-only property.
      */
     hardwareId?: string | null;
     /**
-     * Mobile Device IMEI number (Read-only)
+     * The device's IMEI number.
      */
     imei?: string | null;
     /**
-     * Mobile Device Kernel version (Read-only)
+     * The device's kernel version.
      */
     kernelVersion?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Mobiledevices resources, the value is `admin#directory#mobiledevice`.
      */
     kind?: string | null;
     /**
@@ -1185,7 +1179,7 @@ export namespace admin_directory_v1 {
      */
     lastSync?: string | null;
     /**
-     * Boolean indicating if this account is on owner/primary profile or not (Read-only)
+     * Boolean indicating if this account is on owner/primary profile or not.
      */
     managedAccountIsOnOwnerProfile?: boolean | null;
     /**
@@ -1193,15 +1187,15 @@ export namespace admin_directory_v1 {
      */
     manufacturer?: string | null;
     /**
-     * Mobile Device MEID number (Read-only)
+     * The device's MEID number.
      */
     meid?: string | null;
     /**
-     * Name of the model of the device
+     * The mobile device's model name, for example Nexus S. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile=devices#update_mobile_device).
      */
     model?: string | null;
     /**
-     * List of owner user's names (Read-only)
+     * List of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).
      */
     name?: string[] | null;
     /**
@@ -1209,7 +1203,7 @@ export namespace admin_directory_v1 {
      */
     networkOperator?: string | null;
     /**
-     * Name of the mobile operating system
+     * The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).
      */
     os?: string | null;
     /**
@@ -1225,7 +1219,7 @@ export namespace admin_directory_v1 {
      */
     releaseVersion?: string | null;
     /**
-     * Unique identifier of Mobile Device (Read-only)
+     * The unique ID the API service uses to identify the mobile device.
      */
     resourceId?: string | null;
     /**
@@ -1233,11 +1227,11 @@ export namespace admin_directory_v1 {
      */
     securityPatchLevel?: string | null;
     /**
-     * Mobile Device SSN or Serial Number (Read-only)
+     * The device's serial number.
      */
     serialNumber?: string | null;
     /**
-     * Status of the device (Read-only)
+     * The device's status.
      */
     status?: string | null;
     /**
@@ -1245,7 +1239,7 @@ export namespace admin_directory_v1 {
      */
     supportsWorkProfile?: boolean | null;
     /**
-     * The type of device (Read-only)
+     * The type of mobile device.
      */
     type?: string | null;
     /**
@@ -1253,17 +1247,17 @@ export namespace admin_directory_v1 {
      */
     unknownSourcesStatus?: boolean | null;
     /**
-     * Mobile Device user agent
+     * Gives information about the device such as `os` version. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).
      */
     userAgent?: string | null;
     /**
-     * Mobile Device WiFi MAC address (Read-only)
+     * The device's MAC address on Wi-Fi networks.
      */
     wifiMacAddress?: string | null;
   }
   export interface Schema$MobileDeviceAction {
     /**
-     * Action to be taken on the Mobile Device
+     * The action to be performed on the device.
      */
     action?: string | null;
   }
@@ -1286,15 +1280,15 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Org Unit resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-org-units.html).
    */
   export interface Schema$OrgUnit {
     /**
-     * Should block inheritance
+     * Determines if a sub-organizational unit can inherit the settings of the parent organization. The default value is `false`, meaning a sub-organizational unit inherits the settings of the nearest parent organizational unit. For more information on inheritance and users in an organization structure, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182442&topic=1227584&ctx=topic).
      */
     blockInheritance?: boolean | null;
     /**
-     * Description of OrgUnit
+     * Description of the organizational unit.
      */
     description?: string | null;
     /**
@@ -1302,44 +1296,41 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Orgunits resources, the value is `admin#directory#orgUnit`.
      */
     kind?: string | null;
     /**
-     * Name of OrgUnit
+     * The organizational unit's path name. For example, an organizational unit's name within the /corp/support/sales_support parent path is sales_support. Required.
      */
     name?: string | null;
     /**
-     * Id of OrgUnit
+     * The unique ID of the organizational unit.
      */
     orgUnitId?: string | null;
     /**
-     * Path of OrgUnit
+     * The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which G Suite services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=182433&topic=1227584&ctx=topic). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).
      */
     orgUnitPath?: string | null;
     /**
-     * Id of parent OrgUnit
+     * The unique ID of the parent organizational unit. Required, unless `parentOrgUnitPath` is set.
      */
     parentOrgUnitId?: string | null;
     /**
-     * Path of parent OrgUnit
+     * The organizational unit's parent path. For example, /corp/sales is the parent path for /corp/sales/sales_support organizational unit. Required, unless `parentOrgUnitId` is set.
      */
     parentOrgUnitPath?: string | null;
   }
-  /**
-   * JSON response template for List Organization Units operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$OrgUnits {
     /**
      * ETag of the resource.
      */
     etag?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Org Unit resources, the type is `admin#directory#orgUnits`.
      */
     kind?: string | null;
     /**
-     * List of user objects.
+     * List of organizational unit objects.
      */
     organizationUnits?: Schema$OrgUnit[];
   }
@@ -1357,7 +1348,7 @@ export namespace admin_directory_v1 {
      */
     isOuScopable?: boolean | null;
     /**
-     * The type of the API resource. This is always admin#directory#privilege.
+     * The type of the API resource. This is always `admin#directory#privilege`.
      */
     kind?: string | null;
     /**
@@ -1365,7 +1356,7 @@ export namespace admin_directory_v1 {
      */
     privilegeName?: string | null;
     /**
-     * The obfuscated ID of the service this privilege is for. This value is returned with Privileges.list().
+     * The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).
      */
     serviceId?: string | null;
     /**
@@ -1383,9 +1374,22 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$Privilege[];
     /**
-     * The type of the API resource. This is always admin#directory#privileges.
+     * The type of the API resource. This is always `admin#directory#privileges`.
      */
     kind?: string | null;
+  }
+  /**
+   * List of recent device users, in descending order, by last login time.
+   */
+  export interface Schema$RecentUsers {
+    /**
+     * The user's email address. This is only present if the user type is `USER_TYPE_MANAGED`.
+     */
+    email?: string | null;
+    /**
+     * The type of the user.
+     */
+    type?: string | null;
   }
   export interface Schema$Role {
     /**
@@ -1393,15 +1397,15 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * Returns true if the role is a super admin role.
+     * Returns `true` if the role is a super admin role.
      */
     isSuperAdminRole?: boolean | null;
     /**
-     * Returns true if this is a pre-defined system role.
+     * Returns `true` if this is a pre-defined system role.
      */
     isSystemRole?: boolean | null;
     /**
-     * The type of the API resource. This is always admin#directory#role.
+     * The type of the API resource. This is always `admin#directory#role`.
      */
     kind?: string | null;
     /**
@@ -1431,7 +1435,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The type of the API resource. This is always admin#directory#roleAssignment.
+     * The type of the API resource. This is always `admin#directory#roleAssignment`.
      */
     kind?: string | null;
     /**
@@ -1447,7 +1451,7 @@ export namespace admin_directory_v1 {
      */
     roleId?: string | null;
     /**
-     * The scope in which this role is assigned. Possible values are: - CUSTOMER - ORG_UNIT
+     * The scope in which this role is assigned.
      */
     scopeType?: string | null;
   }
@@ -1461,7 +1465,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$RoleAssignment[];
     /**
-     * The type of the API resource. This is always admin#directory#roleAssignments .
+     * The type of the API resource. This is always `admin#directory#roleAssignments`.
      */
     kind?: string | null;
     nextPageToken?: string | null;
@@ -1476,13 +1480,13 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$Role[];
     /**
-     * The type of the API resource. This is always admin#directory#roles.
+     * The type of the API resource. This is always `admin#directory#roles`.
      */
     kind?: string | null;
     nextPageToken?: string | null;
   }
   /**
-   * JSON template for Schema resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * The type of API resource. For Schema resources, this is always `admin#directory#schema`.
    */
   export interface Schema$Schema {
     /**
@@ -1490,11 +1494,11 @@ export namespace admin_directory_v1 {
      */
     displayName?: string | null;
     /**
-     * ETag of the resource.
+     * The ETag of the resource.
      */
     etag?: string | null;
     /**
-     * Fields of Schema
+     * A list of fields in the schema.
      */
     fields?: Schema$SchemaFieldSpec[];
     /**
@@ -1502,16 +1506,16 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * Unique identifier of Schema (Read-only)
+     * The unique identifier of the schema (Read-only)
      */
     schemaId?: string | null;
     /**
-     * Schema name
+     * The schema's name.
      */
     schemaName?: string | null;
   }
   /**
-   * JSON template for FieldSpec resource for Schemas in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](/admin-sdk/directory/v1/guides/manage-schemas).
    */
   export interface Schema$SchemaFieldSpec {
     /**
@@ -1519,44 +1523,44 @@ export namespace admin_directory_v1 {
      */
     displayName?: string | null;
     /**
-     * ETag of the resource.
+     * The ETag of the field.
      */
     etag?: string | null;
     /**
-     * Unique identifier of Field (Read-only)
+     * The unique identifier of the field (Read-only)
      */
     fieldId?: string | null;
     /**
-     * Name of the field.
+     * The name of the field.
      */
     fieldName?: string | null;
     /**
-     * Type of the field.
+     * The type of the field.
      */
     fieldType?: string | null;
     /**
-     * Boolean specifying whether the field is indexed or not.
+     * Boolean specifying whether the field is indexed or not. Default: `true`.
      */
     indexed?: boolean | null;
     /**
-     * Kind of resource this is.
+     * The kind of resource this is. For schema fields this is always `admin#directory#schema#fieldspec`.
      */
     kind?: string | null;
     /**
-     * Boolean specifying whether this is a multi-valued field or not.
+     * A boolean specifying whether this is a multi-valued field or not. Default: `false`.
      */
     multiValued?: boolean | null;
     /**
-     * Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the numericIndexingSpec allows range queries to be supported.
+     * Indexing spec for a numeric field. By default, only exact match queries will be supported for numeric fields. Setting the `numericIndexingSpec` allows range queries to be supported.
      */
     numericIndexingSpec?: {maxValue?: number; minValue?: number} | null;
     /**
-     * Read ACLs on the field specifying who can view values of this field. Valid values are "ALL_DOMAIN_USERS" and "ADMINS_AND_SELF".
+     * Specifies who can view values of this field. See [Retrieve users as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.
      */
     readAccessType?: string | null;
   }
   /**
-   * JSON response template for List Schema operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List Schema operation in Directory API.
    */
   export interface Schema$Schemas {
     /**
@@ -1573,11 +1577,11 @@ export namespace admin_directory_v1 {
     schemas?: Schema$Schema[];
   }
   /**
-   * JSON template for token resource in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * JSON template for token resource in Directory API.
    */
   export interface Schema$Token {
     /**
-     * Whether the application is registered with Google. The value is true if the application has an anonymous Client ID.
+     * Whether the application is registered with Google. The value is `true` if the application has an anonymous Client ID.
      */
     anonymous?: boolean | null;
     /**
@@ -1593,11 +1597,11 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The type of the API resource. This is always admin#directory#token.
+     * The type of the API resource. This is always `admin#directory#token`.
      */
     kind?: string | null;
     /**
-     * Whether the token is issued to an installed application. The value is true if the application is installed to a desktop or mobile device.
+     * Whether the token is issued to an installed application. The value is `true` if the application is installed to a desktop or mobile device.
      */
     nativeApp?: boolean | null;
     /**
@@ -1610,7 +1614,7 @@ export namespace admin_directory_v1 {
     userKey?: string | null;
   }
   /**
-   * JSON response template for List tokens operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List tokens operation in Directory API.
    */
   export interface Schema$Tokens {
     /**
@@ -1622,24 +1626,24 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$Token[];
     /**
-     * The type of the API resource. This is always admin#directory#tokenList.
+     * The type of the API resource. This is always `admin#directory#tokenList`.
      */
     kind?: string | null;
   }
   /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'external_ids' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'relations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'addresses' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'organizations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'phones' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'languages' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'posix_accounts' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'ssh_public_keys' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'notes' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'websites' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'locations' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'keywords' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'gender' to avoid collision. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'thumbnail_photo_etag' to avoid collision. (See http://go/stepladder-help#fieldNumber)
+   * The Directory API allows you to create and manage your account's users, user aliases, and user Gmail chat profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).
    */
   export interface Schema$User {
     /**
-     * Addresses of User
+     * A list of the user's addresses. The maximum allowed data size for this field is 10Kb.
      */
     addresses?: any | null;
     /**
-     * Output only. Indicates if user has agreed to terms (Read-only)
+     * Output only. This property is `true` if the user has completed an initial login and accepted the Terms of Service agreement.
      */
     agreedToTerms?: boolean | null;
     /**
-     * Output only. List of aliases (Read-only)
+     * Output only. List of the user's alias email addresses.
      */
     aliases?: string[] | null;
     /**
@@ -1647,7 +1651,7 @@ export namespace admin_directory_v1 {
      */
     archived?: boolean | null;
     /**
-     * Boolean indicating if the user should change password in next login
+     * Indicates if the user is forced to change their password at next login. This setting doesn't apply when [the user signs in via a third-party identity provider](https://support.google.com/a/answer/60224).
      */
     changePasswordAtNextLogin?: boolean | null;
     /**
@@ -1655,7 +1659,7 @@ export namespace admin_directory_v1 {
      */
     creationTime?: string | null;
     /**
-     * Output only. CustomerId of User (Read-only)
+     * Output only. The customer ID to [retrieve all account users](/admin-sdk/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](/admin-sdk/directory/v1/reference/users/list) request.
      */
     customerId?: string | null;
     /**
@@ -1664,7 +1668,7 @@ export namespace admin_directory_v1 {
     customSchemas?: {[key: string]: Schema$UserCustomProperties} | null;
     deletionTime?: string | null;
     /**
-     * Emails of User
+     * A list of the user's email addresses. The maximum allowed data size for this field is 10Kb.
      */
     emails?: any | null;
     /**
@@ -1672,39 +1676,39 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The external Ids of User *
+     * A list of external IDs for the user, such as an employee or network ID. The maximum allowed data size for this field is 2Kb.
      */
     externalIds?: any | null;
     /**
-     * Gender of User
+     * The user's gender. The maximum allowed data size for this field is 1Kb.
      */
     gender?: any | null;
     /**
-     * Hash function name for password. Supported are MD5, SHA-1 and crypt
+     * Stores the hash format of the password property. We recommend sending the `password` property value as a base 16 bit hexadecimal-encoded hash value. Set the `hashFunction` values as either the [SHA-1](http://wikipedia.org/wiki/SHA-1), [MD5](http://wikipedia.org/wiki/MD5), or [crypt](https://en.wikipedia.org/wiki/Crypt_(C)) hash format.
      */
     hashFunction?: string | null;
     /**
-     * Unique identifier of User (Read-only)
+     * The unique ID for the user. A user `id` can be used as a user request URI's `userKey`.
      */
     id?: string | null;
     /**
-     * User's Instant Messenger
+     * The user's Instant Messenger (IM) accounts. A user account can have multiple ims properties. But, only one of these ims properties can be the primary IM contact. The maximum allowed data size for this field is 2Kb.
      */
     ims?: any | null;
     /**
-     * Boolean indicating if user is included in Global Address List
+     * Indicates if the user's profile is visible in the G Suite global address list when the contact sharing feature is enabled for the domain. For more information about excluding user profiles, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=1285988).
      */
     includeInGlobalAddressList?: boolean | null;
     /**
-     * Boolean indicating if ip is whitelisted
+     * If `true`, the user's IP address is [white listed](http://support.google.com/a/bin/answer.py?answer=60752).
      */
     ipWhitelisted?: boolean | null;
     /**
-     * Output only. Boolean indicating if the user is admin (Read-only)
+     * Output only. Indicates a user with super admininistrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](/admin-sdk/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](/admin-sdk/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](/admin-sdk/directory/v1/reference/users/insert.html) or [update](/admin-sdk/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.
      */
     isAdmin?: boolean | null;
     /**
-     * Output only. Boolean indicating if the user is delegated admin (Read-only)
+     * Output only. Indicates if the user is a delegated administrator. Delegated administrators are supported by the API but cannot create or undelete users, or make users administrators. These requests are ignored by the API service. Roles and privileges for administrators are assigned using the [Admin console](http://support.google.com/a/bin/answer.py?answer=33325).
      */
     isDelegatedAdmin?: boolean | null;
     /**
@@ -1716,19 +1720,19 @@ export namespace admin_directory_v1 {
      */
     isEnrolledIn2Sv?: boolean | null;
     /**
-     * Output only. Is mailbox setup (Read-only)
+     * Output only. Indicates if the user's Google mailbox is created. This property is only applicable if the user has been assigned a Gmail license.
      */
     isMailboxSetup?: boolean | null;
     /**
-     * Keywords of User
+     * The user's keywords. The maximum allowed data size for this field is 1Kb.
      */
     keywords?: any | null;
     /**
-     * Output only. Kind of resource this is.
+     * Output only. The type of the API resource. For Users resources, the value is `admin#directory#user`.
      */
     kind?: string | null;
     /**
-     * Languages of User
+     * The user's languages. The maximum allowed data size for this field is 1Kb.
      */
     languages?: any | null;
     /**
@@ -1736,27 +1740,27 @@ export namespace admin_directory_v1 {
      */
     lastLoginTime?: string | null;
     /**
-     * Locations of User
+     * The user's locations. The maximum allowed data size for this field is 10Kb.
      */
     locations?: any | null;
     /**
-     * User's name
+     * Holds the given and family names of the user, and the read-only `fullName` value. The maximum number of characters in the `givenName` and in the `familyName` values is 60. In addition, name values support unicode/UTF-8 characters, and can contain spaces, letters (a-z), numbers (0-9), dashes (-), forward slashes (/), and periods (.). For more information about character usage rules, see the [administration help center](http://support.google.com/a/bin/answer.py?answer=33386). Maximum allowed data size for this field is 1Kb.
      */
     name?: Schema$UserName;
     /**
-     * Output only. List of non editable aliases (Read-only)
+     * Output only. List of the user's non-editable alias email addresses. These are typically outside the account's primary domain or sub-domain.
      */
     nonEditableAliases?: string[] | null;
     /**
-     * Notes of User
+     * Notes for the user.
      */
     notes?: any | null;
     /**
-     * Organizations of User
+     * A list of organizations the user belongs to. The maximum allowed data size for this field is 10Kb.
      */
     organizations?: any | null;
     /**
-     * OrgUnit of User
+     * The full path of the parent organization associated with the user. If the parent organization is the top-level, it is represented as a forward slash (`/`).
      */
     orgUnitPath?: string | null;
     /**
@@ -1764,15 +1768,15 @@ export namespace admin_directory_v1 {
      */
     password?: string | null;
     /**
-     * Phone numbers of User
+     * A list of the user's phone numbers. The maximum allowed data size for this field is 1Kb.
      */
     phones?: any | null;
     /**
-     * The POSIX accounts of User
+     * A list of [POSIX](http://www.opengroup.org/austin/papers/posix_faq.html) account information for the user.
      */
     posixAccounts?: any | null;
     /**
-     * username of User
+     * The user's primary email address. This property is required in a request to create a user account. The `primaryEmail` must be unique and cannot be an alias of another user.
      */
     primaryEmail?: string | null;
     /**
@@ -1784,11 +1788,11 @@ export namespace admin_directory_v1 {
      */
     recoveryPhone?: string | null;
     /**
-     * The Relations of User *
+     * A list of the user's relationships to other users. The maximum allowed data size for this field is 2Kb.
      */
     relations?: any | null;
     /**
-     * The SSH public keys of User
+     * A list of SSH public keys.
      */
     sshPublicKeys?: any | null;
     /**
@@ -1796,7 +1800,7 @@ export namespace admin_directory_v1 {
      */
     suspended?: boolean | null;
     /**
-     * Output only. Suspension reason if user is suspended (Read-only)
+     * Output only. Has the reason a user account is suspended either by the administrator or by Google at the time of suspension. The property is returned only if the `suspended` property is `true`.
      */
     suspensionReason?: string | null;
     /**
@@ -1808,7 +1812,7 @@ export namespace admin_directory_v1 {
      */
     thumbnailPhotoUrl?: string | null;
     /**
-     * Websites of User
+     * The user's websites. The maximum allowed data size for this field is 2Kb.
      */
     websites?: any | null;
   }
@@ -2032,21 +2036,21 @@ export namespace admin_directory_v1 {
   }
   export interface Schema$UserMakeAdmin {
     /**
-     * Boolean indicating new admin status of the user
+     * Indicates the administrator status of the user.
      */
     status?: boolean | null;
   }
   export interface Schema$UserName {
     /**
-     * Last Name
+     * The user's last name. Required when creating a user account.
      */
     familyName?: string | null;
     /**
-     * Full Name
+     * The user's full name formed by concatenating the first and last name values.
      */
     fullName?: string | null;
     /**
-     * First Name
+     * The user's first name. Required when creating a user account.
      */
     givenName?: string | null;
   }
@@ -2124,40 +2128,37 @@ export namespace admin_directory_v1 {
      */
     value?: string | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$UserPhoto {
     /**
      * ETag of the resource.
      */
     etag?: string | null;
     /**
-     * Height in pixels of the photo
+     * Height of the photo in pixels.
      */
     height?: number | null;
     /**
-     * Unique identifier of User (Read-only)
+     * The ID the API uses to uniquely identify the user.
      */
     id?: string | null;
     /**
-     * Kind of resource this is.
+     * The type of the API resource. For Photo resources, this is `admin#directory#user#photo`.
      */
     kind?: string | null;
     /**
-     * Mime Type of the photo
+     * The MIME type of the photo. Allowed values are `JPEG`, `PNG`, `GIF`, `BMP`, `TIFF`, and web-safe base64 encoding.
      */
     mimeType?: string | null;
     /**
-     * Base64 encoded photo data
+     * The user photo's upload data in [web-safe Base64](https://code.google.com/p/stringencoders/wiki/WebSafeBase64) format in bytes. This means: * The slash (/) character is replaced with the underscore (_) character. * The plus sign (+) character is replaced with the hyphen (-) character. * The equals sign (=) character is replaced with the asterisk (*). * For padding, the period (.) character is used instead of the RFC-4648 baseURL definition which uses the equals sign (=) for padding. This is done to simplify URL-parsing. * Whatever the size of the photo being uploaded, the API downsizes it to 96x96 pixels.
      */
     photoData?: string | null;
     /**
-     * Primary email of User (Read-only)
+     * The user's primary email address.
      */
     primaryEmail?: string | null;
     /**
-     * Width in pixels of the photo
+     * Width of the photo in pixels.
      */
     width?: number | null;
   }
@@ -2223,9 +2224,6 @@ export namespace admin_directory_v1 {
      */
     value?: string | null;
   }
-  /**
-   * STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
-   */
   export interface Schema$Users {
     /**
      * ETag of the resource.
@@ -2293,7 +2291,7 @@ export namespace admin_directory_v1 {
     value?: string | null;
   }
   /**
-   * JSON template for verification codes in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * The Directory API allows you to view, generate, and invalidate backup verification codes for a user.
    */
   export interface Schema$VerificationCode {
     /**
@@ -2301,7 +2299,7 @@ export namespace admin_directory_v1 {
      */
     etag?: string | null;
     /**
-     * The type of the resource. This is always admin#directory#verificationCode.
+     * The type of the resource. This is always `admin#directory#verificationCode`.
      */
     kind?: string | null;
     /**
@@ -2314,7 +2312,7 @@ export namespace admin_directory_v1 {
     verificationCode?: string | null;
   }
   /**
-   * JSON response template for List verification codes operation in Directory API. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * JSON response template for List verification codes operation in Directory API.
    */
   export interface Schema$VerificationCodes {
     /**
@@ -2326,7 +2324,7 @@ export namespace admin_directory_v1 {
      */
     items?: Schema$VerificationCode[];
     /**
-     * The type of the resource. This is always admin#directory#verificationCodesList.
+     * The type of the resource. This is always `admin#directory#verificationCodesList`.
      */
     kind?: string | null;
   }
@@ -2914,7 +2912,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Take action on Chrome OS Device
+     * Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
      * @example
      * ```js
      * // Before running the sample:
@@ -2940,9 +2938,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.action({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Chrome OS Device
+     *     // The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     resourceId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3047,7 +3045,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve Chrome OS Device
+     * Retrieves a Chrome OS device's properties.
      * @example
      * ```js
      * // Before running the sample:
@@ -3076,11 +3074,11 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.get({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Chrome OS Device
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
-     *     // Restrict information returned to a set of selected fields.
+     *     // Determines whether the response contains the full list of properties or only a subset.
      *     projection: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3218,7 +3216,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all Chrome OS Devices of a customer (paginated)
+     * Retrieves a paginated list of Chrome OS devices within an account.
      * @example
      * ```js
      * // Before running the sample:
@@ -3247,21 +3245,21 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.list({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
-     *     // Column to use for sorting results
+     *     // Device property to use for sorting results.
      *     orderBy: 'placeholder-value',
-     *     // Full path of the organizational unit or its ID
+     *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: 'placeholder-value',
-     *     // Token to specify next page in the list
+     *     // The `pageToken` query parameter is used to request the next page of query results. The follow-on request's `pageToken` query parameter is the `nextPageToken` from your previous response.
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
      *     // Search string in the format given at http://support.google.com/chromeos/a/bin/answer.py?answer=1698333
      *     query: 'placeholder-value',
-     *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -3367,7 +3365,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Move or insert multiple Chrome OS Devices to organizational unit
+     * Move or insert multiple Chrome OS devices to an organizational unit. You can move up to 50 devices at once.
      * @example
      * ```js
      * // Before running the sample:
@@ -3499,7 +3497,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Chrome OS Device
+     * Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -3525,9 +3523,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.patch({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Chrome OS Device
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
@@ -3710,7 +3708,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Update Chrome OS Device
+     * Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`.
      * @example
      * ```js
      * // Before running the sample:
@@ -3736,9 +3734,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.update({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Chrome OS Device
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
@@ -3924,11 +3922,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Action
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Chrome OS Device
+     * The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      */
     resourceId?: string;
 
@@ -3940,22 +3938,22 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Chrome OS Device
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
-     * Restrict information returned to a set of selected fields.
+     * Determines whether the response contains the full list of properties or only a subset.
      */
     projection?: string;
   }
   export interface Params$Resource$Chromeosdevices$List
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -3963,15 +3961,15 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Column to use for sorting results
+     * Device property to use for sorting results.
      */
     orderBy?: string;
     /**
-     * Full path of the organizational unit or its ID
+     * The full path of the organizational unit or its unique ID.
      */
     orgUnitPath?: string;
     /**
-     * Token to specify next page in the list
+     * The `pageToken` query parameter is used to request the next page of query results. The follow-on request's `pageToken` query parameter is the `nextPageToken` from your previous response.
      */
     pageToken?: string;
     /**
@@ -3983,7 +3981,7 @@ export namespace admin_directory_v1 {
      */
     query?: string;
     /**
-     * Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      */
     sortOrder?: string;
   }
@@ -4006,11 +4004,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Patch
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Chrome OS Device
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
@@ -4026,11 +4024,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Update
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Chrome OS Device
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
@@ -4150,42 +4148,28 @@ export namespace admin_directory_v1 {
       params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$DirectoryChromeosdevicesIssueCommandResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$DirectoryChromeosdevicesIssueCommandResponse
-      >
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>,
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
     ): void;
     issueCommand(
       params: Params$Resource$Customer$Devices$Chromeos$Issuecommand,
-      callback: BodyResponseCallback<
-        Schema$DirectoryChromeosdevicesIssueCommandResponse
-      >
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
     ): void;
     issueCommand(
-      callback: BodyResponseCallback<
-        Schema$DirectoryChromeosdevicesIssueCommandResponse
-      >
+      callback: BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
     ): void;
     issueCommand(
       paramsOrCallback?:
         | Params$Resource$Customer$Devices$Chromeos$Issuecommand
-        | BodyResponseCallback<
-            Schema$DirectoryChromeosdevicesIssueCommandResponse
-          >
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$DirectoryChromeosdevicesIssueCommandResponse
-          >
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$DirectoryChromeosdevicesIssueCommandResponse
-          >
+        | BodyResponseCallback<Schema$DirectoryChromeosdevicesIssueCommandResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4229,9 +4213,9 @@ export namespace admin_directory_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$DirectoryChromeosdevicesIssueCommandResponse
-        >(parameters);
+        return createAPIRequest<Schema$DirectoryChromeosdevicesIssueCommandResponse>(
+          parameters
+        );
       }
     }
   }
@@ -6095,7 +6079,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete Group
+     * Deletes a group.
      * @example
      * ```js
      * // Before running the sample:
@@ -6121,7 +6105,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.delete({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6216,7 +6200,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve Group
+     * Retrieves a group's properties.
      * @example
      * ```js
      * // Before running the sample:
@@ -6245,7 +6229,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.get({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6356,7 +6340,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Create Group
+     * Creates a group.
      * @example
      * ```js
      * // Before running the sample:
@@ -6536,9 +6520,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.list({
-     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+     *     // The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
      *     customer: 'placeholder-value',
-     *     // Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
+     *     // The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 200.
      *     maxResults: 'placeholder-value',
@@ -6655,7 +6639,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Groups via Apiary Patch Orchestration
+     * Updates a group's properties. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -6681,7 +6665,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.patch({
-     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6809,7 +6793,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Update Group
+     * Updates a group's properties.
      * @example
      * ```js
      * // Before running the sample:
@@ -6835,7 +6819,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.update({
-     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -6965,13 +6949,13 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Groups$Delete extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
   }
   export interface Params$Resource$Groups$Get extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
   }
@@ -6983,11 +6967,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all groups for a customer, fill this field instead of domain.
+     * The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users)
      */
     customer?: string;
     /**
-     * Name of the domain. Fill this field to get groups from only this domain. To return all groups in a multi-domain fill customer field instead.
+     * The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      */
     domain?: string;
     /**
@@ -7017,7 +7001,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Patch extends StandardParameters {
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of group object
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
 
@@ -7028,7 +7012,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$Update extends StandardParameters {
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of group object
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
 
@@ -7045,7 +7029,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Remove a alias for the group
+     * Removes an alias.
      * @example
      * ```js
      * // Before running the sample:
@@ -7073,7 +7057,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.groups.aliases.delete({
      *     // The alias to be removed
      *     alias: 'placeholder-value',
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7168,7 +7152,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Add a alias for the group
+     * Adds an alias for the group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7194,7 +7178,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.aliases.insert({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7312,7 +7296,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * List all aliases for a group
+     * Lists all aliases for a group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7341,7 +7325,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.aliases.list({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7452,14 +7436,14 @@ export namespace admin_directory_v1 {
      */
     alias?: string;
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
   }
   export interface Params$Resource$Groups$Aliases$Insert
     extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
 
@@ -7471,7 +7455,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Groups$Aliases$List
     extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
   }
@@ -7483,7 +7467,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Remove membership.
+     * Removes a member from a group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7512,9 +7496,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.delete({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
-     *     // Email or immutable ID of the member
+     *     // Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      *     memberKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7609,7 +7593,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve Group Member
+     * Retrieves a group member's properties.
      * @example
      * ```js
      * // Before running the sample:
@@ -7640,9 +7624,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.get({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
-     *     // Email or immutable ID of the member
+     *     // Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      *     memberKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -7887,7 +7871,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Add user to the specified group.
+     * Adds a user to the specified group.
      * @example
      * ```js
      * // Before running the sample:
@@ -7916,7 +7900,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.insert({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8039,7 +8023,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all members in a group (paginated)
+     * Retrieves a paginated list of all members in a group.
      * @example
      * ```js
      * // Before running the sample:
@@ -8070,15 +8054,15 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.list({
-     *     // Email or immutable ID of the group
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
      *     // Whether to list indirect memberships. Default: false.
      *     includeDerivedMembership: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 200.
      *     maxResults: 'placeholder-value',
-     *     // Token to specify next page in the list
+     *     // Token to specify next page in the list.
      *     pageToken: 'placeholder-value',
-     *     // Comma separated role values to filter list results on.
+     *     // The `roles` query parameter allows you to retrieve group members by role. Allowed values are `OWNER`, `MANAGER`, and `MEMBER`.
      *     roles: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8182,7 +8166,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Member via Apiary Patch Orchestration
+     * Updates the membership properties of a user in the specified group. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -8211,9 +8195,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.patch({
-     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
-     *     // Email or immutable ID of the user. If ID, it should match with id of member object
+     *     // Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      *     memberKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8337,7 +8321,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Update membership of a user in the specified group.
+     * Updates the membership of a user in the specified group.
      * @example
      * ```js
      * // Before running the sample:
@@ -8366,9 +8350,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.members.update({
-     *     // Email or immutable ID of the group. If ID, it should match with id of group object
+     *     // Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      *     groupKey: 'placeholder-value',
-     *     // Email or immutable ID of the user. If ID, it should match with id of member object
+     *     // Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      *     memberKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8494,21 +8478,21 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Members$Delete extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the member
+     * Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      */
     memberKey?: string;
   }
   export interface Params$Resource$Members$Get extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the member
+     * Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      */
     memberKey?: string;
   }
@@ -8525,7 +8509,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Members$Insert extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
 
@@ -8536,7 +8520,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Members$List extends StandardParameters {
     /**
-     * Email or immutable ID of the group
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
@@ -8548,21 +8532,21 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Token to specify next page in the list
+     * Token to specify next page in the list.
      */
     pageToken?: string;
     /**
-     * Comma separated role values to filter list results on.
+     * The `roles` query parameter allows you to retrieve group members by role. Allowed values are `OWNER`, `MANAGER`, and `MEMBER`.
      */
     roles?: string;
   }
   export interface Params$Resource$Members$Patch extends StandardParameters {
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of group object
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of member object
+     * Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      */
     memberKey?: string;
 
@@ -8573,11 +8557,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Members$Update extends StandardParameters {
     /**
-     * Email or immutable ID of the group. If ID, it should match with id of group object
+     * Identifies the group in the API request. The value can be the group's email address, group alias, or the unique group ID.
      */
     groupKey?: string;
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of member object
+     * Identifies the group member in the API request. A group member can be a user or another group. The value can be the member's (group or user) primary email address, alias, or unique ID.
      */
     memberKey?: string;
 
@@ -8594,7 +8578,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Take action on Mobile Device
+     * Takes an action that affects a mobile device. For example, remotely wiping a device.
      * @example
      * ```js
      * // Before running the sample:
@@ -8623,9 +8607,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.action({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Mobile Device
+     *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -8729,7 +8713,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete Mobile Device
+     * Removes a mobile device.
      * @example
      * ```js
      * // Before running the sample:
@@ -8755,9 +8739,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.delete({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Immutable ID of Mobile Device
+     *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -8853,7 +8837,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve Mobile Device
+     * Retrieves a mobile device's properties.
      * @example
      * ```js
      * // Before running the sample:
@@ -8883,11 +8867,11 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.get({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Immutable ID of Mobile Device
+     *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9029,7 +9013,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all Mobile Devices of a customer (paginated)
+     * Retrieves a paginated list of all mobile devices for an account.
      * @example
      * ```js
      * // Before running the sample:
@@ -9059,11 +9043,11 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.list({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 100.
      *     maxResults: 'placeholder-value',
-     *     // Column to use for sorting results
+     *     // Device property to use for sorting results.
      *     orderBy: 'placeholder-value',
      *     // Token to specify next page in the list
      *     pageToken: 'placeholder-value',
@@ -9071,7 +9055,7 @@ export namespace admin_directory_v1 {
      *     projection: 'placeholder-value',
      *     // Search string in the format given at http://support.google.com/a/bin/answer.py?answer=1408863#search
      *     query: 'placeholder-value',
-     *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9180,11 +9164,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Action
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Mobile Device
+     * The unique ID the API service uses to identify the mobile device.
      */
     resourceId?: string;
 
@@ -9196,18 +9180,18 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Delete
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Immutable ID of Mobile Device
+     * The unique ID the API service uses to identify the mobile device.
      */
     resourceId?: string;
   }
   export interface Params$Resource$Mobiledevices$Get
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9215,14 +9199,14 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Immutable ID of Mobile Device
+     * The unique ID the API service uses to identify the mobile device.
      */
     resourceId?: string;
   }
   export interface Params$Resource$Mobiledevices$List
     extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -9230,7 +9214,7 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Column to use for sorting results
+     * Device property to use for sorting results.
      */
     orderBy?: string;
     /**
@@ -9246,7 +9230,7 @@ export namespace admin_directory_v1 {
      */
     query?: string;
     /**
-     * Whether to return results in ascending or descending order. Only of use when orderBy is also used
+     * Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      */
     sortOrder?: string;
   }
@@ -9258,7 +9242,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Remove organizational unit
+     * Removes an organizational unit.
      * @example
      * ```js
      * // Before running the sample:
@@ -9284,9 +9268,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.delete({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Full path of the organizational unit or its ID
+     *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
@@ -9381,7 +9365,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve organizational unit
+     * Retrieves an organizational unit.
      * @example
      * ```js
      * // Before running the sample:
@@ -9410,9 +9394,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.get({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Full path of the organizational unit or its ID
+     *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
      *   });
      *   console.log(res.data);
@@ -9522,7 +9506,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Add organizational unit
+     * Adds an organizational unit.
      * @example
      * ```js
      * // Before running the sample:
@@ -9548,7 +9532,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.insert({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9673,7 +9657,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve all organizational units
+     * Retrieves a list of all organizational units for an account.
      * @example
      * ```js
      * // Before running the sample:
@@ -9702,11 +9686,11 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.list({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // the URL-encoded organizational unit's path or its ID
+     *     // The full path to the organizational unit or its unique ID. Returns the children of the specified organizational unit.
      *     orgUnitPath: 'placeholder-value',
-     *     // Whether to return all sub-organizations or just immediate children
+     *     // Whether to return all sub-organizations or just immediate children.
      *     type: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9809,7 +9793,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch organization unit via Apiary Patch Orchestration
+     * Updates an organizational unit. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch)
      * @example
      * ```js
      * // Before running the sample:
@@ -9835,9 +9819,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.patch({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Full path of the organizational unit or its ID
+     *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
      *
      *     // Request body metadata
@@ -9963,7 +9947,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Update organizational unit
+     * Updates an organizational unit.
      * @example
      * ```js
      * // Before running the sample:
@@ -9989,9 +9973,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.update({
-     *     // Immutable ID of the G Suite account
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // Full path of the organizational unit or its ID
+     *     // The full path of the organizational unit or its unique ID.
      *     orgUnitPath: '.*',
      *
      *     // Request body metadata
@@ -10119,27 +10103,27 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Orgunits$Delete extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Full path of the organizational unit or its ID
+     * The full path of the organizational unit or its unique ID.
      */
     orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Full path of the organizational unit or its ID
+     * The full path of the organizational unit or its unique ID.
      */
     orgUnitPath?: string;
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
 
@@ -10150,25 +10134,25 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$List extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * the URL-encoded organizational unit's path or its ID
+     * The full path to the organizational unit or its unique ID. Returns the children of the specified organizational unit.
      */
     orgUnitPath?: string;
     /**
-     * Whether to return all sub-organizations or just immediate children
+     * Whether to return all sub-organizations or just immediate children.
      */
     type?: string;
   }
   export interface Params$Resource$Orgunits$Patch extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Full path of the organizational unit or its ID
+     * The full path of the organizational unit or its unique ID.
      */
     orgUnitPath?: string;
 
@@ -10179,11 +10163,11 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Update extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * Full path of the organizational unit or its ID
+     * The full path of the organizational unit or its unique ID.
      */
     orgUnitPath?: string;
 
@@ -10390,7 +10374,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.delete({
      *     // The id of the building to delete.
      *     buildingId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10517,7 +10501,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.get({
      *     // The unique ID of the building to retrieve.
      *     buildingId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -10657,7 +10641,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.buildings.insert({
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -10811,7 +10795,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.buildings.list({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -10953,7 +10937,7 @@ export namespace admin_directory_v1 {
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11110,7 +11094,7 @@ export namespace admin_directory_v1 {
      *     buildingId: 'placeholder-value',
      *     // Source from which Building.coordinates are derived.
      *     coordinatesSource: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11242,7 +11226,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -11253,7 +11237,7 @@ export namespace admin_directory_v1 {
      */
     buildingId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -11264,7 +11248,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11276,7 +11260,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Buildings$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -11299,7 +11283,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11319,7 +11303,7 @@ export namespace admin_directory_v1 {
      */
     coordinatesSource?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -11366,7 +11350,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.delete({
      *     // The unique ID of the calendar resource to delete.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11493,7 +11477,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.get({
      *     // The unique ID of the calendar resource to retrieve.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11638,7 +11622,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.calendars.insert({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -11806,15 +11790,15 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.calendars.list({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
-     *     // Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
+     *     // Field(s) to sort results by in either ascending or descending order. Supported fields include `resourceId`, `resourceName`, `capacity`, `buildingId`, and `floorName`. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example `buildingId, capacity desc` would return results sorted first by `buildingId` in ascending order then by `capacity` in descending order.
      *     orderBy: 'placeholder-value',
      *     // Token to specify the next page in the list.
      *     pageToken: 'placeholder-value',
-     *     // String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     *     // String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include `generatedResourceName`, `name`, `buildingId`, `floor_name`, `capacity`, `featureInstances.feature.name`, `resourceEmail`, `resourceCategory`. For example `buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone`.
      *     query: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -11953,7 +11937,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.patch({
      *     // The unique ID of the calendar resource to update.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12122,7 +12106,7 @@ export namespace admin_directory_v1 {
      *   const res = await directory.resources.calendars.update({
      *     // The unique ID of the calendar resource to update.
      *     calendarResourceId: 'placeholder-value',
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12268,7 +12252,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
@@ -12279,14 +12263,14 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
   }
   export interface Params$Resource$Resources$Calendars$Insert
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12298,7 +12282,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Calendars$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -12306,7 +12290,7 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Field(s) to sort results by in either ascending or descending order. Supported fields include resourceId, resourceName, capacity, buildingId, and floorName. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example buildingId, capacity desc would return results sorted first by buildingId in ascending order then by capacity in descending order.
+     * Field(s) to sort results by in either ascending or descending order. Supported fields include `resourceId`, `resourceName`, `capacity`, `buildingId`, and `floorName`. If no order is specified, defaults to ascending. Should be of the form "field [asc|desc], field [asc|desc], ...". For example `buildingId, capacity desc` would return results sorted first by `buildingId` in ascending order then by `capacity` in descending order.
      */
     orderBy?: string;
     /**
@@ -12314,7 +12298,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include generatedResourceName, name, buildingId, floor_name, capacity, featureInstances.feature.name. For example buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone.
+     * String query used to filter results. Should be of the form "field operator value" where field can be any of supported fields and operators can be any of supported operations. Operators include '=' for exact match, '!=' for mismatch and ':' for prefix match or HAS match where applicable. For prefix match, the value should always be followed by a *. Logical operators NOT and AND are supported (in this order of precedence). Supported fields include `generatedResourceName`, `name`, `buildingId`, `floor_name`, `capacity`, `featureInstances.feature.name`, `resourceEmail`, `resourceCategory`. For example `buildingId=US-NYC-9TH AND featureInstances.feature.name:Phone`.
      */
     query?: string;
   }
@@ -12325,7 +12309,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12341,7 +12325,7 @@ export namespace admin_directory_v1 {
      */
     calendarResourceId?: string;
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -12386,7 +12370,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.delete({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to delete.
      *     featureKey: 'placeholder-value',
@@ -12513,7 +12497,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.get({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to retrieve.
      *     featureKey: 'placeholder-value',
@@ -12648,7 +12632,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.insert({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *
      *     // Request body metadata
@@ -12792,7 +12776,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.list({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -12930,7 +12914,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.patch({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to update.
      *     featureKey: 'placeholder-value',
@@ -13075,7 +13059,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.rename({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to rename.
      *     oldName: 'placeholder-value',
@@ -13209,7 +13193,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.resources.features.update({
-     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     *     // The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      *     customer: 'placeholder-value',
      *     // The unique ID of the feature to update.
      *     featureKey: 'placeholder-value',
@@ -13329,7 +13313,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Delete
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13340,7 +13324,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13351,7 +13335,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Insert
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
 
@@ -13363,7 +13347,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13378,7 +13362,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Patch
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13394,7 +13378,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Rename
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -13410,7 +13394,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Resources$Features$Update
     extends StandardParameters {
     /**
-     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the my_customer alias to represent your account's customer ID.
+     * The unique ID for the customer's G Suite account. As an account administrator, you can also use the `my_customer` alias to represent your account's customer ID.
      */
     customer?: string;
     /**
@@ -15010,9 +14994,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.delete({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
-     *     // Name or immutable ID of the schema
+     *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15136,9 +15120,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.get({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
-     *     // Name or immutable ID of the schema
+     *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15271,7 +15255,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.insert({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -15419,7 +15403,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.list({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -15548,7 +15532,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.patch({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15696,7 +15680,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.update({
-     *     // Immutable ID of the G Suite account
+     *     // Immutable ID of the G Suite account.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -15820,27 +15804,27 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Schemas$Delete extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
-     * Name or immutable ID of the schema
+     * Name or immutable ID of the schema.
      */
     schemaKey?: string;
   }
   export interface Params$Resource$Schemas$Get extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
-     * Name or immutable ID of the schema
+     * Name or immutable ID of the schema.
      */
     schemaKey?: string;
   }
   export interface Params$Resource$Schemas$Insert extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
 
@@ -15851,13 +15835,13 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$List extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
   }
   export interface Params$Resource$Schemas$Patch extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -15872,7 +15856,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Update extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account
+     * Immutable ID of the G Suite account.
      */
     customerId?: string;
     /**
@@ -16455,7 +16439,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Delete user
+     * Deletes a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -16481,7 +16465,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.delete({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16576,7 +16560,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * retrieve user
+     * Retrieves a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -16605,13 +16589,13 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.get({
-     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
      *     // What subset of fields to fetch for this user.
      *     projection: 'placeholder-value',
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
-     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -16758,7 +16742,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * create user.
+     * Creates a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -16981,7 +16965,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve either deleted users or all users in a domain (paginated)
+     * Retrieves a paginated list of either deleted users or all users in a domain.
      * @example
      * ```js
      * // Before running the sample:
@@ -17011,27 +16995,27 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.list({
-     *     // Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     *     // The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
      *     customer: 'placeholder-value',
-     *     // Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
-     *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     *     // The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
      *     domain: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
-     *     // Column to use for sorting results
+     *     // Property to use for sorting results.
      *     orderBy: 'placeholder-value',
      *     // Token to specify next page in the list
      *     pageToken: 'placeholder-value',
      *     // What subset of fields to fetch for this user.
      *     projection: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     // Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).
      *     query: 'placeholder-value',
-     *     // If set to true, retrieves the list of deleted users. (Default: false)
+     *     // If set to `true`, retrieves the list of deleted users. (Default: `false`)
      *     showDeleted: 'placeholder-value',
      *     // Whether to return results in ascending or descending order.
      *     sortOrder: 'placeholder-value',
-     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -17137,7 +17121,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * change admin status of a user
+     * Makes a user a super administrator.
      * @example
      * ```js
      * // Before running the sample:
@@ -17163,7 +17147,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.makeAdmin({
-     *     // Email or immutable ID of the user as admin
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -17265,7 +17249,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Users via Apiary Patch Orchestration
+     * Updates a user using patch semantics. The update method should be used instead, since it also supports patch semantics and has better performance. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -17291,7 +17275,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.patch({
-     *     // Email or immutable ID of the user. If ID, it should match with id of user object
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -17611,7 +17595,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Undelete a deleted user
+     * Undeletes a deleted user.
      * @example
      * ```js
      * // Before running the sample:
@@ -17739,7 +17723,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * update user
+     * Updates a user. This method supports patch semantics, meaning you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared.
      * @example
      * ```js
      * // Before running the sample:
@@ -17765,7 +17749,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.update({
-     *     // Email or immutable ID of the user. If ID, it should match with id of user object
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -18001,7 +17985,7 @@ export namespace admin_directory_v1 {
      *     customFieldMask: 'placeholder-value',
      *     // Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead."
      *     domain: 'placeholder-value',
-     *     // Event on which subscription is intended
+     *     // Events to watch for.
      *     event: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -18017,7 +18001,7 @@ export namespace admin_directory_v1 {
      *     showDeleted: 'placeholder-value',
      *     // Whether to return results in ascending or descending order.
      *     sortOrder: 'placeholder-value',
-     *     // Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *
      *     // Request body metadata
@@ -18147,13 +18131,13 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Users$Delete extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Get extends StandardParameters {
     /**
-     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      */
     customFieldMask?: string;
     /**
@@ -18161,11 +18145,11 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
     /**
-     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
   }
@@ -18177,15 +18161,15 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * Immutable ID of the G Suite account. In case of multi-domain, to fetch all users for a customer, fill this field instead of domain.
+     * The unique ID for the customer's G Suite account. In case of a multi-domain account, to fetch all groups for a customer, fill this field instead of domain. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users). Either the `customer` or the `domain` parameter must be provided.
      */
     customer?: string;
     /**
-     * Comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when projection=custom.
+     * A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      */
     customFieldMask?: string;
     /**
-     * Name of the domain. Fill this field to get users from only this domain. To return all users in a multi-domain fill customer field instead.
+     * The domain name. Use this field to get fields from only one domain. To return all domains for a customer account, use the `customer` query parameter instead. Either the `customer` or the `domain` parameter must be provided.
      */
     domain?: string;
     /**
@@ -18193,7 +18177,7 @@ export namespace admin_directory_v1 {
      */
     maxResults?: number;
     /**
-     * Column to use for sorting results
+     * Property to use for sorting results.
      */
     orderBy?: string;
     /**
@@ -18205,11 +18189,11 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).
      */
     query?: string;
     /**
-     * If set to true, retrieves the list of deleted users. (Default: false)
+     * If set to `true`, retrieves the list of deleted users. (Default: `false`)
      */
     showDeleted?: string;
     /**
@@ -18217,13 +18201,13 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
     /**
-     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
   }
   export interface Params$Resource$Users$Makeadmin extends StandardParameters {
     /**
-     * Email or immutable ID of the user as admin
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
@@ -18234,7 +18218,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Patch extends StandardParameters {
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of user object
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
@@ -18262,7 +18246,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$Update extends StandardParameters {
     /**
-     * Email or immutable ID of the user. If ID, it should match with id of user object
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
@@ -18285,7 +18269,7 @@ export namespace admin_directory_v1 {
      */
     domain?: string;
     /**
-     * Event on which subscription is intended
+     * Events to watch for.
      */
     event?: string;
     /**
@@ -18317,7 +18301,7 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
     /**
-     * Whether to fetch the ADMIN_VIEW or DOMAIN_PUBLIC view of the user.
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
 
@@ -18334,7 +18318,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Remove a alias for the user
+     * Removes an alias.
      * @example
      * ```js
      * // Before running the sample:
@@ -18363,9 +18347,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.delete({
-     *     // The alias to be removed
+     *     // The alias to be removed.
      *     alias: 'placeholder-value',
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -18460,7 +18444,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Add a alias for the user
+     * Adds an alias.
      * @example
      * ```js
      * // Before running the sample:
@@ -18489,7 +18473,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.insert({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -18607,7 +18591,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * List all aliases for a user
+     * Lists all aliases for a user.
      * @example
      * ```js
      * // Before running the sample:
@@ -18638,7 +18622,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.list({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -18742,7 +18726,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Watch for changes in users list
+     * Watch for changes in users list.
      * @example
      * ```js
      * // Before running the sample:
@@ -18773,7 +18757,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.aliases.watch({
-     *     // Event on which subscription is intended (if subscribing)
+     *     // Events to watch for.
      *     event: 'placeholder-value',
      *     // Email or immutable ID of the user
      *     userKey: 'placeholder-value',
@@ -18906,18 +18890,18 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Aliases$Delete
     extends StandardParameters {
     /**
-     * The alias to be removed
+     * The alias to be removed.
      */
     alias?: string;
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Aliases$Insert
     extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
@@ -18929,14 +18913,14 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Aliases$List
     extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Aliases$Watch
     extends StandardParameters {
     /**
-     * Event on which subscription is intended (if subscribing)
+     * Events to watch for.
      */
     event?: string;
     /**
@@ -18957,7 +18941,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Remove photos for the user
+     * Removes the user's photo.
      * @example
      * ```js
      * // Before running the sample:
@@ -18983,7 +18967,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.photos.delete({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -19078,7 +19062,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieve photo of a user
+     * Retrieves the user's photo.
      * @example
      * ```js
      * // Before running the sample:
@@ -19107,7 +19091,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.photos.get({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -19215,7 +19199,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Patch Photo via Apiary Patch Orchestration
+     * Adds a photo for the user. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -19241,7 +19225,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.photos.patch({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -19365,7 +19349,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Add a photo for the user
+     * Adds a photo for the user.
      * @example
      * ```js
      * // Before running the sample:
@@ -19391,7 +19375,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.photos.update({
-     *     // Email or immutable ID of the user
+     *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
      *
      *     // Request body metadata
@@ -19518,20 +19502,20 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Photos$Delete
     extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Photos$Get extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
   }
   export interface Params$Resource$Users$Photos$Patch
     extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
@@ -19543,7 +19527,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Users$Photos$Update
     extends StandardParameters {
     /**
-     * Email or immutable ID of the user
+     * Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      */
     userKey?: string;
 
