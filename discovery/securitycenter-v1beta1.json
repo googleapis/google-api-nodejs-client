@@ -896,7 +896,7 @@
       }
     }
   },
-  "revision": "20201106",
+  "revision": "20201112",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Asset": {
@@ -1131,6 +1131,21 @@
       },
       "type": "object"
     },
+    "Folder": {
+      "description": "Message that contains the resource name and display name of a folder resource.",
+      "id": "Folder",
+      "properties": {
+        "resourceFolder": {
+          "description": "Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "resourceFolderDisplayName": {
+          "description": "The user defined display name for this folder.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetIamPolicyRequest": {
       "description": "Request message for `GetIamPolicy` method.",
       "id": "GetIamPolicyRequest",
@@ -1177,6 +1192,14 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1Resource",
       "properties": {
+        "folders": {
+          "description": "Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.",
+          "items": {
+            "$ref": "Folder"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
           "type": "string"
@@ -1418,6 +1441,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV1p1beta1Folder": {
+      "description": "Message that contains the resource name and display name of a folder resource.",
+      "id": "GoogleCloudSecuritycenterV1p1beta1Folder",
+      "properties": {
+        "resourceFolder": {
+          "description": "Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        },
+        "resourceFolderDisplayName": {
+          "description": "The user defined display name for this folder.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV1p1beta1NotificationMessage": {
       "description": "Security Command Center's Notification",
       "id": "GoogleCloudSecuritycenterV1p1beta1NotificationMessage",
@@ -1441,6 +1479,14 @@
       "description": "Information related to the Google Cloud resource.",
       "id": "GoogleCloudSecuritycenterV1p1beta1Resource",
       "properties": {
+        "folders": {
+          "description": "Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV1p1beta1Folder"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name",
           "type": "string"

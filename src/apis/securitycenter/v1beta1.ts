@@ -283,6 +283,19 @@ export namespace securitycenter_v1beta1 {
     state?: string | null;
   }
   /**
+   * Message that contains the resource name and display name of a folder resource.
+   */
+  export interface Schema$Folder {
+    /**
+     * Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceFolder?: string | null;
+    /**
+     * The user defined display name for this folder.
+     */
+    resourceFolderDisplayName?: string | null;
+  }
+  /**
    * Request message for `GetIamPolicy` method.
    */
   export interface Schema$GetIamPolicyRequest {
@@ -438,6 +451,19 @@ export namespace securitycenter_v1beta1 {
     state?: string | null;
   }
   /**
+   * Message that contains the resource name and display name of a folder resource.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV1p1beta1Folder {
+    /**
+     * Full resource name of this folder. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
+     */
+    resourceFolder?: string | null;
+    /**
+     * The user defined display name for this folder.
+     */
+    resourceFolderDisplayName?: string | null;
+  }
+  /**
    * Security Command Center's Notification
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1NotificationMessage {
@@ -458,6 +484,10 @@ export namespace securitycenter_v1beta1 {
    * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1p1beta1Resource {
+    /**
+     * Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.
+     */
+    folders?: Schema$GoogleCloudSecuritycenterV1p1beta1Folder[];
     /**
      * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
@@ -509,6 +539,10 @@ export namespace securitycenter_v1beta1 {
    * Information related to the Google Cloud resource.
    */
   export interface Schema$GoogleCloudSecuritycenterV1Resource {
+    /**
+     * Output only. Contains a Folder message for each folder in the assets ancestry. The first folder is the deepest nested folder, and the last folder is the folder directly under the Organization.
+     */
+    folders?: Schema$Folder[];
     /**
      * The full resource name of the resource. See: https://cloud.google.com/apis/design/resource_names#full_resource_name
      */
@@ -1755,42 +1789,28 @@ export namespace securitycenter_v1beta1 {
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Assets$Updatesecuritymarks,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Assets$Updatesecuritymarks
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1832,9 +1852,9 @@ export namespace securitycenter_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters
+        );
       }
     }
   }
@@ -3677,20 +3697,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
       params: Params$Resource$Organizations$Sources$Findings$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     create(
       paramsOrCallback?:
@@ -4149,20 +4163,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
       params: Params$Resource$Organizations$Sources$Findings$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     patch(
       paramsOrCallback?:
@@ -4309,20 +4317,14 @@ export namespace securitycenter_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
       params: Params$Resource$Organizations$Sources$Findings$Setstate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1Finding
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1Finding>
     ): void;
     setState(
       paramsOrCallback?:
@@ -4470,42 +4472,28 @@ export namespace securitycenter_v1beta1 {
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>,
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       params: Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
     ): void;
     updateSecurityMarks(
       paramsOrCallback?:
         | Params$Resource$Organizations$Sources$Findings$Updatesecuritymarks
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-          >
+        | BodyResponseCallback<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4547,9 +4535,9 @@ export namespace securitycenter_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudSecuritycenterV1beta1SecurityMarks>(
+          parameters
+        );
       }
     }
   }
