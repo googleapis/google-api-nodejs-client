@@ -929,13 +929,27 @@
       }
     }
   },
-  "revision": "20201012",
+  "revision": "20201123",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdvancedSecurityOverrides": {
       "description": "Security policies set to the most secure values by default. To maintain the security posture of a device, we don't recommend overriding any of the default values.",
       "id": "AdvancedSecurityOverrides",
       "properties": {
+        "commonCriteriaMode": {
+          "description": "Controls Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC). Enabling Common Criteria Mode increases certain security components on a device, including AES-GCM encryption of Bluetooth Long Term Keys, and Wi-Fi configuration stores.Warning: Common Criteria Mode enforces a strict security model typically only required for IT products used in national security systems and other highly sensitive organizations. Standard device use may be affected. Only enabled if required.",
+          "enum": [
+            "COMMON_CRITERIA_MODE_UNSPECIFIED",
+            "COMMON_CRITERIA_MODE_DISABLED",
+            "COMMON_CRITERIA_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to COMMON_CRITERIA_MODE_DISABLED.",
+            "Default. Disables Common Criteria Mode.",
+            "Enables Common Criteria Mode."
+          ],
+          "type": "string"
+        },
         "untrustedAppsPolicy": {
           "description": "The policy for untrusted apps (apps from unknown sources) enforced on the device. Replaces install_unknown_sources_allowed (deprecated).",
           "enum": [
@@ -1100,6 +1114,22 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "autoUpdateMode": {
+          "description": "This feature is not generally available.",
+          "enum": [
+            "AUTO_UPDATE_MODE_UNSPECIFIED",
+            "AUTO_UPDATE_DEFAULT",
+            "AUTO_UPDATE_POSTPONED",
+            "AUTO_UPDATE_HIGH_PRIORITY"
+          ],
+          "enumDescriptions": [
+            "This feature is not generally available.",
+            "This feature is not generally available.",
+            "This feature is not generally available.",
+            "This feature is not generally available."
+          ],
+          "type": "string"
         },
         "connectedWorkAndPersonalApp": {
           "description": "Controls whether the app can communicate with itself across a device’s work and personal profiles, subject to user consent.",
@@ -1441,6 +1471,27 @@
       },
       "type": "object"
     },
+    "CommonCriteriaModeInfo": {
+      "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy.",
+      "id": "CommonCriteriaModeInfo",
+      "properties": {
+        "commonCriteriaModeStatus": {
+          "description": "Whether Common Criteria Mode is enabled.",
+          "enum": [
+            "COMMON_CRITERIA_MODE_STATUS_UNKNOWN",
+            "COMMON_CRITERIA_MODE_DISABLED",
+            "COMMON_CRITERIA_MODE_ENABLED"
+          ],
+          "enumDescriptions": [
+            "Unknown status.",
+            "Common Criteria Mode is currently disabled.",
+            "Common Criteria Mode is currently enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ComplianceRule": {
       "description": "A rule declaring which mitigating actions to take when a device is not compliant with its policy. For every rule, there is always an implicit mitigating action to set policy_compliant to false for the Device resource, and display a message on the device indicating that the device is not compliant with its policy. Other mitigating actions may optionally be taken as well, depending on the field values in the rule.",
       "id": "ComplianceRule",
@@ -1531,6 +1582,10 @@
             "The device is being provisioned. Newly enrolled devices are in this state until they have a policy applied."
           ],
           "type": "string"
+        },
+        "commonCriteriaModeInfo": {
+          "$ref": "CommonCriteriaModeInfo",
+          "description": "Information about Common Criteria Mode—security standards defined in the Common Criteria for Information Technology Security Evaluation (https://www.commoncriteriaportal.org/) (CC).This information is only available if statusReportingSettings.commonCriteriaModeEnabled is true in the device's policy."
         },
         "deviceSettings": {
           "$ref": "DeviceSettings",
@@ -2856,11 +2911,13 @@
           "description": "The type of installation to perform.",
           "enum": [
             "INSTALL_TYPE_UNSPECIFIED",
-            "BLOCKED"
+            "BLOCKED",
+            "AVAILABLE"
           ],
           "enumDescriptions": [
-            "Unspecified. The default behavior is that all installs are allowed.",
-            "The app is blocked and can't be installed in the personal profile."
+            "Unspecified. Defaults to AVAILABLE.",
+            "The app is blocked and can't be installed in the personal profile.",
+            "The app is available to install in the personal profile."
           ],
           "type": "string"
         },
@@ -2899,14 +2956,18 @@
           "type": "array"
         },
         "personalPlayStoreMode": {
-          "description": "Used together with personal_applications to control how apps in the personal profile are allowed or blocked.",
+          "description": "Used together with personalApplications to control how apps in the personal profile are allowed or blocked.",
           "enum": [
             "PLAY_STORE_MODE_UNSPECIFIED",
-            "BLACKLIST"
+            "BLACKLIST",
+            "BLOCKLIST",
+            "ALLOWLIST"
           ],
           "enumDescriptions": [
-            "Unspecified. Default behavior is to allow all installs.",
-            "All Play Store apps are available, except those whose install_type is BLOCKED in personal_applications."
+            "Unspecified. Defaults to BLOCKLIST.",
+            "All Play Store apps are available for installation in the personal profile, except those whose installType is BLOCKED in personalApplications.",
+            "All Play Store apps are available for installation in the personal profile, except those whose installType is BLOCKED in personalApplications.",
+            "Only apps explicitly specified in personalApplications with installType set to AVAILABLE are allowed to be installed in the personal profile."
           ],
           "type": "string"
         },
@@ -2986,8 +3047,22 @@
           },
           "type": "array"
         },
+        "autoDateAndTimeZone": {
+          "description": "Whether auto date, time, and time zone are enabled on a company-owned device. If this is set, then autoTimeRequired is ignored.",
+          "enum": [
+            "AUTO_DATE_AND_TIME_ZONE_UNSPECIFIED",
+            "AUTO_DATE_AND_TIME_ZONE_USER_CHOICE",
+            "AUTO_DATE_AND_TIME_ZONE_ENFORCED"
+          ],
+          "enumDescriptions": [
+            "Unspecified. Defaults to AUTO_DATE_AND_TIME_ZONE_USER_CHOICE.",
+            "Auto date, time, and time zone are left to user's choice.",
+            "Enforce auto date, time, and time zone on the device."
+          ],
+          "type": "string"
+        },
         "autoTimeRequired": {
-          "description": "Whether auto time is required, which prevents the user from manually setting the date and time.",
+          "description": "Whether auto time is required, which prevents the user from manually setting the date and time. If autoDateAndTimeZone is set, this field is ignored.",
           "type": "boolean"
         },
         "blockApplicationsEnabled": {
@@ -3151,20 +3226,26 @@
           "description": "Settings controlling the behavior of a device in kiosk mode. To enable kiosk mode, set kioskCustomLauncherEnabled to true or specify an app in the policy with installType KIOSK."
         },
         "locationMode": {
-          "description": "The degree of location detection enabled. The user may change the value unless the user is otherwise blocked from accessing device settings.",
+          "description": "The degree of location detection enabled.",
           "enum": [
             "LOCATION_MODE_UNSPECIFIED",
             "HIGH_ACCURACY",
             "SENSORS_ONLY",
             "BATTERY_SAVING",
-            "OFF"
+            "OFF",
+            "LOCATION_USER_CHOICE",
+            "LOCATION_ENFORCED",
+            "LOCATION_DISABLED"
           ],
           "enumDescriptions": [
-            "The current device value is not modified.",
-            "All location detection methods are enabled, including GPS, networks, and other sensors.",
-            "Only GPS and other sensors are enabled.",
-            "Only the network location provider is enabled.",
-            "Location detection is disabled."
+            "Defaults to LOCATION_USER_CHOICE.",
+            "On Android 8 and below, all location detection methods are enabled, including GPS, networks, and other sensors. On Android 9 and above, this is equivalent to LOCATION_ENFORCED.",
+            "On Android 8 and below, only GPS and other sensors are enabled. On Android 9 and above, this is equivalent to LOCATION_ENFORCED.",
+            "On Android 8 and below, only the network location provider is enabled. On Android 9 and above, this is equivalent to LOCATION_ENFORCED.",
+            "On Android 8 and below, location setting and accuracy are disabled. On Android 9 and above, this is equivalent to LOCATION_DISABLED.",
+            "Location setting is not restricted on the device. No specific behavior is set or enforced.",
+            "Enable location setting on the device.",
+            "Disable location setting on the device."
           ],
           "type": "string"
         },
@@ -3704,6 +3785,10 @@
         },
         "applicationReportsEnabled": {
           "description": "Whether app reports are enabled.",
+          "type": "boolean"
+        },
+        "commonCriteriaModeEnabled": {
+          "description": "Whether Common Criteria Mode reporting is enabled.",
           "type": "boolean"
         },
         "deviceSettingsEnabled": {
