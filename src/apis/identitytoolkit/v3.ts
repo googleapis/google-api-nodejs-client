@@ -2514,9 +2514,7 @@ export namespace identitytoolkit_v3 {
     getProjectConfig(
       params?: Params$Resource$Relyingparty$Getprojectconfig,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-    >;
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>;
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2526,48 +2524,32 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Getprojectconfig,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
     ): void;
     getProjectConfig(
       params: Params$Resource$Relyingparty$Getprojectconfig,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
     ): void;
     getProjectConfig(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
     ): void;
     getProjectConfig(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Getprojectconfig
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-        >
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Getprojectconfig;
@@ -2601,13 +2583,14 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartyGetProjectConfigResponse>(
+          parameters
+        );
       }
     }
 
@@ -2673,42 +2656,28 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Getpublickeys,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
     ): void;
     getPublicKeys(
       params: Params$Resource$Relyingparty$Getpublickeys,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
     ): void;
     getPublicKeys(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
     ): void;
     getPublicKeys(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Getpublickeys
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2746,13 +2715,14 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartyGetPublicKeysResponse>(
+          parameters
+        );
       }
     }
 
@@ -3101,9 +3071,7 @@ export namespace identitytoolkit_v3 {
     sendVerificationCode(
       params?: Params$Resource$Relyingparty$Sendverificationcode,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-    >;
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>;
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3113,48 +3081,32 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Sendverificationcode,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
     ): void;
     sendVerificationCode(
       params: Params$Resource$Relyingparty$Sendverificationcode,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
     ): void;
     sendVerificationCode(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
     ): void;
     sendVerificationCode(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Sendverificationcode
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-        >
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Sendverificationcode;
@@ -3188,13 +3140,14 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartySendVerificationCodeResponse>(
+          parameters
+        );
       }
     }
 
@@ -3443,9 +3396,7 @@ export namespace identitytoolkit_v3 {
     setProjectConfig(
       params?: Params$Resource$Relyingparty$Setprojectconfig,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-    >;
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>;
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3455,48 +3406,32 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Setprojectconfig,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
     ): void;
     setProjectConfig(
       params: Params$Resource$Relyingparty$Setprojectconfig,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
     ): void;
     setProjectConfig(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
     ): void;
     setProjectConfig(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Setprojectconfig
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-        >
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Setprojectconfig;
@@ -3530,13 +3465,14 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartySetProjectConfigResponse>(
+          parameters
+        );
       }
     }
 
@@ -3613,42 +3549,28 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Signoutuser,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
     ): void;
     signOutUser(
       params: Params$Resource$Relyingparty$Signoutuser,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
     ): void;
     signOutUser(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
     ): void;
     signOutUser(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Signoutuser
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3691,9 +3613,9 @@ export namespace identitytoolkit_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartySignOutUserResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartySignOutUserResponse>(
+          parameters
+        );
       }
     }
 
@@ -4588,9 +4510,7 @@ export namespace identitytoolkit_v3 {
     verifyPhoneNumber(
       params?: Params$Resource$Relyingparty$Verifyphonenumber,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-    >;
+    ): GaxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>;
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -4600,48 +4520,32 @@ export namespace identitytoolkit_v3 {
       params: Params$Resource$Relyingparty$Verifyphonenumber,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-      >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>,
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
     ): void;
     verifyPhoneNumber(
       params: Params$Resource$Relyingparty$Verifyphonenumber,
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
     ): void;
     verifyPhoneNumber(
-      callback: BodyResponseCallback<
-        Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-      >
+      callback: BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
     ): void;
     verifyPhoneNumber(
       paramsOrCallback?:
         | Params$Resource$Relyingparty$Verifyphonenumber
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-          >
+        | BodyResponseCallback<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-        >
+      | GaxiosPromise<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Relyingparty$Verifyphonenumber;
@@ -4675,13 +4579,14 @@ export namespace identitytoolkit_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse
-        >(parameters);
+        return createAPIRequest<Schema$IdentitytoolkitRelyingpartyVerifyPhoneNumberResponse>(
+          parameters
+        );
       }
     }
   }
