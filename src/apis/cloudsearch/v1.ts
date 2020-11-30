@@ -222,7 +222,7 @@ export namespace cloudsearch_v1 {
    */
   export interface Schema$DataSource {
     /**
-     * If true, Indexing API rejects any modification calls to this datasource such as create, update, and delete. Disabling this does not imply halting process of previously accepted data.
+     * If true, sets the datasource to read-only mode. In read-only mode, the Indexing API rejects any requests to index or delete items in this source. Enabling read-only mode does not stop the processing of previously accepted data.
      */
     disableModifications?: boolean | null;
     /**
@@ -807,7 +807,7 @@ export namespace cloudsearch_v1 {
     readers?: Schema$Principal[];
   }
   /**
-   * Content of an item to be indexed and surfaced by Cloud Search.
+   * Content of an item to be indexed and surfaced by Cloud Search. Only UTF-8 encoded strings are allowed as inlineContent. If the content is uploaded and not binary, it must be UTF-8 encoded.
    */
   export interface Schema$ItemContent {
     /**
@@ -2820,20 +2820,14 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListItemNamesForUnmappedIdentityResponse
-      >
+      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
     ): void;
     listForunmappedidentity(
       params: Params$Resource$Debug$Identitysources$Items$Listforunmappedidentity,
-      callback: BodyResponseCallback<
-        Schema$ListItemNamesForUnmappedIdentityResponse
-      >
+      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
     ): void;
     listForunmappedidentity(
-      callback: BodyResponseCallback<
-        Schema$ListItemNamesForUnmappedIdentityResponse
-      >
+      callback: BodyResponseCallback<Schema$ListItemNamesForUnmappedIdentityResponse>
     ): void;
     listForunmappedidentity(
       paramsOrCallback?:
@@ -2889,9 +2883,9 @@ export namespace cloudsearch_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListItemNamesForUnmappedIdentityResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListItemNamesForUnmappedIdentityResponse>(
+          parameters
+        );
       }
     }
   }
@@ -8788,20 +8782,14 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationQueryStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
     ): void;
     get(
       params: Params$Resource$Stats$Query$Searchapplications$Get,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationQueryStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationQueryStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationQueryStatsResponse>
     ): void;
     get(
       paramsOrCallback?:
@@ -8998,20 +8986,14 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationSessionStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
     ): void;
     get(
       params: Params$Resource$Stats$Session$Searchapplications$Get,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationSessionStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationSessionStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationSessionStatsResponse>
     ): void;
     get(
       paramsOrCallback?:
@@ -9068,9 +9050,9 @@ export namespace cloudsearch_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GetSearchApplicationSessionStatsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GetSearchApplicationSessionStatsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -9208,20 +9190,14 @@ export namespace cloudsearch_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationUserStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
     ): void;
     get(
       params: Params$Resource$Stats$User$Searchapplications$Get,
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationUserStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GetSearchApplicationUserStatsResponse
-      >
+      callback: BodyResponseCallback<Schema$GetSearchApplicationUserStatsResponse>
     ): void;
     get(
       paramsOrCallback?:
