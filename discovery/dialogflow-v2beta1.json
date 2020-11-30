@@ -1663,6 +1663,11 @@
                         "parent"
                       ],
                       "parameters": {
+                        "importGcsCustomMetadata": {
+                          "description": "Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
                         "parent": {
                           "description": "Required. The knowledge base to create a document for. Format: `projects//knowledgeBases/`.",
                           "location": "path",
@@ -2400,6 +2405,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "importGcsCustomMetadata": {
+                      "description": "Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "parent": {
                       "description": "Required. The knowledge base to create a document for. Format: `projects//knowledgeBases/`.",
                       "location": "path",
@@ -4537,7 +4547,7 @@
       }
     }
   },
-  "revision": "20201109",
+  "revision": "20201119",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3PageInfo": {
@@ -9181,7 +9191,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "This field can be used to pass HTTP headers for a webhook call. These headers will be sent to webhook alone with the headers that have been configured through Dialogflow web console. The headers defined within this field will overwrite the headers configured through Dialogflow console if there is a conflict. Header names are case-insensitive. Google's specified headers are not allowed. Including: \"Host\", \"Content-Length\", \"Connection\", \"From\", \"User-Agent\", \"Accept-Encoding\", \"If-Modified-Since\", \"If-None-Match\", \"X-Forwarded-For\", etc.",
+          "description": "This field can be used to pass HTTP headers for a webhook call. These headers will be sent to webhook along with the headers that have been configured through Dialogflow web console. The headers defined within this field will overwrite the headers configured through Dialogflow console if there is a conflict. Header names are case-insensitive. Google's specified headers are not allowed. Including: \"Host\", \"Content-Length\", \"Connection\", \"From\", \"User-Agent\", \"Accept-Encoding\", \"If-Modified-Since\", \"If-None-Match\", \"X-Forwarded-For\", etc.",
           "type": "object"
         }
       },
@@ -9285,6 +9295,10 @@
         "gcsSource": {
           "$ref": "GoogleCloudDialogflowV2beta1GcsSource",
           "description": "The path for a Cloud Storage source file for reloading document content. If not provided, the Document's existing source will be reloaded."
+        },
+        "importGcsCustomMetadata": {
+          "description": "Whether to import custom metadata from Google Cloud Storage. Only valid when the document source is Google Cloud Storage URI.",
+          "type": "boolean"
         }
       },
       "type": "object"
