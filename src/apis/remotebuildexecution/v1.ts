@@ -1978,20 +1978,14 @@ export namespace remotebuildexecution_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
