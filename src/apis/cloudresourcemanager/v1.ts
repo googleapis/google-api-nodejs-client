@@ -1441,23 +1441,15 @@ export namespace cloudresourcemanager_v1 {
       params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+        | BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Folders$Listavailableorgpolicyconstraints,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       paramsOrCallback?:
@@ -1514,9 +1506,9 @@ export namespace cloudresourcemanager_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListAvailableOrgPolicyConstraintsResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters
+        );
       }
     }
 
@@ -3416,23 +3408,15 @@ export namespace cloudresourcemanager_v1 {
       params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+        | BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Organizations$Listavailableorgpolicyconstraints,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       paramsOrCallback?:
@@ -3489,9 +3473,9 @@ export namespace cloudresourcemanager_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListAvailableOrgPolicyConstraintsResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters
+        );
       }
     }
 
@@ -5705,23 +5689,15 @@ export namespace cloudresourcemanager_v1 {
       params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListAvailableOrgPolicyConstraintsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+        | BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>,
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       params: Params$Resource$Projects$Listavailableorgpolicyconstraints,
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
-      callback: BodyResponseCallback<
-        Schema$ListAvailableOrgPolicyConstraintsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListAvailableOrgPolicyConstraintsResponse>
     ): void;
     listAvailableOrgPolicyConstraints(
       paramsOrCallback?:
@@ -5778,9 +5754,9 @@ export namespace cloudresourcemanager_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListAvailableOrgPolicyConstraintsResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListAvailableOrgPolicyConstraintsResponse>(
+          parameters
+        );
       }
     }
 
