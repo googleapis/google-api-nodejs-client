@@ -1876,7 +1876,7 @@ export namespace cloudidentity_v1beta1 {
      *   const res = await cloudidentity.devices.list({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer.
      *     customer: 'placeholder-value',
-     *     // Optional. Additional restrictions when fetching list of devices. [HC article link](https://support.google.com/a/answer/7549103)
+     *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response. Only one of the following field names may be used to specify the order: `create_time`, `last_sync_time`, `model`, `os_version`, `device_type` and `serial_number`. `desc` may be specified optionally to specify results to be sorted in descending order. Default order is ascending.
      *     orderBy: 'placeholder-value',
@@ -2173,7 +2173,7 @@ export namespace cloudidentity_v1beta1 {
      */
     customer?: string;
     /**
-     * Optional. Additional restrictions when fetching list of devices. [HC article link](https://support.google.com/a/answer/7549103)
+     * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
     filter?: string;
     /**
@@ -2941,7 +2941,7 @@ export namespace cloudidentity_v1beta1 {
      *   const res = await cloudidentity.devices.deviceUsers.list({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
+     *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response.
      *     orderBy: 'placeholder-value',
@@ -3417,7 +3417,7 @@ export namespace cloudidentity_v1beta1 {
      */
     customer?: string;
     /**
-     * Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
+     * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
     filter?: string;
     /**
