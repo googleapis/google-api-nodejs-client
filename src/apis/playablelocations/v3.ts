@@ -446,9 +446,7 @@ export namespace playablelocations_v3 {
     logImpressions(
       params?: Params$Resource$V3$Logimpressions,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>;
     logImpressions(
       params: Params$Resource$V3$Logimpressions,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -458,48 +456,32 @@ export namespace playablelocations_v3 {
       params: Params$Resource$V3$Logimpressions,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
     ): void;
     logImpressions(
       params: Params$Resource$V3$Logimpressions,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
     ): void;
     logImpressions(
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
     ): void;
     logImpressions(
       paramsOrCallback?:
         | Params$Resource$V3$Logimpressions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-        >
+      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Logimpressions;
@@ -532,13 +514,14 @@ export namespace playablelocations_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleMapsPlayablelocationsV3LogImpressionsResponse>(
+          parameters
+        );
       }
     }
 
@@ -604,9 +587,7 @@ export namespace playablelocations_v3 {
     logPlayerReports(
       params?: Params$Resource$V3$Logplayerreports,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>;
     logPlayerReports(
       params: Params$Resource$V3$Logplayerreports,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -616,48 +597,32 @@ export namespace playablelocations_v3 {
       params: Params$Resource$V3$Logplayerreports,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
     ): void;
     logPlayerReports(
       params: Params$Resource$V3$Logplayerreports,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
     ): void;
     logPlayerReports(
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
     ): void;
     logPlayerReports(
       paramsOrCallback?:
         | Params$Resource$V3$Logplayerreports
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-        >
+      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Logplayerreports;
@@ -693,13 +658,14 @@ export namespace playablelocations_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleMapsPlayablelocationsV3LogPlayerReportsResponse>(
+          parameters
+        );
       }
     }
 
@@ -767,9 +733,7 @@ export namespace playablelocations_v3 {
     samplePlayableLocations(
       params?: Params$Resource$V3$Sampleplayablelocations,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>;
     samplePlayableLocations(
       params: Params$Resource$V3$Sampleplayablelocations,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -779,48 +743,32 @@ export namespace playablelocations_v3 {
       params: Params$Resource$V3$Sampleplayablelocations,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
     ): void;
     samplePlayableLocations(
       params: Params$Resource$V3$Sampleplayablelocations,
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
     ): void;
     samplePlayableLocations(
-      callback: BodyResponseCallback<
-        Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
     ): void;
     samplePlayableLocations(
       paramsOrCallback?:
         | Params$Resource$V3$Sampleplayablelocations
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-        >
+      | GaxiosPromise<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$V3$Sampleplayablelocations;
@@ -856,13 +804,14 @@ export namespace playablelocations_v3 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleMapsPlayablelocationsV3SamplePlayableLocationsResponse>(
+          parameters
+        );
       }
     }
   }
