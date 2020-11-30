@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/-Gs2EgxWEoiGeb9-urct8Ip59iU\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/Bmtk0fdZZBL7mGUV5qM_O2aP_co\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -24241,7 +24241,7 @@
           ]
         },
         "patch": {
-          "description": "Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.",
+          "description": "Patches the specified subnetwork with the data included in the request. Only certain fields can be updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.",
           "httpMethod": "PATCH",
           "id": "compute.subnetworks.patch",
           "parameterOrder": [
@@ -28643,7 +28643,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201102",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -32000,7 +32000,7 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "description": "",
           "type": "string"
         },
         "condition": {
@@ -34661,6 +34661,133 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRule": {
+      "description": "Represents a rule that describes one or more match conditions along with the action to be taken when traffic matches this condition (allow or deny).",
+      "id": "FirewallPolicyRule",
+      "properties": {
+        "action": {
+          "description": "The Action to perform when the client connection triggers the rule. Can currently be either \"allow\" or \"deny()\" where valid values for status are 403, 404, and 502.",
+          "type": "string"
+        },
+        "description": {
+          "description": "An optional description of this resource. Provide this property when you create the resource.",
+          "type": "string"
+        },
+        "direction": {
+          "description": "The direction in which this rule applies.",
+          "enum": [
+            "EGRESS",
+            "INGRESS"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "disabled": {
+          "description": "Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.",
+          "type": "boolean"
+        },
+        "enableLogging": {
+          "description": "Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on \"goto_next\" rules.",
+          "type": "boolean"
+        },
+        "kind": {
+          "default": "compute#firewallPolicyRule",
+          "description": "[Output only] Type of the resource. Always compute#firewallPolicyRule for firewall policy rules",
+          "type": "string"
+        },
+        "match": {
+          "$ref": "FirewallPolicyRuleMatcher",
+          "description": "A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced."
+        },
+        "priority": {
+          "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ruleTupleCount": {
+          "description": "[Output Only] Calculation of the complexity of a single firewall policy rule.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetResources": {
+          "description": "A list of network resource URLs to which this rule applies. This field allows you to control which network?s VMs get this rule. If this field is left blank, all VMs within the organization will receive the rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetSecureLabels": {
+          "description": "A list of secure labels that controls which instances the firewall rule applies to. If targetSecureLabel are specified, then the firewall rule applies only to instances in the VPC network that have one of those secure labels. targetSecureLabel may not be set at the same time as targetServiceAccounts. If neither targetServiceAccounts nor targetSecureLabel are specified, the firewall rule applies to all instances on the specified network. Maximum number of target label values allowed is 256.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "targetServiceAccounts": {
+          "description": "A list of service accounts indicating the sets of instances that are applied with this rule.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRuleMatcher": {
+      "description": "Represents a match condition that incoming traffic is evaluated against. Exactly one field must be specified.",
+      "id": "FirewallPolicyRuleMatcher",
+      "properties": {
+        "destIpRanges": {
+          "description": "CIDR IP address range. Maximum number of destination CIDR IP ranges allowed is 256.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "layer4Configs": {
+          "description": "Pairs of IP protocols and ports that the rule should match.",
+          "items": {
+            "$ref": "FirewallPolicyRuleMatcherLayer4Config"
+          },
+          "type": "array"
+        },
+        "srcIpRanges": {
+          "description": "CIDR IP address range. Maximum number of source CIDR IP ranges allowed is 256.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "srcSecureLabels": {
+          "description": "List of firewall label values, which should be matched at the source of the traffic. Maximum number of source label values allowed is 256.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FirewallPolicyRuleMatcherLayer4Config": {
+      "id": "FirewallPolicyRuleMatcherLayer4Config",
+      "properties": {
+        "ipProtocol": {
+          "description": "The IP protocol to which this rule applies. The protocol type is required when creating a firewall rule. This value can either be one of the following well known protocol strings (tcp, udp, icmp, esp, ah, ipip, sctp), or the IP protocol number.",
+          "type": "string"
+        },
+        "ports": {
+          "description": "An optional list of ports to which this rule applies. This field is only applicable for UDP or TCP protocol. Each entry must be either an integer or a range. If not specified, this rule applies to connections through any port.\n\nExample inputs include: [\"22\"], [\"80\",\"443\"], and [\"12345-12349\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -40135,6 +40262,13 @@
     "InstancesGetEffectiveFirewallsResponse": {
       "id": "InstancesGetEffectiveFirewallsResponse",
       "properties": {
+        "firewallPolicys": {
+          "description": "Effective firewalls from firewall policies.",
+          "items": {
+            "$ref": "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy"
+          },
+          "type": "array"
+        },
         "firewalls": {
           "description": "Effective firewalls on the instance.",
           "items": {
@@ -40148,6 +40282,39 @@
             "$ref": "InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy": {
+      "id": "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy",
+      "properties": {
+        "displayName": {
+          "description": "[Output Only] The display name of the firewall policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "[Output Only] The name of the firewall policy.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules that apply to the network.",
+          "items": {
+            "$ref": "FirewallPolicyRule"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "[Output Only] The type of the firewall policy.",
+          "enum": [
+            "HIERARCHY",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -40628,6 +40795,11 @@
         "customerRouterIpAddress": {
           "description": "[Output Only] IPv4 address + prefix length to be configured on the customer router subinterface for this interconnect attachment.",
           "type": "string"
+        },
+        "dataplaneVersion": {
+          "description": "[Output Only] Dataplane version for this InterconnectAttachment.",
+          "format": "int32",
+          "type": "integer"
         },
         "description": {
           "description": "An optional description of this resource.",
@@ -43211,6 +43383,7 @@
         "networkEndpointType": {
           "description": "Type of network endpoints in this network endpoint group. Can be one of GCE_VM_IP_PORT, NON_GCP_PRIVATE_IP_PORT, INTERNET_FQDN_PORT, INTERNET_IP_PORT, or SERVERLESS.",
           "enum": [
+            "GCE_VM_IP",
             "GCE_VM_IP_PORT",
             "INTERNET_FQDN_PORT",
             "INTERNET_IP_PORT",
@@ -43218,6 +43391,7 @@
             "SERVERLESS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -44127,6 +44301,13 @@
     "NetworksGetEffectiveFirewallsResponse": {
       "id": "NetworksGetEffectiveFirewallsResponse",
       "properties": {
+        "firewallPolicys": {
+          "description": "Effective firewalls from firewall policy.",
+          "items": {
+            "$ref": "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy"
+          },
+          "type": "array"
+        },
         "firewalls": {
           "description": "Effective firewalls on the network.",
           "items": {
@@ -44140,6 +44321,41 @@
             "$ref": "NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy": {
+      "id": "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy",
+      "properties": {
+        "displayName": {
+          "description": "[Output Only] The display name of the firewall policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "[Output Only] The name of the firewall policy.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules that apply to the network.",
+          "items": {
+            "$ref": "FirewallPolicyRule"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "[Output Only] The type of the firewall policy.",
+          "enum": [
+            "HIERARCHY",
+            "NETWORK",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -47592,6 +47808,7 @@
             "PREEMPTIBLE_NVIDIA_T4_VWS_GPUS",
             "PREEMPTIBLE_NVIDIA_V100_GPUS",
             "PRIVATE_V6_ACCESS_SUBNETWORKS",
+            "PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK",
             "PUBLIC_ADVERTISED_PREFIXES",
             "PUBLIC_DELEGATED_PREFIXES",
             "REGIONAL_AUTOSCALERS",
@@ -47622,6 +47839,7 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -51801,6 +52019,9 @@
       "description": "Represents a Google Cloud Armor security policy resource.\n\nOnly external backend services that use load balancers can reference a security policy. For more information, see  Google Cloud Armor security policy overview. (== resource_for {$api_version}.securityPolicies ==)",
       "id": "SecurityPolicy",
       "properties": {
+        "adaptiveProtectionConfig": {
+          "$ref": "SecurityPolicyAdaptiveProtectionConfig"
+        },
         "associations": {
           "description": "A list of associations that belong to this policy.",
           "items": {
@@ -51882,6 +52103,40 @@
           "enum": [
             "CLOUD_ARMOR",
             "FIREWALL"
+          ],
+          "enumDescriptions": [
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdaptiveProtectionConfig": {
+      "description": "Configuration options for Cloud Armor Adaptive Protection (CAAP).",
+      "id": "SecurityPolicyAdaptiveProtectionConfig",
+      "properties": {
+        "layer7DdosDefenseConfig": {
+          "$ref": "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig",
+          "description": "If set to true, enables Cloud Armor Machine Learning."
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig": {
+      "description": "Configuration options for L7 DDoS detection.",
+      "id": "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig",
+      "properties": {
+        "enable": {
+          "description": "If set to true, enables CAAP for L7 DDoS detection.",
+          "type": "boolean"
+        },
+        "ruleVisibility": {
+          "description": "Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.",
+          "enum": [
+            "PREMIUM",
+            "STANDARD"
           ],
           "enumDescriptions": [
             "",
@@ -52079,6 +52334,11 @@
           "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.",
           "format": "int32",
           "type": "integer"
+        },
+        "ruleNumber": {
+          "description": "Identifier for the rule. This is only unique within the given security policy. This can only be set during rule creation, if rule number is not specified it will be generated by the server.",
+          "format": "int64",
+          "type": "string"
         },
         "ruleTupleCount": {
           "description": "[Output Only] Calculation of the complexity of a single firewall security policy rule.",
