@@ -1807,6 +1807,10 @@ export namespace adexchangebuyer2_v2beta1 {
      */
     mediaKitUrl?: string | null;
     /**
+     * The list of apps represented in this publisher profile. Empty if this is a parent profile.
+     */
+    mobileApps?: Schema$PublisherProfileMobileApplication[];
+    /**
      * Overview of the publisher.
      */
     overview?: string | null;
@@ -1834,6 +1838,23 @@ export namespace adexchangebuyer2_v2beta1 {
      * Up to three key metrics and rankings. Max 100 characters each. For example "#1 Mobile News Site for 20 Straight Months".
      */
     topHeadlines?: string[] | null;
+  }
+  /**
+   * A mobile application that contains a external app ID, name, and app store.
+   */
+  export interface Schema$PublisherProfileMobileApplication {
+    /**
+     * The app store the app belongs to.
+     */
+    appStore?: string | null;
+    /**
+     * The external ID for the app from its app store.
+     */
+    externalAppId?: string | null;
+    /**
+     * The name of the app.
+     */
+    name?: string | null;
   }
   /**
    * An open-ended realtime time range specified by the start timestamp. For filter sets that specify a realtime time range RTB metrics continue to be aggregated throughout the lifetime of the filter set.
@@ -7600,6 +7621,7 @@ export namespace adexchangebuyer2_v2beta1 {
      *   //   "isParent": false,
      *   //   "logoUrl": "my_logoUrl",
      *   //   "mediaKitUrl": "my_mediaKitUrl",
+     *   //   "mobileApps": [],
      *   //   "overview": "my_overview",
      *   //   "programmaticDealsContact": "my_programmaticDealsContact",
      *   //   "publisherProfileId": "my_publisherProfileId",
@@ -9479,42 +9501,28 @@ export namespace adexchangebuyer2_v2beta1 {
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Creatives$List
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9559,9 +9567,9 @@ export namespace adexchangebuyer2_v2beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListCreativeStatusBreakdownByCreativeResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
+          parameters
+        );
       }
     }
   }
@@ -9670,42 +9678,28 @@ export namespace adexchangebuyer2_v2beta1 {
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
       params: Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Accounts$Filtersets$Filteredbids$Details$List
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -9750,9 +9744,9 @@ export namespace adexchangebuyer2_v2beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListCreativeStatusBreakdownByDetailResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
+          parameters
+        );
       }
     }
   }
@@ -11855,42 +11849,28 @@ export namespace adexchangebuyer2_v2beta1 {
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByCreativeResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Filteredbids$Creatives$List
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByCreativeResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByCreativeResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -11935,9 +11915,9 @@ export namespace adexchangebuyer2_v2beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListCreativeStatusBreakdownByCreativeResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByCreativeResponse>(
+          parameters
+        );
       }
     }
   }
@@ -12045,42 +12025,28 @@ export namespace adexchangebuyer2_v2beta1 {
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>,
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
       params: Params$Resource$Bidders$Filtersets$Filteredbids$Details$List,
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCreativeStatusBreakdownByDetailResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Bidders$Filtersets$Filteredbids$Details$List
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ListCreativeStatusBreakdownByDetailResponse
-          >
+        | BodyResponseCallback<Schema$ListCreativeStatusBreakdownByDetailResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -12125,9 +12091,9 @@ export namespace adexchangebuyer2_v2beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListCreativeStatusBreakdownByDetailResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListCreativeStatusBreakdownByDetailResponse>(
+          parameters
+        );
       }
     }
   }
