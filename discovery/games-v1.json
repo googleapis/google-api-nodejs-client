@@ -3062,12 +3062,14 @@
           "type": "string"
         },
         "height": {
-          "description": "The height of the image in pixels.",
+          "description": "Output only. The height of the image in pixels.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "mimeType": {
-          "description": "The MIME type of the image.",
+          "description": "Output only. The MIME type of the image.",
+          "readOnly": true,
           "type": "string"
         },
         "resourceId": {
@@ -3075,8 +3077,9 @@
           "type": "string"
         },
         "width": {
-          "description": "The width of the image in pixels.",
+          "description": "Output only. The width of the image in pixels.",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
