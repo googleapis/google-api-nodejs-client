@@ -160,7 +160,7 @@
       "id": "admin:datatransfer_v1",
       "name": "admin",
       "version": "datatransfer_v1",
-      "title": "Admin SDK",
+      "title": "Admin SDK API",
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=datatransfer_v1",
       "icons": {
@@ -175,7 +175,7 @@
       "id": "admin:directory_v1",
       "name": "admin",
       "version": "directory_v1",
-      "title": "Admin SDK",
+      "title": "Admin SDK API",
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=directory_v1",
       "icons": {
@@ -190,7 +190,7 @@
       "id": "admin:reports_v1",
       "name": "admin",
       "version": "reports_v1",
-      "title": "Admin SDK",
+      "title": "Admin SDK API",
       "description": "Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.",
       "discoveryRestUrl": "https://admin.googleapis.com/$discovery/rest?version=reports_v1",
       "icons": {
@@ -4176,7 +4176,7 @@
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
       },
-      "documentationLink": "https://www.envoyproxy.io/docs/envoy/latest/configuration/overview/v2_overview#management-server",
+      "documentationLink": "https://cloud.google.com/traffic-director",
       "preferred": true
     },
     {
