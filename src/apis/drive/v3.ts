@@ -4080,7 +4080,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.copy({
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     // Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
@@ -4346,7 +4346,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.create({
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     *     // Deprecated. Creating files in multiple folders is no longer supported.
      *     enforceSingleParent: 'placeholder-value',
      *     // Whether to ignore the domain's default visibility settings for the created file. Domain administrators can choose to make all uploaded files visible to the domain by default; this parameter bypasses that behavior for the request. Permissions are still inherited from parent folders.
      *     ignoreDefaultVisibility: 'placeholder-value',
@@ -4617,7 +4617,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.delete({
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
@@ -4744,7 +4744,7 @@ export namespace drive_v3 {
      *
      *   // Do the magic
      *   const res = await drive.files.emptyTrash({
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     *     // Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      *     enforceSingleParent: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5499,7 +5499,7 @@ export namespace drive_v3 {
      *   const res = await drive.files.update({
      *     // A comma-separated list of parent IDs to add.
      *     addParents: 'placeholder-value',
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     *     // Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file.
      *     fileId: 'placeholder-value',
@@ -5917,7 +5917,7 @@ export namespace drive_v3 {
 
   export interface Params$Resource$Files$Copy extends StandardParameters {
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     * Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -5956,7 +5956,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Create extends StandardParameters {
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. Requests that specify more than one parent fail.
+     * Deprecated. Creating files in multiple folders is no longer supported.
      */
     enforceSingleParent?: boolean;
     /**
@@ -6010,7 +6010,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Delete extends StandardParameters {
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      */
     enforceSingleParent?: boolean;
     /**
@@ -6028,7 +6028,7 @@ export namespace drive_v3 {
   }
   export interface Params$Resource$Files$Emptytrash extends StandardParameters {
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter will only take effect if the item is not in a shared drive. If an item's last parent is deleted but the item itself is not, the item will be placed under its owner's root.
+     * Deprecated. If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.
      */
     enforceSingleParent?: boolean;
   }
@@ -6139,7 +6139,7 @@ export namespace drive_v3 {
      */
     addParents?: string;
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. If the item's owner makes a request to add a single parent, the item is removed from all current folders and placed in the requested folder. Other requests that increase the number of parents fail, except when the canAddMyDriveParent file capability is true and a single parent is being added.
+     * Deprecated. Adding files to multiple folders is no longer supported. Use shortcuts instead.
      */
     enforceSingleParent?: boolean;
     /**
@@ -6261,11 +6261,11 @@ export namespace drive_v3 {
      *   const res = await drive.permissions.create({
      *     // A plain text custom message to include in the notification email.
      *     emailMessage: 'placeholder-value',
-     *     // Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
+     *     // Deprecated. See moveToNewOwnersRoot for details.
      *     enforceSingleParent: 'placeholder-value',
      *     // The ID of the file or shared drive.
      *     fileId: 'placeholder-value',
-     *     // This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
+     *     // This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, parents are not changed.
      *     moveToNewOwnersRoot: 'placeholder-value',
      *     // Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.
      *     sendNotificationEmail: 'placeholder-value',
@@ -7032,7 +7032,7 @@ export namespace drive_v3 {
      */
     emailMessage?: string;
     /**
-     * Set to true to opt in to API behavior that aims for all items to have exactly one parent. This parameter only takes effect if the item is not in a shared drive. See moveToNewOwnersRoot for details.
+     * Deprecated. See moveToNewOwnersRoot for details.
      */
     enforceSingleParent?: boolean;
     /**
@@ -7040,7 +7040,7 @@ export namespace drive_v3 {
      */
     fileId?: string;
     /**
-     * This parameter only takes effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. When set to true, the item is moved to the new owner's My Drive root folder and all prior parents removed. If set to false, when enforceSingleParent=true, parents are not changed. If set to false, when enforceSingleParent=false, existing parents are not changed; however, the file will be added to the new owner's My Drive root folder, unless it is already in the new owner's My Drive.
+     * This parameter will only take effect if the item is not in a shared drive and the request is attempting to transfer the ownership of the item. If set to true, the item will be moved to the new owner's My Drive root folder and all prior parents removed. If set to false, parents are not changed.
      */
     moveToNewOwnersRoot?: boolean;
     /**
