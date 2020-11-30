@@ -570,7 +570,7 @@
       }
     }
   },
-  "revision": "20201106",
+  "revision": "20201115",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1602,7 +1602,7 @@
       "type": "object"
     },
     "IamPolicyAnalysisQuery": {
-      "description": "IAM policy analysis query message.",
+      "description": "## LINT.IfChange Keep in sync with ## logs/proto/cloud_asset_inventory/iam_policy_analyzer_log.proto IAM policy analysis query message.",
       "id": "IamPolicyAnalysisQuery",
       "properties": {
         "accessSelector": {
