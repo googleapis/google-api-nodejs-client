@@ -1265,12 +1265,12 @@
               ],
               "parameters": {
                 "dataCollectorId": {
-                  "description": "ID of the Data Collector. Overrides any ID in the Data Collector resource.",
+                  "description": "ID of the data collector. Overrides any ID in the data collector resource. Must begin with `dc_`.",
                   "location": "query",
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the organization in which to create the Data Collector in the following format: `organizations/{org}`.",
+                  "description": "Required. Name of the organization in which to create the data collector in the following format: `organizations/{org}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -1298,7 +1298,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "description": "Required. Name of the data collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
                   "required": true,
@@ -1323,7 +1323,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "description": "Required. Name of the data collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
                   "required": true,
@@ -1348,7 +1348,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Maximum number of Data Collectors to return. The page size defaults to 25.",
+                  "description": "Maximum number of data collectors to return. The page size defaults to 25.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -1359,7 +1359,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the organization for which to list Data Collectors in the following format: `organizations/{org}`.",
+                  "description": "Required. Name of the organization for which to list data collectors in the following format: `organizations/{org}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+$",
                   "required": true,
@@ -1384,7 +1384,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of the Data Collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
+                  "description": "Required. Name of the data collector in the following format: `organizations/{org}/datacollectors/{data_collector_id}`.",
                   "location": "path",
                   "pattern": "^organizations/[^/]+/datacollectors/[^/]+$",
                   "required": true,
@@ -6275,7 +6275,7 @@
       }
     }
   },
-  "revision": "20201108",
+  "revision": "20201117",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -7325,17 +7325,17 @@
       "type": "object"
     },
     "GoogleCloudApigeeV1DataCollector": {
-      "description": "Data Collector configuration.",
+      "description": "Data collector configuration.",
       "id": "GoogleCloudApigeeV1DataCollector",
       "properties": {
         "createdAt": {
-          "description": "Output only. The time at which the Data Collector was created in milliseconds since the epoch.",
+          "description": "Output only. The time at which the data collector was created in milliseconds since the epoch.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "A description of the Data Collector.",
+          "description": "A description of the data collector.",
           "type": "string"
         },
         "lastModifiedAt": {
@@ -7345,11 +7345,11 @@
           "type": "string"
         },
         "name": {
-          "description": "ID of the Data Collector.",
+          "description": "ID of the data collector. Must begin with `dc_`.",
           "type": "string"
         },
         "type": {
-          "description": "Immutable. The type of data this DataCollector will collect.",
+          "description": "Immutable. The type of data this data collector will collect.",
           "enum": [
             "TYPE_UNSPECIFIED",
             "INTEGER",
@@ -8526,7 +8526,7 @@
           "type": "array"
         },
         "deployedRoutes": {
-          "description": "The current routes deployed in the ingress routing table. A route which is missing will be shown with no destination environment.",
+          "description": "The current routes deployed in the ingress routing table. A route which is missing will appear in missing_routes.",
           "items": {
             "$ref": "GoogleCloudApigeeV1InstanceDeploymentStatusDeployedRoute"
           },
@@ -8743,7 +8743,7 @@
       "id": "GoogleCloudApigeeV1ListDataCollectorsResponse",
       "properties": {
         "dataCollectors": {
-          "description": "Data Collectors in the specified organization.",
+          "description": "Data collectors in the specified organization.",
           "items": {
             "$ref": "GoogleCloudApigeeV1DataCollector"
           },
