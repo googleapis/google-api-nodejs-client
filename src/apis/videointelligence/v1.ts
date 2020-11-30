@@ -4328,20 +4328,14 @@ export namespace videointelligence_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunning_ListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunning_ListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -4399,9 +4393,9 @@ export namespace videointelligence_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleLongrunning_ListOperationsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleLongrunning_ListOperationsResponse>(
+          parameters
+        );
       }
     }
   }
