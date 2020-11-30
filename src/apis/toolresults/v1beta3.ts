@@ -3992,20 +3992,14 @@ export namespace toolresults_v1beta3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListStepAccessibilityClustersResponse
-      >
+      callback: BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>
     ): void;
     accessibilityClusters(
       params: Params$Resource$Projects$Histories$Executions$Steps$Accessibilityclusters,
-      callback: BodyResponseCallback<
-        Schema$ListStepAccessibilityClustersResponse
-      >
+      callback: BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>
     ): void;
     accessibilityClusters(
-      callback: BodyResponseCallback<
-        Schema$ListStepAccessibilityClustersResponse
-      >
+      callback: BodyResponseCallback<Schema$ListStepAccessibilityClustersResponse>
     ): void;
     accessibilityClusters(
       paramsOrCallback?:
