@@ -18,6 +18,7 @@
   "description": "API for Cloud SQL database instance management",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/cloud-sql/",
+  "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
@@ -1376,7 +1377,7 @@
                   "type": "string"
                 },
                 "syncMode": {
-                  "description": "External sync mode",
+                  "description": "External sync mode.",
                   "enum": [
                     "EXTERNAL_SYNC_MODE_UNSPECIFIED",
                     "ONLINE",
@@ -1828,7 +1829,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201112",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -1918,6 +1919,22 @@
           "description": "The number of days of transaction logs we retain for point in time restore, from 1-7.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BackupContext": {
+      "description": "Backup context.",
+      "id": "BackupContext",
+      "properties": {
+        "backupId": {
+          "description": "The identifier of the backup.",
+          "format": "int64",
+          "type": "string"
+        },
+        "kind": {
+          "description": "This is always *sql#backupContext*.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -2577,7 +2594,7 @@
       "id": "ExportContext",
       "properties": {
         "csvExportOptions": {
-          "description": "Options for exporting data as CSV.",
+          "description": "Options for exporting data as CSV. *MySQL* and *PostgreSQL* instances only.",
           "properties": {
             "selectQuery": {
               "description": "The select query used to extract the data.",
@@ -2594,7 +2611,7 @@
           "type": "array"
         },
         "fileType": {
-          "description": "The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data.",
+          "description": "The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data. *BAK*: The file contains backup data for a SQL Server instance.",
           "enum": [
             "SQL_FILE_TYPE_UNSPECIFIED",
             "SQL",
@@ -2624,7 +2641,7 @@
               "description": "Options for exporting from MySQL.",
               "properties": {
                 "masterData": {
-                  "description": "Option to include SQL statement required to set up replication. If set to *1*, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates. If set to *2*, the CHANGE MASTER TO statement is written as a SQL comment, and has no effect. All other values are ignored.",
+                  "description": "Option to include SQL statement required to set up replication. If set to *1*, the dump file includes a CHANGE MASTER TO statement with the binary log coordinates, and --set-gtid-purged is set to ON. If set to *2*, the CHANGE MASTER TO statement is written as a SQL comment and has no effect. If set to any value other than *1*, --set-gtid-purged is set to OFF.",
                   "format": "int32",
                   "type": "integer"
                 }
@@ -2874,6 +2891,30 @@
         "uri": {
           "description": "Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InsightsConfig": {
+      "description": "Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration.",
+      "id": "InsightsConfig",
+      "properties": {
+        "queryInsightsEnabled": {
+          "description": "Whether Query Insights feature is enabled.",
+          "type": "boolean"
+        },
+        "queryStringLength": {
+          "description": "Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "recordApplicationTags": {
+          "description": "Whether Query Insights will record application tags from query when enabled.",
+          "type": "boolean"
+        },
+        "recordClientAddress": {
+          "description": "Whether Query Insights will record client address when enabled.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3227,9 +3268,13 @@
       "type": "object"
     },
     "Operation": {
-      "description": "An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.",
+      "description": "An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource. Next field: 18",
       "id": "Operation",
       "properties": {
+        "backupContext": {
+          "$ref": "BackupContext",
+          "description": "The context for backup operation, if applicable."
+        },
         "endTime": {
           "description": "The time this operation finished in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.",
           "format": "google-datetime",
@@ -3621,6 +3666,10 @@
           },
           "type": "array"
         },
+        "insightsConfig": {
+          "$ref": "InsightsConfig",
+          "description": "Insights configuration, for now relevant only for Postgres."
+        },
         "ipConfiguration": {
           "$ref": "IpConfiguration",
           "description": "The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances."
@@ -3743,7 +3792,8 @@
             "INVALID_DB_PARAM",
             "UNSUPPORTED_GTID_MODE",
             "SQLSERVER_AGENT_NOT_RUNNING",
-            "UNSUPPORTED_TABLE_DEFINITION"
+            "UNSUPPORTED_TABLE_DEFINITION",
+            "UNSUPPORTED_DEFINER"
           ],
           "enumDescriptions": [
             "",
@@ -3766,7 +3816,8 @@
             "The primary instance database parameter setup doesn't allow EM sync.",
             "The gtid_mode is not supported, applicable for MySQL.",
             "SQL Server Agent is not running.",
-            "The table definition is not support due to missing primary key or replica identity, applicable for postgres."
+            "The table definition is not support due to missing primary key or replica identity, applicable for postgres.",
+            "The customer has a definer that will break EM setup."
           ],
           "type": "string"
         }
