@@ -1386,20 +1386,14 @@ export namespace iap_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListIdentityAwareProxyClientsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Brands$Identityawareproxyclients$List,
-      callback: BodyResponseCallback<
-        Schema$ListIdentityAwareProxyClientsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListIdentityAwareProxyClientsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListIdentityAwareProxyClientsResponse>
     ): void;
     list(
       paramsOrCallback?:
