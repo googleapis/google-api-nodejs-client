@@ -177,6 +177,10 @@ export namespace gmailpostmastertools_v1beta1 {
     /**
      * Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/).
      */
+    ipCount?: string | null;
+    /**
+     * Total number of unique IPs in this reputation category. This metric only pertains to traffic that passed [SPF](http://www.openspf.org/) or [DKIM](http://www.dkim.org/). Deprecated to be complied with ApiLinter for Quantities. Use ip_count instead.
+     */
     numIps?: string | null;
     /**
      * The reputation category this IP reputation represents.
