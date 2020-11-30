@@ -3358,7 +3358,7 @@
       }
     }
   },
-  "revision": "20201106",
+  "revision": "20201113",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -4219,7 +4219,7 @@
       "type": "object"
     },
     "DomainMapping": {
-      "description": "Resource to hold the state and status of a user's domain mapping.",
+      "description": "Resource to hold the state and status of a user's domain mapping. NOTE: This resource is currently in Beta.",
       "id": "DomainMapping",
       "properties": {
         "apiVersion": {
