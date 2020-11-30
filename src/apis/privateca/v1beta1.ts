@@ -2244,20 +2244,14 @@ export namespace privateca_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FetchCertificateAuthorityCsrResponse>,
-      callback: BodyResponseCallback<
-        Schema$FetchCertificateAuthorityCsrResponse
-      >
+      callback: BodyResponseCallback<Schema$FetchCertificateAuthorityCsrResponse>
     ): void;
     fetch(
       params: Params$Resource$Projects$Locations$Certificateauthorities$Fetch,
-      callback: BodyResponseCallback<
-        Schema$FetchCertificateAuthorityCsrResponse
-      >
+      callback: BodyResponseCallback<Schema$FetchCertificateAuthorityCsrResponse>
     ): void;
     fetch(
-      callback: BodyResponseCallback<
-        Schema$FetchCertificateAuthorityCsrResponse
-      >
+      callback: BodyResponseCallback<Schema$FetchCertificateAuthorityCsrResponse>
     ): void;
     fetch(
       paramsOrCallback?:
@@ -4032,20 +4026,14 @@ export namespace privateca_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListCertificateRevocationListsResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListCertificateRevocationListsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCertificateRevocationListsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Certificateauthorities$Certificaterevocationlists$List,
-      callback: BodyResponseCallback<
-        Schema$ListCertificateRevocationListsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCertificateRevocationListsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCertificateRevocationListsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCertificateRevocationListsResponse>
     ): void;
     list(
       paramsOrCallback?:
