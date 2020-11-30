@@ -130,13 +130,16 @@
               "type": "string"
             },
             "userId": {
-              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.",
+              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
               "location": "path",
               "required": true,
               "type": "string"
             }
           },
           "path": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}",
+          "response": {
+            "$ref": "Empty"
+          },
           "scopes": [
             "https://www.googleapis.com/auth/apps.licensing"
           ]
@@ -165,7 +168,7 @@
               "type": "string"
             },
             "userId": {
-              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.",
+              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -224,14 +227,14 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.",
+              "description": "Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.",
               "location": "query",
               "required": true,
               "type": "string"
             },
             "maxResults": {
               "default": "100",
-              "description": "The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
+              "description": "The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
               "format": "uint32",
               "location": "query",
               "maximum": "1000",
@@ -240,7 +243,7 @@
             },
             "pageToken": {
               "default": "",
-              "description": "Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
+              "description": "Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
               "location": "query",
               "type": "string"
             },
@@ -271,14 +274,14 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.",
+              "description": "Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.",
               "location": "query",
               "required": true,
               "type": "string"
             },
             "maxResults": {
               "default": "100",
-              "description": "The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
+              "description": "The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.",
               "format": "uint32",
               "location": "query",
               "maximum": "1000",
@@ -287,7 +290,7 @@
             },
             "pageToken": {
               "default": "",
-              "description": "Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
+              "description": "Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.",
               "location": "query",
               "type": "string"
             },
@@ -313,7 +316,7 @@
           ]
         },
         "patch": {
-          "description": "Patch a Licensing info via Apiary Patch Orchestration",
+          "description": "Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.",
           "flatPath": "apps/licensing/v1/product/{productId}/sku/{skuId}/user/{userId}",
           "httpMethod": "PATCH",
           "id": "licensing.licenseAssignments.patch",
@@ -336,7 +339,7 @@
               "type": "string"
             },
             "userId": {
-              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.",
+              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -377,7 +380,7 @@
               "type": "string"
             },
             "userId": {
-              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.",
+              "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -397,9 +400,15 @@
       }
     }
   },
-  "revision": "20201024",
+  "revision": "20201123",
   "rootUrl": "https://licensing.googleapis.com/",
   "schemas": {
+    "Empty": {
+      "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); } The JSON representation for `Empty` is empty JSON object `{}`.",
+      "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
     "LicenseAssignment": {
       "description": "Representation of a license assignment.",
       "id": "LicenseAssignment",
@@ -410,7 +419,7 @@
         },
         "kind": {
           "default": "licensing#licenseAssignment",
-          "description": "Identifies the resource as a LicenseAssignment.",
+          "description": "Identifies the resource as a LicenseAssignment, which is `licensing#licenseAssignment`.",
           "type": "string"
         },
         "productId": {
@@ -449,7 +458,7 @@
               "licensing.licenseAssignments.update"
             ]
           },
-          "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.",
+          "description": "The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.",
           "type": "string"
         }
       },
@@ -491,7 +500,7 @@
           "type": "string"
         },
         "nextPageToken": {
-          "description": "The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The maxResults query string is related to the nextPageToken since maxResults determines how many entries are returned on each next page.",
+          "description": "The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The `maxResults` query string is related to the `nextPageToken` since `maxResults` determines how many entries are returned on each next page.",
           "type": "string"
         }
       },
