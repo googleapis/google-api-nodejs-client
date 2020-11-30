@@ -1243,20 +1243,14 @@ export namespace firebasedynamiclinks_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>,
-      callback: BodyResponseCallback<
-        Schema$GetIosPostInstallAttributionResponse
-      >
+      callback: BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
     ): void;
     installAttribution(
       params: Params$Resource$V1$Installattribution,
-      callback: BodyResponseCallback<
-        Schema$GetIosPostInstallAttributionResponse
-      >
+      callback: BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
     ): void;
     installAttribution(
-      callback: BodyResponseCallback<
-        Schema$GetIosPostInstallAttributionResponse
-      >
+      callback: BodyResponseCallback<Schema$GetIosPostInstallAttributionResponse>
     ): void;
     installAttribution(
       paramsOrCallback?:
