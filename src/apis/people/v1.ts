@@ -791,11 +791,11 @@ export namespace people_v1 {
    */
   export interface Schema$ModifyContactGroupMembersRequest {
     /**
-     * Optional. The resource names of the contact people to add in the form of `people/{person_id\}`.
+     * Optional. The resource names of the contact people to add in the form of `people/{person_id\}`. The total number of resource names in `resource_names_to_add` and `resource_names_to_remove` must be less than or equal to 1000.
      */
     resourceNamesToAdd?: string[] | null;
     /**
-     * Optional. The resource names of the contact people to remove in the form of `people/{person_id\}`.
+     * Optional. The resource names of the contact people to remove in the form of `people/{person_id\}`. The total number of resource names in `resource_names_to_add` and `resource_names_to_remove` must be less than or equal to 1000.
      */
     resourceNamesToRemove?: string[] | null;
   }
