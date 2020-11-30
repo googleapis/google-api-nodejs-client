@@ -3482,20 +3482,14 @@ export namespace androiddeviceprovisioning_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>,
-      callback: BodyResponseCallback<
-        Schema$FindDevicesByDeviceIdentifierResponse
-      >
+      callback: BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
     ): void;
     findByIdentifier(
       params: Params$Resource$Partners$Devices$Findbyidentifier,
-      callback: BodyResponseCallback<
-        Schema$FindDevicesByDeviceIdentifierResponse
-      >
+      callback: BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
     ): void;
     findByIdentifier(
-      callback: BodyResponseCallback<
-        Schema$FindDevicesByDeviceIdentifierResponse
-      >
+      callback: BodyResponseCallback<Schema$FindDevicesByDeviceIdentifierResponse>
     ): void;
     findByIdentifier(
       paramsOrCallback?:
