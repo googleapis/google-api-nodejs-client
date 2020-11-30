@@ -4934,7 +4934,7 @@
       }
     }
   },
-  "revision": "20201105",
+  "revision": "20201114",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "BigQueryOptions": {
@@ -5427,7 +5427,8 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The resource name of the bucket. For example: \"projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are: \"global\"For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.",
+          "description": "Output only. The resource name of the bucket. For example: \"projects/my-project-id/locations/my-location/buckets/my-bucket-id The supported locations are: \"global\"For the location of global it is unspecified where logs are actually stored. Once a bucket has been created, the location can not be changed.",
+          "readOnly": true,
           "type": "string"
         },
         "retentionDays": {
@@ -6290,7 +6291,7 @@
           ],
           "enumDescriptions": [
             "Unexpected default.",
-            "Indicates suppression occurred due to relevant entries being received in excess of rate limits.",
+            "Indicates suppression occurred due to relevant entries being received in excess of rate limits. For quotas and limits, see Logging API quotas and limits (https://cloud.google.com/logging/quotas#api-limits).",
             "Indicates suppression occurred due to the client not consuming responses quickly enough."
           ],
           "type": "string"
