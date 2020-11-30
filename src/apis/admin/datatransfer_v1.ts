@@ -99,7 +99,7 @@ export namespace admin_datatransfer_v1 {
   }
 
   /**
-   * Admin SDK
+   * Admin SDK API
    *
    * Admin SDK lets administrators of enterprise domains to view and manage resources like user, groups etc. It also provides audit and usage reports of domain.
    *
@@ -126,7 +126,7 @@ export namespace admin_datatransfer_v1 {
   }
 
   /**
-   * The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Applications resources represent applications installed on the domain that support transferring ownership of user data.
    */
   export interface Schema$Application {
     /**
@@ -168,7 +168,7 @@ export namespace admin_datatransfer_v1 {
     applicationTransferStatus?: string | null;
   }
   /**
-   * Template for a collection of Applications. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Template for a collection of Applications.
    */
   export interface Schema$ApplicationsListResponse {
     /**
@@ -202,7 +202,7 @@ export namespace admin_datatransfer_v1 {
     value?: string[] | null;
   }
   /**
-   * The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * A Transfer resource represents the transfer of the ownership of user data between users.
    */
   export interface Schema$DataTransfer {
     /**
@@ -239,7 +239,7 @@ export namespace admin_datatransfer_v1 {
     requestTime?: string | null;
   }
   /**
-   * Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)
+   * Template for a collection of DataTransfer resources.
    */
   export interface Schema$DataTransfersListResponse {
     /**
