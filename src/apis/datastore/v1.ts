@@ -3039,23 +3039,15 @@ export namespace datastore_v1 {
       params: Params$Resource$Projects$Indexes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleDatastoreAdminV1ListIndexesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleDatastoreAdminV1ListIndexesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Indexes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleDatastoreAdminV1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleDatastoreAdminV1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleDatastoreAdminV1ListIndexesResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -3112,9 +3104,9 @@ export namespace datastore_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleDatastoreAdminV1ListIndexesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleDatastoreAdminV1ListIndexesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -3651,20 +3643,14 @@ export namespace datastore_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
