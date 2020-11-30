@@ -2500,7 +2500,7 @@
       }
     }
   },
-  "revision": "20201017",
+  "revision": "20201125",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -5461,6 +5461,13 @@
           "description": "URL to additional marketing and sales materials.",
           "type": "string"
         },
+        "mobileApps": {
+          "description": "The list of apps represented in this publisher profile. Empty if this is a parent profile.",
+          "items": {
+            "$ref": "PublisherProfileMobileApplication"
+          },
+          "type": "array"
+        },
         "overview": {
           "description": "Overview of the publisher.",
           "type": "string"
@@ -5491,6 +5498,55 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PublisherProfileMobileApplication": {
+      "description": "A mobile application that contains a external app ID, name, and app store.",
+      "id": "PublisherProfileMobileApplication",
+      "properties": {
+        "appStore": {
+          "description": "The app store the app belongs to.",
+          "enum": [
+            "APP_STORE_TYPE_UNSPECIFIED",
+            "APPLE_ITUNES",
+            "GOOGLE_PLAY",
+            "ROKU",
+            "AMAZON_FIRETV",
+            "PLAYSTATION",
+            "XBOX",
+            "SAMSUNG_TV",
+            "AMAZON",
+            "OPPO",
+            "SAMSUNG",
+            "VIVO",
+            "XIAOMI"
+          ],
+          "enumDescriptions": [
+            "A placeholder for an unknown app store.",
+            "Apple iTunes",
+            "Google Play",
+            "Roku",
+            "Amazon Fire TV",
+            "Playstation",
+            "Xbox",
+            "Samsung TV",
+            "Amazon Appstore",
+            "OPPO App Market",
+            "Samsung Galaxy Store",
+            "VIVO App Store",
+            "Xiaomi GetApps"
+          ],
+          "type": "string"
+        },
+        "externalAppId": {
+          "description": "The external ID for the app from its app store.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the app.",
+          "type": "string"
         }
       },
       "type": "object"
