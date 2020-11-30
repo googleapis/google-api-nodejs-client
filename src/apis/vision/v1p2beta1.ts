@@ -5050,9 +5050,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5062,48 +5060,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Files$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       params: Params$Resource$Files$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Files$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Files$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5137,13 +5119,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters
+        );
       }
     }
 
@@ -5376,9 +5359,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5388,48 +5369,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Images$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       params: Params$Resource$Images$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Images$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Images$Annotate;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -5463,13 +5428,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters
+        );
       }
     }
 
@@ -5719,9 +5685,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Projects$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -5731,48 +5695,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Projects$Files$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       params: Params$Resource$Projects$Files$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Files$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Files$Annotate;
@@ -5807,13 +5755,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters
+        );
       }
     }
 
@@ -6062,9 +6011,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Projects$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6074,48 +6021,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Projects$Images$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       params: Params$Resource$Projects$Images$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Images$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Images$Annotate;
@@ -6150,13 +6081,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters
+        );
       }
     }
 
@@ -6417,9 +6349,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Projects$Locations$Files$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6429,48 +6359,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Projects$Locations$Files$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Files$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Files$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Files$Annotate;
@@ -6505,13 +6419,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateFilesResponse>(
+          parameters
+        );
       }
     }
 
@@ -6760,9 +6675,7 @@ export namespace vision_v1p2beta1 {
     annotate(
       params?: Params$Resource$Projects$Locations$Images$Annotate,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -6772,48 +6685,32 @@ export namespace vision_v1p2beta1 {
       params: Params$Resource$Projects$Locations$Images$Annotate,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       params: Params$Resource$Projects$Locations$Images$Annotate,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
     ): void;
     annotate(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Images$Annotate
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Images$Annotate;
@@ -6848,13 +6745,14 @@ export namespace vision_v1p2beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudVisionV1p2beta1BatchAnnotateImagesResponse>(
+          parameters
+        );
       }
     }
 
