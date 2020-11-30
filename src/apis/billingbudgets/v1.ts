@@ -799,42 +799,28 @@ export namespace billingbudgets_v1 {
       params: Params$Resource$Billingaccounts$Budgets$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
     ): void;
     list(
       params: Params$Resource$Billingaccounts$Budgets$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Billingaccounts$Budgets$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -879,9 +865,9 @@ export namespace billingbudgets_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudBillingBudgetsV1ListBudgetsResponse>(
+          parameters
+        );
       }
     }
 
