@@ -1103,9 +1103,7 @@ export namespace recommendationengine_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1115,48 +1113,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$List;
@@ -1192,13 +1174,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogsResponse>(
+          parameters
+        );
       }
     }
 
@@ -1285,42 +1268,28 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1Catalog
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1Catalog
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1Catalog
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1Catalog
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1Catalog
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1Catalog
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1Catalog
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1Catalog>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1362,9 +1331,9 @@ export namespace recommendationengine_v1beta1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1Catalog
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1Catalog>(
+          parameters
+        );
       }
     }
   }
@@ -1500,42 +1469,28 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Catalogitems$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1575,13 +1530,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters
+        );
       }
     }
 
@@ -1794,42 +1750,28 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     get(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Catalogitems$Get
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1866,13 +1808,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters
+        );
       }
     }
 
@@ -2096,9 +2039,7 @@ export namespace recommendationengine_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Catalogitems$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2108,48 +2049,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Catalogitems$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Catalogitems$List;
@@ -2185,13 +2110,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListCatalogItemsResponse>(
+          parameters
+        );
       }
     }
 
@@ -2291,42 +2217,28 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     patch(
       params: Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     patch(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
     ): void;
     patch(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Catalogitems$Patch
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2363,13 +2275,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1CatalogItem
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1CatalogItem>(
+          parameters
+        );
       }
     }
   }
@@ -2696,20 +2609,14 @@ export namespace recommendationengine_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -2886,9 +2793,7 @@ export namespace recommendationengine_v1beta1 {
     predict(
       params?: Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>;
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2898,48 +2803,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
     ): void;
     predict(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
     ): void;
     predict(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
     ): void;
     predict(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Placements$Predict;
@@ -2975,13 +2864,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1PredictResponse>(
+          parameters
+        );
       }
     }
   }
@@ -3073,9 +2963,7 @@ export namespace recommendationengine_v1beta1 {
     create(
       params?: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3085,48 +2973,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
     ): void;
     create(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
     ): void;
     create(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
     ): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$Create;
@@ -3161,13 +3033,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1PredictionApiKeyRegistration>(
+          parameters
+        );
       }
     }
 
@@ -3367,9 +3240,7 @@ export namespace recommendationengine_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3379,48 +3250,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Predictionapikeyregistrations$List;
@@ -3455,13 +3310,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListPredictionApiKeyRegistrationsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -3872,9 +3728,7 @@ export namespace recommendationengine_v1beta1 {
     list(
       params?: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3884,48 +3738,32 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-        >
+      | GaxiosPromise<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$List;
@@ -3961,13 +3799,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1ListUserEventsResponse>(
+          parameters
+        );
       }
     }
 
@@ -4364,42 +4203,28 @@ export namespace recommendationengine_v1beta1 {
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-      >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
     ): void;
     write(
       params: Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write,
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
     ): void;
     write(
-      callback: BodyResponseCallback<
-        Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-      >
+      callback: BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
     ): void;
     write(
       paramsOrCallback?:
         | Params$Resource$Projects$Locations$Catalogs$Eventstores$Userevents$Write
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-          >
+        | BodyResponseCallback<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -4439,13 +4264,14 @@ export namespace recommendationengine_v1beta1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleCloudRecommendationengineV1beta1UserEvent
-        >(parameters);
+        return createAPIRequest<Schema$GoogleCloudRecommendationengineV1beta1UserEvent>(
+          parameters
+        );
       }
     }
   }
@@ -4761,20 +4587,14 @@ export namespace recommendationengine_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Catalogs$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
