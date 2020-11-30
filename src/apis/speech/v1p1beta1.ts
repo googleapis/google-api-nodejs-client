@@ -314,6 +314,14 @@ export namespace speech_v1p1beta1 {
      */
     enableSpeakerDiarization?: boolean | null;
     /**
+     * The spoken emoji behavior for the call If not set, uses default behavior based on model of choice If 'true', adds spoken emoji formatting for the request. This will replace spoken emojis with the corresponding Unicode symbols in the final transcript. If 'false', spoken emojis are not replaced.
+     */
+    enableSpokenEmojis?: boolean | null;
+    /**
+     * The spoken punctuation behavior for the call If not set, uses default behavior based on model of choice e.g. command_and_search will enable spoken punctuation by default If 'true', replaces spoken punctuation with the corresponding symbols in the request. For example, "how are you question mark" becomes "how are you?". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation for support. If 'false', spoken punctuation is not replaced.
+     */
+    enableSpokenPunctuation?: boolean | null;
+    /**
      * If `true`, the top result includes a list of words and the confidence for those words. If `false`, no word-level confidence information is returned. The default is `false`.
      */
     enableWordConfidence?: boolean | null;
