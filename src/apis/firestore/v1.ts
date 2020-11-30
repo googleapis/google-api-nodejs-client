@@ -1968,20 +1968,14 @@ export namespace firestore_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListFieldsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListFieldsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListFieldsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Fields$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListFieldsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListFieldsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListFieldsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListFieldsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -2038,9 +2032,9 @@ export namespace firestore_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleFirestoreAdminV1ListFieldsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListFieldsResponse>(
+          parameters
+        );
       }
     }
 
@@ -2751,23 +2745,15 @@ export namespace firestore_v1 {
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleFirestoreAdminV1ListIndexesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListIndexesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListIndexesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListIndexesResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Collectiongroups$Indexes$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListIndexesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleFirestoreAdminV1ListIndexesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleFirestoreAdminV1ListIndexesResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -2824,9 +2810,9 @@ export namespace firestore_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleFirestoreAdminV1ListIndexesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleFirestoreAdminV1ListIndexesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5807,20 +5793,14 @@ export namespace firestore_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Databases$Operations$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleLongrunningListOperationsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleLongrunningListOperationsResponse>
     ): void;
     list(
       paramsOrCallback?:
