@@ -2443,7 +2443,7 @@
       }
     }
   },
-  "revision": "20201023",
+  "revision": "20201117",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -4246,7 +4246,7 @@
           "description": "The runtime environment for the FlexTemplate job"
         },
         "jobName": {
-          "description": "Required. The job name to use for the created job.",
+          "description": "Required. The job name to use for the created job. For update job request, job name should be same as the existing running job.",
           "type": "string"
         },
         "launchOptions": {
@@ -4262,6 +4262,17 @@
           },
           "description": "The parameters for FlexTemplate. Ex. {\"num_workers\":\"5\"}",
           "type": "object"
+        },
+        "transformNameMappings": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Users need to set transform_name_mappings Ex:{\"oldTransformName\":\"newTransformName\",...}'",
+          "type": "object"
+        },
+        "update": {
+          "description": "Set this to true if you are sending a request to update a running streaming job. When set, the job name should be the same as the running job.",
+          "type": "boolean"
         }
       },
       "type": "object"
