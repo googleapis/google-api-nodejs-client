@@ -272,11 +272,11 @@
       }
     }
   },
-  "revision": "20201031",
+  "revision": "20201124",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Application": {
-      "description": "The JSON template for an Application resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Applications resources represent applications installed on the domain that support transferring ownership of user data.",
       "id": "Application",
       "properties": {
         "etag": {
@@ -349,7 +349,7 @@
       "type": "object"
     },
     "ApplicationsListResponse": {
-      "description": "Template for a collection of Applications. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Template for a collection of Applications.",
       "id": "ApplicationsListResponse",
       "properties": {
         "applications": {
@@ -376,7 +376,7 @@
       "type": "object"
     },
     "DataTransfer": {
-      "description": "The JSON template for a DataTransfer resource. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "A Transfer resource represents the transfer of the ownership of user data between users.",
       "id": "DataTransfer",
       "properties": {
         "applicationDataTransfers": {
@@ -420,7 +420,7 @@
       "type": "object"
     },
     "DataTransfersListResponse": {
-      "description": "Template for a collection of DataTransfer resources. STEPLADDER: Generated unstable field number for field 'kind'. (See http://go/stepladder-help#fieldNumber) STEPLADDER: Generated unstable field number for field 'etag'. (See http://go/stepladder-help#fieldNumber)",
+      "description": "Template for a collection of DataTransfer resources.",
       "id": "DataTransfersListResponse",
       "properties": {
         "dataTransfers": {
@@ -448,6 +448,6 @@
     }
   },
   "servicePath": "",
-  "title": "Admin SDK",
+  "title": "Admin SDK API",
   "version": "datatransfer_v1"
 }

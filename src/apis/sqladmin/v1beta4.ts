@@ -215,6 +215,19 @@ export namespace sqladmin_v1beta4 {
     transactionLogRetentionDays?: number | null;
   }
   /**
+   * Backup context.
+   */
+  export interface Schema$BackupContext {
+    /**
+     * The identifier of the backup.
+     */
+    backupId?: string | null;
+    /**
+     * This is always *sql#backupContext*.
+     */
+    kind?: string | null;
+  }
+  /**
    * We currently only support backup retention by specifying the number of backups we will retain.
    */
   export interface Schema$BackupRetentionSettings {
@@ -659,7 +672,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$ExportContext {
     /**
-     * Options for exporting data as CSV.
+     * Options for exporting data as CSV. *MySQL* and *PostgreSQL* instances only.
      */
     csvExportOptions?: {selectQuery?: string} | null;
     /**
@@ -667,7 +680,7 @@ export namespace sqladmin_v1beta4 {
      */
     databases?: string[] | null;
     /**
-     * The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data.
+     * The file type for the specified uri. *SQL*: The file contains SQL statements. *CSV*: The file contains CSV data. *BAK*: The file contains backup data for a SQL Server instance.
      */
     fileType?: string | null;
     /**
@@ -800,6 +813,27 @@ export namespace sqladmin_v1beta4 {
      * Path to the import file in Cloud Storage, in the form *gs: //bucketName/fileName*. Compressed gzip files (.gz) are supported // when *fileType* is *SQL*. The instance must have // write permissions to the bucket and read access to the file.
      */
     uri?: string | null;
+  }
+  /**
+   * Insights configuration. This specifies when Cloud SQL Insights feature is enabled and optional configuration.
+   */
+  export interface Schema$InsightsConfig {
+    /**
+     * Whether Query Insights feature is enabled.
+     */
+    queryInsightsEnabled?: boolean | null;
+    /**
+     * Maximum query length stored in bytes. Default value: 1024 bytes. Range: 256-4500 bytes. Query length more than this field value will be truncated to this value. When unset, query length will be the default value.
+     */
+    queryStringLength?: number | null;
+    /**
+     * Whether Query Insights will record application tags from query when enabled.
+     */
+    recordApplicationTags?: boolean | null;
+    /**
+     * Whether Query Insights will record client address when enabled.
+     */
+    recordClientAddress?: boolean | null;
   }
   /**
    * Database instance clone request.
@@ -1075,9 +1109,13 @@ export namespace sqladmin_v1beta4 {
     username?: string | null;
   }
   /**
-   * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource.
+   * An Operation resource. For successful operations that return an Operation resource, only the fields relevant to the operation are populated in the resource. Next field: 18
    */
   export interface Schema$Operation {
+    /**
+     * The context for backup operation, if applicable.
+     */
+    backupContext?: Schema$BackupContext;
     /**
      * The time this operation finished in UTC timezone in RFC 3339 format, for example *2012-11-15T16:19:00.094Z*.
      */
@@ -1296,6 +1334,10 @@ export namespace sqladmin_v1beta4 {
      * Deny maintenance periods
      */
     denyMaintenancePeriods?: Schema$DenyMaintenancePeriod[];
+    /**
+     * Insights configuration, for now relevant only for Postgres.
+     */
+    insightsConfig?: Schema$InsightsConfig;
     /**
      * The settings for IP Management. This allows to enable or disable the instance IP and manage which external networks can connect to the instance. The IPv4 address cannot be disabled for Second Generation instances.
      */
@@ -1693,6 +1735,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -2014,6 +2057,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -2379,6 +2423,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -2685,6 +2730,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -2989,6 +3035,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -3154,6 +3201,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -3546,6 +3594,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -3702,6 +3751,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -3849,6 +3899,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -4003,6 +4054,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -4156,6 +4208,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -4311,6 +4364,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -4626,6 +4680,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -4809,6 +4864,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -5282,6 +5338,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -5428,6 +5485,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -5576,6 +5634,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -5724,6 +5783,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -5880,6 +5940,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -6036,6 +6097,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -6184,6 +6246,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -6332,6 +6395,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -6488,6 +6552,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -6674,6 +6739,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -7109,6 +7175,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -7451,6 +7518,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -7596,13 +7664,14 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // ID of the project that contains the instance.
      *     project: 'placeholder-value',
-     *     // External sync mode
+     *     // External sync mode.
      *     syncMode: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -7789,42 +7858,28 @@ export namespace sqladmin_v1beta4 {
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-      >
+        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
     ): void;
     verifyExternalSyncSettings(
       params: Params$Resource$Projects$Instances$Verifyexternalsyncsettings,
-      callback: BodyResponseCallback<
-        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-      >
+      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
     ): void;
     verifyExternalSyncSettings(
-      callback: BodyResponseCallback<
-        Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-      >
+      callback: BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
     ): void;
     verifyExternalSyncSettings(
       paramsOrCallback?:
         | Params$Resource$Projects$Instances$Verifyexternalsyncsettings
-        | BodyResponseCallback<
-            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-          >
+        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-          >
+        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-          >
+        | BodyResponseCallback<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -7868,9 +7923,9 @@ export namespace sqladmin_v1beta4 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$SqlInstancesVerifyExternalSyncSettingsResponse
-        >(parameters);
+        return createAPIRequest<Schema$SqlInstancesVerifyExternalSyncSettingsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -7902,7 +7957,7 @@ export namespace sqladmin_v1beta4 {
      */
     project?: string;
     /**
-     * External sync mode
+     * External sync mode.
      */
     syncMode?: string;
   }
@@ -8123,6 +8178,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -8931,6 +8987,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -9094,6 +9151,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},
@@ -9399,6 +9457,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "backupContext": {},
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
      *   //   "exportContext": {},

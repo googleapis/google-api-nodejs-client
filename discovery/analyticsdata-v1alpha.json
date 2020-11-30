@@ -17,7 +17,7 @@
   "canonicalName": "AnalyticsData",
   "description": "Accesses report data in Google Analytics.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.google.com/analytics/trusted-testing/analytics-data/",
+  "documentationLink": "https://developers.google.com/analytics/devguides/reporting/data/v1/",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -120,7 +120,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.",
+              "description": "Required. The resource name of the metadata to retrieve. This name field is specified in the URL path and not URL parameters. Property is a numeric Google Analytics GA4 Property identifier. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234/metadata Set the Property ID to 0 for dimensions and metrics common to all properties. In this special mode, this method will not return custom dimensions and metrics.",
               "location": "path",
               "pattern": "^properties/[^/]+/metadata$",
               "required": true,
@@ -146,7 +146,7 @@
           ],
           "parameters": {
             "property": {
-              "description": "A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id). Example: properties/1234",
+              "description": "A Google Analytics GA4 property identifier whose events are tracked. Specified in the URL path and not the body. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id). Example: properties/1234",
               "location": "path",
               "pattern": "^properties/[^/]+$",
               "required": true,
@@ -248,7 +248,7 @@
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201118",
   "rootUrl": "https://analyticsdata.googleapis.com/",
   "schemas": {
     "BatchRunPivotReportsRequest": {
@@ -472,7 +472,7 @@
           "description": "One dimension can be the result of an expression of multiple dimensions. For example, dimension \"country, city\": concatenate(country, \", \", city)."
         },
         "name": {
-          "description": "The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#dimensions) for the list of dimension names. If `dimensionExpression` is specified, `name` can be any string that you would like. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`.",
+          "description": "The name of the dimension. See the [API Dimensions](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#dimensions) for the list of dimension names. If `dimensionExpression` is specified, `name` can be any string that you would like. For example if a `dimensionExpression` concatenates `country` and `city`, you could call that dimension `countryAndCity`. Dimensions are referenced by `name` in `dimensionFilter`, `orderBys`, `dimensionExpression`, and `pivots`.",
           "type": "string"
         }
       },
@@ -581,7 +581,7 @@
       "id": "Entity",
       "properties": {
         "propertyId": {
-          "description": "A Google Analytics GA4 property id. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/trusted-testing/analytics-data/property-id).",
+          "description": "A Google Analytics GA4 property id. To learn more, see [where to find your Property ID](https://developers.google.com/analytics/devguides/reporting/data/v1/property-id).",
           "type": "string"
         }
       },
@@ -711,7 +711,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "The name of the metric. See the [API Metrics](https://developers.google.com/analytics/trusted-testing/analytics-data/api-schema#metrics) for the list of metric names. If `expression` is specified, `name` can be any string that you would like. For example if `expression` is `screenPageViews/sessions`, you could call that metric's name = `viewsPerSession`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`.",
+          "description": "The name of the metric. See the [API Metrics](https://developers.google.com/analytics/devguides/reporting/data/v1/api-schema#metrics) for the list of metric names. If `expression` is specified, `name` can be any string that you would like. For example if `expression` is `screenPageViews/sessions`, you could call that metric's name = `viewsPerSession`. Metrics are referenced by `name` in `metricFilter`, `orderBys`, and metric `expression`.",
           "type": "string"
         }
       },
@@ -1389,7 +1389,7 @@
           "type": "boolean"
         },
         "limit": {
-          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
+          "description": "The number of rows to return. If unspecified, 10 rows are returned. If -1, all rows are returned. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1426,7 +1426,7 @@
           "type": "array"
         },
         "offset": {
-          "description": "The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
+          "description": "The row count of the start row. The first row is counted as row 0. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
           "format": "int64",
           "type": "string"
         },
@@ -1485,7 +1485,7 @@
           "description": "This Analytics Property's quota state including this request."
         },
         "rowCount": {
-          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](basics#pagination).",
+          "description": "The total number of rows in the query result, regardless of the number of rows returned in the response. For example if a query returns 175 rows and includes limit = 50 in the API request, the response will contain row_count = 175 but only 50 rows. To learn more about this pagination parameter, see [Pagination](https://developers.google.com/analytics/devguides/reporting/data/v1/basics#pagination).",
           "format": "int32",
           "type": "integer"
         },

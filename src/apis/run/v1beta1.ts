@@ -603,20 +603,14 @@ export namespace run_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
       params: Params$Resource$Customresourcedefinitions$List,
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -1126,20 +1120,14 @@ export namespace run_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Locations$Customresourcedefinitions$List,
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListCustomResourceDefinitionsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListCustomResourceDefinitionsResponse>
     ): void;
     list(
       paramsOrCallback?:

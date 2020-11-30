@@ -124,6 +124,10 @@ export namespace licensing_v1 {
   }
 
   /**
+   * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \} The JSON representation for `Empty` is empty JSON object `{\}`.
+   */
+  export interface Schema$Empty {}
+  /**
    * Representation of a license assignment.
    */
   export interface Schema$LicenseAssignment {
@@ -132,7 +136,7 @@ export namespace licensing_v1 {
      */
     etags?: string | null;
     /**
-     * Identifies the resource as a LicenseAssignment.
+     * Identifies the resource as a LicenseAssignment, which is `licensing#licenseAssignment`.
      */
     kind?: string | null;
     /**
@@ -156,7 +160,7 @@ export namespace licensing_v1 {
      */
     skuName?: string | null;
     /**
-     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      */
     userId?: string | null;
   }
@@ -183,7 +187,7 @@ export namespace licensing_v1 {
      */
     kind?: string | null;
     /**
-     * The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The maxResults query string is related to the nextPageToken since maxResults determines how many entries are returned on each next page.
+     * The token that you must submit in a subsequent request to retrieve additional license results matching your query parameters. The `maxResults` query string is related to the `nextPageToken` since `maxResults` determines how many entries are returned on each next page.
      */
     nextPageToken?: string | null;
   }
@@ -225,10 +229,13 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *   });
      *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
      * }
      *
      * main().catch(e => {
@@ -250,7 +257,7 @@ export namespace licensing_v1 {
     delete(
       params?: Params$Resource$Licenseassignments$Delete,
       options?: MethodOptions
-    ): GaxiosPromise<void>;
+    ): GaxiosPromise<Schema$Empty>;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -258,26 +265,28 @@ export namespace licensing_v1 {
     ): void;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
     ): void;
     delete(
       params: Params$Resource$Licenseassignments$Delete,
-      callback: BodyResponseCallback<void>
+      callback: BodyResponseCallback<Schema$Empty>
     ): void;
-    delete(callback: BodyResponseCallback<void>): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
     delete(
       paramsOrCallback?:
         | Params$Resource$Licenseassignments$Delete
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<void>
+        | BodyResponseCallback<Schema$Empty>
         | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ): void | GaxiosPromise<void> | GaxiosPromise<Readable> {
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ): void | GaxiosPromise<Schema$Empty> | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Licenseassignments$Delete;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -311,12 +320,12 @@ export namespace licensing_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<void>(
+        createAPIRequest<Schema$Empty>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<void>(parameters);
+        return createAPIRequest<Schema$Empty>(parameters);
       }
     }
 
@@ -351,7 +360,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -639,11 +648,11 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProduct({
-     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     *     // Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
-     *     // The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
-     *     // Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     *     // Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      *     pageToken: 'placeholder-value',
      *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      *     productId: 'placeholder-value',
@@ -783,11 +792,11 @@ export namespace licensing_v1 {
      *
      *   // Do the magic
      *   const res = await licensing.licenseAssignments.listForProductAndSku({
-     *     // Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     *     // Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      *     customerId: 'placeholder-value',
-     *     // The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     *     // The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      *     maxResults: 'placeholder-value',
-     *     // Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     *     // Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      *     pageToken: 'placeholder-value',
      *     // A product's unique identifier. For more information about products in this version of the API, see Products and SKUs.
      *     productId: 'placeholder-value',
@@ -904,7 +913,7 @@ export namespace licensing_v1 {
     }
 
     /**
-     * Patch a Licensing info via Apiary Patch Orchestration
+     * Reassign a user's product SKU with a different SKU in the same product. This method supports patch semantics.
      * @example
      * ```js
      * // Before running the sample:
@@ -934,7 +943,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1092,7 +1101,7 @@ export namespace licensing_v1 {
      *     productId: 'placeholder-value',
      *     // A product SKU's unique identifier. For more information about available SKUs in this version of the API, see Products and SKUs.
      *     skuId: 'placeholder-value',
-     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     *     // The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      *     userId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1231,7 +1240,7 @@ export namespace licensing_v1 {
      */
     skuId?: string;
     /**
-     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      */
     userId?: string;
   }
@@ -1246,7 +1255,7 @@ export namespace licensing_v1 {
      */
     skuId?: string;
     /**
-     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      */
     userId?: string;
   }
@@ -1269,15 +1278,15 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Listforproduct
     extends StandardParameters {
     /**
-     * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
-     * The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     * The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     * Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      */
     pageToken?: string;
     /**
@@ -1288,15 +1297,15 @@ export namespace licensing_v1 {
   export interface Params$Resource$Licenseassignments$Listforproductandsku
     extends StandardParameters {
     /**
-     * Customer's customerId. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
+     * Customer's `customerId`. A previous version of this API accepted the primary domain name as a value for this field. If the customer is suspended, the server returns an error.
      */
     customerId?: string;
     /**
-     * The maxResults query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
+     * The `maxResults` query string determines how many entries are returned on each page of a large response. This is an optional parameter. The value must be a positive number.
      */
     maxResults?: number;
     /**
-     * Token to fetch the next page of data. The maxResults query string is related to the pageToken since maxResults determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
+     * Token to fetch the next page of data. The `maxResults` query string is related to the `pageToken` since `maxResults` determines how many entries are returned on each page. This is an optional query string. If not specified, the server returns the first page.
      */
     pageToken?: string;
     /**
@@ -1319,7 +1328,7 @@ export namespace licensing_v1 {
      */
     skuId?: string;
     /**
-     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      */
     userId?: string;
 
@@ -1339,7 +1348,7 @@ export namespace licensing_v1 {
      */
     skuId?: string;
     /**
-     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a userId is subject to change, do not use a userId value as a key for persistent data. This key could break if the current user's email address changes. If the userId is suspended, the license status changes.
+     * The user's current primary email address. If the user's email address changes, use the new email address in your API requests. Since a `userId` is subject to change, do not use a `userId` value as a key for persistent data. This key could break if the current user's email address changes. If the `userId` is suspended, the license status changes.
      */
     userId?: string;
 

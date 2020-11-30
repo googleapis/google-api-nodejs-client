@@ -290,7 +290,7 @@
       }
     }
   },
-  "revision": "20200923",
+  "revision": "20201113",
   "rootUrl": "https://speech.googleapis.com/",
   "schemas": {
     "ClassItem": {
@@ -529,6 +529,14 @@
         },
         "enableSpeakerDiarization": {
           "description": "If 'true', enables speaker detection for each recognized word in the top alternative of the recognition result using a speaker_tag provided in the WordInfo. Note: Use diarization_config instead.",
+          "type": "boolean"
+        },
+        "enableSpokenEmojis": {
+          "description": "The spoken emoji behavior for the call If not set, uses default behavior based on model of choice If 'true', adds spoken emoji formatting for the request. This will replace spoken emojis with the corresponding Unicode symbols in the final transcript. If 'false', spoken emojis are not replaced.",
+          "type": "boolean"
+        },
+        "enableSpokenPunctuation": {
+          "description": "The spoken punctuation behavior for the call If not set, uses default behavior based on model of choice e.g. command_and_search will enable spoken punctuation by default If 'true', replaces spoken punctuation with the corresponding symbols in the request. For example, \"how are you question mark\" becomes \"how are you?\". See https://cloud.google.com/speech-to-text/docs/spoken-punctuation for support. If 'false', spoken punctuation is not replaced.",
           "type": "boolean"
         },
         "enableWordConfidence": {

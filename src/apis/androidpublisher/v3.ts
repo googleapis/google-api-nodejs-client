@@ -10503,7 +10503,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.create({
-     *     // Unique identifier of the Android app.
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // The version code of the App Bundle.
      *     versionCode: 'placeholder-value',
@@ -10645,7 +10645,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.download({
-     *     // Unique identifier of the Android app.
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // The ID of a previously created system APK variant.
      *     variantId: 'placeholder-value',
@@ -10772,7 +10772,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.get({
-     *     // Unique identifier of the Android app.
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // The ID of a previously created system APK variant.
      *     variantId: 'placeholder-value',
@@ -10907,7 +10907,7 @@ export namespace androidpublisher_v3 {
      *
      *   // Do the magic
      *   const res = await androidpublisher.systemapks.variants.list({
-     *     // Unique identifier of the Android app.
+     *     // Package name of the app.
      *     packageName: 'placeholder-value',
      *     // The version code of the App Bundle.
      *     versionCode: 'placeholder-value',
@@ -11021,7 +11021,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Create
     extends StandardParameters {
     /**
-     * Unique identifier of the Android app.
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -11037,7 +11037,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Download
     extends StandardParameters {
     /**
-     * Unique identifier of the Android app.
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -11052,7 +11052,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$Get
     extends StandardParameters {
     /**
-     * Unique identifier of the Android app.
+     * Package name of the app.
      */
     packageName?: string;
     /**
@@ -11067,7 +11067,7 @@ export namespace androidpublisher_v3 {
   export interface Params$Resource$Systemapks$Variants$List
     extends StandardParameters {
     /**
-     * Unique identifier of the Android app.
+     * Package name of the app.
      */
     packageName?: string;
     /**

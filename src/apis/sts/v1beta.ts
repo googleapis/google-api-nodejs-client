@@ -265,42 +265,28 @@ export namespace sts_v1beta {
       params: Params$Resource$V1beta$Token,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-      >
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>,
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
     ): void;
     token(
       params: Params$Resource$V1beta$Token,
-      callback: BodyResponseCallback<
-        Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
     ): void;
     token(
-      callback: BodyResponseCallback<
-        Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
     ): void;
     token(
       paramsOrCallback?:
         | Params$Resource$V1beta$Token
-        | BodyResponseCallback<
-            Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-          >
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-          >
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-          >
+        | BodyResponseCallback<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -340,9 +326,9 @@ export namespace sts_v1beta {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleIdentityStsV1betaExchangeTokenResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleIdentityStsV1betaExchangeTokenResponse>(
+          parameters
+        );
       }
     }
   }

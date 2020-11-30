@@ -847,7 +847,7 @@ export namespace cloudasset_v1 {
     gcsDestination?: Schema$GoogleCloudAssetV1GcsDestination;
   }
   /**
-   * IAM policy analysis query message.
+   * ## LINT.IfChange Keep in sync with ## logs/proto/cloud_asset_inventory/iam_policy_analyzer_log.proto IAM policy analysis query message.
    */
   export interface Schema$IamPolicyAnalysisQuery {
     /**

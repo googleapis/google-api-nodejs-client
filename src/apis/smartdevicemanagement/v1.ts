@@ -328,9 +328,7 @@ export namespace smartdevicemanagement_v1 {
     executeCommand(
       params?: Params$Resource$Enterprises$Devices$Executecommand,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>;
     executeCommand(
       params: Params$Resource$Enterprises$Devices$Executecommand,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -340,48 +338,32 @@ export namespace smartdevicemanagement_v1 {
       params: Params$Resource$Enterprises$Devices$Executecommand,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-      >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>,
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
     ): void;
     executeCommand(
       params: Params$Resource$Enterprises$Devices$Executecommand,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
     ): void;
     executeCommand(
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
     ): void;
     executeCommand(
       paramsOrCallback?:
         | Params$Resource$Enterprises$Devices$Executecommand
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-        >
+      | GaxiosPromise<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Enterprises$Devices$Executecommand;
@@ -417,13 +399,14 @@ export namespace smartdevicemanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ExecuteDeviceCommandResponse>(
+          parameters
+        );
       }
     }
 
@@ -640,42 +623,28 @@ export namespace smartdevicemanagement_v1 {
       params: Params$Resource$Enterprises$Devices$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
     ): void;
     list(
       params: Params$Resource$Enterprises$Devices$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Enterprises$Devices$List
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -720,9 +689,9 @@ export namespace smartdevicemanagement_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListDevicesResponse>(
+          parameters
+        );
       }
     }
   }
@@ -985,42 +954,28 @@ export namespace smartdevicemanagement_v1 {
       params: Params$Resource$Enterprises$Structures$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-      >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>,
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
     ): void;
     list(
       params: Params$Resource$Enterprises$Structures$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Enterprises$Structures$List
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1060,13 +1015,14 @@ export namespace smartdevicemanagement_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListStructuresResponse>(
+          parameters
+        );
       }
     }
   }
@@ -1313,42 +1269,28 @@ export namespace smartdevicemanagement_v1 {
       params: Params$Resource$Enterprises$Structures$Rooms$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-      >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
     ): void;
     list(
       params: Params$Resource$Enterprises$Structures$Rooms$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Enterprises$Structures$Rooms$List
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-          >
+        | BodyResponseCallback<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -1393,9 +1335,9 @@ export namespace smartdevicemanagement_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleHomeEnterpriseSdmV1ListRoomsResponse>(
+          parameters
+        );
       }
     }
   }

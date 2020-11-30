@@ -1495,11 +1495,11 @@ export namespace games_v1 {
      */
     downloadUrl?: string | null;
     /**
-     * The height of the image in pixels.
+     * Output only. The height of the image in pixels.
      */
     height?: number | null;
     /**
-     * The MIME type of the image.
+     * Output only. The MIME type of the image.
      */
     mimeType?: string | null;
     /**
@@ -1507,7 +1507,7 @@ export namespace games_v1 {
      */
     resourceId?: string | null;
     /**
-     * The width of the image in pixels.
+     * Output only. The width of the image in pixels.
      */
     width?: number | null;
   }

@@ -29,7 +29,7 @@
   "description": "Creates and runs virtual machines on Google Cloud Platform.",
   "discoveryVersion": "v1",
   "documentationLink": "https://developers.google.com/compute/docs/reference/latest/",
-  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/N2RdLSld28K6AbRrUK_kSZIlMkM\"",
+  "etag": "\"-2NioU2H8y8siEzrBOV_qzRI6kQ/9ahXG5LMOkoK4jbn0XWcoDNk8_U\"",
   "icons": {
     "x16": "https://www.google.com/images/icons/product/compute_engine-16.png",
     "x32": "https://www.google.com/images/icons/product/compute_engine-32.png"
@@ -28018,7 +28018,7 @@
           ]
         },
         "patch": {
-          "description": "Patches the specified subnetwork with the data included in the request. Only certain fields can up updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.",
+          "description": "Patches the specified subnetwork with the data included in the request. Only certain fields can be updated with a patch request as indicated in the field descriptions. You must specify the current fingerprint of the subnetwork resource being patched.",
           "httpMethod": "PATCH",
           "id": "compute.subnetworks.patch",
           "parameterOrder": [
@@ -33471,7 +33471,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201102",
   "rootUrl": "https://compute.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -37099,7 +37099,7 @@
       "id": "Binding",
       "properties": {
         "bindingId": {
-          "description": "A client-specified ID for this binding. Expected to be globally unique to support the internal bindings-by-ID API.",
+          "description": "",
           "type": "string"
         },
         "condition": {
@@ -40160,16 +40160,18 @@
         "direction": {
           "description": "The direction in which this rule applies.",
           "enum": [
-            "DIRECTION_UNSPECIFIED",
             "EGRESS",
             "INGRESS"
           ],
           "enumDescriptions": [
             "",
-            "",
             ""
           ],
           "type": "string"
+        },
+        "disabled": {
+          "description": "Denotes whether the firewall policy rule is disabled. When set to true, the firewall policy rule is not enforced and traffic behaves as if it did not exist. If this is unspecified, the firewall policy rule will be enabled.",
+          "type": "boolean"
         },
         "enableLogging": {
           "description": "Denotes whether to enable logging for a particular rule. If logging is enabled, logs will be exported to the configured export destination in Stackdriver. Logs may be exported to BigQuery or Pub/Sub. Note: you cannot enable logging on \"goto_next\" rules.",
@@ -40183,10 +40185,6 @@
         "match": {
           "$ref": "FirewallPolicyRuleMatcher",
           "description": "A match condition that incoming traffic is evaluated against. If it evaluates to true, the corresponding ?action? is enforced."
-        },
-        "preview": {
-          "description": "If set to true, the specified action is not enforced.",
-          "type": "boolean"
         },
         "priority": {
           "description": "An integer indicating the priority of a rule in the list. The priority must be a positive value between 0 and 2147483647. Rules are evaluated from highest to lowest priority where 0 is the highest priority and 2147483647 is the lowest prority.",
@@ -43534,6 +43532,13 @@
           },
           "type": "array"
         },
+        "secureTags": {
+          "description": "Secure tags to apply to this instance. These can be later modified by the update method. Maximum number of secure tags allowed is 300.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "selfLink": {
           "description": "[Output Only] Server-defined URL for this resource.",
           "type": "string"
@@ -44640,6 +44645,22 @@
         },
         "minimalAction": {
           "description": "Minimal action to be taken on an instance. You can specify either RESTART to restart existing instances or REPLACE to delete and create new instances from the target template. If you specify a RESTART, the Updater will attempt to perform that action only. However, if the Updater determines that the minimal action you specify is not enough to perform the update, it might perform a more disruptive action.",
+          "enum": [
+            "NONE",
+            "REFRESH",
+            "REPLACE",
+            "RESTART"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "mostDisruptiveAllowedAction": {
+          "description": "Most disruptive action that is allowed to be taken on an instance. You can specify either NONE to forbid any actions, REFRESH to allow actions that do not need instance restart, RESTART to allow actions that can be applied without instance replacing or REPLACE to allow all possible actions. If the Updater determines that the minimal update action needed is more disruptive than most disruptive allowed action you specify it will not perform the update at all.",
           "enum": [
             "NONE",
             "REFRESH",
@@ -46121,6 +46142,13 @@
     "InstancesGetEffectiveFirewallsResponse": {
       "id": "InstancesGetEffectiveFirewallsResponse",
       "properties": {
+        "firewallPolicys": {
+          "description": "Effective firewalls from firewall policies.",
+          "items": {
+            "$ref": "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy"
+          },
+          "type": "array"
+        },
         "firewalls": {
           "description": "Effective firewalls on the instance.",
           "items": {
@@ -46134,6 +46162,41 @@
             "$ref": "InstancesGetEffectiveFirewallsResponseOrganizationFirewallPolicy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy": {
+      "id": "InstancesGetEffectiveFirewallsResponseEffectiveFirewallPolicy",
+      "properties": {
+        "displayName": {
+          "description": "[Output Only] The display name of the firewall policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "[Output Only] The name of the firewall policy.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules that apply to the network.",
+          "items": {
+            "$ref": "FirewallPolicyRule"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "[Output Only] The type of the firewall policy.",
+          "enum": [
+            "HIERARCHY",
+            "NETWORK",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -50932,6 +50995,13 @@
     "NetworksGetEffectiveFirewallsResponse": {
       "id": "NetworksGetEffectiveFirewallsResponse",
       "properties": {
+        "firewallPolicys": {
+          "description": "Effective firewalls from firewall policy.",
+          "items": {
+            "$ref": "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy"
+          },
+          "type": "array"
+        },
         "firewalls": {
           "description": "Effective firewalls on the network.",
           "items": {
@@ -50945,6 +51015,41 @@
             "$ref": "NetworksGetEffectiveFirewallsResponseOrganizationFirewallPolicy"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy": {
+      "id": "NetworksGetEffectiveFirewallsResponseEffectiveFirewallPolicy",
+      "properties": {
+        "displayName": {
+          "description": "[Output Only] The display name of the firewall policy.",
+          "type": "string"
+        },
+        "name": {
+          "description": "[Output Only] The name of the firewall policy.",
+          "type": "string"
+        },
+        "rules": {
+          "description": "The rules that apply to the network.",
+          "items": {
+            "$ref": "FirewallPolicyRule"
+          },
+          "type": "array"
+        },
+        "type": {
+          "description": "[Output Only] The type of the firewall policy.",
+          "enum": [
+            "HIERARCHY",
+            "NETWORK",
+            "UNSPECIFIED"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -55346,6 +55451,7 @@
             "PREEMPTIBLE_NVIDIA_V100_GPUS",
             "PRIVATE_V6_ACCESS_SUBNETWORKS",
             "PSC_GOOGLE_APIS_FORWARDING_RULES_PER_NETWORK",
+            "PSC_ILB_CONSUMER_FORWARDING_RULES_PER_PRODUCER_NETWORK",
             "PUBLIC_ADVERTISED_PREFIXES",
             "PUBLIC_DELEGATED_PREFIXES",
             "REGIONAL_AUTOSCALERS",
@@ -55377,6 +55483,7 @@
             "XPN_SERVICE_PROJECTS"
           ],
           "enumDescriptions": [
+            "",
             "",
             "",
             "",
@@ -59956,6 +60063,9 @@
       "description": "Represents a Google Cloud Armor security policy resource.\n\nOnly external backend services that use load balancers can reference a security policy. For more information, see  Google Cloud Armor security policy overview. (== resource_for {$api_version}.securityPolicies ==)",
       "id": "SecurityPolicy",
       "properties": {
+        "adaptiveProtectionConfig": {
+          "$ref": "SecurityPolicyAdaptiveProtectionConfig"
+        },
         "associations": {
           "description": "A list of associations that belong to this policy.",
           "items": {
@@ -60044,6 +60154,40 @@
           ],
           "enumDescriptions": [
             "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdaptiveProtectionConfig": {
+      "description": "Configuration options for Cloud Armor Adaptive Protection (CAAP).",
+      "id": "SecurityPolicyAdaptiveProtectionConfig",
+      "properties": {
+        "layer7DdosDefenseConfig": {
+          "$ref": "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig",
+          "description": "If set to true, enables Cloud Armor Machine Learning."
+        }
+      },
+      "type": "object"
+    },
+    "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig": {
+      "description": "Configuration options for L7 DDoS detection.",
+      "id": "SecurityPolicyAdaptiveProtectionConfigLayer7DdosDefenseConfig",
+      "properties": {
+        "enable": {
+          "description": "If set to true, enables CAAP for L7 DDoS detection.",
+          "type": "boolean"
+        },
+        "ruleVisibility": {
+          "description": "Rule visibility can be one of the following: STANDARD - opaque rules. (default) PREMIUM - transparent rules.",
+          "enum": [
+            "PREMIUM",
+            "STANDARD"
+          ],
+          "enumDescriptions": [
             "",
             ""
           ],
@@ -60254,6 +60398,11 @@
         "rateLimitOptions": {
           "$ref": "SecurityPolicyRuleRateLimitOptions",
           "description": "Must be specified if the action is \"rate_based_blacklist\" or \"throttle\". Cannot be specified for any other actions."
+        },
+        "ruleNumber": {
+          "description": "Identifier for the rule. This is only unique within the given security policy. This can only be set during rule creation, if rule number is not specified it will be generated by the server.",
+          "format": "int64",
+          "type": "string"
         },
         "ruleTupleCount": {
           "description": "[Output Only] Calculation of the complexity of a single firewall security policy rule.",
@@ -60575,6 +60724,7 @@
       "id": "ServiceAttachment",
       "properties": {
         "connectionPreference": {
+          "description": "The connection preference of service attachment. The value can be set to ACCEPT_AUTOMATIC. An ACCEPT_AUTOMATIC service attachment is one that always accepts the connection from consumer forwarding rules.",
           "enum": [
             "ACCEPT_AUTOMATIC",
             "CONNECTION_PREFERENCE_UNSPECIFIED"
@@ -60586,7 +60736,7 @@
           "type": "string"
         },
         "consumerForwardingRules": {
-          "description": "An array of forwarding rules for all the consumers connected to this service attachment.",
+          "description": "[Output Only] An array of forwarding rules for all the consumers connected to this service attachment.",
           "items": {
             "$ref": "ServiceAttachmentConsumerForwardingRule"
           },

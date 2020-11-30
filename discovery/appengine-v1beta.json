@@ -1594,7 +1594,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201114",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "ApiConfigHandler": {
@@ -3491,6 +3491,10 @@
         "apiConfig": {
           "$ref": "ApiConfigHandler",
           "description": "Serving configuration for Google Cloud Endpoints (https://cloud.google.com/appengine/docs/python/endpoints/).Only returned in GET requests if view=FULL is set."
+        },
+        "appEngineApis": {
+          "description": "app_engine_apis allows Second Generation runtimes to access the App Engine APIs.",
+          "type": "boolean"
         },
         "automaticScaling": {
           "$ref": "AutomaticScaling",

@@ -2531,7 +2531,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "Unique identifier of the Android app.",
+                  "description": "Package name of the app.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2567,7 +2567,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "Unique identifier of the Android app.",
+                  "description": "Package name of the app.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2606,7 +2606,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "Unique identifier of the Android app.",
+                  "description": "Package name of the app.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2645,7 +2645,7 @@
               ],
               "parameters": {
                 "packageName": {
-                  "description": "Unique identifier of the Android app.",
+                  "description": "Package name of the app.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -2671,7 +2671,7 @@
       }
     }
   },
-  "revision": "20201027",
+  "revision": "20201127",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Apk": {

@@ -1300,20 +1300,14 @@ export namespace cloudidentity_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1Device>,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1Device
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1Device>
     ): void;
     get(
       params: Params$Resource$Devices$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1Device
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1Device>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1Device
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1Device>
     ): void;
     get(
       paramsOrCallback?:
@@ -1402,7 +1396,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.devices.list({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer in the format: `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs. If you're using this API for your own organization, use `customers/my_customer`. If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Optional. Additional restrictions when fetching list of devices. [Help Center article link](https://support.google.com/a/answer/7549103)
+     *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response. Only one of the following field names may be used to specify the order: `create_time`, `last_sync_time`, `model`, `os_version`, `device_type` and `serial_number`. `desc` may be specified optionally at the end to specify results to be sorted in descending order. Default order is ascending.
      *     orderBy: 'placeholder-value',
@@ -1441,9 +1435,7 @@ export namespace cloudidentity_v1 {
     list(
       params?: Params$Resource$Devices$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>;
     list(
       params: Params$Resource$Devices$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1453,48 +1445,32 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
     ): void;
     list(
       params: Params$Resource$Devices$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Devices$List
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-        >
+      | GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback || {}) as Params$Resource$Devices$List;
       let options = (optionsOrCallback || {}) as MethodOptions;
@@ -1526,13 +1502,14 @@ export namespace cloudidentity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListDevicesResponse>(
+          parameters
+        );
       }
     }
 
@@ -1724,7 +1701,7 @@ export namespace cloudidentity_v1 {
      */
     customer?: string;
     /**
-     * Optional. Additional restrictions when fetching list of devices. [Help Center article link](https://support.google.com/a/answer/7549103)
+     * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
     filter?: string;
     /**
@@ -2400,42 +2377,28 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$Deviceusers$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
     ): void;
     get(
       params: Params$Resource$Devices$Deviceusers$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Devices$Deviceusers$Get
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -2477,9 +2440,9 @@ export namespace cloudidentity_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1DeviceUser
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1DeviceUser>(
+          parameters
+        );
       }
     }
 
@@ -2512,7 +2475,7 @@ export namespace cloudidentity_v1 {
      *   const res = await cloudidentity.devices.deviceUsers.list({
      *     // Required. [Resource name](https://cloud.google.com/apis/design/resource_names) of the customer. If you're using this API for your own organization, use `customers/my_customer` If you're using this API to manage another organization, use `customers/{customer_id\}`, where customer_id is the customer to whom the device belongs.
      *     customer: 'placeholder-value',
-     *     // Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
+     *     // Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      *     filter: 'placeholder-value',
      *     // Optional. Order specification for devices in the response.
      *     orderBy: 'placeholder-value',
@@ -2551,9 +2514,7 @@ export namespace cloudidentity_v1 {
     list(
       params?: Params$Resource$Devices$Deviceusers$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>;
     list(
       params: Params$Resource$Devices$Deviceusers$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2563,48 +2524,32 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$Deviceusers$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
     ): void;
     list(
       params: Params$Resource$Devices$Deviceusers$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Devices$Deviceusers$List
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-        >
+      | GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Deviceusers$List;
@@ -2640,13 +2585,14 @@ export namespace cloudidentity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListDeviceUsersResponse>(
+          parameters
+        );
       }
     }
 
@@ -2719,9 +2665,7 @@ export namespace cloudidentity_v1 {
     lookup(
       params?: Params$Resource$Devices$Deviceusers$Lookup,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>;
     lookup(
       params: Params$Resource$Devices$Deviceusers$Lookup,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2731,48 +2675,32 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$Deviceusers$Lookup,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
     ): void;
     lookup(
       params: Params$Resource$Devices$Deviceusers$Lookup,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
     ): void;
     lookup(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
     ): void;
     lookup(
       paramsOrCallback?:
         | Params$Resource$Devices$Deviceusers$Lookup
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-        >
+      | GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Deviceusers$Lookup;
@@ -2808,13 +2736,14 @@ export namespace cloudidentity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1LookupSelfDeviceUsersResponse>(
+          parameters
+        );
       }
     }
 
@@ -3023,7 +2952,7 @@ export namespace cloudidentity_v1 {
      */
     customer?: string;
     /**
-     * Optional. Additional restrictions when fetching list of devices. [HC article](https://support.google.com/a/answer/7549103)
+     * Optional. Additional restrictions when fetching list of devices. For a list of search fields, refer to [Mobile device search fields](https://developers.google.com/admin-sdk/directory/v1/search-operators). Multiple search fields are separated by the space character.
      */
     filter?: string;
     /**
@@ -3170,42 +3099,28 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$Deviceusers$Clientstates$Get,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ClientState
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ClientState
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
     ): void;
     get(
       params: Params$Resource$Devices$Deviceusers$Clientstates$Get,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ClientState
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
     ): void;
     get(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ClientState
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
     ): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Devices$Deviceusers$Clientstates$Get
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ClientState
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ClientState
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ClientState
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ClientState>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3247,9 +3162,9 @@ export namespace cloudidentity_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ClientState
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ClientState>(
+          parameters
+        );
       }
     }
 
@@ -3319,9 +3234,7 @@ export namespace cloudidentity_v1 {
     list(
       params?: Params$Resource$Devices$Deviceusers$Clientstates$List,
       options?: MethodOptions
-    ): GaxiosPromise<
-      Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-    >;
+    ): GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>;
     list(
       params: Params$Resource$Devices$Deviceusers$Clientstates$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3331,48 +3244,32 @@ export namespace cloudidentity_v1 {
       params: Params$Resource$Devices$Deviceusers$Clientstates$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-      >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
     ): void;
     list(
       params: Params$Resource$Devices$Deviceusers$Clientstates$List,
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-      >
+      callback: BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Devices$Deviceusers$Clientstates$List
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-          >
+        | BodyResponseCallback<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | GaxiosPromise<
-          Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-        >
+      | GaxiosPromise<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>
       | GaxiosPromise<Readable> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Devices$Deviceusers$Clientstates$List;
@@ -3408,13 +3305,14 @@ export namespace cloudidentity_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-        >(parameters, callback as BodyResponseCallback<unknown>);
+        createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
       } else {
-        return createAPIRequest<
-          Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse
-        >(parameters);
+        return createAPIRequest<Schema$GoogleAppsCloudidentityDevicesV1ListClientStatesResponse>(
+          parameters
+        );
       }
     }
 
