@@ -385,7 +385,7 @@ export namespace run_v1 {
     protocol?: string | null;
   }
   /**
-   * Resource to hold the state and status of a user's domain mapping.
+   * Resource to hold the state and status of a user's domain mapping. NOTE: This resource is currently in Beta.
    */
   export interface Schema$DomainMapping {
     /**
