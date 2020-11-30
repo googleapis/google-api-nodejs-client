@@ -4750,20 +4750,14 @@ export namespace monitoring_v3 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>,
-      callback: BodyResponseCallback<
-        Schema$ListMonitoredResourceDescriptorsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Monitoredresourcedescriptors$List,
-      callback: BodyResponseCallback<
-        Schema$ListMonitoredResourceDescriptorsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListMonitoredResourceDescriptorsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListMonitoredResourceDescriptorsResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -4820,9 +4814,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListMonitoredResourceDescriptorsResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListMonitoredResourceDescriptorsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5081,42 +5075,28 @@ export namespace monitoring_v3 {
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ListNotificationChannelDescriptorsResponse
-      >
+        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>,
+      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
     ): void;
     list(
       params: Params$Resource$Projects$Notificationchanneldescriptors$List,
-      callback: BodyResponseCallback<
-        Schema$ListNotificationChannelDescriptorsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ListNotificationChannelDescriptorsResponse
-      >
+      callback: BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Projects$Notificationchanneldescriptors$List
-        | BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse
-          >
+        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse
-          >
+        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ListNotificationChannelDescriptorsResponse
-          >
+        | BodyResponseCallback<Schema$ListNotificationChannelDescriptorsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5159,9 +5139,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ListNotificationChannelDescriptorsResponse
-        >(parameters);
+        return createAPIRequest<Schema$ListNotificationChannelDescriptorsResponse>(
+          parameters
+        );
       }
     }
   }
@@ -5702,42 +5682,28 @@ export namespace monitoring_v3 {
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$GetNotificationChannelVerificationCodeResponse
-      >
+        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>,
+      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
     ): void;
     getVerificationCode(
       params: Params$Resource$Projects$Notificationchannels$Getverificationcode,
-      callback: BodyResponseCallback<
-        Schema$GetNotificationChannelVerificationCodeResponse
-      >
+      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
     ): void;
     getVerificationCode(
-      callback: BodyResponseCallback<
-        Schema$GetNotificationChannelVerificationCodeResponse
-      >
+      callback: BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
     ): void;
     getVerificationCode(
       paramsOrCallback?:
         | Params$Resource$Projects$Notificationchannels$Getverificationcode
-        | BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$GetNotificationChannelVerificationCodeResponse
-          >
+        | BodyResponseCallback<Schema$GetNotificationChannelVerificationCodeResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -5781,9 +5747,9 @@ export namespace monitoring_v3 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$GetNotificationChannelVerificationCodeResponse
-        >(parameters);
+        return createAPIRequest<Schema$GetNotificationChannelVerificationCodeResponse>(
+          parameters
+        );
       }
     }
 
