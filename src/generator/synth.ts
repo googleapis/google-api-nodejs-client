@@ -132,7 +132,7 @@ export function createChangelog(changeSets: ChangeSet[]) {
   }
   for (const changeSet of changeSets) {
     if (changeSet.changes.length > 0) {
-      changelog.push(`#### ${changeSet.api.id}`);
+      changelog.push(`\n#### ${changeSet.api.id}\n`);
       for (const action of ['DELETED', 'ADDED', 'CHANGED']) {
         const inScope = changeSet.changes.filter(x => x.action === action);
         if (inScope.length > 0) {
