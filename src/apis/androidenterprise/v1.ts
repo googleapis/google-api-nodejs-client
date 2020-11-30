@@ -2143,7 +2143,7 @@ export namespace androidenterprise_v1 {
     }
 
     /**
-     * Updates the device policy
+     * Updates the device policy. To ensure the policy is properly enforced, you need to prevent unmanaged accounts from accessing Google Play by setting the allowed_accounts in the managed configuration for the Google Play package. See restrict accounts in Google Play.
      * @example
      * ```js
      * // Before running the sample:
@@ -3808,42 +3808,28 @@ export namespace androidenterprise_v1 {
       params: Params$Resource$Enterprises$Sendtestpushnotification,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$EnterprisesSendTestPushNotificationResponse
-      >
+        | BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>,
+      callback: BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
     ): void;
     sendTestPushNotification(
       params: Params$Resource$Enterprises$Sendtestpushnotification,
-      callback: BodyResponseCallback<
-        Schema$EnterprisesSendTestPushNotificationResponse
-      >
+      callback: BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
     ): void;
     sendTestPushNotification(
-      callback: BodyResponseCallback<
-        Schema$EnterprisesSendTestPushNotificationResponse
-      >
+      callback: BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
     ): void;
     sendTestPushNotification(
       paramsOrCallback?:
         | Params$Resource$Enterprises$Sendtestpushnotification
-        | BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse
-          >
+        | BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse
-          >
+        | BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$EnterprisesSendTestPushNotificationResponse
-          >
+        | BodyResponseCallback<Schema$EnterprisesSendTestPushNotificationResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -3888,9 +3874,9 @@ export namespace androidenterprise_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$EnterprisesSendTestPushNotificationResponse
-        >(parameters);
+        return createAPIRequest<Schema$EnterprisesSendTestPushNotificationResponse>(
+          parameters
+        );
       }
     }
 
@@ -6501,42 +6487,28 @@ export namespace androidenterprise_v1 {
       params: Params$Resource$Managedconfigurationsfordevice$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForDeviceListResponse
-      >
+        | BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>,
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
     ): void;
     list(
       params: Params$Resource$Managedconfigurationsfordevice$List,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForDeviceListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForDeviceListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
     ): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Managedconfigurationsfordevice$List
-        | BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse
-          >
+        | BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse
-          >
+        | BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<
-            Schema$ManagedConfigurationsForDeviceListResponse
-          >
+        | BodyResponseCallback<Schema$ManagedConfigurationsForDeviceListResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
@@ -6581,9 +6553,9 @@ export namespace androidenterprise_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ManagedConfigurationsForDeviceListResponse
-        >(parameters);
+        return createAPIRequest<Schema$ManagedConfigurationsForDeviceListResponse>(
+          parameters
+        );
       }
     }
 
@@ -7184,20 +7156,14 @@ export namespace androidenterprise_v1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForUserListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>
     ): void;
     list(
       params: Params$Resource$Managedconfigurationsforuser$List,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForUserListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsForUserListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsForUserListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -7255,9 +7221,9 @@ export namespace androidenterprise_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ManagedConfigurationsForUserListResponse
-        >(parameters);
+        return createAPIRequest<Schema$ManagedConfigurationsForUserListResponse>(
+          parameters
+        );
       }
     }
 
@@ -7556,23 +7522,15 @@ export namespace androidenterprise_v1 {
       params: Params$Resource$Managedconfigurationssettings$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<
-            Schema$ManagedConfigurationsSettingsListResponse
-          >,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsSettingsListResponse
-      >
+        | BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>,
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>
     ): void;
     list(
       params: Params$Resource$Managedconfigurationssettings$List,
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsSettingsListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>
     ): void;
     list(
-      callback: BodyResponseCallback<
-        Schema$ManagedConfigurationsSettingsListResponse
-      >
+      callback: BodyResponseCallback<Schema$ManagedConfigurationsSettingsListResponse>
     ): void;
     list(
       paramsOrCallback?:
@@ -7630,9 +7588,9 @@ export namespace androidenterprise_v1 {
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<
-          Schema$ManagedConfigurationsSettingsListResponse
-        >(parameters);
+        return createAPIRequest<Schema$ManagedConfigurationsSettingsListResponse>(
+          parameters
+        );
       }
     }
   }
