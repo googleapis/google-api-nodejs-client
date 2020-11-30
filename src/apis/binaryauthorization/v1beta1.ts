@@ -1919,20 +1919,14 @@ export namespace binaryauthorization_v1beta1 {
       options:
         | MethodOptions
         | BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>,
-      callback: BodyResponseCallback<
-        Schema$ValidateAttestationOccurrenceResponse
-      >
+      callback: BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
     ): void;
     validateAttestationOccurrence(
       params: Params$Resource$Projects$Attestors$Validateattestationoccurrence,
-      callback: BodyResponseCallback<
-        Schema$ValidateAttestationOccurrenceResponse
-      >
+      callback: BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
     ): void;
     validateAttestationOccurrence(
-      callback: BodyResponseCallback<
-        Schema$ValidateAttestationOccurrenceResponse
-      >
+      callback: BodyResponseCallback<Schema$ValidateAttestationOccurrenceResponse>
     ): void;
     validateAttestationOccurrence(
       paramsOrCallback?:
