@@ -1466,6 +1466,10 @@ export namespace appengine_v1beta {
      */
     apiConfig?: Schema$ApiConfigHandler;
     /**
+     * app_engine_apis allows Second Generation runtimes to access the App Engine APIs.
+     */
+    appEngineApis?: boolean | null;
+    /**
      * Automatic scaling is based on request rate, response latencies, and other application metrics. Instances are dynamically created and destroyed as needed in order to handle traffic.
      */
     automaticScaling?: Schema$AutomaticScaling;
@@ -6368,6 +6372,7 @@ export namespace appengine_v1beta {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
@@ -6692,6 +6697,7 @@ export namespace appengine_v1beta {
      *   // Example response
      *   // {
      *   //   "apiConfig": {},
+     *   //   "appEngineApis": false,
      *   //   "automaticScaling": {},
      *   //   "basicScaling": {},
      *   //   "betaSettings": {},
@@ -7010,6 +7016,7 @@ export namespace appengine_v1beta {
      *       // request body parameters
      *       // {
      *       //   "apiConfig": {},
+     *       //   "appEngineApis": false,
      *       //   "automaticScaling": {},
      *       //   "basicScaling": {},
      *       //   "betaSettings": {},
