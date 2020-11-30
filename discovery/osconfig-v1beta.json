@@ -599,7 +599,7 @@
       }
     }
   },
-  "revision": "20200930",
+  "revision": "20201112",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptRepository": {
@@ -1034,6 +1034,292 @@
           "description": "Output only. Last time this guest policy was updated.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Inventory": {
+      "description": "The inventory details of a VM.",
+      "id": "Inventory",
+      "properties": {
+        "items": {
+          "additionalProperties": {
+            "$ref": "InventoryItem"
+          },
+          "description": "Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.",
+          "type": "object"
+        },
+        "osInfo": {
+          "$ref": "InventoryOsInfo",
+          "description": "Base level operating system information for the VM."
+        }
+      },
+      "type": "object"
+    },
+    "InventoryItem": {
+      "description": "A single piece of inventory on a VM.",
+      "id": "InventoryItem",
+      "properties": {
+        "availablePackage": {
+          "$ref": "InventorySoftwarePackage",
+          "description": "Software package available to be installed on the VM instance."
+        },
+        "createTime": {
+          "description": "When this inventory item was first detected.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "id": {
+          "description": "Identifier for this item, unique across items for this VM.",
+          "type": "string"
+        },
+        "installedPackage": {
+          "$ref": "InventorySoftwarePackage",
+          "description": "Software package present on the VM instance."
+        },
+        "originType": {
+          "description": "The origin of this inventory item.",
+          "enum": [
+            "ORIGIN_TYPE_UNSPECIFIED",
+            "INVENTORY_REPORT"
+          ],
+          "enumDescriptions": [
+            "Invalid. An origin type must be specified.",
+            "This inventory item was discovered as the result of the agent reporting inventory via the reporting API."
+          ],
+          "type": "string"
+        },
+        "type": {
+          "description": "The specific type of inventory, correlating to its specific details.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "INSTALLED_PACKAGE",
+            "AVAILABLE_PACKAGE"
+          ],
+          "enumDescriptions": [
+            "Invalid. An type must be specified.",
+            "This represents a package that is installed on the VM.",
+            "This represents an update that is available for a package."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "When this inventory item was last modified.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryOsInfo": {
+      "description": "Operating system information for the VM.",
+      "id": "InventoryOsInfo",
+      "properties": {
+        "architecture": {
+          "description": "The system architecture of the operating system.",
+          "type": "string"
+        },
+        "hostname": {
+          "description": "The VM hostname.",
+          "type": "string"
+        },
+        "kernelRelease": {
+          "description": "The kernel release of the operating system.",
+          "type": "string"
+        },
+        "kernelVersion": {
+          "description": "The kernel version of the operating system.",
+          "type": "string"
+        },
+        "longName": {
+          "description": "The operating system long name. For example 'Debian GNU/Linux 9' or 'Microsoft Window Server 2019 Datacenter'.",
+          "type": "string"
+        },
+        "osconfigAgentVersion": {
+          "description": "The current version of the OS Config agent running on the VM.",
+          "type": "string"
+        },
+        "shortName": {
+          "description": "The operating system short name. For example, 'windows' or 'debian'.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the operating system.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventorySoftwarePackage": {
+      "description": "Software package information of the operating system.",
+      "id": "InventorySoftwarePackage",
+      "properties": {
+        "aptPackage": {
+          "$ref": "InventoryVersionedPackage",
+          "description": "Details of an APT package. For details about the apt package manager, see https://wiki.debian.org/Apt."
+        },
+        "cosPackage": {
+          "$ref": "InventoryVersionedPackage",
+          "description": "Details of a COS package."
+        },
+        "googetPackage": {
+          "$ref": "InventoryVersionedPackage",
+          "description": "Details of a Googet package. For details about the googet package manager, see https://github.com/google/googet."
+        },
+        "qfePackage": {
+          "$ref": "InventoryWindowsQuickFixEngineeringPackage",
+          "description": "Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering."
+        },
+        "wuaPackage": {
+          "$ref": "InventoryWindowsUpdatePackage",
+          "description": "Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update."
+        },
+        "yumPackage": {
+          "$ref": "InventoryVersionedPackage",
+          "description": "Yum package info. For details about the yum package manager, see https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum."
+        },
+        "zypperPackage": {
+          "$ref": "InventoryVersionedPackage",
+          "description": "Details of a Zypper package. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual."
+        },
+        "zypperPatch": {
+          "$ref": "InventoryZypperPatch",
+          "description": "Details of a Zypper patch. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual."
+        }
+      },
+      "type": "object"
+    },
+    "InventoryVersionedPackage": {
+      "description": "Information related to the a standard versioned package. This includes package info for APT, Yum, Zypper, and Googet package managers.",
+      "id": "InventoryVersionedPackage",
+      "properties": {
+        "architecture": {
+          "description": "The system architecture this package is intended for.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "The name of the package.",
+          "type": "string"
+        },
+        "version": {
+          "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryWindowsQuickFixEngineeringPackage": {
+      "description": "Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering",
+      "id": "InventoryWindowsQuickFixEngineeringPackage",
+      "properties": {
+        "caption": {
+          "description": "A short textual description of the QFE update.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A textual description of the QFE update.",
+          "type": "string"
+        },
+        "hotFixId": {
+          "description": "Unique identifier associated with a particular QFE update.",
+          "type": "string"
+        },
+        "installTime": {
+          "description": "Date that the QFE update was installed. Mapped from installed_on field.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryWindowsUpdatePackage": {
+      "description": "Details related to a Windows Update package. Field data and names are taken from Windows Update API IUpdate Interface: https://docs.microsoft.com/en-us/windows/win32/api/_wua/ Descriptive fields like title, and description are localized based on the locale of the VM being updated.",
+      "id": "InventoryWindowsUpdatePackage",
+      "properties": {
+        "categories": {
+          "description": "The categories that are associated with this update package.",
+          "items": {
+            "$ref": "InventoryWindowsUpdatePackageWindowsUpdateCategory"
+          },
+          "type": "array"
+        },
+        "description": {
+          "description": "The localized description of the update package.",
+          "type": "string"
+        },
+        "kbArticleIds": {
+          "description": "A collection of Microsoft Knowledge Base article IDs that are associated with the update package.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "lastDeploymentChangeTime": {
+          "description": "The last published date of the update, in (UTC) date and time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "moreInfoUrls": {
+          "description": "A collection of URLs that provide more information about the update package.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "revisionNumber": {
+          "description": "The revision number of this update package.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "supportUrl": {
+          "description": "A hyperlink to the language-specific support information for the update.",
+          "type": "string"
+        },
+        "title": {
+          "description": "The localized title of the update package.",
+          "type": "string"
+        },
+        "updateId": {
+          "description": "Gets the identifier of an update package. Stays the same across revisions.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryWindowsUpdatePackageWindowsUpdateCategory": {
+      "description": "Categories specified by the Windows Update.",
+      "id": "InventoryWindowsUpdatePackageWindowsUpdateCategory",
+      "properties": {
+        "id": {
+          "description": "The identifier of the windows update category.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the windows update category.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryZypperPatch": {
+      "description": "Details related to a Zypper Patch.",
+      "id": "InventoryZypperPatch",
+      "properties": {
+        "category": {
+          "description": "The category of the patch.",
+          "type": "string"
+        },
+        "patchName": {
+          "description": "The name of the patch.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity specified for this patch",
+          "type": "string"
+        },
+        "summary": {
+          "description": "Any summary information provided about this patch.",
           "type": "string"
         }
       },

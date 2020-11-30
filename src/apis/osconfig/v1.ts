@@ -250,6 +250,239 @@ export namespace osconfig_v1 {
    */
   export interface Schema$GooSettings {}
   /**
+   * The inventory details of a VM.
+   */
+  export interface Schema$Inventory {
+    /**
+     * Inventory items related to the VM keyed by an opaque unique identifier for each inventory item. The identifier is unique to each distinct and addressable inventory item and will change, when there is a new package version.
+     */
+    items?: {[key: string]: Schema$InventoryItem} | null;
+    /**
+     * Base level operating system information for the VM.
+     */
+    osInfo?: Schema$InventoryOsInfo;
+  }
+  /**
+   * A single piece of inventory on a VM.
+   */
+  export interface Schema$InventoryItem {
+    /**
+     * Software package available to be installed on the VM instance.
+     */
+    availablePackage?: Schema$InventorySoftwarePackage;
+    /**
+     * When this inventory item was first detected.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier for this item, unique across items for this VM.
+     */
+    id?: string | null;
+    /**
+     * Software package present on the VM instance.
+     */
+    installedPackage?: Schema$InventorySoftwarePackage;
+    /**
+     * The origin of this inventory item.
+     */
+    originType?: string | null;
+    /**
+     * The specific type of inventory, correlating to its specific details.
+     */
+    type?: string | null;
+    /**
+     * When this inventory item was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Operating system information for the VM.
+   */
+  export interface Schema$InventoryOsInfo {
+    /**
+     * The system architecture of the operating system.
+     */
+    architecture?: string | null;
+    /**
+     * The VM hostname.
+     */
+    hostname?: string | null;
+    /**
+     * The kernel release of the operating system.
+     */
+    kernelRelease?: string | null;
+    /**
+     * The kernel version of the operating system.
+     */
+    kernelVersion?: string | null;
+    /**
+     * The operating system long name. For example 'Debian GNU/Linux 9' or 'Microsoft Window Server 2019 Datacenter'.
+     */
+    longName?: string | null;
+    /**
+     * The current version of the OS Config agent running on the VM.
+     */
+    osconfigAgentVersion?: string | null;
+    /**
+     * The operating system short name. For example, 'windows' or 'debian'.
+     */
+    shortName?: string | null;
+    /**
+     * The version of the operating system.
+     */
+    version?: string | null;
+  }
+  /**
+   * Software package information of the operating system.
+   */
+  export interface Schema$InventorySoftwarePackage {
+    /**
+     * Details of an APT package. For details about the apt package manager, see https://wiki.debian.org/Apt.
+     */
+    aptPackage?: Schema$InventoryVersionedPackage;
+    /**
+     * Details of a COS package.
+     */
+    cosPackage?: Schema$InventoryVersionedPackage;
+    /**
+     * Details of a Googet package. For details about the googet package manager, see https://github.com/google/googet.
+     */
+    googetPackage?: Schema$InventoryVersionedPackage;
+    /**
+     * Details of a Windows Quick Fix engineering package. See https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering for info in Windows Quick Fix Engineering.
+     */
+    qfePackage?: Schema$InventoryWindowsQuickFixEngineeringPackage;
+    /**
+     * Details of a Windows Update package. See https://docs.microsoft.com/en-us/windows/win32/api/_wua/ for information about Windows Update.
+     */
+    wuaPackage?: Schema$InventoryWindowsUpdatePackage;
+    /**
+     * Yum package info. For details about the yum package manager, see https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/6/html/deployment_guide/ch-yum.
+     */
+    yumPackage?: Schema$InventoryVersionedPackage;
+    /**
+     * Details of a Zypper package. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual.
+     */
+    zypperPackage?: Schema$InventoryVersionedPackage;
+    /**
+     * Details of a Zypper patch. For details about the Zypper package manager, see https://en.opensuse.org/SDB:Zypper_manual.
+     */
+    zypperPatch?: Schema$InventoryZypperPatch;
+  }
+  /**
+   * Information related to the a standard versioned package. This includes package info for APT, Yum, Zypper, and Googet package managers.
+   */
+  export interface Schema$InventoryVersionedPackage {
+    /**
+     * The system architecture this package is intended for.
+     */
+    architecture?: string | null;
+    /**
+     * The name of the package.
+     */
+    packageName?: string | null;
+    /**
+     * The version of the package.
+     */
+    version?: string | null;
+  }
+  /**
+   * Information related to a Quick Fix Engineering package. Fields are taken from Windows QuickFixEngineering Interface and match the source names: https://docs.microsoft.com/en-us/windows/win32/cimwin32prov/win32-quickfixengineering
+   */
+  export interface Schema$InventoryWindowsQuickFixEngineeringPackage {
+    /**
+     * A short textual description of the QFE update.
+     */
+    caption?: string | null;
+    /**
+     * A textual description of the QFE update.
+     */
+    description?: string | null;
+    /**
+     * Unique identifier associated with a particular QFE update.
+     */
+    hotFixId?: string | null;
+    /**
+     * Date that the QFE update was installed. Mapped from installed_on field.
+     */
+    installTime?: string | null;
+  }
+  /**
+   * Details related to a Windows Update package. Field data and names are taken from Windows Update API IUpdate Interface: https://docs.microsoft.com/en-us/windows/win32/api/_wua/ Descriptive fields like title, and description are localized based on the locale of the VM being updated.
+   */
+  export interface Schema$InventoryWindowsUpdatePackage {
+    /**
+     * The categories that are associated with this update package.
+     */
+    categories?: Schema$InventoryWindowsUpdatePackageWindowsUpdateCategory[];
+    /**
+     * The localized description of the update package.
+     */
+    description?: string | null;
+    /**
+     * A collection of Microsoft Knowledge Base article IDs that are associated with the update package.
+     */
+    kbArticleIds?: string[] | null;
+    /**
+     * The last published date of the update, in (UTC) date and time.
+     */
+    lastDeploymentChangeTime?: string | null;
+    /**
+     * A collection of URLs that provide more information about the update package.
+     */
+    moreInfoUrls?: string[] | null;
+    /**
+     * The revision number of this update package.
+     */
+    revisionNumber?: number | null;
+    /**
+     * A hyperlink to the language-specific support information for the update.
+     */
+    supportUrl?: string | null;
+    /**
+     * The localized title of the update package.
+     */
+    title?: string | null;
+    /**
+     * Gets the identifier of an update package. Stays the same across revisions.
+     */
+    updateId?: string | null;
+  }
+  /**
+   * Categories specified by the Windows Update.
+   */
+  export interface Schema$InventoryWindowsUpdatePackageWindowsUpdateCategory {
+    /**
+     * The identifier of the windows update category.
+     */
+    id?: string | null;
+    /**
+     * The name of the windows update category.
+     */
+    name?: string | null;
+  }
+  /**
+   * Details related to a Zypper Patch.
+   */
+  export interface Schema$InventoryZypperPatch {
+    /**
+     * The category of the patch.
+     */
+    category?: string | null;
+    /**
+     * The name of the patch.
+     */
+    patchName?: string | null;
+    /**
+     * The severity specified for this patch
+     */
+    severity?: string | null;
+    /**
+     * Any summary information provided about this patch.
+     */
+    summary?: string | null;
+  }
+  /**
    * A response message for listing patch deployments.
    */
   export interface Schema$ListPatchDeploymentsResponse {
