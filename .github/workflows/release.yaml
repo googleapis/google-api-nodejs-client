@@ -21,7 +21,7 @@ jobs:
             github-token: ${{secrets.GITHUB_TOKEN}}
             script: |
               const [owner, repo] = process.env.GITHUB_REPOSITORY.split('/');
-              const latestRelease = await github.issues.addLabels({
+              await github.issues.addLabels({
                 owner,
                 repo,
                 issue_number: ${{steps.release-please.outputs.pr}},
