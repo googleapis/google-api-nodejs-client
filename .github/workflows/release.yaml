@@ -43,9 +43,10 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://wombat-dressing-room.appspot.com/'
-      - run: |
-          npm install
-          npm publish
+      - name: publish
         if: ${{ steps.tag-release.outputs.release_created }}
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        run: |
+          npm install
+          npm publish
