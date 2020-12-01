@@ -24,7 +24,7 @@ jobs:
               await github.issues.addLabels({
                 owner,
                 repo,
-                issue_number: ${{steps.release-please.outputs.pr}},
+                issue_number: ${{steps.release-pr.outputs.pr}},
                 labels: ['autorelease: pending']
               });
               console.log(`Tagged ${{steps.release-pr.outputs.pr}}`)
