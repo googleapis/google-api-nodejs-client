@@ -16,6 +16,7 @@ jobs:
           package-name: googleapis
           command: release-pr
       - id: label
+        if: ${{ steps.release-pr.outputs.pr }}
         uses: actions/github-script@v3    
         with:
             github-token: ${{secrets.GITHUB_TOKEN}}
@@ -38,6 +39,8 @@ jobs:
           release-type: node
           package-name: googleapis
           command: github-release
+      - uses: actions/checkout@v2
+        if: ${{ steps.tag-release.outputs.release_created }}
       - uses: actions/setup-node@v1
         if: ${{ steps.tag-release.outputs.release_created }}
         with:
