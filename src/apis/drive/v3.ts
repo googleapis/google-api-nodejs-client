@@ -506,7 +506,7 @@ export namespace drive_v3 {
   export interface Schema$File {
     /**
      * A collection of arbitrary key-value pairs which are private to the requesting app.
-     * Entries with null values are cleared in update and copy requests.
+     * Entries with null values are cleared in update and copy requests. These properties can only be retrieved using an authenticated request. An authenticated request uses an access token obtained with a OAuth 2 client ID. You cannot use an API key to retrieve private properties.
      */
     appProperties?: {[key: string]: string} | null;
     /**
