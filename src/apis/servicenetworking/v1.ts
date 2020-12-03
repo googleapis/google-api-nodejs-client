@@ -235,6 +235,10 @@ export namespace servicenetworking_v1 {
      */
     requestedAddress?: string | null;
     /**
+     * Optional. The name of one or more allocated IP address ranges associated with this private service access connection. If no range names are provided all ranges associated with this connection will be considered. If a CIDR range with the specified IP prefix length is not available within these ranges, the call fails.
+     */
+    requestedRanges?: string[] | null;
+    /**
      * Optional. A list of secondary IP ranges to be created within the new subnetwork.
      */
     secondaryIpRangeSpecs?: Schema$SecondaryIpRangeSpec[];
@@ -1366,6 +1370,10 @@ export namespace servicenetworking_v1 {
      */
     ipPrefixLength?: number | null;
     /**
+     * Optional. The name of one or more allocated IP address ranges associated with this private service access connection. If no range names are provided all ranges associated with this connection will be considered. If a CIDR range with the specified IP prefix length is not available within these ranges the validation fails.
+     */
+    requestedRanges?: string[] | null;
+    /**
      * Optional. DO NOT USE - Under development. The size of the desired secondary ranges for the subnet. Use usual CIDR range notation. For example, '30' to find unused x.x.x.x/30 CIDR range. The goal is to determine that the allocated ranges have enough free space for all the requested secondary ranges.
      */
     secondaryRangeIpPrefixLengths?: number[] | null;
@@ -2452,6 +2460,7 @@ export namespace servicenetworking_v1 {
      *       //   "ipPrefixLength": 0,
      *       //   "region": "my_region",
      *       //   "requestedAddress": "my_requestedAddress",
+     *       //   "requestedRanges": [],
      *       //   "secondaryIpRangeSpecs": [],
      *       //   "subnetwork": "my_subnetwork",
      *       //   "subnetworkUsers": []

@@ -831,7 +831,7 @@
       }
     }
   },
-  "revision": "20201119",
+  "revision": "20201201",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -965,6 +965,13 @@
         "requestedAddress": {
           "description": "Optional. The starting address of a range. The address must be a valid IPv4 address in the x.x.x.x format. This value combined with the IP prefix range is the CIDR range for the subnet. The range must be within the allocated range that is assigned to the private connection. If the CIDR range isn't available, the call fails.",
           "type": "string"
+        },
+        "requestedRanges": {
+          "description": "Optional. The name of one or more allocated IP address ranges associated with this private service access connection. If no range names are provided all ranges associated with this connection will be considered. If a CIDR range with the specified IP prefix length is not available within these ranges, the call fails.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "secondaryIpRangeSpecs": {
           "description": "Optional. A list of secondary IP ranges to be created within the new subnetwork.",
@@ -2595,6 +2602,13 @@
           "description": "Required. The size of the desired subnet. Use usual CIDR range notation. For example, '30' to find unused x.x.x.x/30 CIDR range. The goal is to determine if one of the allocated ranges has enough free space for a subnet of the requested size.",
           "format": "int32",
           "type": "integer"
+        },
+        "requestedRanges": {
+          "description": "Optional. The name of one or more allocated IP address ranges associated with this private service access connection. If no range names are provided all ranges associated with this connection will be considered. If a CIDR range with the specified IP prefix length is not available within these ranges the validation fails.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "secondaryRangeIpPrefixLengths": {
           "description": "Optional. DO NOT USE - Under development. The size of the desired secondary ranges for the subnet. Use usual CIDR range notation. For example, '30' to find unused x.x.x.x/30 CIDR range. The goal is to determine that the allocated ranges have enough free space for all the requested secondary ranges.",
