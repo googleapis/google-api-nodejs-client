@@ -887,19 +887,6 @@ export namespace remotebuildexecution_v1 {
     workerPools?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaWorkerPool[];
   }
   /**
-   * SoleTenancyConfig specifies information required to host a pool on STNs.
-   */
-  export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig {
-    /**
-     * Zone in which STNs are reserved.
-     */
-    nodesZone?: string | null;
-    /**
-     * The sole-tenant node type to host the pool's workers on.
-     */
-    nodeType?: string | null;
-  }
-  /**
    * The request used for `UpdateInstance`.
    */
   export interface Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaUpdateInstanceRequest {
@@ -974,9 +961,9 @@ export namespace remotebuildexecution_v1 {
      */
     reserved?: boolean | null;
     /**
-     * Sole-tenant node information for pools hosted on STNs.
+     * The node type name to be used for sole-tenant nodes.
      */
-    soleTenancy?: Schema$GoogleDevtoolsRemotebuildexecutionAdminV1alphaSoleTenancyConfig;
+    soleTenantNodeType?: string | null;
     /**
      * The name of the image used by each VM.
      */
