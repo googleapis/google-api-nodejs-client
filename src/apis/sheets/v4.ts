@@ -529,13 +529,25 @@ export namespace sheets_v4 {
      */
     colorStyle?: Schema$ColorStyle;
     /**
+     * Information about the data labels for this series.
+     */
+    dataLabel?: Schema$DataLabel;
+    /**
      * The line style of this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA or LINE.
      */
     lineStyle?: Schema$LineStyle;
     /**
+     * The style for points associated with this series. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, LINE, or SCATTER. If empty, a default point style is used.
+     */
+    pointStyle?: Schema$PointStyle;
+    /**
      * The data being visualized in this chart series.
      */
     series?: Schema$ChartData;
+    /**
+     * Style override settings for series data points.
+     */
+    styleOverrides?: Schema$BasicSeriesDataPointStyleOverride[];
     /**
      * The minor axis that will specify the range of values for this series. For example, if charting stocks over time, the "Volume" series may want to be pinned to the right with the prices pinned to the left, because the scale of trading volume is different than the scale of prices. It is an error to specify an axis that isn't a valid minor axis for the chart's type.
      */
@@ -593,6 +605,10 @@ export namespace sheets_v4 {
      * True to make the chart 3D. Applies to Bar and Column charts.
      */
     threeDimensional?: boolean | null;
+    /**
+     * Controls whether to display additional data labels on stacked charts which sum the total value of all stacked values at each value along the domain axis. These data labels can only be set when chart_type is one of AREA, BAR, COLUMN, COMBO or STEPPED_AREA and stacked_type is either STACKED or PERCENT_STACKED. In addition, for COMBO, this will only be supported if there is only one type of stackable series type or one type has more series than the others and each of the other types have no more than one series. For example, if a chart has two stacked bar series and one area series, the total data labels will be supported. If it has three bar series and two area series, total data labels are not allowed. Neither CUSTOM nor placement can be set on the total_data_label.
+     */
+    totalDataLabel?: Schema$DataLabel;
   }
   /**
    * The default filter associated with a sheet.
@@ -614,6 +630,27 @@ export namespace sheets_v4 {
      * The sort order per column. Later specifications are used when values are equal in the earlier specifications.
      */
     sortSpecs?: Schema$SortSpec[];
+  }
+  /**
+   * Style override settings for a single series data point.
+   */
+  export interface Schema$BasicSeriesDataPointStyleOverride {
+    /**
+     * Color of the series data point. If empty, the series default is used.
+     */
+    color?: Schema$Color;
+    /**
+     * Color of the series data point. If empty, the series default is used. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
+    /**
+     * Zero based index of the series data point.
+     */
+    index?: number | null;
+    /**
+     * Point style of the series data point. Valid only if the chartType is AREA, LINE, or SCATTER. COMBO charts are also supported if the series chart type is AREA, LINE, or SCATTER. If empty, the series default is used.
+     */
+    pointStyle?: Schema$PointStyle;
   }
   /**
    * The request for clearing more than one range selected by a DataFilter in a spreadsheet.
@@ -1589,6 +1626,27 @@ export namespace sheets_v4 {
     values?: any[][] | null;
   }
   /**
+   * Settings for one set of data labels. Data labels are annotations that appear next to a set of data, such as the points on a line chart, and provide additional information about what the data represents, such as a text representation of the value behind that point on the graph.
+   */
+  export interface Schema$DataLabel {
+    /**
+     * Data to use for custom labels. Only used if type is set to CUSTOM. This data must be the same length as the series or other element this data label is applied to. In addition, if the series is split into multiple source ranges, this source data must come from the next column in the source data. For example, if the series is B2:B4,E6:E8 then this data must come from C2:C4,F6:F8.
+     */
+    customLabelData?: Schema$ChartData;
+    /**
+     * The placement of the data label relative to the labeled data.
+     */
+    placement?: string | null;
+    /**
+     * The text format used for the data label.
+     */
+    textFormat?: Schema$TextFormat;
+    /**
+     * The type of the data label.
+     */
+    type?: string | null;
+  }
+  /**
    * Information about an external data source in the spreadsheet.
    */
   export interface Schema$DataSource {
@@ -2255,6 +2313,10 @@ export namespace sheets_v4 {
    */
   export interface Schema$EmbeddedChart {
     /**
+     * The border of the chart.
+     */
+    border?: Schema$EmbeddedObjectBorder;
+    /**
      * The ID of the chart.
      */
     chartId?: number | null;
@@ -2266,6 +2328,19 @@ export namespace sheets_v4 {
      * The specification of the chart.
      */
     spec?: Schema$ChartSpec;
+  }
+  /**
+   * A border along an embedded object.
+   */
+  export interface Schema$EmbeddedObjectBorder {
+    /**
+     * The color of the border.
+     */
+    color?: Schema$Color;
+    /**
+     * The color of the border. If color is also set, this field takes precedence.
+     */
+    colorStyle?: Schema$ColorStyle;
   }
   /**
    * The position of an embedded object such as a chart.
@@ -3198,6 +3273,19 @@ export namespace sheets_v4 {
     summarizeFunction?: string | null;
   }
   /**
+   * The style of a point on the chart.
+   */
+  export interface Schema$PointStyle {
+    /**
+     * The point shape. If empty or unspecified, a default shape is used.
+     */
+    shape?: string | null;
+    /**
+     * The point size. If empty, a default size is used.
+     */
+    size?: number | null;
+  }
+  /**
    * A protected range.
    */
   export interface Schema$ProtectedRange {
@@ -3535,6 +3623,10 @@ export namespace sheets_v4 {
      * Updates dimensions' properties.
      */
     updateDimensionProperties?: Schema$UpdateDimensionPropertiesRequest;
+    /**
+     * Updates an embedded object's border.
+     */
+    updateEmbeddedObjectBorder?: Schema$UpdateEmbeddedObjectBorderRequest;
     /**
      * Updates an embedded object's (e.g. chart, image) position.
      */
@@ -4506,6 +4598,23 @@ export namespace sheets_v4 {
     range?: Schema$DimensionRange;
   }
   /**
+   * Updates an embedded object's border property.
+   */
+  export interface Schema$UpdateEmbeddedObjectBorderRequest {
+    /**
+     * The border that applies to the embedded object.
+     */
+    border?: Schema$EmbeddedObjectBorder;
+    /**
+     * The fields that should be updated. At least one field must be specified. The root `border` is implied and should not be specified. A single `"*"` can be used as short-hand for listing every field.
+     */
+    fields?: string | null;
+    /**
+     * The ID of the embedded object to update.
+     */
+    objectId?: number | null;
+  }
+  /**
    * Update an embedded object's position (such as a moving or resizing a chart or image).
    */
   export interface Schema$UpdateEmbeddedObjectPositionRequest {
@@ -4748,6 +4857,10 @@ export namespace sheets_v4 {
      */
     data?: Schema$ChartData;
     /**
+     * Information about the data labels for this series.
+     */
+    dataLabel?: Schema$DataLabel;
+    /**
      * True to hide the subtotal column from the end of the series. By default, a subtotal column will appear at the end of each series. Setting this field to true will hide that subtotal column for this series.
      */
     hideTrailingSubtotal?: boolean | null;
@@ -4792,6 +4905,10 @@ export namespace sheets_v4 {
      * The stacked type.
      */
     stackedType?: string | null;
+    /**
+     * Controls whether to display additional data labels on stacked charts which sum the total value of all stacked values at each value along the domain axis. stacked_type must be STACKED and neither CUSTOM nor placement can be set on the total_data_label.
+     */
+    totalDataLabel?: Schema$DataLabel;
   }
 
   export class Resource$Spreadsheets {
