@@ -279,6 +279,10 @@ export namespace vault_v1 {
      * Details pertaining to mail holds. If set, corpus must be mail.
      */
     mailQuery?: Schema$HeldMailQuery;
+    /**
+     * Details pertaining to Voice holds. If set, corpus must be Voice.
+     */
+    voiceQuery?: Schema$HeldVoiceQuery;
   }
   /**
    * Long running operation metadata for CountArtifacts.
@@ -430,6 +434,10 @@ export namespace vault_v1 {
      * The requested export location.
      */
     region?: string | null;
+    /**
+     * Option available for voice export.
+     */
+    voiceOptions?: Schema$VoiceExportOptions;
   }
   /**
    * Stats of an export.
@@ -602,6 +610,15 @@ export namespace vault_v1 {
      * The org unit's immutable ID as provided by the Admin SDK.
      */
     orgUnitId?: string | null;
+  }
+  /**
+   * Query options for Voice holds.
+   */
+  export interface Schema$HeldVoiceQuery {
+    /**
+     * Data covered by this rule. Should be non-empty. Order does not matter and duplicates will be ignored.
+     */
+    coveredData?: string[] | null;
   }
   /**
    * Represents a hold within Vault. A hold restricts purging of artifacts based on the combination of the query and accounts restrictions. A hold can be configured to either apply to an explicitly configured set of accounts, or can be applied to all members of an organizational unit.
@@ -897,6 +914,10 @@ export namespace vault_v1 {
      * The time zone name. It should be an IANA TZ name, such as "America/Los_Angeles". For more information, see Time Zone.
      */
     timeZone?: string | null;
+    /**
+     * For voice search, specify more options in this field.
+     */
+    voiceOptions?: Schema$VoiceOptions;
   }
   /**
    * Remove a list of accounts from a hold.
@@ -1014,6 +1035,24 @@ export namespace vault_v1 {
      * The email address of the user.
      */
     email?: string | null;
+  }
+  /**
+   * The options for voice export.
+   */
+  export interface Schema$VoiceExportOptions {
+    /**
+     * The export format for voice export.
+     */
+    exportFormat?: string | null;
+  }
+  /**
+   * Voice search options
+   */
+  export interface Schema$VoiceOptions {
+    /**
+     * Datatypes to search
+     */
+    coveredData?: string[] | null;
   }
 
   export class Resource$Matters {
