@@ -36,6 +36,10 @@
     "package": "@google-cloud/billing-budgets"
   },
   {
+    "api": "binaryauthorization",
+    "package": "@google-cloud/binary-authorization"
+  },
+  {
     "api": "cloudbuild",
     "package": "@google-cloud/cloudbuild"
   },
@@ -69,7 +73,7 @@
   },
   {
     "api": "dialogflow",
-    "package": "dialogflow"
+    "package": "@google-cloud/dialogflow"
   },
   {
     "api": "dialogflow",
@@ -166,6 +170,10 @@
   {
     "api": "logging",
     "package": "@google-cloud/logging-winston"
+  },
+  {
+    "api": "managedidentities",
+    "package": "@google-cloud/managed-identities"
   },
   {
     "api": "mediatranslation",

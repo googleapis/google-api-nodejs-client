@@ -205,6 +205,7 @@ export {indexing_v3} from './apis/indexing/v3';
 export {jobs_v2} from './apis/jobs/v2';
 export {jobs_v3} from './apis/jobs/v3';
 export {jobs_v3p1beta1} from './apis/jobs/v3p1beta1';
+export {jobs_v4} from './apis/jobs/v4';
 export {kgsearch_v1} from './apis/kgsearch/v1';
 export {language_v1} from './apis/language/v1';
 export {language_v1beta1} from './apis/language/v1beta1';

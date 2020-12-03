@@ -2157,11 +2157,7 @@
             "$ref": "MemberListResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.channel-memberships.creator",
-            "https://www.googleapis.com/auth/youtube.force-ssl",
-            "https://www.googleapis.com/auth/youtube.readonly",
-            "https://www.googleapis.com/auth/youtubepartner"
+            "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
           ]
         }
       }
@@ -2190,11 +2186,7 @@
             "$ref": "MembershipsLevelListResponse"
           },
           "scopes": [
-            "https://www.googleapis.com/auth/youtube",
-            "https://www.googleapis.com/auth/youtube.channel-memberships.creator",
-            "https://www.googleapis.com/auth/youtube.force-ssl",
-            "https://www.googleapis.com/auth/youtube.readonly",
-            "https://www.googleapis.com/auth/youtubepartner"
+            "https://www.googleapis.com/auth/youtube.channel-memberships.creator"
           ]
         }
       }
@@ -3855,7 +3847,7 @@
       }
     }
   },
-  "revision": "20201110",
+  "revision": "20201202",
   "rootUrl": "https://youtube.googleapis.com/",
   "schemas": {
     "AbuseReport": {
@@ -7486,7 +7478,7 @@
           "description": "The URL for the background image shown on the video watch page. The image should be 1200px by 615px, with a maximum file size of 128k."
         },
         "bannerExternalUrl": {
-          "description": "This is used only in update requests; if it's set, we use this URL to generate all of the above banner URLs.",
+          "description": "This is generated when a ChannelBanner.Insert request has succeeded for the given channel.",
           "type": "string"
         },
         "bannerImageUrl": {
