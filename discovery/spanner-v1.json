@@ -1895,7 +1895,7 @@
       }
     }
   },
-  "revision": "20201107",
+  "revision": "20201130",
   "rootUrl": "https://spanner.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -3628,6 +3628,11 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "throttled": {
+          "description": "Output only. When true, indicates that the operation is throttled e.g due to resource constraints. When resources become available the operation will resume and this field will be false again.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
