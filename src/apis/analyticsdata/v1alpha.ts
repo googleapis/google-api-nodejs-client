@@ -192,15 +192,15 @@ export namespace analyticsdata_v1alpha {
     dimensionName?: string | null;
   }
   /**
-   * Defines a cohort. A cohort is a group of users who share a common characteristic. For example, all users with the same acquisition date belong to the same cohort.
+   * Defines a cohort selection criteria. A cohort is a group of users who share a common characteristic. For example, users with the same `firstTouchDate` belong to the same cohort.
    */
   export interface Schema$Cohort {
     /**
-     * The cohort selects users whose first visit date is between start date and end date defined in the `dateRange`. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. The date range should be aligned with the cohort's granularity. If CohortsRange uses daily granularity, the date range can be aligned to any day. If CohortsRange uses weekly granularity, the date range should be aligned to the week boundary, starting at Sunday and ending Saturday. If CohortsRange uses monthly granularity, the date range should be aligned to the month, starting at the first and ending on the last day of the month.
+     * The cohort selects users whose first touch date is between start date and end date defined in the `dateRange`. This `dateRange` does not specify the full date range of event data that is present in a cohort report. In a cohort report, this `dateRange` is extended by the granularity and offset present in the `cohortsRange`; event data for the extended reporting date range is present in a cohort report. In a cohort request, this `dateRange` is required and the `dateRanges` in the `RunReportRequest` or `RunPivotReportRequest` must be unspecified. This `dateRange` should generally be aligned with the cohort's granularity. If `CohortsRange` uses daily granularity, this `dateRange` can be a single day. If `CohortsRange` uses weekly granularity, this `dateRange` can be aligned to a week boundary, starting at Sunday and ending Saturday. If `CohortsRange` uses monthly granularity, this `dateRange` can be aligned to a month, starting at the first and ending on the last day of the month.
      */
     dateRange?: Schema$DateRange;
     /**
-     * The dimension used by cohort. Only supports `firstTouchDate` for retention report.
+     * Dimension used by the cohort. Required and only supports `firstTouchDate`.
      */
     dimension?: string | null;
     /**
@@ -209,45 +209,45 @@ export namespace analyticsdata_v1alpha {
     name?: string | null;
   }
   /**
-   * Settings of a cohort report.
+   * Optional settings of a cohort report.
    */
   export interface Schema$CohortReportSettings {
     /**
-     * If true, accumulates the result from first visit day to the end day. Not supported in `RunReportRequest`.
+     * If true, accumulates the result from first touch day to the end day. Not supported in `RunReportRequest`.
      */
     accumulate?: boolean | null;
   }
   /**
-   * Specification for a cohort report.
+   * Specification of cohorts for a cohort report. Cohort reports can be used for example to create a time series of user retention for the cohort. For example, you could select the cohort of users that were acquired in the first week of September and follow that cohort for the next six weeks. Selecting the users acquired in the first week of September cohort is specified in the `cohort` object. Following that cohort for the next six weeks is specified in the `cohortsRange` object. The report response could show a weekly time series where say your app has retained 60% of this cohort after three weeks and 25% of this cohort after six weeks. These two percentages can be calculated by the metric `cohortActiveUsers/cohortTotalUsers` and will be separate rows in the report.
    */
   export interface Schema$CohortSpec {
     /**
-     * Settings of a cohort report.
+     * Optional settings for a cohort report.
      */
     cohortReportSettings?: Schema$CohortReportSettings;
     /**
-     * The definition for the cohorts.
+     * Defines the selection criteria to group users into cohorts. Most cohort reports define only a single cohort. If multiple cohorts are specified, each cohort can be recognized in the report by their name.
      */
     cohorts?: Schema$Cohort[];
     /**
-     * The data ranges of cohorts.
+     * Cohort reports follow cohorts over an extended reporting date range. This range specifies an offset duration to follow the cohorts over.
      */
     cohortsRange?: Schema$CohortsRange;
   }
   /**
-   * Describes date range for a cohort report.
+   * Configures the extended reporting date range for a cohort report. Specifies an offset duration to follow the cohorts over.
    */
   export interface Schema$CohortsRange {
     /**
-     * For daily cohorts, this will be the end day offset. For weekly cohorts, this will be the week offset.
+     * `endOffset` specifies the end date of the extended reporting date range for a cohort report. `endOffset` can be any positive integer but is commonly set to 5 to 10 so that reports contain data on the cohort for the next several granularity time periods. If `granularity` is `DAILY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset` days. If `granularity` is `WEEKLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 7` days. If `granularity` is `MONTHLY`, the `endDate` of the extended reporting date range is `endDate` of the cohort plus `endOffset * 30` days.
      */
     endOffset?: number | null;
     /**
-     * Reporting date range for each cohort is calculated based on these three fields.
+     * The granularity used to interpret the `startOffset` and `endOffset` for the extended reporting date range for a cohort report.
      */
     granularity?: string | null;
     /**
-     * For daily cohorts, this will be the start day offset. For weekly cohorts, this will be the week offset.
+     * `startOffset` specifies the start date of the extended reporting date range for a cohort report. `startOffset` is commonly set to 0 so that reports contain data from the acquisition of the cohort forward. If `granularity` is `DAILY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset` days. If `granularity` is `WEEKLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 7` days. If `granularity` is `MONTHLY`, the `startDate` of the extended reporting date range is `startDate` of the cohort plus `startOffset * 30` days.
      */
     startOffset?: number | null;
   }
