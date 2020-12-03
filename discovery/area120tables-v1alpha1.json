@@ -16,6 +16,9 @@
         },
         "https://www.googleapis.com/auth/spreadsheets.readonly": {
           "description": "View your Google Spreadsheets"
+        },
+        "https://www.googleapis.com/auth/tables": {
+          "description": "See, edit, create, and delete your tables in Tables by Area 120"
         }
       }
     }
@@ -145,7 +148,8 @@
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
+            "https://www.googleapis.com/auth/spreadsheets.readonly",
+            "https://www.googleapis.com/auth/tables"
           ]
         },
         "list": {
@@ -176,7 +180,8 @@
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
+            "https://www.googleapis.com/auth/spreadsheets.readonly",
+            "https://www.googleapis.com/auth/tables"
           ]
         }
       },
@@ -210,7 +215,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets"
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "batchUpdate": {
@@ -240,7 +246,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets"
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "create": {
@@ -283,7 +290,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets"
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "delete": {
@@ -310,7 +318,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets"
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "get": {
@@ -352,7 +361,8 @@
                 "https://www.googleapis.com/auth/drive.file",
                 "https://www.googleapis.com/auth/drive.readonly",
                 "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
+                "https://www.googleapis.com/auth/spreadsheets.readonly",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "list": {
@@ -405,7 +415,8 @@
                 "https://www.googleapis.com/auth/drive.file",
                 "https://www.googleapis.com/auth/drive.readonly",
                 "https://www.googleapis.com/auth/spreadsheets",
-                "https://www.googleapis.com/auth/spreadsheets.readonly"
+                "https://www.googleapis.com/auth/spreadsheets.readonly",
+                "https://www.googleapis.com/auth/tables"
               ]
             },
             "patch": {
@@ -454,7 +465,8 @@
               "scopes": [
                 "https://www.googleapis.com/auth/drive",
                 "https://www.googleapis.com/auth/drive.file",
-                "https://www.googleapis.com/auth/spreadsheets"
+                "https://www.googleapis.com/auth/spreadsheets",
+                "https://www.googleapis.com/auth/tables"
               ]
             }
           }
@@ -489,7 +501,8 @@
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
+            "https://www.googleapis.com/auth/spreadsheets.readonly",
+            "https://www.googleapis.com/auth/tables"
           ]
         },
         "list": {
@@ -520,13 +533,14 @@
             "https://www.googleapis.com/auth/drive.file",
             "https://www.googleapis.com/auth/drive.readonly",
             "https://www.googleapis.com/auth/spreadsheets",
-            "https://www.googleapis.com/auth/spreadsheets.readonly"
+            "https://www.googleapis.com/auth/spreadsheets.readonly",
+            "https://www.googleapis.com/auth/tables"
           ]
         }
       }
     }
   },
-  "revision": "20201112",
+  "revision": "20201201",
   "rootUrl": "https://area120tables.googleapis.com/",
   "schemas": {
     "BatchCreateRowsRequest": {
