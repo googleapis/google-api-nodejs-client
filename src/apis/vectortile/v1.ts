@@ -126,9 +126,13 @@ export namespace vectortile_v1 {
   }
 
   /**
-   * Represents an area. Used to represent regions such as water, parks, etc.
+   * Represents an area. Used to represent regions such as water, parks, etc. Next ID: 10
    */
   export interface Schema$Area {
+    /**
+     * The z-order of this geometry when rendered on a flat basemap. Geometry with a lower z-order should be rendered beneath geometry with a higher z-order. This z-ordering does not imply anything about the altitude of the area relative to the ground, but it can be used to prevent z-fighting. Unlike Area.z_order this can be used to compare with Line.basemap_z_order, and in fact may yield more accurate rendering (where a line may be rendered beneath an area).
+     */
+    basemapZOrder?: Schema$BasemapZOrder;
     /**
      * True if the polygon is not entirely internal to the feature that it belongs to: that is, some of the edges are bordering another feature.
      */
@@ -154,9 +158,26 @@ export namespace vectortile_v1 {
      */
     vertexOffsets?: Schema$Vertex2DList;
     /**
-     * The z-ordering of this area. Areas with a lower z-order should be rendered beneath areas with a higher z-order. This z-ordering does not imply anything about the altitude of the line relative to the ground, but it can be used to prevent z-fighting during rendering on the client. This z-ordering can only be used to compare areas, and cannot be compared with the z_order field in the Line message. The z-order may be negative or zero.
+     * The z-ordering of this area. Areas with a lower z-order should be rendered beneath areas with a higher z-order. This z-ordering does not imply anything about the altitude of the line relative to the ground, but it can be used to prevent z-fighting during rendering on the client. This z-ordering can only be used to compare areas, and cannot be compared with the z_order field in the Line message. The z-order may be negative or zero. Prefer Area.basemap_z_order.
      */
     zOrder?: number | null;
+  }
+  /**
+   * Metadata necessary to determine the ordering of a particular basemap element relative to others. To render the basemap correctly, sort by z-plane, then z-grade, then z-within-grade.
+   */
+  export interface Schema$BasemapZOrder {
+    /**
+     * The second most significant component of the ordering of a component to be rendered onto the basemap.
+     */
+    zGrade?: number | null;
+    /**
+     * The most significant component of the ordering of a component to be rendered onto the basemap.
+     */
+    zPlane?: number | null;
+    /**
+     * The least significant component of the ordering of a component to be rendered onto the basemap.
+     */
+    zWithinGrade?: number | null;
   }
   /**
    * Represents a height-extruded area: a 3D prism with a constant X-Y plane cross section. Used to represent extruded buildings. A single building may consist of several extruded areas. The min_z and max_z fields are scaled to the size of the tile. An extruded area with a max_z value of 4096 has the same height as the width of the tile that it is on.
@@ -272,11 +293,15 @@ export namespace vectortile_v1 {
    */
   export interface Schema$Line {
     /**
+     * The z-order of this geometry when rendered on a flat basemap. Geometry with a lower z-order should be rendered beneath geometry with a higher z-order. This z-ordering does not imply anything about the altitude of the area relative to the ground, but it can be used to prevent z-fighting. Unlike Line.z_order this can be used to compare with Area.basemap_z_order, and in fact may yield more accurate rendering (where a line may be rendered beneath an area).
+     */
+    basemapZOrder?: Schema$BasemapZOrder;
+    /**
      * The vertices present in the polyline.
      */
     vertexOffsets?: Schema$Vertex2DList;
     /**
-     * The z-order of the line. Lines with a lower z-order should be rendered beneath lines with a higher z-order. This z-ordering does not imply anything about the altitude of the area relative to the ground, but it can be used to prevent z-fighting during rendering on the client. In general, larger and more important road features will have a higher z-order line associated with them. This z-ordering can only be used to compare lines, and cannot be compared with the z_order field in the Area message. The z-order may be negative or zero.
+     * The z-order of the line. Lines with a lower z-order should be rendered beneath lines with a higher z-order. This z-ordering does not imply anything about the altitude of the area relative to the ground, but it can be used to prevent z-fighting during rendering on the client. In general, larger and more important road features will have a higher z-order line associated with them. This z-ordering can only be used to compare lines, and cannot be compared with the z_order field in the Area message. The z-order may be negative or zero. Prefer Line.basemap_z_order.
      */
     zOrder?: number | null;
   }
