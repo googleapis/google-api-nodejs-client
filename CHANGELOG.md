@@ -4,6 +4,41 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [67.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v66.0.0...v67.0.0) (2020-12-03)
+
+
+### ⚠ BREAKING CHANGES
+
+* **reseller:** This release has breaking changes.
+* **remotebuildexecution:** This release has breaking changes.
+
+### Features
+
+* regenerate index files ([ae578b8](https://www.github.com/googleapis/google-api-nodejs-client/commit/ae578b827ae1772171fa794c748a361922433477))
+* **adexchangebuyer2:** update the API ([c137fa6](https://www.github.com/googleapis/google-api-nodejs-client/commit/c137fa6e95f98abf660e0ed4afde37d037cac3d7))
+* **area120tables:** update the API ([f37709e](https://www.github.com/googleapis/google-api-nodejs-client/commit/f37709e8817dd0bfae87a38242c75c7ae0bca165))
+* **chat:** update the API ([7cca6bf](https://www.github.com/googleapis/google-api-nodejs-client/commit/7cca6bfbf113327ea7de5de408fadf39bcc02d93))
+* **displayvideo:** update the API ([b86208e](https://www.github.com/googleapis/google-api-nodejs-client/commit/b86208edd220f5297f327633458dc09ebea56fa0))
+* **remotebuildexecution:** update the API ([e97a056](https://www.github.com/googleapis/google-api-nodejs-client/commit/e97a05696707844425daebc714c02dc1a40e6742))
+* **reseller:** update the API ([d8f2f73](https://www.github.com/googleapis/google-api-nodejs-client/commit/d8f2f73401b07b2d52bfa44d200e3d3f8cad33c5))
+* **servicenetworking:** update the API ([ea6a9cd](https://www.github.com/googleapis/google-api-nodejs-client/commit/ea6a9cd0382b6a30b629513d936a2787d6e83679))
+* **sheets:** update the API ([6e61af3](https://www.github.com/googleapis/google-api-nodejs-client/commit/6e61af34c0bfdfc3d6f973bffcd6a7e2420590d2))
+* **spanner:** update the API ([eaac5dc](https://www.github.com/googleapis/google-api-nodejs-client/commit/eaac5dceaf3d2436c89f75f97bbc3e6d551b5694))
+* **vault:** update the API ([7dde0a1](https://www.github.com/googleapis/google-api-nodejs-client/commit/7dde0a148532f9092ac9d10b208ef51e043fd1ea))
+* **vectortile:** update the API ([b8120c9](https://www.github.com/googleapis/google-api-nodejs-client/commit/b8120c9fef960e7621313d0405561cd1361a4d56))
+
+
+### Bug Fixes
+
+* **analyticsadmin:** update the API ([e9535a8](https://www.github.com/googleapis/google-api-nodejs-client/commit/e9535a8a82ff095a290cacbabef3c6a2725e297f))
+* **analyticsdata:** update the API ([b7ef329](https://www.github.com/googleapis/google-api-nodejs-client/commit/b7ef329ec3ddb63f906cb5873b2b6d4350216318))
+* **binaryauthorization:** update the API ([f8dd051](https://www.github.com/googleapis/google-api-nodejs-client/commit/f8dd051175df9500476a2d9092d84bc9bda9ba8b))
+* **cloudbuild:** update the API ([5881845](https://www.github.com/googleapis/google-api-nodejs-client/commit/588184555b736116e84eb2e36598e1a918e047b9))
+* **dialogflow:** update the API ([08a540d](https://www.github.com/googleapis/google-api-nodejs-client/commit/08a540d8dbe8d4ed7456a639c1ead052fe6fe4f3))
+* **drive:** update the API ([f5d6104](https://www.github.com/googleapis/google-api-nodejs-client/commit/f5d61042c8759c267f4b3fc78437d0ceac1f3e3c))
+* **jobs:** update the API ([0d6e7be](https://www.github.com/googleapis/google-api-nodejs-client/commit/0d6e7be12afbe9660a5d14b3bdbc20f9d1b9a10b))
+* **managedidentities:** update the API ([92577ce](https://www.github.com/googleapis/google-api-nodejs-client/commit/92577ce3dd134195641ab2334159fc298b320742))
+
 ## [66.0.0](https://www.github.com/googleapis/google-api-nodejs-client/compare/v65.0.0...v66.0.0) (2020-12-02)
 
 
