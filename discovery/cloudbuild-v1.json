@@ -363,7 +363,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+                      "description": "The name of the `Build` to cancel. Format: `projects/{project}/locations/{location}/builds/{build}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/builds/[^/]+$",
                       "required": true,
@@ -783,7 +783,7 @@
       }
     }
   },
-  "revision": "20201022",
+  "revision": "20201201",
   "rootUrl": "https://cloudbuild.googleapis.com/",
   "schemas": {
     "ArtifactObjects": {
@@ -1354,7 +1354,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the `Build` to retrieve. Format: `projects/{project}/locations/{location}/builds/{build}`",
+          "description": "The name of the `Build` to cancel. Format: `projects/{project}/locations/{location}/builds/{build}`",
           "type": "string"
         },
         "projectId": {

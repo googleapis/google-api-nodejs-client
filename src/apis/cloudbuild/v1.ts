@@ -475,7 +475,7 @@ export namespace cloudbuild_v1 {
      */
     id?: string | null;
     /**
-     * The name of the `Build` to retrieve. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
+     * The name of the `Build` to cancel. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
      */
     name?: string | null;
     /**
@@ -2162,7 +2162,7 @@ export namespace cloudbuild_v1 {
      *
      *   // Do the magic
      *   const res = await cloudbuild.projects.locations.builds.cancel({
-     *     // The name of the `Build` to retrieve. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
+     *     // The name of the `Build` to cancel. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
      *     name: 'projects/my-project/locations/my-location/builds/my-build',
      *
      *     // Request body metadata
@@ -2901,7 +2901,7 @@ export namespace cloudbuild_v1 {
   export interface Params$Resource$Projects$Locations$Builds$Cancel
     extends StandardParameters {
     /**
-     * The name of the `Build` to retrieve. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
+     * The name of the `Build` to cancel. Format: `projects/{project\}/locations/{location\}/builds/{build\}`
      */
     name?: string;
 
