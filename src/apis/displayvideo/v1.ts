@@ -792,11 +792,11 @@ export namespace displayvideo_v1 {
    */
   export interface Schema$BulkEditAdvertiserAssignedTargetingOptionsRequest {
     /**
-     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`.
+     * The assigned targeting options to create in batch, specified as a list of `CreateAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     createRequests?: Schema$CreateAssignedTargetingOptionsRequest[];
     /**
-     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`.
+     * The assigned targeting options to delete in batch, specified as a list of `DeleteAssignedTargetingOptionsRequest`. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     deleteRequests?: Schema$DeleteAssignedTargetingOptionsRequest[];
   }
@@ -2188,6 +2188,15 @@ export namespace displayvideo_v1 {
     targetingOptionId?: string | null;
   }
   /**
+   * Search terms for geo region targeting options.
+   */
+  export interface Schema$GeoRegionSearchTerms {
+    /**
+     * The search query for the desired geo region. The query can be a prefix, e.g. "New Yor", "Seattle", "USA", etc.
+     */
+    geoRegionQuery?: string | null;
+  }
+  /**
    * Represents a targetable geographic region. This will be populated in the geo_region_details field when targeting_type is `TARGETING_TYPE_GEO_REGION`.
    */
   export interface Schema$GeoRegionTargetingOptionDetails {
@@ -2335,6 +2344,10 @@ export namespace displayvideo_v1 {
      * Output only. The unique ID of the insertion order. Assigned by the system.
      */
     insertionOrderId?: string | null;
+    /**
+     * The type of insertion order. If this field is unspecified in creation, the value defaults to `RTB`.
+     */
+    insertionOrderType?: string | null;
     /**
      * Additional integration details of the insertion order.
      */
@@ -2660,7 +2673,7 @@ export namespace displayvideo_v1 {
     displayName?: string | null;
   }
   /**
-   * A single line item. Next id: 24
+   * A single line item.
    */
   export interface Schema$LineItem {
     /**
@@ -3679,6 +3692,40 @@ export namespace displayvideo_v1 {
      * The SDF version used to execute this download task.
      */
     version?: string | null;
+  }
+  /**
+   * Request message for SearchTargetingOptions.
+   */
+  export interface Schema$SearchTargetingOptionsRequest {
+    /**
+     * Required. The Advertiser this request is being made in the context of.
+     */
+    advertiserId?: string | null;
+    /**
+     * Search terms for geo region targeting options. Can only be used when targeting_type is `TARGETING_TYPE_GEO_REGION`.
+     */
+    geoRegionSearchTerms?: Schema$GeoRegionSearchTerms;
+    /**
+     * Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
+     */
+    pageSize?: number | null;
+    /**
+     * A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `SearchTargetingOptions` method. If not specified, the first page of results will be returned.
+     */
+    pageToken?: string | null;
+  }
+  /**
+   * Response message for SearchTargetingOptionsResponse.
+   */
+  export interface Schema$SearchTargetingOptionsResponse {
+    /**
+     * A token to retrieve the next page of results. Pass this value in the page_token field in the subsequent call to `SearchTargetingOptions` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of targeting options that match the search criteria. This list will be absent if empty.
+     */
+    targetingOptions?: Schema$TargetingOption[];
   }
   /**
    * Targeting details for sensitive category. This will be populated in the details field of an AssignedTargetingOption when targeting_type is `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`.
@@ -6070,9 +6117,9 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.campaigns.list({
      *     // The ID of the advertiser to list campaigns for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`.
      *     pageSize: 'placeholder-value',
@@ -6385,11 +6432,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` The length of this field should be no more than 500 characters.
+     * Allows filtering by campaign properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` campaigns under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All campaigns with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All campaigns with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * `displayName` (default) * `entityStatus` * `updateTime` The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -8788,6 +8835,7 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -8809,6 +8857,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9081,6 +9130,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9210,9 +9260,9 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.insertionOrders.list({
      *     // Required. The ID of the advertiser to list insertion orders for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` * All insertion orders with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
@@ -9371,6 +9421,7 @@ export namespace displayvideo_v1 {
      *       //   "entityStatus": "my_entityStatus",
      *       //   "frequencyCap": {},
      *       //   "insertionOrderId": "my_insertionOrderId",
+     *       //   "insertionOrderType": "my_insertionOrderType",
      *       //   "integrationDetails": {},
      *       //   "name": "my_name",
      *       //   "pacing": {},
@@ -9392,6 +9443,7 @@ export namespace displayvideo_v1 {
      *   //   "entityStatus": "my_entityStatus",
      *   //   "frequencyCap": {},
      *   //   "insertionOrderId": "my_insertionOrderId",
+     *   //   "insertionOrderType": "my_insertionOrderType",
      *   //   "integrationDetails": {},
      *   //   "name": "my_name",
      *   //   "pacing": {},
@@ -9534,11 +9586,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` The length of this field should be no more than 500 characters.
+     * Allows filtering by insertion order properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `budget.budget_segments.date_range.end_date` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `entityStatus` - `budget.budget_segments.date_range.end_date` (input as YYYY-MM-DD) - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) Examples: * All insertion orders under a campaign: `campaignId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` insertion orders under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED")` * All insertion orders whose budget segments' dates end before March 28, 2019: `budget.budget_segments.date_range.end_date<"2019-03-28"` * All insertion orders with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All insertion orders with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -10371,9 +10423,9 @@ export namespace displayvideo_v1 {
      *   const res = await displayvideo.advertisers.lineItems.list({
      *     // Required. The ID of the advertiser to list line items for.
      *     advertiserId: '[^/]+',
-     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     *     // Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * The operator can be `NO LESS THAN (\>=)` or `NO GREATER THAN (<=)`. - `updateTime` (format of ISO 8601) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      *     filter: 'placeholder-value',
-     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     *     // Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      *     orderBy: 'placeholder-value',
      *     // Requested page size. Must be between `1` and `100`. If unspecified will default to `100`. Returns error code `INVALID_ARGUMENT` if an invalid value is specified.
      *     pageSize: 'placeholder-value',
@@ -10752,11 +10804,11 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` The length of this field should be no more than 500 characters.
+     * Allows filtering by line item properties. Supported syntax: * Filter expressions are made up of one or more restrictions. * Restrictions can be combined by `AND` or `OR` logical operators. A sequence of restrictions implicitly uses `AND`. * A restriction has the form of `{field\} {operator\} {value\}`. * The operator used on `flight.dateRange.endDate` must be LESS THAN (<). * The operator used on `updateTime` must be `GREATER THAN OR EQUAL TO (\>=)` or `LESS THAN OR EQUAL TO (<=)`. * The operator used on `warningMessages` must be `HAS (:)`. * The operators used on all other fields must be `EQUALS (=)`. * Supported fields: - `campaignId` - `displayName` - `insertionOrderId` - `entityStatus` - `lineItemId` - `lineItemType` - `flight.dateRange.endDate` (input formatted as YYYY-MM-DD) - `warningMessages` - `flight.triggerId` - `updateTime` (input in ISO 8601 format, or YYYY-MM-DDTHH:MM:SSZ) * The operator can be `NO LESS THAN (\>=)` or `NO GREATER THAN (<=)`. - `updateTime` (format of ISO 8601) Examples: * All line items under an insertion order: `insertionOrderId="1234"` * All `ENTITY_STATUS_ACTIVE` or `ENTITY_STATUS_PAUSED` and `LINE_ITEM_TYPE_DISPLAY_DEFAULT` line items under an advertiser: `(entityStatus="ENTITY_STATUS_ACTIVE" OR entityStatus="ENTITY_STATUS_PAUSED") AND lineItemType="LINE_ITEM_TYPE_DISPLAY_DEFAULT"` * All line items whose flight dates end before March 28, 2019: `flight.dateRange.endDate<"2019-03-28"` * All line items that have `NO_VALID_CREATIVE` in `warningMessages`: `warningMessages:"NO_VALID_CREATIVE"` * All line items with an update time less than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime<="2020-11-04T18:54:47Z"` * All line items with an update time greater than or equal to `2020-11-04T18:54:47Z (format of ISO 8601)`: `updateTime\>="2020-11-04T18:54:47Z"` The length of this field should be no more than 500 characters.
      */
     filter?: string;
     /**
-     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
+     * Field by which to sort the list. Acceptable values are: * "displayName" (default) * "entityStatus" * “flight.dateRange.endDate” * "updateTime" The default sorting order is ascending. To specify descending order for a field, a suffix "desc" should be added to the field name. Example: `displayName desc`.
      */
     orderBy?: string;
     /**
@@ -15402,7 +15454,7 @@ export namespace displayvideo_v1 {
      *     {
      *       // Required. The ID of the advertiser.
      *       advertiserId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
      *
      *       // Request body metadata
@@ -15632,7 +15684,7 @@ export namespace displayvideo_v1 {
      *       advertiserId: '[^/]+',
      *       // Required. The ID of the assigned targeting option to delete.
      *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
      *     }
      *   );
@@ -15773,7 +15825,7 @@ export namespace displayvideo_v1 {
      *       advertiserId: '[^/]+',
      *       // Required. An identifier unique to the targeting type in this advertiser that identifies the assigned targeting option being requested.
      *       assignedTargetingOptionId: '[^/]+',
-     *       // Required. Identifies the type of this assigned targeting option.
+     *       // Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
      *     }
      *   );
@@ -15967,7 +16019,7 @@ export namespace displayvideo_v1 {
      *       pageSize: 'placeholder-value',
      *       // A token identifying a page of results the server should return. Typically, this is the value of next_page_token returned from the previous call to `ListAdvertiserAssignedTargetingOptions` method. If not specified, the first page of results will be returned.
      *       pageToken: 'placeholder-value',
-     *       // Required. Identifies the type of assigned targeting options to list.
+     *       // Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      *       targetingType: '[^/]+',
      *     }
      *   );
@@ -16088,7 +16140,7 @@ export namespace displayvideo_v1 {
      */
     advertiserId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
 
@@ -16108,7 +16160,7 @@ export namespace displayvideo_v1 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -16123,7 +16175,7 @@ export namespace displayvideo_v1 {
      */
     assignedTargetingOptionId?: string;
     /**
-     * Required. Identifies the type of this assigned targeting option.
+     * Required. Identifies the type of this assigned targeting option. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -16150,7 +16202,7 @@ export namespace displayvideo_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Identifies the type of assigned targeting options to list.
+     * Required. Identifies the type of assigned targeting options to list. Supported targeting types: * `TARGETING_TYPE_CHANNEL` * `TARGETING_TYPE_DIGITAL_CONTENT_LABEL_EXCLUSION` * `TARGETING_TYPE_SENSITIVE_CATEGORY_EXCLUSION`
      */
     targetingType?: string;
   }
@@ -23381,6 +23433,156 @@ export namespace displayvideo_v1 {
         );
       }
     }
+
+    /**
+     * Searches for targeting options of a given type based on the given search terms.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/displayvideo.googleapis.com
+     * // - Login into gcloud by running:
+     * //   `$ gcloud auth application-default login`
+     * // - Install the npm module by running:
+     * //   `$ npm install googleapis`
+     *
+     * const {google} = require('googleapis');
+     * const displayvideo = google.displayvideo('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/display-video'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await displayvideo.targetingTypes.targetingOptions.search({
+     *     // Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
+     *     targetingType: '[^/]+',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "advertiserId": "my_advertiserId",
+     *       //   "geoRegionSearchTerms": {},
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetingOptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    search(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Search,
+      options: StreamMethodOptions
+    ): GaxiosPromise<Readable>;
+    search(
+      params?: Params$Resource$Targetingtypes$Targetingoptions$Search,
+      options?: MethodOptions
+    ): GaxiosPromise<Schema$SearchTargetingOptionsResponse>;
+    search(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Search,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    search(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Search,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SearchTargetingOptionsResponse>,
+      callback: BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+    ): void;
+    search(
+      params: Params$Resource$Targetingtypes$Targetingoptions$Search,
+      callback: BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+    ): void;
+    search(
+      callback: BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+    ): void;
+    search(
+      paramsOrCallback?:
+        | Params$Resource$Targetingtypes$Targetingoptions$Search
+        | BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SearchTargetingOptionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | GaxiosPromise<Schema$SearchTargetingOptionsResponse>
+      | GaxiosPromise<Readable> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Targetingtypes$Targetingoptions$Search;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Targetingtypes$Targetingoptions$Search;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://displayvideo.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/targetingTypes/{+targetingType}/targetingOptions:search'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['targetingType'],
+        pathParams: ['targetingType'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SearchTargetingOptionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SearchTargetingOptionsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Targetingtypes$Targetingoptions$Get
@@ -23424,6 +23626,18 @@ export namespace displayvideo_v1 {
      * Required. The type of targeting option to be listed.
      */
     targetingType?: string;
+  }
+  export interface Params$Resource$Targetingtypes$Targetingoptions$Search
+    extends StandardParameters {
+    /**
+     * Required. The type of targeting options to retrieve. Accepted values are: * `TARGETING_TYPE_GEO_REGION`
+     */
+    targetingType?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SearchTargetingOptionsRequest;
   }
 
   export class Resource$Users {
