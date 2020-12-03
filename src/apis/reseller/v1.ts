@@ -53,9 +53,21 @@ export namespace reseller_v1 {
       | GoogleAuth;
 
     /**
-     * Data format for the response.
+     * V1 error format.
+     */
+    '$.xgafv'?: string;
+    /**
+     * OAuth access token.
+     */
+    access_token?: string;
+    /**
+     * Data format for response.
      */
     alt?: string;
+    /**
+     * JSONP
+     */
+    callback?: string;
     /**
      * Selector specifying which fields to include in a partial response.
      */
@@ -73,19 +85,23 @@ export namespace reseller_v1 {
      */
     prettyPrint?: boolean;
     /**
-     * An opaque string that represents a user for quota purposes. Must not exceed 40 characters.
+     * Available to use for quota purposes for server-side applications. Can be any arbitrary string assigned to a user, but should not exceed 40 characters.
      */
     quotaUser?: string;
     /**
-     * Deprecated. Please use quotaUser instead.
+     * Legacy upload protocol for media (e.g. "media", "multipart").
      */
-    userIp?: string;
+    uploadType?: string;
+    /**
+     * Upload protocol for media (e.g. "raw", "multipart").
+     */
+    upload_protocol?: string;
   }
 
   /**
-   * Workspace Reseller API
+   * Google Workspace Reseller API
    *
-   * Creates and manages your customers and their subscriptions.
+   * Perform common functions that are available on the Channel Services console at scale, like placing orders and viewing customer information
    *
    * @example
    * ```js
@@ -169,13 +185,7 @@ export namespace reseller_v1 {
      */
     kind?: string | null;
     /**
-     * The planName property is required. This is the name of the subscription's payment plan. For more information about the Google payment plans, see API concepts.
-     *
-     * Possible values are:
-     * - ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments  Caution: ANNUAL_MONTHLY_PAY is returned as ANNUAL in all API responses.
-     * - ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments
-     * - FLEXIBLE - The flexible plan
-     * - TRIAL - The 30-day free trial plan
+     * The planName property is required. This is the name of the subscription's payment plan. For more information about the Google payment plans, see API concepts. Possible values are: - ANNUAL_MONTHLY_PAY - The annual commitment plan with monthly payments *Caution: *ANNUAL_MONTHLY_PAY is returned as ANNUAL in all API responses. - ANNUAL_YEARLY_PAY - The annual commitment plan with yearly payments - FLEXIBLE - The flexible plan - TRIAL - The 30-day free trial plan
      */
     planName?: string | null;
     /**
@@ -192,7 +202,7 @@ export namespace reseller_v1 {
    */
   export interface Schema$Customer {
     /**
-     * Like the "Customer email" in the reseller tools, this email is the secondary contact used if something happens to the customer's service such as service outage or a security issue. This property is required when creating a new customer and should not use the same domain as customerDomain.
+     * Like the "Customer email" in the reseller tools, this email is the secondary contact used if something happens to the customer's service such as service outage or a security issue. This property is required when creating a new customer and should not use the same domain as customerDomain .
      */
     alternateEmail?: string | null;
     /**
@@ -272,11 +282,11 @@ export namespace reseller_v1 {
      */
     licensedNumberOfSeats?: number | null;
     /**
-     * This is a required property and is exclusive to subscriptions with FLEXIBLE or TRIAL plans. This property sets the maximum number of licensed users allowed on a subscription. This quantity can be increased up to the maximum limit defined in the reseller's contract. The minimum quantity is the current number of users in the customer account. Note: G Suite subscriptions automatically assign a license to every user.
+     * This is a required property and is exclusive to subscriptions with FLEXIBLE or TRIAL plans. This property sets the maximum number of licensed users allowed on a subscription. This quantity can be increased up to the maximum limit defined in the reseller's contract. The minimum quantity is the current number of users in the customer account. *Note: *G Suite subscriptions automatically assign a license to every user.
      */
     maximumNumberOfSeats?: number | null;
     /**
-     * This is a required property and is exclusive to subscriptions with ANNUAL_MONTHLY_PAY and ANNUAL_YEARLY_PAY plans. This property sets the maximum number of licenses assignable to users on a subscription. The reseller can add more licenses, but once set, the numberOfSeats cannot be reduced until renewal. The reseller is invoiced based on the numberOfSeats value regardless of how many of these user licenses are assigned. Note: G Suite subscriptions automatically assign a license to every user.
+     * This is a required property and is exclusive to subscriptions with ANNUAL_MONTHLY_PAY and ANNUAL_YEARLY_PAY plans. This property sets the maximum number of licenses assignable to users on a subscription. The reseller can add more licenses, but once set, the numberOfSeats cannot be reduced until renewal. The reseller is invoiced based on the numberOfSeats value regardless of how many of these user licenses are assigned. *Note: *G Suite subscriptions automatically assign a license to every user.
      */
     numberOfSeats?: number | null;
   }
@@ -333,11 +343,11 @@ export namespace reseller_v1 {
      */
     seats?: Schema$Seats;
     /**
-     * A required property. The skuId is a unique system identifier for a product's SKU assigned to a customer in the subscription. For products and SKUs available in this version of the API, see  Product and SKU IDs.
+     * A required property. The skuId is a unique system identifier for a product's SKU assigned to a customer in the subscription. For products and SKUs available in this version of the API, see Product and SKU IDs.
      */
     skuId?: string | null;
     /**
-     * Read-only external display name for a product's SKU assigned to a customer in the subscription. SKU names are subject to change at Google's discretion. For products and SKUs available in this version of the API, see  Product and SKU IDs.
+     * Read-only external display name for a product's SKU assigned to a customer in the subscription. SKU names are subject to change at Google's discretion. For products and SKUs available in this version of the API, see Product and SKU IDs.
      */
     skuName?: string | null;
     /**
@@ -349,14 +359,7 @@ export namespace reseller_v1 {
      */
     subscriptionId?: string | null;
     /**
-     * Read-only field containing an enumerable of all the current suspension reasons for a subscription. It is possible for a subscription to have many concurrent, overlapping suspension reasons. A subscription's STATUS is SUSPENDED until all pending suspensions are removed.
-     *
-     * Possible options include:
-     * - PENDING_TOS_ACCEPTANCE - The customer has not logged in and accepted the G Suite Resold Terms of Services.
-     * - RENEWAL_WITH_TYPE_CANCEL - The customer's commitment ended and their service was cancelled at the end of their term.
-     * - RESELLER_INITIATED - A manual suspension invoked by a Reseller.
-     * - TRIAL_ENDED - The customer's trial expired without a plan selected.
-     * - OTHER - The customer is suspended for an internal Google reason (e.g. abuse or otherwise).
+     * Read-only field containing an enumerable of all the current suspension reasons for a subscription. It is possible for a subscription to have many concurrent, overlapping suspension reasons. A subscription's STATUS is SUSPENDED until all pending suspensions are removed. Possible options include: - PENDING_TOS_ACCEPTANCE - The customer has not logged in and accepted the G Suite Resold Terms of Services. - RENEWAL_WITH_TYPE_CANCEL - The customer's commitment ended and their service was cancelled at the end of their term. - RESELLER_INITIATED - A manual suspension invoked by a Reseller. - TRIAL_ENDED - The customer's trial expired without a plan selected. - OTHER - The customer is suspended for an internal Google reason (e.g. abuse or otherwise).
      */
     suspensionReasons?: string[] | null;
     /**
@@ -506,7 +509,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -656,7 +659,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -684,7 +687,7 @@ export namespace reseller_v1 {
     }
 
     /**
-     * Update a customer account's settings. This method supports patch semantics.
+     * Patch a customer account's settings via Apiary Patch Orchestration
      * @example
      * ```js
      * // Before running the sample:
@@ -806,7 +809,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -956,7 +959,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1140,7 +1143,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1277,7 +1280,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1412,7 +1415,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1583,7 +1586,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1743,7 +1746,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -1902,7 +1905,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2061,7 +2064,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2187,7 +2190,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2338,7 +2341,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2511,7 +2514,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2571,9 +2574,7 @@ export namespace reseller_v1 {
      *     customerAuthToken: 'placeholder-value',
      *     // Either the customer's primary domain name or the customer's unique identifier. If using the domain name, we do not recommend using a customerId as a key for persistent data. If the domain name for a customerId is changed, the Google system automatically updates.
      *     customerId: 'placeholder-value',
-     *     // When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:
-     *     // - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.
-     *     // - example -- Returns example20.com and example.com.
+     *     // When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com: - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*. - example -- Returns example20.com and example.com.
      *     customerNamePrefix: 'placeholder-value',
      *     // When retrieving a large list, the maxResults is the maximum number of results per page. The nextPageToken value takes you to the next page. The default is 20.
      *     maxResults: 'placeholder-value',
@@ -2654,7 +2655,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2802,7 +2803,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -2950,7 +2951,7 @@ export namespace reseller_v1 {
         options = {};
       }
 
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
+      const rootUrl = options.rootUrl || 'https://reseller.googleapis.com/';
       const parameters = {
         options: Object.assign(
           {
@@ -3090,9 +3091,7 @@ export namespace reseller_v1 {
      */
     customerId?: string;
     /**
-     * When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com:
-     * - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*.
-     * - example -- Returns example20.com and example.com.
+     * When retrieving all of your subscriptions and filtering for specific customers, you can enter a prefix for a customer name. Using an example customer group that includes exam.com, example20.com and example.com: - exa -- Returns all customer names that start with 'exa' which could include exam.com, example20.com, and example.com. A name prefix is similar to using a regular expression's asterisk, exa*. - example -- Returns example20.com and example.com.
      */
     customerNamePrefix?: string;
     /**
