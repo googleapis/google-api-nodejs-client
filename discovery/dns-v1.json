@@ -1037,7 +1037,7 @@
       }
     }
   },
-  "revision": "20201013",
+  "revision": "20201116",
   "rootUrl": "https://dns.googleapis.com/",
   "schemas": {
     "Change": {
@@ -1833,6 +1833,11 @@
       "properties": {
         "dnsKeysPerManagedZone": {
           "description": "Maximum allowed number of DnsKeys per ManagedZone.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "gkeClustersPerPolicy": {
+          "description": "Maximum allowed number of GKE clusters per policy.",
           "format": "int32",
           "type": "integer"
         },
